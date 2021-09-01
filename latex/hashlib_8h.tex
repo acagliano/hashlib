@@ -113,8 +113,6 @@ bool \mbox{\hyperlink{hashlib_8h_a2b904b543405fdf8f283d028ce0d1da7}{hashlib\+\_\
 \begin{DoxyCompactList}\small\item\em AES Decryptor Function. \end{DoxyCompactList}\item 
 bool \mbox{\hyperlink{hashlib_8h_a6ca5ecde1fd675effbc4a29eac35a903}{hashlib\+\_\+\+AESOutput\+Mac}} (const uint8\+\_\+t $\ast$plaintext, size\+\_\+t len, uint8\+\_\+t $\ast$mac, const \mbox{\hyperlink{structaes__ctx}{aes\+\_\+ctx}} $\ast$ks)
 \begin{DoxyCompactList}\small\item\em Returns a message authentication code (MAC) for an AES message. \end{DoxyCompactList}\item 
-bool \mbox{\hyperlink{hashlib_8h_a43b9c4bcff3a6a2c5121f7dd90d1014c}{hashlib\+\_\+\+AESVerify\+Mac}} (const uint8\+\_\+t $\ast$ciphertext, size\+\_\+t len, const \mbox{\hyperlink{structaes__ctx}{aes\+\_\+ctx}} $\ast$ks\+\_\+mac)
-\begin{DoxyCompactList}\small\item\em Verifies the MAC appended to a given ciphertext. This function verifies the MAC for a given ciphertext. Use this function to verify the integrity of the message prior to Decryption This function expects the IPsec standard for concatenating the ciphertext and the MAC. \end{DoxyCompactList}\item 
 size\+\_\+t \mbox{\hyperlink{hashlib_8h_aebac98a8537f3353aac9fbae5ed67f29}{hashlib\+\_\+\+AESPad\+Message}} (const uint8\+\_\+t $\ast$plaintext, size\+\_\+t len, uint8\+\_\+t $\ast$outbuf, uint8\+\_\+t schm)
 \begin{DoxyCompactList}\small\item\em Pads a plaintext according to the specified AES padding scheme. \end{DoxyCompactList}\item 
 size\+\_\+t \mbox{\hyperlink{hashlib_8h_a152d6d62f1a21c97a551cea7e6110e59}{hashlib\+\_\+\+AESStrip\+Padding}} (const uint8\+\_\+t $\ast$plaintext, size\+\_\+t len, uint8\+\_\+t $\ast$outbuf, uint8\+\_\+t schm)
@@ -258,15 +256,12 @@ AES Decryptor Function.
 \hline
 {\em iv} & Pointer to an initialization vector (a nonce of length equal to the block size). \\
 \hline
+{\em ciphermode} & The cipher mode to use. Can be either AES\+\_\+\+MODE\+\_\+\+CBC or AES\+\_\+\+MODE\+\_\+\+CTR. \\
+\hline
 \end{DoxyParams}
 \begin{DoxyNote}{Note}
 the IV should be the same as what is used for encryption. 
 \end{DoxyNote}
-
-\begin{DoxyParams}{Parameters}
-{\em ciphermode} & The cipher mode to use. Can be either AES\+\_\+\+MODE\+\_\+\+CBC or AES\+\_\+\+MODE\+\_\+\+CTR. \\
-\hline
-\end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 True if the encryption succeded. False if an error occured. 
 \end{DoxyReturn}
@@ -313,6 +308,14 @@ AES Encryptor Function.
 \hline
 {\em plaintext} & to encrypt. \\
 \hline
+{\em ciphertext} & Pointer to buffer to write encrypted data to. \\
+\hline
+{\em ks} & Pointer to an AES key schedule context. \\
+\hline
+{\em iv} & Pointer to an initialization vector (a nonce of length equal to the block size). \\
+\hline
+{\em ciphermode} & The cipher mode to use. Can be either AES\+\_\+\+MODE\+\_\+\+CBC or AES\+\_\+\+MODE\+\_\+\+CTR. \\
+\hline
 \end{DoxyParams}
 \begin{DoxyNote}{Note}
 If cipher mode CBC is used,
@@ -325,17 +328,6 @@ If cipher mode CBC is used,
 \begin{DoxySeeAlso}{See also}
 \mbox{\hyperlink{hashlib_8h_aebac98a8537f3353aac9fbae5ed67f29}{hashlib\+\_\+\+AESPad\+Message()}} 
 \end{DoxySeeAlso}
-
-\begin{DoxyParams}{Parameters}
-{\em ciphertext} & Pointer to buffer to write encrypted data to. \\
-\hline
-{\em ks} & Pointer to an AES key schedule context. \\
-\hline
-{\em iv} & Pointer to an initialization vector (a nonce of length equal to the block size). \\
-\hline
-{\em ciphermode} & The cipher mode to use. Can be either AES\+\_\+\+MODE\+\_\+\+CBC or AES\+\_\+\+MODE\+\_\+\+CTR. \\
-\hline
-\end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 True if the encryption succeded. False if an error occured. 
 \end{DoxyReturn}
@@ -358,6 +350,8 @@ ECB-\/mode ciphers are insecure (see many-\/time pad vulnerability) These functi
 \hline
 {\em block\+\_\+out} & Pointer to buffer to write encrypted block. \\
 \hline
+{\em ks} & Pointer to an AES key schedule context. \\
+\hline
 \end{DoxyParams}
 \begin{DoxyNote}{Note}
 
@@ -367,8 +361,6 @@ ECB-\/mode ciphers are insecure (see many-\/time pad vulnerability) These functi
 {\em block\+\_\+in} & and\\
 \hline
 {\em block\+\_\+out} & are aliasable. \\
-\hline
-{\em ks} & Pointer to an AES key schedule context. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -488,19 +480,7 @@ Strips the padding from a message according to the specified AES padding scheme.
 \begin{DoxyReturn}{Returns}
 The length of the message with padding removed. 
 \end{DoxyReturn}
-\mbox{\Hypertarget{hashlib_8h_a43b9c4bcff3a6a2c5121f7dd90d1014c}\label{hashlib_8h_a43b9c4bcff3a6a2c5121f7dd90d1014c}} 
-\index{hashlib.h@{hashlib.h}!hashlib\_AESVerifyMac@{hashlib\_AESVerifyMac}}
-\index{hashlib\_AESVerifyMac@{hashlib\_AESVerifyMac}!hashlib.h@{hashlib.h}}
-\doxysubsubsection{\texorpdfstring{hashlib\_AESVerifyMac()}{hashlib\_AESVerifyMac()}}
-{\footnotesize\ttfamily bool hashlib\+\_\+\+AESVerify\+Mac (\begin{DoxyParamCaption}\item[{const uint8\+\_\+t $\ast$}]{ciphertext,  }\item[{size\+\_\+t}]{len,  }\item[{const \mbox{\hyperlink{structaes__ctx}{aes\+\_\+ctx}} $\ast$}]{ks\+\_\+mac }\end{DoxyParamCaption})}
-
-
-
-Verifies the MAC appended to a given ciphertext. This function verifies the MAC for a given ciphertext. Use this function to verify the integrity of the message prior to Decryption This function expects the IPsec standard for concatenating the ciphertext and the MAC. 
-
-\hypertarget{hashlib_8h_autotoc_md0}{}\doxysubsection{Inputs}\label{hashlib_8h_autotoc_md0}
-$<$$>$ ciphertext = pointer to ciphertext to verify. Ciphertext should be formated \mbox{[}IV, encrypted\+\_\+msg, MAC\mbox{]}, where MAC = MAC(\+IV, encrypted\+\_\+msg) $<$$>$ len = size of the ciphertext to verify (should be equal to padded message + 1 block for MAC) $<$$>$ ks\+\_\+mac = the key schedule with which to verify the MAC Compares the CBC encryption of the ciphertext (excluding the last block) over ks\+\_\+mac with the last block of the ciphertext\hypertarget{hashlib_8h_autotoc_md1}{}\doxysubsection{Ouputs}\label{hashlib_8h_autotoc_md1}
-True if last block of ciphertext matches MAC of ciphertext (excluding last block) False otherwise \mbox{\Hypertarget{hashlib_8h_a2c1bd7ec5809afead6583128c9052d8b}\label{hashlib_8h_a2c1bd7ec5809afead6583128c9052d8b}} 
+\mbox{\Hypertarget{hashlib_8h_a2c1bd7ec5809afead6583128c9052d8b}\label{hashlib_8h_a2c1bd7ec5809afead6583128c9052d8b}} 
 \index{hashlib.h@{hashlib.h}!hashlib\_MGF1Hash@{hashlib\_MGF1Hash}}
 \index{hashlib\_MGF1Hash@{hashlib\_MGF1Hash}!hashlib.h@{hashlib.h}}
 \doxysubsubsection{\texorpdfstring{hashlib\_MGF1Hash()}{hashlib\_MGF1Hash()}}
@@ -597,9 +577,17 @@ RSA-\/\+OAEP padding scheme.
 
 Applies the RSA-\/\+OAEP padding scheme as indicated in PKCS\#1 v2.\+2. This is intended for use prior to RSA encryption.
 
-$\vert$ $<$-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/--- modulus size -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/---$>$ $\vert$ $\vert$-- 0x00 --$\vert$-- salt --$\vert$-- auth hash --$\vert$-- 0x00...padding --$\vert$-- 0x01 --$\vert$-- message --$\vert$ $\vert$ $\vert$-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/---$\vert$-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/---$\vert$ $\vert$ $\vert$ $\vert$ -\/-\/-\/-\/-\/--- MGF1-\/\+SHA256 -\/-\/-\/-\/---$>$ XOR $\vert$ $\vert$ XOR $<$-\/-\/-\/-\/-\/--- MGF1-\/\+SHA256 -\/-\/-\/-\/-\/-\/---$\vert$ $\vert$ $\vert$ $\vert$-- 0x00 --$\vert$-\/ msalt -\/$\vert$-\/-\/-\/-\/-\/--- masked message, padding, and auth hash -\/-\/-\/-\/-\/---$\vert$ $\vert$$<$-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/--- modulus size -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/---$>$ $\vert$
-
-
+$\vert$ $<$-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/--- modulus size -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/---$>$ $\vert$ ~\newline
+$\vert$-- 0x00 --$\vert$-- salt --$\vert$-- auth hash --$\vert$-- 0x00...padding --$\vert$-- 0x01 --$\vert$-- message --$\vert$ ~\newline
+ $\vert$ $\vert$-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/---$\vert$-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/---$\vert$ ~\newline
+ $\vert$ $\vert$ ~\newline
+ $\vert$ -\/-\/-\/-\/-\/--- MGF1-\/\+SHA256 -\/-\/-\/-\/---$>$ XOR ~\newline
+ $\vert$ $\vert$ ~\newline
+ XOR $<$-\/-\/-\/-\/-\/--- MGF1-\/\+SHA256 -\/-\/-\/-\/-\/-\/---$\vert$ ~\newline
+ $\vert$ $\vert$ ~\newline
+$\vert$-- 0x00 --$\vert$-\/ msalt -\/$\vert$-\/-\/-\/-\/-\/--- masked message, padding, and auth hash -\/-\/-\/-\/-\/---$\vert$ ~\newline
+$\vert$$<$-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/--- modulus size -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/---$>$ $\vert$ ~\newline
+ 
 \begin{DoxyParams}{Parameters}
 {\em plaintext} & Pointer to a buffer containing the data to OAEP-\/encode. \\
 \hline
@@ -642,9 +630,19 @@ RSA-\/\+PSS padding scheme.
 
 Applies the RSA-\/\+PSS padding scheme as indicated in PKCS\#1 v1.\+5.
 
-$\vert$-\/-\/--- Message -\/-\/---$\vert$ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/--- SHA-\/256 -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/---$>$$\vert$ $\vert$ $\vert$-- 0x00... padding --$\vert$-- 0x01 --$\vert$-- salt --$\vert$ $\vert$-- 8 bytes 0x00 --$\vert$-- m\+Hash --$\vert$-- salt --$\vert$ $\vert$-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/---$\vert$ $\vert$-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/---$\vert$ $\ast$\+DB $\vert$ $\ast$M\textquotesingle{} $\vert$ $\vert$ SHA-\/256 XOR $<$-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/--- MGF1-\/\+SHA256 -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/---$\vert$ $\vert$ $\vert$ $\vert$ $<$ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/--- $\vert$ $\vert$ $\vert$ $\vert$-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/--- masked DB -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/---$\vert$-- M\textquotesingle{} Hash --$\vert$-- 0xbc --$\vert$ $\vert$-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/--- modulus size -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/---$\vert$
-
-
+$\vert$-\/-\/--- Message -\/-\/---$\vert$ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/--- SHA-\/256 -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/---$>$$\vert$ ~\newline
+ $\vert$ ~\newline
+$\vert$-- 0x00... padding --$\vert$-- 0x01 --$\vert$-- salt --$\vert$ $\vert$-- 8 bytes 0x00 --$\vert$-- m\+Hash --$\vert$-- salt --$\vert$ ~\newline
+$\vert$-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/---$\vert$ $\vert$-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/---$\vert$ ~\newline
+ $\ast$\+DB $\vert$ $\ast$M\textquotesingle{} $\vert$ ~\newline
+ $\vert$ SHA-\/256 ~\newline
+ XOR $<$-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/--- MGF1-\/\+SHA256 -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/---$\vert$ ~\newline
+ $\vert$ $\vert$ ~\newline
+ $\vert$ $<$ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/--- $\vert$ ~\newline
+ $\vert$ $\vert$ ~\newline
+$\vert$-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/--- masked DB -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/---$\vert$-- M\textquotesingle{} Hash --$\vert$-- 0xbc --$\vert$ ~\newline
+$\vert$-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/--- modulus size -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/---$\vert$ ~\newline
+ 
 \begin{DoxyParams}{Parameters}
 {\em plaintext} & Pointer to buffer containing data to encode. \\
 \hline

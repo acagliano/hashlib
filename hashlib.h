@@ -223,8 +223,8 @@ bool hashlib_AESLoadKey(const uint8_t* key, const aes_ctx* ks, size_t keylen);
 	
  *	@param block_in	Pointer to block of data to encrypt.
  *	@param block_out Pointer to buffer to write encrypted block.
- *		@note @param block_in and @param block_out are aliasable.
-	@param ks Pointer to an AES key schedule context.
+ *	@param ks Pointer to an AES key schedule context.
+ *	@note @param block_in and @param block_out are aliasable.
 	@return True if encryption succeeded. False if failed.
  */
 bool hashlib_AESEncryptBlock(const uint8_t* block_in,
@@ -251,13 +251,13 @@ bool hashlib_AESDecryptBlock(const uint8_t* block_in,
  *
  * @param plaintext Pointer to data to encrypt.
  * @param len Length of data at @param plaintext to encrypt.
- * 	@note If cipher mode CBC is used, @param len must be a multiple of the blocksize.
- * 		You can pass the plaintext through a padding function prior to calling this function.
- * 		@see hashlib_AESPadMessage()
  * @param ciphertext Pointer to buffer to write encrypted data to.
  * @param ks Pointer to an AES key schedule context.
  * @param iv Pointer to an initialization vector (a nonce of length equal to the block size).
  * @param ciphermode The cipher mode to use. Can be either AES_MODE_CBC or AES_MODE_CTR.
+ * @note If cipher mode CBC is used, @param len must be a multiple of the blocksize.
+ * 		You can pass the plaintext through a padding function prior to calling this function.
+ * 		@see hashlib_AESPadMessage()
  * @return True if the encryption succeded. False if an error occured.
  */
 bool hashlib_AESEncrypt(const uint8_t* plaintext,
@@ -275,8 +275,8 @@ bool hashlib_AESEncrypt(const uint8_t* plaintext,
  * @param plaintext Pointer to buffer to write decryped data to.
  * @param ks Pointer to an AES key schedule context.
  * @param iv Pointer to an initialization vector (a nonce of length equal to the block size).
- * 	@note the IV should be the same as what is used for encryption.
  * @param ciphermode The cipher mode to use. Can be either AES_MODE_CBC or AES_MODE_CTR.
+ * @note the IV should be the same as what is used for encryption.
  * @return True if the encryption succeded. False if an error occured.
  */
 bool hashlib_AESDecrypt(const uint8_t* ciphertext,
@@ -306,25 +306,6 @@ bool hashlib_AESOutputMac(
     size_t len,
     uint8_t* mac,
     const aes_ctx* ks);
-    
-/**
- * @brief Verifies the MAC appended to a given ciphertext.
-    This function verifies the MAC for a given ciphertext. Use this function to verify the integrity of the message prior to Decryption
-    This function expects the IPsec standard for concatenating the ciphertext and the MAC
-    
-    # Inputs #
-    <> ciphertext = pointer to ciphertext to verify. Ciphertext should be formated [IV, encrypted_msg, MAC],
-        where MAC = MAC(IV, encrypted_msg)
-    <> len = size of the ciphertext to verify (should be equal to padded message + 1 block for MAC)
-    <> ks_mac = the key schedule with which to verify the MAC
-    * Compares the CBC encryption of the ciphertext (excluding the last block) over ks_mac with the last block of the ciphertext
-    
-    # Ouputs #
-    True if last block of ciphertext matches MAC of ciphertext (excluding last block)
-    False otherwise
-
- */
-bool hashlib_AESVerifyMac(const uint8_t *ciphertext, size_t len, const aes_ctx *ks_mac);
 
 /**
  * @brief Pads a plaintext according to the specified AES padding scheme.
@@ -384,16 +365,16 @@ enum _ssl_sig_modes {
  * Applies the RSA-OAEP padding scheme as indicated in PKCS#1 v2.2.
  * This is intended for use prior to RSA encryption.
  *
- * | <------------------------------------- modulus size ---------------------------------------> |
- * |-- 0x00 --|-- salt --|-- auth hash --|-- 0x00...padding --|-- 0x01 --|-- message --|
- *		     |     |---------------------------------------|-------------------------------------|
- *			 |	     					  |
- *			 | -------- MGF1-SHA256 ------->  XOR
- *			 |					      	  |
- *		   XOR <-------- MGF1-SHA256 ---------|
- *			 |					           |
- * |-- 0x00 --|- msalt -|-------- masked message, padding, and auth hash --------|
- * |<------------------------------------- modulus size ---------------------------------------> |
+ * | <------------------------------------- modulus size ---------------------------------------> |	\n
+ * |-- 0x00 --|-- salt --|-- auth hash --|-- 0x00...padding --|-- 0x01 --|-- message --|	\n
+ *		     |     |---------------------------------------|-------------------------------------|	\n
+ *			 |	     					  |						\n
+ *			 | -------- MGF1-SHA256 ------->  XOR						\n
+ *			 |					      	  |						\n
+ *		   XOR <-------- MGF1-SHA256 ---------|						\n
+ *			 |					           |						\n
+ * |-- 0x00 --|- msalt -|-------- masked message, padding, and auth hash --------|	\n
+ * |<------------------------------------- modulus size ---------------------------------------> |	\n
  *
  * @param plaintext Pointer to a buffer containing the data to OAEP-encode.
  * @param len Length of data at @param plaintext to encode.
@@ -437,18 +418,18 @@ size_t hashlib_RSADecodeOAEP(
  *
  * Applies the RSA-PSS padding scheme  as indicated in PKCS#1 v1.5.
  *
- * |----- Message -----|  ------------------------- SHA-256 ------------------------->|
- * 									  				 |
- * |-- 0x00... padding --|-- 0x01 --|-- salt --|		|-- 8 bytes 0x00 --|-- mHash --|-- salt --|
- * |--------------------------------------------------|		|--------------------------------------------------|
- *	*DB			|					 *M'			    |
- *				|					      		     SHA-256
- *			  XOR <----------------- MGF1-SHA256 ------------------|
- *				|								    |
- *				|				     < ------------------------- |
- *				|			     	     |
- * |---------------- masked DB ----------------|-- M' Hash --|-- 0xbc --|
- * |----------------------------- modulus size -------------------------------|
+ * |----- Message -----|  ------------------------- SHA-256 ------------------------->|				\n
+ * 									  				 |				\n
+ * |-- 0x00... padding --|-- 0x01 --|-- salt --|		|-- 8 bytes 0x00 --|-- mHash --|-- salt --|		\n
+ * |--------------------------------------------------|		|--------------------------------------------------|		\n
+ *	*DB			|					 *M'			    |					\n
+ *				|					      		     SHA-256				\n
+ *			  XOR <----------------- MGF1-SHA256 ------------------|					\n
+ *				|								    |					\n
+ *				|				     < ------------------------- |					\n
+ *				|			     	     |									\n
+ * |---------------- masked DB ----------------|-- M' Hash --|-- 0xbc --|						\n
+ * |----------------------------- modulus size -------------------------------|						\n
  *
  * @param plaintext Pointer to buffer containing data to encode.
  * @param len Length of data at @param plaintext to encode.

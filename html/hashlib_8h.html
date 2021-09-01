@@ -201,9 +201,6 @@ Functions</h2></td></tr>
 <tr class="memitem:a6ca5ecde1fd675effbc4a29eac35a903"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#a6ca5ecde1fd675effbc4a29eac35a903">hashlib_AESOutputMac</a> (const uint8_t *plaintext, size_t len, uint8_t *mac, const <a class="el" href="structaes__ctx.html">aes_ctx</a> *ks)</td></tr>
 <tr class="memdesc:a6ca5ecde1fd675effbc4a29eac35a903"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a message authentication code (MAC) for an AES message.  <a href="hashlib_8h.html#a6ca5ecde1fd675effbc4a29eac35a903">More...</a><br /></td></tr>
 <tr class="separator:a6ca5ecde1fd675effbc4a29eac35a903"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a43b9c4bcff3a6a2c5121f7dd90d1014c"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#a43b9c4bcff3a6a2c5121f7dd90d1014c">hashlib_AESVerifyMac</a> (const uint8_t *ciphertext, size_t len, const <a class="el" href="structaes__ctx.html">aes_ctx</a> *ks_mac)</td></tr>
-<tr class="memdesc:a43b9c4bcff3a6a2c5121f7dd90d1014c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Verifies the MAC appended to a given ciphertext. This function verifies the MAC for a given ciphertext. Use this function to verify the integrity of the message prior to Decryption This function expects the IPsec standard for concatenating the ciphertext and the MAC.  <a href="hashlib_8h.html#a43b9c4bcff3a6a2c5121f7dd90d1014c">More...</a><br /></td></tr>
-<tr class="separator:a43b9c4bcff3a6a2c5121f7dd90d1014c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aebac98a8537f3353aac9fbae5ed67f29"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#aebac98a8537f3353aac9fbae5ed67f29">hashlib_AESPadMessage</a> (const uint8_t *plaintext, size_t len, uint8_t *outbuf, uint8_t schm)</td></tr>
 <tr class="memdesc:aebac98a8537f3353aac9fbae5ed67f29"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pads a plaintext according to the specified AES padding scheme.  <a href="hashlib_8h.html#aebac98a8537f3353aac9fbae5ed67f29">More...</a><br /></td></tr>
 <tr class="separator:aebac98a8537f3353aac9fbae5ed67f29"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -436,16 +433,11 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>hashlib_EraseContext<
     <tr><td class="paramname">plaintext</td><td>Pointer to buffer to write decryped data to. </td></tr>
     <tr><td class="paramname">ks</td><td>Pointer to an AES key schedule context. </td></tr>
     <tr><td class="paramname">iv</td><td>Pointer to an initialization vector (a nonce of length equal to the block size). </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section note"><dt>Note</dt><dd>the IV should be the same as what is used for encryption. </dd></dl>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
     <tr><td class="paramname">ciphermode</td><td>The cipher mode to use. Can be either AES_MODE_CBC or AES_MODE_CTR. </td></tr>
   </table>
   </dd>
 </dl>
+<dl class="section note"><dt>Note</dt><dd>the IV should be the same as what is used for encryption. </dd></dl>
 <dl class="section return"><dt>Returns</dt><dd>True if the encryption succeded. False if an error occured. </dd></dl>
 
 </div>
@@ -552,6 +544,10 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>hashlib_EraseContext<
     <tr><td class="paramname">plaintext</td><td>Pointer to data to encrypt. </td></tr>
     <tr><td class="paramname">len</td><td>Length of data at</td></tr>
     <tr><td class="paramname">plaintext</td><td>to encrypt. </td></tr>
+    <tr><td class="paramname">ciphertext</td><td>Pointer to buffer to write encrypted data to. </td></tr>
+    <tr><td class="paramname">ks</td><td>Pointer to an AES key schedule context. </td></tr>
+    <tr><td class="paramname">iv</td><td>Pointer to an initialization vector (a nonce of length equal to the block size). </td></tr>
+    <tr><td class="paramname">ciphermode</td><td>The cipher mode to use. Can be either AES_MODE_CBC or AES_MODE_CTR. </td></tr>
   </table>
   </dd>
 </dl>
@@ -563,15 +559,6 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>hashlib_EraseContext<
   </dd>
 </dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="hashlib_8h.html#aebac98a8537f3353aac9fbae5ed67f29" title="Pads a plaintext according to the specified AES padding scheme.">hashlib_AESPadMessage()</a> </dd></dl>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">ciphertext</td><td>Pointer to buffer to write encrypted data to. </td></tr>
-    <tr><td class="paramname">ks</td><td>Pointer to an AES key schedule context. </td></tr>
-    <tr><td class="paramname">iv</td><td>Pointer to an initialization vector (a nonce of length equal to the block size). </td></tr>
-    <tr><td class="paramname">ciphermode</td><td>The cipher mode to use. Can be either AES_MODE_CBC or AES_MODE_CTR. </td></tr>
-  </table>
-  </dd>
-</dl>
 <dl class="section return"><dt>Returns</dt><dd>True if the encryption succeded. False if an error occured. </dd></dl>
 
 </div>
@@ -614,6 +601,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>hashlib_EraseContext<
   <table class="params">
     <tr><td class="paramname">block_in</td><td>Pointer to block of data to encrypt. </td></tr>
     <tr><td class="paramname">block_out</td><td>Pointer to buffer to write encrypted block. </td></tr>
+    <tr><td class="paramname">ks</td><td>Pointer to an AES key schedule context. </td></tr>
   </table>
   </dd>
 </dl>
@@ -622,7 +610,6 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>hashlib_EraseContext<
   <table class="params">
     <tr><td class="paramname">block_in</td><td>and</td></tr>
     <tr><td class="paramname">block_out</td><td>are aliasable. </td></tr>
-    <tr><td class="paramname">ks</td><td>Pointer to an AES key schedule context. </td></tr>
   </table>
   </dd>
 </dl>
@@ -846,48 +833,6 @@ padding function. Padding mode ISO-9791 M2 is preferred for CBC-MAC, but either 
 
 </div>
 </div>
-<a id="a43b9c4bcff3a6a2c5121f7dd90d1014c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a43b9c4bcff3a6a2c5121f7dd90d1014c">&#9670;&nbsp;</a></span>hashlib_AESVerifyMac()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool hashlib_AESVerifyMac </td>
-          <td>(</td>
-          <td class="paramtype">const uint8_t *&#160;</td>
-          <td class="paramname"><em>ciphertext</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">size_t&#160;</td>
-          <td class="paramname"><em>len</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="structaes__ctx.html">aes_ctx</a> *&#160;</td>
-          <td class="paramname"><em>ks_mac</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Verifies the MAC appended to a given ciphertext. This function verifies the MAC for a given ciphertext. Use this function to verify the integrity of the message prior to Decryption This function expects the IPsec standard for concatenating the ciphertext and the MAC. </p>
-<h1><a class="anchor" id="autotoc_md0"></a>
-Inputs</h1>
-<p>&lt;&gt; ciphertext = pointer to ciphertext to verify. Ciphertext should be formated [IV, encrypted_msg, MAC], where MAC = MAC(IV, encrypted_msg) &lt;&gt; len = size of the ciphertext to verify (should be equal to padded message + 1 block for MAC) &lt;&gt; ks_mac = the key schedule with which to verify the MAC Compares the CBC encryption of the ciphertext (excluding the last block) over ks_mac with the last block of the ciphertext</p>
-<h1><a class="anchor" id="autotoc_md1"></a>
-Ouputs</h1>
-<p>True if last block of ciphertext matches MAC of ciphertext (excluding last block) False otherwise </p>
-
-</div>
-</div>
 <a id="a2c1bd7ec5809afead6583128c9052d8b"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a2c1bd7ec5809afead6583128c9052d8b">&#9670;&nbsp;</a></span>hashlib_MGF1Hash()</h2>
 
@@ -1089,8 +1034,17 @@ Pass NULL to omit. </dd></dl>
 
 <p>RSA-OAEP padding scheme. </p>
 <p>Applies the RSA-OAEP padding scheme as indicated in PKCS#1 v2.2. This is intended for use prior to RSA encryption.</p>
-<p>| &lt;----------------------------------&mdash; modulus size ------------------------------------&mdash;&gt; | |&ndash; 0x00 &ndash;|&ndash; salt &ndash;|&ndash; auth hash &ndash;|&ndash; 0x00...padding &ndash;|&ndash; 0x01 &ndash;|&ndash; message &ndash;| | |------------------------------------&mdash;|----------------------------------&mdash;| | | | -----&mdash; MGF1-SHA256 ----&mdash;&gt; XOR | | XOR &lt;-----&mdash; MGF1-SHA256 ------&mdash;| | | |&ndash; 0x00 &ndash;|- msalt -|-----&mdash; masked message, padding, and auth hash -----&mdash;| |&lt;----------------------------------&mdash; modulus size ------------------------------------&mdash;&gt; |</p>
-<dl class="params"><dt>Parameters</dt><dd>
+<p>| &lt;----------------------------------&mdash; modulus size ------------------------------------&mdash;&gt; | <br  />
+|&ndash; 0x00 &ndash;|&ndash; salt &ndash;|&ndash; auth hash &ndash;|&ndash; 0x00...padding &ndash;|&ndash; 0x01 &ndash;|&ndash; message &ndash;| <br  />
+ | |------------------------------------&mdash;|----------------------------------&mdash;| <br  />
+ | | <br  />
+ | -----&mdash; MGF1-SHA256 ----&mdash;&gt; XOR <br  />
+ | | <br  />
+ XOR &lt;-----&mdash; MGF1-SHA256 ------&mdash;| <br  />
+ | | <br  />
+|&ndash; 0x00 &ndash;|- msalt -|-----&mdash; masked message, padding, and auth hash -----&mdash;| <br  />
+|&lt;----------------------------------&mdash; modulus size ------------------------------------&mdash;&gt; | <br  />
+ </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">plaintext</td><td>Pointer to a buffer containing the data to OAEP-encode. </td></tr>
     <tr><td class="paramname">len</td><td>Length of data at</td></tr>
@@ -1161,8 +1115,19 @@ Pass NULL to omit. </dd></dl>
 
 <p>RSA-PSS padding scheme. </p>
 <p>Applies the RSA-PSS padding scheme as indicated in PKCS#1 v1.5.</p>
-<p>|--&mdash; Message --&mdash;| ----------------------&mdash; SHA-256 ----------------------&mdash;&gt;| | |&ndash; 0x00... padding &ndash;|&ndash; 0x01 &ndash;|&ndash; salt &ndash;| |&ndash; 8 bytes 0x00 &ndash;|&ndash; mHash &ndash;|&ndash; salt &ndash;| |-----------------------------------------------&mdash;| |-----------------------------------------------&mdash;| *DB | *M' | | SHA-256 XOR &lt;--------------&mdash; MGF1-SHA256 ---------------&mdash;| | | | &lt; ----------------------&mdash; | | | |-------------&mdash; masked DB -------------&mdash;|&ndash; M' Hash &ndash;|&ndash; 0xbc &ndash;| |--------------------------&mdash; modulus size ----------------------------&mdash;|</p>
-<dl class="params"><dt>Parameters</dt><dd>
+<p>|--&mdash; Message --&mdash;| ----------------------&mdash; SHA-256 ----------------------&mdash;&gt;| <br  />
+ | <br  />
+|&ndash; 0x00... padding &ndash;|&ndash; 0x01 &ndash;|&ndash; salt &ndash;| |&ndash; 8 bytes 0x00 &ndash;|&ndash; mHash &ndash;|&ndash; salt &ndash;| <br  />
+|-----------------------------------------------&mdash;| |-----------------------------------------------&mdash;| <br  />
+ *DB | *M' | <br  />
+ | SHA-256 <br  />
+ XOR &lt;--------------&mdash; MGF1-SHA256 ---------------&mdash;| <br  />
+ | | <br  />
+ | &lt; ----------------------&mdash; | <br  />
+ | | <br  />
+|-------------&mdash; masked DB -------------&mdash;|&ndash; M' Hash &ndash;|&ndash; 0xbc &ndash;| <br  />
+|--------------------------&mdash; modulus size ----------------------------&mdash;| <br  />
+ </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">plaintext</td><td>Pointer to buffer containing data to encode. </td></tr>
     <tr><td class="paramname">len</td><td>Length of data at</td></tr>
