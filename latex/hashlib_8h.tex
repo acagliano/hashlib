@@ -398,7 +398,7 @@ True if the key was successfully loaded. False otherwise.
 
 Returns a message authentication code (MAC) for an AES message. 
 
-The MAC is a tag equal in length to the AES block size computed by passing the plaintext through the CBC-\/\+MAC algorithm with a constant IV (filled with zeroes in this implementation. \begin{DoxyVerb}@param plaintext Pointer to data to generate a MAC for.
+The MAC is a tag equal in length to the AES block size computed by passing the plaintext through the CBC-\/\+MAC algorithm with a constant IV (filled with zeroes in this implementation). \begin{DoxyVerb}@param plaintext Pointer to data to generate a MAC for.
 @param len Length of data at @param plaintext to generate a MAC for.
 @param mac Pointer to a buffer to write the MAC to.
 @return True if the MAC generation succeeded. False if an error occured.

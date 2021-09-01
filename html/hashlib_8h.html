@@ -701,7 +701,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>hashlib_EraseContext<
 </div><div class="memdoc">
 
 <p>Returns a message authentication code (MAC) for an AES message. </p>
-<p>The MAC is a tag equal in length to the AES block size computed by passing the plaintext through the CBC-MAC algorithm with a constant IV (filled with zeroes in this implementation. </p><pre class="fragment">@param plaintext Pointer to data to generate a MAC for.
+<p>The MAC is a tag equal in length to the AES block size computed by passing the plaintext through the CBC-MAC algorithm with a constant IV (filled with zeroes in this implementation). </p><pre class="fragment">@param plaintext Pointer to data to generate a MAC for.
 @param len Length of data at @param plaintext to generate a MAC for.
 @param mac Pointer to a buffer to write the MAC to.
 @return True if the MAC generation succeeded. False if an error occured.

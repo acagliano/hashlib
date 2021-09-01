@@ -290,7 +290,7 @@ bool hashlib_AESDecrypt(const uint8_t* ciphertext,
  * @brief Returns a message authentication code (MAC) for an AES message.
  *
  * The MAC is a tag equal in length to the AES block size computed by passing the plaintext
- * through the CBC-MAC algorithm with a constant IV (filled with zeroes in this implementation.
+ * through the CBC-MAC algorithm with a constant IV (filled with zeroes in this implementation).
  *
  * 	@param plaintext Pointer to data to generate a MAC for.
  * 	@param len Length of data at @param plaintext to generate a MAC for.
