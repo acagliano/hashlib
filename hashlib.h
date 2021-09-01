@@ -1,5 +1,5 @@
 /**
- *	@file
+ *	@file hashlib.h
  *	@brief	Cryptography Library for the TI-84+ CE
  *
  *	Provides several cryptographic implementations for the TI-84+ CE graphing calculator.
@@ -21,28 +21,32 @@
 #include <stddef.h>
 
 
-/**
- * @brief Fast Memory Defines
- *
- * Memory regions available for use by end users (fast memory).
- *	@warning Fast Memory gets clobbered by LibLoad. Don't keep long-term storage here if you plan to call LibLoad.
- *	@def hashlib_FastMemBufferUnsafe
- *		Pointer to a region of Fast Memory used by the SPRNG.
- *		@warning If the SPRNG is run, anything here will be destroyed
- *	@def hashlib_FastMemBufferSafe
- *		Pointer to a safer region of Fast Memory not used by the SPRNG
-*/
-#define hashlib_FastMemBufferUnsafe		((void*)0xE30800)
-#define hashlib_FastMemBufferSafe		((void*)0xE30A04)
+/****************************************************************************************************************************************
+ * @def hashlib_FastMemBufferSafe
+ *		Pointer to a region of Fast Memory that is generally safe to use so long as you don't call Libload..
+ * @warning Fast Memory gets clobbered by LibLoad. Don't keep long-term storage here if you plan to call LibLoad.
+ ****************************************************************************************************************************************/
+ #define hashlib_FastMemBufferSafe		((void*)0xE30A04)
+ 
+ /**************************************************************************************************************************************
+  * @def hashlib_FastMemBufferUnsafe
+  *		Pointer to the start of the region of Fast Memory, including the Safe region
+  *		as well as an unsafe region used by the library's SPRNG.
+  *	@warning Fast Memory gets clobbered by LibLoad. Don't keep long-term storage here if you plan to call LibLoad.
+  *	@warning If the SPRNG is run, anything you have stored here will be destroyed.
+  **************************************************************************************************************************************/
+#define hashlib_FastMemBufferUnSafe		((void*)0xE30800)
 
 
-/********************************************************************************************
- * @brief Secure Psuedorandom Number Generator (SPRNG)
+/**********************************************************************************
+ *  Secure Psuedorandom Number Generator (SPRNG)
+ *  =========================================
  *
- * 	An entropy-based, non-deterministic secure random random number generator.
+ * 	An entropy-based, non-deterministic secure PRNG.
  * 	Generates 96.51 bits of entropy per 32-bit number generated
- */
-/**
+ *********************************************************************************/
+ 
+/****************************************************************************************************************************
  * @brief Initializes the SPRNG.
  *
  * The SPRNG is initialized by polling the 512-bytes from address 0xD65800 to 0xD66000.
@@ -50,39 +54,41 @@
  * Each bit in that region is polled 1024 times and the address with the bit that is the least biased is selected.
  * That will be the byte the SPRNG uses to generate entropy.
  * @return The unmapped address selected for use generating entropy
- */
+ ***************************************************************************************************************************/
 void* hashlib_SPRNGInit(void);
 
-/**
+/***************************************************************************************************************************
  * @brief Generates a random 32-bit number.
  *
- * Calls hashlib_SPRNGInit() if it hasn't already been done.
- * Populates a 119-byte entropy pool by reading from the unmapped address.
- * Each byte written is a composite of seven (7) distinct reads xor'ed together.
- * Hashes the entropy pool using SHA-256
- * Breaks the SHA-256 hash into 8-byte blocks, then xor's all 8 bytes together per block.
+ * - Calls hashlib_SPRNGInit() if it hasn't already been done.
+ * - Populates a 119-byte entropy pool by xor'ing 7 distinct reads from the unmapped address together per byte.
+ * - Hashes the entropy pool using SHA-256.
+ * - Breaks the SHA-256 hash into 8-byte blocks, then xor's all 8 bytes each block together, leaving four (4) composite bytes.
+ * - Returns the 4-byte (32-bit) composite as a random number..
  * @return A random unsigned 32-bit integer.
- */
+ ****************************************************************************************************************************/
 uint32_t hashlib_SPRNGRandom(void);
 
-/**
+/****************************************************************************************
  * @brief Fills a buffer to size with random bytes.
  *
  * @param buffer A pointer to a buffer to write random data to.
  * @param size Number of bytes to write.
- */
+ * @note #buffer must be at least #size bytes large.
+ ****************************************************************************************/
 bool hashlib_RandomBytes(uint8_t *buffer, size_t size);
 
 
-/********************************************************************************************
- * @brief Cryptographic Hashes
+/**************************************************************
+ * Cryptographic Hashes
+ * ==================
  *
  * Implements the following cryptographic hashes:
  *	SHA-256
  * 	MGF1-SHA256
- */
+ **************************************************************/
  
-/** Context Definition for SHA-256 */
+/** @struct SHA-256 Hash State Context */
 typedef struct _sha256_ctx {
 	uint8_t data[64];		/**< holds sha-256 block for transformation */
 	uint8_t datalen;		/**< holds the current length of data in data[64] */
@@ -90,51 +96,60 @@ typedef struct _sha256_ctx {
 	uint32_t state[8];		/**< holds hash state for transformed data */
 } sha256_ctx;
 
-/**
- * @Brief SHA-256 Defines and Equates
- *
- * @def SHA256_MBUFFER_LEN	Temporary memory buffer. Must be passed to hashlib_Sha256Init().
- * @def SHA256_DIGEST_LEN	Binary length of the SHA-256 hash output
- * @def SHA256_HEXSTR_LEN	Length of a string representing the SHA-256 hash
- */
-#define SHA256_MBUFFER_LEN	(64 * 4)
-#define SHA256_DIGEST_LEN   32
+/******************************************************
+ * @def SHA256_MBUFFER_LEN
+ * Temporary memory buffer.
+ * Must be passed to hashlib_Sha256Init().
+ ******************************************************/
+ #define SHA256_MBUFFER_LEN	(64 * 4)
+ 
+ /******************************************************
+  * @def SHA256_DIGEST_LEN
+  * Binary length of the SHA-256 hash output.
+  ******************************************************/
+ #define SHA256_DIGEST_LEN   32
+ 
+ /************************************************************
+  * @def SHA256_HEXSTR_LEN
+  * Length of a string containing the SHA-256 hash.
+  **********************************************************/
 #define SHA256_HEXSTR_LEN   (SHA256_DIGEST_LEN<<1) + 1
 
-/**
+/********************************************************************************************
  *	@brief Context initializer for SHA-256.
  *	Initializes the given context with the starting state for SHA-256.
  *	@param ctx Pointer to a SHA-256 context.
- *	@param mbuffer Pointer to a temporary memory buffer (see SHA256_MBUFFER_LEN)
-*/
+ *	@param mbuffer Pointer to a temporary memory buffer.
+ *	@note #mbuffer must be at least #SHA256_MBUFFER_LEN bytes large.
+ *******************************************************************************************/
 void hashlib_Sha256Init(sha256_ctx *ctx, uint32_t *mbuffer);
 
-/**
+/******************************************************************************************************
  *	@brief Updates the SHA-256 context for the given data.
- *	@warning You must call hashlib_SHA256Init() first or your hash state will be invalid.
  *	@param ctx Pointer to a SHA-256 context.
  *	@param buf Pointer to data to hash.
  *	@param len Number of bytes at @param buf to hash.
-*/
+ *	@warning You must call hashlib_SHA256Init() first or your hash state will be invalid.
+ ******************************************************************************************************/
 void hashlib_Sha256Update(sha256_ctx *ctx, const uint8_t *buf, uint32_t len);
 
-/**
+/**************************************************************************
  *	@brief Finalize Context and Render Digest for SHA-256
  *	@param ctx Pointer to a SHA-256 context.
  *	@param digest Pointer to a buffer to write the hash to.
- *			Must be at least 32 bytes long.
-*/
+ *	@note #digest must be at least 32 bytes large.
+ ***************************************************************************/
 void hashlib_Sha256Final(sha256_ctx *ctx, uint8_t *digest);
 
-/**
+/**********************************************************************************************************************
  *	@brief Arbitrary Length Hashing Function
  *	Computes SHA-256 of the data and with a counter appended to generate a hash of arbitrary length.
  *	@param data Pointer to data to hash.
  *	@param datalen Number of bytes at @param data to hash.
  *	@param outbuf Pointer to buffer to write hash output to.
- *			Must be at least @param outlen bytes long.
  *	@param outlen Number of bytes to write to @param outbuf.
- */
+ *	@note #outbuf Must be at least #outlen bytes large.
+ **********************************************************************************************************************/
 void hashlib_MGF1Hash(uint8_t* data, size_t datalen, uint8_t* outbuf, size_t outlen);
 
 /********************************************************************************************
@@ -148,7 +163,7 @@ void hashlib_MGF1Hash(uint8_t* data, size_t datalen, uint8_t* outbuf, size_t out
  */
 
 /** Context Definition for AES key schedule */
-typedef struct {
+typedef struct _aes_ctx {
     uint24_t keysize;
     uint32_t round_keys[60];
 } aes_ctx;
@@ -182,16 +197,18 @@ typedef struct {
 #define hashlib_AESAuthCiphertextLen(len) \
 	(hashlib_AESCiphertextLen((len)) + AES_MAC_SIZE)
 	
-/** AES cipher modes */
-enum _aes_cipher_modes {
+/** @brief AES cipher modes */
+enum aes_cipher_modes {
 	AES_MODE_CBC,
 	AES_MODE_CTR
 };
 
-/** AES padding schemes */
-enum _aes_padding_schemes {
-    SCHM_PKCS7, 		 	/**< PKCS#7 padding | DEFAULT */
-    SCHM_DEFAULT = SCHM_PKCS7,
+/** @brief AES padding schemes */
+enum aes_padding_schemes {
+    SCHM_PKCS7, 		 		/**< PKCS#7 padding | DEFAULT */
+    SCHM_DEFAULT = SCHM_PKCS7,	/**< selects the scheme marked DEFAULT.
+									Using this is recommended in case a change to the standards
+									would set a stronger padding scheme as default */
     SCHM_ISO2,       	 	/**< ISO-9797 M2 padding */
     
 };
