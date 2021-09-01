@@ -1,0 +1,157 @@
+{
+    "   diehard_birthdays": {
+        "fail": 0,
+        "pass": 98,
+        "weak": 2
+    },
+    "      diehard_operm5": {
+        "fail": 0,
+        "pass": 99,
+        "weak": 1
+    },
+    "  diehard_rank_32x32": {
+        "fail": 0,
+        "pass": 99,
+        "weak": 1
+    },
+    "    diehard_rank_6x8": {
+        "fail": 0,
+        "pass": 99,
+        "weak": 1
+    },
+    "   diehard_bitstream": {
+        "fail": 0,
+        "pass": 97,
+        "weak": 3
+    },
+    "        diehard_opso": {
+        "fail": 0,
+        "pass": 98,
+        "weak": 2
+    },
+    "        diehard_oqso": {
+        "fail": 0,
+        "pass": 97,
+        "weak": 3
+    },
+    "         diehard_dna": {
+        "fail": 0,
+        "pass": 98,
+        "weak": 2
+    },
+    "diehard_count_1s_str": {
+        "fail": 0,
+        "pass": 100,
+        "weak": 0
+    },
+    "diehard_count_1s_byt": {
+        "fail": 0,
+        "pass": 99,
+        "weak": 1
+    },
+    " diehard_parking_lot": {
+        "fail": 0,
+        "pass": 97,
+        "weak": 3
+    },
+    "    diehard_2dsphere": {
+        "fail": 0,
+        "pass": 98,
+        "weak": 2
+    },
+    "    diehard_3dsphere": {
+        "fail": 0,
+        "pass": 94,
+        "weak": 6
+    },
+    "     diehard_squeeze": {
+        "fail": 0,
+        "pass": 99,
+        "weak": 1
+    },
+    "        diehard_sums": {
+        "fail": 0,
+        "pass": 91,
+        "weak": 9
+    },
+    "        diehard_runs": {
+        "fail": 0,
+        "pass": 197,
+        "weak": 3
+    },
+    "       diehard_craps": {
+        "fail": 0,
+        "pass": 198,
+        "weak": 2
+    },
+    " marsaglia_tsang_gcd": {
+        "fail": 0,
+        "pass": 196,
+        "weak": 4
+    },
+    "         sts_monobit": {
+        "fail": 0,
+        "pass": 96,
+        "weak": 4
+    },
+    "            sts_runs": {
+        "fail": 0,
+        "pass": 98,
+        "weak": 2
+    },
+    "          sts_serial": {
+        "fail": 0,
+        "pass": 2934,
+        "weak": 66
+    },
+    "         rgb_bitdist": {
+        "fail": 0,
+        "pass": 1165,
+        "weak": 35
+    },
+    "rgb_minimum_distance": {
+        "fail": 0,
+        "pass": 393,
+        "weak": 7
+    },
+    "    rgb_permutations": {
+        "fail": 0,
+        "pass": 389,
+        "weak": 11
+    },
+    "      rgb_lagged_sum": {
+        "fail": 0,
+        "pass": 3225,
+        "weak": 75
+    },
+    "     rgb_kstest_test": {
+        "fail": 0,
+        "pass": 96,
+        "weak": 4
+    },
+    "     dab_bytedistrib": {
+        "fail": 0,
+        "pass": 100,
+        "weak": 0
+    },
+    "             dab_dct": {
+        "fail": 0,
+        "pass": 100,
+        "weak": 0
+    },
+    "        dab_filltree": {
+        "fail": 0,
+        "pass": 197,
+        "weak": 3
+    },
+    "       dab_filltree2": {
+        "fail": 0,
+        "pass": 200,
+        "weak": 0
+    },
+    "        dab_monobit2": {
+        "fail": 0,
+        "pass": 99,
+        "weak": 1
+    }
+}

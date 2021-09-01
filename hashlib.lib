@@ -1,0 +1,21 @@
+library	"HASHLIB", 6
+	export	hashlib_SPRNGInit ; 0
+	export	hashlib_SPRNGRandom ; 3
+	export	hashlib_RandomBytes ; 6
+	export	hashlib_Sha256Init ; 9
+	export	hashlib_Sha256Update ; 12
+	export	hashlib_Sha256Final ; 15
+	export	hashlib_MGF1Hash ; 18
+	export	hashlib_AESLoadKey ; 21
+	export	hashlib_AESEncryptBlock ; 24
+	export	hashlib_AESDecryptBlock ; 27
+	export	hashlib_AESEncrypt ; 30
+	export	hashlib_AESDecrypt ; 33
+	export	hashlib_AESOutputMac ; 36
+	export	hashlib_AESPadMessage ; 39
+	export	hashlib_AESStripPadding ; 42
+	export	hashlib_RSAEncodeOAEP ; 45
+	export	hashlib_RSADecodeOAEP ; 48
+	export	hashlib_RSAEncodePSS ; 51
+	export	hashlib_EraseContext ; 54
+	export	hashlib_CompareDigest ; 57
