@@ -732,7 +732,7 @@ If the SPRNG is run, anything you have stored here will be destroyed. </dd></dl>
   </dd>
 </dl>
 <dl class="section note"><dt>Note</dt><dd><b>block_in</b> and <b>block_out</b> are aliasable. </dd></dl>
-<dl class="section warning"><dt>Warning</dt><dd>ECB-mode ciphers are insecure (see many-time pad vulnerability) These functions are exposed in case a user wants to construct a cipher mode other than CBC or CTR. Unless you know what you are doing, use <a class="el" href="hashlib_8h.html#a2b904b543405fdf8f283d028ce0d1da7" title="General-Purpose AES Decryption.">hashlib_AESDecrypt()</a> instead. </dd></dl>
+<dl class="section warning"><dt>Warning</dt><dd>ECB-mode ciphers are insecure (see many-time pad vulnerability). These functions are exposed in case a user wants to construct a cipher mode other than CBC or CTR. Unless you know what you are doing, use <a class="el" href="hashlib_8h.html#a2b904b543405fdf8f283d028ce0d1da7" title="General-Purpose AES Decryption.">hashlib_AESDecrypt()</a> instead. </dd></dl>
 <dl class="section return"><dt>Returns</dt><dd>True if encryption succeeded. False if an error occured. </dd></dl>
 
 </div>
@@ -850,7 +850,7 @@ If cipher mode CBC is used, <b>len</b> must be a multiple of the blocksize. You 
   </dd>
 </dl>
 <dl class="section note"><dt>Note</dt><dd><b>block_in</b> and <b>block_out</b> are aliasable. </dd></dl>
-<dl class="section warning"><dt>Warning</dt><dd>ECB-mode ciphers are insecure (see many-time pad vulnerability) These functions are exposed in case a user wants to construct a cipher mode other than CBC or CTR. Unless you know what you are doing, use <a class="el" href="hashlib_8h.html#a745c5c4d6bdc248f20b18c7b848d8b6b" title="General-Purpose AES Encryption.">hashlib_AESEncrypt()</a> instead. </dd></dl>
+<dl class="section warning"><dt>Warning</dt><dd>ECB-mode ciphers are insecure (see many-time pad vulnerability). These functions are exposed in case a user wants to construct a cipher mode other than CBC or CTR. Unless you know what you are doing, use <a class="el" href="hashlib_8h.html#a745c5c4d6bdc248f20b18c7b848d8b6b" title="General-Purpose AES Encryption.">hashlib_AESEncrypt()</a> instead. </dd></dl>
 <dl class="section return"><dt>Returns</dt><dd>True if encryption succeeded. False if failed. </dd></dl>
 
 </div>
@@ -1191,11 +1191,9 @@ For the most secure authenticated encryption scheme, use "encrypt-then-MAC". Thi
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">data</td><td>Pointer to data to hash. </td></tr>
-    <tr><td class="paramname">datalen</td><td>Number of bytes at</td></tr>
-    <tr><td class="paramname">data</td><td>to hash. </td></tr>
+    <tr><td class="paramname">datalen</td><td>Number of bytes at <b>data</b> to hash. </td></tr>
     <tr><td class="paramname">outbuf</td><td>Pointer to buffer to write hash output to. </td></tr>
-    <tr><td class="paramname">outlen</td><td>Number of bytes to write to</td></tr>
-    <tr><td class="paramname">outbuf.</td><td></td></tr>
+    <tr><td class="paramname">outlen</td><td>Number of bytes to write to <b>outbuf</b>. </td></tr>
   </table>
   </dd>
 </dl>

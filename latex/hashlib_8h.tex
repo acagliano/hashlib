@@ -419,7 +419,7 @@ AES Single-\/\+Block Decryption (ECB Mode)
 {\bfseries{block\+\_\+in}} and {\bfseries{block\+\_\+out}} are aliasable. 
 \end{DoxyNote}
 \begin{DoxyWarning}{Warning}
-ECB-\/mode ciphers are insecure (see many-\/time pad vulnerability) These functions are exposed in case a user wants to construct a cipher mode other than CBC or CTR. Unless you know what you are doing, use \mbox{\hyperlink{hashlib_8h_a2b904b543405fdf8f283d028ce0d1da7}{hashlib\+\_\+\+AESDecrypt()}} instead. 
+ECB-\/mode ciphers are insecure (see many-\/time pad vulnerability). These functions are exposed in case a user wants to construct a cipher mode other than CBC or CTR. Unless you know what you are doing, use \mbox{\hyperlink{hashlib_8h_a2b904b543405fdf8f283d028ce0d1da7}{hashlib\+\_\+\+AESDecrypt()}} instead. 
 \end{DoxyWarning}
 \begin{DoxyReturn}{Returns}
 True if encryption succeeded. False if an error occured. 
@@ -485,7 +485,7 @@ AES Single-\/\+Block Encryption (ECB mode)
 {\bfseries{block\+\_\+in}} and {\bfseries{block\+\_\+out}} are aliasable. 
 \end{DoxyNote}
 \begin{DoxyWarning}{Warning}
-ECB-\/mode ciphers are insecure (see many-\/time pad vulnerability) These functions are exposed in case a user wants to construct a cipher mode other than CBC or CTR. Unless you know what you are doing, use \mbox{\hyperlink{hashlib_8h_a745c5c4d6bdc248f20b18c7b848d8b6b}{hashlib\+\_\+\+AESEncrypt()}} instead. 
+ECB-\/mode ciphers are insecure (see many-\/time pad vulnerability). These functions are exposed in case a user wants to construct a cipher mode other than CBC or CTR. Unless you know what you are doing, use \mbox{\hyperlink{hashlib_8h_a745c5c4d6bdc248f20b18c7b848d8b6b}{hashlib\+\_\+\+AESEncrypt()}} instead. 
 \end{DoxyWarning}
 \begin{DoxyReturn}{Returns}
 True if encryption succeeded. False if failed. 
@@ -662,15 +662,11 @@ Arbitrary Length Hashing Function Computes SHA-\/256 of the data and with a coun
 \begin{DoxyParams}{Parameters}
 {\em data} & Pointer to data to hash. \\
 \hline
-{\em datalen} & Number of bytes at\\
-\hline
-{\em data} & to hash. \\
+{\em datalen} & Number of bytes at {\bfseries{data}} to hash. \\
 \hline
 {\em outbuf} & Pointer to buffer to write hash output to. \\
 \hline
-{\em outlen} & Number of bytes to write to\\
-\hline
-{\em outbuf.} & \\
+{\em outlen} & Number of bytes to write to {\bfseries{outbuf}}. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyNote}{Note}

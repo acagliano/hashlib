@@ -133,9 +133,9 @@ void hashlib_Sha256Final(sha256_ctx *ctx, uint8_t *digest);
  *	@brief Arbitrary Length Hashing Function
  *	Computes SHA-256 of the data and with a counter appended to generate a hash of arbitrary length.
  *	@param data Pointer to data to hash.
- *	@param datalen Number of bytes at @param data to hash.
+ *	@param datalen Number of bytes at @b data to hash.
  *	@param outbuf Pointer to buffer to write hash output to.
- *	@param outlen Number of bytes to write to @param outbuf.
+ *	@param outlen Number of bytes to write to @b outbuf.
  *	@note @b outbuf must be at least @b outlen bytes large.
  **********************************************************************************************************************/
 void hashlib_MGF1Hash(uint8_t* data, size_t datalen, uint8_t* outbuf, size_t outlen);
@@ -272,7 +272,7 @@ bool hashlib_AESLoadKey(const uint8_t* key, const aes_ctx* ks, size_t keylen);
  * @param block_out Pointer to buffer to write encrypted block.
  * @param ks Pointer to an AES key schedule context.
  * @note @b block_in and @b block_out are aliasable.
- * @warning ECB-mode ciphers are insecure (see many-time pad vulnerability)
+ * @warning ECB-mode ciphers are insecure (see many-time pad vulnerability).
  * 		These functions are exposed in case a user wants to construct a cipher mode other than CBC or CTR.
  * 		Unless you know what you are doing, use hashlib_AESEncrypt() instead.
  * @return True if encryption succeeded. False if failed.
@@ -287,7 +287,7 @@ bool hashlib_AESEncryptBlock(const uint8_t* block_in,
  *	@param block_out Pointer to buffer to write decrypted block.
  *	@param ks Pointer to an AES key schedule context.
  *	@note @b block_in and @b block_out are aliasable.
- *	@warning ECB-mode ciphers are insecure (see many-time pad vulnerability)
+ *	@warning ECB-mode ciphers are insecure (see many-time pad vulnerability).
  *		These functions are exposed in case a user wants to construct a cipher mode other than CBC or CTR.
  *		Unless you know what you are doing, use hashlib_AESDecrypt() instead.
  *	@return True if encryption succeeded. False if an error occured.
