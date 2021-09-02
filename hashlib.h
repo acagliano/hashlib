@@ -482,7 +482,7 @@ size_t hashlib_RSADecodeOAEP(
  * @param modulus_len The length of the modulus to pad for.
  * @param salt A buffer filled with random bytes.
  * @note @b outbuf must be at least @b modulus_len bytes large.
- * @note If you are trying to generate a signature, pass NULL to generate a new salt.
+ * @note @b salt If you are trying to generate a signature, pass NULL to generate a new salt.
  * @note If you are trying to validate a signature, use hashlib_SSLVerifySignature().
  * @return the padded length of the plaintext.
  ***********************************************************************************************************************/

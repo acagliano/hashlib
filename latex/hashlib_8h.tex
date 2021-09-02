@@ -822,7 +822,7 @@ Applies the RSA-\/\+PSS padding scheme as indicated in PKCS\#1 v1.\+5.
 \begin{DoxyNote}{Note}
 {\bfseries{outbuf}} must be at least {\bfseries{modulus\+\_\+len}} bytes large. 
 
-If you are trying to generate a signature, pass NULL to generate a new salt. 
+{\bfseries{salt}} If you are trying to generate a signature, pass NULL to generate a new salt. 
 
 If you are trying to validate a signature, use hashlib\+\_\+\+SSLVerify\+Signature(). 
 \end{DoxyNote}
