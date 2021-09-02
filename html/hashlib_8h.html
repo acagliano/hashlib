@@ -230,48 +230,80 @@ Adam <em>beck</em> Beckingham </dd>
 <dd>
 commandblockguy </dd></dl>
 </div><h2 class="groupheader">Macro Definition Documentation</h2>
-<a id="a2841462d8933d0982e3ea13dc5284d7c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2841462d8933d0982e3ea13dc5284d7c">&#9670;&nbsp;</a></span>AES128_KEYLEN</h2>
+<a id="a97c7527aa5efe0f229c45c54ebcc6b55"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a97c7527aa5efe0f229c45c54ebcc6b55">&#9670;&nbsp;</a></span>hashlib_FastMemBufferSafe</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define AES128_KEYLEN&#160;&#160;&#160;16</td>
+          <td class="memname">#define hashlib_FastMemBufferSafe&#160;&#160;&#160;((void*)0xE30A04)</td>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Defines the byte-length of a 128-bit AES key </p>
+<p>Pointer to a region of Fast Memory that is generally safe to use so long as you don't call Libload.. </p><dl class="section warning"><dt>Warning</dt><dd>Fast Memory gets clobbered by LibLoad. Don't keep long-term storage here if you plan to call LibLoad. </dd></dl>
 
 </div>
 </div>
-<a id="a37ba5c621bf4af2ddcb851e179e21623"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a37ba5c621bf4af2ddcb851e179e21623">&#9670;&nbsp;</a></span>AES192_KEYLEN</h2>
+<a id="ab981c88a4cd7407b2c4b4bfe86fc021b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab981c88a4cd7407b2c4b4bfe86fc021b">&#9670;&nbsp;</a></span>hashlib_FastMemBufferUnsafe</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define AES192_KEYLEN&#160;&#160;&#160;24</td>
+          <td class="memname">#define hashlib_FastMemBufferUnsafe&#160;&#160;&#160;((void*)0xE30800)</td>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Defines the byte-length of a 192-bit AES key </p>
+<p>Pointer to the start of the region of Fast Memory, including the Safe region as well as an unsafe region used by the library's SPRNG. </p><dl class="section warning"><dt>Warning</dt><dd>Fast Memory gets clobbered by LibLoad. Don't keep long-term storage here if you plan to call LibLoad. </dd>
+<dd>
+If the SPRNG is run, anything you have stored here will be destroyed. </dd></dl>
 
 </div>
 </div>
-<a id="a7bab8a778d065da4cc561f4813994f03"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7bab8a778d065da4cc561f4813994f03">&#9670;&nbsp;</a></span>AES256_KEYLEN</h2>
+<a id="a939c5eb79064fb776e34fd0c632a588b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a939c5eb79064fb776e34fd0c632a588b">&#9670;&nbsp;</a></span>SHA256_MBUFFER_LEN</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define AES256_KEYLEN&#160;&#160;&#160;32</td>
+          <td class="memname">#define SHA256_MBUFFER_LEN&#160;&#160;&#160;(64 * 4)</td>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Defines the byte-length of a 256-bit AES key </p>
+<p>Temporary SHA-256 memory buffer. A buffer of this length, in bytes, must be passed to <a class="el" href="hashlib_8h.html#ad2fa6bc8d3a1156a5734b81f5195afc4" title="Context initializer for SHA-256. Initializes the given context with the starting state for SHA-256.">hashlib_Sha256Init()</a>. </p>
+
+</div>
+</div>
+<a id="af5aa539ae202ddf9e0c9211309869fc8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af5aa539ae202ddf9e0c9211309869fc8">&#9670;&nbsp;</a></span>SHA256_DIGEST_LEN</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define SHA256_DIGEST_LEN&#160;&#160;&#160;32</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Binary length of the SHA-256 hash output. </p>
+
+</div>
+</div>
+<a id="a7a767ce32adaa3ad3e7e4aafff0ae7e3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7a767ce32adaa3ad3e7e4aafff0ae7e3">&#9670;&nbsp;</a></span>SHA256_HEXSTR_LEN</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define SHA256_HEXSTR_LEN&#160;&#160;&#160;(<a class="el" href="hashlib_8h.html#af5aa539ae202ddf9e0c9211309869fc8">SHA256_DIGEST_LEN</a>&lt;&lt;1) + 1</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Length of a string containing the SHA-256 hash. </p>
 
 </div>
 </div>
@@ -317,6 +349,101 @@ commandblockguy </dd></dl>
       </table>
 </div><div class="memdoc">
 <p>Defines the length of the AES CBC-MAC digest. </p>
+
+</div>
+</div>
+<a id="a2841462d8933d0982e3ea13dc5284d7c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2841462d8933d0982e3ea13dc5284d7c">&#9670;&nbsp;</a></span>AES128_KEYLEN</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define AES128_KEYLEN&#160;&#160;&#160;16</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Defines the byte-length of a 128-bit AES key </p>
+
+</div>
+</div>
+<a id="a37ba5c621bf4af2ddcb851e179e21623"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a37ba5c621bf4af2ddcb851e179e21623">&#9670;&nbsp;</a></span>AES192_KEYLEN</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define AES192_KEYLEN&#160;&#160;&#160;24</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Defines the byte-length of a 192-bit AES key </p>
+
+</div>
+</div>
+<a id="a7bab8a778d065da4cc561f4813994f03"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7bab8a778d065da4cc561f4813994f03">&#9670;&nbsp;</a></span>AES256_KEYLEN</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define AES256_KEYLEN&#160;&#160;&#160;32</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Defines the byte-length of a 256-bit AES key </p>
+
+</div>
+</div>
+<a id="af7f9757a799b724cfd578ac0a45f58be"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af7f9757a799b724cfd578ac0a45f58be">&#9670;&nbsp;</a></span>hashlib_AESPaddedSize</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define hashlib_AESPaddedSize</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">len</td><td>)</td>
+          <td>&#160;&#160;&#160;	((((len)%<a class="el" href="hashlib_8h.html#afab0742642db9c0609c00bf8a54f386f">AES_BLOCKSIZE</a>)==0) ? (len) + <a class="el" href="hashlib_8h.html#afab0742642db9c0609c00bf8a54f386f">AES_BLOCKSIZE</a> : (((len)&gt;&gt;4) + 1)&lt;&lt;4)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Defines a macro to return the padded size of an AES plaintext. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">len</td><td>The length of the plaintext. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a140213b514394151a1d6ba410ec32bc4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a140213b514394151a1d6ba410ec32bc4">&#9670;&nbsp;</a></span>hashlib_AESCiphertextLen</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define hashlib_AESCiphertextLen</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">len</td><td>)</td>
+          <td>&#160;&#160;&#160;(<a class="el" href="hashlib_8h.html#af7f9757a799b724cfd578ac0a45f58be">hashlib_AESPaddedSize</a>((len)) + <a class="el" href="hashlib_8h.html#afc06a029c783f78badc2c26cf6f2297c">AES_IV_SIZE</a>)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Defines a macro to return the size of an AES ciphertext.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">len</td><td>The length of the plaintext. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>Note</dt><dd>This is the padded length of the plaintext, plus an additional block for the IV to be prepended. </dd></dl>
 
 </div>
 </div>
@@ -372,32 +499,6 @@ commandblockguy </dd></dl>
 
 </div>
 </div>
-<a id="a140213b514394151a1d6ba410ec32bc4"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a140213b514394151a1d6ba410ec32bc4">&#9670;&nbsp;</a></span>hashlib_AESCiphertextLen</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define hashlib_AESCiphertextLen</td>
-          <td>(</td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname">len</td><td>)</td>
-          <td>&#160;&#160;&#160;(<a class="el" href="hashlib_8h.html#af7f9757a799b724cfd578ac0a45f58be">hashlib_AESPaddedSize</a>((len)) + <a class="el" href="hashlib_8h.html#afc06a029c783f78badc2c26cf6f2297c">AES_IV_SIZE</a>)</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Defines a macro to return the size of an AES ciphertext.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">len</td><td>The length of the plaintext. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section note"><dt>Note</dt><dd>This is the padded length of the plaintext, plus an additional block for the IV to be prepended. </dd></dl>
-
-</div>
-</div>
 <a id="a864d96afe89419821aed4293d979b2b9"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a864d96afe89419821aed4293d979b2b9">&#9670;&nbsp;</a></span>hashlib_AESKeygen</h2>
 
@@ -433,62 +534,6 @@ commandblockguy </dd></dl>
 
 </div>
 </div>
-<a id="af7f9757a799b724cfd578ac0a45f58be"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af7f9757a799b724cfd578ac0a45f58be">&#9670;&nbsp;</a></span>hashlib_AESPaddedSize</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define hashlib_AESPaddedSize</td>
-          <td>(</td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname">len</td><td>)</td>
-          <td>&#160;&#160;&#160;	((((len)%<a class="el" href="hashlib_8h.html#afab0742642db9c0609c00bf8a54f386f">AES_BLOCKSIZE</a>)==0) ? (len) + <a class="el" href="hashlib_8h.html#afab0742642db9c0609c00bf8a54f386f">AES_BLOCKSIZE</a> : (((len)&gt;&gt;4) + 1)&lt;&lt;4)</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Defines a macro to return the padded size of an AES plaintext. </p><dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">len</td><td>The length of the plaintext. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a id="a97c7527aa5efe0f229c45c54ebcc6b55"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a97c7527aa5efe0f229c45c54ebcc6b55">&#9670;&nbsp;</a></span>hashlib_FastMemBufferSafe</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define hashlib_FastMemBufferSafe&#160;&#160;&#160;((void*)0xE30A04)</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Pointer to a region of Fast Memory that is generally safe to use so long as you don't call Libload.. </p><dl class="section warning"><dt>Warning</dt><dd>Fast Memory gets clobbered by LibLoad. Don't keep long-term storage here if you plan to call LibLoad. </dd></dl>
-
-</div>
-</div>
-<a id="ab981c88a4cd7407b2c4b4bfe86fc021b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab981c88a4cd7407b2c4b4bfe86fc021b">&#9670;&nbsp;</a></span>hashlib_FastMemBufferUnsafe</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define hashlib_FastMemBufferUnsafe&#160;&#160;&#160;((void*)0xE30800)</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Pointer to the start of the region of Fast Memory, including the Safe region as well as an unsafe region used by the library's SPRNG. </p><dl class="section warning"><dt>Warning</dt><dd>Fast Memory gets clobbered by LibLoad. Don't keep long-term storage here if you plan to call LibLoad. </dd>
-<dd>
-If the SPRNG is run, anything you have stored here will be destroyed. </dd></dl>
-
-</div>
-</div>
 <a id="ad4ea46d5db12669bb2687771d094638f"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ad4ea46d5db12669bb2687771d094638f">&#9670;&nbsp;</a></span>hashlib_MallocContext</h2>
 
@@ -515,72 +560,7 @@ If the SPRNG is run, anything you have stored here will be destroyed. </dd></dl>
 
 </div>
 </div>
-<a id="af5aa539ae202ddf9e0c9211309869fc8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af5aa539ae202ddf9e0c9211309869fc8">&#9670;&nbsp;</a></span>SHA256_DIGEST_LEN</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define SHA256_DIGEST_LEN&#160;&#160;&#160;32</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Binary length of the SHA-256 hash output. </p>
-
-</div>
-</div>
-<a id="a7a767ce32adaa3ad3e7e4aafff0ae7e3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7a767ce32adaa3ad3e7e4aafff0ae7e3">&#9670;&nbsp;</a></span>SHA256_HEXSTR_LEN</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define SHA256_HEXSTR_LEN&#160;&#160;&#160;(<a class="el" href="hashlib_8h.html#af5aa539ae202ddf9e0c9211309869fc8">SHA256_DIGEST_LEN</a>&lt;&lt;1) + 1</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Length of a string containing the SHA-256 hash. </p>
-
-</div>
-</div>
-<a id="a939c5eb79064fb776e34fd0c632a588b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a939c5eb79064fb776e34fd0c632a588b">&#9670;&nbsp;</a></span>SHA256_MBUFFER_LEN</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define SHA256_MBUFFER_LEN&#160;&#160;&#160;(64 * 4)</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Temporary SHA-256 memory buffer. A buffer of this length, in bytes, must be passed to <a class="el" href="hashlib_8h.html#ad2fa6bc8d3a1156a5734b81f5195afc4" title="Context initializer for SHA-256. Initializes the given context with the starting state for SHA-256.">hashlib_Sha256Init()</a>. </p>
-
-</div>
-</div>
 <h2 class="groupheader">Enumeration Type Documentation</h2>
-<a id="a5aedfaf159c585059ba8914b59307c21"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5aedfaf159c585059ba8914b59307c21">&#9670;&nbsp;</a></span>_ssl_sig_modes</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">enum <a class="el" href="hashlib_8h.html#a5aedfaf159c585059ba8914b59307c21">_ssl_sig_modes</a></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<table class="fieldtable">
-<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a5aedfaf159c585059ba8914b59307c21a096ad031cbdad23c8d4053d9b7a3db31"></a>SSLSIG_RSA_SHA256&#160;</td><td class="fielddoc"><p>RSA with SHA-256 signature algorithm </p>
-</td></tr>
-<tr><td class="fieldname"><a id="a5aedfaf159c585059ba8914b59307c21a3b885e134e618304b93f54b88eff9b25"></a>SSLSIG_ECDSA&#160;</td><td class="fielddoc"><p>ECDSA (unimplemented, likely a long way off) </p>
-</td></tr>
-</table>
-
-</div>
-</div>
 <a id="a194ef6b5934dff6dceed4dd819e76340"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a194ef6b5934dff6dceed4dd819e76340">&#9670;&nbsp;</a></span>aes_cipher_modes</h2>
 
@@ -623,30 +603,300 @@ If the SPRNG is run, anything you have stored here will be destroyed. </dd></dl>
 
 </div>
 </div>
-<h2 class="groupheader">Function Documentation</h2>
-<a id="a2b904b543405fdf8f283d028ce0d1da7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2b904b543405fdf8f283d028ce0d1da7">&#9670;&nbsp;</a></span>hashlib_AESDecrypt()</h2>
+<a id="a5aedfaf159c585059ba8914b59307c21"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5aedfaf159c585059ba8914b59307c21">&#9670;&nbsp;</a></span>_ssl_sig_modes</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">bool hashlib_AESDecrypt </td>
+          <td class="memname">enum <a class="el" href="hashlib_8h.html#a5aedfaf159c585059ba8914b59307c21">_ssl_sig_modes</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a5aedfaf159c585059ba8914b59307c21a096ad031cbdad23c8d4053d9b7a3db31"></a>SSLSIG_RSA_SHA256&#160;</td><td class="fielddoc"><p>RSA with SHA-256 signature algorithm </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a5aedfaf159c585059ba8914b59307c21a3b885e134e618304b93f54b88eff9b25"></a>SSLSIG_ECDSA&#160;</td><td class="fielddoc"><p>ECDSA (unimplemented, likely a long way off) </p>
+</td></tr>
+</table>
+
+</div>
+</div>
+<h2 class="groupheader">Function Documentation</h2>
+<a id="a179d02d08f13b8a2ec239ae3f6fc81de"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a179d02d08f13b8a2ec239ae3f6fc81de">&#9670;&nbsp;</a></span>hashlib_SPRNGInit()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void* hashlib_SPRNGInit </td>
           <td>(</td>
-          <td class="paramtype">const uint8_t *&#160;</td>
-          <td class="paramname"><em>ciphertext</em>, </td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Initializes the SPRNG. </p>
+<p>The SPRNG is initialized by polling the 512-bytes from address 0xD65800 to 0xD66000. This region consists of unmapped memory that contains bus noise. Each bit in that region is polled 1024 times and the address with the bit that is the least biased is selected. That will be the byte the SPRNG uses to generate entropy. </p><dl class="section return"><dt>Returns</dt><dd>The unmapped address selected for use generating entropy </dd></dl>
+
+</div>
+</div>
+<a id="ad4e253aa114047e5a49af2fd49781559"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad4e253aa114047e5a49af2fd49781559">&#9670;&nbsp;</a></span>hashlib_SPRNGRandom()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t hashlib_SPRNGRandom </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Generates a random 32-bit number. </p>
+<ul>
+<li>Calls <a class="el" href="hashlib_8h.html#a179d02d08f13b8a2ec239ae3f6fc81de" title="Initializes the SPRNG.">hashlib_SPRNGInit()</a> if it hasn't already been done.</li>
+<li>Populates a 119-byte entropy pool by xor'ing 7 distinct reads from the unmapped address together per byte.</li>
+<li>Hashes the entropy pool using SHA-256.</li>
+<li>Breaks the SHA-256 hash into 8-byte blocks, then xor's all 8 bytes each block together, leaving four (4) composite bytes.</li>
+<li>Returns the 4-byte (32-bit) composite as a random number.. <dl class="section return"><dt>Returns</dt><dd>A random unsigned 32-bit integer. </dd></dl>
+</li>
+</ul>
+
+</div>
+</div>
+<a id="aa0092aa4c122591fae447dda8fa25dfc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa0092aa4c122591fae447dda8fa25dfc">&#9670;&nbsp;</a></span>hashlib_RandomBytes()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool hashlib_RandomBytes </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t *&#160;</td>
+          <td class="paramname"><em>buffer</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">size_t&#160;</td>
-          <td class="paramname"><em>len</em>, </td>
+          <td class="paramname"><em>size</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Fills a buffer to size with random bytes. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">buffer</td><td>A pointer to a buffer to write random data to. </td></tr>
+    <tr><td class="paramname">size</td><td>Number of bytes to write. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>Note</dt><dd><b>buffer</b> must be at least <b>size</b> bytes large. </dd></dl>
+
+</div>
+</div>
+<a id="ad2fa6bc8d3a1156a5734b81f5195afc4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad2fa6bc8d3a1156a5734b81f5195afc4">&#9670;&nbsp;</a></span>hashlib_Sha256Init()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void hashlib_Sha256Init </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct__sha256__ctx.html">sha256_ctx</a> *&#160;</td>
+          <td class="paramname"><em>ctx</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t *&#160;</td>
+          <td class="paramname"><em>mbuffer</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Context initializer for SHA-256. Initializes the given context with the starting state for SHA-256. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ctx</td><td>Pointer to a SHA-256 context. </td></tr>
+    <tr><td class="paramname">mbuffer</td><td>Pointer to a temporary memory buffer. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>Note</dt><dd><b>mbuffer</b> must be at least <b>SHA256_MBUFFER_LEN</b> bytes large. </dd></dl>
+
+</div>
+</div>
+<a id="aeed1dabf7c19464f01c87dcb25a77636"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aeed1dabf7c19464f01c87dcb25a77636">&#9670;&nbsp;</a></span>hashlib_Sha256Update()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void hashlib_Sha256Update </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct__sha256__ctx.html">sha256_ctx</a> *&#160;</td>
+          <td class="paramname"><em>ctx</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const uint8_t *&#160;</td>
+          <td class="paramname"><em>buf</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>len</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Updates the SHA-256 context for the given data. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ctx</td><td>Pointer to a SHA-256 context. </td></tr>
+    <tr><td class="paramname">buf</td><td>Pointer to data to hash. </td></tr>
+    <tr><td class="paramname">len</td><td>Number of bytes at</td></tr>
+    <tr><td class="paramname">buf</td><td>to hash. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section warning"><dt>Warning</dt><dd>You must call hashlib_SHA256Init() first or your hash state will be invalid. </dd></dl>
+
+</div>
+</div>
+<a id="a27eda4d2b18a026f199abdcab6d1cc8c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a27eda4d2b18a026f199abdcab6d1cc8c">&#9670;&nbsp;</a></span>hashlib_Sha256Final()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void hashlib_Sha256Final </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct__sha256__ctx.html">sha256_ctx</a> *&#160;</td>
+          <td class="paramname"><em>ctx</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">uint8_t *&#160;</td>
-          <td class="paramname"><em>plaintext</em>, </td>
+          <td class="paramname"><em>digest</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Finalize Context and Render Digest for SHA-256. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ctx</td><td>Pointer to a SHA-256 context. </td></tr>
+    <tr><td class="paramname">digest</td><td>Pointer to a buffer to write the hash to. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>Note</dt><dd><b>digest</b> must be at least 32 bytes large. </dd></dl>
+
+</div>
+</div>
+<a id="a2c1bd7ec5809afead6583128c9052d8b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2c1bd7ec5809afead6583128c9052d8b">&#9670;&nbsp;</a></span>hashlib_MGF1Hash()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void hashlib_MGF1Hash </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t *&#160;</td>
+          <td class="paramname"><em>data</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>datalen</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t *&#160;</td>
+          <td class="paramname"><em>outbuf</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>outlen</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Arbitrary Length Hashing Function. </p>
+<p>Computes SHA-256 of the data and with a counter appended to generate a hash of arbitrary length.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">data</td><td>Pointer to data to hash. </td></tr>
+    <tr><td class="paramname">datalen</td><td>Number of bytes at <b>data</b> to hash. </td></tr>
+    <tr><td class="paramname">outbuf</td><td>Pointer to buffer to write hash output to. </td></tr>
+    <tr><td class="paramname">outlen</td><td>Number of bytes to write to <b>outbuf</b>. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>Note</dt><dd><b>outbuf</b> must be at least <b>outlen</b> bytes large. </dd></dl>
+
+</div>
+</div>
+<a id="a0653a6a286fb1bedfb3e964d36e3b0bd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0653a6a286fb1bedfb3e964d36e3b0bd">&#9670;&nbsp;</a></span>hashlib_AESLoadKey()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool hashlib_AESLoadKey </td>
+          <td>(</td>
+          <td class="paramtype">const uint8_t *&#160;</td>
+          <td class="paramname"><em>key</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -657,14 +907,8 @@ If the SPRNG is run, anything you have stored here will be destroyed. </dd></dl>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const uint8_t *&#160;</td>
-          <td class="paramname"><em>iv</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">uint8_t&#160;</td>
-          <td class="paramname"><em>ciphermode</em>&#160;</td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>keylen</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -674,23 +918,63 @@ If the SPRNG is run, anything you have stored here will be destroyed. </dd></dl>
       </table>
 </div><div class="memdoc">
 
-<p>General-Purpose AES Decryption. </p>
+<p>AES import key to key schedule context. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">ciphertext</td><td>Pointer to data to decrypt. </td></tr>
-    <tr><td class="paramname">len</td><td>Length of data at</td></tr>
-    <tr><td class="paramname">ciphertext</td><td>to decrypt. </td></tr>
-    <tr><td class="paramname">plaintext</td><td>Pointer to buffer to write decryped data to. </td></tr>
+    <tr><td class="paramname">key</td><td>Pointer to a buffer containing the AES key. </td></tr>
     <tr><td class="paramname">ks</td><td>Pointer to an AES key schedule context. </td></tr>
-    <tr><td class="paramname">iv</td><td>Pointer to an initialization vector (a nonce of length equal to the block size). </td></tr>
-    <tr><td class="paramname">ciphermode</td><td>The cipher mode to use. Can be either <em>AES_MODE_CBC</em> or <em>AES_MODE_CTR</em>. </td></tr>
+    <tr><td class="paramname">keylen</td><td>The size, in bytes, of the key to load. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section note"><dt>Note</dt><dd><b>plaintext</b> and <b>ciphertext</b> are aliasable. </dd>
-<dd>
-<b>IV</b> should be the same as what is used for encryption. </dd></dl>
-<dl class="section return"><dt>Returns</dt><dd>True if the encryption succeded. False if an error occured. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>True if the key was successfully loaded. False otherwise. </dd></dl>
+
+</div>
+</div>
+<a id="a6987499522b3b85b8ce4b272fadf75dd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6987499522b3b85b8ce4b272fadf75dd">&#9670;&nbsp;</a></span>hashlib_AESEncryptBlock()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool hashlib_AESEncryptBlock </td>
+          <td>(</td>
+          <td class="paramtype">const uint8_t *&#160;</td>
+          <td class="paramname"><em>block_in</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t *&#160;</td>
+          <td class="paramname"><em>block_out</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="struct__aes__ctx.html">aes_ctx</a> *&#160;</td>
+          <td class="paramname"><em>ks</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>AES Single-Block Encryption (ECB mode) </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">block_in</td><td>Pointer to block of data to encrypt. </td></tr>
+    <tr><td class="paramname">block_out</td><td>Pointer to buffer to write encrypted block. </td></tr>
+    <tr><td class="paramname">ks</td><td>Pointer to an AES key schedule context. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>Note</dt><dd><b>block_in</b> and <b>block_out</b> are aliasable. </dd></dl>
+<dl class="section warning"><dt>Warning</dt><dd>ECB-mode ciphers are insecure (see many-time pad vulnerability). These functions are exposed in case a user wants to construct a cipher mode other than CBC or CTR. Unless you know what you are doing, use <a class="el" href="hashlib_8h.html#a745c5c4d6bdc248f20b18c7b848d8b6b" title="General-Purpose AES Encryption.">hashlib_AESEncrypt()</a> instead. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>True if encryption succeeded. False if failed. </dd></dl>
 
 </div>
 </div>
@@ -812,64 +1096,29 @@ If cipher mode CBC is used, <b>len</b> must be a multiple of the blocksize. You 
 
 </div>
 </div>
-<a id="a6987499522b3b85b8ce4b272fadf75dd"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6987499522b3b85b8ce4b272fadf75dd">&#9670;&nbsp;</a></span>hashlib_AESEncryptBlock()</h2>
+<a id="a2b904b543405fdf8f283d028ce0d1da7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2b904b543405fdf8f283d028ce0d1da7">&#9670;&nbsp;</a></span>hashlib_AESDecrypt()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">bool hashlib_AESEncryptBlock </td>
+          <td class="memname">bool hashlib_AESDecrypt </td>
           <td>(</td>
           <td class="paramtype">const uint8_t *&#160;</td>
-          <td class="paramname"><em>block_in</em>, </td>
+          <td class="paramname"><em>ciphertext</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>len</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">uint8_t *&#160;</td>
-          <td class="paramname"><em>block_out</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="struct__aes__ctx.html">aes_ctx</a> *&#160;</td>
-          <td class="paramname"><em>ks</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>AES Single-Block Encryption (ECB mode) </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">block_in</td><td>Pointer to block of data to encrypt. </td></tr>
-    <tr><td class="paramname">block_out</td><td>Pointer to buffer to write encrypted block. </td></tr>
-    <tr><td class="paramname">ks</td><td>Pointer to an AES key schedule context. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section note"><dt>Note</dt><dd><b>block_in</b> and <b>block_out</b> are aliasable. </dd></dl>
-<dl class="section warning"><dt>Warning</dt><dd>ECB-mode ciphers are insecure (see many-time pad vulnerability). These functions are exposed in case a user wants to construct a cipher mode other than CBC or CTR. Unless you know what you are doing, use <a class="el" href="hashlib_8h.html#a745c5c4d6bdc248f20b18c7b848d8b6b" title="General-Purpose AES Encryption.">hashlib_AESEncrypt()</a> instead. </dd></dl>
-<dl class="section return"><dt>Returns</dt><dd>True if encryption succeeded. False if failed. </dd></dl>
-
-</div>
-</div>
-<a id="a0653a6a286fb1bedfb3e964d36e3b0bd"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0653a6a286fb1bedfb3e964d36e3b0bd">&#9670;&nbsp;</a></span>hashlib_AESLoadKey()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool hashlib_AESLoadKey </td>
-          <td>(</td>
-          <td class="paramtype">const uint8_t *&#160;</td>
-          <td class="paramname"><em>key</em>, </td>
+          <td class="paramname"><em>plaintext</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -880,8 +1129,14 @@ If cipher mode CBC is used, <b>len</b> must be a multiple of the blocksize. You 
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">size_t&#160;</td>
-          <td class="paramname"><em>keylen</em>&#160;</td>
+          <td class="paramtype">const uint8_t *&#160;</td>
+          <td class="paramname"><em>iv</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>ciphermode</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -891,16 +1146,23 @@ If cipher mode CBC is used, <b>len</b> must be a multiple of the blocksize. You 
       </table>
 </div><div class="memdoc">
 
-<p>AES import key to key schedule context. </p>
+<p>General-Purpose AES Decryption. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">key</td><td>Pointer to a buffer containing the AES key. </td></tr>
+    <tr><td class="paramname">ciphertext</td><td>Pointer to data to decrypt. </td></tr>
+    <tr><td class="paramname">len</td><td>Length of data at</td></tr>
+    <tr><td class="paramname">ciphertext</td><td>to decrypt. </td></tr>
+    <tr><td class="paramname">plaintext</td><td>Pointer to buffer to write decryped data to. </td></tr>
     <tr><td class="paramname">ks</td><td>Pointer to an AES key schedule context. </td></tr>
-    <tr><td class="paramname">keylen</td><td>The size, in bytes, of the key to load. </td></tr>
+    <tr><td class="paramname">iv</td><td>Pointer to an initialization vector (a nonce of length equal to the block size). </td></tr>
+    <tr><td class="paramname">ciphermode</td><td>The cipher mode to use. Can be either <em>AES_MODE_CBC</em> or <em>AES_MODE_CTR</em>. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>True if the key was successfully loaded. False otherwise. </dd></dl>
+<dl class="section note"><dt>Note</dt><dd><b>plaintext</b> and <b>ciphertext</b> are aliasable. </dd>
+<dd>
+<b>IV</b> should be the same as what is used for encryption. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>True if the encryption succeded. False if an error occured. </dd></dl>
 
 </div>
 </div>
@@ -1069,237 +1331,6 @@ For the most secure authenticated encryption scheme, use "encrypt-then-MAC". Thi
 
 </div>
 </div>
-<a id="a658b0b7f7139a429e3b77a9876e78970"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a658b0b7f7139a429e3b77a9876e78970">&#9670;&nbsp;</a></span>hashlib_CompareDigest()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">hashlib_CompareDigest </td>
-          <td>(</td>
-          <td class="paramtype">const uint8_t *&#160;</td>
-          <td class="paramname"><em>digest1</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const uint8_t *&#160;</td>
-          <td class="paramname"><em>digest2</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">size_t&#160;</td>
-          <td class="paramname"><em>len</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Secure buffer comparison. </p>
-<p>Evaluates the equality of two buffers using a method that offers resistance to timing attacks.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">digest1</td><td>The first buffer to compare. </td></tr>
-    <tr><td class="paramname">digest2</td><td>The second buffer to compare. </td></tr>
-    <tr><td class="paramname">len</td><td>The number of bytes to compare. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>True if the buffers were equal. False if not equal. </dd></dl>
-
-</div>
-</div>
-<a id="a24bf91aef912b8346523f37e16d22377"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a24bf91aef912b8346523f37e16d22377">&#9670;&nbsp;</a></span>hashlib_EraseContext()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void hashlib_EraseContext </td>
-          <td>(</td>
-          <td class="paramtype">void *&#160;</td>
-          <td class="paramname"><em>ctx</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">size_t&#160;</td>
-          <td class="paramname"><em>len</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Secure erase context. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">ctx</td><td>Pointer to any context or buffer you want to erase. </td></tr>
-    <tr><td class="paramname">len</td><td>Number of bytes at <b>ctx</b> to erase. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section note"><dt>Note</dt><dd>It is advised to call this on every cryptographic context and encryption buffer used. </dd></dl>
-
-</div>
-</div>
-<a id="a2c1bd7ec5809afead6583128c9052d8b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2c1bd7ec5809afead6583128c9052d8b">&#9670;&nbsp;</a></span>hashlib_MGF1Hash()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void hashlib_MGF1Hash </td>
-          <td>(</td>
-          <td class="paramtype">uint8_t *&#160;</td>
-          <td class="paramname"><em>data</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">size_t&#160;</td>
-          <td class="paramname"><em>datalen</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">uint8_t *&#160;</td>
-          <td class="paramname"><em>outbuf</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">size_t&#160;</td>
-          <td class="paramname"><em>outlen</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Arbitrary Length Hashing Function. </p>
-<p>Computes SHA-256 of the data and with a counter appended to generate a hash of arbitrary length.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">data</td><td>Pointer to data to hash. </td></tr>
-    <tr><td class="paramname">datalen</td><td>Number of bytes at <b>data</b> to hash. </td></tr>
-    <tr><td class="paramname">outbuf</td><td>Pointer to buffer to write hash output to. </td></tr>
-    <tr><td class="paramname">outlen</td><td>Number of bytes to write to <b>outbuf</b>. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section note"><dt>Note</dt><dd><b>outbuf</b> must be at least <b>outlen</b> bytes large. </dd></dl>
-
-</div>
-</div>
-<a id="aa0092aa4c122591fae447dda8fa25dfc"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa0092aa4c122591fae447dda8fa25dfc">&#9670;&nbsp;</a></span>hashlib_RandomBytes()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool hashlib_RandomBytes </td>
-          <td>(</td>
-          <td class="paramtype">uint8_t *&#160;</td>
-          <td class="paramname"><em>buffer</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">size_t&#160;</td>
-          <td class="paramname"><em>size</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Fills a buffer to size with random bytes. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">buffer</td><td>A pointer to a buffer to write random data to. </td></tr>
-    <tr><td class="paramname">size</td><td>Number of bytes to write. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section note"><dt>Note</dt><dd><b>buffer</b> must be at least <b>size</b> bytes large. </dd></dl>
-
-</div>
-</div>
-<a id="ae575c99825f9b970c3d6f7a6bf552153"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae575c99825f9b970c3d6f7a6bf552153">&#9670;&nbsp;</a></span>hashlib_RSADecodeOAEP()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">size_t hashlib_RSADecodeOAEP </td>
-          <td>(</td>
-          <td class="paramtype">const uint8_t *&#160;</td>
-          <td class="paramname"><em>plaintext</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">size_t&#160;</td>
-          <td class="paramname"><em>len</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">uint8_t *&#160;</td>
-          <td class="paramname"><em>outbuf</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const uint8_t *&#160;</td>
-          <td class="paramname"><em>auth</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>RSA-OAEP padding scheme, reverse algorithm. </p>
-<p>Reverses the RSA-OAEP padding scheme as indicated in PKCS#1 v2.2.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">plaintext</td><td>Pointer to a buffer containing the data to OAEP-decode. </td></tr>
-    <tr><td class="paramname">len</td><td>Length of data at <b>plaintext</b> to decode. </td></tr>
-    <tr><td class="paramname">outbuf</td><td>Pointer to buffer large enough to hold the decoded data. </td></tr>
-    <tr><td class="paramname">auth</td><td>Pointer to an authentication string (similar to a password) to include in the encoding. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section note"><dt>Note</dt><dd><b>outbuf</b> must be at least <b>len-34</b> bytes large. </dd>
-<dd>
-<b>auth</b> Both sender and reciever must know this string if one is provided. Pass NULL to omit. </dd></dl>
-<dl class="section return"><dt>Returns</dt><dd>The decoded length of the plaintext. </dd></dl>
-
-</div>
-</div>
 <a id="a52c65f6e14ae6287fc2753895ce947be"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a52c65f6e14ae6287fc2753895ce947be">&#9670;&nbsp;</a></span>hashlib_RSAEncodeOAEP()</h2>
 
@@ -1369,6 +1400,62 @@ For the most secure authenticated encryption scheme, use "encrypt-then-MAC". Thi
 <dd>
 <b>auth</b> both sender and receiver must know this string. Pass NULL to omit. </dd></dl>
 <dl class="section return"><dt>Returns</dt><dd>The padded length of the plaintext. </dd></dl>
+
+</div>
+</div>
+<a id="ae575c99825f9b970c3d6f7a6bf552153"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae575c99825f9b970c3d6f7a6bf552153">&#9670;&nbsp;</a></span>hashlib_RSADecodeOAEP()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">size_t hashlib_RSADecodeOAEP </td>
+          <td>(</td>
+          <td class="paramtype">const uint8_t *&#160;</td>
+          <td class="paramname"><em>plaintext</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>len</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t *&#160;</td>
+          <td class="paramname"><em>outbuf</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const uint8_t *&#160;</td>
+          <td class="paramname"><em>auth</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>RSA-OAEP padding scheme, reverse algorithm. </p>
+<p>Reverses the RSA-OAEP padding scheme as indicated in PKCS#1 v2.2.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">plaintext</td><td>Pointer to a buffer containing the data to OAEP-decode. </td></tr>
+    <tr><td class="paramname">len</td><td>Length of data at <b>plaintext</b> to decode. </td></tr>
+    <tr><td class="paramname">outbuf</td><td>Pointer to buffer large enough to hold the decoded data. </td></tr>
+    <tr><td class="paramname">auth</td><td>Pointer to an authentication string (similar to a password) to include in the encoding. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>Note</dt><dd><b>outbuf</b> must be at least <b>len-34</b> bytes large. </dd>
+<dd>
+<b>auth</b> Both sender and reciever must know this string if one is provided. Pass NULL to omit. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>The decoded length of the plaintext. </dd></dl>
 
 </div>
 </div>
@@ -1442,111 +1529,29 @@ For the most secure authenticated encryption scheme, use "encrypt-then-MAC". Thi
 </dl>
 <dl class="section note"><dt>Note</dt><dd><b>outbuf</b> must be at least <b>modulus_len</b> bytes large. </dd>
 <dd>
-<b>salt</b> can be null to generate a salt automatically. You can also generate it yourself using <a class="el" href="hashlib_8h.html#aa0092aa4c122591fae447dda8fa25dfc" title="Fills a buffer to size with random bytes.">hashlib_RandomBytes()</a> and pass a pointer to that buffer. </dd>
+<b>salt</b> can be null to generate a salt automatically. You can also generate it yourself using <a class="el" href="hashlib_8h.html#aa0092aa4c122591fae447dda8fa25dfc" title="Fills a buffer to size with random bytes.">hashlib_RandomBytes()</a> and pass a pointer to that buffer as <b>salt</b>. </dd>
 <dd>
 If you are trying to validate a signature, use hashlib_SSLVerifySignature(). </dd></dl>
 <dl class="section return"><dt>Returns</dt><dd>the padded length of the plaintext. </dd></dl>
 
 </div>
 </div>
-<a id="a27eda4d2b18a026f199abdcab6d1cc8c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a27eda4d2b18a026f199abdcab6d1cc8c">&#9670;&nbsp;</a></span>hashlib_Sha256Final()</h2>
+<a id="a24bf91aef912b8346523f37e16d22377"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a24bf91aef912b8346523f37e16d22377">&#9670;&nbsp;</a></span>hashlib_EraseContext()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void hashlib_Sha256Final </td>
+          <td class="memname">void hashlib_EraseContext </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="struct__sha256__ctx.html">sha256_ctx</a> *&#160;</td>
+          <td class="paramtype">void *&#160;</td>
           <td class="paramname"><em>ctx</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">uint8_t *&#160;</td>
-          <td class="paramname"><em>digest</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Finalize Context and Render Digest for SHA-256. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">ctx</td><td>Pointer to a SHA-256 context. </td></tr>
-    <tr><td class="paramname">digest</td><td>Pointer to a buffer to write the hash to. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section note"><dt>Note</dt><dd><b>digest</b> must be at least 32 bytes large. </dd></dl>
-
-</div>
-</div>
-<a id="ad2fa6bc8d3a1156a5734b81f5195afc4"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad2fa6bc8d3a1156a5734b81f5195afc4">&#9670;&nbsp;</a></span>hashlib_Sha256Init()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void hashlib_Sha256Init </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="struct__sha256__ctx.html">sha256_ctx</a> *&#160;</td>
-          <td class="paramname"><em>ctx</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">uint32_t *&#160;</td>
-          <td class="paramname"><em>mbuffer</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Context initializer for SHA-256. Initializes the given context with the starting state for SHA-256. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">ctx</td><td>Pointer to a SHA-256 context. </td></tr>
-    <tr><td class="paramname">mbuffer</td><td>Pointer to a temporary memory buffer. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section note"><dt>Note</dt><dd><b>mbuffer</b> must be at least <b>SHA256_MBUFFER_LEN</b> bytes large. </dd></dl>
-
-</div>
-</div>
-<a id="aeed1dabf7c19464f01c87dcb25a77636"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aeed1dabf7c19464f01c87dcb25a77636">&#9670;&nbsp;</a></span>hashlib_Sha256Update()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void hashlib_Sha256Update </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="struct__sha256__ctx.html">sha256_ctx</a> *&#160;</td>
-          <td class="paramname"><em>ctx</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const uint8_t *&#160;</td>
-          <td class="paramname"><em>buf</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramtype">size_t&#160;</td>
           <td class="paramname"><em>len</em>&#160;</td>
         </tr>
         <tr>
@@ -1557,66 +1562,61 @@ If you are trying to validate a signature, use hashlib_SSLVerifySignature(). </d
       </table>
 </div><div class="memdoc">
 
-<p>Updates the SHA-256 context for the given data. </p>
+<p>Secure erase context. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">ctx</td><td>Pointer to a SHA-256 context. </td></tr>
-    <tr><td class="paramname">buf</td><td>Pointer to data to hash. </td></tr>
-    <tr><td class="paramname">len</td><td>Number of bytes at</td></tr>
-    <tr><td class="paramname">buf</td><td>to hash. </td></tr>
+    <tr><td class="paramname">ctx</td><td>Pointer to any context or buffer you want to erase. </td></tr>
+    <tr><td class="paramname">len</td><td>Number of bytes at <b>ctx</b> to erase. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section warning"><dt>Warning</dt><dd>You must call hashlib_SHA256Init() first or your hash state will be invalid. </dd></dl>
+<dl class="section note"><dt>Note</dt><dd>It is advised to call this on every cryptographic context and encryption buffer used. </dd></dl>
 
 </div>
 </div>
-<a id="a179d02d08f13b8a2ec239ae3f6fc81de"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a179d02d08f13b8a2ec239ae3f6fc81de">&#9670;&nbsp;</a></span>hashlib_SPRNGInit()</h2>
+<a id="a658b0b7f7139a429e3b77a9876e78970"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a658b0b7f7139a429e3b77a9876e78970">&#9670;&nbsp;</a></span>hashlib_CompareDigest()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void* hashlib_SPRNGInit </td>
+          <td class="memname">hashlib_CompareDigest </td>
           <td>(</td>
-          <td class="paramtype">void&#160;</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
+          <td class="paramtype">const uint8_t *&#160;</td>
+          <td class="paramname"><em>digest1</em>, </td>
         </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Initializes the SPRNG. </p>
-<p>The SPRNG is initialized by polling the 512-bytes from address 0xD65800 to 0xD66000. This region consists of unmapped memory that contains bus noise. Each bit in that region is polled 1024 times and the address with the bit that is the least biased is selected. That will be the byte the SPRNG uses to generate entropy. </p><dl class="section return"><dt>Returns</dt><dd>The unmapped address selected for use generating entropy </dd></dl>
-
-</div>
-</div>
-<a id="ad4e253aa114047e5a49af2fd49781559"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad4e253aa114047e5a49af2fd49781559">&#9670;&nbsp;</a></span>hashlib_SPRNGRandom()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
         <tr>
-          <td class="memname">uint32_t hashlib_SPRNGRandom </td>
-          <td>(</td>
-          <td class="paramtype">void&#160;</td>
-          <td class="paramname"></td><td>)</td>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">const uint8_t *&#160;</td>
+          <td class="paramname"><em>digest2</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>len</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Generates a random 32-bit number. </p>
-<ul>
-<li>Calls <a class="el" href="hashlib_8h.html#a179d02d08f13b8a2ec239ae3f6fc81de" title="Initializes the SPRNG.">hashlib_SPRNGInit()</a> if it hasn't already been done.</li>
-<li>Populates a 119-byte entropy pool by xor'ing 7 distinct reads from the unmapped address together per byte.</li>
-<li>Hashes the entropy pool using SHA-256.</li>
-<li>Breaks the SHA-256 hash into 8-byte blocks, then xor's all 8 bytes each block together, leaving four (4) composite bytes.</li>
-<li>Returns the 4-byte (32-bit) composite as a random number.. <dl class="section return"><dt>Returns</dt><dd>A random unsigned 32-bit integer. </dd></dl>
-</li>
-</ul>
+<p>Secure buffer comparison. </p>
+<p>Evaluates the equality of two buffers using a method that offers resistance to timing attacks.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">digest1</td><td>The first buffer to compare. </td></tr>
+    <tr><td class="paramname">digest2</td><td>The second buffer to compare. </td></tr>
+    <tr><td class="paramname">len</td><td>The number of bytes to compare. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>True if the buffers were equal. False if not equal. </dd></dl>
 
 </div>
 </div>

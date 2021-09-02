@@ -483,7 +483,7 @@ size_t hashlib_RSADecodeOAEP(
  * @param salt A buffer filled with random bytes.
  * @note @b outbuf must be at least @b modulus_len bytes large.
  * @note @b salt can be null to generate a salt automatically. You can also generate it yourself
- * 		 using hashlib_RandomBytes() and pass a pointer to that buffer.
+ * 		 using hashlib_RandomBytes() and pass a pointer to that buffer as @b salt.
  * @note If you are trying to validate a signature, use hashlib_SSLVerifySignature().
  * @return the padded length of the plaintext.
  ***********************************************************************************************************************/
