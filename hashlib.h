@@ -66,7 +66,7 @@ uint32_t hashlib_SPRNGRandom(void);
  *
  * @param buffer A pointer to a buffer to write random data to.
  * @param size Number of bytes to write.
- * @note #buffer must be at least #size bytes large.
+ * @note @b buffer must be at least @b size bytes large.
  ****************************************************************************************/
 bool hashlib_RandomBytes(uint8_t *buffer, size_t size);
  
@@ -103,13 +103,13 @@ typedef struct _sha256_ctx {
   **********************************************************/
 #define SHA256_HEXSTR_LEN   (SHA256_DIGEST_LEN<<1) + 1
 
-/********************************************************************************************
+/**************************************************************************************************
  *	@brief Context initializer for SHA-256.
  *	Initializes the given context with the starting state for SHA-256.
  *	@param ctx Pointer to a SHA-256 context.
  *	@param mbuffer Pointer to a temporary memory buffer.
- *	@note #mbuffer must be at least #SHA256_MBUFFER_LEN bytes large.
- *******************************************************************************************/
+ *	@note @b mbuffer must be at least @b SHA256_MBUFFER_LEN bytes large.
+ **************************************************************************************************/
 void hashlib_Sha256Init(sha256_ctx *ctx, uint32_t *mbuffer);
 
 /******************************************************************************************************
@@ -125,7 +125,7 @@ void hashlib_Sha256Update(sha256_ctx *ctx, const uint8_t *buf, uint32_t len);
  *	@brief Finalize Context and Render Digest for SHA-256
  *	@param ctx Pointer to a SHA-256 context.
  *	@param digest Pointer to a buffer to write the hash to.
- *	@note #digest must be at least 32 bytes large.
+ *	@note @b digest must be at least 32 bytes large.
  ***************************************************************************/
 void hashlib_Sha256Final(sha256_ctx *ctx, uint8_t *digest);
 
@@ -136,7 +136,7 @@ void hashlib_Sha256Final(sha256_ctx *ctx, uint8_t *digest);
  *	@param datalen Number of bytes at @param data to hash.
  *	@param outbuf Pointer to buffer to write hash output to.
  *	@param outlen Number of bytes to write to @param outbuf.
- *	@note #outbuf Must be at least #outlen bytes large.
+ *	@note @b outbuf must be at least @b outlen bytes large.
  **********************************************************************************************************************/
 void hashlib_MGF1Hash(uint8_t* data, size_t datalen, uint8_t* outbuf, size_t outlen);
 
@@ -499,7 +499,7 @@ void hashlib_EraseContext(void *ctx, size_t len);
  * @def hashlib_MallocContext()
  *
  * Dynamically allocates a block of memory to be used for a context or buffer.
- * 
+ *
  * @param size Size of the buffer to malloc.
  * @return Same as @b malloc.
  *************************************************************************************************/
