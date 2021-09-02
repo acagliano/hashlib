@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['hashlib_2dstable_109',['hashlib-stable',['../md__r_e_a_d_m_e.html',1,'']]]
+  ['cryptography_20library_20for_20the_20ti_2d84_2b_20ce_109',['Cryptography Library for the TI-84+ CE',['../md__r_e_a_d_m_e.html',1,'']]]
 ];

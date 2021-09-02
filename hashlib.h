@@ -6,7 +6,7 @@
  *	- secure random number generator
  *	- SHA-256
  *	- AES: CBC, CTR, CBC-MAC
- *	- AES Padding: PKCS#7, ISO_M2
+ *	- AES Padding: PKCS#7, ISO-9797 M2
  *	- RSA public key encryption, modulus <= 2048 bits
  *	- RSA Padding: RSA-OAEP via PKCS#7 v2.2, RSA-PSS via PKCS#7 v1.5
  *
@@ -430,9 +430,9 @@ enum _ssl_sig_modes {
  * |-- 0x00 --|-- salt --|-- auth hash --|-- 0x00...padding --|-- 0x01 --|-- message --|
  *	          |          |-------------------------------------------------------------|
  *                 |                                  |
- *                 | ---------- MGF1-SHA256 -------->XOR
+ *                 | --------- MGF1-SHA256 --------> XOR
  *                 |                                  |
- *                XOR <-------- MGF1-SHA256 ----------|
+ *                XOR <-------- MGF1-SHA256 --------- |
  *                 |                                  |
  * |-- 0x00 --|-- msalt --|---------- masked message, padding, and auth hash ----------|
  * |<-------------------------------- modulus size ----------------------------------> |
@@ -484,7 +484,7 @@ size_t hashlib_RSADecodeOAEP(
  * |----------------------------------------|  |-----------------------------------------|
  * *DB                  |                      *Mprime              |
  *                      |                                        SHA-256
- *                     XOR <------------- MGF1-SHA256 --------------|
+ *                     XOR <------------ MGF1-SHA256 -------------- |
  *                      |                                           |
  *                      |                           < ------------- |
  *                      |                           |

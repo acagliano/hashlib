@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Hashlib CE: hashlib-stable</title>
+<title>Hashlib CE: Cryptography Library for the TI-84+ CE</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -64,40 +64,12 @@ $(function() {
 </div><!-- top -->
 <div class="PageDoc"><div class="header">
   <div class="headertitle">
-<div class="title">hashlib-stable </div>  </div>
+<div class="title">Cryptography Library for the TI-84+ CE </div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p>This is the stable branch of the TI-84+ CE toolchain library HASHLIB. <br  />
- To build this library yourself, navigate into the <code>src</code> directory of the CE C toolchain. <br  />
- Once in there, run <code>git clone <a href="https://github.com/acagliano/hashlib.git">https://github.com/acagliano/hashlib.git</a> hashlib</code>. <br  />
- cd into that directory and run <code>make</code>. HASHLIB should be created. <br  />
-</p>
-<p>Of course there's no need to actually do this, because an up to date build of HASHLIB is provided in this repository. <br  />
- To use it with the toolchain, simply send <code>HASHLIB.8xv</code> to your device, move <code>hashlib.lib</code> into <code>$CEDEV/lib/libload</code> and then <code><a class="el" href="hashlib_8h.html" title="Cryptography Library for the TI-84+ CE.">hashlib.h</a></code> into <code>$CEDEV/include</code>. <br  />
- Once that is done, simply <code>#include &lt;<a class="el" href="hashlib_8h.html" title="Cryptography Library for the TI-84+ CE.">hashlib.h</a>&gt;</code> in your project source and you can use all the cryptography functions in the library. <br  />
-</p>
-<p>This library provides the following implementations tested and working on the TI-84+ CE. <br  />
- You can view the C codebase by running <code>git checkout dev</code>. <br  />
-</p>
-<p>&lt;&gt; A Secure PRNG with a calculated entropy of ~107.1 bits per 32-bit random number and an evaluated advantage negligibly greater than zero. The statistics included in the repo are for 1 MB of random output. <br  />
- &lt;&gt; A 128, 192, and 256 bit AES implementation, in CBC mode. <br  />
- &lt;&gt; ** Work in Progress ** 1024-bit RSA, encryption-only. <br  />
- &lt;&gt; SHA-1 and SHA-256 cryptographic hashes (these guys are a bit on the slow side). <br  />
- &lt;&gt; A helper function to pad plaintexts for encryption. Pass plaintext, an output buffer of appropriate size (macros to return that size included), the algorithm, and a padding spec (or SCHM_DEFAULT). The following padding methods are available: <br  />
-</p><ul>
-<li>SCHM_PKCS7 : AES padding, Pad with padding size [DEFAULT FOR AES]. <br  />
-</li>
-<li>SCHM_ISO_M2 : AES padding, Pad with [0x80, 0x00, ..., 0x00]. <br  />
-</li>
-<li>SCHM_ISO_M1 : AES padding, Pad with [0x00, ..., 0x00]. <br  />
-</li>
-<li>SCHM_ANSIX923 : AES padding, Pad with [randbytes]. <br  />
-</li>
-<li>SCHM_RSA_OAEP : RSA padding, uses the OAEP padding scheme. SHA-256 is the hash used, and it is applied cyclically to the plaintext. <br  />
- &lt;&gt; A function to zero out a context that you no longer are using to prevent state leak. <br  />
- &lt;&gt; Base64 encoding and decoding functions. <br  />
-</li>
-</ul>
+<div class="textblock"><p>This library is written as a libload-compatibile C (and ASM) library. To install the lib into the toolchain, simply navigate into the hashlib directory within a terminal of your choice and type <code>make install</code>. Alternatively, you can manually move <code><a class="el" href="hashlib_8h.html" title="Cryptography Library for the TI-84+ CE.">hashlib.h</a></code> into <code>$CEDEV/include</code> and <code>hashlib.lib</code> into <code>$CEDEV/lib/loadload</code>. Also, be sure to send <code>HASHLIB.8xv</code> to your TI-84+ CE.</p>
+<p>For detailed documentation, head to <a href="https://acagliano.github.io/hashlib/html/hashlib_8h.html">C header documentation</a>.</p>
+<p>For even more detailed documentation head to <a href="https://github.com/acagliano/hashlib/blob/stable/Hashlib%20Documentation.pdf">Documentation PDF</a>.</p>
 <p>Credits: <br  />
  Some algorithms sourced at least in part from <a href="https://github.com/B-Con/crypto-algorithms">https://github.com/B-Con/crypto-algorithms</a>. <br  />
  Cemetech user Zeroko - information on CE randomness. <br  />

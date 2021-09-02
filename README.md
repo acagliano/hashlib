@@ -1,29 +1,14 @@
-# hashlib-stable
+# Cryptography Library for the TI-84+ CE
 
-This is the stable branch of the TI-84+ CE toolchain library HASHLIB.  
-To build this library yourself, navigate into the `src` directory of the CE C toolchain.  
-Once in there, run `git clone https://github.com/acagliano/hashlib.git hashlib`.  
-cd into that directory and run `make`. HASHLIB should be created.  
+This library is written as a libload-compatibile C (and ASM) library. To install the lib
+into the toolchain, simply navigate into the hashlib directory within a terminal of your
+choice and type `make install`. Alternatively, you can manually move `hashlib.h`
+into `$CEDEV/include` and `hashlib.lib` into `$CEDEV/lib/loadload`. Also, be
+sure to send `HASHLIB.8xv` to your TI-84+ CE.
 
-Of course there's no need to actually do this, because an up to date build of HASHLIB is provided in this repository.  
-To use it with the toolchain, simply send `HASHLIB.8xv` to your device, move `hashlib.lib` into `$CEDEV/lib/libload` and then `hashlib.h` into `$CEDEV/include`.  
-Once that is done, simply `#include <hashlib.h>` in your project source and you can use all the cryptography functions in the library.  
+For detailed documentation, head to [C header documentation](https://acagliano.github.io/hashlib/html/hashlib_8h.html).
 
-This library provides the following implementations tested and working on the TI-84+ CE.  
-You can view the C codebase by running `git checkout dev`.  
-
-<> A Secure PRNG with a calculated entropy of ~107.1 bits per 32-bit random number and an evaluated advantage negligibly greater than zero. The statistics included in the repo are for 1 MB of random output.  
-<> A 128, 192, and 256 bit AES implementation, in CBC mode.  
-<> ** Work in Progress ** 1024-bit RSA, encryption-only.  
-<> SHA-1 and SHA-256 cryptographic hashes (these guys are a bit on the slow side).  
-<> A helper function to pad plaintexts for encryption. Pass plaintext, an output buffer of appropriate size (macros to return that size included), the algorithm, and a padding spec (or SCHM_DEFAULT). The following padding methods are available:  
-    - SCHM_PKCS7 : AES padding, Pad with padding size [DEFAULT FOR AES].  
-    - SCHM_ISO_M2 : AES padding, Pad with [0x80, 0x00, ..., 0x00].  
-    - SCHM_ISO_M1 : AES padding, Pad with [0x00, ..., 0x00].  
-    - SCHM_ANSIX923 : AES padding, Pad with [randbytes].  
-    - SCHM_RSA_OAEP : RSA padding, uses the OAEP padding scheme. SHA-256 is the hash used, and it is applied cyclically to the plaintext.  
-<> A function to zero out a context that you no longer are using to prevent state leak.  
-<> Base64 encoding and decoding functions.  
+For even more detailed documentation head to [Documentation PDF](https://github.com/acagliano/hashlib/blob/stable/Hashlib%20Documentation.pdf).
 
 Credits:  
 Some algorithms sourced at least in part from https://github.com/B-Con/crypto-algorithms.  

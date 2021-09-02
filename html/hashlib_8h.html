@@ -220,7 +220,7 @@ Functions</h2></td></tr>
 <li>secure random number generator</li>
 <li>SHA-256</li>
 <li>AES: CBC, CTR, CBC-MAC</li>
-<li>AES Padding: PKCS#7, ISO_M2</li>
+<li>AES Padding: PKCS#7, ISO-9797 M2</li>
 <li>RSA public key encryption, modulus &lt;= 2048 bits</li>
 <li>RSA Padding: RSA-OAEP via PKCS#7 v2.2, RSA-PSS via PKCS#7 v1.5</li>
 </ul>
@@ -1387,9 +1387,9 @@ For the most secure authenticated encryption scheme, use "encrypt-then-MAC". Thi
 <div class="line">|-- 0x00 --|-- salt --|-- auth hash --|-- 0x00...padding --|-- 0x01 --|-- message --|</div>
 <div class="line">           |          |-------------------------------------------------------------|</div>
 <div class="line">                |                                  |</div>
-<div class="line">                | ---------- MGF1-SHA256 --------&gt;XOR</div>
+<div class="line">                | --------- MGF1-SHA256 --------&gt; XOR</div>
 <div class="line">                |                                  |</div>
-<div class="line">               XOR &lt;-------- MGF1-SHA256 ----------|</div>
+<div class="line">               XOR &lt;-------- MGF1-SHA256 --------- |</div>
 <div class="line">                |                                  |</div>
 <div class="line">|-- 0x00 --|-- msalt --|---------- masked message, padding, and auth hash ----------|</div>
 <div class="line">|&lt;-------------------------------- modulus size ----------------------------------&gt; |</div>
@@ -1517,7 +1517,7 @@ For the most secure authenticated encryption scheme, use "encrypt-then-MAC". Thi
 <div class="line">|----------------------------------------|  |-----------------------------------------|</div>
 <div class="line">*DB                  |                      *Mprime              |</div>
 <div class="line">                     |                                        SHA-256</div>
-<div class="line">                    XOR &lt;------------- MGF1-SHA256 --------------|</div>
+<div class="line">                    XOR &lt;------------ MGF1-SHA256 -------------- |</div>
 <div class="line">                     |                                           |</div>
 <div class="line">                     |                           &lt; ------------- |</div>
 <div class="line">                     |                           |</div>

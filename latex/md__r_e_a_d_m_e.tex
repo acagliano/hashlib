@@ -1,38 +1,8 @@
-This is the stable branch of the TI-\/84+ CE toolchain library HASHLIB. ~\newline
- To build this library yourself, navigate into the {\ttfamily src} directory of the CE C toolchain. ~\newline
- Once in there, run {\ttfamily git clone \href{https://github.com/acagliano/hashlib.git}{\texttt{ https\+://github.\+com/acagliano/hashlib.\+git}} hashlib}. ~\newline
- cd into that directory and run {\ttfamily make}. HASHLIB should be created. ~\newline
+This library is written as a libload-\/compatibile C (and ASM) library. To install the lib into the toolchain, simply navigate into the hashlib directory within a terminal of your choice and type {\ttfamily make install}. Alternatively, you can manually move {\ttfamily \mbox{\hyperlink{hashlib_8h}{hashlib.\+h}}} into {\ttfamily \$\+CEDEV/include} and {\ttfamily hashlib.\+lib} into {\ttfamily \$\+CEDEV/lib/loadload}. Also, be sure to send {\ttfamily HASHLIB.\+8xv} to your TI-\/84+ CE.
 
+For detailed documentation, head to \href{https://acagliano.github.io/hashlib/html/hashlib_8h.html}{\texttt{ C header documentation}}.
 
-Of course there\textquotesingle{}s no need to actually do this, because an up to date build of HASHLIB is provided in this repository. ~\newline
- To use it with the toolchain, simply send {\ttfamily HASHLIB.\+8xv} to your device, move {\ttfamily hashlib.\+lib} into {\ttfamily \$\+CEDEV/lib/libload} and then {\ttfamily \mbox{\hyperlink{hashlib_8h}{hashlib.\+h}}} into {\ttfamily \$\+CEDEV/include}. ~\newline
- Once that is done, simply {\ttfamily \#include $<$\mbox{\hyperlink{hashlib_8h}{hashlib.\+h}}$>$} in your project source and you can use all the cryptography functions in the library. ~\newline
-
-
-This library provides the following implementations tested and working on the TI-\/84+ CE. ~\newline
- You can view the C codebase by running {\ttfamily git checkout dev}. ~\newline
-
-
-$<$$>$ A Secure PRNG with a calculated entropy of $\sim$107.1 bits per 32-\/bit random number and an evaluated advantage negligibly greater than zero. The statistics included in the repo are for 1 MB of random output. ~\newline
- $<$$>$ A 128, 192, and 256 bit AES implementation, in CBC mode. ~\newline
- $<$$>$ $\ast$$\ast$ Work in Progress $\ast$$\ast$ 1024-\/bit RSA, encryption-\/only. ~\newline
- $<$$>$ SHA-\/1 and SHA-\/256 cryptographic hashes (these guys are a bit on the slow side). ~\newline
- $<$$>$ A helper function to pad plaintexts for encryption. Pass plaintext, an output buffer of appropriate size (macros to return that size included), the algorithm, and a padding spec (or SCHM\+\_\+\+DEFAULT). The following padding methods are available\+: ~\newline
-
-\begin{DoxyItemize}
-\item SCHM\+\_\+\+PKCS7 \+: AES padding, Pad with padding size \mbox{[}DEFAULT FOR AES\mbox{]}. ~\newline
-
-\item SCHM\+\_\+\+ISO\+\_\+\+M2 \+: AES padding, Pad with \mbox{[}0x80, 0x00, ..., 0x00\mbox{]}. ~\newline
-
-\item SCHM\+\_\+\+ISO\+\_\+\+M1 \+: AES padding, Pad with \mbox{[}0x00, ..., 0x00\mbox{]}. ~\newline
-
-\item SCHM\+\_\+\+ANSIX923 \+: AES padding, Pad with \mbox{[}randbytes\mbox{]}. ~\newline
-
-\item SCHM\+\_\+\+RSA\+\_\+\+OAEP \+: RSA padding, uses the OAEP padding scheme. SHA-\/256 is the hash used, and it is applied cyclically to the plaintext. ~\newline
- $<$$>$ A function to zero out a context that you no longer are using to prevent state leak. ~\newline
- $<$$>$ Base64 encoding and decoding functions. ~\newline
-
-\end{DoxyItemize}
+For even more detailed documentation head to \href{https://github.com/acagliano/hashlib/blob/stable/Hashlib\%20Documentation.pdf}{\texttt{ Documentation PDF}}.
 
 Credits\+: ~\newline
  Some algorithms sourced at least in part from \href{https://github.com/B-Con/crypto-algorithms}{\texttt{ https\+://github.\+com/\+B-\/\+Con/crypto-\/algorithms}}. ~\newline

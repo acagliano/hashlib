@@ -130,7 +130,7 @@ Provides several cryptographic implementations for the TI-\/84+ CE graphing calc
 \item secure random number generator
 \item SHA-\/256
 \item AES\+: CBC, CTR, CBC-\/\+MAC
-\item AES Padding\+: PKCS\#7, ISO\+\_\+\+M2
+\item AES Padding\+: PKCS\#7, ISO-\/9797 M2
 \item RSA public key encryption, modulus $<$= 2048 bits
 \item RSA Padding\+: RSA-\/\+OAEP via PKCS\#7 v2.\+2, RSA-\/\+PSS via PKCS\#7 v1.\+5
 \end{DoxyItemize}
@@ -768,9 +768,9 @@ Applies the RSA-\/\+OAEP padding scheme as indicated in PKCS\#1 v2.\+2. This is 
 \DoxyCodeLine{|-\/-\/ 0x00 -\/-\/|-\/-\/ salt -\/-\/|-\/-\/ auth hash -\/-\/|-\/-\/ 0x00...padding -\/-\/|-\/-\/ 0x01 -\/-\/|-\/-\/ message -\/-\/|}
 \DoxyCodeLine{           |          |-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/|}
 \DoxyCodeLine{                |                                  |}
-\DoxyCodeLine{                | -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/ MGF1-\/SHA256 -\/-\/-\/-\/-\/-\/-\/-\/>XOR}
+\DoxyCodeLine{                | -\/-\/-\/-\/-\/-\/-\/-\/-\/ MGF1-\/SHA256 -\/-\/-\/-\/-\/-\/-\/-\/> XOR}
 \DoxyCodeLine{                |                                  |}
-\DoxyCodeLine{               XOR <-\/-\/-\/-\/-\/-\/-\/-\/ MGF1-\/SHA256 -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/|}
+\DoxyCodeLine{               XOR <-\/-\/-\/-\/-\/-\/-\/-\/ MGF1-\/SHA256 -\/-\/-\/-\/-\/-\/-\/-\/-\/ |}
 \DoxyCodeLine{                |                                  |}
 \DoxyCodeLine{|-\/-\/ 0x00 -\/-\/|-\/-\/ msalt -\/-\/|-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/ masked message, padding, and auth hash -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/|}
 \DoxyCodeLine{|<-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/ modulus size -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/> |}
@@ -848,7 +848,7 @@ Applies the RSA-\/\+PSS padding scheme as indicated in PKCS\#1 v1.\+5.
 \DoxyCodeLine{|-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/|  |-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/|}
 \DoxyCodeLine{*DB                  |                      *Mprime              |}
 \DoxyCodeLine{                     |                                        SHA-\/256}
-\DoxyCodeLine{                    XOR <-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/ MGF1-\/SHA256 -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/|}
+\DoxyCodeLine{                    XOR <-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/ MGF1-\/SHA256 -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/ |}
 \DoxyCodeLine{                     |                                           |}
 \DoxyCodeLine{                     |                           < -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/ |}
 \DoxyCodeLine{                     |                           |}
