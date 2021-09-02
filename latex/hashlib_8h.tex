@@ -593,9 +593,7 @@ General-\/\+Purpose AES Encryption.
 \begin{DoxyParams}{Parameters}
 {\em plaintext} & Pointer to data to encrypt. \\
 \hline
-{\em len} & Length of data at\\
-\hline
-{\em plaintext} & to encrypt. \\
+{\em len} & Length of data at {\bfseries{plaintext}} to encrypt. This can be the output of hashlib\+\_\+\+AESCiphertext\+Len(). \\
 \hline
 {\em ciphertext} & Pointer to buffer to write encrypted data to. \\
 \hline
@@ -610,6 +608,15 @@ General-\/\+Purpose AES Encryption.
 {\bfseries{plaintext}} and {\bfseries{ciphertext}} are aliasable. 
 
 If cipher mode CBC is used, {\bfseries{len}} must be a multiple of the blocksize. You can pass the plaintext through \mbox{\hyperlink{hashlib_8h_aebac98a8537f3353aac9fbae5ed67f29}{hashlib\+\_\+\+AESPad\+Message()}} prior to calling this function. 
+
+{\bfseries{IV}} is not written to the ciphertext buffer by this function, only the encrypted message. However, if your ciphertext buffer is large enough, you can do the following to get the IV prepended to the ciphertext\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{hashlib_8h_a745c5c4d6bdc248f20b18c7b848d8b6b}{hashlib\_AESEncrypt}}(plaintext, len, \&ciphertext[\mbox{\hyperlink{hashlib_8h_afc06a029c783f78badc2c26cf6f2297c}{AES\_IV\_SIZE}}], ks, iv, <cipher\_mode>);}
+\DoxyCodeLine{memcpy(ciphertext, iv, \mbox{\hyperlink{hashlib_8h_afc06a029c783f78badc2c26cf6f2297c}{AES\_IV\_SIZE}});}
+\DoxyCodeLine{send\_packet(ciphertext);}
+
+\end{DoxyCode}
+ This will require a buffer at least as large as the size returned by hashlib\+\_\+\+AESCiphertext\+IVLen(). 
 \end{DoxyNote}
 \begin{DoxyReturn}{Returns}
 True if the encryption succeded. False if an error occured. 
@@ -628,9 +635,7 @@ General-\/\+Purpose AES Decryption.
 \begin{DoxyParams}{Parameters}
 {\em ciphertext} & Pointer to data to decrypt. \\
 \hline
-{\em len} & Length of data at\\
-\hline
-{\em ciphertext} & to decrypt. \\
+{\em len} & Length of data at {\bfseries{ciphertext}} to decrypt. \\
 \hline
 {\em plaintext} & Pointer to buffer to write decryped data to. \\
 \hline

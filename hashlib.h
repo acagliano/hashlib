@@ -303,7 +303,7 @@ bool hashlib_AESDecryptBlock(const uint8_t* block_in,
 /**
  * @brief General-Purpose AES Encryption
  * @param plaintext Pointer to data to encrypt.
- * @param len Length of data at @param plaintext to encrypt.
+ * @param len Length of data at @b plaintext to encrypt. This can be the output of hashlib_AESCiphertextLen().
  * @param ciphertext Pointer to buffer to write encrypted data to.
  * @param ks Pointer to an AES key schedule context.
  * @param iv Pointer to an initialization vector (a nonce of length equal to the block size).
@@ -311,6 +311,14 @@ bool hashlib_AESDecryptBlock(const uint8_t* block_in,
  * @note @b plaintext and @b ciphertext are aliasable.
  * @note If cipher mode CBC is used, @b len must be a multiple of the blocksize.
  * 		You can pass the plaintext through hashlib_AESPadMessage() prior to calling this function.
+ * @note @b IV is not written to the ciphertext buffer by this function, only the encrypted message. However, if
+ * 		your ciphertext buffer is large enough, you can do the following to get the IV prepended to the ciphertext:
+ * 		@code
+ * 		hashlib_AESEncrypt(plaintext, len, &ciphertext[AES_IV_SIZE], ks, iv, <cipher_mode>);
+ * 		memcpy(ciphertext, iv, AES_IV_SIZE);
+ * 		send_packet(ciphertext);
+ * 		@endcode
+ * 		This will require a buffer at least as large as the size returned by hashlib_AESCiphertextIVLen().
  * @return True if the encryption succeded. False if an error occured.
  */
 bool hashlib_AESEncrypt(const uint8_t* plaintext,
@@ -323,7 +331,7 @@ bool hashlib_AESEncrypt(const uint8_t* plaintext,
 /**
  * @brief General-Purpose AES Decryption
  * @param ciphertext Pointer to data to decrypt.
- * @param len Length of data at @param ciphertext to decrypt.
+ * @param len Length of data at @b ciphertext to decrypt.
  * @param plaintext Pointer to buffer to write decryped data to.
  * @param ks Pointer to an AES key schedule context.
  * @param iv Pointer to an initialization vector (a nonce of length equal to the block size).
