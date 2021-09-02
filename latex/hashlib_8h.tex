@@ -593,7 +593,7 @@ General-\/\+Purpose AES Encryption.
 \begin{DoxyParams}{Parameters}
 {\em plaintext} & Pointer to data to encrypt. \\
 \hline
-{\em len} & Length of data at {\bfseries{plaintext}} to encrypt. This can be the output of hashlib\+\_\+\+AESCiphertext\+Len(). \\
+{\em len} & Length of data at {\bfseries{plaintext}} to encrypt. This can be the output of \mbox{\hyperlink{hashlib_8h_a2bd39d64a42b6a8d56b0b18efc9d164c}{hashlib\+\_\+\+AESCiphertext\+Size()}}. \\
 \hline
 {\em ciphertext} & Pointer to buffer to write encrypted data to. \\
 \hline
@@ -609,14 +609,14 @@ General-\/\+Purpose AES Encryption.
 
 If cipher mode CBC is used, {\bfseries{len}} must be a multiple of the blocksize. You can pass the plaintext through \mbox{\hyperlink{hashlib_8h_aebac98a8537f3353aac9fbae5ed67f29}{hashlib\+\_\+\+AESPad\+Message()}} prior to calling this function. 
 
-{\bfseries{IV}} is not written to the ciphertext buffer by this function, only the encrypted message. However, if your ciphertext buffer is large enough, you can do the following to get the IV prepended to the ciphertext\+: 
+{\bfseries{IV}} is not written to the ciphertext buffer by this function, only the encrypted message. However, if your ciphertext buffer is large enough, you can do the following to get the IV prepended to the ciphertext. Otherwise you will have to join the IV and the ciphertext into a single larger buffer before sending it through whatever networking protocol you use. 
 \begin{DoxyCode}{0}
 \DoxyCodeLine{\mbox{\hyperlink{hashlib_8h_a745c5c4d6bdc248f20b18c7b848d8b6b}{hashlib\_AESEncrypt}}(plaintext, len, \&ciphertext[\mbox{\hyperlink{hashlib_8h_afc06a029c783f78badc2c26cf6f2297c}{AES\_IV\_SIZE}}], ks, iv, <cipher\_mode>);}
 \DoxyCodeLine{memcpy(ciphertext, iv, \mbox{\hyperlink{hashlib_8h_afc06a029c783f78badc2c26cf6f2297c}{AES\_IV\_SIZE}});}
 \DoxyCodeLine{send\_packet(ciphertext);}
 
 \end{DoxyCode}
- This will require a buffer at least as large as the size returned by hashlib\+\_\+\+AESCiphertext\+IVLen(). 
+ This will require a buffer at least as large as the size returned by \mbox{\hyperlink{hashlib_8h_a1bfa78156f62c2e87f7af3a8533304b1}{hashlib\+\_\+\+AESCiphertext\+IVSize()}}. 
 \end{DoxyNote}
 \begin{DoxyReturn}{Returns}
 True if the encryption succeded. False if an error occured. 
@@ -672,11 +672,21 @@ The MAC is a tag equal in length to the AES block size computed by passing the p
 \hline
 {\em len} & Length of data at {\bfseries{plaintext}} to generate a MAC for. \\
 \hline
-{\em mac} & Pointer to a buffer to write the MAC to. \\
+{\em mac} & Pointer to a buffer to write the MAC to. MAC must be at least {\bfseries{AES\+\_\+\+BLOCKSIZE}} bytes large. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyNote}{Note}
 CBC-\/\+MAC requires padding, as it uses CBC mode. You can use the \mbox{\hyperlink{hashlib_8h_aebac98a8537f3353aac9fbae5ed67f29}{hashlib\+\_\+\+AESPad\+Message()}} padding function. Padding mode ISO-\/9791 M2 is preferred for CBC-\/\+MAC, but either can be used. 
+
+To send a packet with authenticated encryption, you will need to append the MAC digest to your ciphertext returned by the above functions. For example, assuming {\bfseries{ciphertext}} is at least as large as the size returned by \mbox{\hyperlink{hashlib_8h_a14743a93cbf9c7237d0ac03d842f296f}{hashlib\+\_\+\+AESAuth\+Mac\+Ciphertext\+Size()}}\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{    \mbox{\hyperlink{hashlib_8h_a745c5c4d6bdc248f20b18c7b848d8b6b}{hashlib\_AESEncrypt}}(plaintext, len, \&ciphertext[\mbox{\hyperlink{hashlib_8h_afc06a029c783f78badc2c26cf6f2297c}{AES\_IV\_SIZE}}], ks\_encrypt, iv, <ciphermode>);}
+\DoxyCodeLine{    memcpy(ciphertext, iv, \mbox{\hyperlink{hashlib_8h_afc06a029c783f78badc2c26cf6f2297c}{AES\_IV\_SIZE}});}
+\DoxyCodeLine{\mbox{\hyperlink{hashlib_8h_a6ca5ecde1fd675effbc4a29eac35a903}{hashlib\_AESOutputMac}}(ciphertext, <padded\_len>, \&ciphertext[<padded\_len> + \mbox{\hyperlink{hashlib_8h_afc06a029c783f78badc2c26cf6f2297c}{AES\_IV\_SIZE}}], ks\_auth);}
+\DoxyCodeLine{\textcolor{comment}{// note the use of two different key schedules}}
+
+\end{DoxyCode}
+ 
 \end{DoxyNote}
 \begin{DoxyWarning}{Warning}
 Do not use the same AES key/key schedule for authentication and encryption. This exposes attack vectors. Use different key schedules. 

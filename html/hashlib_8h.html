@@ -1077,7 +1077,7 @@ If the SPRNG is run, anything you have stored here will be destroyed. </dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">plaintext</td><td>Pointer to data to encrypt. </td></tr>
-    <tr><td class="paramname">len</td><td>Length of data at <b>plaintext</b> to encrypt. This can be the output of hashlib_AESCiphertextLen(). </td></tr>
+    <tr><td class="paramname">len</td><td>Length of data at <b>plaintext</b> to encrypt. This can be the output of <a class="el" href="hashlib_8h.html#a2bd39d64a42b6a8d56b0b18efc9d164c">hashlib_AESCiphertextSize()</a>. </td></tr>
     <tr><td class="paramname">ciphertext</td><td>Pointer to buffer to write encrypted data to. </td></tr>
     <tr><td class="paramname">ks</td><td>Pointer to an AES key schedule context. </td></tr>
     <tr><td class="paramname">iv</td><td>Pointer to an initialization vector (a nonce of length equal to the block size). </td></tr>
@@ -1089,12 +1089,12 @@ If the SPRNG is run, anything you have stored here will be destroyed. </dd></dl>
 <dd>
 If cipher mode CBC is used, <b>len</b> must be a multiple of the blocksize. You can pass the plaintext through <a class="el" href="hashlib_8h.html#aebac98a8537f3353aac9fbae5ed67f29" title="Pads a plaintext according to the specified AES padding scheme.">hashlib_AESPadMessage()</a> prior to calling this function. </dd>
 <dd>
-<b>IV</b> is not written to the ciphertext buffer by this function, only the encrypted message. However, if your ciphertext buffer is large enough, you can do the following to get the IV prepended to the ciphertext: <div class="fragment"><div class="line"><a class="code" href="hashlib_8h.html#a745c5c4d6bdc248f20b18c7b848d8b6b">hashlib_AESEncrypt</a>(plaintext, len, &amp;ciphertext[<a class="code" href="hashlib_8h.html#afc06a029c783f78badc2c26cf6f2297c">AES_IV_SIZE</a>], ks, iv, &lt;cipher_mode&gt;);</div>
+<b>IV</b> is not written to the ciphertext buffer by this function, only the encrypted message. However, if your ciphertext buffer is large enough, you can do the following to get the IV prepended to the ciphertext. Otherwise you will have to join the IV and the ciphertext into a single larger buffer before sending it through whatever networking protocol you use. <div class="fragment"><div class="line"><a class="code" href="hashlib_8h.html#a745c5c4d6bdc248f20b18c7b848d8b6b">hashlib_AESEncrypt</a>(plaintext, len, &amp;ciphertext[<a class="code" href="hashlib_8h.html#afc06a029c783f78badc2c26cf6f2297c">AES_IV_SIZE</a>], ks, iv, &lt;cipher_mode&gt;);</div>
 <div class="line">memcpy(ciphertext, iv, <a class="code" href="hashlib_8h.html#afc06a029c783f78badc2c26cf6f2297c">AES_IV_SIZE</a>);</div>
 <div class="line">send_packet(ciphertext);</div>
 <div class="ttc" id="ahashlib_8h_html_a745c5c4d6bdc248f20b18c7b848d8b6b"><div class="ttname"><a href="hashlib_8h.html#a745c5c4d6bdc248f20b18c7b848d8b6b">hashlib_AESEncrypt</a></div><div class="ttdeci">bool hashlib_AESEncrypt(const uint8_t *plaintext, size_t len, uint8_t *ciphertext, const aes_ctx *ks, const uint8_t *iv, uint8_t ciphermode)</div><div class="ttdoc">General-Purpose AES Encryption.</div></div>
 <div class="ttc" id="ahashlib_8h_html_afc06a029c783f78badc2c26cf6f2297c"><div class="ttname"><a href="hashlib_8h.html#afc06a029c783f78badc2c26cf6f2297c">AES_IV_SIZE</a></div><div class="ttdeci">#define AES_IV_SIZE</div><div class="ttdef"><b>Definition:</b> hashlib.h:188</div></div>
-</div><!-- fragment --> This will require a buffer at least as large as the size returned by hashlib_AESCiphertextIVLen(). </dd></dl>
+</div><!-- fragment --> This will require a buffer at least as large as the size returned by <a class="el" href="hashlib_8h.html#a1bfa78156f62c2e87f7af3a8533304b1">hashlib_AESCiphertextIVSize()</a>. </dd></dl>
 <dl class="section return"><dt>Returns</dt><dd>True if the encryption succeded. False if an error occured. </dd></dl>
 
 </div>
@@ -1212,11 +1212,18 @@ If cipher mode CBC is used, <b>len</b> must be a multiple of the blocksize. You 
   <table class="params">
     <tr><td class="paramname">plaintext</td><td>Pointer to data to generate a MAC for. </td></tr>
     <tr><td class="paramname">len</td><td>Length of data at <b>plaintext</b> to generate a MAC for. </td></tr>
-    <tr><td class="paramname">mac</td><td>Pointer to a buffer to write the MAC to. </td></tr>
+    <tr><td class="paramname">mac</td><td>Pointer to a buffer to write the MAC to. MAC must be at least <b>AES_BLOCKSIZE</b> bytes large. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section note"><dt>Note</dt><dd>CBC-MAC requires padding, as it uses CBC mode. You can use the <a class="el" href="hashlib_8h.html#aebac98a8537f3353aac9fbae5ed67f29" title="Pads a plaintext according to the specified AES padding scheme.">hashlib_AESPadMessage()</a> padding function. Padding mode ISO-9791 M2 is preferred for CBC-MAC, but either can be used. </dd></dl>
+<dl class="section note"><dt>Note</dt><dd>CBC-MAC requires padding, as it uses CBC mode. You can use the <a class="el" href="hashlib_8h.html#aebac98a8537f3353aac9fbae5ed67f29" title="Pads a plaintext according to the specified AES padding scheme.">hashlib_AESPadMessage()</a> padding function. Padding mode ISO-9791 M2 is preferred for CBC-MAC, but either can be used. </dd>
+<dd>
+To send a packet with authenticated encryption, you will need to append the MAC digest to your ciphertext returned by the above functions. For example, assuming <b>ciphertext</b> is at least as large as the size returned by <a class="el" href="hashlib_8h.html#a14743a93cbf9c7237d0ac03d842f296f">hashlib_AESAuthMacCiphertextSize()</a>: <div class="fragment"><div class="line">    <a class="code" href="hashlib_8h.html#a745c5c4d6bdc248f20b18c7b848d8b6b">hashlib_AESEncrypt</a>(plaintext, len, &amp;ciphertext[<a class="code" href="hashlib_8h.html#afc06a029c783f78badc2c26cf6f2297c">AES_IV_SIZE</a>], ks_encrypt, iv, &lt;ciphermode&gt;);</div>
+<div class="line">    memcpy(ciphertext, iv, <a class="code" href="hashlib_8h.html#afc06a029c783f78badc2c26cf6f2297c">AES_IV_SIZE</a>);</div>
+<div class="line"><a class="code" href="hashlib_8h.html#a6ca5ecde1fd675effbc4a29eac35a903">hashlib_AESOutputMac</a>(ciphertext, &lt;padded_len&gt;, &amp;ciphertext[&lt;padded_len&gt; + <a class="code" href="hashlib_8h.html#afc06a029c783f78badc2c26cf6f2297c">AES_IV_SIZE</a>], ks_auth);</div>
+<div class="line"><span class="comment">// note the use of two different key schedules</span></div>
+<div class="ttc" id="ahashlib_8h_html_a6ca5ecde1fd675effbc4a29eac35a903"><div class="ttname"><a href="hashlib_8h.html#a6ca5ecde1fd675effbc4a29eac35a903">hashlib_AESOutputMac</a></div><div class="ttdeci">bool hashlib_AESOutputMac(const uint8_t *plaintext, size_t len, uint8_t *mac, const aes_ctx *ks)</div><div class="ttdoc">Returns a message authentication code for an AES message.</div></div>
+</div><!-- fragment --> </dd></dl>
 <dl class="section warning"><dt>Warning</dt><dd>Do not use the same AES key/key schedule for authentication and encryption. This exposes attack vectors. Use different key schedules. </dd>
 <dd>
 For the most secure authenticated encryption scheme, use "encrypt-then-MAC". This means that you encrypt first, then you return a MAC or hash of the ciphertext and any associated un-encrypted metadata (such as the IV). While some authentication schemes do use "MAC-then-encrypt", there are more attack vectors against that. </dd></dl>
