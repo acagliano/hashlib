@@ -131,7 +131,9 @@ void hashlib_Sha256Final(sha256_ctx *ctx, uint8_t *digest);
 
 /**********************************************************************************************************************
  *	@brief Arbitrary Length Hashing Function
+ *
  *	Computes SHA-256 of the data and with a counter appended to generate a hash of arbitrary length.
+ *
  *	@param data Pointer to data to hash.
  *	@param datalen Number of bytes at @b data to hash.
  *	@param outbuf Pointer to buffer to write hash output to.

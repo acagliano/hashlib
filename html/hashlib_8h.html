@@ -172,7 +172,7 @@ Functions</h2></td></tr>
 <tr class="memdesc:a27eda4d2b18a026f199abdcab6d1cc8c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Finalize Context and Render Digest for SHA-256.  <a href="hashlib_8h.html#a27eda4d2b18a026f199abdcab6d1cc8c">More...</a><br /></td></tr>
 <tr class="separator:a27eda4d2b18a026f199abdcab6d1cc8c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2c1bd7ec5809afead6583128c9052d8b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#a2c1bd7ec5809afead6583128c9052d8b">hashlib_MGF1Hash</a> (uint8_t *data, size_t datalen, uint8_t *outbuf, size_t outlen)</td></tr>
-<tr class="memdesc:a2c1bd7ec5809afead6583128c9052d8b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Arbitrary Length Hashing Function Computes SHA-256 of the data and with a counter appended to generate a hash of arbitrary length.  <a href="hashlib_8h.html#a2c1bd7ec5809afead6583128c9052d8b">More...</a><br /></td></tr>
+<tr class="memdesc:a2c1bd7ec5809afead6583128c9052d8b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Arbitrary Length Hashing Function.  <a href="hashlib_8h.html#a2c1bd7ec5809afead6583128c9052d8b">More...</a><br /></td></tr>
 <tr class="separator:a2c1bd7ec5809afead6583128c9052d8b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0653a6a286fb1bedfb3e964d36e3b0bd"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#a0653a6a286fb1bedfb3e964d36e3b0bd">hashlib_AESLoadKey</a> (const uint8_t *key, const <a class="el" href="struct__aes__ctx.html">aes_ctx</a> *ks, size_t keylen)</td></tr>
 <tr class="memdesc:a0653a6a286fb1bedfb3e964d36e3b0bd"><td class="mdescLeft">&#160;</td><td class="mdescRight">AES import key to key schedule context.  <a href="hashlib_8h.html#a0653a6a286fb1bedfb3e964d36e3b0bd">More...</a><br /></td></tr>
@@ -1187,7 +1187,8 @@ For the most secure authenticated encryption scheme, use "encrypt-then-MAC". Thi
       </table>
 </div><div class="memdoc">
 
-<p>Arbitrary Length Hashing Function Computes SHA-256 of the data and with a counter appended to generate a hash of arbitrary length. </p>
+<p>Arbitrary Length Hashing Function. </p>
+<p>Computes SHA-256 of the data and with a counter appended to generate a hash of arbitrary length.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">data</td><td>Pointer to data to hash. </td></tr>

@@ -93,7 +93,7 @@ void \mbox{\hyperlink{hashlib_8h_aeed1dabf7c19464f01c87dcb25a77636}{hashlib\+\_\
 void \mbox{\hyperlink{hashlib_8h_a27eda4d2b18a026f199abdcab6d1cc8c}{hashlib\+\_\+\+Sha256\+Final}} (\mbox{\hyperlink{struct__sha256__ctx}{sha256\+\_\+ctx}} $\ast$ctx, uint8\+\_\+t $\ast$digest)
 \begin{DoxyCompactList}\small\item\em Finalize Context and Render Digest for SHA-\/256. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{hashlib_8h_a2c1bd7ec5809afead6583128c9052d8b}{hashlib\+\_\+\+MGF1\+Hash}} (uint8\+\_\+t $\ast$data, size\+\_\+t datalen, uint8\+\_\+t $\ast$outbuf, size\+\_\+t outlen)
-\begin{DoxyCompactList}\small\item\em Arbitrary Length Hashing Function Computes SHA-\/256 of the data and with a counter appended to generate a hash of arbitrary length. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Arbitrary Length Hashing Function. \end{DoxyCompactList}\item 
 bool \mbox{\hyperlink{hashlib_8h_a0653a6a286fb1bedfb3e964d36e3b0bd}{hashlib\+\_\+\+AESLoad\+Key}} (const uint8\+\_\+t $\ast$key, const \mbox{\hyperlink{struct__aes__ctx}{aes\+\_\+ctx}} $\ast$ks, size\+\_\+t keylen)
 \begin{DoxyCompactList}\small\item\em AES import key to key schedule context. \end{DoxyCompactList}\item 
 bool \mbox{\hyperlink{hashlib_8h_a6987499522b3b85b8ce4b272fadf75dd}{hashlib\+\_\+\+AESEncrypt\+Block}} (const uint8\+\_\+t $\ast$block\+\_\+in, uint8\+\_\+t $\ast$block\+\_\+out, const \mbox{\hyperlink{struct__aes__ctx}{aes\+\_\+ctx}} $\ast$ks)
@@ -656,7 +656,9 @@ It is advised to call this on every cryptographic context and encryption buffer 
 
 
 
-Arbitrary Length Hashing Function Computes SHA-\/256 of the data and with a counter appended to generate a hash of arbitrary length. 
+Arbitrary Length Hashing Function. 
+
+Computes SHA-\/256 of the data and with a counter appended to generate a hash of arbitrary length.
 
 
 \begin{DoxyParams}{Parameters}
