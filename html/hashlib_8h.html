@@ -1215,8 +1215,7 @@ For the most secure authenticated encryption scheme, use "encrypt-then-MAC". Thi
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">plaintext</td><td>Pointer to buffer containing the data to pad. </td></tr>
-    <tr><td class="paramname">len</td><td>Length of data at</td></tr>
-    <tr><td class="paramname">plaintext</td><td>to pad. </td></tr>
+    <tr><td class="paramname">len</td><td>Length of data at <b>plaintext</b> to pad. </td></tr>
     <tr><td class="paramname">outbuf</td><td>Pointer to buffer to write padded data. </td></tr>
     <tr><td class="paramname">schm</td><td>The AES padding scheme to use. </td></tr>
   </table>
@@ -1269,8 +1268,7 @@ For the most secure authenticated encryption scheme, use "encrypt-then-MAC". Thi
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">plaintext</td><td>Pointer to buffer containing the data to strip. </td></tr>
-    <tr><td class="paramname">len</td><td>Length of data at</td></tr>
-    <tr><td class="paramname">plaintext</td><td>to strip. </td></tr>
+    <tr><td class="paramname">len</td><td>Length of data at <b>plaintext</b> to strip. </td></tr>
     <tr><td class="paramname">outbuf</td><td>Pointer to buffer to write stripped data. </td></tr>
     <tr><td class="paramname">schm</td><td>The AES padding scheme to use. </td></tr>
   </table>

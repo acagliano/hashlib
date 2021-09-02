@@ -367,7 +367,7 @@ bool hashlib_AESOutputMac(
 /*****************************************************************************************
  * @brief Pads a plaintext according to the specified AES padding scheme.
  * @param plaintext Pointer to buffer containing the data to pad.
- * @param len Length of data at @param plaintext to pad.
+ * @param len Length of data at @b plaintext to pad.
  * @param outbuf Pointer to buffer to write padded data.
  * @param schm The AES padding scheme to use.
  * @note @b plaintext and @b outbuf are aliasable.
@@ -382,7 +382,7 @@ size_t hashlib_AESPadMessage(
 /***************************************************************************************************************
  * @brief Strips the padding from a message according to the specified AES padding scheme.
  * @param plaintext Pointer to buffer containing the data to strip.
- * @param len Length of data at @param plaintext to strip.
+ * @param len Length of data at @b plaintext to strip.
  * @param outbuf Pointer to buffer to write stripped data.
  * @param schm The AES padding scheme to use.
  * @note @b plaintext and @b outbuf are aliasable.
