@@ -84,11 +84,11 @@ typedef struct _sha256_ctx {
 	uint32_t state[8];		/**< holds hash state for transformed data */
 } sha256_ctx;
 
-/******************************************************
+/**************************************************************************************
  * @def SHA256_MBUFFER_LEN
- * Temporary memory buffer.
- * Must be passed to hashlib_Sha256Init().
- ******************************************************/
+ * Temporary SHA-256 memory buffer.
+ * A buffer of this length, in bytes, must be passed to hashlib_Sha256Init().
+ **************************************************************************************/
  #define SHA256_MBUFFER_LEN	(64 * 4)
  
  /******************************************************
@@ -155,8 +155,8 @@ typedef struct _aes_ctx {
  * @enum Supported AES cipher modes
  ************************************************/
 enum aes_cipher_modes {
-	AES_MODE_CBC,
-	AES_MODE_CTR
+	AES_MODE_CBC,		/**< selects CBC mode */
+	AES_MODE_CTR		/**< selects CTR mode */
 };
 
 /***************************************************
@@ -303,7 +303,7 @@ bool hashlib_AESDecryptBlock(const uint8_t* block_in,
  * @param ciphertext Pointer to buffer to write encrypted data to.
  * @param ks Pointer to an AES key schedule context.
  * @param iv Pointer to an initialization vector (a nonce of length equal to the block size).
- * @param ciphermode The cipher mode to use. Can be either AES_MODE_CBC or AES_MODE_CTR.
+ * @param ciphermode The cipher mode to use. Can be either @e AES_MODE_CBC or @e AES_MODE_CTR.
  * @note @b plaintext and @b ciphertext are aliasable.
  * @note If cipher mode CBC is used, @b len must be a multiple of the blocksize.
  * 		You can pass the plaintext through a padding function prior to calling this function.
@@ -324,7 +324,7 @@ bool hashlib_AESEncrypt(const uint8_t* plaintext,
  * @param plaintext Pointer to buffer to write decryped data to.
  * @param ks Pointer to an AES key schedule context.
  * @param iv Pointer to an initialization vector (a nonce of length equal to the block size).
- * @param ciphermode The cipher mode to use. Can be either  #AES_MODE_CBC or #AES_MODE_CTR.
+ * @param ciphermode The cipher mode to use. Can be either  @e AES_MODE_CBC or  @e AES_MODE_CTR.
  * @note @b plaintext and @b ciphertext are aliasable.
  * @note @b IV should be the same as what is used for encryption.
  * @return True if the encryption succeded. False if an error occured.

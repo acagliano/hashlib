@@ -65,9 +65,8 @@ typedef struct \mbox{\hyperlink{struct__aes__ctx}{\+\_\+aes\+\_\+ctx}} {\bfserie
 \doxysubsection*{Enumerations}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{hashlib_8h_a194ef6b5934dff6dceed4dd819e76340}\label{hashlib_8h_a194ef6b5934dff6dceed4dd819e76340}} 
-enum {\bfseries aes\+\_\+cipher\+\_\+modes} \{ {\bfseries AES\+\_\+\+MODE\+\_\+\+CBC}
-, {\bfseries AES\+\_\+\+MODE\+\_\+\+CTR}
+enum \mbox{\hyperlink{hashlib_8h_a194ef6b5934dff6dceed4dd819e76340}{aes\+\_\+cipher\+\_\+modes}} \{ \mbox{\hyperlink{hashlib_8h_a194ef6b5934dff6dceed4dd819e76340ad21a3698b98b7368b14ec3d48314a132}{AES\+\_\+\+MODE\+\_\+\+CBC}}
+, \mbox{\hyperlink{hashlib_8h_a194ef6b5934dff6dceed4dd819e76340a5ecd63cd0bd97d46f273461b6550cb8e}{AES\+\_\+\+MODE\+\_\+\+CTR}}
  \}
 \item 
 enum \mbox{\hyperlink{hashlib_8h_a9933dec76c43b37331782bdd16ebc4a3}{aes\+\_\+padding\+\_\+schemes}} \{ \mbox{\hyperlink{hashlib_8h_a9933dec76c43b37331782bdd16ebc4a3a7b7b54293004c0ab7a4a1f6a899e53f2}{SCHM\+\_\+\+PKCS7}}
@@ -291,7 +290,7 @@ Length of a string containing the SHA-\/256 hash. \mbox{\Hypertarget{hashlib_8h_
 \doxysubsubsection{\texorpdfstring{SHA256\_MBUFFER\_LEN}{SHA256\_MBUFFER\_LEN}}
 {\footnotesize\ttfamily \#define SHA256\+\_\+\+MBUFFER\+\_\+\+LEN~(64 $\ast$ 4)}
 
-Temporary memory buffer. Must be passed to \mbox{\hyperlink{hashlib_8h_ad2fa6bc8d3a1156a5734b81f5195afc4}{hashlib\+\_\+\+Sha256\+Init()}}. 
+Temporary SHA-\/256 memory buffer. A buffer of this length, in bytes, must be passed to \mbox{\hyperlink{hashlib_8h_ad2fa6bc8d3a1156a5734b81f5195afc4}{hashlib\+\_\+\+Sha256\+Init()}}. 
 
 \doxysubsection{Enumeration Type Documentation}
 \mbox{\Hypertarget{hashlib_8h_a5aedfaf159c585059ba8914b59307c21}\label{hashlib_8h_a5aedfaf159c585059ba8914b59307c21}} 
@@ -307,6 +306,22 @@ SSLSIG\+\_\+\+RSA\+\_\+\+SHA256&RSA with SHA-\/256 signature algorithm \\
 
 \raisebox{\heightof{T}}[0pt][0pt]{\index{SSLSIG\_ECDSA@{SSLSIG\_ECDSA}!hashlib.h@{hashlib.h}}\index{hashlib.h@{hashlib.h}!SSLSIG\_ECDSA@{SSLSIG\_ECDSA}}}\mbox{\Hypertarget{hashlib_8h_a5aedfaf159c585059ba8914b59307c21a3b885e134e618304b93f54b88eff9b25}\label{hashlib_8h_a5aedfaf159c585059ba8914b59307c21a3b885e134e618304b93f54b88eff9b25}} 
 SSLSIG\+\_\+\+ECDSA&ECDSA (unimplemented, likely a long way off) \\
+\hline
+
+\end{DoxyEnumFields}
+\mbox{\Hypertarget{hashlib_8h_a194ef6b5934dff6dceed4dd819e76340}\label{hashlib_8h_a194ef6b5934dff6dceed4dd819e76340}} 
+\index{hashlib.h@{hashlib.h}!aes\_cipher\_modes@{aes\_cipher\_modes}}
+\index{aes\_cipher\_modes@{aes\_cipher\_modes}!hashlib.h@{hashlib.h}}
+\doxysubsubsection{\texorpdfstring{aes\_cipher\_modes}{aes\_cipher\_modes}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{hashlib_8h_a194ef6b5934dff6dceed4dd819e76340}{aes\+\_\+cipher\+\_\+modes}}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{AES\_MODE\_CBC@{AES\_MODE\_CBC}!hashlib.h@{hashlib.h}}\index{hashlib.h@{hashlib.h}!AES\_MODE\_CBC@{AES\_MODE\_CBC}}}\mbox{\Hypertarget{hashlib_8h_a194ef6b5934dff6dceed4dd819e76340ad21a3698b98b7368b14ec3d48314a132}\label{hashlib_8h_a194ef6b5934dff6dceed4dd819e76340ad21a3698b98b7368b14ec3d48314a132}} 
+AES\+\_\+\+MODE\+\_\+\+CBC&selects CBC mode \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{AES\_MODE\_CTR@{AES\_MODE\_CTR}!hashlib.h@{hashlib.h}}\index{hashlib.h@{hashlib.h}!AES\_MODE\_CTR@{AES\_MODE\_CTR}}}\mbox{\Hypertarget{hashlib_8h_a194ef6b5934dff6dceed4dd819e76340a5ecd63cd0bd97d46f273461b6550cb8e}\label{hashlib_8h_a194ef6b5934dff6dceed4dd819e76340a5ecd63cd0bd97d46f273461b6550cb8e}} 
+AES\+\_\+\+MODE\+\_\+\+CTR&selects CTR mode \\
 \hline
 
 \end{DoxyEnumFields}
@@ -357,7 +372,7 @@ General-\/\+Purpose AES Decryption.
 \hline
 {\em iv} & Pointer to an initialization vector (a nonce of length equal to the block size). \\
 \hline
-{\em ciphermode} & The cipher mode to use. Can be either \#\+AES\+\_\+\+MODE\+\_\+\+CBC or \#\+AES\+\_\+\+MODE\+\_\+\+CTR. \\
+{\em ciphermode} & The cipher mode to use. Can be either {\itshape AES\+\_\+\+MODE\+\_\+\+CBC} or {\itshape AES\+\_\+\+MODE\+\_\+\+CTR}. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyNote}{Note}
@@ -420,7 +435,7 @@ General-\/\+Purpose AES Encryption.
 \hline
 {\em iv} & Pointer to an initialization vector (a nonce of length equal to the block size). \\
 \hline
-{\em ciphermode} & The cipher mode to use. Can be either AES\+\_\+\+MODE\+\_\+\+CBC or AES\+\_\+\+MODE\+\_\+\+CTR. \\
+{\em ciphermode} & The cipher mode to use. Can be either {\itshape AES\+\_\+\+MODE\+\_\+\+CBC} or {\itshape AES\+\_\+\+MODE\+\_\+\+CTR}. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyNote}{Note}

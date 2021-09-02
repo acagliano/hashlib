@@ -138,8 +138,8 @@ typedef struct <a class="el" href="struct__aes__ctx.html">_aes_ctx</a>&#160;</td
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
 Enumerations</h2></td></tr>
-<tr class="memitem:a194ef6b5934dff6dceed4dd819e76340"><td class="memItemLeft" align="right" valign="top"><a id="a194ef6b5934dff6dceed4dd819e76340"></a>enum &#160;</td><td class="memItemRight" valign="bottom"><b>aes_cipher_modes</b> { <b>AES_MODE_CBC</b>
-, <b>AES_MODE_CTR</b>
+<tr class="memitem:a194ef6b5934dff6dceed4dd819e76340"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#a194ef6b5934dff6dceed4dd819e76340">aes_cipher_modes</a> { <a class="el" href="hashlib_8h.html#a194ef6b5934dff6dceed4dd819e76340ad21a3698b98b7368b14ec3d48314a132">AES_MODE_CBC</a>
+, <a class="el" href="hashlib_8h.html#a194ef6b5934dff6dceed4dd819e76340a5ecd63cd0bd97d46f273461b6550cb8e">AES_MODE_CTR</a>
  }</td></tr>
 <tr class="separator:a194ef6b5934dff6dceed4dd819e76340"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9933dec76c43b37331782bdd16ebc4a3"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#a9933dec76c43b37331782bdd16ebc4a3">aes_padding_schemes</a> { <a class="el" href="hashlib_8h.html#a9933dec76c43b37331782bdd16ebc4a3a7b7b54293004c0ab7a4a1f6a899e53f2">SCHM_PKCS7</a>
@@ -527,7 +527,7 @@ If the SPRNG is run, anything you have stored here will be destroyed. </dd></dl>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Temporary memory buffer. Must be passed to <a class="el" href="hashlib_8h.html#ad2fa6bc8d3a1156a5734b81f5195afc4" title="Context initializer for SHA-256. Initializes the given context with the starting state for SHA-256.">hashlib_Sha256Init()</a>. </p>
+<p>Temporary SHA-256 memory buffer. A buffer of this length, in bytes, must be passed to <a class="el" href="hashlib_8h.html#ad2fa6bc8d3a1156a5734b81f5195afc4" title="Context initializer for SHA-256. Initializes the given context with the starting state for SHA-256.">hashlib_Sha256Init()</a>. </p>
 
 </div>
 </div>
@@ -547,6 +547,26 @@ If the SPRNG is run, anything you have stored here will be destroyed. </dd></dl>
 <tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a5aedfaf159c585059ba8914b59307c21a096ad031cbdad23c8d4053d9b7a3db31"></a>SSLSIG_RSA_SHA256&#160;</td><td class="fielddoc"><p>RSA with SHA-256 signature algorithm </p>
 </td></tr>
 <tr><td class="fieldname"><a id="a5aedfaf159c585059ba8914b59307c21a3b885e134e618304b93f54b88eff9b25"></a>SSLSIG_ECDSA&#160;</td><td class="fielddoc"><p>ECDSA (unimplemented, likely a long way off) </p>
+</td></tr>
+</table>
+
+</div>
+</div>
+<a id="a194ef6b5934dff6dceed4dd819e76340"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a194ef6b5934dff6dceed4dd819e76340">&#9670;&nbsp;</a></span>aes_cipher_modes</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="hashlib_8h.html#a194ef6b5934dff6dceed4dd819e76340">aes_cipher_modes</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a194ef6b5934dff6dceed4dd819e76340ad21a3698b98b7368b14ec3d48314a132"></a>AES_MODE_CBC&#160;</td><td class="fielddoc"><p>selects CBC mode </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a194ef6b5934dff6dceed4dd819e76340a5ecd63cd0bd97d46f273461b6550cb8e"></a>AES_MODE_CTR&#160;</td><td class="fielddoc"><p>selects CTR mode </p>
 </td></tr>
 </table>
 
@@ -634,7 +654,7 @@ If the SPRNG is run, anything you have stored here will be destroyed. </dd></dl>
     <tr><td class="paramname">plaintext</td><td>Pointer to buffer to write decryped data to. </td></tr>
     <tr><td class="paramname">ks</td><td>Pointer to an AES key schedule context. </td></tr>
     <tr><td class="paramname">iv</td><td>Pointer to an initialization vector (a nonce of length equal to the block size). </td></tr>
-    <tr><td class="paramname">ciphermode</td><td>The cipher mode to use. Can be either #AES_MODE_CBC or #AES_MODE_CTR. </td></tr>
+    <tr><td class="paramname">ciphermode</td><td>The cipher mode to use. Can be either <em>AES_MODE_CBC</em> or <em>AES_MODE_CTR</em>. </td></tr>
   </table>
   </dd>
 </dl>
@@ -751,7 +771,7 @@ If the SPRNG is run, anything you have stored here will be destroyed. </dd></dl>
     <tr><td class="paramname">ciphertext</td><td>Pointer to buffer to write encrypted data to. </td></tr>
     <tr><td class="paramname">ks</td><td>Pointer to an AES key schedule context. </td></tr>
     <tr><td class="paramname">iv</td><td>Pointer to an initialization vector (a nonce of length equal to the block size). </td></tr>
-    <tr><td class="paramname">ciphermode</td><td>The cipher mode to use. Can be either AES_MODE_CBC or AES_MODE_CTR. </td></tr>
+    <tr><td class="paramname">ciphermode</td><td>The cipher mode to use. Can be either <em>AES_MODE_CBC</em> or <em>AES_MODE_CTR</em>. </td></tr>
   </table>
   </dd>
 </dl>
