@@ -272,10 +272,10 @@ bool hashlib_AESLoadKey(const uint8_t* key, const aes_ctx* ks, size_t keylen);
  * @param block_out Pointer to buffer to write encrypted block.
  * @param ks Pointer to an AES key schedule context.
  * @note @b block_in and @b block_out are aliasable.
- * @return True if encryption succeeded. False if failed.
  * @warning ECB-mode ciphers are insecure (see many-time pad vulnerability)
  * 		These functions are exposed in case a user wants to construct a cipher mode other than CBC or CTR.
  * 		Unless you know what you are doing, use hashlib_AESEncrypt() instead.
+ * @return True if encryption succeeded. False if failed.
  **********************************************************************************************************************************/
 bool hashlib_AESEncryptBlock(const uint8_t* block_in,
 							 uint8_t* block_out,
@@ -287,10 +287,10 @@ bool hashlib_AESEncryptBlock(const uint8_t* block_in,
  *	@param block_out Pointer to buffer to write decrypted block.
  *	@param ks Pointer to an AES key schedule context.
  *	@note @b block_in and @b block_out are aliasable.
- *	@return True if encryption succeeded. False if an error occured.
  *	@warning ECB-mode ciphers are insecure (see many-time pad vulnerability)
  *		These functions are exposed in case a user wants to construct a cipher mode other than CBC or CTR.
  *		Unless you know what you are doing, use hashlib_AESDecrypt() instead.
+ *	@return True if encryption succeeded. False if an error occured.
  **********************************************************************************************************************************/
 bool hashlib_AESDecryptBlock(const uint8_t* block_in,
 							 uint8_t* block_out,
@@ -345,7 +345,6 @@ bool hashlib_AESDecrypt(const uint8_t* ciphertext,
  * @param plaintext Pointer to data to generate a MAC for.
  * @param len Length of data at @param plaintext to generate a MAC for.
  * @param mac Pointer to a buffer to write the MAC to.
- * @return True if the MAC generation succeeded. False if an error occured.
  * @note CBC-MAC requires padding, as it uses CBC mode. You can use the hashlib_AESPadMessage()
  * 	padding function. Padding mode ISO-9791 M2 is preferred for CBC-MAC, but either can be used.
  * @warning Do not use the same AES key/key schedule for authentication and encryption. This exposes
@@ -354,6 +353,7 @@ bool hashlib_AESDecrypt(const uint8_t* ciphertext,
  * 		This means that you encrypt first, then you return a MAC or hash of the ciphertext
  *		and any associated un-encrypted metadata (such as the IV).
  *		While some authentication schemes do use "MAC-then-encrypt", there are more attack vectors against that.
+ * @return True if the MAC generation succeeded. False if an error occured.
  ***************************************************************************************************************************************/
 bool hashlib_AESOutputMac(
     const uint8_t* plaintext,
@@ -367,8 +367,8 @@ bool hashlib_AESOutputMac(
  * @param len Length of data at @param plaintext to pad.
  * @param outbuf Pointer to buffer to write padded data.
  * @param schm The AES padding scheme to use.
- * @return The padded length of the message.
  * @note @b plaintext and @b outbuf are aliasable.
+ * @return The padded length of the message.
  ******************************************************************************************/
 size_t hashlib_AESPadMessage(
     const uint8_t* plaintext,
@@ -486,41 +486,32 @@ size_t hashlib_RSAEncodePSS(
 	uint8_t *salt);
 	
 	
-	
-
-// ###################################
-// ##### MISCELLANEOUS FUNCTIONS #####
-// ###################################
-
-/*
-    Erases the data in a context, ensuring that no traces of cryptographic arithmetic remain.
-    
-    # Inputs #
-    <> ctx = pointer to an arbitrary context type from this library
-    <> len = length in bytes to zero
-    
-    Example: hashlib_EraseContext(&sha1_ctx, sizeof(sha1_ctx));
-    * It is advised to call this on every context declared in your program before exiting or freeing that region
- */
+// Miscellaneous Functions
+/**************************************************************************************************************
+ * @brief Secure erase context.
+ * @param ctx Pointer to any context or buffer you want to erase.
+ * @param len Number of bytes at @b ctx to erase.
+ * @note It is advised to call this on every cryptographic context and encryption buffer used.
+ **************************************************************************************************************/
 void hashlib_EraseContext(void *ctx, size_t len);
 
+/*************************************************************************************************
+ * @def Dynamically allocates a block of memory to be used for a context or buffer.
+ * @param size Size of the buffer to malloc.
+ * @return Same as @b malloc()
+ *************************************************************************************************/
+#define hashlib_MallocContext(size)		malloc((size))
 
-/*
-    A helper macro that allocates bytes for a context or data buffer.
-	Uses malloc.
- */
-#define hashlib_AllocContext(size)		malloc((size))
-
-
-/*
-    Compares the pointed buffers digest1 and digest2 for size len.
-    This function is resistant to timing attacks.
-    
-    # Input #
-    <> digest1 = pointer to first buffer to compare
-    <> digest2 = pointer to second buffer to compare
-    <> len = number of bytes to compare
- */
+/*************************************************************************************************************
+ * @brief Secure buffer comparison
+ *
+ * Evaluates the equality of two buffers using a method that offers resistance to timing attacks.
+ *
+ * @param digest1 The first buffer to compare.
+ * @param digest2 The second buffer to compare.
+ * @param len The number of bytes to compare.
+ * @return True if the buffers were equal. False if not equal.
+ **************************************************************************************************************/
 hashlib_CompareDigest(const uint8_t* digest1, const uint8_t* digest2, size_t len);
 
 
