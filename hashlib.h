@@ -179,7 +179,7 @@ enum aes_padding_schemes {
 
 /*****************************************************************
  * @def AES_IV_SIZE
- * Defines the length of the AES iniitalization vector (IV).
+ * Defines the length of the AES initalization vector (IV).
  *****************************************************************/
 #define AES_IV_SIZE		AES_BLOCKSIZE
 
@@ -336,11 +336,11 @@ bool hashlib_AESDecrypt(const uint8_t* ciphertext,
 						const uint8_t* iv,
 						uint8_t ciphermode);
     
-/**
+/*************************************************************************************************************************************
  * @brief Returns a message authentication code (MAC) for an AES message.
  *
  * The MAC is a tag equal in length to the AES block size computed by passing the plaintext
- * through the CBC-MAC algorithm with a constant IV (filled with zeroes in this implementation).
+ * through the CBC-MAC algorithm with a constant IV.
  *
  * 	@param plaintext Pointer to data to generate a MAC for.
  * 	@param len Length of data at @param plaintext to generate a MAC for.
@@ -350,14 +350,18 @@ bool hashlib_AESDecrypt(const uint8_t* ciphertext,
  * 	padding function. Padding mode ISO-9791 M2 is preferred for CBC-MAC, but either can be used.
  *  @warning Do not use the same AES key/key schedule for authentication and encryption. This exposes
  * 	attack vectors. Use different key schedules.
- */
+ * 	@warning For the most secure authenticated encryption scheme,  use "encrypt-then-MAC".
+ * 		This means that you encrypt first, then you return a MAC or hash of the ciphertext
+ *		and any associated un-encrypted metadata (such as the IV).
+ *		While some authentication schemes do use "MAC-then-encrypt", there are more attack vectors against that.
+ ***************************************************************************************************************************************/
 bool hashlib_AESOutputMac(
     const uint8_t* plaintext,
     size_t len,
     uint8_t* mac,
     const aes_ctx* ks);
 
-/**
+/*****************************************************************************************
  * @brief Pads a plaintext according to the specified AES padding scheme.
  * @param plaintext Pointer to buffer containing the data to pad.
  * @param len Length of data at @param plaintext to pad.
@@ -365,14 +369,14 @@ bool hashlib_AESOutputMac(
  * @param schm The AES padding scheme to use.
  * @return The padded length of the message.
  * @note @b plaintext and @b outbuf are aliasable.
- */
+ ******************************************************************************************/
 size_t hashlib_AESPadMessage(
     const uint8_t* plaintext,
     size_t len,
     uint8_t* outbuf,
     uint8_t schm);
 
-/**
+/***************************************************************************************************************
  * @brief Strips the padding from a message according to the specified AES padding scheme.
  * @param plaintext Pointer to buffer containing the data to strip.
  * @param len Length of data at @param plaintext to strip.
@@ -380,7 +384,7 @@ size_t hashlib_AESPadMessage(
  * @param schm The AES padding scheme to use.
  * @note @b plaintext and @b outbuf are aliasable.
  * @return The length of the message with padding removed.
- */
+ ****************************************************************************************************************/
 size_t hashlib_AESStripPadding(
     const uint8_t* plaintext,
     size_t len,
@@ -396,7 +400,7 @@ enum _ssl_sig_modes {
 	SSLSIG_ECDSA			/**< ECDSA (unimplemented, likely a long way off) */
 };
 
-/**
+/************************************************************************************************************************
  * @brief RSA-OAEP padding scheme
  *
  * Applies the RSA-OAEP padding scheme as indicated in PKCS#1 v2.2.
@@ -420,7 +424,7 @@ enum _ssl_sig_modes {
  * @note @b outbuf must be at least @b modulus_len bytes large.
  * @note @b auth both sender and receiver must know this string. Pass NULL to omit.
  * @return The padded length of the plaintext.
- */
+ ***********************************************************************************************************************/
 size_t hashlib_RSAEncodeOAEP(
     const uint8_t* plaintext,
     size_t len,
@@ -428,7 +432,7 @@ size_t hashlib_RSAEncodeOAEP(
     size_t modulus_len,
     const uint8_t *auth);
     
-/**
+/************************************************************************************************************************
  * @brief RSA-OAEP padding scheme, reverse algorithm
  *
  * Reverses the RSA-OAEP padding scheme as indicated in PKCS#1 v2.2.
@@ -440,14 +444,14 @@ size_t hashlib_RSAEncodeOAEP(
  * @note @b outbuf must be at least @b len-34 bytes large.
  * @note @b auth Both sender and reciever must know this string if one is provided. Pass NULL to omit.
  * @return The decoded length of the plaintext.
-*/
+ ***********************************************************************************************************************/
 size_t hashlib_RSADecodeOAEP(
     const uint8_t* plaintext,
     size_t len,
     uint8_t* outbuf,
     const uint8_t *auth);
 
-/**
+/************************************************************************************************************************
  * @brief RSA-PSS padding scheme
  *
  * Applies the RSA-PSS padding scheme  as indicated in PKCS#1 v1.5.
@@ -473,7 +477,7 @@ size_t hashlib_RSADecodeOAEP(
  * @note If you are trying to generate a signature, pass NULL to generate a new salt.
  * @note If you are trying to validate a signature, use hashlib_SSLVerifySignature().
  * @return the padded length of the plaintext.
- */
+ ***********************************************************************************************************************/
 size_t hashlib_RSAEncodePSS(
 	const uint8_t *plaintext,
 	size_t len,

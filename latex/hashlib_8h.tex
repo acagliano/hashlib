@@ -174,7 +174,7 @@ Defines the blocksize of the AES cipher. \mbox{\Hypertarget{hashlib_8h_afc06a029
 \doxysubsubsection{\texorpdfstring{AES\_IV\_SIZE}{AES\_IV\_SIZE}}
 {\footnotesize\ttfamily \#define AES\+\_\+\+IV\+\_\+\+SIZE~\mbox{\hyperlink{hashlib_8h_afab0742642db9c0609c00bf8a54f386f}{AES\+\_\+\+BLOCKSIZE}}}
 
-Defines the length of the AES iniitalization vector (IV). \mbox{\Hypertarget{hashlib_8h_acf32bb8a8d871f4cf33f26c8b2a977fb}\label{hashlib_8h_acf32bb8a8d871f4cf33f26c8b2a977fb}} 
+Defines the length of the AES initalization vector (IV). \mbox{\Hypertarget{hashlib_8h_acf32bb8a8d871f4cf33f26c8b2a977fb}\label{hashlib_8h_acf32bb8a8d871f4cf33f26c8b2a977fb}} 
 \index{hashlib.h@{hashlib.h}!AES\_MAC\_SIZE@{AES\_MAC\_SIZE}}
 \index{AES\_MAC\_SIZE@{AES\_MAC\_SIZE}!hashlib.h@{hashlib.h}}
 \doxysubsubsection{\texorpdfstring{AES\_MAC\_SIZE}{AES\_MAC\_SIZE}}
@@ -509,7 +509,7 @@ True if the key was successfully loaded. False otherwise.
 
 Returns a message authentication code (MAC) for an AES message. 
 
-The MAC is a tag equal in length to the AES block size computed by passing the plaintext through the CBC-\/\+MAC algorithm with a constant IV (filled with zeroes in this implementation). \begin{DoxyVerb}@param plaintext Pointer to data to generate a MAC for.
+The MAC is a tag equal in length to the AES block size computed by passing the plaintext through the CBC-\/\+MAC algorithm with a constant IV. \begin{DoxyVerb}@param plaintext Pointer to data to generate a MAC for.
 @param len Length of data at @param plaintext to generate a MAC for.
 @param mac Pointer to a buffer to write the MAC to.
 @return True if the MAC generation succeeded. False if an error occured.
@@ -518,6 +518,8 @@ padding function. Padding mode ISO-9791 M2 is preferred for CBC-MAC, but either 
 \end{DoxyVerb}
  \begin{DoxyWarning}{Warning}
 Do not use the same AES key/key schedule for authentication and encryption. This exposes attack vectors. Use different key schedules. 
+
+For the most secure authenticated encryption scheme, use \char`\"{}encrypt-\/then-\/\+MAC\char`\"{}. This means that you encrypt first, then you return a MAC or hash of the ciphertext and any associated un-\/encrypted metadata (such as the IV). While some authentication schemes do use \char`\"{}\+MAC-\/then-\/encrypt\char`\"{}, there are more attack vectors against that. 
 \end{DoxyWarning}
 \mbox{\Hypertarget{hashlib_8h_aebac98a8537f3353aac9fbae5ed67f29}\label{hashlib_8h_aebac98a8537f3353aac9fbae5ed67f29}} 
 \index{hashlib.h@{hashlib.h}!hashlib\_AESPadMessage@{hashlib\_AESPadMessage}}
