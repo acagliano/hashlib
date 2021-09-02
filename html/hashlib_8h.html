@@ -824,7 +824,7 @@ If the SPRNG is run, anything you have stored here will be destroyed. </dd></dl>
 </div><div class="memdoc">
 
 <p>Arbitrary Length Hashing Function. </p>
-<p>Computes SHA-256 of the data and with a counter appended to generate a hash of arbitrary length.</p>
+<p>Computes SHA-256 of the data with a counter appended to generate a hash of arbitrary length.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">data</td><td>Pointer to data to hash. </td></tr>
@@ -1042,7 +1042,7 @@ If the SPRNG is run, anything you have stored here will be destroyed. </dd></dl>
 </dl>
 <dl class="section note"><dt>Note</dt><dd><b>plaintext</b> and <b>ciphertext</b> are aliasable. </dd>
 <dd>
-If cipher mode CBC is used, <b>len</b> must be a multiple of the blocksize. You can pass the plaintext through a padding function prior to calling this function. </dd></dl>
+If cipher mode CBC is used, <b>len</b> must be a multiple of the blocksize. You can pass the plaintext through <a class="el" href="hashlib_8h.html#aebac98a8537f3353aac9fbae5ed67f29" title="Pads a plaintext according to the specified AES padding scheme.">hashlib_AESPadMessage()</a> prior to calling this function. </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="hashlib_8h.html#aebac98a8537f3353aac9fbae5ed67f29" title="Pads a plaintext according to the specified AES padding scheme.">hashlib_AESPadMessage()</a> </dd></dl>
 <dl class="section return"><dt>Returns</dt><dd>True if the encryption succeded. False if an error occured. </dd></dl>
 

@@ -467,7 +467,7 @@ Finalize Context and Render Digest for SHA-\/256.
 
 Arbitrary Length Hashing Function. 
 
-Computes SHA-\/256 of the data and with a counter appended to generate a hash of arbitrary length.
+Computes SHA-\/256 of the data with a counter appended to generate a hash of arbitrary length.
 
 
 \begin{DoxyParams}{Parameters}
@@ -591,7 +591,7 @@ General-\/\+Purpose AES Encryption.
 \begin{DoxyNote}{Note}
 {\bfseries{plaintext}} and {\bfseries{ciphertext}} are aliasable. 
 
-If cipher mode CBC is used, {\bfseries{len}} must be a multiple of the blocksize. You can pass the plaintext through a padding function prior to calling this function. 
+If cipher mode CBC is used, {\bfseries{len}} must be a multiple of the blocksize. You can pass the plaintext through \mbox{\hyperlink{hashlib_8h_aebac98a8537f3353aac9fbae5ed67f29}{hashlib\+\_\+\+AESPad\+Message()}} prior to calling this function. 
 \end{DoxyNote}
 \begin{DoxySeeAlso}{See also}
 \mbox{\hyperlink{hashlib_8h_aebac98a8537f3353aac9fbae5ed67f29}{hashlib\+\_\+\+AESPad\+Message()}} 
