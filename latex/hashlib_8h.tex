@@ -225,7 +225,7 @@ Defines the byte-\/length of a 256-\/bit AES key \mbox{\Hypertarget{hashlib_8h_a
 \doxysubsubsection{\texorpdfstring{hashlib\_AESCiphertextSize}{hashlib\_AESCiphertextSize}}
 {\footnotesize\ttfamily \#define hashlib\+\_\+\+AESCiphertext\+Size(\begin{DoxyParamCaption}\item[{}]{len }\end{DoxyParamCaption})~ ((((len)\%\mbox{\hyperlink{hashlib_8h_afab0742642db9c0609c00bf8a54f386f}{AES\+\_\+\+BLOCKSIZE}})==0) ? (len) + \mbox{\hyperlink{hashlib_8h_afab0742642db9c0609c00bf8a54f386f}{AES\+\_\+\+BLOCKSIZE}} \+: (((len)$>$$>$4) + 1)$<$$<$4)}
 
-Defines a macro to return the padded size of an AES plaintext. 
+Defines a macro to return the padded size of an AES ciphertext. Does not include an IV-\/prepend. See \mbox{\hyperlink{hashlib_8h_a46100af2f9437a876f6a2d92d9db4369}{hashlib\+\_\+\+AESCiphertext\+IVLen()}} for that. \[ len = (len % AES_BLOCKSIZE) ? len + AES_BLOCKSIZE : ((len>>4) + 1)<<4; \] 
 \begin{DoxyParams}{Parameters}
 {\em len} & The length of the plaintext. \\
 \hline
