@@ -498,7 +498,7 @@ void hashlib_EraseContext(void *ctx, size_t len);
 /*************************************************************************************************
  * @def Dynamically allocates a block of memory to be used for a context or buffer.
  * @param size Size of the buffer to malloc.
- * @return Same as @b malloc()
+ * @return Same as @b malloc.
  *************************************************************************************************/
 #define hashlib_MallocContext(size)		malloc((size))
 
