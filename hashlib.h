@@ -119,7 +119,7 @@ void hashlib_Sha256Init(sha256_ctx *ctx, uint32_t *mbuffer);
  *	@param ctx Pointer to a SHA-256 context.
  *	@param buf Pointer to data to hash.
  *	@param len Number of bytes at @param buf to hash.
- *	@warning You must call hashlib_SHA256Init() first or your hash state will be invalid.
+ *	@warning You must call hashlib_Sha256Init() first or your hash state will be invalid.
  ******************************************************************************************************/
 void hashlib_Sha256Update(sha256_ctx *ctx, const uint8_t *buf, uint32_t len);
 
@@ -216,7 +216,7 @@ enum aes_padding_schemes {
  * Defines a macro to return the padded size of an AES plaintext.
  * @param len The length of the plaintext.
  ***************************************************************************/
-  #define hashlib_AESPaddedSize(len) \
+  #define hashlib_AESCiphertextSize(len) \
 	((((len)%AES_BLOCKSIZE)==0) ? (len) + AES_BLOCKSIZE : (((len)>>4) + 1)<<4)
 	
 /************************************************************************************************************************
@@ -227,7 +227,7 @@ enum aes_padding_schemes {
  * @param len The length of the plaintext.
  * @note This is the padded length of the plaintext, plus an additional block for the IV to be prepended.
  ************************************************************************************************************************/
- #define hashlib_AESCiphertextLen(len)	(hashlib_AESPaddedSize((len)) + AES_IV_SIZE)
+ #define hashlib_AESCiphertextIVLen(len)	(hashlib_AESCiphertextSize((len)) + AES_IV_SIZE)
  
  /******************************************************************************************************
   * @def hashlib_AESAuthMacCiphertextLen()
@@ -239,7 +239,7 @@ enum aes_padding_schemes {
   * 	for the CBC-MAC of the ciphertext to be appended.
   ******************************************************************************************************/
   #define hashlib_AESAuthMacCiphertextLen(len) \
-	(hashlib_AESCiphertextLen((len)) + AES_MAC_SIZE)
+	(hashlib_AESCiphertextIVLen((len)) + AES_MAC_SIZE)
 	
 /******************************************************************************************************
  * @def hashlib_AESAuthSha256CiphertextLen()

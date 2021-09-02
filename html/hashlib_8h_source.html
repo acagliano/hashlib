@@ -164,15 +164,15 @@ $(function() {
 <div class="line"><a name="l00212"></a><span class="lineno"><a class="line" href="hashlib_8h.html#a7bab8a778d065da4cc561f4813994f03">  212</a></span>&#160;<span class="preprocessor">#define AES256_KEYLEN   32</span></div>
 <div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160; </div>
 <div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160; </div>
-<div class="line"><a name="l00219"></a><span class="lineno"><a class="line" href="hashlib_8h.html#af7f9757a799b724cfd578ac0a45f58be">  219</a></span>&#160;<span class="preprocessor">  #define hashlib_AESPaddedSize(len) \</span></div>
+<div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;<span class="preprocessor">  #define hashlib_AESCiphertextSize(len) \</span></div>
 <div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160;<span class="preprocessor">    ((((len)%AES_BLOCKSIZE)==0) ? (len) + AES_BLOCKSIZE : (((len)&gt;&gt;4) + 1)&lt;&lt;4)</span></div>
 <div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160;    </div>
 <div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160; </div>
-<div class="line"><a name="l00230"></a><span class="lineno"><a class="line" href="hashlib_8h.html#a140213b514394151a1d6ba410ec32bc4">  230</a></span>&#160;<span class="preprocessor"> #define hashlib_AESCiphertextLen(len)  (hashlib_AESPaddedSize((len)) + AES_IV_SIZE)</span></div>
+<div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;<span class="preprocessor"> #define hashlib_AESCiphertextIVLen(len)    (hashlib_AESCiphertextSize((len)) + AES_IV_SIZE)</span></div>
 <div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160; </div>
 <div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160; </div>
 <div class="line"><a name="l00241"></a><span class="lineno"><a class="line" href="hashlib_8h.html#a89e00bf4bceabd69cff65a5cbf685bd1">  241</a></span>&#160;<span class="preprocessor">  #define hashlib_AESAuthMacCiphertextLen(len) \</span></div>
-<div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;<span class="preprocessor">    (hashlib_AESCiphertextLen((len)) + AES_MAC_SIZE)</span></div>
+<div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;<span class="preprocessor">    (hashlib_AESCiphertextIVLen((len)) + AES_MAC_SIZE)</span></div>
 <div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;    </div>
 <div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160; </div>
 <div class="line"><a name="l00253"></a><span class="lineno"><a class="line" href="hashlib_8h.html#abc4277e4f58f162b211ca4c2a38c2a5a">  253</a></span>&#160;<span class="preprocessor">  #define hashlib_AESAuthSha256CiphertextLen(len) \</span></div>
