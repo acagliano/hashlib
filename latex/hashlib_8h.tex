@@ -14,14 +14,13 @@ Cryptography Library for the TI-\/84+ CE.
 struct \mbox{\hyperlink{struct__sha256__ctx}{\+\_\+sha256\+\_\+ctx}}
 \item 
 struct \mbox{\hyperlink{struct__aes__ctx}{\+\_\+aes\+\_\+ctx}}
-\begin{DoxyCompactList}\small\item\em Advanced Encryption Standard (AES) Implementation. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{DoxyCompactItemize}
 \doxysubsection*{Macros}
 \begin{DoxyCompactItemize}
 \item 
 \#define \mbox{\hyperlink{hashlib_8h_a97c7527aa5efe0f229c45c54ebcc6b55}{hashlib\+\_\+\+Fast\+Mem\+Buffer\+Safe}}~((void$\ast$)0x\+E30\+A04)
 \item 
-\mbox{\Hypertarget{hashlib_8h_a9773c988164a4adc0e7b20dddac1bff4}\label{hashlib_8h_a9773c988164a4adc0e7b20dddac1bff4}} 
-\#define {\bfseries hashlib\+\_\+\+Fast\+Mem\+Buffer\+Un\+Safe}~((void$\ast$)0x\+E30800)
+\#define \mbox{\hyperlink{hashlib_8h_ab981c88a4cd7407b2c4b4bfe86fc021b}{hashlib\+\_\+\+Fast\+Mem\+Buffer\+Unsafe}}~((void$\ast$)0x\+E30800)
 \item 
 \#define \mbox{\hyperlink{hashlib_8h_a939c5eb79064fb776e34fd0c632a588b}{SHA256\+\_\+\+MBUFFER\+\_\+\+LEN}}~(64 $\ast$ 4)
 \item 
@@ -29,14 +28,11 @@ struct \mbox{\hyperlink{struct__aes__ctx}{\+\_\+aes\+\_\+ctx}}
 \item 
 \#define \mbox{\hyperlink{hashlib_8h_a7a767ce32adaa3ad3e7e4aafff0ae7e3}{SHA256\+\_\+\+HEXSTR\+\_\+\+LEN}}~(\mbox{\hyperlink{hashlib_8h_af5aa539ae202ddf9e0c9211309869fc8}{SHA256\+\_\+\+DIGEST\+\_\+\+LEN}}$<$$<$1) + 1
 \item 
-\mbox{\Hypertarget{hashlib_8h_afab0742642db9c0609c00bf8a54f386f}\label{hashlib_8h_afab0742642db9c0609c00bf8a54f386f}} 
-\#define {\bfseries AES\+\_\+\+BLOCKSIZE}~16
+\#define \mbox{\hyperlink{hashlib_8h_afab0742642db9c0609c00bf8a54f386f}{AES\+\_\+\+BLOCKSIZE}}~16
 \item 
-\mbox{\Hypertarget{hashlib_8h_afc06a029c783f78badc2c26cf6f2297c}\label{hashlib_8h_afc06a029c783f78badc2c26cf6f2297c}} 
-\#define {\bfseries AES\+\_\+\+IV\+\_\+\+SIZE}~AES\+\_\+\+BLOCKSIZE
+\#define \mbox{\hyperlink{hashlib_8h_afc06a029c783f78badc2c26cf6f2297c}{AES\+\_\+\+IV\+\_\+\+SIZE}}~\mbox{\hyperlink{hashlib_8h_afab0742642db9c0609c00bf8a54f386f}{AES\+\_\+\+BLOCKSIZE}}
 \item 
-\mbox{\Hypertarget{hashlib_8h_acf32bb8a8d871f4cf33f26c8b2a977fb}\label{hashlib_8h_acf32bb8a8d871f4cf33f26c8b2a977fb}} 
-\#define {\bfseries AES\+\_\+\+MAC\+\_\+\+SIZE}~AES\+\_\+\+BLOCKSIZE
+\#define \mbox{\hyperlink{hashlib_8h_acf32bb8a8d871f4cf33f26c8b2a977fb}{AES\+\_\+\+MAC\+\_\+\+SIZE}}~\mbox{\hyperlink{hashlib_8h_afab0742642db9c0609c00bf8a54f386f}{AES\+\_\+\+BLOCKSIZE}}
 \item 
 \mbox{\Hypertarget{hashlib_8h_a2841462d8933d0982e3ea13dc5284d7c}\label{hashlib_8h_a2841462d8933d0982e3ea13dc5284d7c}} 
 \#define {\bfseries AES128\+\_\+\+KEYLEN}~16
@@ -44,20 +40,18 @@ struct \mbox{\hyperlink{struct__aes__ctx}{\+\_\+aes\+\_\+ctx}}
 \mbox{\Hypertarget{hashlib_8h_a37ba5c621bf4af2ddcb851e179e21623}\label{hashlib_8h_a37ba5c621bf4af2ddcb851e179e21623}} 
 \#define {\bfseries AES192\+\_\+\+KEYLEN}~24
 \item 
-\mbox{\Hypertarget{hashlib_8h_a7bab8a778d065da4cc561f4813994f03}\label{hashlib_8h_a7bab8a778d065da4cc561f4813994f03}} 
-\#define {\bfseries AES256\+\_\+\+KEYLEN}~32
+\#define \mbox{\hyperlink{hashlib_8h_a7bab8a778d065da4cc561f4813994f03}{AES256\+\_\+\+KEYLEN}}~32
 \item 
-\mbox{\Hypertarget{hashlib_8h_af7f9757a799b724cfd578ac0a45f58be}\label{hashlib_8h_af7f9757a799b724cfd578ac0a45f58be}} 
-\#define {\bfseries hashlib\+\_\+\+AESPadded\+Size}(len)~ ((((len)\%AES\+\_\+\+BLOCKSIZE)==0) ? (len) + AES\+\_\+\+BLOCKSIZE \+: (((len)$>$$>$4) + 1)$<$$<$4)
+\#define \mbox{\hyperlink{hashlib_8h_af7f9757a799b724cfd578ac0a45f58be}{hashlib\+\_\+\+AESPadded\+Size}}(len)~ ((((len)\%\mbox{\hyperlink{hashlib_8h_afab0742642db9c0609c00bf8a54f386f}{AES\+\_\+\+BLOCKSIZE}})==0) ? (len) + \mbox{\hyperlink{hashlib_8h_afab0742642db9c0609c00bf8a54f386f}{AES\+\_\+\+BLOCKSIZE}} \+: (((len)$>$$>$4) + 1)$<$$<$4)
 \item 
-\mbox{\Hypertarget{hashlib_8h_a140213b514394151a1d6ba410ec32bc4}\label{hashlib_8h_a140213b514394151a1d6ba410ec32bc4}} 
-\#define {\bfseries hashlib\+\_\+\+AESCiphertext\+Len}(len)~(hashlib\+\_\+\+AESPadded\+Size((len)) + AES\+\_\+\+IV\+\_\+\+SIZE)
+\#define \mbox{\hyperlink{hashlib_8h_a140213b514394151a1d6ba410ec32bc4}{hashlib\+\_\+\+AESCiphertext\+Len}}(len)~(\mbox{\hyperlink{hashlib_8h_af7f9757a799b724cfd578ac0a45f58be}{hashlib\+\_\+\+AESPadded\+Size}}((len)) + \mbox{\hyperlink{hashlib_8h_afc06a029c783f78badc2c26cf6f2297c}{AES\+\_\+\+IV\+\_\+\+SIZE}})
 \item 
-\mbox{\Hypertarget{hashlib_8h_a43166acef1453be7a47e3f12a80dd2e9}\label{hashlib_8h_a43166acef1453be7a47e3f12a80dd2e9}} 
-\#define {\bfseries hashlib\+\_\+\+AESAuth\+Ciphertext\+Len}(len)~ (hashlib\+\_\+\+AESCiphertext\+Len((len)) + AES\+\_\+\+MAC\+\_\+\+SIZE)
+\#define \mbox{\hyperlink{hashlib_8h_a89e00bf4bceabd69cff65a5cbf685bd1}{hashlib\+\_\+\+AESAuth\+Mac\+Ciphertext\+Len}}(len)~ (\mbox{\hyperlink{hashlib_8h_a140213b514394151a1d6ba410ec32bc4}{hashlib\+\_\+\+AESCiphertext\+Len}}((len)) + \mbox{\hyperlink{hashlib_8h_acf32bb8a8d871f4cf33f26c8b2a977fb}{AES\+\_\+\+MAC\+\_\+\+SIZE}})
+\item 
+\#define \mbox{\hyperlink{hashlib_8h_abc4277e4f58f162b211ca4c2a38c2a5a}{hashlib\+\_\+\+AESAuth\+Sha256\+Ciphertext\+Len}}(len)~ (\mbox{\hyperlink{hashlib_8h_a140213b514394151a1d6ba410ec32bc4}{hashlib\+\_\+\+AESCiphertext\+Len}}((len)) + \mbox{\hyperlink{hashlib_8h_af5aa539ae202ddf9e0c9211309869fc8}{SHA256\+\_\+\+DIGEST\+\_\+\+LEN}})
 \item 
 \#define \mbox{\hyperlink{hashlib_8h_a864d96afe89419821aed4293d979b2b9}{hashlib\+\_\+\+AESKeygen}}(key,  keylen)~\mbox{\hyperlink{hashlib_8h_aa0092aa4c122591fae447dda8fa25dfc}{hashlib\+\_\+\+Random\+Bytes}}((key), (keylen))
-\begin{DoxyCompactList}\small\item\em AES key generation function. \end{DoxyCompactList}\item 
+\item 
 \mbox{\Hypertarget{hashlib_8h_a11a11cb357e428f2479d56c4e5e61ba5}\label{hashlib_8h_a11a11cb357e428f2479d56c4e5e61ba5}} 
 \#define {\bfseries hashlib\+\_\+\+Alloc\+Context}(size)~malloc((size))
 \end{DoxyCompactItemize}
@@ -67,21 +61,22 @@ struct \mbox{\hyperlink{struct__aes__ctx}{\+\_\+aes\+\_\+ctx}}
 \mbox{\Hypertarget{hashlib_8h_ae34dac71f172c86c1a57258bb0476324}\label{hashlib_8h_ae34dac71f172c86c1a57258bb0476324}} 
 typedef struct \mbox{\hyperlink{struct__sha256__ctx}{\+\_\+sha256\+\_\+ctx}} {\bfseries sha256\+\_\+ctx}
 \item 
-typedef struct \mbox{\hyperlink{struct__aes__ctx}{\+\_\+aes\+\_\+ctx}} \mbox{\hyperlink{hashlib_8h_a65315f1d62f11ec21b75450e86ce9774}{aes\+\_\+ctx}}
-\begin{DoxyCompactList}\small\item\em Advanced Encryption Standard (AES) Implementation. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\mbox{\Hypertarget{hashlib_8h_a65315f1d62f11ec21b75450e86ce9774}\label{hashlib_8h_a65315f1d62f11ec21b75450e86ce9774}} 
+typedef struct \mbox{\hyperlink{struct__aes__ctx}{\+\_\+aes\+\_\+ctx}} {\bfseries aes\+\_\+ctx}
+\end{DoxyCompactItemize}
 \doxysubsection*{Enumerations}
 \begin{DoxyCompactItemize}
 \item 
 \mbox{\Hypertarget{hashlib_8h_a194ef6b5934dff6dceed4dd819e76340}\label{hashlib_8h_a194ef6b5934dff6dceed4dd819e76340}} 
-enum \mbox{\hyperlink{hashlib_8h_a194ef6b5934dff6dceed4dd819e76340}{aes\+\_\+cipher\+\_\+modes}} \{ {\bfseries AES\+\_\+\+MODE\+\_\+\+CBC}
+enum {\bfseries aes\+\_\+cipher\+\_\+modes} \{ {\bfseries AES\+\_\+\+MODE\+\_\+\+CBC}
 , {\bfseries AES\+\_\+\+MODE\+\_\+\+CTR}
  \}
-\begin{DoxyCompactList}\small\item\em AES cipher modes. \end{DoxyCompactList}\item 
+\item 
 enum \mbox{\hyperlink{hashlib_8h_a9933dec76c43b37331782bdd16ebc4a3}{aes\+\_\+padding\+\_\+schemes}} \{ \mbox{\hyperlink{hashlib_8h_a9933dec76c43b37331782bdd16ebc4a3a7b7b54293004c0ab7a4a1f6a899e53f2}{SCHM\+\_\+\+PKCS7}}
 , \mbox{\hyperlink{hashlib_8h_a9933dec76c43b37331782bdd16ebc4a3a1446879dbb5f2f777c955fcf6723ee4a}{SCHM\+\_\+\+DEFAULT}} = SCHM\+\_\+\+PKCS7
 , \mbox{\hyperlink{hashlib_8h_a9933dec76c43b37331782bdd16ebc4a3a030a31bd034c7d20a80341ede899a6b7}{SCHM\+\_\+\+ISO2}}
  \}
-\begin{DoxyCompactList}\small\item\em AES padding schemes. \end{DoxyCompactList}\item 
+\item 
 enum \mbox{\hyperlink{hashlib_8h_a5aedfaf159c585059ba8914b59307c21}{\+\_\+ssl\+\_\+sig\+\_\+modes}} \{ {\bfseries SSLSIG\+\_\+\+RSA\+\_\+\+SHA256}
 , {\bfseries SSLSIG\+\_\+\+ECDSA}
  \}
@@ -103,17 +98,17 @@ void \mbox{\hyperlink{hashlib_8h_a27eda4d2b18a026f199abdcab6d1cc8c}{hashlib\+\_\
 \begin{DoxyCompactList}\small\item\em Finalize Context and Render Digest for SHA-\/256. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{hashlib_8h_a2c1bd7ec5809afead6583128c9052d8b}{hashlib\+\_\+\+MGF1\+Hash}} (uint8\+\_\+t $\ast$data, size\+\_\+t datalen, uint8\+\_\+t $\ast$outbuf, size\+\_\+t outlen)
 \begin{DoxyCompactList}\small\item\em Arbitrary Length Hashing Function Computes SHA-\/256 of the data and with a counter appended to generate a hash of arbitrary length. \end{DoxyCompactList}\item 
-bool \mbox{\hyperlink{hashlib_8h_a0653a6a286fb1bedfb3e964d36e3b0bd}{hashlib\+\_\+\+AESLoad\+Key}} (const uint8\+\_\+t $\ast$key, const \mbox{\hyperlink{hashlib_8h_a65315f1d62f11ec21b75450e86ce9774}{aes\+\_\+ctx}} $\ast$ks, size\+\_\+t keylen)
+bool \mbox{\hyperlink{hashlib_8h_a0653a6a286fb1bedfb3e964d36e3b0bd}{hashlib\+\_\+\+AESLoad\+Key}} (const uint8\+\_\+t $\ast$key, const \mbox{\hyperlink{struct__aes__ctx}{aes\+\_\+ctx}} $\ast$ks, size\+\_\+t keylen)
 \begin{DoxyCompactList}\small\item\em AES import key to key schedule context. \end{DoxyCompactList}\item 
-bool \mbox{\hyperlink{hashlib_8h_a6987499522b3b85b8ce4b272fadf75dd}{hashlib\+\_\+\+AESEncrypt\+Block}} (const uint8\+\_\+t $\ast$block\+\_\+in, uint8\+\_\+t $\ast$block\+\_\+out, const \mbox{\hyperlink{hashlib_8h_a65315f1d62f11ec21b75450e86ce9774}{aes\+\_\+ctx}} $\ast$ks)
+bool \mbox{\hyperlink{hashlib_8h_a6987499522b3b85b8ce4b272fadf75dd}{hashlib\+\_\+\+AESEncrypt\+Block}} (const uint8\+\_\+t $\ast$block\+\_\+in, uint8\+\_\+t $\ast$block\+\_\+out, const \mbox{\hyperlink{struct__aes__ctx}{aes\+\_\+ctx}} $\ast$ks)
 \begin{DoxyCompactList}\small\item\em AES Single-\/\+Block Encryption (ECB mode) \end{DoxyCompactList}\item 
-bool \mbox{\hyperlink{hashlib_8h_a5dd423839387f0955b6061986c92a2ac}{hashlib\+\_\+\+AESDecrypt\+Block}} (const uint8\+\_\+t $\ast$block\+\_\+in, uint8\+\_\+t $\ast$block\+\_\+out, const \mbox{\hyperlink{hashlib_8h_a65315f1d62f11ec21b75450e86ce9774}{aes\+\_\+ctx}} $\ast$ks)
+bool \mbox{\hyperlink{hashlib_8h_a5dd423839387f0955b6061986c92a2ac}{hashlib\+\_\+\+AESDecrypt\+Block}} (const uint8\+\_\+t $\ast$block\+\_\+in, uint8\+\_\+t $\ast$block\+\_\+out, const \mbox{\hyperlink{struct__aes__ctx}{aes\+\_\+ctx}} $\ast$ks)
 \begin{DoxyCompactList}\small\item\em AES Single-\/\+Block Decryption (ECB Mode) \end{DoxyCompactList}\item 
-bool \mbox{\hyperlink{hashlib_8h_a745c5c4d6bdc248f20b18c7b848d8b6b}{hashlib\+\_\+\+AESEncrypt}} (const uint8\+\_\+t $\ast$plaintext, size\+\_\+t len, uint8\+\_\+t $\ast$ciphertext, const \mbox{\hyperlink{hashlib_8h_a65315f1d62f11ec21b75450e86ce9774}{aes\+\_\+ctx}} $\ast$ks, const uint8\+\_\+t $\ast$iv, uint8\+\_\+t ciphermode)
+bool \mbox{\hyperlink{hashlib_8h_a745c5c4d6bdc248f20b18c7b848d8b6b}{hashlib\+\_\+\+AESEncrypt}} (const uint8\+\_\+t $\ast$plaintext, size\+\_\+t len, uint8\+\_\+t $\ast$ciphertext, const \mbox{\hyperlink{struct__aes__ctx}{aes\+\_\+ctx}} $\ast$ks, const uint8\+\_\+t $\ast$iv, uint8\+\_\+t ciphermode)
 \begin{DoxyCompactList}\small\item\em AES Encryptor Function. \end{DoxyCompactList}\item 
-bool \mbox{\hyperlink{hashlib_8h_a2b904b543405fdf8f283d028ce0d1da7}{hashlib\+\_\+\+AESDecrypt}} (const uint8\+\_\+t $\ast$ciphertext, size\+\_\+t len, uint8\+\_\+t $\ast$plaintext, const \mbox{\hyperlink{hashlib_8h_a65315f1d62f11ec21b75450e86ce9774}{aes\+\_\+ctx}} $\ast$ks, const uint8\+\_\+t $\ast$iv, uint8\+\_\+t ciphermode)
+bool \mbox{\hyperlink{hashlib_8h_a2b904b543405fdf8f283d028ce0d1da7}{hashlib\+\_\+\+AESDecrypt}} (const uint8\+\_\+t $\ast$ciphertext, size\+\_\+t len, uint8\+\_\+t $\ast$plaintext, const \mbox{\hyperlink{struct__aes__ctx}{aes\+\_\+ctx}} $\ast$ks, const uint8\+\_\+t $\ast$iv, uint8\+\_\+t ciphermode)
 \begin{DoxyCompactList}\small\item\em AES Decryptor Function. \end{DoxyCompactList}\item 
-bool \mbox{\hyperlink{hashlib_8h_a6ca5ecde1fd675effbc4a29eac35a903}{hashlib\+\_\+\+AESOutput\+Mac}} (const uint8\+\_\+t $\ast$plaintext, size\+\_\+t len, uint8\+\_\+t $\ast$mac, const \mbox{\hyperlink{hashlib_8h_a65315f1d62f11ec21b75450e86ce9774}{aes\+\_\+ctx}} $\ast$ks)
+bool \mbox{\hyperlink{hashlib_8h_a6ca5ecde1fd675effbc4a29eac35a903}{hashlib\+\_\+\+AESOutput\+Mac}} (const uint8\+\_\+t $\ast$plaintext, size\+\_\+t len, uint8\+\_\+t $\ast$mac, const \mbox{\hyperlink{struct__aes__ctx}{aes\+\_\+ctx}} $\ast$ks)
 \begin{DoxyCompactList}\small\item\em Returns a message authentication code (MAC) for an AES message. \end{DoxyCompactList}\item 
 size\+\_\+t \mbox{\hyperlink{hashlib_8h_aebac98a8537f3353aac9fbae5ed67f29}{hashlib\+\_\+\+AESPad\+Message}} (const uint8\+\_\+t $\ast$plaintext, size\+\_\+t len, uint8\+\_\+t $\ast$outbuf, uint8\+\_\+t schm)
 \begin{DoxyCompactList}\small\item\em Pads a plaintext according to the specified AES padding scheme. \end{DoxyCompactList}\item 
@@ -152,21 +147,94 @@ Anthony \char`\"{}\+ACagliano\char`\"{} Cagliano
 
 
 \doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{hashlib_8h_a7bab8a778d065da4cc561f4813994f03}\label{hashlib_8h_a7bab8a778d065da4cc561f4813994f03}} 
+\index{hashlib.h@{hashlib.h}!AES256\_KEYLEN@{AES256\_KEYLEN}}
+\index{AES256\_KEYLEN@{AES256\_KEYLEN}!hashlib.h@{hashlib.h}}
+\doxysubsubsection{\texorpdfstring{AES256\_KEYLEN}{AES256\_KEYLEN}}
+{\footnotesize\ttfamily \#define AES256\+\_\+\+KEYLEN~32}
+
+Defines the byte-\/length of an AES key of given bit length. \mbox{\Hypertarget{hashlib_8h_afab0742642db9c0609c00bf8a54f386f}\label{hashlib_8h_afab0742642db9c0609c00bf8a54f386f}} 
+\index{hashlib.h@{hashlib.h}!AES\_BLOCKSIZE@{AES\_BLOCKSIZE}}
+\index{AES\_BLOCKSIZE@{AES\_BLOCKSIZE}!hashlib.h@{hashlib.h}}
+\doxysubsubsection{\texorpdfstring{AES\_BLOCKSIZE}{AES\_BLOCKSIZE}}
+{\footnotesize\ttfamily \#define AES\+\_\+\+BLOCKSIZE~16}
+
+Defines the blocksize of the AES cipher. \mbox{\Hypertarget{hashlib_8h_afc06a029c783f78badc2c26cf6f2297c}\label{hashlib_8h_afc06a029c783f78badc2c26cf6f2297c}} 
+\index{hashlib.h@{hashlib.h}!AES\_IV\_SIZE@{AES\_IV\_SIZE}}
+\index{AES\_IV\_SIZE@{AES\_IV\_SIZE}!hashlib.h@{hashlib.h}}
+\doxysubsubsection{\texorpdfstring{AES\_IV\_SIZE}{AES\_IV\_SIZE}}
+{\footnotesize\ttfamily \#define AES\+\_\+\+IV\+\_\+\+SIZE~\mbox{\hyperlink{hashlib_8h_afab0742642db9c0609c00bf8a54f386f}{AES\+\_\+\+BLOCKSIZE}}}
+
+Defines the length of the AES iniitalization vector (IV). \mbox{\Hypertarget{hashlib_8h_acf32bb8a8d871f4cf33f26c8b2a977fb}\label{hashlib_8h_acf32bb8a8d871f4cf33f26c8b2a977fb}} 
+\index{hashlib.h@{hashlib.h}!AES\_MAC\_SIZE@{AES\_MAC\_SIZE}}
+\index{AES\_MAC\_SIZE@{AES\_MAC\_SIZE}!hashlib.h@{hashlib.h}}
+\doxysubsubsection{\texorpdfstring{AES\_MAC\_SIZE}{AES\_MAC\_SIZE}}
+{\footnotesize\ttfamily \#define AES\+\_\+\+MAC\+\_\+\+SIZE~\mbox{\hyperlink{hashlib_8h_afab0742642db9c0609c00bf8a54f386f}{AES\+\_\+\+BLOCKSIZE}}}
+
+Defines the length of the AES CBC-\/\+MAC digest. \mbox{\Hypertarget{hashlib_8h_a89e00bf4bceabd69cff65a5cbf685bd1}\label{hashlib_8h_a89e00bf4bceabd69cff65a5cbf685bd1}} 
+\index{hashlib.h@{hashlib.h}!hashlib\_AESAuthMacCiphertextLen@{hashlib\_AESAuthMacCiphertextLen}}
+\index{hashlib\_AESAuthMacCiphertextLen@{hashlib\_AESAuthMacCiphertextLen}!hashlib.h@{hashlib.h}}
+\doxysubsubsection{\texorpdfstring{hashlib\_AESAuthMacCiphertextLen}{hashlib\_AESAuthMacCiphertextLen}}
+{\footnotesize\ttfamily \#define hashlib\+\_\+\+AESAuth\+Mac\+Ciphertext\+Len(\begin{DoxyParamCaption}\item[{}]{len }\end{DoxyParamCaption})~ (\mbox{\hyperlink{hashlib_8h_a140213b514394151a1d6ba410ec32bc4}{hashlib\+\_\+\+AESCiphertext\+Len}}((len)) + \mbox{\hyperlink{hashlib_8h_acf32bb8a8d871f4cf33f26c8b2a977fb}{AES\+\_\+\+MAC\+\_\+\+SIZE}})}
+
+Defines a macro to return the size of an AES ciphertext with CBC-\/\+MAC authentication. 
+\begin{DoxyParams}{Parameters}
+{\em len} & The length of the plaintext. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+This is the ciphertext length from the previous macro with an additional block for the CBC-\/\+MAC of the ciphertext to be appended. 
+\end{DoxyNote}
+\mbox{\Hypertarget{hashlib_8h_abc4277e4f58f162b211ca4c2a38c2a5a}\label{hashlib_8h_abc4277e4f58f162b211ca4c2a38c2a5a}} 
+\index{hashlib.h@{hashlib.h}!hashlib\_AESAuthSha256CiphertextLen@{hashlib\_AESAuthSha256CiphertextLen}}
+\index{hashlib\_AESAuthSha256CiphertextLen@{hashlib\_AESAuthSha256CiphertextLen}!hashlib.h@{hashlib.h}}
+\doxysubsubsection{\texorpdfstring{hashlib\_AESAuthSha256CiphertextLen}{hashlib\_AESAuthSha256CiphertextLen}}
+{\footnotesize\ttfamily \#define hashlib\+\_\+\+AESAuth\+Sha256\+Ciphertext\+Len(\begin{DoxyParamCaption}\item[{}]{len }\end{DoxyParamCaption})~ (\mbox{\hyperlink{hashlib_8h_a140213b514394151a1d6ba410ec32bc4}{hashlib\+\_\+\+AESCiphertext\+Len}}((len)) + \mbox{\hyperlink{hashlib_8h_af5aa539ae202ddf9e0c9211309869fc8}{SHA256\+\_\+\+DIGEST\+\_\+\+LEN}})}
+
+Defines a macro to return the size of an AES ciphertext with SHA-\/256 authentication. 
+\begin{DoxyParams}{Parameters}
+{\em len} & The length of the plaintext. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+This is the ciphertext length from the previous macro with an additional 32 bytes for the SHA-\/256 of the ciphertext to be appended. 
+\end{DoxyNote}
+\mbox{\Hypertarget{hashlib_8h_a140213b514394151a1d6ba410ec32bc4}\label{hashlib_8h_a140213b514394151a1d6ba410ec32bc4}} 
+\index{hashlib.h@{hashlib.h}!hashlib\_AESCiphertextLen@{hashlib\_AESCiphertextLen}}
+\index{hashlib\_AESCiphertextLen@{hashlib\_AESCiphertextLen}!hashlib.h@{hashlib.h}}
+\doxysubsubsection{\texorpdfstring{hashlib\_AESCiphertextLen}{hashlib\_AESCiphertextLen}}
+{\footnotesize\ttfamily \#define hashlib\+\_\+\+AESCiphertext\+Len(\begin{DoxyParamCaption}\item[{}]{len }\end{DoxyParamCaption})~(\mbox{\hyperlink{hashlib_8h_af7f9757a799b724cfd578ac0a45f58be}{hashlib\+\_\+\+AESPadded\+Size}}((len)) + \mbox{\hyperlink{hashlib_8h_afc06a029c783f78badc2c26cf6f2297c}{AES\+\_\+\+IV\+\_\+\+SIZE}})}
+
+Defines a macro to return the size of an AES ciphertext. 
+\begin{DoxyParams}{Parameters}
+{\em len} & The length of the plaintext. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+This is the padded length of the plaintext, plus an additional block for the IV to be prepended. 
+\end{DoxyNote}
 \mbox{\Hypertarget{hashlib_8h_a864d96afe89419821aed4293d979b2b9}\label{hashlib_8h_a864d96afe89419821aed4293d979b2b9}} 
 \index{hashlib.h@{hashlib.h}!hashlib\_AESKeygen@{hashlib\_AESKeygen}}
 \index{hashlib\_AESKeygen@{hashlib\_AESKeygen}!hashlib.h@{hashlib.h}}
 \doxysubsubsection{\texorpdfstring{hashlib\_AESKeygen}{hashlib\_AESKeygen}}
 {\footnotesize\ttfamily \#define hashlib\+\_\+\+AESKeygen(\begin{DoxyParamCaption}\item[{}]{key,  }\item[{}]{keylen }\end{DoxyParamCaption})~\mbox{\hyperlink{hashlib_8h_aa0092aa4c122591fae447dda8fa25dfc}{hashlib\+\_\+\+Random\+Bytes}}((key), (keylen))}
 
-
-
-AES key generation function. 
-
-
+Defines a macro to generate a pseudorandom AES key of a given length. 
 \begin{DoxyParams}{Parameters}
-{\em key} & Pointer to a buffer to write the AES key. \\
+{\em key} & Pointer to a buffer to write the key into. \\
 \hline
-{\em keylen} & Size, in bytes, of the key to generate. \\
+{\em kelen} & The byte length of the key to generate. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{hashlib_8h_af7f9757a799b724cfd578ac0a45f58be}\label{hashlib_8h_af7f9757a799b724cfd578ac0a45f58be}} 
+\index{hashlib.h@{hashlib.h}!hashlib\_AESPaddedSize@{hashlib\_AESPaddedSize}}
+\index{hashlib\_AESPaddedSize@{hashlib\_AESPaddedSize}!hashlib.h@{hashlib.h}}
+\doxysubsubsection{\texorpdfstring{hashlib\_AESPaddedSize}{hashlib\_AESPaddedSize}}
+{\footnotesize\ttfamily \#define hashlib\+\_\+\+AESPadded\+Size(\begin{DoxyParamCaption}\item[{}]{len }\end{DoxyParamCaption})~ ((((len)\%\mbox{\hyperlink{hashlib_8h_afab0742642db9c0609c00bf8a54f386f}{AES\+\_\+\+BLOCKSIZE}})==0) ? (len) + \mbox{\hyperlink{hashlib_8h_afab0742642db9c0609c00bf8a54f386f}{AES\+\_\+\+BLOCKSIZE}} \+: (((len)$>$$>$4) + 1)$<$$<$4)}
+
+Defines a macro to return the padded size of an AES plaintext. 
+\begin{DoxyParams}{Parameters}
+{\em len} & The length of the plaintext. \\
 \hline
 \end{DoxyParams}
 \mbox{\Hypertarget{hashlib_8h_a97c7527aa5efe0f229c45c54ebcc6b55}\label{hashlib_8h_a97c7527aa5efe0f229c45c54ebcc6b55}} 
@@ -177,6 +245,17 @@ AES key generation function.
 
 Pointer to a region of Fast Memory that is generally safe to use so long as you don\textquotesingle{}t call Libload.. \begin{DoxyWarning}{Warning}
 Fast Memory gets clobbered by Lib\+Load. Don\textquotesingle{}t keep long-\/term storage here if you plan to call Lib\+Load. 
+\end{DoxyWarning}
+\mbox{\Hypertarget{hashlib_8h_ab981c88a4cd7407b2c4b4bfe86fc021b}\label{hashlib_8h_ab981c88a4cd7407b2c4b4bfe86fc021b}} 
+\index{hashlib.h@{hashlib.h}!hashlib\_FastMemBufferUnsafe@{hashlib\_FastMemBufferUnsafe}}
+\index{hashlib\_FastMemBufferUnsafe@{hashlib\_FastMemBufferUnsafe}!hashlib.h@{hashlib.h}}
+\doxysubsubsection{\texorpdfstring{hashlib\_FastMemBufferUnsafe}{hashlib\_FastMemBufferUnsafe}}
+{\footnotesize\ttfamily \#define hashlib\+\_\+\+Fast\+Mem\+Buffer\+Unsafe~((void$\ast$)0x\+E30800)}
+
+Pointer to the start of the region of Fast Memory, including the Safe region as well as an unsafe region used by the library\textquotesingle{}s SPRNG. \begin{DoxyWarning}{Warning}
+Fast Memory gets clobbered by Lib\+Load. Don\textquotesingle{}t keep long-\/term storage here if you plan to call Lib\+Load. 
+
+If the SPRNG is run, anything you have stored here will be destroyed. 
 \end{DoxyWarning}
 \mbox{\Hypertarget{hashlib_8h_af5aa539ae202ddf9e0c9211309869fc8}\label{hashlib_8h_af5aa539ae202ddf9e0c9211309869fc8}} 
 \index{hashlib.h@{hashlib.h}!SHA256\_DIGEST\_LEN@{SHA256\_DIGEST\_LEN}}
@@ -197,19 +276,6 @@ Length of a string containing the SHA-\/256 hash. \mbox{\Hypertarget{hashlib_8h_
 {\footnotesize\ttfamily \#define SHA256\+\_\+\+MBUFFER\+\_\+\+LEN~(64 $\ast$ 4)}
 
 Temporary memory buffer. Must be passed to \mbox{\hyperlink{hashlib_8h_ad2fa6bc8d3a1156a5734b81f5195afc4}{hashlib\+\_\+\+Sha256\+Init()}}. 
-
-\doxysubsection{Typedef Documentation}
-\mbox{\Hypertarget{hashlib_8h_a65315f1d62f11ec21b75450e86ce9774}\label{hashlib_8h_a65315f1d62f11ec21b75450e86ce9774}} 
-\index{hashlib.h@{hashlib.h}!aes\_ctx@{aes\_ctx}}
-\index{aes\_ctx@{aes\_ctx}!hashlib.h@{hashlib.h}}
-\doxysubsubsection{\texorpdfstring{aes\_ctx}{aes\_ctx}}
-{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{struct__aes__ctx}{\+\_\+aes\+\_\+ctx}} \mbox{\hyperlink{hashlib_8h_a65315f1d62f11ec21b75450e86ce9774}{aes\+\_\+ctx}}}
-
-
-
-Advanced Encryption Standard (AES) Implementation. 
-
-Supports 128, 192, and 256 bit keys. Implements the following cipher modes\+: CBC mode CTR mode CBC-\/\+MAC authentication Context Definition for AES key schedule 
 
 \doxysubsection{Enumeration Type Documentation}
 \mbox{\Hypertarget{hashlib_8h_a5aedfaf159c585059ba8914b59307c21}\label{hashlib_8h_a5aedfaf159c585059ba8914b59307c21}} 
@@ -234,10 +300,6 @@ For compatibility with server-\/side decryption/decode, please make sure your en
 \doxysubsubsection{\texorpdfstring{aes\_padding\_schemes}{aes\_padding\_schemes}}
 {\footnotesize\ttfamily enum \mbox{\hyperlink{hashlib_8h_a9933dec76c43b37331782bdd16ebc4a3}{aes\+\_\+padding\+\_\+schemes}}}
 
-
-
-AES padding schemes. 
-
 \begin{DoxyEnumFields}{Enumerator}
 \raisebox{\heightof{T}}[0pt][0pt]{\index{SCHM\_PKCS7@{SCHM\_PKCS7}!hashlib.h@{hashlib.h}}\index{hashlib.h@{hashlib.h}!SCHM\_PKCS7@{SCHM\_PKCS7}}}\mbox{\Hypertarget{hashlib_8h_a9933dec76c43b37331782bdd16ebc4a3a7b7b54293004c0ab7a4a1f6a899e53f2}\label{hashlib_8h_a9933dec76c43b37331782bdd16ebc4a3a7b7b54293004c0ab7a4a1f6a899e53f2}} 
 SCHM\+\_\+\+PKCS7&PKCS\#7 padding $\vert$ DEFAULT \\
@@ -259,7 +321,7 @@ SCHM\+\_\+\+ISO2&ISO-\/9797 M2 padding \\
 \index{hashlib.h@{hashlib.h}!hashlib\_AESDecrypt@{hashlib\_AESDecrypt}}
 \index{hashlib\_AESDecrypt@{hashlib\_AESDecrypt}!hashlib.h@{hashlib.h}}
 \doxysubsubsection{\texorpdfstring{hashlib\_AESDecrypt()}{hashlib\_AESDecrypt()}}
-{\footnotesize\ttfamily bool hashlib\+\_\+\+AESDecrypt (\begin{DoxyParamCaption}\item[{const uint8\+\_\+t $\ast$}]{ciphertext,  }\item[{size\+\_\+t}]{len,  }\item[{uint8\+\_\+t $\ast$}]{plaintext,  }\item[{const \mbox{\hyperlink{hashlib_8h_a65315f1d62f11ec21b75450e86ce9774}{aes\+\_\+ctx}} $\ast$}]{ks,  }\item[{const uint8\+\_\+t $\ast$}]{iv,  }\item[{uint8\+\_\+t}]{ciphermode }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily bool hashlib\+\_\+\+AESDecrypt (\begin{DoxyParamCaption}\item[{const uint8\+\_\+t $\ast$}]{ciphertext,  }\item[{size\+\_\+t}]{len,  }\item[{uint8\+\_\+t $\ast$}]{plaintext,  }\item[{const \mbox{\hyperlink{struct__aes__ctx}{aes\+\_\+ctx}} $\ast$}]{ks,  }\item[{const uint8\+\_\+t $\ast$}]{iv,  }\item[{uint8\+\_\+t}]{ciphermode }\end{DoxyParamCaption})}
 
 
 
@@ -292,15 +354,12 @@ True if the encryption succeded. False if an error occured.
 \index{hashlib.h@{hashlib.h}!hashlib\_AESDecryptBlock@{hashlib\_AESDecryptBlock}}
 \index{hashlib\_AESDecryptBlock@{hashlib\_AESDecryptBlock}!hashlib.h@{hashlib.h}}
 \doxysubsubsection{\texorpdfstring{hashlib\_AESDecryptBlock()}{hashlib\_AESDecryptBlock()}}
-{\footnotesize\ttfamily bool hashlib\+\_\+\+AESDecrypt\+Block (\begin{DoxyParamCaption}\item[{const uint8\+\_\+t $\ast$}]{block\+\_\+in,  }\item[{uint8\+\_\+t $\ast$}]{block\+\_\+out,  }\item[{const \mbox{\hyperlink{hashlib_8h_a65315f1d62f11ec21b75450e86ce9774}{aes\+\_\+ctx}} $\ast$}]{ks }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily bool hashlib\+\_\+\+AESDecrypt\+Block (\begin{DoxyParamCaption}\item[{const uint8\+\_\+t $\ast$}]{block\+\_\+in,  }\item[{uint8\+\_\+t $\ast$}]{block\+\_\+out,  }\item[{const \mbox{\hyperlink{struct__aes__ctx}{aes\+\_\+ctx}} $\ast$}]{ks }\end{DoxyParamCaption})}
 
 
 
 AES Single-\/\+Block Decryption (ECB Mode) 
 
-\begin{DoxyWarning}{Warning}
-ECB-\/mode ciphers are insecure (see many-\/time pad vulnerability) These functions are exposed in case a user wants to construct a cipher mode other than CBC or CTR. Unless you know what you are doing, use \mbox{\hyperlink{hashlib_8h_a2b904b543405fdf8f283d028ce0d1da7}{hashlib\+\_\+\+AESDecrypt()}} instead.
-\end{DoxyWarning}
 
 \begin{DoxyParams}{Parameters}
 {\em block\+\_\+in} & Pointer to block of data to decrypt. \\
@@ -313,11 +372,14 @@ ECB-\/mode ciphers are insecure (see many-\/time pad vulnerability) These functi
 \begin{DoxyReturn}{Returns}
 True if encryption succeeded. False if an error occured. 
 \end{DoxyReturn}
+\begin{DoxyWarning}{Warning}
+ECB-\/mode ciphers are insecure (see many-\/time pad vulnerability) These functions are exposed in case a user wants to construct a cipher mode other than CBC or CTR. Unless you know what you are doing, use \mbox{\hyperlink{hashlib_8h_a2b904b543405fdf8f283d028ce0d1da7}{hashlib\+\_\+\+AESDecrypt()}} instead. 
+\end{DoxyWarning}
 \mbox{\Hypertarget{hashlib_8h_a745c5c4d6bdc248f20b18c7b848d8b6b}\label{hashlib_8h_a745c5c4d6bdc248f20b18c7b848d8b6b}} 
 \index{hashlib.h@{hashlib.h}!hashlib\_AESEncrypt@{hashlib\_AESEncrypt}}
 \index{hashlib\_AESEncrypt@{hashlib\_AESEncrypt}!hashlib.h@{hashlib.h}}
 \doxysubsubsection{\texorpdfstring{hashlib\_AESEncrypt()}{hashlib\_AESEncrypt()}}
-{\footnotesize\ttfamily bool hashlib\+\_\+\+AESEncrypt (\begin{DoxyParamCaption}\item[{const uint8\+\_\+t $\ast$}]{plaintext,  }\item[{size\+\_\+t}]{len,  }\item[{uint8\+\_\+t $\ast$}]{ciphertext,  }\item[{const \mbox{\hyperlink{hashlib_8h_a65315f1d62f11ec21b75450e86ce9774}{aes\+\_\+ctx}} $\ast$}]{ks,  }\item[{const uint8\+\_\+t $\ast$}]{iv,  }\item[{uint8\+\_\+t}]{ciphermode }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily bool hashlib\+\_\+\+AESEncrypt (\begin{DoxyParamCaption}\item[{const uint8\+\_\+t $\ast$}]{plaintext,  }\item[{size\+\_\+t}]{len,  }\item[{uint8\+\_\+t $\ast$}]{ciphertext,  }\item[{const \mbox{\hyperlink{struct__aes__ctx}{aes\+\_\+ctx}} $\ast$}]{ks,  }\item[{const uint8\+\_\+t $\ast$}]{iv,  }\item[{uint8\+\_\+t}]{ciphermode }\end{DoxyParamCaption})}
 
 
 
@@ -358,15 +420,12 @@ True if the encryption succeded. False if an error occured.
 \index{hashlib.h@{hashlib.h}!hashlib\_AESEncryptBlock@{hashlib\_AESEncryptBlock}}
 \index{hashlib\_AESEncryptBlock@{hashlib\_AESEncryptBlock}!hashlib.h@{hashlib.h}}
 \doxysubsubsection{\texorpdfstring{hashlib\_AESEncryptBlock()}{hashlib\_AESEncryptBlock()}}
-{\footnotesize\ttfamily bool hashlib\+\_\+\+AESEncrypt\+Block (\begin{DoxyParamCaption}\item[{const uint8\+\_\+t $\ast$}]{block\+\_\+in,  }\item[{uint8\+\_\+t $\ast$}]{block\+\_\+out,  }\item[{const \mbox{\hyperlink{hashlib_8h_a65315f1d62f11ec21b75450e86ce9774}{aes\+\_\+ctx}} $\ast$}]{ks }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily bool hashlib\+\_\+\+AESEncrypt\+Block (\begin{DoxyParamCaption}\item[{const uint8\+\_\+t $\ast$}]{block\+\_\+in,  }\item[{uint8\+\_\+t $\ast$}]{block\+\_\+out,  }\item[{const \mbox{\hyperlink{struct__aes__ctx}{aes\+\_\+ctx}} $\ast$}]{ks }\end{DoxyParamCaption})}
 
 
 
 AES Single-\/\+Block Encryption (ECB mode) 
 
-\begin{DoxyWarning}{Warning}
-ECB-\/mode ciphers are insecure (see many-\/time pad vulnerability) These functions are exposed in case a user wants to construct a cipher mode other than CBC or CTR. Unless you know what you are doing, use \mbox{\hyperlink{hashlib_8h_a745c5c4d6bdc248f20b18c7b848d8b6b}{hashlib\+\_\+\+AESEncrypt()}} instead.
-\end{DoxyWarning}
 
 \begin{DoxyParams}{Parameters}
 {\em block\+\_\+in} & Pointer to block of data to encrypt. \\
@@ -389,11 +448,14 @@ ECB-\/mode ciphers are insecure (see many-\/time pad vulnerability) These functi
 \begin{DoxyReturn}{Returns}
 True if encryption succeeded. False if failed. 
 \end{DoxyReturn}
+\begin{DoxyWarning}{Warning}
+ECB-\/mode ciphers are insecure (see many-\/time pad vulnerability) These functions are exposed in case a user wants to construct a cipher mode other than CBC or CTR. Unless you know what you are doing, use \mbox{\hyperlink{hashlib_8h_a745c5c4d6bdc248f20b18c7b848d8b6b}{hashlib\+\_\+\+AESEncrypt()}} instead. 
+\end{DoxyWarning}
 \mbox{\Hypertarget{hashlib_8h_a0653a6a286fb1bedfb3e964d36e3b0bd}\label{hashlib_8h_a0653a6a286fb1bedfb3e964d36e3b0bd}} 
 \index{hashlib.h@{hashlib.h}!hashlib\_AESLoadKey@{hashlib\_AESLoadKey}}
 \index{hashlib\_AESLoadKey@{hashlib\_AESLoadKey}!hashlib.h@{hashlib.h}}
 \doxysubsubsection{\texorpdfstring{hashlib\_AESLoadKey()}{hashlib\_AESLoadKey()}}
-{\footnotesize\ttfamily bool hashlib\+\_\+\+AESLoad\+Key (\begin{DoxyParamCaption}\item[{const uint8\+\_\+t $\ast$}]{key,  }\item[{const \mbox{\hyperlink{hashlib_8h_a65315f1d62f11ec21b75450e86ce9774}{aes\+\_\+ctx}} $\ast$}]{ks,  }\item[{size\+\_\+t}]{keylen }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily bool hashlib\+\_\+\+AESLoad\+Key (\begin{DoxyParamCaption}\item[{const uint8\+\_\+t $\ast$}]{key,  }\item[{const \mbox{\hyperlink{struct__aes__ctx}{aes\+\_\+ctx}} $\ast$}]{ks,  }\item[{size\+\_\+t}]{keylen }\end{DoxyParamCaption})}
 
 
 
@@ -415,7 +477,7 @@ True if the key was successfully loaded. False otherwise.
 \index{hashlib.h@{hashlib.h}!hashlib\_AESOutputMac@{hashlib\_AESOutputMac}}
 \index{hashlib\_AESOutputMac@{hashlib\_AESOutputMac}!hashlib.h@{hashlib.h}}
 \doxysubsubsection{\texorpdfstring{hashlib\_AESOutputMac()}{hashlib\_AESOutputMac()}}
-{\footnotesize\ttfamily bool hashlib\+\_\+\+AESOutput\+Mac (\begin{DoxyParamCaption}\item[{const uint8\+\_\+t $\ast$}]{plaintext,  }\item[{size\+\_\+t}]{len,  }\item[{uint8\+\_\+t $\ast$}]{mac,  }\item[{const \mbox{\hyperlink{hashlib_8h_a65315f1d62f11ec21b75450e86ce9774}{aes\+\_\+ctx}} $\ast$}]{ks }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily bool hashlib\+\_\+\+AESOutput\+Mac (\begin{DoxyParamCaption}\item[{const uint8\+\_\+t $\ast$}]{plaintext,  }\item[{size\+\_\+t}]{len,  }\item[{uint8\+\_\+t $\ast$}]{mac,  }\item[{const \mbox{\hyperlink{struct__aes__ctx}{aes\+\_\+ctx}} $\ast$}]{ks }\end{DoxyParamCaption})}
 
 
 
@@ -776,9 +838,6 @@ You must call hashlib\+\_\+\+SHA256\+Init() first or your hash state will be inv
 
 
 Initializes the SPRNG. 
-
-\hypertarget{hashlib_8h_autotoc_md0}{}\doxysubsection{Secure Psuedorandom Number Generator (\+SPRNG)}\label{hashlib_8h_autotoc_md0}
-An entropy-\/based, non-\/deterministic secure PRNG. Generates 96.\+51 bits of entropy per 32-\/bit number generated
 
 The SPRNG is initialized by polling the 512-\/bytes from address 0x\+D65800 to 0x\+D66000. This region consists of unmapped memory that contains bus noise. Each bit in that region is polled 1024 times and the address with the bit that is the least biased is selected. That will be the byte the SPRNG uses to generate entropy. \begin{DoxyReturn}{Returns}
 The unmapped address selected for use generating entropy 

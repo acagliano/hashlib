@@ -20,7 +20,6 @@
 #include <stdbool.h>
 #include <stddef.h>
 
-
 /****************************************************************************************************************************************
  * @def hashlib_FastMemBufferSafe
  *		Pointer to a region of Fast Memory that is generally safe to use so long as you don't call Libload..
@@ -35,17 +34,10 @@
   *	@warning Fast Memory gets clobbered by LibLoad. Don't keep long-term storage here if you plan to call LibLoad.
   *	@warning If the SPRNG is run, anything you have stored here will be destroyed.
   **************************************************************************************************************************************/
-#define hashlib_FastMemBufferUnSafe		((void*)0xE30800)
+#define hashlib_FastMemBufferUnsafe		((void*)0xE30800)
 
 
-/**********************************************************************************
- *  Secure Psuedorandom Number Generator (SPRNG)
- *  =========================================
- *
- * 	An entropy-based, non-deterministic secure PRNG.
- * 	Generates 96.51 bits of entropy per 32-bit number generated
- *********************************************************************************/
- 
+// Secure Psuedorandom Number Generator
 /****************************************************************************************************************************
  * @brief Initializes the SPRNG.
  *
@@ -77,18 +69,14 @@ uint32_t hashlib_SPRNGRandom(void);
  * @note #buffer must be at least #size bytes large.
  ****************************************************************************************/
 bool hashlib_RandomBytes(uint8_t *buffer, size_t size);
-
-
-/**************************************************************
- * Cryptographic Hashes
- * ==================
- *
- * Implements the following cryptographic hashes:
- *	SHA-256
- * 	MGF1-SHA256
- **************************************************************/
  
-/** @struct SHA-256 Hash State Context */
+ 
+// SHA-256 Cryptographic Hash
+/*******************************************************************************************************************
+ * @typedef SHA-256 Context
+ * Defines hash-state data for an instance of SHA-256.
+ * @note If you are hashing multiple data streams concurrently, allocate a seperate context for each.
+ ********************************************************************************************************************/
 typedef struct _sha256_ctx {
 	uint8_t data[64];		/**< holds sha-256 block for transformation */
 	uint8_t datalen;		/**< holds the current length of data in data[64] */
@@ -152,113 +140,145 @@ void hashlib_Sha256Final(sha256_ctx *ctx, uint8_t *digest);
  **********************************************************************************************************************/
 void hashlib_MGF1Hash(uint8_t* data, size_t datalen, uint8_t* outbuf, size_t outlen);
 
-/********************************************************************************************
- * @brief Advanced Encryption Standard (AES) Implementation
- *
- *	Supports 128, 192, and 256 bit keys.
- *	Implements the following cipher modes:
- *		CBC mode
- *		CTR mode
- *		CBC-MAC authentication
- */
 
-/** Context Definition for AES key schedule */
+// Advanced Encryption Standard (AES)
+/***************************************************************************************************
+ * @typedef Context Definition for AES key schedule
+ * Stores AES key instance data: key size and round keys generated from an AES key.
+ ***************************************************************************************************/
 typedef struct _aes_ctx {
     uint24_t keysize;
     uint32_t round_keys[60];
 } aes_ctx;
 
-/**
- *	@brief AES Defines and Equates
- *
- *	@def AES_BLOCKSIZE Defines the blocksize of the AES cipher.
- *	@def AES_IV_SIZE	Defines the length of the AES iniitalization vector (IV).
- *	@def AES_MAC_SIZE Defines the length of the AES CBC-MAC digest.
- *	@def AES128_KEYLEN Defines the byte-length of a 128-bit AES key.
- *	@def AES192_KEYLEN Defines the byte-length of a 192-bit AES key.
- *	@def AES256_KEYLEN Defines the byte-length of a 256-bit AES key.
- *	@def hashlib_AESPaddedSize() Defines the padded size of an AES plaintext.
- *	@def hashlib_AESCiphertextLen() Defines the length of an AES ciphertext with prepended IV.
- *	@def hashlib_AESAuthCiphertextLen() Defines the length of an AES ciphertext with prepended IV and appended CBC-MAC.
- */
-#define AES_BLOCKSIZE	16
-#define AES_IV_SIZE		AES_BLOCKSIZE
-#define AES_MAC_SIZE	AES_BLOCKSIZE
-
-#define AES128_KEYLEN	16
-#define AES192_KEYLEN	24
-#define AES256_KEYLEN	32
-
-#define hashlib_AESPaddedSize(len) \
-	((((len)%AES_BLOCKSIZE)==0) ? (len) + AES_BLOCKSIZE : (((len)>>4) + 1)<<4)
-
-#define hashlib_AESCiphertextLen(len)	(hashlib_AESPaddedSize((len)) + AES_IV_SIZE)
-
-#define hashlib_AESAuthCiphertextLen(len) \
-	(hashlib_AESCiphertextLen((len)) + AES_MAC_SIZE)
-	
-/** @brief AES cipher modes */
+/************************************************
+ * @enum Supported AES cipher modes
+ ************************************************/
 enum aes_cipher_modes {
 	AES_MODE_CBC,
 	AES_MODE_CTR
 };
 
-/** @brief AES padding schemes */
+/***************************************************
+ * @enum Supported AES padding schemes
+ ***************************************************/
 enum aes_padding_schemes {
     SCHM_PKCS7, 		 		/**< PKCS#7 padding | DEFAULT */
     SCHM_DEFAULT = SCHM_PKCS7,	/**< selects the scheme marked DEFAULT.
 									Using this is recommended in case a change to the standards
 									would set a stronger padding scheme as default */
     SCHM_ISO2,       	 	/**< ISO-9797 M2 padding */
-    
 };
 
-/**
- *	@brief AES key generation function.
+
+/********************************************************
+ * @def AES_BLOCKSIZE
+ * Defines the blocksize of the AES cipher.
+ ********************************************************/
+#define AES_BLOCKSIZE	16
+
+/*****************************************************************
+ * @def AES_IV_SIZE
+ * Defines the length of the AES iniitalization vector (IV).
+ *****************************************************************/
+#define AES_IV_SIZE		AES_BLOCKSIZE
+
+/************************************************************
+ * @def AES_MAC_SIZE
+ * Defines the length of the AES CBC-MAC digest.
+ ************************************************************/
+#define AES_MAC_SIZE	AES_BLOCKSIZE
+
+/**********************************************************************
+ * @def AES128_KEYLEN
+ * @def AES192_KEYLEN
+ * @def AES256_KEYLEN
  *
- *	@param key Pointer to a buffer to write the AES key.
- *	@param keylen Size, in bytes, of the key to generate.
- */
+ * Defines the byte-length of an AES key of given bit length.
+ ***********************************************************************/
+#define AES128_KEYLEN	16
+#define AES192_KEYLEN	24
+#define AES256_KEYLEN	32
+
+/***************************************************************************
+ * @def hashlib_AESPaddedSize()
+ * Defines a macro to return the padded size of an AES plaintext.
+ * @param len The length of the plaintext.
+ ***************************************************************************/
+  #define hashlib_AESPaddedSize(len) \
+	((((len)%AES_BLOCKSIZE)==0) ? (len) + AES_BLOCKSIZE : (((len)>>4) + 1)<<4)
+	
+/************************************************************************************************************************
+ * @def hashlib_AESCiphertextLen()
+ * Defines a macro to return the size of an AES ciphertext.
+ * @param len The length of the plaintext.
+ * @note This is the padded length of the plaintext, plus an additional block for the IV to be prepended.
+ ************************************************************************************************************************/
+ #define hashlib_AESCiphertextLen(len)	(hashlib_AESPaddedSize((len)) + AES_IV_SIZE)
+ 
+ /******************************************************************************************************
+  * @def hashlib_AESAuthMacCiphertextLen()
+  * Defines a macro to return the size of an AES ciphertext with CBC-MAC authentication.
+  * @param len The length of the plaintext.
+  * @note This is the ciphertext length from the previous macro with an additional block
+  * 	for the CBC-MAC of the ciphertext to be appended.
+  ******************************************************************************************************/
+  #define hashlib_AESAuthMacCiphertextLen(len) \
+	(hashlib_AESCiphertextLen((len)) + AES_MAC_SIZE)
+	
+/******************************************************************************************************
+ * @def hashlib_AESAuthSha256CiphertextLen()
+ * Defines a macro to return the size of an AES ciphertext with SHA-256 authentication.
+ * @param len The length of the plaintext.
+ * @note This is the ciphertext length from the previous macro with an additional 32 bytes
+ * 		for the SHA-256 of the ciphertext to be appended.
+  ******************************************************************************************************/
+  #define hashlib_AESAuthSha256CiphertextLen(len) \
+	(hashlib_AESCiphertextLen((len)) + SHA256_DIGEST_LEN)
+
+/***************************************************************************************
+ * @def hashlib_AESKeygen()
+ * Defines a macro to generate a pseudorandom AES key of a given length.
+ * @param key Pointer to a buffer to write the key into.
+ * @param kelen The byte length of the key to generate.
+ ***************************************************************************************/
 #define hashlib_AESKeygen(key, keylen)	hashlib_RandomBytes((key), (keylen))
 
 
-/**
+/*********************************************************************************
  * @brief AES import key to key schedule context
- *
  * @param key Pointer to a buffer containing the AES key.
  * @param ks Pointer to an AES key schedule context.
  * @param keylen The size, in bytes, of the key to load.
  * @return True if the key was successfully loaded. False otherwise.
-*/
+************************************************************************************/
 bool hashlib_AESLoadKey(const uint8_t* key, const aes_ctx* ks, size_t keylen);
 
-/**
- *	@brief AES Single-Block Encryption (ECB mode)
- *	@warning ECB-mode ciphers are insecure (see many-time pad vulnerability)
-		These functions are exposed in case a user wants to construct a cipher mode other than CBC or CTR.
-		Unless you know what you are doing, use hashlib_AESEncrypt() instead.
-	
- *	@param block_in	Pointer to block of data to encrypt.
- *	@param block_out Pointer to buffer to write encrypted block.
- *	@param ks Pointer to an AES key schedule context.
- *	@note @param block_in and @param block_out are aliasable.
-	@return True if encryption succeeded. False if failed.
- */
+/**********************************************************************************************************************************
+ * @brief AES Single-Block Encryption (ECB mode)
+ * @param block_in	Pointer to block of data to encrypt.
+ * @param block_out Pointer to buffer to write encrypted block.
+ * @param ks Pointer to an AES key schedule context.
+ * @note @param block_in and @param block_out are aliasable.
+ * @return True if encryption succeeded. False if failed.
+ * @warning ECB-mode ciphers are insecure (see many-time pad vulnerability)
+ * 		These functions are exposed in case a user wants to construct a cipher mode other than CBC or CTR.
+ * 		Unless you know what you are doing, use hashlib_AESEncrypt() instead.
+ **********************************************************************************************************************************/
 bool hashlib_AESEncryptBlock(const uint8_t* block_in,
 							 uint8_t* block_out,
 							 const aes_ctx* ks);
     
-/**
+/********************************************************************************************************************************
  *	@brief AES Single-Block Decryption (ECB Mode)
- *	@warning ECB-mode ciphers are insecure (see many-time pad vulnerability)
-		These functions are exposed in case a user wants to construct a cipher mode other than CBC or CTR.
-		Unless you know what you are doing, use hashlib_AESDecrypt() instead.
- *
  *	@param block_in Pointer to block of data to decrypt.
  *	@param block_out Pointer to buffer to write decrypted block.
  *	@param ks Pointer to an AES key schedule context.
  *	@return True if encryption succeeded. False if an error occured.
- */
+ *	@warning ECB-mode ciphers are insecure (see many-time pad vulnerability)
+ *		These functions are exposed in case a user wants to construct a cipher mode other than CBC or CTR.
+ *		Unless you know what you are doing, use hashlib_AESDecrypt() instead.
+ **********************************************************************************************************************************/
 bool hashlib_AESDecryptBlock(const uint8_t* block_in,
 							 uint8_t* block_out,
 							 const aes_ctx* ks);
