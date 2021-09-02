@@ -1347,12 +1347,12 @@ For the most secure authenticated encryption scheme, use "encrypt-then-MAC". Thi
 <p>RSA-OAEP padding scheme. </p>
 <p>Applies the RSA-OAEP padding scheme as indicated in PKCS#1 v2.2. This is intended for use prior to RSA encryption. </p><div class="fragment"><div class="line">| &lt;-------------------------------- modulus size ---------------------------------&gt; |</div>
 <div class="line">|-- 0x00 --|-- salt --|-- auth hash --|-- 0x00...padding --|-- 0x01 --|-- message --|</div>
-<div class="line">           |          |----------------------------|--------------------------------|</div>
+<div class="line">           |          |-------------------------------------------------------------|</div>
 <div class="line">           |                                       |</div>
 <div class="line">           | ------------ MGF1-SHA256 -----------&gt;XOR</div>
-<div class="line">           |                                          |</div>
+<div class="line">           |                                       |</div>
 <div class="line">          XOR &lt;----------- MGF1-SHA256 ------------|</div>
-<div class="line">           |                                          |</div>
+<div class="line">           |                                       |</div>
 <div class="line">|-- 0x00 --|-- msalt --|---------- masked message, padding, and auth hash ----------|</div>
 <div class="line">|&lt;-------------------------------- modulus size ----------------------------------&gt; |</div>
 </div><!-- fragment --><dl class="params"><dt>Parameters</dt><dd>
@@ -1417,20 +1417,19 @@ For the most secure authenticated encryption scheme, use "encrypt-then-MAC". Thi
 </div><div class="memdoc">
 
 <p>RSA-PSS padding scheme. </p>
-<p>Applies the RSA-PSS padding scheme as indicated in PKCS#1 v1.5.<br  />
-|--&mdash; Message --&mdash;| ----------------------&mdash; SHA-256 ----------------------&mdash;&gt;| <br  />
- | <br  />
-|&ndash; 0x00... padding &ndash;|&ndash; 0x01 &ndash;|&ndash; salt &ndash;| |&ndash; 8 bytes 0x00 &ndash;|&ndash; mHash &ndash;|&ndash; salt &ndash;| <br  />
-|-----------------------------------------------&mdash;| |-----------------------------------------------&mdash;| <br  />
- *DB | *M' | <br  />
- | SHA-256 <br  />
- XOR &lt;--------------&mdash; MGF1-SHA256 ---------------&mdash;| <br  />
- | | <br  />
- | &lt; ----------------------&mdash; | <br  />
- | | <br  />
-|-------------&mdash; masked DB -------------&mdash;|&ndash; M' Hash &ndash;|&ndash; 0xbc &ndash;| <br  />
-|--------------------------&mdash; modulus size ----------------------------&mdash;| <br  />
- </p><dl class="params"><dt>Parameters</dt><dd>
+<p>Applies the RSA-PSS padding scheme as indicated in PKCS#1 v1.5. </p><div class="fragment"><div class="line">|- Message -|  ---------------------- SHA-256 ----------------------&gt;|</div>
+<div class="line">                                                                     |</div>
+<div class="line">|-- 0x00 padding --|-- 0x01 --|-- salt --|  |-- 8 bytes 0x00 --|-- mHash --|-- salt --|</div>
+<div class="line">|----------------------------------------|  |-----------------------------------------|</div>
+<div class="line">*DB                  |                      *M<span class="stringliteral">&#39;                  |</span></div>
+<div class="line"><span class="stringliteral">                     |                                        SHA-256</span></div>
+<div class="line"><span class="stringliteral">                    XOR &lt;------------- MGF1-SHA256 --------------|</span></div>
+<div class="line"><span class="stringliteral">                     |                                           |</span></div>
+<div class="line"><span class="stringliteral">                     |                         &lt; --------------- |</span></div>
+<div class="line"><span class="stringliteral">                     |                         |</span></div>
+<div class="line"><span class="stringliteral">|-------------- masked DB --------------|-- M&#39;</span> Hash --|-- 0xbc --|</div>
+<div class="line">|------------------------ modulus size --------------------------|</div>
+</div><!-- fragment --><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">plaintext</td><td>Pointer to buffer containing data to encode. </td></tr>
     <tr><td class="paramname">len</td><td>Length of data at</td></tr>
