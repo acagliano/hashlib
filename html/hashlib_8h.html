@@ -1348,11 +1348,11 @@ For the most secure authenticated encryption scheme, use "encrypt-then-MAC". Thi
 <p>Applies the RSA-OAEP padding scheme as indicated in PKCS#1 v2.2. This is intended for use prior to RSA encryption. </p><div class="fragment"><div class="line">| &lt;-------------------------------- modulus size ---------------------------------&gt; |</div>
 <div class="line">|-- 0x00 --|-- salt --|-- auth hash --|-- 0x00...padding --|-- 0x01 --|-- message --|</div>
 <div class="line">           |          |----------------------------|--------------------------------|</div>
-<div class="line">          |                                       |</div>
-<div class="line">          | ------------ MGF1-SHA256 -----------&gt;XOR</div>
-<div class="line">          |                                       |</div>
-<div class="line">         XOR &lt;----------- MGF1-SHA256 ------------|</div>
-<div class="line">          |                                       |</div>
+<div class="line">           |                                       |</div>
+<div class="line">           | ------------ MGF1-SHA256 -----------&gt;XOR</div>
+<div class="line">           |                                          |</div>
+<div class="line">          XOR &lt;----------- MGF1-SHA256 ------------|</div>
+<div class="line">           |                                          |</div>
 <div class="line">|-- 0x00 --|-- msalt --|---------- masked message, padding, and auth hash ----------|</div>
 <div class="line">|&lt;-------------------------------- modulus size ----------------------------------&gt; |</div>
 </div><!-- fragment --><dl class="params"><dt>Parameters</dt><dd>
