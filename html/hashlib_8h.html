@@ -113,13 +113,11 @@ Macros</h2></td></tr>
 <tr class="separator:a37ba5c621bf4af2ddcb851e179e21623"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7bab8a778d065da4cc561f4813994f03"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#a7bab8a778d065da4cc561f4813994f03">AES256_KEYLEN</a>&#160;&#160;&#160;32</td></tr>
 <tr class="separator:a7bab8a778d065da4cc561f4813994f03"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2bd39d64a42b6a8d56b0b18efc9d164c"><td class="memItemLeft" align="right" valign="top"><a id="a2bd39d64a42b6a8d56b0b18efc9d164c"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>hashlib_AESCiphertextSize</b>(len)&#160;&#160;&#160;	((((len)%<a class="el" href="hashlib_8h.html#afab0742642db9c0609c00bf8a54f386f">AES_BLOCKSIZE</a>)==0) ? (len) + <a class="el" href="hashlib_8h.html#afab0742642db9c0609c00bf8a54f386f">AES_BLOCKSIZE</a> : (((len)&gt;&gt;4) + 1)&lt;&lt;4)</td></tr>
+<tr class="memitem:a2bd39d64a42b6a8d56b0b18efc9d164c"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#a2bd39d64a42b6a8d56b0b18efc9d164c">hashlib_AESCiphertextSize</a>(len)&#160;&#160;&#160;	((((len)%<a class="el" href="hashlib_8h.html#afab0742642db9c0609c00bf8a54f386f">AES_BLOCKSIZE</a>)==0) ? (len) + <a class="el" href="hashlib_8h.html#afab0742642db9c0609c00bf8a54f386f">AES_BLOCKSIZE</a> : (((len)&gt;&gt;4) + 1)&lt;&lt;4)</td></tr>
 <tr class="separator:a2bd39d64a42b6a8d56b0b18efc9d164c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a46100af2f9437a876f6a2d92d9db4369"><td class="memItemLeft" align="right" valign="top"><a id="a46100af2f9437a876f6a2d92d9db4369"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>hashlib_AESCiphertextIVLen</b>(len)&#160;&#160;&#160;(hashlib_AESCiphertextSize((len)) + <a class="el" href="hashlib_8h.html#afc06a029c783f78badc2c26cf6f2297c">AES_IV_SIZE</a>)</td></tr>
+<tr class="memitem:a46100af2f9437a876f6a2d92d9db4369"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#a46100af2f9437a876f6a2d92d9db4369">hashlib_AESCiphertextIVLen</a>(len)&#160;&#160;&#160;(<a class="el" href="hashlib_8h.html#a2bd39d64a42b6a8d56b0b18efc9d164c">hashlib_AESCiphertextSize</a>((len)) + <a class="el" href="hashlib_8h.html#afc06a029c783f78badc2c26cf6f2297c">AES_IV_SIZE</a>)</td></tr>
 <tr class="separator:a46100af2f9437a876f6a2d92d9db4369"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a89e00bf4bceabd69cff65a5cbf685bd1"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#a89e00bf4bceabd69cff65a5cbf685bd1">hashlib_AESAuthMacCiphertextLen</a>(len)&#160;&#160;&#160;	(hashlib_AESCiphertextIVLen((len)) + <a class="el" href="hashlib_8h.html#acf32bb8a8d871f4cf33f26c8b2a977fb">AES_MAC_SIZE</a>)</td></tr>
+<tr class="memitem:a89e00bf4bceabd69cff65a5cbf685bd1"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#a89e00bf4bceabd69cff65a5cbf685bd1">hashlib_AESAuthMacCiphertextLen</a>(len)&#160;&#160;&#160;	(<a class="el" href="hashlib_8h.html#a46100af2f9437a876f6a2d92d9db4369">hashlib_AESCiphertextIVLen</a>((len)) + <a class="el" href="hashlib_8h.html#acf32bb8a8d871f4cf33f26c8b2a977fb">AES_MAC_SIZE</a>)</td></tr>
 <tr class="separator:a89e00bf4bceabd69cff65a5cbf685bd1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abc4277e4f58f162b211ca4c2a38c2a5a"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#abc4277e4f58f162b211ca4c2a38c2a5a">hashlib_AESAuthSha256CiphertextLen</a>(len)&#160;&#160;&#160;	(hashlib_AESCiphertextLen((len)) + <a class="el" href="hashlib_8h.html#af5aa539ae202ddf9e0c9211309869fc8">SHA256_DIGEST_LEN</a>)</td></tr>
 <tr class="separator:abc4277e4f58f162b211ca4c2a38c2a5a"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -399,6 +397,56 @@ If the SPRNG is run, anything you have stored here will be destroyed. </dd></dl>
 
 </div>
 </div>
+<a id="a2bd39d64a42b6a8d56b0b18efc9d164c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2bd39d64a42b6a8d56b0b18efc9d164c">&#9670;&nbsp;</a></span>hashlib_AESCiphertextSize</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define hashlib_AESCiphertextSize</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">len</td><td>)</td>
+          <td>&#160;&#160;&#160;	((((len)%<a class="el" href="hashlib_8h.html#afab0742642db9c0609c00bf8a54f386f">AES_BLOCKSIZE</a>)==0) ? (len) + <a class="el" href="hashlib_8h.html#afab0742642db9c0609c00bf8a54f386f">AES_BLOCKSIZE</a> : (((len)&gt;&gt;4) + 1)&lt;&lt;4)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Defines a macro to return the padded size of an AES plaintext. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">len</td><td>The length of the plaintext. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a46100af2f9437a876f6a2d92d9db4369"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a46100af2f9437a876f6a2d92d9db4369">&#9670;&nbsp;</a></span>hashlib_AESCiphertextIVLen</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define hashlib_AESCiphertextIVLen</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">len</td><td>)</td>
+          <td>&#160;&#160;&#160;(<a class="el" href="hashlib_8h.html#a2bd39d64a42b6a8d56b0b18efc9d164c">hashlib_AESCiphertextSize</a>((len)) + <a class="el" href="hashlib_8h.html#afc06a029c783f78badc2c26cf6f2297c">AES_IV_SIZE</a>)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Defines a macro to return the size of an AES ciphertext.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">len</td><td>The length of the plaintext. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>Note</dt><dd>This is the padded length of the plaintext, plus an additional block for the IV to be prepended. </dd></dl>
+
+</div>
+</div>
 <a id="a89e00bf4bceabd69cff65a5cbf685bd1"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a89e00bf4bceabd69cff65a5cbf685bd1">&#9670;&nbsp;</a></span>hashlib_AESAuthMacCiphertextLen</h2>
 
@@ -410,7 +458,7 @@ If the SPRNG is run, anything you have stored here will be destroyed. </dd></dl>
           <td>(</td>
           <td class="paramtype">&#160;</td>
           <td class="paramname">len</td><td>)</td>
-          <td>&#160;&#160;&#160;	(hashlib_AESCiphertextIVLen((len)) + <a class="el" href="hashlib_8h.html#acf32bb8a8d871f4cf33f26c8b2a977fb">AES_MAC_SIZE</a>)</td>
+          <td>&#160;&#160;&#160;	(<a class="el" href="hashlib_8h.html#a46100af2f9437a876f6a2d92d9db4369">hashlib_AESCiphertextIVLen</a>((len)) + <a class="el" href="hashlib_8h.html#acf32bb8a8d871f4cf33f26c8b2a977fb">AES_MAC_SIZE</a>)</td>
         </tr>
       </table>
 </div><div class="memdoc">

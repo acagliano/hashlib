@@ -212,7 +212,7 @@ enum aes_padding_schemes {
 #define AES256_KEYLEN	32
 
 /***************************************************************************
- * @def hashlib_AESPaddedSize()
+ * @def hashlib_AESCiphertextSize()
  * Defines a macro to return the padded size of an AES plaintext.
  * @param len The length of the plaintext.
  ***************************************************************************/
@@ -220,7 +220,7 @@ enum aes_padding_schemes {
 	((((len)%AES_BLOCKSIZE)==0) ? (len) + AES_BLOCKSIZE : (((len)>>4) + 1)<<4)
 	
 /************************************************************************************************************************
- * @def hashlib_AESCiphertextLen()
+ * @def hashlib_AESCiphertextIVLen()
  *
  * Defines a macro to return the size of an AES ciphertext.
  *
