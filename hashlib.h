@@ -479,7 +479,7 @@ size_t hashlib_RSADecodeOAEP(
  * @param len Length of data at @b plaintext to encode.
  * @param outbuf Pointer to buffer to write encoded plaintext to.
  * @param modulus_len The length of the modulus to pad for.
- * @param salt A buffer filled with random bytes.
+ * @param salt A nonce equal in length to the SHA-256 digest length.
  * @note @b outbuf must be at least @b modulus_len bytes large.
  * @note @b salt can be null to generate a salt automatically. You can also generate it yourself
  * 		 using hashlib_RandomBytes() and pass a pointer to that buffer as @b salt.

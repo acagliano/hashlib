@@ -833,7 +833,7 @@ Applies the RSA-\/\+PSS padding scheme as indicated in PKCS\#1 v1.\+5.
 \hline
 {\em modulus\+\_\+len} & The length of the modulus to pad for. \\
 \hline
-{\em salt} & A buffer filled with random bytes. \\
+{\em salt} & A nonce equal in length to the SHA-\/256 digest length. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyNote}{Note}

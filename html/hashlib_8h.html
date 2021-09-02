@@ -1470,7 +1470,7 @@ For the most secure authenticated encryption scheme, use "encrypt-then-MAC". Thi
     <tr><td class="paramname">len</td><td>Length of data at <b>plaintext</b> to encode. </td></tr>
     <tr><td class="paramname">outbuf</td><td>Pointer to buffer to write encoded plaintext to. </td></tr>
     <tr><td class="paramname">modulus_len</td><td>The length of the modulus to pad for. </td></tr>
-    <tr><td class="paramname">salt</td><td>A buffer filled with random bytes. </td></tr>
+    <tr><td class="paramname">salt</td><td>A nonce equal in length to the SHA-256 digest length. </td></tr>
   </table>
   </dd>
 </dl>
