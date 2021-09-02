@@ -215,7 +215,7 @@ enum aes_padding_schemes {
  * @def hashlib_AESCiphertextSize()
  *
  * Defines a macro to return the size of an AES ciphertext given a plaintext length.
- * Does not include an IV-prepend. See hashlib_AESCiphertextIVLen() for that.
+ * Does not include space for  an IV-prepend. See hashlib_AESCiphertextIVLen() for that.
  *
  * @param len The length of the plaintext.
  *********************************************************************************************/
@@ -223,35 +223,35 @@ enum aes_padding_schemes {
 	((((len)%AES_BLOCKSIZE)==0) ? (len) + AES_BLOCKSIZE : (((len)>>4) + 1)<<4)
 	
 /************************************************************************************************************************
- * @def hashlib_AESCiphertextIVLen()
+ * @def hashlib_AESCiphertextIVSize()
  *
  * Defines a macro to return the size of an AES ciphertext with with an extra block added for the IV.
  *
  * @param len The length of the plaintext.
  ************************************************************************************************************************/
- #define hashlib_AESCiphertextIVLen(len)	(hashlib_AESCiphertextSize((len)) + AES_IV_SIZE)
+ #define hashlib_AESCiphertextIVSize(len)	(hashlib_AESCiphertextSize((len)) + AES_IV_SIZE)
  
  /******************************************************************************************************
-  * @def hashlib_AESAuthMacCiphertextLen()
+  * @def hashlib_AESAuthMacCiphertextSize()
   *
   * Defines a macro to return the size of an AES ciphertext with CBC-MAC authentication.
   * This includes two extra blocks- one for the IV and another for the MAC digest.
   *
   * @param len The length of the plaintext.
   ******************************************************************************************************/
-  #define hashlib_AESAuthMacCiphertextLen(len) \
-	(hashlib_AESCiphertextIVLen((len)) + AES_MAC_SIZE)
+  #define hashlib_AESAuthMacCiphertextSize(len) \
+	(hashlib_AESCiphertextIVSize((len)) + AES_MAC_SIZE)
 	
 /******************************************************************************************************
- * @def hashlib_AESAuthSha256CiphertextLen()
+ * @def hashlib_AESAuthSha256CiphertextSize()
  *
  * Defines a macro to return the size of an AES ciphertext with SHA-256 authentication.
  * This includes one extra block for the IV and an additional 32 bytes for the SHA-256 digest.
  *
  * @param len The length of the plaintext.
   ******************************************************************************************************/
-  #define hashlib_AESAuthSha256CiphertextLen(len) \
-	(hashlib_AESCiphertextLen((len)) + SHA256_DIGEST_LEN)
+  #define hashlib_AESAuthSha256CiphertextSize(len) \
+	(hashlib_AESCiphertextIVSize((len)) + SHA256_DIGEST_LEN)
 
 /***************************************************************************************
  * @def hashlib_AESKeygen()
