@@ -136,7 +136,11 @@ Provides several cryptographic implementations for the TI-\/84+ CE graphing calc
 \end{DoxyItemize}
 
 \begin{DoxyAuthor}{Author}
-Anthony \char`\"{}\+ACagliano\char`\"{} Cagliano 
+Anthony {\itshape ACagliano} Cagliano 
+
+Adam {\itshape beck} Beckingham 
+
+commandblockguy 
 \end{DoxyAuthor}
 
 
@@ -735,18 +739,23 @@ The decoded length of the plaintext.
 
 RSA-\/\+OAEP padding scheme. 
 
-Applies the RSA-\/\+OAEP padding scheme as indicated in PKCS\#1 v2.\+2. This is intended for use prior to RSA encryption.~\newline
-$\vert$ $<$-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/--- modulus size -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/---$>$ $\vert$ ~\newline
-$\vert$-- 0x00 --$\vert$-- salt --$\vert$-- auth hash --$\vert$-- 0x00...padding --$\vert$-- 0x01 --$\vert$-- message --$\vert$ ~\newline
- $\vert$ $\vert$-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/---$\vert$-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/---$\vert$ ~\newline
- $\vert$ $\vert$ ~\newline
- $\vert$ -\/-\/-\/-\/-\/--- MGF1-\/\+SHA256 -\/-\/-\/-\/---$>$ XOR ~\newline
- $\vert$ $\vert$ ~\newline
- XOR $<$-\/-\/-\/-\/-\/--- MGF1-\/\+SHA256 -\/-\/-\/-\/-\/-\/---$\vert$ ~\newline
- $\vert$ $\vert$ ~\newline
-$\vert$-- 0x00 --$\vert$-\/ msalt -\/$\vert$-\/-\/-\/-\/-\/--- masked message, padding, and auth hash -\/-\/-\/-\/-\/---$\vert$ ~\newline
-$\vert$$<$-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/--- modulus size -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/---$>$ $\vert$ ~\newline
- 
+Applies the RSA-\/\+OAEP padding scheme as indicated in PKCS\#1 v2.\+2. This is intended for use prior to RSA encryption. 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{| <-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/ modulus size -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/> |}
+\DoxyCodeLine{|-\/-\/ 0x00 -\/-\/|-\/-\/ salt -\/-\/|-\/-\/ auth hash -\/-\/|-\/-\/ 0x00...padding -\/-\/|-\/-\/ 0x01 -\/-\/|-\/-\/ message -\/-\/|}
+\DoxyCodeLine{           |          |-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/|-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/|}
+\DoxyCodeLine{          |                                       |}
+\DoxyCodeLine{          | -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/ MGF1-\/SHA256 -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/>XOR}
+\DoxyCodeLine{          |                                       |}
+\DoxyCodeLine{         XOR <-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/ MGF1-\/SHA256 -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/|}
+\DoxyCodeLine{          |                                       |}
+\DoxyCodeLine{|-\/-\/ 0x00 -\/-\/|-\/-\/ msalt -\/-\/|-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/ masked message, padding, and auth hash -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/|}
+\DoxyCodeLine{|<-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/ modulus size -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/> |}
+
+\end{DoxyCode}
+
+
+
 \begin{DoxyParams}{Parameters}
 {\em plaintext} & Pointer to a buffer containing the data to OAEP-\/encode. \\
 \hline

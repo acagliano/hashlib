@@ -10,7 +10,9 @@
  *	- RSA public key encryption, modulus <= 2048 bits
  *	- RSA Padding: RSA-OAEP via PKCS#7 v2.2, RSA-PSS via PKCS#7 v1.5
  *
- *	@author Anthony "ACagliano" Cagliano
+ *	@author Anthony @e ACagliano Cagliano
+ *	@author Adam @e beck Beckingham
+ *	@author commandblockguy
  */
 
 #ifndef HASHLIB_H
@@ -406,17 +408,19 @@ enum _ssl_sig_modes {
  * @brief RSA-OAEP padding scheme
  *
  * Applies the RSA-OAEP padding scheme as indicated in PKCS#1 v2.2.
- * This is intended for use prior to RSA encryption.\n
- * | <------------------------------------- modulus size ---------------------------------------> |	\n
- * |-- 0x00 --|-- salt --|-- auth hash --|-- 0x00...padding --|-- 0x01 --|-- message --|	\n
- *		     |     |---------------------------------------|-------------------------------------|	\n
- *			 |	     					  |						\n
- *			 | -------- MGF1-SHA256 ------->  XOR						\n
- *			 |					      	  |						\n
- *		   XOR <-------- MGF1-SHA256 ---------|						\n
- *			 |					           |						\n
- * |-- 0x00 --|- msalt -|-------- masked message, padding, and auth hash --------|	\n
- * |<------------------------------------- modulus size ---------------------------------------> |	\n
+ * This is intended for use prior to RSA encryption.
+ * @code
+ * | <-------------------------------- modulus size ---------------------------------> |
+ * |-- 0x00 --|-- salt --|-- auth hash --|-- 0x00...padding --|-- 0x01 --|-- message --|
+ *	          |          |----------------------------|--------------------------------|
+ *			  |	     					 			  |
+ *			  | ------------ MGF1-SHA256 ----------->XOR
+ *			  |					      				  |
+ *		     XOR <----------- MGF1-SHA256 ------------|
+ *			  |					           			  |
+ * |-- 0x00 --|-- msalt --|---------- masked message, padding, and auth hash ----------|
+ * |<-------------------------------- modulus size ----------------------------------> |
+ * @endcode
  *
  * @param plaintext Pointer to a buffer containing the data to OAEP-encode.
  * @param len Length of data at @b plaintext to encode.

@@ -224,7 +224,11 @@ Functions</h2></td></tr>
 <li>RSA public key encryption, modulus &lt;= 2048 bits</li>
 <li>RSA Padding: RSA-OAEP via PKCS#7 v2.2, RSA-PSS via PKCS#7 v1.5</li>
 </ul>
-<dl class="section author"><dt>Author</dt><dd>Anthony "ACagliano" Cagliano </dd></dl>
+<dl class="section author"><dt>Author</dt><dd>Anthony <em>ACagliano</em> Cagliano </dd>
+<dd>
+Adam <em>beck</em> Beckingham </dd>
+<dd>
+commandblockguy </dd></dl>
 </div><h2 class="groupheader">Macro Definition Documentation</h2>
 <a id="a2841462d8933d0982e3ea13dc5284d7c"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a2841462d8933d0982e3ea13dc5284d7c">&#9670;&nbsp;</a></span>AES128_KEYLEN</h2>
@@ -1341,18 +1345,17 @@ For the most secure authenticated encryption scheme, use "encrypt-then-MAC". Thi
 </div><div class="memdoc">
 
 <p>RSA-OAEP padding scheme. </p>
-<p>Applies the RSA-OAEP padding scheme as indicated in PKCS#1 v2.2. This is intended for use prior to RSA encryption.<br  />
-| &lt;----------------------------------&mdash; modulus size ------------------------------------&mdash;&gt; | <br  />
-|&ndash; 0x00 &ndash;|&ndash; salt &ndash;|&ndash; auth hash &ndash;|&ndash; 0x00...padding &ndash;|&ndash; 0x01 &ndash;|&ndash; message &ndash;| <br  />
- | |------------------------------------&mdash;|----------------------------------&mdash;| <br  />
- | | <br  />
- | -----&mdash; MGF1-SHA256 ----&mdash;&gt; XOR <br  />
- | | <br  />
- XOR &lt;-----&mdash; MGF1-SHA256 ------&mdash;| <br  />
- | | <br  />
-|&ndash; 0x00 &ndash;|- msalt -|-----&mdash; masked message, padding, and auth hash -----&mdash;| <br  />
-|&lt;----------------------------------&mdash; modulus size ------------------------------------&mdash;&gt; | <br  />
- </p><dl class="params"><dt>Parameters</dt><dd>
+<p>Applies the RSA-OAEP padding scheme as indicated in PKCS#1 v2.2. This is intended for use prior to RSA encryption. </p><div class="fragment"><div class="line">| &lt;-------------------------------- modulus size ---------------------------------&gt; |</div>
+<div class="line">|-- 0x00 --|-- salt --|-- auth hash --|-- 0x00...padding --|-- 0x01 --|-- message --|</div>
+<div class="line">           |          |----------------------------|--------------------------------|</div>
+<div class="line">          |                                       |</div>
+<div class="line">          | ------------ MGF1-SHA256 -----------&gt;XOR</div>
+<div class="line">          |                                       |</div>
+<div class="line">         XOR &lt;----------- MGF1-SHA256 ------------|</div>
+<div class="line">          |                                       |</div>
+<div class="line">|-- 0x00 --|-- msalt --|---------- masked message, padding, and auth hash ----------|</div>
+<div class="line">|&lt;-------------------------------- modulus size ----------------------------------&gt; |</div>
+</div><!-- fragment --><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">plaintext</td><td>Pointer to a buffer containing the data to OAEP-encode. </td></tr>
     <tr><td class="paramname">len</td><td>Length of data at <b>plaintext</b> to encode. </td></tr>
