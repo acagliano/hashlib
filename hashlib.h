@@ -476,7 +476,7 @@ size_t hashlib_RSADecodeOAEP(
  * @endcode
  *
  * @param plaintext Pointer to buffer containing data to encode.
- * @param len Length of data at @param plaintext to encode.
+ * @param len Length of data at @b plaintext to encode.
  * @param outbuf Pointer to buffer to write encoded plaintext to.
  * @param modulus_len The length of the modulus to pad for.
  * @param salt A buffer filled with random bytes.
