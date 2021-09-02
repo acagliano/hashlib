@@ -724,7 +724,8 @@ The decoded length of the plaintext.
 
 RSA-\/\+OAEP padding scheme. 
 
-Applies the RSA-\/\+OAEP padding scheme as indicated in PKCS\#1 v2.\+2. This is intended for use prior to RSA encryption. $\vert$ $<$-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/--- modulus size -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/---$>$ $\vert$ ~\newline
+Applies the RSA-\/\+OAEP padding scheme as indicated in PKCS\#1 v2.\+2. This is intended for use prior to RSA encryption.~\newline
+$\vert$ $<$-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/--- modulus size -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/---$>$ $\vert$ ~\newline
 $\vert$-- 0x00 --$\vert$-- salt --$\vert$-- auth hash --$\vert$-- 0x00...padding --$\vert$-- 0x01 --$\vert$-- message --$\vert$ ~\newline
  $\vert$ $\vert$-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/---$\vert$-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/---$\vert$ ~\newline
  $\vert$ $\vert$ ~\newline
@@ -767,7 +768,8 @@ The padded length of the plaintext.
 
 RSA-\/\+PSS padding scheme. 
 
-Applies the RSA-\/\+PSS padding scheme as indicated in PKCS\#1 v1.\+5. $\vert$-\/-\/--- Message -\/-\/---$\vert$ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/--- SHA-\/256 -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/---$>$$\vert$ ~\newline
+Applies the RSA-\/\+PSS padding scheme as indicated in PKCS\#1 v1.\+5.~\newline
+$\vert$-\/-\/--- Message -\/-\/---$\vert$ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/--- SHA-\/256 -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/---$>$$\vert$ ~\newline
  $\vert$ ~\newline
 $\vert$-- 0x00... padding --$\vert$-- 0x01 --$\vert$-- salt --$\vert$ $\vert$-- 8 bytes 0x00 --$\vert$-- m\+Hash --$\vert$-- salt --$\vert$ ~\newline
 $\vert$-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/---$\vert$ $\vert$-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/---$\vert$ ~\newline

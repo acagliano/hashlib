@@ -404,7 +404,7 @@ enum _ssl_sig_modes {
  * @brief RSA-OAEP padding scheme
  *
  * Applies the RSA-OAEP padding scheme as indicated in PKCS#1 v2.2.
- * This is intended for use prior to RSA encryption.
+ * This is intended for use prior to RSA encryption.\n
  * | <------------------------------------- modulus size ---------------------------------------> |	\n
  * |-- 0x00 --|-- salt --|-- auth hash --|-- 0x00...padding --|-- 0x01 --|-- message --|	\n
  *		     |     |---------------------------------------|-------------------------------------|	\n
@@ -454,7 +454,7 @@ size_t hashlib_RSADecodeOAEP(
 /************************************************************************************************************************
  * @brief RSA-PSS padding scheme
  *
- * Applies the RSA-PSS padding scheme  as indicated in PKCS#1 v1.5.
+ * Applies the RSA-PSS padding scheme  as indicated in PKCS#1 v1.5.\n
  * |----- Message -----|  ------------------------- SHA-256 ------------------------->|				\n
  * 									  				 |				\n
  * |-- 0x00... padding --|-- 0x01 --|-- salt --|		|-- 8 bytes 0x00 --|-- mHash --|-- salt --|		\n

@@ -1318,7 +1318,8 @@ For the most secure authenticated encryption scheme, use "encrypt-then-MAC". Thi
 </div><div class="memdoc">
 
 <p>RSA-OAEP padding scheme. </p>
-<p>Applies the RSA-OAEP padding scheme as indicated in PKCS#1 v2.2. This is intended for use prior to RSA encryption. | &lt;----------------------------------&mdash; modulus size ------------------------------------&mdash;&gt; | <br  />
+<p>Applies the RSA-OAEP padding scheme as indicated in PKCS#1 v2.2. This is intended for use prior to RSA encryption.<br  />
+| &lt;----------------------------------&mdash; modulus size ------------------------------------&mdash;&gt; | <br  />
 |&ndash; 0x00 &ndash;|&ndash; salt &ndash;|&ndash; auth hash &ndash;|&ndash; 0x00...padding &ndash;|&ndash; 0x01 &ndash;|&ndash; message &ndash;| <br  />
  | |------------------------------------&mdash;|----------------------------------&mdash;| <br  />
  | | <br  />
@@ -1391,7 +1392,8 @@ For the most secure authenticated encryption scheme, use "encrypt-then-MAC". Thi
 </div><div class="memdoc">
 
 <p>RSA-PSS padding scheme. </p>
-<p>Applies the RSA-PSS padding scheme as indicated in PKCS#1 v1.5. |--&mdash; Message --&mdash;| ----------------------&mdash; SHA-256 ----------------------&mdash;&gt;| <br  />
+<p>Applies the RSA-PSS padding scheme as indicated in PKCS#1 v1.5.<br  />
+|--&mdash; Message --&mdash;| ----------------------&mdash; SHA-256 ----------------------&mdash;&gt;| <br  />
  | <br  />
 |&ndash; 0x00... padding &ndash;|&ndash; 0x01 &ndash;|&ndash; salt &ndash;| |&ndash; 8 bytes 0x00 &ndash;|&ndash; mHash &ndash;|&ndash; salt &ndash;| <br  />
 |-----------------------------------------------&mdash;| |-----------------------------------------------&mdash;| <br  />
