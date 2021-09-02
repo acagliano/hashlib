@@ -189,15 +189,22 @@ enum aes_padding_schemes {
  ************************************************************/
 #define AES_MAC_SIZE	AES_BLOCKSIZE
 
-/**********************************************************************
+/******************************************************
  * @def AES128_KEYLEN
- * @def AES192_KEYLEN
- * @def AES256_KEYLEN
- *
- * Defines the byte-length of an AES key of given bit length.
- ***********************************************************************/
+ * Defines the byte-length of a 128-bit AES key
+ ******************************************************/
 #define AES128_KEYLEN	16
-#define AES192_KEYLEN	24
+
+/******************************************************
+ * @def AES192_KEYLEN
+ * Defines the byte-length of a 192-bit AES key
+ ******************************************************/
+ #define AES192_KEYLEN	24
+ 
+/*****************************************************
+ * @def AES256_KEYLEN
+ * Defines the byte-length of a 256-bit AES key
+ *****************************************************/
 #define AES256_KEYLEN	32
 
 /***************************************************************************
@@ -210,7 +217,9 @@ enum aes_padding_schemes {
 	
 /************************************************************************************************************************
  * @def hashlib_AESCiphertextLen()
+ *
  * Defines a macro to return the size of an AES ciphertext.
+ *
  * @param len The length of the plaintext.
  * @note This is the padded length of the plaintext, plus an additional block for the IV to be prepended.
  ************************************************************************************************************************/
@@ -218,7 +227,9 @@ enum aes_padding_schemes {
  
  /******************************************************************************************************
   * @def hashlib_AESAuthMacCiphertextLen()
+  *
   * Defines a macro to return the size of an AES ciphertext with CBC-MAC authentication.
+  *
   * @param len The length of the plaintext.
   * @note This is the ciphertext length from the previous macro with an additional block
   * 	for the CBC-MAC of the ciphertext to be appended.
@@ -228,7 +239,9 @@ enum aes_padding_schemes {
 	
 /******************************************************************************************************
  * @def hashlib_AESAuthSha256CiphertextLen()
+ *
  * Defines a macro to return the size of an AES ciphertext with SHA-256 authentication.
+ *
  * @param len The length of the plaintext.
  * @note This is the ciphertext length from the previous macro with an additional 32 bytes
  * 		for the SHA-256 of the ciphertext to be appended.
@@ -244,7 +257,6 @@ enum aes_padding_schemes {
  ***************************************************************************************/
 #define hashlib_AESKeygen(key, keylen)	hashlib_RandomBytes((key), (keylen))
 
-
 /*********************************************************************************
  * @brief AES import key to key schedule context
  * @param key Pointer to a buffer containing the AES key.
@@ -259,7 +271,7 @@ bool hashlib_AESLoadKey(const uint8_t* key, const aes_ctx* ks, size_t keylen);
  * @param block_in	Pointer to block of data to encrypt.
  * @param block_out Pointer to buffer to write encrypted block.
  * @param ks Pointer to an AES key schedule context.
- * @note @param block_in and @param block_out are aliasable.
+ * @note @b block_in and @b block_out are aliasable.
  * @return True if encryption succeeded. False if failed.
  * @warning ECB-mode ciphers are insecure (see many-time pad vulnerability)
  * 		These functions are exposed in case a user wants to construct a cipher mode other than CBC or CTR.
@@ -274,6 +286,7 @@ bool hashlib_AESEncryptBlock(const uint8_t* block_in,
  *	@param block_in Pointer to block of data to decrypt.
  *	@param block_out Pointer to buffer to write decrypted block.
  *	@param ks Pointer to an AES key schedule context.
+ *	@note @b block_in and @b block_out are aliasable.
  *	@return True if encryption succeeded. False if an error occured.
  *	@warning ECB-mode ciphers are insecure (see many-time pad vulnerability)
  *		These functions are exposed in case a user wants to construct a cipher mode other than CBC or CTR.
@@ -284,15 +297,15 @@ bool hashlib_AESDecryptBlock(const uint8_t* block_in,
 							 const aes_ctx* ks);
 
 /**
- * @brief AES Encryptor Function
- *
+ * @brief General-Purpose AES Encryption
  * @param plaintext Pointer to data to encrypt.
  * @param len Length of data at @param plaintext to encrypt.
  * @param ciphertext Pointer to buffer to write encrypted data to.
  * @param ks Pointer to an AES key schedule context.
  * @param iv Pointer to an initialization vector (a nonce of length equal to the block size).
  * @param ciphermode The cipher mode to use. Can be either AES_MODE_CBC or AES_MODE_CTR.
- * @note If cipher mode CBC is used, @param len must be a multiple of the blocksize.
+ * @note @b plaintext and @b ciphertext are aliasable.
+ * @note If cipher mode CBC is used, @b len must be a multiple of the blocksize.
  * 		You can pass the plaintext through a padding function prior to calling this function.
  * 		@see hashlib_AESPadMessage()
  * @return True if the encryption succeded. False if an error occured.
@@ -305,15 +318,15 @@ bool hashlib_AESEncrypt(const uint8_t* plaintext,
 						uint8_t ciphermode);
 
 /**
- * @brief AES Decryptor Function
- *
+ * @brief General-Purpose AES Decryption
  * @param ciphertext Pointer to data to decrypt.
  * @param len Length of data at @param ciphertext to decrypt.
  * @param plaintext Pointer to buffer to write decryped data to.
  * @param ks Pointer to an AES key schedule context.
  * @param iv Pointer to an initialization vector (a nonce of length equal to the block size).
- * @param ciphermode The cipher mode to use. Can be either AES_MODE_CBC or AES_MODE_CTR.
- * @note the IV should be the same as what is used for encryption.
+ * @param ciphermode The cipher mode to use. Can be either  #AES_MODE_CBC or #AES_MODE_CTR.
+ * @note @b plaintext and @b ciphertext are aliasable.
+ * @note @b IV should be the same as what is used for encryption.
  * @return True if the encryption succeded. False if an error occured.
  */
 bool hashlib_AESDecrypt(const uint8_t* ciphertext,
@@ -346,13 +359,12 @@ bool hashlib_AESOutputMac(
 
 /**
  * @brief Pads a plaintext according to the specified AES padding scheme.
- *
  * @param plaintext Pointer to buffer containing the data to pad.
  * @param len Length of data at @param plaintext to pad.
  * @param outbuf Pointer to buffer to write padded data.
- * 	@note @param outbuf and @param plaintext are aliasable.
  * @param schm The AES padding scheme to use.
  * @return The padded length of the message.
+ * @note @b plaintext and @b outbuf are aliasable.
  */
 size_t hashlib_AESPadMessage(
     const uint8_t* plaintext,
@@ -362,12 +374,11 @@ size_t hashlib_AESPadMessage(
 
 /**
  * @brief Strips the padding from a message according to the specified AES padding scheme.
- *
  * @param plaintext Pointer to buffer containing the data to strip.
  * @param len Length of data at @param plaintext to strip.
  * @param outbuf Pointer to buffer to write stripped data.
- * 	@note @param outbuf and @param plaintext are aliasable.
  * @param schm The AES padding scheme to use.
+ * @note @b plaintext and @b outbuf are aliasable.
  * @return The length of the message with padding removed.
  */
 size_t hashlib_AESStripPadding(
@@ -376,24 +387,13 @@ size_t hashlib_AESStripPadding(
     uint8_t* outbuf,
     uint8_t schm);
 
-
-/********************************************************************************************
- * @brief RSA Pubkey and SSL Verification Implementation
- *
- * work-in-progress
- * supports modulus size from 1024 to 2048 bits
- * public exponent e = 65537, hardcoded
- *
- * For compatibility with server-side decryption/decode, please make sure
- * your encoding algorithm specs on the host match those hardcoded by this library.
- * 	- Hashing oracle where applicable: SHA-256.
- * 	- Mask Generation Function where applicable: MGF1, using SHA-256
-*/
-
-/** SSL Signature Algorithms */
+// RSA Public Key Encryption
+/*************************************************************************************************
+ * @enum SSL signature algorithms
+****************************************************************************************************/
 enum _ssl_sig_modes {
-	SSLSIG_RSA_SHA256,
-	SSLSIG_ECDSA		// will likely be a long way off
+	SSLSIG_RSA_SHA256,		/**< RSA with SHA-256 signature algorithm */
+	SSLSIG_ECDSA			/**< ECDSA (unimplemented, likely a long way off) */
 };
 
 /**
@@ -401,7 +401,6 @@ enum _ssl_sig_modes {
  *
  * Applies the RSA-OAEP padding scheme as indicated in PKCS#1 v2.2.
  * This is intended for use prior to RSA encryption.
- *
  * | <------------------------------------- modulus size ---------------------------------------> |	\n
  * |-- 0x00 --|-- salt --|-- auth hash --|-- 0x00...padding --|-- 0x01 --|-- message --|	\n
  *		     |     |---------------------------------------|-------------------------------------|	\n
@@ -416,11 +415,10 @@ enum _ssl_sig_modes {
  * @param plaintext Pointer to a buffer containing the data to OAEP-encode.
  * @param len Length of data at @param plaintext to encode.
  * @param outbuf Pointer to buffer large enough to hold the padded data.
- * 	@note Buffer must be at least equal to @param modulus_len.
  * @param modulus_len The byte length of the modulus to pad for.
  * @param auth Pointer to an authentication string (similar to a password) to include in the encoding.
- * 	@note Both sender and reciever must know this string if one is provided.
- * 	@note Pass NULL to omit.
+ * @note @b outbuf must be at least @b modulus_len bytes large.
+ * @note @b auth both sender and receiver must know this string. Pass NULL to omit.
  * @return The padded length of the plaintext.
  */
 size_t hashlib_RSAEncodeOAEP(
@@ -438,10 +436,9 @@ size_t hashlib_RSAEncodeOAEP(
  * @param plaintext Pointer to a buffer containing the data to OAEP-decode.
  * @param len Length of data at @param plaintext to decode.
  * @param outbuf Pointer to buffer large enough to hold the decoded data.
- * 	@note Buffer should be equal to @param len minus 34, in bytes.
  * @param auth Pointer to an authentication string (similar to a password) to include in the encoding.
- * 	@note Both sender and reciever must know this string if one is provided.
- * 	@note Pass NULL to omit.
+ * @note @b outbuf must be at least @b len-34 bytes large.
+ * @note @b auth Both sender and reciever must know this string if one is provided. Pass NULL to omit.
  * @return The decoded length of the plaintext.
 */
 size_t hashlib_RSADecodeOAEP(
@@ -454,7 +451,6 @@ size_t hashlib_RSADecodeOAEP(
  * @brief RSA-PSS padding scheme
  *
  * Applies the RSA-PSS padding scheme  as indicated in PKCS#1 v1.5.
- *
  * |----- Message -----|  ------------------------- SHA-256 ------------------------->|				\n
  * 									  				 |				\n
  * |-- 0x00... padding --|-- 0x01 --|-- salt --|		|-- 8 bytes 0x00 --|-- mHash --|-- salt --|		\n
@@ -471,12 +467,11 @@ size_t hashlib_RSADecodeOAEP(
  * @param plaintext Pointer to buffer containing data to encode.
  * @param len Length of data at @param plaintext to encode.
  * @param outbuf Pointer to buffer to write encoded plaintext to.
- * 	@note Must be at least equal to @param modulus_len.
  * @param modulus_len The length of the modulus to pad for.
  * @param salt A buffer filled with random bytes.
- * 	@note If you are trying to generate a signature, pass NULL to generate a new salt.
- * 	@note If you are trying to validate a signature, you should be using hashlib_SSLVerifySignature() instead.
- * 		@see hashlib_SSLVerifySignature
+ * @note @b outbuf must be at least @b modulus_len bytes large.
+ * @note If you are trying to generate a signature, pass NULL to generate a new salt.
+ * @note If you are trying to validate a signature, use hashlib_SSLVerifySignature().
  * @return the padded length of the plaintext.
  */
 size_t hashlib_RSAEncodePSS(

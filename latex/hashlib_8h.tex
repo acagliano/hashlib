@@ -34,11 +34,9 @@ struct \mbox{\hyperlink{struct__aes__ctx}{\+\_\+aes\+\_\+ctx}}
 \item 
 \#define \mbox{\hyperlink{hashlib_8h_acf32bb8a8d871f4cf33f26c8b2a977fb}{AES\+\_\+\+MAC\+\_\+\+SIZE}}~\mbox{\hyperlink{hashlib_8h_afab0742642db9c0609c00bf8a54f386f}{AES\+\_\+\+BLOCKSIZE}}
 \item 
-\mbox{\Hypertarget{hashlib_8h_a2841462d8933d0982e3ea13dc5284d7c}\label{hashlib_8h_a2841462d8933d0982e3ea13dc5284d7c}} 
-\#define {\bfseries AES128\+\_\+\+KEYLEN}~16
+\#define \mbox{\hyperlink{hashlib_8h_a2841462d8933d0982e3ea13dc5284d7c}{AES128\+\_\+\+KEYLEN}}~16
 \item 
-\mbox{\Hypertarget{hashlib_8h_a37ba5c621bf4af2ddcb851e179e21623}\label{hashlib_8h_a37ba5c621bf4af2ddcb851e179e21623}} 
-\#define {\bfseries AES192\+\_\+\+KEYLEN}~24
+\#define \mbox{\hyperlink{hashlib_8h_a37ba5c621bf4af2ddcb851e179e21623}{AES192\+\_\+\+KEYLEN}}~24
 \item 
 \#define \mbox{\hyperlink{hashlib_8h_a7bab8a778d065da4cc561f4813994f03}{AES256\+\_\+\+KEYLEN}}~32
 \item 
@@ -77,10 +75,10 @@ enum \mbox{\hyperlink{hashlib_8h_a9933dec76c43b37331782bdd16ebc4a3}{aes\+\_\+pad
 , \mbox{\hyperlink{hashlib_8h_a9933dec76c43b37331782bdd16ebc4a3a030a31bd034c7d20a80341ede899a6b7}{SCHM\+\_\+\+ISO2}}
  \}
 \item 
-enum \mbox{\hyperlink{hashlib_8h_a5aedfaf159c585059ba8914b59307c21}{\+\_\+ssl\+\_\+sig\+\_\+modes}} \{ {\bfseries SSLSIG\+\_\+\+RSA\+\_\+\+SHA256}
-, {\bfseries SSLSIG\+\_\+\+ECDSA}
+enum \mbox{\hyperlink{hashlib_8h_a5aedfaf159c585059ba8914b59307c21}{\+\_\+ssl\+\_\+sig\+\_\+modes}} \{ \mbox{\hyperlink{hashlib_8h_a5aedfaf159c585059ba8914b59307c21a096ad031cbdad23c8d4053d9b7a3db31}{SSLSIG\+\_\+\+RSA\+\_\+\+SHA256}}
+, \mbox{\hyperlink{hashlib_8h_a5aedfaf159c585059ba8914b59307c21a3b885e134e618304b93f54b88eff9b25}{SSLSIG\+\_\+\+ECDSA}}
  \}
-\begin{DoxyCompactList}\small\item\em RSA Pubkey and SSL Verification Implementation. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{DoxyCompactItemize}
 \doxysubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
@@ -105,9 +103,9 @@ bool \mbox{\hyperlink{hashlib_8h_a6987499522b3b85b8ce4b272fadf75dd}{hashlib\+\_\
 bool \mbox{\hyperlink{hashlib_8h_a5dd423839387f0955b6061986c92a2ac}{hashlib\+\_\+\+AESDecrypt\+Block}} (const uint8\+\_\+t $\ast$block\+\_\+in, uint8\+\_\+t $\ast$block\+\_\+out, const \mbox{\hyperlink{struct__aes__ctx}{aes\+\_\+ctx}} $\ast$ks)
 \begin{DoxyCompactList}\small\item\em AES Single-\/\+Block Decryption (ECB Mode) \end{DoxyCompactList}\item 
 bool \mbox{\hyperlink{hashlib_8h_a745c5c4d6bdc248f20b18c7b848d8b6b}{hashlib\+\_\+\+AESEncrypt}} (const uint8\+\_\+t $\ast$plaintext, size\+\_\+t len, uint8\+\_\+t $\ast$ciphertext, const \mbox{\hyperlink{struct__aes__ctx}{aes\+\_\+ctx}} $\ast$ks, const uint8\+\_\+t $\ast$iv, uint8\+\_\+t ciphermode)
-\begin{DoxyCompactList}\small\item\em AES Encryptor Function. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em General-\/\+Purpose AES Encryption. \end{DoxyCompactList}\item 
 bool \mbox{\hyperlink{hashlib_8h_a2b904b543405fdf8f283d028ce0d1da7}{hashlib\+\_\+\+AESDecrypt}} (const uint8\+\_\+t $\ast$ciphertext, size\+\_\+t len, uint8\+\_\+t $\ast$plaintext, const \mbox{\hyperlink{struct__aes__ctx}{aes\+\_\+ctx}} $\ast$ks, const uint8\+\_\+t $\ast$iv, uint8\+\_\+t ciphermode)
-\begin{DoxyCompactList}\small\item\em AES Decryptor Function. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em General-\/\+Purpose AES Decryption. \end{DoxyCompactList}\item 
 bool \mbox{\hyperlink{hashlib_8h_a6ca5ecde1fd675effbc4a29eac35a903}{hashlib\+\_\+\+AESOutput\+Mac}} (const uint8\+\_\+t $\ast$plaintext, size\+\_\+t len, uint8\+\_\+t $\ast$mac, const \mbox{\hyperlink{struct__aes__ctx}{aes\+\_\+ctx}} $\ast$ks)
 \begin{DoxyCompactList}\small\item\em Returns a message authentication code (MAC) for an AES message. \end{DoxyCompactList}\item 
 size\+\_\+t \mbox{\hyperlink{hashlib_8h_aebac98a8537f3353aac9fbae5ed67f29}{hashlib\+\_\+\+AESPad\+Message}} (const uint8\+\_\+t $\ast$plaintext, size\+\_\+t len, uint8\+\_\+t $\ast$outbuf, uint8\+\_\+t schm)
@@ -147,13 +145,25 @@ Anthony \char`\"{}\+ACagliano\char`\"{} Cagliano
 
 
 \doxysubsection{Macro Definition Documentation}
-\mbox{\Hypertarget{hashlib_8h_a7bab8a778d065da4cc561f4813994f03}\label{hashlib_8h_a7bab8a778d065da4cc561f4813994f03}} 
+\mbox{\Hypertarget{hashlib_8h_a2841462d8933d0982e3ea13dc5284d7c}\label{hashlib_8h_a2841462d8933d0982e3ea13dc5284d7c}} 
+\index{hashlib.h@{hashlib.h}!AES128\_KEYLEN@{AES128\_KEYLEN}}
+\index{AES128\_KEYLEN@{AES128\_KEYLEN}!hashlib.h@{hashlib.h}}
+\doxysubsubsection{\texorpdfstring{AES128\_KEYLEN}{AES128\_KEYLEN}}
+{\footnotesize\ttfamily \#define AES128\+\_\+\+KEYLEN~16}
+
+Defines the byte-\/length of a 128-\/bit AES key \mbox{\Hypertarget{hashlib_8h_a37ba5c621bf4af2ddcb851e179e21623}\label{hashlib_8h_a37ba5c621bf4af2ddcb851e179e21623}} 
+\index{hashlib.h@{hashlib.h}!AES192\_KEYLEN@{AES192\_KEYLEN}}
+\index{AES192\_KEYLEN@{AES192\_KEYLEN}!hashlib.h@{hashlib.h}}
+\doxysubsubsection{\texorpdfstring{AES192\_KEYLEN}{AES192\_KEYLEN}}
+{\footnotesize\ttfamily \#define AES192\+\_\+\+KEYLEN~24}
+
+Defines the byte-\/length of a 192-\/bit AES key \mbox{\Hypertarget{hashlib_8h_a7bab8a778d065da4cc561f4813994f03}\label{hashlib_8h_a7bab8a778d065da4cc561f4813994f03}} 
 \index{hashlib.h@{hashlib.h}!AES256\_KEYLEN@{AES256\_KEYLEN}}
 \index{AES256\_KEYLEN@{AES256\_KEYLEN}!hashlib.h@{hashlib.h}}
 \doxysubsubsection{\texorpdfstring{AES256\_KEYLEN}{AES256\_KEYLEN}}
 {\footnotesize\ttfamily \#define AES256\+\_\+\+KEYLEN~32}
 
-Defines the byte-\/length of an AES key of given bit length. \mbox{\Hypertarget{hashlib_8h_afab0742642db9c0609c00bf8a54f386f}\label{hashlib_8h_afab0742642db9c0609c00bf8a54f386f}} 
+Defines the byte-\/length of a 256-\/bit AES key \mbox{\Hypertarget{hashlib_8h_afab0742642db9c0609c00bf8a54f386f}\label{hashlib_8h_afab0742642db9c0609c00bf8a54f386f}} 
 \index{hashlib.h@{hashlib.h}!AES\_BLOCKSIZE@{AES\_BLOCKSIZE}}
 \index{AES\_BLOCKSIZE@{AES\_BLOCKSIZE}!hashlib.h@{hashlib.h}}
 \doxysubsubsection{\texorpdfstring{AES\_BLOCKSIZE}{AES\_BLOCKSIZE}}
@@ -177,7 +187,9 @@ Defines the length of the AES CBC-\/\+MAC digest. \mbox{\Hypertarget{hashlib_8h_
 \doxysubsubsection{\texorpdfstring{hashlib\_AESAuthMacCiphertextLen}{hashlib\_AESAuthMacCiphertextLen}}
 {\footnotesize\ttfamily \#define hashlib\+\_\+\+AESAuth\+Mac\+Ciphertext\+Len(\begin{DoxyParamCaption}\item[{}]{len }\end{DoxyParamCaption})~ (\mbox{\hyperlink{hashlib_8h_a140213b514394151a1d6ba410ec32bc4}{hashlib\+\_\+\+AESCiphertext\+Len}}((len)) + \mbox{\hyperlink{hashlib_8h_acf32bb8a8d871f4cf33f26c8b2a977fb}{AES\+\_\+\+MAC\+\_\+\+SIZE}})}
 
-Defines a macro to return the size of an AES ciphertext with CBC-\/\+MAC authentication. 
+Defines a macro to return the size of an AES ciphertext with CBC-\/\+MAC authentication.
+
+
 \begin{DoxyParams}{Parameters}
 {\em len} & The length of the plaintext. \\
 \hline
@@ -191,7 +203,9 @@ This is the ciphertext length from the previous macro with an additional block f
 \doxysubsubsection{\texorpdfstring{hashlib\_AESAuthSha256CiphertextLen}{hashlib\_AESAuthSha256CiphertextLen}}
 {\footnotesize\ttfamily \#define hashlib\+\_\+\+AESAuth\+Sha256\+Ciphertext\+Len(\begin{DoxyParamCaption}\item[{}]{len }\end{DoxyParamCaption})~ (\mbox{\hyperlink{hashlib_8h_a140213b514394151a1d6ba410ec32bc4}{hashlib\+\_\+\+AESCiphertext\+Len}}((len)) + \mbox{\hyperlink{hashlib_8h_af5aa539ae202ddf9e0c9211309869fc8}{SHA256\+\_\+\+DIGEST\+\_\+\+LEN}})}
 
-Defines a macro to return the size of an AES ciphertext with SHA-\/256 authentication. 
+Defines a macro to return the size of an AES ciphertext with SHA-\/256 authentication.
+
+
 \begin{DoxyParams}{Parameters}
 {\em len} & The length of the plaintext. \\
 \hline
@@ -205,7 +219,9 @@ This is the ciphertext length from the previous macro with an additional 32 byte
 \doxysubsubsection{\texorpdfstring{hashlib\_AESCiphertextLen}{hashlib\_AESCiphertextLen}}
 {\footnotesize\ttfamily \#define hashlib\+\_\+\+AESCiphertext\+Len(\begin{DoxyParamCaption}\item[{}]{len }\end{DoxyParamCaption})~(\mbox{\hyperlink{hashlib_8h_af7f9757a799b724cfd578ac0a45f58be}{hashlib\+\_\+\+AESPadded\+Size}}((len)) + \mbox{\hyperlink{hashlib_8h_afc06a029c783f78badc2c26cf6f2297c}{AES\+\_\+\+IV\+\_\+\+SIZE}})}
 
-Defines a macro to return the size of an AES ciphertext. 
+Defines a macro to return the size of an AES ciphertext.
+
+
 \begin{DoxyParams}{Parameters}
 {\em len} & The length of the plaintext. \\
 \hline
@@ -284,17 +300,17 @@ Temporary memory buffer. Must be passed to \mbox{\hyperlink{hashlib_8h_ad2fa6bc8
 \doxysubsubsection{\texorpdfstring{\_ssl\_sig\_modes}{\_ssl\_sig\_modes}}
 {\footnotesize\ttfamily enum \mbox{\hyperlink{hashlib_8h_a5aedfaf159c585059ba8914b59307c21}{\+\_\+ssl\+\_\+sig\+\_\+modes}}}
 
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{SSLSIG\_RSA\_SHA256@{SSLSIG\_RSA\_SHA256}!hashlib.h@{hashlib.h}}\index{hashlib.h@{hashlib.h}!SSLSIG\_RSA\_SHA256@{SSLSIG\_RSA\_SHA256}}}\mbox{\Hypertarget{hashlib_8h_a5aedfaf159c585059ba8914b59307c21a096ad031cbdad23c8d4053d9b7a3db31}\label{hashlib_8h_a5aedfaf159c585059ba8914b59307c21a096ad031cbdad23c8d4053d9b7a3db31}} 
+SSLSIG\+\_\+\+RSA\+\_\+\+SHA256&RSA with SHA-\/256 signature algorithm \\
+\hline
 
+\raisebox{\heightof{T}}[0pt][0pt]{\index{SSLSIG\_ECDSA@{SSLSIG\_ECDSA}!hashlib.h@{hashlib.h}}\index{hashlib.h@{hashlib.h}!SSLSIG\_ECDSA@{SSLSIG\_ECDSA}}}\mbox{\Hypertarget{hashlib_8h_a5aedfaf159c585059ba8914b59307c21a3b885e134e618304b93f54b88eff9b25}\label{hashlib_8h_a5aedfaf159c585059ba8914b59307c21a3b885e134e618304b93f54b88eff9b25}} 
+SSLSIG\+\_\+\+ECDSA&ECDSA (unimplemented, likely a long way off) \\
+\hline
 
-RSA Pubkey and SSL Verification Implementation. 
-
-work-\/in-\/progress supports modulus size from 1024 to 2048 bits public exponent e = 65537, hardcoded
-
-For compatibility with server-\/side decryption/decode, please make sure your encoding algorithm specs on the host match those hardcoded by this library.
-\begin{DoxyItemize}
-\item Hashing oracle where applicable\+: SHA-\/256.
-\item Mask Generation Function where applicable\+: MGF1, using SHA-\/256 SSL Signature Algorithms 
-\end{DoxyItemize}\mbox{\Hypertarget{hashlib_8h_a9933dec76c43b37331782bdd16ebc4a3}\label{hashlib_8h_a9933dec76c43b37331782bdd16ebc4a3}} 
+\end{DoxyEnumFields}
+\mbox{\Hypertarget{hashlib_8h_a9933dec76c43b37331782bdd16ebc4a3}\label{hashlib_8h_a9933dec76c43b37331782bdd16ebc4a3}} 
 \index{hashlib.h@{hashlib.h}!aes\_padding\_schemes@{aes\_padding\_schemes}}
 \index{aes\_padding\_schemes@{aes\_padding\_schemes}!hashlib.h@{hashlib.h}}
 \doxysubsubsection{\texorpdfstring{aes\_padding\_schemes}{aes\_padding\_schemes}}
@@ -325,7 +341,7 @@ SCHM\+\_\+\+ISO2&ISO-\/9797 M2 padding \\
 
 
 
-AES Decryptor Function. 
+General-\/\+Purpose AES Decryption. 
 
 
 \begin{DoxyParams}{Parameters}
@@ -341,11 +357,13 @@ AES Decryptor Function.
 \hline
 {\em iv} & Pointer to an initialization vector (a nonce of length equal to the block size). \\
 \hline
-{\em ciphermode} & The cipher mode to use. Can be either AES\+\_\+\+MODE\+\_\+\+CBC or AES\+\_\+\+MODE\+\_\+\+CTR. \\
+{\em ciphermode} & The cipher mode to use. Can be either \#\+AES\+\_\+\+MODE\+\_\+\+CBC or \#\+AES\+\_\+\+MODE\+\_\+\+CTR. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyNote}{Note}
-the IV should be the same as what is used for encryption. 
+{\bfseries{plaintext}} and {\bfseries{ciphertext}} are aliasable. 
+
+{\bfseries{IV}} should be the same as what is used for encryption. 
 \end{DoxyNote}
 \begin{DoxyReturn}{Returns}
 True if the encryption succeded. False if an error occured. 
@@ -369,6 +387,9 @@ AES Single-\/\+Block Decryption (ECB Mode)
 {\em ks} & Pointer to an AES key schedule context. \\
 \hline
 \end{DoxyParams}
+\begin{DoxyNote}{Note}
+{\bfseries{block\+\_\+in}} and {\bfseries{block\+\_\+out}} are aliasable. 
+\end{DoxyNote}
 \begin{DoxyReturn}{Returns}
 True if encryption succeeded. False if an error occured. 
 \end{DoxyReturn}
@@ -383,7 +404,7 @@ ECB-\/mode ciphers are insecure (see many-\/time pad vulnerability) These functi
 
 
 
-AES Encryptor Function. 
+General-\/\+Purpose AES Encryption. 
 
 
 \begin{DoxyParams}{Parameters}
@@ -403,13 +424,10 @@ AES Encryptor Function.
 \hline
 \end{DoxyParams}
 \begin{DoxyNote}{Note}
-If cipher mode CBC is used,
-\end{DoxyNote}
+{\bfseries{plaintext}} and {\bfseries{ciphertext}} are aliasable. 
 
-\begin{DoxyParams}{Parameters}
-{\em len} & must be a multiple of the blocksize. You can pass the plaintext through a padding function prior to calling this function. \\
-\hline
-\end{DoxyParams}
+If cipher mode CBC is used, {\bfseries{len}} must be a multiple of the blocksize. You can pass the plaintext through a padding function prior to calling this function. 
+\end{DoxyNote}
 \begin{DoxySeeAlso}{See also}
 \mbox{\hyperlink{hashlib_8h_aebac98a8537f3353aac9fbae5ed67f29}{hashlib\+\_\+\+AESPad\+Message()}} 
 \end{DoxySeeAlso}
@@ -436,15 +454,8 @@ AES Single-\/\+Block Encryption (ECB mode)
 \hline
 \end{DoxyParams}
 \begin{DoxyNote}{Note}
-
+{\bfseries{block\+\_\+in}} and {\bfseries{block\+\_\+out}} are aliasable. 
 \end{DoxyNote}
-
-\begin{DoxyParams}{Parameters}
-{\em block\+\_\+in} & and\\
-\hline
-{\em block\+\_\+out} & are aliasable. \\
-\hline
-\end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 True if encryption succeeded. False if failed. 
 \end{DoxyReturn}
@@ -513,22 +524,15 @@ Pads a plaintext according to the specified AES padding scheme.
 \hline
 {\em outbuf} & Pointer to buffer to write padded data. \\
 \hline
-\end{DoxyParams}
-\begin{DoxyNote}{Note}
-
-\end{DoxyNote}
-
-\begin{DoxyParams}{Parameters}
-{\em outbuf} & and\\
-\hline
-{\em plaintext} & are aliasable. \\
-\hline
 {\em schm} & The AES padding scheme to use. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 The padded length of the message. 
 \end{DoxyReturn}
+\begin{DoxyNote}{Note}
+{\bfseries{plaintext}} and {\bfseries{outbuf}} are aliasable. 
+\end{DoxyNote}
 \mbox{\Hypertarget{hashlib_8h_a152d6d62f1a21c97a551cea7e6110e59}\label{hashlib_8h_a152d6d62f1a21c97a551cea7e6110e59}} 
 \index{hashlib.h@{hashlib.h}!hashlib\_AESStripPadding@{hashlib\_AESStripPadding}}
 \index{hashlib\_AESStripPadding@{hashlib\_AESStripPadding}!hashlib.h@{hashlib.h}}
@@ -549,19 +553,12 @@ Strips the padding from a message according to the specified AES padding scheme.
 \hline
 {\em outbuf} & Pointer to buffer to write stripped data. \\
 \hline
-\end{DoxyParams}
-\begin{DoxyNote}{Note}
-
-\end{DoxyNote}
-
-\begin{DoxyParams}{Parameters}
-{\em outbuf} & and\\
-\hline
-{\em plaintext} & are aliasable. \\
-\hline
 {\em schm} & The AES padding scheme to use. \\
 \hline
 \end{DoxyParams}
+\begin{DoxyNote}{Note}
+{\bfseries{plaintext}} and {\bfseries{outbuf}} are aliasable. 
+\end{DoxyNote}
 \begin{DoxyReturn}{Returns}
 The length of the message with padding removed. 
 \end{DoxyReturn}
@@ -635,21 +632,13 @@ Reverses the RSA-\/\+OAEP padding scheme as indicated in PKCS\#1 v2.\+2.
 \hline
 {\em outbuf} & Pointer to buffer large enough to hold the decoded data. \\
 \hline
-\end{DoxyParams}
-\begin{DoxyNote}{Note}
-Buffer should be equal to
-\end{DoxyNote}
-
-\begin{DoxyParams}{Parameters}
-{\em len} & minus 34, in bytes. \\
-\hline
 {\em auth} & Pointer to an authentication string (similar to a password) to include in the encoding. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyNote}{Note}
-Both sender and reciever must know this string if one is provided. 
+{\bfseries{outbuf}} must be at least {\bfseries{len-\/34}} bytes large. 
 
-Pass NULL to omit. 
+{\bfseries{auth}} Both sender and reciever must know this string if one is provided. Pass NULL to omit. 
 \end{DoxyNote}
 \begin{DoxyReturn}{Returns}
 The decoded length of the plaintext. 
@@ -664,9 +653,7 @@ The decoded length of the plaintext.
 
 RSA-\/\+OAEP padding scheme. 
 
-Applies the RSA-\/\+OAEP padding scheme as indicated in PKCS\#1 v2.\+2. This is intended for use prior to RSA encryption.
-
-$\vert$ $<$-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/--- modulus size -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/---$>$ $\vert$ ~\newline
+Applies the RSA-\/\+OAEP padding scheme as indicated in PKCS\#1 v2.\+2. This is intended for use prior to RSA encryption. $\vert$ $<$-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/--- modulus size -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/---$>$ $\vert$ ~\newline
 $\vert$-- 0x00 --$\vert$-- salt --$\vert$-- auth hash --$\vert$-- 0x00...padding --$\vert$-- 0x01 --$\vert$-- message --$\vert$ ~\newline
  $\vert$ $\vert$-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/---$\vert$-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/---$\vert$ ~\newline
  $\vert$ $\vert$ ~\newline
@@ -686,23 +673,15 @@ $\vert$$<$-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-
 \hline
 {\em outbuf} & Pointer to buffer large enough to hold the padded data. \\
 \hline
-\end{DoxyParams}
-\begin{DoxyNote}{Note}
-Buffer must be at least equal to
-\end{DoxyNote}
-
-\begin{DoxyParams}{Parameters}
-{\em modulus\+\_\+len.} & \\
-\hline
 {\em modulus\+\_\+len} & The byte length of the modulus to pad for. \\
 \hline
 {\em auth} & Pointer to an authentication string (similar to a password) to include in the encoding. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyNote}{Note}
-Both sender and reciever must know this string if one is provided. 
+{\bfseries{outbuf}} must be at least {\bfseries{modulus\+\_\+len}} bytes large. 
 
-Pass NULL to omit. 
+{\bfseries{auth}} both sender and receiver must know this string. Pass NULL to omit. 
 \end{DoxyNote}
 \begin{DoxyReturn}{Returns}
 The padded length of the plaintext. 
@@ -717,9 +696,7 @@ The padded length of the plaintext.
 
 RSA-\/\+PSS padding scheme. 
 
-Applies the RSA-\/\+PSS padding scheme as indicated in PKCS\#1 v1.\+5.
-
-$\vert$-\/-\/--- Message -\/-\/---$\vert$ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/--- SHA-\/256 -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/---$>$$\vert$ ~\newline
+Applies the RSA-\/\+PSS padding scheme as indicated in PKCS\#1 v1.\+5. $\vert$-\/-\/--- Message -\/-\/---$\vert$ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/--- SHA-\/256 -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/---$>$$\vert$ ~\newline
  $\vert$ ~\newline
 $\vert$-- 0x00... padding --$\vert$-- 0x01 --$\vert$-- salt --$\vert$ $\vert$-- 8 bytes 0x00 --$\vert$-- m\+Hash --$\vert$-- salt --$\vert$ ~\newline
 $\vert$-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/---$\vert$ $\vert$-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/---$\vert$ ~\newline
@@ -741,27 +718,18 @@ $\vert$-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-
 \hline
 {\em outbuf} & Pointer to buffer to write encoded plaintext to. \\
 \hline
-\end{DoxyParams}
-\begin{DoxyNote}{Note}
-Must be at least equal to
-\end{DoxyNote}
-
-\begin{DoxyParams}{Parameters}
-{\em modulus\+\_\+len.} & \\
-\hline
 {\em modulus\+\_\+len} & The length of the modulus to pad for. \\
 \hline
 {\em salt} & A buffer filled with random bytes. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyNote}{Note}
+{\bfseries{outbuf}} must be at least {\bfseries{modulus\+\_\+len}} bytes large. 
+
 If you are trying to generate a signature, pass NULL to generate a new salt. 
 
-If you are trying to validate a signature, you should be using hashlib\+\_\+\+SSLVerify\+Signature() instead. 
+If you are trying to validate a signature, use hashlib\+\_\+\+SSLVerify\+Signature(). 
 \end{DoxyNote}
-\begin{DoxySeeAlso}{See also}
-hashlib\+\_\+\+SSLVerify\+Signature 
-\end{DoxySeeAlso}
 \begin{DoxyReturn}{Returns}
 the padded length of the plaintext. 
 \end{DoxyReturn}
