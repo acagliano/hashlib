@@ -211,25 +211,23 @@ enum aes_padding_schemes {
  *****************************************************/
 #define AES256_KEYLEN	32
 
-/*****************************************************************************************
+/*********************************************************************************************
  * @def hashlib_AESCiphertextSize()
- * Defines a macro to return the padded size of an AES ciphertext.
+ *
+ * Defines a macro to return the size of an AES ciphertext given a plaintext length.
  * Does not include an IV-prepend. See hashlib_AESCiphertextIVLen() for that.
- * \f[
- * 	len = (len % AES_BLOCKSIZE) ? len + AES_BLOCKSIZE : ((len>>4) + 1)<<4;
- *  \f]
+ *
  * @param len The length of the plaintext.
- *******************************************************************************************/
+ *********************************************************************************************/
   #define hashlib_AESCiphertextSize(len) \
 	((((len)%AES_BLOCKSIZE)==0) ? (len) + AES_BLOCKSIZE : (((len)>>4) + 1)<<4)
 	
 /************************************************************************************************************************
  * @def hashlib_AESCiphertextIVLen()
  *
- * Defines a macro to return the size of an AES ciphertext.
+ * Defines a macro to return the size of an AES ciphertext with with an extra block added for the IV.
  *
  * @param len The length of the plaintext.
- * @note This is the padded length of the plaintext, plus an additional block for the IV to be prepended.
  ************************************************************************************************************************/
  #define hashlib_AESCiphertextIVLen(len)	(hashlib_AESCiphertextSize((len)) + AES_IV_SIZE)
  
@@ -237,10 +235,9 @@ enum aes_padding_schemes {
   * @def hashlib_AESAuthMacCiphertextLen()
   *
   * Defines a macro to return the size of an AES ciphertext with CBC-MAC authentication.
+  * This includes two extra blocks- one for the IV and another for the MAC digest.
   *
   * @param len The length of the plaintext.
-  * @note This is the ciphertext length from the previous macro with an additional block
-  * 	for the CBC-MAC of the ciphertext to be appended.
   ******************************************************************************************************/
   #define hashlib_AESAuthMacCiphertextLen(len) \
 	(hashlib_AESCiphertextIVLen((len)) + AES_MAC_SIZE)
@@ -249,10 +246,9 @@ enum aes_padding_schemes {
  * @def hashlib_AESAuthSha256CiphertextLen()
  *
  * Defines a macro to return the size of an AES ciphertext with SHA-256 authentication.
+ * This includes one extra block for the IV and an additional 32 bytes for the SHA-256 digest.
  *
  * @param len The length of the plaintext.
- * @note This is the ciphertext length from the previous macro with an additional 32 bytes
- * 		for the SHA-256 of the ciphertext to be appended.
   ******************************************************************************************************/
   #define hashlib_AESAuthSha256CiphertextLen(len) \
 	(hashlib_AESCiphertextLen((len)) + SHA256_DIGEST_LEN)

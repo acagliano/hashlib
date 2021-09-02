@@ -412,10 +412,8 @@ If the SPRNG is run, anything you have stored here will be destroyed. </dd></dl>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Defines a macro to return the padded size of an AES ciphertext. Does not include an IV-prepend. See <a class="el" href="hashlib_8h.html#a46100af2f9437a876f6a2d92d9db4369">hashlib_AESCiphertextIVLen()</a> for that. </p><p class="formulaDsp">
-<img class="formulaDsp" alt="\[ len = (len % AES_BLOCKSIZE) ? len + AES_BLOCKSIZE : ((len&gt;&gt;4) + 1)&lt;&lt;4; \]" src="form_0.png"/>
-</p>
- <dl class="params"><dt>Parameters</dt><dd>
+<p>Defines a macro to return the size of an AES ciphertext given a plaintext length. Does not include an IV-prepend. See <a class="el" href="hashlib_8h.html#a46100af2f9437a876f6a2d92d9db4369">hashlib_AESCiphertextIVLen()</a> for that.</p>
+<dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">len</td><td>The length of the plaintext. </td></tr>
   </table>
@@ -439,14 +437,13 @@ If the SPRNG is run, anything you have stored here will be destroyed. </dd></dl>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Defines a macro to return the size of an AES ciphertext.</p>
+<p>Defines a macro to return the size of an AES ciphertext with with an extra block added for the IV.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">len</td><td>The length of the plaintext. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section note"><dt>Note</dt><dd>This is the padded length of the plaintext, plus an additional block for the IV to be prepended. </dd></dl>
 
 </div>
 </div>
@@ -465,14 +462,13 @@ If the SPRNG is run, anything you have stored here will be destroyed. </dd></dl>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Defines a macro to return the size of an AES ciphertext with CBC-MAC authentication.</p>
+<p>Defines a macro to return the size of an AES ciphertext with CBC-MAC authentication. This includes two extra blocks- one for the IV and another for the MAC digest.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">len</td><td>The length of the plaintext. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section note"><dt>Note</dt><dd>This is the ciphertext length from the previous macro with an additional block for the CBC-MAC of the ciphertext to be appended. </dd></dl>
 
 </div>
 </div>
@@ -491,14 +487,13 @@ If the SPRNG is run, anything you have stored here will be destroyed. </dd></dl>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Defines a macro to return the size of an AES ciphertext with SHA-256 authentication.</p>
+<p>Defines a macro to return the size of an AES ciphertext with SHA-256 authentication. This includes one extra block for the IV and an additional 32 bytes for the SHA-256 digest.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">len</td><td>The length of the plaintext. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section note"><dt>Note</dt><dd>This is the ciphertext length from the previous macro with an additional 32 bytes for the SHA-256 of the ciphertext to be appended. </dd></dl>
 
 </div>
 </div>
