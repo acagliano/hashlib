@@ -11,6 +11,6 @@ For detailed documentation, head to [C header documentation](https://acagliano.g
 For even more detailed documentation head to [Documentation PDF](https://github.com/acagliano/hashlib/blob/stable/Hashlib%20Documentation.pdf).
 
 Credits:  
-Some algorithms sourced at least in part from https://github.com/B-Con/crypto-algorithms.  
+Some algorithms sourced at least in part from [B-con crypto-algorithms](https://github.com/B-Con/crypto-algorithms).  
 Cemetech user Zeroko - information on CE randomness.  
 beckadamtheinventor & commandblockguy - coding assistance, conversion of some C routines to assembly for speed.  
