@@ -311,7 +311,6 @@ bool hashlib_AESDecryptBlock(const uint8_t* block_in,
  * @note @b plaintext and @b ciphertext are aliasable.
  * @note If cipher mode CBC is used, @b len must be a multiple of the blocksize.
  * 		You can pass the plaintext through hashlib_AESPadMessage() prior to calling this function.
- * 		@see hashlib_AESPadMessage()
  * @return True if the encryption succeded. False if an error occured.
  */
 bool hashlib_AESEncrypt(const uint8_t* plaintext,
