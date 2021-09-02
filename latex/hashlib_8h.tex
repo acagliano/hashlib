@@ -682,8 +682,8 @@ CBC-\/\+MAC requires padding, as it uses CBC mode. You can use the \mbox{\hyperl
 
 To send a packet with authenticated encryption, you will need to append the MAC digest to your ciphertext returned by the above functions. For example, assuming {\bfseries{ciphertext}} is at least as large as the size returned by \mbox{\hyperlink{hashlib_8h_a14743a93cbf9c7237d0ac03d842f296f}{hashlib\+\_\+\+AESAuth\+Mac\+Ciphertext\+Size()}}\+: 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{    \mbox{\hyperlink{hashlib_8h_a745c5c4d6bdc248f20b18c7b848d8b6b}{hashlib\_AESEncrypt}}(plaintext, len, \&ciphertext[\mbox{\hyperlink{hashlib_8h_afc06a029c783f78badc2c26cf6f2297c}{AES\_IV\_SIZE}}], ks\_encrypt, iv, <ciphermode>);}
-\DoxyCodeLine{    memcpy(ciphertext, iv, \mbox{\hyperlink{hashlib_8h_afc06a029c783f78badc2c26cf6f2297c}{AES\_IV\_SIZE}});}
+\DoxyCodeLine{\mbox{\hyperlink{hashlib_8h_a745c5c4d6bdc248f20b18c7b848d8b6b}{hashlib\_AESEncrypt}}(plaintext, len, \&ciphertext[\mbox{\hyperlink{hashlib_8h_afc06a029c783f78badc2c26cf6f2297c}{AES\_IV\_SIZE}}], ks\_encrypt, iv, <ciphermode>);}
+\DoxyCodeLine{memcpy(ciphertext, iv, \mbox{\hyperlink{hashlib_8h_afc06a029c783f78badc2c26cf6f2297c}{AES\_IV\_SIZE}});}
 \DoxyCodeLine{\mbox{\hyperlink{hashlib_8h_a6ca5ecde1fd675effbc4a29eac35a903}{hashlib\_AESOutputMac}}(ciphertext, <padded\_len>, \&ciphertext[<padded\_len> + \mbox{\hyperlink{hashlib_8h_afc06a029c783f78badc2c26cf6f2297c}{AES\_IV\_SIZE}}], ks\_auth);}
 \DoxyCodeLine{\textcolor{comment}{// note the use of two different key schedules}}
 

@@ -367,8 +367,8 @@ bool hashlib_AESDecrypt(const uint8_t* ciphertext,
  * 		@code
  * 		hashlib_AESEncrypt(plaintext, len, &ciphertext[AES_IV_SIZE], ks_encrypt, iv, <ciphermode>);
  * 		memcpy(ciphertext, iv, AES_IV_SIZE);
- *		hashlib_AESOutputMac(ciphertext, <padded_len>, &ciphertext[<padded_len> + AES_IV_SIZE], ks_auth);
- *		// note the use of two different key schedules
+ * 		hashlib_AESOutputMac(ciphertext, <padded_len>, &ciphertext[<padded_len> + AES_IV_SIZE], ks_auth);
+ * 		// note the use of two different key schedules
  * 		@endcode
  * @warning Do not use the same AES key/key schedule for authentication and encryption. This exposes
  * 	attack vectors. Use different key schedules.
