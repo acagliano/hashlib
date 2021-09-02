@@ -417,7 +417,7 @@ enum _ssl_sig_modes {
  * |<------------------------------------- modulus size ---------------------------------------> |	\n
  *
  * @param plaintext Pointer to a buffer containing the data to OAEP-encode.
- * @param len Length of data at @param plaintext to encode.
+ * @param len Length of data at @b plaintext to encode.
  * @param outbuf Pointer to buffer large enough to hold the padded data.
  * @param modulus_len The byte length of the modulus to pad for.
  * @param auth Pointer to an authentication string (similar to a password) to include in the encoding.
@@ -438,7 +438,7 @@ size_t hashlib_RSAEncodeOAEP(
  * Reverses the RSA-OAEP padding scheme as indicated in PKCS#1 v2.2.
  *
  * @param plaintext Pointer to a buffer containing the data to OAEP-decode.
- * @param len Length of data at @param plaintext to decode.
+ * @param len Length of data at @b plaintext to decode.
  * @param outbuf Pointer to buffer large enough to hold the decoded data.
  * @param auth Pointer to an authentication string (similar to a password) to include in the encoding.
  * @note @b outbuf must be at least @b len-34 bytes large.

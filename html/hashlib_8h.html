@@ -1259,8 +1259,7 @@ For the most secure authenticated encryption scheme, use "encrypt-then-MAC". Thi
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">plaintext</td><td>Pointer to a buffer containing the data to OAEP-decode. </td></tr>
-    <tr><td class="paramname">len</td><td>Length of data at</td></tr>
-    <tr><td class="paramname">plaintext</td><td>to decode. </td></tr>
+    <tr><td class="paramname">len</td><td>Length of data at <b>plaintext</b> to decode. </td></tr>
     <tr><td class="paramname">outbuf</td><td>Pointer to buffer large enough to hold the decoded data. </td></tr>
     <tr><td class="paramname">auth</td><td>Pointer to an authentication string (similar to a password) to include in the encoding. </td></tr>
   </table>
@@ -1332,8 +1331,7 @@ For the most secure authenticated encryption scheme, use "encrypt-then-MAC". Thi
  </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">plaintext</td><td>Pointer to a buffer containing the data to OAEP-encode. </td></tr>
-    <tr><td class="paramname">len</td><td>Length of data at</td></tr>
-    <tr><td class="paramname">plaintext</td><td>to encode. </td></tr>
+    <tr><td class="paramname">len</td><td>Length of data at <b>plaintext</b> to encode. </td></tr>
     <tr><td class="paramname">outbuf</td><td>Pointer to buffer large enough to hold the padded data. </td></tr>
     <tr><td class="paramname">modulus_len</td><td>The byte length of the modulus to pad for. </td></tr>
     <tr><td class="paramname">auth</td><td>Pointer to an authentication string (similar to a password) to include in the encoding. </td></tr>
