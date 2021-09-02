@@ -1442,7 +1442,7 @@ For the most secure authenticated encryption scheme, use "encrypt-then-MAC". Thi
 </dl>
 <dl class="section note"><dt>Note</dt><dd><b>outbuf</b> must be at least <b>modulus_len</b> bytes large. </dd>
 <dd>
-<b>salt</b> If you are trying to generate a signature, pass NULL to generate a new salt. </dd>
+<b>salt</b> can be null to generate a salt automatically. You can also generate it yourself using <a class="el" href="hashlib_8h.html#aa0092aa4c122591fae447dda8fa25dfc" title="Fills a buffer to size with random bytes.">hashlib_RandomBytes()</a> and pass a pointer to that buffer. </dd>
 <dd>
 If you are trying to validate a signature, use hashlib_SSLVerifySignature(). </dd></dl>
 <dl class="section return"><dt>Returns</dt><dd>the padded length of the plaintext. </dd></dl>
