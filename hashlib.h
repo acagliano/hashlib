@@ -346,7 +346,7 @@ bool hashlib_AESDecrypt(const uint8_t* ciphertext,
  * through the CBC-MAC algorithm with a constant IV.
  *
  * @param plaintext Pointer to data to generate a MAC for.
- * @param len Length of data at @param plaintext to generate a MAC for.
+ * @param len Length of data at @b plaintext to generate a MAC for.
  * @param mac Pointer to a buffer to write the MAC to.
  * @note CBC-MAC requires padding, as it uses CBC mode. You can use the hashlib_AESPadMessage()
  * 	padding function. Padding mode ISO-9791 M2 is preferred for CBC-MAC, but either can be used.
