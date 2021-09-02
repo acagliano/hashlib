@@ -1213,6 +1213,7 @@ If cipher mode CBC is used, <b>len</b> must be a multiple of the blocksize. You 
     <tr><td class="paramname">plaintext</td><td>Pointer to data to generate a MAC for. </td></tr>
     <tr><td class="paramname">len</td><td>Length of data at <b>plaintext</b> to generate a MAC for. </td></tr>
     <tr><td class="paramname">mac</td><td>Pointer to a buffer to write the MAC to. MAC must be at least <b>AES_BLOCKSIZE</b> bytes large. </td></tr>
+    <tr><td class="paramname">ks</td><td>Pointer to a AES key schedule context. Must be different than the one used for encryption. </td></tr>
   </table>
   </dd>
 </dl>

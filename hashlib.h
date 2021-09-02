@@ -358,6 +358,7 @@ bool hashlib_AESDecrypt(const uint8_t* ciphertext,
  * @param plaintext Pointer to data to generate a MAC for.
  * @param len Length of data at @b plaintext to generate a MAC for.
  * @param mac Pointer to a buffer to write the MAC to. MAC must be at least @b AES_BLOCKSIZE bytes large.
+ * @param ks Pointer to a AES key schedule context. Must be different than the one used for encryption.
  * @note CBC-MAC requires padding, as it uses CBC mode. You can use the hashlib_AESPadMessage()
  * 	padding function. Padding mode ISO-9791 M2 is preferred for CBC-MAC, but either can be used.
  * @note To send a packet with authenticated encryption, you will need to append the MAC digest to your

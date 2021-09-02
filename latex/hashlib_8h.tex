@@ -674,6 +674,8 @@ The MAC is a tag equal in length to the AES block size computed by passing the p
 \hline
 {\em mac} & Pointer to a buffer to write the MAC to. MAC must be at least {\bfseries{AES\+\_\+\+BLOCKSIZE}} bytes large. \\
 \hline
+{\em ks} & Pointer to a AES key schedule context. Must be different than the one used for encryption. \\
+\hline
 \end{DoxyParams}
 \begin{DoxyNote}{Note}
 CBC-\/\+MAC requires padding, as it uses CBC mode. You can use the \mbox{\hyperlink{hashlib_8h_aebac98a8537f3353aac9fbae5ed67f29}{hashlib\+\_\+\+AESPad\+Message()}} padding function. Padding mode ISO-\/9791 M2 is preferred for CBC-\/\+MAC, but either can be used. 
