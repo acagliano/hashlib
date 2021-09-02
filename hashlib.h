@@ -496,7 +496,10 @@ size_t hashlib_RSAEncodePSS(
 void hashlib_EraseContext(void *ctx, size_t len);
 
 /*************************************************************************************************
- * @def Dynamically allocates a block of memory to be used for a context or buffer.
+ * @def hashlib_MallocContext()
+ *
+ * Dynamically allocates a block of memory to be used for a context or buffer.
+ * 
  * @param size Size of the buffer to malloc.
  * @return Same as @b malloc.
  *************************************************************************************************/

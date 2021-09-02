@@ -123,8 +123,7 @@ Macros</h2></td></tr>
 <tr class="separator:abc4277e4f58f162b211ca4c2a38c2a5a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a864d96afe89419821aed4293d979b2b9"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#a864d96afe89419821aed4293d979b2b9">hashlib_AESKeygen</a>(key,  keylen)&#160;&#160;&#160;<a class="el" href="hashlib_8h.html#aa0092aa4c122591fae447dda8fa25dfc">hashlib_RandomBytes</a>((key), (keylen))</td></tr>
 <tr class="separator:a864d96afe89419821aed4293d979b2b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad4ea46d5db12669bb2687771d094638f"><td class="memItemLeft" align="right" valign="top"><a id="ad4ea46d5db12669bb2687771d094638f"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>hashlib_MallocContext</b>(size)&#160;&#160;&#160;malloc((size))</td></tr>
+<tr class="memitem:ad4ea46d5db12669bb2687771d094638f"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#ad4ea46d5db12669bb2687771d094638f">hashlib_MallocContext</a>(size)&#160;&#160;&#160;malloc((size))</td></tr>
 <tr class="separator:ad4ea46d5db12669bb2687771d094638f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
@@ -483,6 +482,32 @@ Functions</h2></td></tr>
 <p>Pointer to the start of the region of Fast Memory, including the Safe region as well as an unsafe region used by the library's SPRNG. </p><dl class="section warning"><dt>Warning</dt><dd>Fast Memory gets clobbered by LibLoad. Don't keep long-term storage here if you plan to call LibLoad. </dd>
 <dd>
 If the SPRNG is run, anything you have stored here will be destroyed. </dd></dl>
+
+</div>
+</div>
+<a id="ad4ea46d5db12669bb2687771d094638f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad4ea46d5db12669bb2687771d094638f">&#9670;&nbsp;</a></span>hashlib_MallocContext</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define hashlib_MallocContext</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">size</td><td>)</td>
+          <td>&#160;&#160;&#160;malloc((size))</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Dynamically allocates a block of memory to be used for a context or buffer.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">size</td><td>Size of the buffer to malloc. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Same as <b>malloc</b>. </dd></dl>
 
 </div>
 </div>

@@ -50,8 +50,7 @@ struct \mbox{\hyperlink{struct__aes__ctx}{\+\_\+aes\+\_\+ctx}}
 \item 
 \#define \mbox{\hyperlink{hashlib_8h_a864d96afe89419821aed4293d979b2b9}{hashlib\+\_\+\+AESKeygen}}(key,  keylen)~\mbox{\hyperlink{hashlib_8h_aa0092aa4c122591fae447dda8fa25dfc}{hashlib\+\_\+\+Random\+Bytes}}((key), (keylen))
 \item 
-\mbox{\Hypertarget{hashlib_8h_ad4ea46d5db12669bb2687771d094638f}\label{hashlib_8h_ad4ea46d5db12669bb2687771d094638f}} 
-\#define {\bfseries hashlib\+\_\+\+Malloc\+Context}(size)~malloc((size))
+\#define \mbox{\hyperlink{hashlib_8h_ad4ea46d5db12669bb2687771d094638f}{hashlib\+\_\+\+Malloc\+Context}}(size)~malloc((size))
 \end{DoxyCompactItemize}
 \doxysubsection*{Typedefs}
 \begin{DoxyCompactItemize}
@@ -270,6 +269,22 @@ Fast Memory gets clobbered by Lib\+Load. Don\textquotesingle{}t keep long-\/term
 
 If the SPRNG is run, anything you have stored here will be destroyed. 
 \end{DoxyWarning}
+\mbox{\Hypertarget{hashlib_8h_ad4ea46d5db12669bb2687771d094638f}\label{hashlib_8h_ad4ea46d5db12669bb2687771d094638f}} 
+\index{hashlib.h@{hashlib.h}!hashlib\_MallocContext@{hashlib\_MallocContext}}
+\index{hashlib\_MallocContext@{hashlib\_MallocContext}!hashlib.h@{hashlib.h}}
+\doxysubsubsection{\texorpdfstring{hashlib\_MallocContext}{hashlib\_MallocContext}}
+{\footnotesize\ttfamily \#define hashlib\+\_\+\+Malloc\+Context(\begin{DoxyParamCaption}\item[{}]{size }\end{DoxyParamCaption})~malloc((size))}
+
+Dynamically allocates a block of memory to be used for a context or buffer.
+
+
+\begin{DoxyParams}{Parameters}
+{\em size} & Size of the buffer to malloc. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Same as {\bfseries{malloc}}. 
+\end{DoxyReturn}
 \mbox{\Hypertarget{hashlib_8h_af5aa539ae202ddf9e0c9211309869fc8}\label{hashlib_8h_af5aa539ae202ddf9e0c9211309869fc8}} 
 \index{hashlib.h@{hashlib.h}!SHA256\_DIGEST\_LEN@{SHA256\_DIGEST\_LEN}}
 \index{SHA256\_DIGEST\_LEN@{SHA256\_DIGEST\_LEN}!hashlib.h@{hashlib.h}}
