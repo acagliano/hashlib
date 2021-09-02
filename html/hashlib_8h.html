@@ -191,7 +191,7 @@ Functions</h2></td></tr>
 <tr class="memdesc:a2b904b543405fdf8f283d028ce0d1da7"><td class="mdescLeft">&#160;</td><td class="mdescRight">General-Purpose AES Decryption.  <a href="hashlib_8h.html#a2b904b543405fdf8f283d028ce0d1da7">More...</a><br /></td></tr>
 <tr class="separator:a2b904b543405fdf8f283d028ce0d1da7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6ca5ecde1fd675effbc4a29eac35a903"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#a6ca5ecde1fd675effbc4a29eac35a903">hashlib_AESOutputMac</a> (const uint8_t *plaintext, size_t len, uint8_t *mac, const <a class="el" href="struct__aes__ctx.html">aes_ctx</a> *ks)</td></tr>
-<tr class="memdesc:a6ca5ecde1fd675effbc4a29eac35a903"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a message authentication code (MAC) for an AES message.  <a href="hashlib_8h.html#a6ca5ecde1fd675effbc4a29eac35a903">More...</a><br /></td></tr>
+<tr class="memdesc:a6ca5ecde1fd675effbc4a29eac35a903"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a message authentication code for an AES message.  <a href="hashlib_8h.html#a6ca5ecde1fd675effbc4a29eac35a903">More...</a><br /></td></tr>
 <tr class="separator:a6ca5ecde1fd675effbc4a29eac35a903"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aebac98a8537f3353aac9fbae5ed67f29"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#aebac98a8537f3353aac9fbae5ed67f29">hashlib_AESPadMessage</a> (const uint8_t *plaintext, size_t len, uint8_t *outbuf, uint8_t schm)</td></tr>
 <tr class="memdesc:aebac98a8537f3353aac9fbae5ed67f29"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pads a plaintext according to the specified AES padding scheme.  <a href="hashlib_8h.html#aebac98a8537f3353aac9fbae5ed67f29">More...</a><br /></td></tr>
@@ -913,14 +913,20 @@ If cipher mode CBC is used, <b>len</b> must be a multiple of the blocksize. You 
       </table>
 </div><div class="memdoc">
 
-<p>Returns a message authentication code (MAC) for an AES message. </p>
-<p>The MAC is a tag equal in length to the AES block size computed by passing the plaintext through the CBC-MAC algorithm with a constant IV. </p><pre class="fragment">@param plaintext Pointer to data to generate a MAC for.
-@param len Length of data at @param plaintext to generate a MAC for.
-@param mac Pointer to a buffer to write the MAC to.
-@return True if the MAC generation succeeded. False if an error occured.
-@note CBC-MAC requires padding, as it uses CBC mode. You can use the hashlib_AESPadMessage()
-padding function. Padding mode ISO-9791 M2 is preferred for CBC-MAC, but either can be used.
-</pre> <dl class="section warning"><dt>Warning</dt><dd>Do not use the same AES key/key schedule for authentication and encryption. This exposes attack vectors. Use different key schedules. </dd>
+<p>Returns a message authentication code for an AES message. </p>
+<p>The MAC is a tag equal in length to the AES block size computed by passing the plaintext through the CBC-MAC algorithm with a constant IV.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">plaintext</td><td>Pointer to data to generate a MAC for. </td></tr>
+    <tr><td class="paramname">len</td><td>Length of data at</td></tr>
+    <tr><td class="paramname">plaintext</td><td>to generate a MAC for. </td></tr>
+    <tr><td class="paramname">mac</td><td>Pointer to a buffer to write the MAC to. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>True if the MAC generation succeeded. False if an error occured. </dd></dl>
+<dl class="section note"><dt>Note</dt><dd>CBC-MAC requires padding, as it uses CBC mode. You can use the <a class="el" href="hashlib_8h.html#aebac98a8537f3353aac9fbae5ed67f29" title="Pads a plaintext according to the specified AES padding scheme.">hashlib_AESPadMessage()</a> padding function. Padding mode ISO-9791 M2 is preferred for CBC-MAC, but either can be used. </dd></dl>
+<dl class="section warning"><dt>Warning</dt><dd>Do not use the same AES key/key schedule for authentication and encryption. This exposes attack vectors. Use different key schedules. </dd>
 <dd>
 For the most secure authenticated encryption scheme, use "encrypt-then-MAC". This means that you encrypt first, then you return a MAC or hash of the ciphertext and any associated un-encrypted metadata (such as the IV). While some authentication schemes do use "MAC-then-encrypt", there are more attack vectors against that. </dd></dl>
 

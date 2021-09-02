@@ -106,7 +106,7 @@ bool \mbox{\hyperlink{hashlib_8h_a745c5c4d6bdc248f20b18c7b848d8b6b}{hashlib\+\_\
 bool \mbox{\hyperlink{hashlib_8h_a2b904b543405fdf8f283d028ce0d1da7}{hashlib\+\_\+\+AESDecrypt}} (const uint8\+\_\+t $\ast$ciphertext, size\+\_\+t len, uint8\+\_\+t $\ast$plaintext, const \mbox{\hyperlink{struct__aes__ctx}{aes\+\_\+ctx}} $\ast$ks, const uint8\+\_\+t $\ast$iv, uint8\+\_\+t ciphermode)
 \begin{DoxyCompactList}\small\item\em General-\/\+Purpose AES Decryption. \end{DoxyCompactList}\item 
 bool \mbox{\hyperlink{hashlib_8h_a6ca5ecde1fd675effbc4a29eac35a903}{hashlib\+\_\+\+AESOutput\+Mac}} (const uint8\+\_\+t $\ast$plaintext, size\+\_\+t len, uint8\+\_\+t $\ast$mac, const \mbox{\hyperlink{struct__aes__ctx}{aes\+\_\+ctx}} $\ast$ks)
-\begin{DoxyCompactList}\small\item\em Returns a message authentication code (MAC) for an AES message. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Returns a message authentication code for an AES message. \end{DoxyCompactList}\item 
 size\+\_\+t \mbox{\hyperlink{hashlib_8h_aebac98a8537f3353aac9fbae5ed67f29}{hashlib\+\_\+\+AESPad\+Message}} (const uint8\+\_\+t $\ast$plaintext, size\+\_\+t len, uint8\+\_\+t $\ast$outbuf, uint8\+\_\+t schm)
 \begin{DoxyCompactList}\small\item\em Pads a plaintext according to the specified AES padding scheme. \end{DoxyCompactList}\item 
 size\+\_\+t \mbox{\hyperlink{hashlib_8h_a152d6d62f1a21c97a551cea7e6110e59}{hashlib\+\_\+\+AESStrip\+Padding}} (const uint8\+\_\+t $\ast$plaintext, size\+\_\+t len, uint8\+\_\+t $\ast$outbuf, uint8\+\_\+t schm)
@@ -507,16 +507,28 @@ True if the key was successfully loaded. False otherwise.
 
 
 
-Returns a message authentication code (MAC) for an AES message. 
+Returns a message authentication code for an AES message. 
 
-The MAC is a tag equal in length to the AES block size computed by passing the plaintext through the CBC-\/\+MAC algorithm with a constant IV. \begin{DoxyVerb}@param plaintext Pointer to data to generate a MAC for.
-@param len Length of data at @param plaintext to generate a MAC for.
-@param mac Pointer to a buffer to write the MAC to.
-@return True if the MAC generation succeeded. False if an error occured.
-@note CBC-MAC requires padding, as it uses CBC mode. You can use the hashlib_AESPadMessage()
-padding function. Padding mode ISO-9791 M2 is preferred for CBC-MAC, but either can be used.
-\end{DoxyVerb}
- \begin{DoxyWarning}{Warning}
+The MAC is a tag equal in length to the AES block size computed by passing the plaintext through the CBC-\/\+MAC algorithm with a constant IV.
+
+
+\begin{DoxyParams}{Parameters}
+{\em plaintext} & Pointer to data to generate a MAC for. \\
+\hline
+{\em len} & Length of data at\\
+\hline
+{\em plaintext} & to generate a MAC for. \\
+\hline
+{\em mac} & Pointer to a buffer to write the MAC to. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if the MAC generation succeeded. False if an error occured. 
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+CBC-\/\+MAC requires padding, as it uses CBC mode. You can use the \mbox{\hyperlink{hashlib_8h_aebac98a8537f3353aac9fbae5ed67f29}{hashlib\+\_\+\+AESPad\+Message()}} padding function. Padding mode ISO-\/9791 M2 is preferred for CBC-\/\+MAC, but either can be used. 
+\end{DoxyNote}
+\begin{DoxyWarning}{Warning}
 Do not use the same AES key/key schedule for authentication and encryption. This exposes attack vectors. Use different key schedules. 
 
 For the most secure authenticated encryption scheme, use \char`\"{}encrypt-\/then-\/\+MAC\char`\"{}. This means that you encrypt first, then you return a MAC or hash of the ciphertext and any associated un-\/encrypted metadata (such as the IV). While some authentication schemes do use \char`\"{}\+MAC-\/then-\/encrypt\char`\"{}, there are more attack vectors against that. 

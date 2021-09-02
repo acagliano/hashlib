@@ -337,20 +337,20 @@ bool hashlib_AESDecrypt(const uint8_t* ciphertext,
 						uint8_t ciphermode);
     
 /*************************************************************************************************************************************
- * @brief Returns a message authentication code (MAC) for an AES message.
+ * @brief Returns a message authentication code for an AES message.
  *
  * The MAC is a tag equal in length to the AES block size computed by passing the plaintext
  * through the CBC-MAC algorithm with a constant IV.
  *
- * 	@param plaintext Pointer to data to generate a MAC for.
- * 	@param len Length of data at @param plaintext to generate a MAC for.
- * 	@param mac Pointer to a buffer to write the MAC to.
- * 	@return True if the MAC generation succeeded. False if an error occured.
- * 	@note CBC-MAC requires padding, as it uses CBC mode. You can use the hashlib_AESPadMessage()
+ * @param plaintext Pointer to data to generate a MAC for.
+ * @param len Length of data at @param plaintext to generate a MAC for.
+ * @param mac Pointer to a buffer to write the MAC to.
+ * @return True if the MAC generation succeeded. False if an error occured.
+ * @note CBC-MAC requires padding, as it uses CBC mode. You can use the hashlib_AESPadMessage()
  * 	padding function. Padding mode ISO-9791 M2 is preferred for CBC-MAC, but either can be used.
- *  @warning Do not use the same AES key/key schedule for authentication and encryption. This exposes
+ * @warning Do not use the same AES key/key schedule for authentication and encryption. This exposes
  * 	attack vectors. Use different key schedules.
- * 	@warning For the most secure authenticated encryption scheme,  use "encrypt-then-MAC".
+ * @warning For the most secure authenticated encryption scheme,  use "encrypt-then-MAC".
  * 		This means that you encrypt first, then you return a MAC or hash of the ciphertext
  *		and any associated un-encrypted metadata (such as the IV).
  *		While some authentication schemes do use "MAC-then-encrypt", there are more attack vectors against that.
