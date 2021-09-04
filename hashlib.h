@@ -89,21 +89,24 @@ typedef struct _sha256_ctx {
 /**************************************************************************************
  * @def SHA256_MBUFFER_LEN
  * Temporary SHA-256 memory buffer.
- * A buffer of this length, in bytes, must be passed to hashlib_Sha256Init().
+ * A buffer of this length, in uint32_ts, must be passed to hashlib_Sha256Init().
+ * @code
+ * uint32_t mbuffer[SHA256_MBUFFER_LEN];
+ * @endcode
  **************************************************************************************/
- #define SHA256_MBUFFER_LEN	(64 * 4)
+ #define SHA256_MBUFFER_SIZE	(64)
  
  /******************************************************
   * @def SHA256_DIGEST_LEN
   * Binary length of the SHA-256 hash output.
   ******************************************************/
- #define SHA256_DIGEST_LEN   32
+ #define SHA256_DIGEST_SIZE   32
  
  /************************************************************
   * @def SHA256_HEXSTR_LEN
   * Length of a string containing the SHA-256 hash.
   **********************************************************/
-#define SHA256_HEXSTR_LEN   (SHA256_DIGEST_LEN<<1) + 1
+#define SHA256_HEXSTR_SIZE   (SHA256_DIGEST_LEN<<1) + 1
 
 /**************************************************************************************************
  *	@brief Context initializer for SHA-256.
@@ -258,6 +261,7 @@ enum aes_padding_schemes {
  * Defines a macro to generate a pseudorandom AES key of a given length.
  * @param key Pointer to a buffer to write the key into.
  * @param kelen The byte length of the key to generate.
+ * @note @b key must be at least @b keylen bytes large.
  ***************************************************************************************/
 #define hashlib_AESKeygen(key, keylen)	hashlib_RandomBytes((key), (keylen))
 

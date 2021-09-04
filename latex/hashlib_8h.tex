@@ -22,11 +22,14 @@ struct \mbox{\hyperlink{struct__aes__ctx}{\+\_\+aes\+\_\+ctx}}
 \item 
 \#define \mbox{\hyperlink{hashlib_8h_ab981c88a4cd7407b2c4b4bfe86fc021b}{hashlib\+\_\+\+Fast\+Mem\+Buffer\+Unsafe}}~((void$\ast$)0x\+E30800)
 \item 
-\#define \mbox{\hyperlink{hashlib_8h_a939c5eb79064fb776e34fd0c632a588b}{SHA256\+\_\+\+MBUFFER\+\_\+\+LEN}}~(64 $\ast$ 4)
+\mbox{\Hypertarget{hashlib_8h_a1063390a9def465cfc673b9f38cc3f37}\label{hashlib_8h_a1063390a9def465cfc673b9f38cc3f37}} 
+\#define {\bfseries SHA256\+\_\+\+MBUFFER\+\_\+\+SIZE}~(64)
 \item 
-\#define \mbox{\hyperlink{hashlib_8h_af5aa539ae202ddf9e0c9211309869fc8}{SHA256\+\_\+\+DIGEST\+\_\+\+LEN}}~32
+\mbox{\Hypertarget{hashlib_8h_a81efbc0fc101b06a914f7ff9e2fbc0e9}\label{hashlib_8h_a81efbc0fc101b06a914f7ff9e2fbc0e9}} 
+\#define {\bfseries SHA256\+\_\+\+DIGEST\+\_\+\+SIZE}~32
 \item 
-\#define \mbox{\hyperlink{hashlib_8h_a7a767ce32adaa3ad3e7e4aafff0ae7e3}{SHA256\+\_\+\+HEXSTR\+\_\+\+LEN}}~(\mbox{\hyperlink{hashlib_8h_af5aa539ae202ddf9e0c9211309869fc8}{SHA256\+\_\+\+DIGEST\+\_\+\+LEN}}$<$$<$1) + 1
+\mbox{\Hypertarget{hashlib_8h_a10da3c77a9015ef11b49d88b96c8deca}\label{hashlib_8h_a10da3c77a9015ef11b49d88b96c8deca}} 
+\#define {\bfseries SHA256\+\_\+\+HEXSTR\+\_\+\+SIZE}~(SHA256\+\_\+\+DIGEST\+\_\+\+LEN$<$$<$1) + 1
 \item 
 \#define \mbox{\hyperlink{hashlib_8h_afab0742642db9c0609c00bf8a54f386f}{AES\+\_\+\+BLOCKSIZE}}~16
 \item 
@@ -46,7 +49,7 @@ struct \mbox{\hyperlink{struct__aes__ctx}{\+\_\+aes\+\_\+ctx}}
 \item 
 \#define \mbox{\hyperlink{hashlib_8h_a14743a93cbf9c7237d0ac03d842f296f}{hashlib\+\_\+\+AESAuth\+Mac\+Ciphertext\+Size}}(len)~ (\mbox{\hyperlink{hashlib_8h_a1bfa78156f62c2e87f7af3a8533304b1}{hashlib\+\_\+\+AESCiphertext\+IVSize}}((len)) + \mbox{\hyperlink{hashlib_8h_acf32bb8a8d871f4cf33f26c8b2a977fb}{AES\+\_\+\+MAC\+\_\+\+SIZE}})
 \item 
-\#define \mbox{\hyperlink{hashlib_8h_a06773afe7f242955b6b668d2c3ea384a}{hashlib\+\_\+\+AESAuth\+Sha256\+Ciphertext\+Size}}(len)~ (\mbox{\hyperlink{hashlib_8h_a1bfa78156f62c2e87f7af3a8533304b1}{hashlib\+\_\+\+AESCiphertext\+IVSize}}((len)) + \mbox{\hyperlink{hashlib_8h_af5aa539ae202ddf9e0c9211309869fc8}{SHA256\+\_\+\+DIGEST\+\_\+\+LEN}})
+\#define \mbox{\hyperlink{hashlib_8h_a06773afe7f242955b6b668d2c3ea384a}{hashlib\+\_\+\+AESAuth\+Sha256\+Ciphertext\+Size}}(len)~ (\mbox{\hyperlink{hashlib_8h_a1bfa78156f62c2e87f7af3a8533304b1}{hashlib\+\_\+\+AESCiphertext\+IVSize}}((len)) + SHA256\+\_\+\+DIGEST\+\_\+\+LEN)
 \item 
 \#define \mbox{\hyperlink{hashlib_8h_a864d96afe89419821aed4293d979b2b9}{hashlib\+\_\+\+AESKeygen}}(key,  keylen)~\mbox{\hyperlink{hashlib_8h_aa0092aa4c122591fae447dda8fa25dfc}{hashlib\+\_\+\+Random\+Bytes}}((key), (keylen))
 \item 
@@ -165,25 +168,7 @@ Fast Memory gets clobbered by Lib\+Load. Don\textquotesingle{}t keep long-\/term
 
 If the SPRNG is run, anything you have stored here will be destroyed. 
 \end{DoxyWarning}
-\mbox{\Hypertarget{hashlib_8h_a939c5eb79064fb776e34fd0c632a588b}\label{hashlib_8h_a939c5eb79064fb776e34fd0c632a588b}} 
-\index{hashlib.h@{hashlib.h}!SHA256\_MBUFFER\_LEN@{SHA256\_MBUFFER\_LEN}}
-\index{SHA256\_MBUFFER\_LEN@{SHA256\_MBUFFER\_LEN}!hashlib.h@{hashlib.h}}
-\doxysubsubsection{\texorpdfstring{SHA256\_MBUFFER\_LEN}{SHA256\_MBUFFER\_LEN}}
-{\footnotesize\ttfamily \#define SHA256\+\_\+\+MBUFFER\+\_\+\+LEN~(64 $\ast$ 4)}
-
-Temporary SHA-\/256 memory buffer. A buffer of this length, in bytes, must be passed to \mbox{\hyperlink{hashlib_8h_ad2fa6bc8d3a1156a5734b81f5195afc4}{hashlib\+\_\+\+Sha256\+Init()}}. \mbox{\Hypertarget{hashlib_8h_af5aa539ae202ddf9e0c9211309869fc8}\label{hashlib_8h_af5aa539ae202ddf9e0c9211309869fc8}} 
-\index{hashlib.h@{hashlib.h}!SHA256\_DIGEST\_LEN@{SHA256\_DIGEST\_LEN}}
-\index{SHA256\_DIGEST\_LEN@{SHA256\_DIGEST\_LEN}!hashlib.h@{hashlib.h}}
-\doxysubsubsection{\texorpdfstring{SHA256\_DIGEST\_LEN}{SHA256\_DIGEST\_LEN}}
-{\footnotesize\ttfamily \#define SHA256\+\_\+\+DIGEST\+\_\+\+LEN~32}
-
-Binary length of the SHA-\/256 hash output. \mbox{\Hypertarget{hashlib_8h_a7a767ce32adaa3ad3e7e4aafff0ae7e3}\label{hashlib_8h_a7a767ce32adaa3ad3e7e4aafff0ae7e3}} 
-\index{hashlib.h@{hashlib.h}!SHA256\_HEXSTR\_LEN@{SHA256\_HEXSTR\_LEN}}
-\index{SHA256\_HEXSTR\_LEN@{SHA256\_HEXSTR\_LEN}!hashlib.h@{hashlib.h}}
-\doxysubsubsection{\texorpdfstring{SHA256\_HEXSTR\_LEN}{SHA256\_HEXSTR\_LEN}}
-{\footnotesize\ttfamily \#define SHA256\+\_\+\+HEXSTR\+\_\+\+LEN~(\mbox{\hyperlink{hashlib_8h_af5aa539ae202ddf9e0c9211309869fc8}{SHA256\+\_\+\+DIGEST\+\_\+\+LEN}}$<$$<$1) + 1}
-
-Length of a string containing the SHA-\/256 hash. \mbox{\Hypertarget{hashlib_8h_afab0742642db9c0609c00bf8a54f386f}\label{hashlib_8h_afab0742642db9c0609c00bf8a54f386f}} 
+\mbox{\Hypertarget{hashlib_8h_afab0742642db9c0609c00bf8a54f386f}\label{hashlib_8h_afab0742642db9c0609c00bf8a54f386f}} 
 \index{hashlib.h@{hashlib.h}!AES\_BLOCKSIZE@{AES\_BLOCKSIZE}}
 \index{AES\_BLOCKSIZE@{AES\_BLOCKSIZE}!hashlib.h@{hashlib.h}}
 \doxysubsubsection{\texorpdfstring{AES\_BLOCKSIZE}{AES\_BLOCKSIZE}}
@@ -262,7 +247,7 @@ Defines a macro to return the size of an AES ciphertext with CBC-\/\+MAC authent
 \index{hashlib.h@{hashlib.h}!hashlib\_AESAuthSha256CiphertextSize@{hashlib\_AESAuthSha256CiphertextSize}}
 \index{hashlib\_AESAuthSha256CiphertextSize@{hashlib\_AESAuthSha256CiphertextSize}!hashlib.h@{hashlib.h}}
 \doxysubsubsection{\texorpdfstring{hashlib\_AESAuthSha256CiphertextSize}{hashlib\_AESAuthSha256CiphertextSize}}
-{\footnotesize\ttfamily \#define hashlib\+\_\+\+AESAuth\+Sha256\+Ciphertext\+Size(\begin{DoxyParamCaption}\item[{}]{len }\end{DoxyParamCaption})~ (\mbox{\hyperlink{hashlib_8h_a1bfa78156f62c2e87f7af3a8533304b1}{hashlib\+\_\+\+AESCiphertext\+IVSize}}((len)) + \mbox{\hyperlink{hashlib_8h_af5aa539ae202ddf9e0c9211309869fc8}{SHA256\+\_\+\+DIGEST\+\_\+\+LEN}})}
+{\footnotesize\ttfamily \#define hashlib\+\_\+\+AESAuth\+Sha256\+Ciphertext\+Size(\begin{DoxyParamCaption}\item[{}]{len }\end{DoxyParamCaption})~ (\mbox{\hyperlink{hashlib_8h_a1bfa78156f62c2e87f7af3a8533304b1}{hashlib\+\_\+\+AESCiphertext\+IVSize}}((len)) + SHA256\+\_\+\+DIGEST\+\_\+\+LEN)}
 
 Defines a macro to return the size of an AES ciphertext with SHA-\/256 authentication. This includes one extra block for the IV and an additional 32 bytes for the SHA-\/256 digest.
 
@@ -284,6 +269,9 @@ Defines a macro to generate a pseudorandom AES key of a given length.
 {\em kelen} & The byte length of the key to generate. \\
 \hline
 \end{DoxyParams}
+\begin{DoxyNote}{Note}
+{\bfseries{key}} must be at least {\bfseries{keylen}} bytes large. 
+\end{DoxyNote}
 \mbox{\Hypertarget{hashlib_8h_ad4ea46d5db12669bb2687771d094638f}\label{hashlib_8h_ad4ea46d5db12669bb2687771d094638f}} 
 \index{hashlib.h@{hashlib.h}!hashlib\_MallocContext@{hashlib\_MallocContext}}
 \index{hashlib\_MallocContext@{hashlib\_MallocContext}!hashlib.h@{hashlib.h}}
