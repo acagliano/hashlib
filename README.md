@@ -6,7 +6,7 @@ choice and type `make install`. Alternatively, you can manually move `hashlib.h`
 into `$CEDEV/include` and `hashlib.lib` into `$CEDEV/lib/libload`. Also, be
 sure to send `HASHLIB.8xv` to your TI-84+ CE.
 
-For detailed documentation, head to [C header documentation](https://acagliano.github.io/hashlib/html/hashlib_8h.html).
+For detailed documentation, head to [C header documentation](https://acagliano.github.io/hashlib/html/).
 
 For even more detailed documentation head to [Documentation PDF](https://github.com/acagliano/hashlib/blob/stable/Hashlib%20Documentation.pdf).
 
