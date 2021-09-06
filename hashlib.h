@@ -87,26 +87,26 @@ typedef struct _sha256_ctx {
 } sha256_ctx;
 
 /**************************************************************************************
- * @def SHA256_MBUFFER_SIZE
+ * @def SHA256_MBUFFER_LEN
  * Temporary SHA-256 memory buffer.
  * A buffer of this length, in uint32_ts, must be passed to hashlib_Sha256Init().
  * @code
- * uint32_t mbuffer[SHA256_MBUFFER_SIZE];
+ * uint32_t mbuffer[SHA256_MBUFFER_LEN];
  * @endcode
  **************************************************************************************/
- #define SHA256_MBUFFER_SIZE	(64)
+ #define SHA256_MBUFFER_LEN		(64)
  
  /******************************************************
-  * @def SHA256_DIGEST_SIZE
+  * @def SHA256_DIGEST_LEN
   * Binary length of the SHA-256 hash output.
   ******************************************************/
- #define SHA256_DIGEST_SIZE   32
+ #define SHA256_DIGEST_LEN		32
  
  /************************************************************
-  * @def SHA256_HEXSTR_SIZE
+  * @def SHA256_HEXSTR_LEN
   * Length of a string containing the SHA-256 hash.
   **********************************************************/
-#define SHA256_HEXSTR_SIZE   (SHA256_DIGEST_SIZE<<1) + 1
+#define SHA256_HEXSTR_LEN		(SHA256_DIGEST_SIZE<<1) + 1
 
 /**************************************************************************************************
  *	@brief Context initializer for SHA-256.
