@@ -99,7 +99,7 @@ Macros</h2></td></tr>
 <tr class="separator:a1063390a9def465cfc673b9f38cc3f37"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a81efbc0fc101b06a914f7ff9e2fbc0e9"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#a81efbc0fc101b06a914f7ff9e2fbc0e9">SHA256_DIGEST_SIZE</a>&#160;&#160;&#160;32</td></tr>
 <tr class="separator:a81efbc0fc101b06a914f7ff9e2fbc0e9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a10da3c77a9015ef11b49d88b96c8deca"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#a10da3c77a9015ef11b49d88b96c8deca">SHA256_HEXSTR_SIZE</a>&#160;&#160;&#160;(SHA256_DIGEST_LEN&lt;&lt;1) + 1</td></tr>
+<tr class="memitem:a10da3c77a9015ef11b49d88b96c8deca"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#a10da3c77a9015ef11b49d88b96c8deca">SHA256_HEXSTR_SIZE</a>&#160;&#160;&#160;(<a class="el" href="hashlib_8h.html#a81efbc0fc101b06a914f7ff9e2fbc0e9">SHA256_DIGEST_SIZE</a>&lt;&lt;1) + 1</td></tr>
 <tr class="separator:a10da3c77a9015ef11b49d88b96c8deca"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afab0742642db9c0609c00bf8a54f386f"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#afab0742642db9c0609c00bf8a54f386f">AES_BLOCKSIZE</a>&#160;&#160;&#160;16</td></tr>
 <tr class="separator:afab0742642db9c0609c00bf8a54f386f"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -273,7 +273,8 @@ If the SPRNG is run, anything you have stored here will be destroyed. </dd></dl>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Temporary SHA-256 memory buffer. A buffer of this length, in uint32_ts, must be passed to <a class="el" href="hashlib_8h.html#ad2fa6bc8d3a1156a5734b81f5195afc4" title="Context initializer for SHA-256. Initializes the given context with the starting state for SHA-256.">hashlib_Sha256Init()</a>. </p><div class="fragment"><div class="line">uint32_t mbuffer[SHA256_MBUFFER_LEN];</div>
+<p>Temporary SHA-256 memory buffer. A buffer of this length, in uint32_ts, must be passed to <a class="el" href="hashlib_8h.html#ad2fa6bc8d3a1156a5734b81f5195afc4" title="Context initializer for SHA-256. Initializes the given context with the starting state for SHA-256.">hashlib_Sha256Init()</a>. </p><div class="fragment"><div class="line">uint32_t mbuffer[<a class="code" href="hashlib_8h.html#a1063390a9def465cfc673b9f38cc3f37">SHA256_MBUFFER_SIZE</a>];</div>
+<div class="ttc" id="ahashlib_8h_html_a1063390a9def465cfc673b9f38cc3f37"><div class="ttname"><a href="hashlib_8h.html#a1063390a9def465cfc673b9f38cc3f37">SHA256_MBUFFER_SIZE</a></div><div class="ttdeci">#define SHA256_MBUFFER_SIZE</div><div class="ttdef"><b>Definition:</b> hashlib.h:97</div></div>
 </div><!-- fragment --> 
 </div>
 </div>
@@ -299,7 +300,7 @@ If the SPRNG is run, anything you have stored here will be destroyed. </dd></dl>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define SHA256_HEXSTR_SIZE&#160;&#160;&#160;(SHA256_DIGEST_LEN&lt;&lt;1) + 1</td>
+          <td class="memname">#define SHA256_HEXSTR_SIZE&#160;&#160;&#160;(<a class="el" href="hashlib_8h.html#a81efbc0fc101b06a914f7ff9e2fbc0e9">SHA256_DIGEST_SIZE</a>&lt;&lt;1) + 1</td>
         </tr>
       </table>
 </div><div class="memdoc">
