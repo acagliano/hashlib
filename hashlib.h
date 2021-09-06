@@ -75,7 +75,7 @@ bool hashlib_RandomBytes(uint8_t *buffer, size_t size);
  
 // SHA-256 Cryptographic Hash
 /*******************************************************************************************************************
- * @typedef SHA-256 Context
+ * @typedef sha256_ctx
  * Defines hash-state data for an instance of SHA-256.
  * @note If you are hashing multiple data streams concurrently, allocate a seperate context for each.
  ********************************************************************************************************************/
@@ -121,7 +121,7 @@ void hashlib_Sha256Init(sha256_ctx *ctx, uint32_t *mbuffer);
  *	@brief Updates the SHA-256 context for the given data.
  *	@param ctx Pointer to a SHA-256 context.
  *	@param buf Pointer to data to hash.
- *	@param len Number of bytes at @param buf to hash.
+ *	@param len Number of bytes at @b buf to hash.
  *	@warning You must call hashlib_Sha256Init() first or your hash state will be invalid.
  ******************************************************************************************************/
 void hashlib_Sha256Update(sha256_ctx *ctx, const uint8_t *buf, uint32_t len);
@@ -150,16 +150,17 @@ void hashlib_MGF1Hash(uint8_t* data, size_t datalen, uint8_t* outbuf, size_t out
 
 // Advanced Encryption Standard (AES)
 /***************************************************************************************************
- * @typedef Context Definition for AES key schedule
+ * @typedef aes_ctx
  * Stores AES key instance data: key size and round keys generated from an AES key.
  ***************************************************************************************************/
 typedef struct _aes_ctx {
-    uint24_t keysize;
-    uint32_t round_keys[60];
+    uint24_t keysize;				/**< the size of the key, in bits */
+    uint32_t round_keys[60];		/**< round keys */
 } aes_ctx;
 
 /************************************************
- * @enum Supported AES cipher modes
+ * @enum aes_cipher_modes
+ * Supported AES cipher modes
  ************************************************/
 enum aes_cipher_modes {
 	AES_MODE_CBC,		/**< selects CBC mode */
@@ -167,7 +168,8 @@ enum aes_cipher_modes {
 };
 
 /***************************************************
- * @enum Supported AES padding schemes
+ * @enum aes_padding_schemes
+ * Supported AES padding schemes
  ***************************************************/
 enum aes_padding_schemes {
     SCHM_PKCS7, 		 		/**< PKCS#7 padding | DEFAULT */
@@ -260,7 +262,7 @@ enum aes_padding_schemes {
  * @def hashlib_AESKeygen()
  * Defines a macro to generate a pseudorandom AES key of a given length.
  * @param key Pointer to a buffer to write the key into.
- * @param kelen The byte length of the key to generate.
+ * @param keylen The byte length of the key to generate.
  * @note @b key must be at least @b keylen bytes large.
  ***************************************************************************************/
 #define hashlib_AESKeygen(key, keylen)	hashlib_RandomBytes((key), (keylen))
@@ -417,9 +419,10 @@ size_t hashlib_AESStripPadding(const uint8_t* plaintext,
 
 // RSA Public Key Encryption
 /*************************************************************************************************
- * @enum SSL signature algorithms
+ * @enum ssl_sig_modes
+ * SSL signature algorithms
 ****************************************************************************************************/
-enum _ssl_sig_modes {
+enum ssl_sig_modes {
 	SSLSIG_RSA_SHA256,		/**< RSA with SHA-256 signature algorithm */
 	SSLSIG_ECDSA			/**< ECDSA (unimplemented, likely a long way off) */
 };
