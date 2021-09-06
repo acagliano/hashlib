@@ -106,7 +106,7 @@ typedef struct _sha256_ctx {
   * @def SHA256_HEXSTR_LEN
   * Length of a string containing the SHA-256 hash.
   **********************************************************/
-#define SHA256_HEXSTR_LEN		(SHA256_DIGEST_SIZE<<1) + 1
+#define SHA256_HEXSTR_LEN		(SHA256_DIGEST_LEN<<1) + 1
 
 /**************************************************************************************************
  *	@brief Context initializer for SHA-256.
