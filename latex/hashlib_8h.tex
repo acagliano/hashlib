@@ -30,9 +30,11 @@ struct \mbox{\hyperlink{struct__aes__ctx}{\+\_\+aes\+\_\+ctx}}
 \item 
 \#define \mbox{\hyperlink{hashlib_8h_afab0742642db9c0609c00bf8a54f386f}{AES\+\_\+\+BLOCKSIZE}}~16
 \item 
-\#define \mbox{\hyperlink{hashlib_8h_afc06a029c783f78badc2c26cf6f2297c}{AES\+\_\+\+IV\+\_\+\+SIZE}}~\mbox{\hyperlink{hashlib_8h_afab0742642db9c0609c00bf8a54f386f}{AES\+\_\+\+BLOCKSIZE}}
+\mbox{\Hypertarget{hashlib_8h_a6c2d58d8dd281845fdc027b499dea89d}\label{hashlib_8h_a6c2d58d8dd281845fdc027b499dea89d}} 
+\#define {\bfseries AES\+\_\+\+IVSIZE}~\mbox{\hyperlink{hashlib_8h_afab0742642db9c0609c00bf8a54f386f}{AES\+\_\+\+BLOCKSIZE}}
 \item 
-\#define \mbox{\hyperlink{hashlib_8h_acf32bb8a8d871f4cf33f26c8b2a977fb}{AES\+\_\+\+MAC\+\_\+\+SIZE}}~\mbox{\hyperlink{hashlib_8h_afab0742642db9c0609c00bf8a54f386f}{AES\+\_\+\+BLOCKSIZE}}
+\mbox{\Hypertarget{hashlib_8h_a19667e37a8544fc50aad7e4aa5e0f502}\label{hashlib_8h_a19667e37a8544fc50aad7e4aa5e0f502}} 
+\#define {\bfseries AES\+\_\+\+MACSIZE}~\mbox{\hyperlink{hashlib_8h_afab0742642db9c0609c00bf8a54f386f}{AES\+\_\+\+BLOCKSIZE}}
 \item 
 \#define \mbox{\hyperlink{hashlib_8h_a2841462d8933d0982e3ea13dc5284d7c}{AES128\+\_\+\+KEYLEN}}~16
 \item 
@@ -42,9 +44,9 @@ struct \mbox{\hyperlink{struct__aes__ctx}{\+\_\+aes\+\_\+ctx}}
 \item 
 \#define \mbox{\hyperlink{hashlib_8h_a2bd39d64a42b6a8d56b0b18efc9d164c}{hashlib\+\_\+\+AESCiphertext\+Size}}(len)~ ((((len)\%\mbox{\hyperlink{hashlib_8h_afab0742642db9c0609c00bf8a54f386f}{AES\+\_\+\+BLOCKSIZE}})==0) ? (len) + \mbox{\hyperlink{hashlib_8h_afab0742642db9c0609c00bf8a54f386f}{AES\+\_\+\+BLOCKSIZE}} \+: (((len)$>$$>$4) + 1)$<$$<$4)
 \item 
-\#define \mbox{\hyperlink{hashlib_8h_a1bfa78156f62c2e87f7af3a8533304b1}{hashlib\+\_\+\+AESCiphertext\+IVSize}}(len)~(\mbox{\hyperlink{hashlib_8h_a2bd39d64a42b6a8d56b0b18efc9d164c}{hashlib\+\_\+\+AESCiphertext\+Size}}((len)) + \mbox{\hyperlink{hashlib_8h_afc06a029c783f78badc2c26cf6f2297c}{AES\+\_\+\+IV\+\_\+\+SIZE}})
+\#define \mbox{\hyperlink{hashlib_8h_a1bfa78156f62c2e87f7af3a8533304b1}{hashlib\+\_\+\+AESCiphertext\+IVSize}}(len)~(\mbox{\hyperlink{hashlib_8h_a2bd39d64a42b6a8d56b0b18efc9d164c}{hashlib\+\_\+\+AESCiphertext\+Size}}((len)) + AES\+\_\+\+IVSIZE)
 \item 
-\#define \mbox{\hyperlink{hashlib_8h_a14743a93cbf9c7237d0ac03d842f296f}{hashlib\+\_\+\+AESAuth\+Mac\+Ciphertext\+Size}}(len)~ (\mbox{\hyperlink{hashlib_8h_a1bfa78156f62c2e87f7af3a8533304b1}{hashlib\+\_\+\+AESCiphertext\+IVSize}}((len)) + \mbox{\hyperlink{hashlib_8h_acf32bb8a8d871f4cf33f26c8b2a977fb}{AES\+\_\+\+MAC\+\_\+\+SIZE}})
+\#define \mbox{\hyperlink{hashlib_8h_a14743a93cbf9c7237d0ac03d842f296f}{hashlib\+\_\+\+AESAuth\+Mac\+Ciphertext\+Size}}(len)~ (\mbox{\hyperlink{hashlib_8h_a1bfa78156f62c2e87f7af3a8533304b1}{hashlib\+\_\+\+AESCiphertext\+IVSize}}((len)) + AES\+\_\+\+MACSIZE)
 \item 
 \#define \mbox{\hyperlink{hashlib_8h_a06773afe7f242955b6b668d2c3ea384a}{hashlib\+\_\+\+AESAuth\+Sha256\+Ciphertext\+Size}}(len)~ (\mbox{\hyperlink{hashlib_8h_a1bfa78156f62c2e87f7af3a8533304b1}{hashlib\+\_\+\+AESCiphertext\+IVSize}}((len)) + \mbox{\hyperlink{hashlib_8h_af5aa539ae202ddf9e0c9211309869fc8}{SHA256\+\_\+\+DIGEST\+\_\+\+LEN}})
 \item 
@@ -192,19 +194,7 @@ Length of a string containing the SHA-\/256 hash. \mbox{\Hypertarget{hashlib_8h_
 \doxysubsubsection{\texorpdfstring{AES\_BLOCKSIZE}{AES\_BLOCKSIZE}}
 {\footnotesize\ttfamily \#define AES\+\_\+\+BLOCKSIZE~16}
 
-Defines the blocksize of the AES cipher. \mbox{\Hypertarget{hashlib_8h_afc06a029c783f78badc2c26cf6f2297c}\label{hashlib_8h_afc06a029c783f78badc2c26cf6f2297c}} 
-\index{hashlib.h@{hashlib.h}!AES\_IV\_SIZE@{AES\_IV\_SIZE}}
-\index{AES\_IV\_SIZE@{AES\_IV\_SIZE}!hashlib.h@{hashlib.h}}
-\doxysubsubsection{\texorpdfstring{AES\_IV\_SIZE}{AES\_IV\_SIZE}}
-{\footnotesize\ttfamily \#define AES\+\_\+\+IV\+\_\+\+SIZE~\mbox{\hyperlink{hashlib_8h_afab0742642db9c0609c00bf8a54f386f}{AES\+\_\+\+BLOCKSIZE}}}
-
-Defines the length of the AES initalization vector (IV). \mbox{\Hypertarget{hashlib_8h_acf32bb8a8d871f4cf33f26c8b2a977fb}\label{hashlib_8h_acf32bb8a8d871f4cf33f26c8b2a977fb}} 
-\index{hashlib.h@{hashlib.h}!AES\_MAC\_SIZE@{AES\_MAC\_SIZE}}
-\index{AES\_MAC\_SIZE@{AES\_MAC\_SIZE}!hashlib.h@{hashlib.h}}
-\doxysubsubsection{\texorpdfstring{AES\_MAC\_SIZE}{AES\_MAC\_SIZE}}
-{\footnotesize\ttfamily \#define AES\+\_\+\+MAC\+\_\+\+SIZE~\mbox{\hyperlink{hashlib_8h_afab0742642db9c0609c00bf8a54f386f}{AES\+\_\+\+BLOCKSIZE}}}
-
-Defines the length of the AES CBC-\/\+MAC digest. \mbox{\Hypertarget{hashlib_8h_a2841462d8933d0982e3ea13dc5284d7c}\label{hashlib_8h_a2841462d8933d0982e3ea13dc5284d7c}} 
+Defines the blocksize of the AES cipher. \mbox{\Hypertarget{hashlib_8h_a2841462d8933d0982e3ea13dc5284d7c}\label{hashlib_8h_a2841462d8933d0982e3ea13dc5284d7c}} 
 \index{hashlib.h@{hashlib.h}!AES128\_KEYLEN@{AES128\_KEYLEN}}
 \index{AES128\_KEYLEN@{AES128\_KEYLEN}!hashlib.h@{hashlib.h}}
 \doxysubsubsection{\texorpdfstring{AES128\_KEYLEN}{AES128\_KEYLEN}}
@@ -239,7 +229,7 @@ Defines a macro to return the size of an AES ciphertext given a plaintext length
 \index{hashlib.h@{hashlib.h}!hashlib\_AESCiphertextIVSize@{hashlib\_AESCiphertextIVSize}}
 \index{hashlib\_AESCiphertextIVSize@{hashlib\_AESCiphertextIVSize}!hashlib.h@{hashlib.h}}
 \doxysubsubsection{\texorpdfstring{hashlib\_AESCiphertextIVSize}{hashlib\_AESCiphertextIVSize}}
-{\footnotesize\ttfamily \#define hashlib\+\_\+\+AESCiphertext\+IVSize(\begin{DoxyParamCaption}\item[{}]{len }\end{DoxyParamCaption})~(\mbox{\hyperlink{hashlib_8h_a2bd39d64a42b6a8d56b0b18efc9d164c}{hashlib\+\_\+\+AESCiphertext\+Size}}((len)) + \mbox{\hyperlink{hashlib_8h_afc06a029c783f78badc2c26cf6f2297c}{AES\+\_\+\+IV\+\_\+\+SIZE}})}
+{\footnotesize\ttfamily \#define hashlib\+\_\+\+AESCiphertext\+IVSize(\begin{DoxyParamCaption}\item[{}]{len }\end{DoxyParamCaption})~(\mbox{\hyperlink{hashlib_8h_a2bd39d64a42b6a8d56b0b18efc9d164c}{hashlib\+\_\+\+AESCiphertext\+Size}}((len)) + AES\+\_\+\+IVSIZE)}
 
 Defines a macro to return the size of an AES ciphertext with with an extra block added for the IV.
 
@@ -252,7 +242,7 @@ Defines a macro to return the size of an AES ciphertext with with an extra block
 \index{hashlib.h@{hashlib.h}!hashlib\_AESAuthMacCiphertextSize@{hashlib\_AESAuthMacCiphertextSize}}
 \index{hashlib\_AESAuthMacCiphertextSize@{hashlib\_AESAuthMacCiphertextSize}!hashlib.h@{hashlib.h}}
 \doxysubsubsection{\texorpdfstring{hashlib\_AESAuthMacCiphertextSize}{hashlib\_AESAuthMacCiphertextSize}}
-{\footnotesize\ttfamily \#define hashlib\+\_\+\+AESAuth\+Mac\+Ciphertext\+Size(\begin{DoxyParamCaption}\item[{}]{len }\end{DoxyParamCaption})~ (\mbox{\hyperlink{hashlib_8h_a1bfa78156f62c2e87f7af3a8533304b1}{hashlib\+\_\+\+AESCiphertext\+IVSize}}((len)) + \mbox{\hyperlink{hashlib_8h_acf32bb8a8d871f4cf33f26c8b2a977fb}{AES\+\_\+\+MAC\+\_\+\+SIZE}})}
+{\footnotesize\ttfamily \#define hashlib\+\_\+\+AESAuth\+Mac\+Ciphertext\+Size(\begin{DoxyParamCaption}\item[{}]{len }\end{DoxyParamCaption})~ (\mbox{\hyperlink{hashlib_8h_a1bfa78156f62c2e87f7af3a8533304b1}{hashlib\+\_\+\+AESCiphertext\+IVSize}}((len)) + AES\+\_\+\+MACSIZE)}
 
 Defines a macro to return the size of an AES ciphertext with CBC-\/\+MAC authentication. This includes two extra blocks-\/ one for the IV and another for the MAC digest.
 
@@ -633,8 +623,8 @@ If cipher mode CBC is used, {\bfseries{len}} must be a multiple of the blocksize
 
 {\bfseries{IV}} is not written to the ciphertext buffer by this function, only the encrypted message. However, if your ciphertext buffer is large enough, you can do the following to get the IV prepended to the ciphertext. Otherwise you will have to join the IV and the ciphertext into a single larger buffer before sending it through whatever networking protocol you use. 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{\mbox{\hyperlink{hashlib_8h_a745c5c4d6bdc248f20b18c7b848d8b6b}{hashlib\_AESEncrypt}}(plaintext, len, \&ciphertext[\mbox{\hyperlink{hashlib_8h_afc06a029c783f78badc2c26cf6f2297c}{AES\_IV\_SIZE}}], ks, iv, <cipher\_mode>);}
-\DoxyCodeLine{memcpy(ciphertext, iv, \mbox{\hyperlink{hashlib_8h_afc06a029c783f78badc2c26cf6f2297c}{AES\_IV\_SIZE}});}
+\DoxyCodeLine{\mbox{\hyperlink{hashlib_8h_a745c5c4d6bdc248f20b18c7b848d8b6b}{hashlib\_AESEncrypt}}(plaintext, len, \&ciphertext[AES\_IV\_SIZE], ks, iv, <cipher\_mode>);}
+\DoxyCodeLine{memcpy(ciphertext, iv, AES\_IV\_SIZE);}
 \DoxyCodeLine{send\_packet(ciphertext);}
 
 \end{DoxyCode}
@@ -704,9 +694,9 @@ CBC-\/\+MAC requires padding, as it uses CBC mode. You can use the \mbox{\hyperl
 
 To send a packet with authenticated encryption, you will need to append the MAC digest to your ciphertext returned by the above functions. For example, assuming {\bfseries{ciphertext}} is at least as large as the size returned by \mbox{\hyperlink{hashlib_8h_a14743a93cbf9c7237d0ac03d842f296f}{hashlib\+\_\+\+AESAuth\+Mac\+Ciphertext\+Size()}}\+: 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{\mbox{\hyperlink{hashlib_8h_a745c5c4d6bdc248f20b18c7b848d8b6b}{hashlib\_AESEncrypt}}(plaintext, len, \&ciphertext[\mbox{\hyperlink{hashlib_8h_afc06a029c783f78badc2c26cf6f2297c}{AES\_IV\_SIZE}}], ks\_encrypt, iv, <ciphermode>);}
-\DoxyCodeLine{memcpy(ciphertext, iv, \mbox{\hyperlink{hashlib_8h_afc06a029c783f78badc2c26cf6f2297c}{AES\_IV\_SIZE}});}
-\DoxyCodeLine{\mbox{\hyperlink{hashlib_8h_a6ca5ecde1fd675effbc4a29eac35a903}{hashlib\_AESOutputMac}}(ciphertext, <padded\_len>, \&ciphertext[<padded\_len> + \mbox{\hyperlink{hashlib_8h_afc06a029c783f78badc2c26cf6f2297c}{AES\_IV\_SIZE}}], ks\_auth);}
+\DoxyCodeLine{\mbox{\hyperlink{hashlib_8h_a745c5c4d6bdc248f20b18c7b848d8b6b}{hashlib\_AESEncrypt}}(plaintext, len, \&ciphertext[AES\_IV\_SIZE], ks\_encrypt, iv, <ciphermode>);}
+\DoxyCodeLine{memcpy(ciphertext, iv, AES\_IV\_SIZE);}
+\DoxyCodeLine{\mbox{\hyperlink{hashlib_8h_a6ca5ecde1fd675effbc4a29eac35a903}{hashlib\_AESOutputMac}}(ciphertext, <padded\_len>, \&ciphertext[<padded\_len> + AES\_IV\_SIZE], ks\_auth);}
 \DoxyCodeLine{\textcolor{comment}{// note the use of two different key schedules}}
 
 \end{DoxyCode}

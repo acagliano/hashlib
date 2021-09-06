@@ -103,10 +103,12 @@ Macros</h2></td></tr>
 <tr class="separator:a7a767ce32adaa3ad3e7e4aafff0ae7e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afab0742642db9c0609c00bf8a54f386f"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#afab0742642db9c0609c00bf8a54f386f">AES_BLOCKSIZE</a>&#160;&#160;&#160;16</td></tr>
 <tr class="separator:afab0742642db9c0609c00bf8a54f386f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afc06a029c783f78badc2c26cf6f2297c"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#afc06a029c783f78badc2c26cf6f2297c">AES_IV_SIZE</a>&#160;&#160;&#160;<a class="el" href="hashlib_8h.html#afab0742642db9c0609c00bf8a54f386f">AES_BLOCKSIZE</a></td></tr>
-<tr class="separator:afc06a029c783f78badc2c26cf6f2297c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acf32bb8a8d871f4cf33f26c8b2a977fb"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#acf32bb8a8d871f4cf33f26c8b2a977fb">AES_MAC_SIZE</a>&#160;&#160;&#160;<a class="el" href="hashlib_8h.html#afab0742642db9c0609c00bf8a54f386f">AES_BLOCKSIZE</a></td></tr>
-<tr class="separator:acf32bb8a8d871f4cf33f26c8b2a977fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6c2d58d8dd281845fdc027b499dea89d"><td class="memItemLeft" align="right" valign="top"><a id="a6c2d58d8dd281845fdc027b499dea89d"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>AES_IVSIZE</b>&#160;&#160;&#160;<a class="el" href="hashlib_8h.html#afab0742642db9c0609c00bf8a54f386f">AES_BLOCKSIZE</a></td></tr>
+<tr class="separator:a6c2d58d8dd281845fdc027b499dea89d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a19667e37a8544fc50aad7e4aa5e0f502"><td class="memItemLeft" align="right" valign="top"><a id="a19667e37a8544fc50aad7e4aa5e0f502"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>AES_MACSIZE</b>&#160;&#160;&#160;<a class="el" href="hashlib_8h.html#afab0742642db9c0609c00bf8a54f386f">AES_BLOCKSIZE</a></td></tr>
+<tr class="separator:a19667e37a8544fc50aad7e4aa5e0f502"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2841462d8933d0982e3ea13dc5284d7c"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#a2841462d8933d0982e3ea13dc5284d7c">AES128_KEYLEN</a>&#160;&#160;&#160;16</td></tr>
 <tr class="separator:a2841462d8933d0982e3ea13dc5284d7c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a37ba5c621bf4af2ddcb851e179e21623"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#a37ba5c621bf4af2ddcb851e179e21623">AES192_KEYLEN</a>&#160;&#160;&#160;24</td></tr>
@@ -115,9 +117,9 @@ Macros</h2></td></tr>
 <tr class="separator:a7bab8a778d065da4cc561f4813994f03"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2bd39d64a42b6a8d56b0b18efc9d164c"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#a2bd39d64a42b6a8d56b0b18efc9d164c">hashlib_AESCiphertextSize</a>(len)&#160;&#160;&#160;	((((len)%<a class="el" href="hashlib_8h.html#afab0742642db9c0609c00bf8a54f386f">AES_BLOCKSIZE</a>)==0) ? (len) + <a class="el" href="hashlib_8h.html#afab0742642db9c0609c00bf8a54f386f">AES_BLOCKSIZE</a> : (((len)&gt;&gt;4) + 1)&lt;&lt;4)</td></tr>
 <tr class="separator:a2bd39d64a42b6a8d56b0b18efc9d164c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1bfa78156f62c2e87f7af3a8533304b1"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#a1bfa78156f62c2e87f7af3a8533304b1">hashlib_AESCiphertextIVSize</a>(len)&#160;&#160;&#160;(<a class="el" href="hashlib_8h.html#a2bd39d64a42b6a8d56b0b18efc9d164c">hashlib_AESCiphertextSize</a>((len)) + <a class="el" href="hashlib_8h.html#afc06a029c783f78badc2c26cf6f2297c">AES_IV_SIZE</a>)</td></tr>
+<tr class="memitem:a1bfa78156f62c2e87f7af3a8533304b1"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#a1bfa78156f62c2e87f7af3a8533304b1">hashlib_AESCiphertextIVSize</a>(len)&#160;&#160;&#160;(<a class="el" href="hashlib_8h.html#a2bd39d64a42b6a8d56b0b18efc9d164c">hashlib_AESCiphertextSize</a>((len)) + AES_IVSIZE)</td></tr>
 <tr class="separator:a1bfa78156f62c2e87f7af3a8533304b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a14743a93cbf9c7237d0ac03d842f296f"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#a14743a93cbf9c7237d0ac03d842f296f">hashlib_AESAuthMacCiphertextSize</a>(len)&#160;&#160;&#160;	(<a class="el" href="hashlib_8h.html#a1bfa78156f62c2e87f7af3a8533304b1">hashlib_AESCiphertextIVSize</a>((len)) + <a class="el" href="hashlib_8h.html#acf32bb8a8d871f4cf33f26c8b2a977fb">AES_MAC_SIZE</a>)</td></tr>
+<tr class="memitem:a14743a93cbf9c7237d0ac03d842f296f"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#a14743a93cbf9c7237d0ac03d842f296f">hashlib_AESAuthMacCiphertextSize</a>(len)&#160;&#160;&#160;	(<a class="el" href="hashlib_8h.html#a1bfa78156f62c2e87f7af3a8533304b1">hashlib_AESCiphertextIVSize</a>((len)) + AES_MACSIZE)</td></tr>
 <tr class="separator:a14743a93cbf9c7237d0ac03d842f296f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a06773afe7f242955b6b668d2c3ea384a"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#a06773afe7f242955b6b668d2c3ea384a">hashlib_AESAuthSha256CiphertextSize</a>(len)&#160;&#160;&#160;	(<a class="el" href="hashlib_8h.html#a1bfa78156f62c2e87f7af3a8533304b1">hashlib_AESCiphertextIVSize</a>((len)) + <a class="el" href="hashlib_8h.html#af5aa539ae202ddf9e0c9211309869fc8">SHA256_DIGEST_LEN</a>)</td></tr>
 <tr class="separator:a06773afe7f242955b6b668d2c3ea384a"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -321,36 +323,6 @@ If the SPRNG is run, anything you have stored here will be destroyed. </dd></dl>
 
 </div>
 </div>
-<a id="afc06a029c783f78badc2c26cf6f2297c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#afc06a029c783f78badc2c26cf6f2297c">&#9670;&nbsp;</a></span>AES_IV_SIZE</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define AES_IV_SIZE&#160;&#160;&#160;<a class="el" href="hashlib_8h.html#afab0742642db9c0609c00bf8a54f386f">AES_BLOCKSIZE</a></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Defines the length of the AES initalization vector (IV). </p>
-
-</div>
-</div>
-<a id="acf32bb8a8d871f4cf33f26c8b2a977fb"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#acf32bb8a8d871f4cf33f26c8b2a977fb">&#9670;&nbsp;</a></span>AES_MAC_SIZE</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define AES_MAC_SIZE&#160;&#160;&#160;<a class="el" href="hashlib_8h.html#afab0742642db9c0609c00bf8a54f386f">AES_BLOCKSIZE</a></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Defines the length of the AES CBC-MAC digest. </p>
-
-</div>
-</div>
 <a id="a2841462d8933d0982e3ea13dc5284d7c"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a2841462d8933d0982e3ea13dc5284d7c">&#9670;&nbsp;</a></span>AES128_KEYLEN</h2>
 
@@ -432,7 +404,7 @@ If the SPRNG is run, anything you have stored here will be destroyed. </dd></dl>
           <td>(</td>
           <td class="paramtype">&#160;</td>
           <td class="paramname">len</td><td>)</td>
-          <td>&#160;&#160;&#160;(<a class="el" href="hashlib_8h.html#a2bd39d64a42b6a8d56b0b18efc9d164c">hashlib_AESCiphertextSize</a>((len)) + <a class="el" href="hashlib_8h.html#afc06a029c783f78badc2c26cf6f2297c">AES_IV_SIZE</a>)</td>
+          <td>&#160;&#160;&#160;(<a class="el" href="hashlib_8h.html#a2bd39d64a42b6a8d56b0b18efc9d164c">hashlib_AESCiphertextSize</a>((len)) + AES_IVSIZE)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -457,7 +429,7 @@ If the SPRNG is run, anything you have stored here will be destroyed. </dd></dl>
           <td>(</td>
           <td class="paramtype">&#160;</td>
           <td class="paramname">len</td><td>)</td>
-          <td>&#160;&#160;&#160;	(<a class="el" href="hashlib_8h.html#a1bfa78156f62c2e87f7af3a8533304b1">hashlib_AESCiphertextIVSize</a>((len)) + <a class="el" href="hashlib_8h.html#acf32bb8a8d871f4cf33f26c8b2a977fb">AES_MAC_SIZE</a>)</td>
+          <td>&#160;&#160;&#160;	(<a class="el" href="hashlib_8h.html#a1bfa78156f62c2e87f7af3a8533304b1">hashlib_AESCiphertextIVSize</a>((len)) + AES_MACSIZE)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -1122,11 +1094,10 @@ If the SPRNG is run, anything you have stored here will be destroyed. </dd></dl>
 <dd>
 If cipher mode CBC is used, <b>len</b> must be a multiple of the blocksize. You can pass the plaintext through <a class="el" href="hashlib_8h.html#aebac98a8537f3353aac9fbae5ed67f29" title="Pads a plaintext according to the specified AES padding scheme.">hashlib_AESPadMessage()</a> prior to calling this function. </dd>
 <dd>
-<b>IV</b> is not written to the ciphertext buffer by this function, only the encrypted message. However, if your ciphertext buffer is large enough, you can do the following to get the IV prepended to the ciphertext. Otherwise you will have to join the IV and the ciphertext into a single larger buffer before sending it through whatever networking protocol you use. <div class="fragment"><div class="line"><a class="code" href="hashlib_8h.html#a745c5c4d6bdc248f20b18c7b848d8b6b">hashlib_AESEncrypt</a>(plaintext, len, &amp;ciphertext[<a class="code" href="hashlib_8h.html#afc06a029c783f78badc2c26cf6f2297c">AES_IV_SIZE</a>], ks, iv, &lt;cipher_mode&gt;);</div>
-<div class="line">memcpy(ciphertext, iv, <a class="code" href="hashlib_8h.html#afc06a029c783f78badc2c26cf6f2297c">AES_IV_SIZE</a>);</div>
+<b>IV</b> is not written to the ciphertext buffer by this function, only the encrypted message. However, if your ciphertext buffer is large enough, you can do the following to get the IV prepended to the ciphertext. Otherwise you will have to join the IV and the ciphertext into a single larger buffer before sending it through whatever networking protocol you use. <div class="fragment"><div class="line"><a class="code" href="hashlib_8h.html#a745c5c4d6bdc248f20b18c7b848d8b6b">hashlib_AESEncrypt</a>(plaintext, len, &amp;ciphertext[AES_IV_SIZE], ks, iv, &lt;cipher_mode&gt;);</div>
+<div class="line">memcpy(ciphertext, iv, AES_IV_SIZE);</div>
 <div class="line">send_packet(ciphertext);</div>
 <div class="ttc" id="ahashlib_8h_html_a745c5c4d6bdc248f20b18c7b848d8b6b"><div class="ttname"><a href="hashlib_8h.html#a745c5c4d6bdc248f20b18c7b848d8b6b">hashlib_AESEncrypt</a></div><div class="ttdeci">bool hashlib_AESEncrypt(const uint8_t *plaintext, size_t len, uint8_t *ciphertext, const aes_ctx *ks, const uint8_t *iv, uint8_t ciphermode)</div><div class="ttdoc">General-Purpose AES Encryption.</div></div>
-<div class="ttc" id="ahashlib_8h_html_afc06a029c783f78badc2c26cf6f2297c"><div class="ttname"><a href="hashlib_8h.html#afc06a029c783f78badc2c26cf6f2297c">AES_IV_SIZE</a></div><div class="ttdeci">#define AES_IV_SIZE</div><div class="ttdef"><b>Definition:</b> hashlib.h:193</div></div>
 </div><!-- fragment --> This will require a buffer at least as large as the size returned by <a class="el" href="hashlib_8h.html#a1bfa78156f62c2e87f7af3a8533304b1">hashlib_AESCiphertextIVSize()</a>. </dd></dl>
 <dl class="section return"><dt>Returns</dt><dd>True if the encryption succeded. False if an error occured. </dd></dl>
 
@@ -1252,9 +1223,9 @@ If cipher mode CBC is used, <b>len</b> must be a multiple of the blocksize. You 
 </dl>
 <dl class="section note"><dt>Note</dt><dd>CBC-MAC requires padding, as it uses CBC mode. You can use the <a class="el" href="hashlib_8h.html#aebac98a8537f3353aac9fbae5ed67f29" title="Pads a plaintext according to the specified AES padding scheme.">hashlib_AESPadMessage()</a> padding function. Padding mode ISO-9791 M2 is preferred for CBC-MAC, but either can be used. </dd>
 <dd>
-To send a packet with authenticated encryption, you will need to append the MAC digest to your ciphertext returned by the above functions. For example, assuming <b>ciphertext</b> is at least as large as the size returned by <a class="el" href="hashlib_8h.html#a14743a93cbf9c7237d0ac03d842f296f">hashlib_AESAuthMacCiphertextSize()</a>: <div class="fragment"><div class="line"><a class="code" href="hashlib_8h.html#a745c5c4d6bdc248f20b18c7b848d8b6b">hashlib_AESEncrypt</a>(plaintext, len, &amp;ciphertext[<a class="code" href="hashlib_8h.html#afc06a029c783f78badc2c26cf6f2297c">AES_IV_SIZE</a>], ks_encrypt, iv, &lt;ciphermode&gt;);</div>
-<div class="line">memcpy(ciphertext, iv, <a class="code" href="hashlib_8h.html#afc06a029c783f78badc2c26cf6f2297c">AES_IV_SIZE</a>);</div>
-<div class="line"><a class="code" href="hashlib_8h.html#a6ca5ecde1fd675effbc4a29eac35a903">hashlib_AESOutputMac</a>(ciphertext, &lt;padded_len&gt;, &amp;ciphertext[&lt;padded_len&gt; + <a class="code" href="hashlib_8h.html#afc06a029c783f78badc2c26cf6f2297c">AES_IV_SIZE</a>], ks_auth);</div>
+To send a packet with authenticated encryption, you will need to append the MAC digest to your ciphertext returned by the above functions. For example, assuming <b>ciphertext</b> is at least as large as the size returned by <a class="el" href="hashlib_8h.html#a14743a93cbf9c7237d0ac03d842f296f">hashlib_AESAuthMacCiphertextSize()</a>: <div class="fragment"><div class="line"><a class="code" href="hashlib_8h.html#a745c5c4d6bdc248f20b18c7b848d8b6b">hashlib_AESEncrypt</a>(plaintext, len, &amp;ciphertext[AES_IV_SIZE], ks_encrypt, iv, &lt;ciphermode&gt;);</div>
+<div class="line">memcpy(ciphertext, iv, AES_IV_SIZE);</div>
+<div class="line"><a class="code" href="hashlib_8h.html#a6ca5ecde1fd675effbc4a29eac35a903">hashlib_AESOutputMac</a>(ciphertext, &lt;padded_len&gt;, &amp;ciphertext[&lt;padded_len&gt; + AES_IV_SIZE], ks_auth);</div>
 <div class="line"><span class="comment">// note the use of two different key schedules</span></div>
 <div class="ttc" id="ahashlib_8h_html_a6ca5ecde1fd675effbc4a29eac35a903"><div class="ttname"><a href="hashlib_8h.html#a6ca5ecde1fd675effbc4a29eac35a903">hashlib_AESOutputMac</a></div><div class="ttdeci">bool hashlib_AESOutputMac(const uint8_t *plaintext, size_t len, uint8_t *mac, const aes_ctx *ks)</div><div class="ttdoc">Returns a message authentication code for an AES message.</div></div>
 </div><!-- fragment --> </dd></dl>

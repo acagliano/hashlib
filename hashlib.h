@@ -190,13 +190,13 @@ enum aes_padding_schemes {
  * @def AES_IV_SIZE
  * Defines the length of the AES initalization vector (IV).
  *****************************************************************/
-#define AES_IV_SIZE		AES_BLOCKSIZE
+#define AES_IVSIZE		AES_BLOCKSIZE
 
 /************************************************************
  * @def AES_MAC_SIZE
  * Defines the length of the AES CBC-MAC digest.
  ************************************************************/
-#define AES_MAC_SIZE	AES_BLOCKSIZE
+#define AES_MACSIZE		AES_BLOCKSIZE
 
 /******************************************************
  * @def AES128_KEYLEN
@@ -234,7 +234,7 @@ enum aes_padding_schemes {
  *
  * @param len The length of the plaintext.
  ************************************************************************************************************************/
- #define hashlib_AESCiphertextIVSize(len)	(hashlib_AESCiphertextSize((len)) + AES_IV_SIZE)
+ #define hashlib_AESCiphertextIVSize(len)	(hashlib_AESCiphertextSize((len)) + AES_IVSIZE)
  
  /******************************************************************************************************
   * @def hashlib_AESAuthMacCiphertextSize()
@@ -245,7 +245,7 @@ enum aes_padding_schemes {
   * @param len The length of the plaintext.
   ******************************************************************************************************/
   #define hashlib_AESAuthMacCiphertextSize(len) \
-	(hashlib_AESCiphertextIVSize((len)) + AES_MAC_SIZE)
+	(hashlib_AESCiphertextIVSize((len)) + AES_MACSIZE)
 	
 /******************************************************************************************************
  * @def hashlib_AESAuthSha256CiphertextSize()
