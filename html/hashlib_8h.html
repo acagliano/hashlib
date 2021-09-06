@@ -95,14 +95,11 @@ Macros</h2></td></tr>
 <tr class="separator:a97c7527aa5efe0f229c45c54ebcc6b55"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab981c88a4cd7407b2c4b4bfe86fc021b"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#ab981c88a4cd7407b2c4b4bfe86fc021b">hashlib_FastMemBufferUnsafe</a>&#160;&#160;&#160;((void*)0xE30800)</td></tr>
 <tr class="separator:ab981c88a4cd7407b2c4b4bfe86fc021b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1063390a9def465cfc673b9f38cc3f37"><td class="memItemLeft" align="right" valign="top"><a id="a1063390a9def465cfc673b9f38cc3f37"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>SHA256_MBUFFER_SIZE</b>&#160;&#160;&#160;(64)</td></tr>
+<tr class="memitem:a1063390a9def465cfc673b9f38cc3f37"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#a1063390a9def465cfc673b9f38cc3f37">SHA256_MBUFFER_SIZE</a>&#160;&#160;&#160;(64)</td></tr>
 <tr class="separator:a1063390a9def465cfc673b9f38cc3f37"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a81efbc0fc101b06a914f7ff9e2fbc0e9"><td class="memItemLeft" align="right" valign="top"><a id="a81efbc0fc101b06a914f7ff9e2fbc0e9"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>SHA256_DIGEST_SIZE</b>&#160;&#160;&#160;32</td></tr>
+<tr class="memitem:a81efbc0fc101b06a914f7ff9e2fbc0e9"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#a81efbc0fc101b06a914f7ff9e2fbc0e9">SHA256_DIGEST_SIZE</a>&#160;&#160;&#160;32</td></tr>
 <tr class="separator:a81efbc0fc101b06a914f7ff9e2fbc0e9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a10da3c77a9015ef11b49d88b96c8deca"><td class="memItemLeft" align="right" valign="top"><a id="a10da3c77a9015ef11b49d88b96c8deca"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>SHA256_HEXSTR_SIZE</b>&#160;&#160;&#160;(SHA256_DIGEST_LEN&lt;&lt;1) + 1</td></tr>
+<tr class="memitem:a10da3c77a9015ef11b49d88b96c8deca"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#a10da3c77a9015ef11b49d88b96c8deca">SHA256_HEXSTR_SIZE</a>&#160;&#160;&#160;(SHA256_DIGEST_LEN&lt;&lt;1) + 1</td></tr>
 <tr class="separator:a10da3c77a9015ef11b49d88b96c8deca"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afab0742642db9c0609c00bf8a54f386f"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#afab0742642db9c0609c00bf8a54f386f">AES_BLOCKSIZE</a>&#160;&#160;&#160;16</td></tr>
 <tr class="separator:afab0742642db9c0609c00bf8a54f386f"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -262,6 +259,51 @@ commandblockguy </dd></dl>
 <p>Pointer to the start of the region of Fast Memory, including the Safe region as well as an unsafe region used by the library's SPRNG. </p><dl class="section warning"><dt>Warning</dt><dd>Fast Memory gets clobbered by LibLoad. Don't keep long-term storage here if you plan to call LibLoad. </dd>
 <dd>
 If the SPRNG is run, anything you have stored here will be destroyed. </dd></dl>
+
+</div>
+</div>
+<a id="a1063390a9def465cfc673b9f38cc3f37"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1063390a9def465cfc673b9f38cc3f37">&#9670;&nbsp;</a></span>SHA256_MBUFFER_SIZE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define SHA256_MBUFFER_SIZE&#160;&#160;&#160;(64)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Temporary SHA-256 memory buffer. A buffer of this length, in uint32_ts, must be passed to <a class="el" href="hashlib_8h.html#ad2fa6bc8d3a1156a5734b81f5195afc4" title="Context initializer for SHA-256. Initializes the given context with the starting state for SHA-256.">hashlib_Sha256Init()</a>. </p><div class="fragment"><div class="line">uint32_t mbuffer[SHA256_MBUFFER_LEN];</div>
+</div><!-- fragment --> 
+</div>
+</div>
+<a id="a81efbc0fc101b06a914f7ff9e2fbc0e9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a81efbc0fc101b06a914f7ff9e2fbc0e9">&#9670;&nbsp;</a></span>SHA256_DIGEST_SIZE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define SHA256_DIGEST_SIZE&#160;&#160;&#160;32</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Binary length of the SHA-256 hash output. </p>
+
+</div>
+</div>
+<a id="a10da3c77a9015ef11b49d88b96c8deca"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a10da3c77a9015ef11b49d88b96c8deca">&#9670;&nbsp;</a></span>SHA256_HEXSTR_SIZE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define SHA256_HEXSTR_SIZE&#160;&#160;&#160;(SHA256_DIGEST_LEN&lt;&lt;1) + 1</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Length of a string containing the SHA-256 hash. </p>
 
 </div>
 </div>

@@ -22,14 +22,11 @@ struct \mbox{\hyperlink{struct__aes__ctx}{\+\_\+aes\+\_\+ctx}}
 \item 
 \#define \mbox{\hyperlink{hashlib_8h_ab981c88a4cd7407b2c4b4bfe86fc021b}{hashlib\+\_\+\+Fast\+Mem\+Buffer\+Unsafe}}~((void$\ast$)0x\+E30800)
 \item 
-\mbox{\Hypertarget{hashlib_8h_a1063390a9def465cfc673b9f38cc3f37}\label{hashlib_8h_a1063390a9def465cfc673b9f38cc3f37}} 
-\#define {\bfseries SHA256\+\_\+\+MBUFFER\+\_\+\+SIZE}~(64)
+\#define \mbox{\hyperlink{hashlib_8h_a1063390a9def465cfc673b9f38cc3f37}{SHA256\+\_\+\+MBUFFER\+\_\+\+SIZE}}~(64)
 \item 
-\mbox{\Hypertarget{hashlib_8h_a81efbc0fc101b06a914f7ff9e2fbc0e9}\label{hashlib_8h_a81efbc0fc101b06a914f7ff9e2fbc0e9}} 
-\#define {\bfseries SHA256\+\_\+\+DIGEST\+\_\+\+SIZE}~32
+\#define \mbox{\hyperlink{hashlib_8h_a81efbc0fc101b06a914f7ff9e2fbc0e9}{SHA256\+\_\+\+DIGEST\+\_\+\+SIZE}}~32
 \item 
-\mbox{\Hypertarget{hashlib_8h_a10da3c77a9015ef11b49d88b96c8deca}\label{hashlib_8h_a10da3c77a9015ef11b49d88b96c8deca}} 
-\#define {\bfseries SHA256\+\_\+\+HEXSTR\+\_\+\+SIZE}~(SHA256\+\_\+\+DIGEST\+\_\+\+LEN$<$$<$1) + 1
+\#define \mbox{\hyperlink{hashlib_8h_a10da3c77a9015ef11b49d88b96c8deca}{SHA256\+\_\+\+HEXSTR\+\_\+\+SIZE}}~(SHA256\+\_\+\+DIGEST\+\_\+\+LEN$<$$<$1) + 1
 \item 
 \#define \mbox{\hyperlink{hashlib_8h_afab0742642db9c0609c00bf8a54f386f}{AES\+\_\+\+BLOCKSIZE}}~16
 \item 
@@ -168,7 +165,30 @@ Fast Memory gets clobbered by Lib\+Load. Don\textquotesingle{}t keep long-\/term
 
 If the SPRNG is run, anything you have stored here will be destroyed. 
 \end{DoxyWarning}
-\mbox{\Hypertarget{hashlib_8h_afab0742642db9c0609c00bf8a54f386f}\label{hashlib_8h_afab0742642db9c0609c00bf8a54f386f}} 
+\mbox{\Hypertarget{hashlib_8h_a1063390a9def465cfc673b9f38cc3f37}\label{hashlib_8h_a1063390a9def465cfc673b9f38cc3f37}} 
+\index{hashlib.h@{hashlib.h}!SHA256\_MBUFFER\_SIZE@{SHA256\_MBUFFER\_SIZE}}
+\index{SHA256\_MBUFFER\_SIZE@{SHA256\_MBUFFER\_SIZE}!hashlib.h@{hashlib.h}}
+\doxysubsubsection{\texorpdfstring{SHA256\_MBUFFER\_SIZE}{SHA256\_MBUFFER\_SIZE}}
+{\footnotesize\ttfamily \#define SHA256\+\_\+\+MBUFFER\+\_\+\+SIZE~(64)}
+
+Temporary SHA-\/256 memory buffer. A buffer of this length, in uint32\+\_\+ts, must be passed to \mbox{\hyperlink{hashlib_8h_ad2fa6bc8d3a1156a5734b81f5195afc4}{hashlib\+\_\+\+Sha256\+Init()}}. 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{uint32\_t mbuffer[SHA256\_MBUFFER\_LEN];}
+
+\end{DoxyCode}
+ \mbox{\Hypertarget{hashlib_8h_a81efbc0fc101b06a914f7ff9e2fbc0e9}\label{hashlib_8h_a81efbc0fc101b06a914f7ff9e2fbc0e9}} 
+\index{hashlib.h@{hashlib.h}!SHA256\_DIGEST\_SIZE@{SHA256\_DIGEST\_SIZE}}
+\index{SHA256\_DIGEST\_SIZE@{SHA256\_DIGEST\_SIZE}!hashlib.h@{hashlib.h}}
+\doxysubsubsection{\texorpdfstring{SHA256\_DIGEST\_SIZE}{SHA256\_DIGEST\_SIZE}}
+{\footnotesize\ttfamily \#define SHA256\+\_\+\+DIGEST\+\_\+\+SIZE~32}
+
+Binary length of the SHA-\/256 hash output. \mbox{\Hypertarget{hashlib_8h_a10da3c77a9015ef11b49d88b96c8deca}\label{hashlib_8h_a10da3c77a9015ef11b49d88b96c8deca}} 
+\index{hashlib.h@{hashlib.h}!SHA256\_HEXSTR\_SIZE@{SHA256\_HEXSTR\_SIZE}}
+\index{SHA256\_HEXSTR\_SIZE@{SHA256\_HEXSTR\_SIZE}!hashlib.h@{hashlib.h}}
+\doxysubsubsection{\texorpdfstring{SHA256\_HEXSTR\_SIZE}{SHA256\_HEXSTR\_SIZE}}
+{\footnotesize\ttfamily \#define SHA256\+\_\+\+HEXSTR\+\_\+\+SIZE~(SHA256\+\_\+\+DIGEST\+\_\+\+LEN$<$$<$1) + 1}
+
+Length of a string containing the SHA-\/256 hash. \mbox{\Hypertarget{hashlib_8h_afab0742642db9c0609c00bf8a54f386f}\label{hashlib_8h_afab0742642db9c0609c00bf8a54f386f}} 
 \index{hashlib.h@{hashlib.h}!AES\_BLOCKSIZE@{AES\_BLOCKSIZE}}
 \index{AES\_BLOCKSIZE@{AES\_BLOCKSIZE}!hashlib.h@{hashlib.h}}
 \doxysubsubsection{\texorpdfstring{AES\_BLOCKSIZE}{AES\_BLOCKSIZE}}
