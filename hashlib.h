@@ -187,13 +187,13 @@ enum aes_padding_schemes {
 #define AES_BLOCKSIZE	16
 
 /*****************************************************************
- * @def AES_IV_SIZE
+ * @def AES_IVSIZE
  * Defines the length of the AES initalization vector (IV).
  *****************************************************************/
 #define AES_IVSIZE		AES_BLOCKSIZE
 
 /************************************************************
- * @def AES_MAC_SIZE
+ * @def AES_MACSIZE
  * Defines the length of the AES CBC-MAC digest.
  ************************************************************/
 #define AES_MACSIZE		AES_BLOCKSIZE
