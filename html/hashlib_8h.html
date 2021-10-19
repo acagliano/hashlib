@@ -205,8 +205,8 @@ Functions</h2></td></tr>
 <tr class="memitem:a01668b3f2dd85fe2f8696673b275b75a"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#a01668b3f2dd85fe2f8696673b275b75a">hashlib_RSAEncodePSS</a> (const uint8_t *plaintext, size_t len, uint8_t *outbuf, size_t modulus_len, uint8_t *salt)</td></tr>
 <tr class="memdesc:a01668b3f2dd85fe2f8696673b275b75a"><td class="mdescLeft">&#160;</td><td class="mdescRight">RSA-PSS padding scheme.  <a href="hashlib_8h.html#a01668b3f2dd85fe2f8696673b275b75a">More...</a><br /></td></tr>
 <tr class="separator:a01668b3f2dd85fe2f8696673b275b75a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aed5a27a5eac7a9b69017c1da2b404322"><td class="memItemLeft" align="right" valign="top"><a id="aed5a27a5eac7a9b69017c1da2b404322"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>hashlib_RSAEncrypt</b> (uint8_t *ciphertext, const uint8_t *msg, size_t msglen, const uint8_t *pubkey, size_t keylen)</td></tr>
+<tr class="memitem:aed5a27a5eac7a9b69017c1da2b404322"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#aed5a27a5eac7a9b69017c1da2b404322">hashlib_RSAEncrypt</a> (uint8_t *ciphertext, const uint8_t *msg, size_t msglen, const uint8_t *pubkey, size_t keylen)</td></tr>
+<tr class="memdesc:aed5a27a5eac7a9b69017c1da2b404322"><td class="mdescLeft">&#160;</td><td class="mdescRight">RSA Encryption.  <a href="hashlib_8h.html#aed5a27a5eac7a9b69017c1da2b404322">More...</a><br /></td></tr>
 <tr class="separator:aed5a27a5eac7a9b69017c1da2b404322"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a24bf91aef912b8346523f37e16d22377"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#a24bf91aef912b8346523f37e16d22377">hashlib_EraseContext</a> (void *ctx, size_t len)</td></tr>
 <tr class="memdesc:a24bf91aef912b8346523f37e16d22377"><td class="mdescLeft">&#160;</td><td class="mdescRight">Secure erase context.  <a href="hashlib_8h.html#a24bf91aef912b8346523f37e16d22377">More...</a><br /></td></tr>
@@ -214,8 +214,8 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>hashlib_RSAEncrypt</b
 <tr class="memitem:a658b0b7f7139a429e3b77a9876e78970"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#a658b0b7f7139a429e3b77a9876e78970">hashlib_CompareDigest</a> (const uint8_t *digest1, const uint8_t *digest2, size_t len)</td></tr>
 <tr class="memdesc:a658b0b7f7139a429e3b77a9876e78970"><td class="mdescLeft">&#160;</td><td class="mdescRight">Secure buffer comparison.  <a href="hashlib_8h.html#a658b0b7f7139a429e3b77a9876e78970">More...</a><br /></td></tr>
 <tr class="separator:a658b0b7f7139a429e3b77a9876e78970"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9d0901c0c719265d8ba5f30f4803560e"><td class="memItemLeft" align="right" valign="top"><a id="a9d0901c0c719265d8ba5f30f4803560e"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>hashlib_ReverseEndianness</b> (const uint8_t *in, uint8_t *out, size_t len)</td></tr>
+<tr class="memitem:a9d0901c0c719265d8ba5f30f4803560e"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#a9d0901c0c719265d8ba5f30f4803560e">hashlib_ReverseEndianness</a> (const uint8_t *in, uint8_t *out, size_t len)</td></tr>
+<tr class="memdesc:a9d0901c0c719265d8ba5f30f4803560e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reverses the endianness of a buffer.  <a href="hashlib_8h.html#a9d0901c0c719265d8ba5f30f4803560e">More...</a><br /></td></tr>
 <tr class="separator:a9d0901c0c719265d8ba5f30f4803560e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
@@ -1580,6 +1580,67 @@ If you are trying to validate a signature, use hashlib_SSLVerifySignature(). </d
 
 </div>
 </div>
+<a id="aed5a27a5eac7a9b69017c1da2b404322"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aed5a27a5eac7a9b69017c1da2b404322">&#9670;&nbsp;</a></span>hashlib_RSAEncrypt()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool hashlib_RSAEncrypt </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t *&#160;</td>
+          <td class="paramname"><em>ciphertext</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const uint8_t *&#160;</td>
+          <td class="paramname"><em>msg</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>msglen</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const uint8_t *&#160;</td>
+          <td class="paramname"><em>pubkey</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>keylen</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>RSA Encryption. </p>
+<p>Performs an RSA encryption over a public modulus and a public exponent, 65537</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ciphertext</td><td>Pointer to a buffer to write the output RSA encrypted message. </td></tr>
+    <tr><td class="paramname">msg</td><td>Pointer to an OAEP-encoded plaintext to encrypt using RSA. </td></tr>
+    <tr><td class="paramname">msglen</td><td>The length of the message <b>msg</b>. </td></tr>
+    <tr><td class="paramname">pubkey</td><td>Pointer to a public key to use for encryption. </td></tr>
+    <tr><td class="paramname">keylen</td><td>The length of the public key (modulus) to encrypt with. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>Note</dt><dd><b>msglen</b> and <b>keylen</b> must be equal in size. This is enforced. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>True if encryption succeeded. False if failed. </dd></dl>
+
+</div>
+</div>
 <a id="a24bf91aef912b8346523f37e16d22377"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a24bf91aef912b8346523f37e16d22377">&#9670;&nbsp;</a></span>hashlib_EraseContext()</h2>
 
@@ -1661,6 +1722,51 @@ If you are trying to validate a signature, use hashlib_SSLVerifySignature(). </d
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>True if the buffers were equal. False if not equal. </dd></dl>
+
+</div>
+</div>
+<a id="a9d0901c0c719265d8ba5f30f4803560e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9d0901c0c719265d8ba5f30f4803560e">&#9670;&nbsp;</a></span>hashlib_ReverseEndianness()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool hashlib_ReverseEndianness </td>
+          <td>(</td>
+          <td class="paramtype">const uint8_t *&#160;</td>
+          <td class="paramname"><em>in</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t *&#160;</td>
+          <td class="paramname"><em>out</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>len</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Reverses the endianness of a buffer. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">in</td><td>Pointer to buffer containing data to reverse. </td></tr>
+    <tr><td class="paramname">out</td><td>Pointer to buffer to write the reversed data. </td></tr>
+    <tr><td class="paramname">len</td><td>The number of bytes to reverse. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>Note</dt><dd><b>in</b> and <b>out</b> are not aliasable. </dd></dl>
 
 </div>
 </div>

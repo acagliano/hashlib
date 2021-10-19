@@ -518,7 +518,20 @@ size_t hashlib_RSAEncodePSS(
 	uint8_t *salt);
 	
  
- 
+/***************************************************************************************************
+ * @brief RSA Encryption
+ *
+ * Performs an RSA encryption over a public modulus and a public exponent, 65537
+ *
+ * @param ciphertext Pointer to a buffer to write the output RSA encrypted message.
+ * @param msg Pointer to an OAEP-encoded plaintext to encrypt using RSA.
+ * @param msglen The length of the message @b msg.
+ * @param pubkey Pointer to a public key to use for encryption.
+ * @param keylen The length of the public key (modulus) to encrypt with.
+ * @note @b msglen and @b keylen must be equal in size. This is enforced.
+ * @return True if encryption succeeded. False if failed.
+ *
+ **************************************************************************************************/
 bool hashlib_RSAEncrypt(
     uint8_t *ciphertext,
     const uint8_t* msg,
@@ -558,7 +571,14 @@ void hashlib_EraseContext(void *ctx, size_t len);
  **************************************************************************************************************/
 hashlib_CompareDigest(const uint8_t* digest1, const uint8_t* digest2, size_t len);
 
-
+/*************************************************************************************************************
+ * @brief Reverses the endianness of a buffer
+ *
+ * @param in Pointer to buffer containing data to reverse.
+ * @param out Pointer to buffer to write the reversed data.
+ * @param len The number of bytes to reverse.
+ * @note @b in and @b out are not aliasable.
+ **************************************************************************************************************/
 bool hashlib_ReverseEndianness(const uint8_t* in, uint8_t* out, size_t len);
 
 

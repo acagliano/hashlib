@@ -114,16 +114,14 @@ size\+\_\+t \mbox{\hyperlink{hashlib_8h_ae575c99825f9b970c3d6f7a6bf552153}{hashl
 \begin{DoxyCompactList}\small\item\em RSA-\/\+OAEP padding scheme, reverse algorithm. \end{DoxyCompactList}\item 
 size\+\_\+t \mbox{\hyperlink{hashlib_8h_a01668b3f2dd85fe2f8696673b275b75a}{hashlib\+\_\+\+RSAEncode\+PSS}} (const uint8\+\_\+t $\ast$plaintext, size\+\_\+t len, uint8\+\_\+t $\ast$outbuf, size\+\_\+t modulus\+\_\+len, uint8\+\_\+t $\ast$salt)
 \begin{DoxyCompactList}\small\item\em RSA-\/\+PSS padding scheme. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{hashlib_8h_aed5a27a5eac7a9b69017c1da2b404322}\label{hashlib_8h_aed5a27a5eac7a9b69017c1da2b404322}} 
-bool {\bfseries hashlib\+\_\+\+RSAEncrypt} (uint8\+\_\+t $\ast$ciphertext, const uint8\+\_\+t $\ast$msg, size\+\_\+t msglen, const uint8\+\_\+t $\ast$pubkey, size\+\_\+t keylen)
-\item 
+bool \mbox{\hyperlink{hashlib_8h_aed5a27a5eac7a9b69017c1da2b404322}{hashlib\+\_\+\+RSAEncrypt}} (uint8\+\_\+t $\ast$ciphertext, const uint8\+\_\+t $\ast$msg, size\+\_\+t msglen, const uint8\+\_\+t $\ast$pubkey, size\+\_\+t keylen)
+\begin{DoxyCompactList}\small\item\em RSA Encryption. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{hashlib_8h_a24bf91aef912b8346523f37e16d22377}{hashlib\+\_\+\+Erase\+Context}} (void $\ast$ctx, size\+\_\+t len)
 \begin{DoxyCompactList}\small\item\em Secure erase context. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{hashlib_8h_a658b0b7f7139a429e3b77a9876e78970}{hashlib\+\_\+\+Compare\+Digest}} (const uint8\+\_\+t $\ast$digest1, const uint8\+\_\+t $\ast$digest2, size\+\_\+t len)
 \begin{DoxyCompactList}\small\item\em Secure buffer comparison. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{hashlib_8h_a9d0901c0c719265d8ba5f30f4803560e}\label{hashlib_8h_a9d0901c0c719265d8ba5f30f4803560e}} 
-bool {\bfseries hashlib\+\_\+\+Reverse\+Endianness} (const uint8\+\_\+t $\ast$in, uint8\+\_\+t $\ast$out, size\+\_\+t len)
-\end{DoxyCompactItemize}
+bool \mbox{\hyperlink{hashlib_8h_a9d0901c0c719265d8ba5f30f4803560e}{hashlib\+\_\+\+Reverse\+Endianness}} (const uint8\+\_\+t $\ast$in, uint8\+\_\+t $\ast$out, size\+\_\+t len)
+\begin{DoxyCompactList}\small\item\em Reverses the endianness of a buffer. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
@@ -909,6 +907,37 @@ If you are trying to validate a signature, use hashlib\+\_\+\+SSLVerify\+Signatu
 \begin{DoxyReturn}{Returns}
 the padded length of the plaintext. 
 \end{DoxyReturn}
+\mbox{\Hypertarget{hashlib_8h_aed5a27a5eac7a9b69017c1da2b404322}\label{hashlib_8h_aed5a27a5eac7a9b69017c1da2b404322}} 
+\index{hashlib.h@{hashlib.h}!hashlib\_RSAEncrypt@{hashlib\_RSAEncrypt}}
+\index{hashlib\_RSAEncrypt@{hashlib\_RSAEncrypt}!hashlib.h@{hashlib.h}}
+\doxysubsubsection{\texorpdfstring{hashlib\_RSAEncrypt()}{hashlib\_RSAEncrypt()}}
+{\footnotesize\ttfamily bool hashlib\+\_\+\+RSAEncrypt (\begin{DoxyParamCaption}\item[{uint8\+\_\+t $\ast$}]{ciphertext,  }\item[{const uint8\+\_\+t $\ast$}]{msg,  }\item[{size\+\_\+t}]{msglen,  }\item[{const uint8\+\_\+t $\ast$}]{pubkey,  }\item[{size\+\_\+t}]{keylen }\end{DoxyParamCaption})}
+
+
+
+RSA Encryption. 
+
+Performs an RSA encryption over a public modulus and a public exponent, 65537
+
+
+\begin{DoxyParams}{Parameters}
+{\em ciphertext} & Pointer to a buffer to write the output RSA encrypted message. \\
+\hline
+{\em msg} & Pointer to an OAEP-\/encoded plaintext to encrypt using RSA. \\
+\hline
+{\em msglen} & The length of the message {\bfseries{msg}}. \\
+\hline
+{\em pubkey} & Pointer to a public key to use for encryption. \\
+\hline
+{\em keylen} & The length of the public key (modulus) to encrypt with. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+{\bfseries{msglen}} and {\bfseries{keylen}} must be equal in size. This is enforced. 
+\end{DoxyNote}
+\begin{DoxyReturn}{Returns}
+True if encryption succeeded. False if failed. 
+\end{DoxyReturn}
 \mbox{\Hypertarget{hashlib_8h_a24bf91aef912b8346523f37e16d22377}\label{hashlib_8h_a24bf91aef912b8346523f37e16d22377}} 
 \index{hashlib.h@{hashlib.h}!hashlib\_EraseContext@{hashlib\_EraseContext}}
 \index{hashlib\_EraseContext@{hashlib\_EraseContext}!hashlib.h@{hashlib.h}}
@@ -953,3 +982,25 @@ Evaluates the equality of two buffers using a method that offers resistance to t
 \begin{DoxyReturn}{Returns}
 True if the buffers were equal. False if not equal. 
 \end{DoxyReturn}
+\mbox{\Hypertarget{hashlib_8h_a9d0901c0c719265d8ba5f30f4803560e}\label{hashlib_8h_a9d0901c0c719265d8ba5f30f4803560e}} 
+\index{hashlib.h@{hashlib.h}!hashlib\_ReverseEndianness@{hashlib\_ReverseEndianness}}
+\index{hashlib\_ReverseEndianness@{hashlib\_ReverseEndianness}!hashlib.h@{hashlib.h}}
+\doxysubsubsection{\texorpdfstring{hashlib\_ReverseEndianness()}{hashlib\_ReverseEndianness()}}
+{\footnotesize\ttfamily bool hashlib\+\_\+\+Reverse\+Endianness (\begin{DoxyParamCaption}\item[{const uint8\+\_\+t $\ast$}]{in,  }\item[{uint8\+\_\+t $\ast$}]{out,  }\item[{size\+\_\+t}]{len }\end{DoxyParamCaption})}
+
+
+
+Reverses the endianness of a buffer. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em in} & Pointer to buffer containing data to reverse. \\
+\hline
+{\em out} & Pointer to buffer to write the reversed data. \\
+\hline
+{\em len} & The number of bytes to reverse. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+{\bfseries{in}} and {\bfseries{out}} are not aliasable. 
+\end{DoxyNote}
