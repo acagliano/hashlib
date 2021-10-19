@@ -29,9 +29,12 @@ library "HASHLIB", 6
 	export hashlib_RSAEncodeOAEP
 	export hashlib_RSADecodeOAEP
 	export hashlib_RSAEncodePSS
+    export hashlib_RSAEncrypt
 
     export hashlib_EraseContext
     export hashlib_CompareDigest
+    export hashlib_ReverseEndianness
+    
 
 ;------------------------------------------
 ; defines
@@ -5354,7 +5357,7 @@ hashlib_AESStripPadding:
 	ret
  
 hashlib_RSADecodeOAEP:
-	ld	hl, -897
+	ld	hl, -900
 	call	ti._frameset
 	ld	de, (ix + 9)
 	ld	iy, 0
@@ -5363,31 +5366,37 @@ hashlib_RSADecodeOAEP:
 	ex	de, hl
 	or	a, a
 	sbc	hl, bc
-	jq	nc, .lbl_26
+	jq	nc, .lbl_28
 	ld	de, (ix + 6)
 	push	de
 	pop	hl
 	add	hl, bc
 	or	a, a
 	sbc	hl, bc
-	jq	z, .lbl_26
+	jq	z, .lbl_28
 	ld	hl, (ix + 12)
 	add	hl, bc
 	or	a, a
 	sbc	hl, bc
-	jq	z, .lbl_26
+	jq	z, .lbl_28
 	ld	bc, -370
 	lea	iy, ix + 0
 	add	iy, bc
 	ld	hl, 65
 	push	ix
-	ld	bc, -897
+	ld	bc, -900
+	add	ix, bc
+	ld	(ix + 0), hl
+	pop	ix
+	lea	hl, ix + -38
+	push	ix
+	ld	bc, -894
 	add	ix, bc
 	ld	(ix + 0), hl
 	pop	ix
 	lea	hl, iy + 108
 	push	ix
-	ld	bc, -888
+	ld	bc, -885
 	add	ix, bc
 	ld	(ix + 0), hl
 	pop	ix
@@ -5399,7 +5408,7 @@ hashlib_RSADecodeOAEP:
 	ld	bc, -882
 	lea	iy, ix + 0
 	add	iy, bc
-	ld	bc, -885
+	ld	bc, -888
 	lea	hl, ix + 0
 	add	hl, bc
 	ld	(hl), iy
@@ -5407,7 +5416,7 @@ hashlib_RSADecodeOAEP:
 	ld	bc, -33
 	add	hl, bc
 	push	ix
-	ld	bc, -894
+	ld	bc, -897
 	add	ix, bc
 	ld	(ix + 0), hl
 	pop	ix
@@ -5421,17 +5430,17 @@ hashlib_RSADecodeOAEP:
 	pop	hl
 	ld	hl, 32
 	push	hl
-	ld	bc, -888
-	lea	hl, ix + 0
-	add	hl, bc
-	ld	hl, (hl)
-	push	hl
-	ld	bc, -894
-	lea	hl, ix + 0
-	add	hl, bc
-	ld	hl, (hl)
-	push	hl
 	ld	bc, -885
+	lea	hl, ix + 0
+	add	hl, bc
+	ld	hl, (hl)
+	push	hl
+	ld	bc, -897
+	lea	hl, ix + 0
+	add	hl, bc
+	ld	hl, (hl)
+	push	hl
+	ld	bc, -888
 	lea	hl, ix + 0
 	add	hl, bc
 	ld	iy, (hl)
@@ -5441,7 +5450,7 @@ hashlib_RSADecodeOAEP:
 	pop	hl
 	pop	hl
 	pop	hl
-	ld	bc, -885
+	ld	bc, -888
 	lea	hl, ix + 0
 	add	hl, bc
 	ld	iy, (hl)
@@ -5454,7 +5463,7 @@ hashlib_RSADecodeOAEP:
 	or	a, a
 	sbc	hl, bc
 	jq	z, .lbl_9
-	ld	bc, -888
+	ld	bc, -885
 	lea	hl, ix + 0
 	add	hl, bc
 	ld	hl, (hl)
@@ -5469,12 +5478,12 @@ hashlib_RSADecodeOAEP:
 	pop	iy
 	jq	.lbl_7
 .lbl_9:
-	ld	bc, -894
+	ld	bc, -897
 	lea	hl, ix + 0
 	add	hl, bc
 	ld	hl, (hl)
 	push	hl
-	ld	bc, -888
+	ld	bc, -885
 	lea	hl, ix + 0
 	add	hl, bc
 	ld	hl, (hl)
@@ -5490,21 +5499,16 @@ hashlib_RSADecodeOAEP:
 	ld	hl, (ix + 9)
 	ld	de, -33
 	add	hl, de
-	ld	bc, -885
+	ld	bc, -888
 	lea	iy, ix + 0
 	add	iy, bc
 	ld	iy, (iy + 0)
 	lea	de, iy + 33
-	ld	bc, -894
+	ld	bc, -897
 	lea	iy, ix + 0
 	add	iy, bc
 	ld	(iy + 0), de
 	ld	de, 0
-	push	ix
-	ld	bc, -891
-	add	ix, bc
-	ld	iy, (ix + 0)
-	pop	ix
 .lbl_10:
 	push	hl
 	pop	bc
@@ -5512,12 +5516,12 @@ hashlib_RSADecodeOAEP:
 	sbc	hl, de
 	jq	z, .lbl_12
 	ld	(ix + -3), bc
-	ld	bc, -888
+	ld	bc, -885
 	lea	hl, ix + 0
 	add	hl, bc
 	ld	hl, (hl)
 	add	hl, de
-	ld	bc, -894
+	ld	bc, -897
 	lea	iy, ix + 0
 	add	iy, bc
 	ld	iy, (iy + 0)
@@ -5525,10 +5529,6 @@ hashlib_RSADecodeOAEP:
 	ld	a, (iy)
 	xor	a, (hl)
 	ld	(iy), a
-	ld	bc, -891
-	lea	hl, ix + 0
-	add	hl, bc
-	ld	iy, (hl)
 	inc	de
 	ld	bc, (ix + -3)
 	push	bc
@@ -5539,7 +5539,11 @@ hashlib_RSADecodeOAEP:
 	lea	hl, ix + 0
 	add	hl, bc
 	push	hl
-	push	iy
+	ld	bc, -891
+	lea	iy, ix + 0
+	add	iy, bc
+	ld	hl, (iy + 0)
+	push	hl
 	call	hashlib_Sha256Init
 	pop	hl
 	pop	hl
@@ -5567,7 +5571,11 @@ hashlib_RSADecodeOAEP:
 	pop	hl
 	pop	hl
 .lbl_14:
-	pea	ix + -38
+	ld	bc, -894
+	lea	hl, ix + 0
+	add	hl, bc
+	ld	hl, (hl)
+	push	hl
 	ld	bc, -891
 	lea	hl, ix + 0
 	add	hl, bc
@@ -5576,31 +5584,39 @@ hashlib_RSADecodeOAEP:
 	call	hashlib_Sha256Final
 	pop	hl
 	pop	hl
+	ld	hl, 32
+	push	hl
+	ld	hl, (ix + 12)
+	push	hl
+	ld	bc, -894
+	lea	hl, ix + 0
+	add	hl, bc
+	ld	hl, (hl)
+	push	hl
+	call	hashlib_CompareDigest
+	pop	hl
+	pop	hl
+	pop	hl
+	ld	l, 1
+	xor	a, l
+	bit	0, a
+	jq	nz, .lbl_21
 	ld	de, 66
 	ld	bc, (ix + 9)
 	push	bc
 	pop	hl
 	or	a, a
 	sbc	hl, de
-	jq	nc, .lbl_16
-	ld	bc, 65
-.lbl_16:
 	ld	iy, 0
-.lbl_17:
-	push	bc
-	pop	hl
+	jq	nc, .lbl_18
+	ld	bc, 65
+	jq	.lbl_18
+.lbl_21:
+	ld	iy, 0
+	jq	.lbl_28
+.lbl_19:
 	ld	(ix + -3), bc
-	push	ix
-	ld	bc, -897
-	add	ix, bc
-	ld	de, (ix + 0)
-	pop	ix
-	or	a, a
-	sbc	hl, de
-	ld	bc, (ix + -3)
-	jq	z, .lbl_22
-	ld	(ix + -3), bc
-	ld	bc, -885
+	ld	bc, -888
 	lea	hl, ix + 0
 	add	hl, bc
 	ld	iy, (hl)
@@ -5608,30 +5624,43 @@ hashlib_RSADecodeOAEP:
 	ld	a, (iy)
 	cp	a, 1
 	ld	bc, (ix + -3)
-	jq	z, .lbl_21
+	jq	z, .lbl_23
 	inc	de
 	ld	(ix + -3), bc
-	ld	bc, -897
+	ld	bc, -900
 	lea	hl, ix + 0
 	add	hl, bc
 	ld	(hl), de
 	ld	iy, 0
 	ld	bc, (ix + -3)
-	jq	.lbl_17
-.lbl_21:
+.lbl_18:
+	push	bc
+	pop	hl
+	ld	(ix + -3), bc
+	push	ix
+	ld	bc, -900
+	add	ix, bc
+	ld	de, (ix + 0)
+	pop	ix
+	or	a, a
+	sbc	hl, de
+	ld	bc, (ix + -3)
+	jq	z, .lbl_24
+	jq	.lbl_19
+.lbl_23:
 	push	de
 	pop	bc
 	ld	iy, 0
-.lbl_22:
+.lbl_24:
 	ld	de, (ix + 9)
 	push	bc
 	pop	hl
 	or	a, a
 	sbc	hl, de
-	jq	z, .lbl_26
+	jq	z, .lbl_28
 	inc	bc
 	ld	(ix + -3), de
-	ld	de, -885
+	ld	de, -888
 	lea	hl, ix + 0
 	add	hl, de
 	ld	iy, (hl)
@@ -5657,12 +5686,12 @@ hashlib_RSADecodeOAEP:
 	pop	hl
 	pop	hl
 	pop	hl
-.lbl_26:
+.lbl_28:
 	lea	hl, iy + 0
 	ld	sp, ix
 	pop	ix
 	ret
-
+    
 hashlib_RSAEncodePSS:
 	ld	hl, -681
 	call	ti._frameset
@@ -6232,6 +6261,307 @@ hashlib_MGF1Hash:
 	pop	ix
 	ret
 	
+hashlib_ReverseEndianness:
+	ld	hl, -6
+	call	ti._frameset
+	ld	hl, (ix + 6)
+	ld	de, (ix + 9)
+	ld	(ix + -6), hl
+	add	hl, bc
+	or	a, a
+	sbc	hl, bc
+	ld	iyl, 1
+	ld	iyh, 0
+	ld	a, iyl
+	jq	z, .lbl_2
+	ld	a, iyh
+.lbl_2:
+	ld	bc, (ix + 12)
+	push	de
+	pop	hl
+	add	hl, bc
+	or	a, a
+	sbc	hl, bc
+	ex	de, hl
+	ld	e, iyl
+	ex	de, hl
+	jq	z, .lbl_4
+	ex	de, hl
+	ld	e, iyh
+	ex	de, hl
+.lbl_4:
+	ld	(ix + -3), de
+	or	a, l
+	push	bc
+	pop	hl
+	add	hl, bc
+	or	a, a
+	sbc	hl, bc
+	jq	z, .lbl_6
+	ld	iyl, iyh
+.lbl_6:
+	ld	e, 1
+	or	a, iyl
+	bit	0, a
+	jq	z, .lbl_7
+.lbl_10:
+	xor	a, e
+	ld	sp, ix
+	pop	ix
+	ret
+.lbl_7:
+	ld	hl, (ix + -3)
+	dec	hl
+	ld	(ix + -3), hl
+.lbl_8:
+	push	bc
+	pop	hl
+	add	hl, bc
+	or	a, a
+	sbc	hl, bc
+	jq	z, .lbl_10
+	ld	iy, (ix + -6)
+	ld	d, (iy)
+	ld	hl, (ix + -3)
+	add	hl, bc
+	ld	(hl), d
+	dec	bc
+	inc	iy
+	ld	(ix + -6), iy
+	jq	.lbl_8
+	
+hashlib_RSAEncrypt:
+	ld	hl, -1
+	call	ti._frameset
+	ld	hl, (ix + 9)
+	add	hl, bc
+	or	a, a
+	sbc	hl, bc
+	ld	iyl, 1
+	ld	c, 0
+	ld	a, iyl
+	jq	nz, .lbl_2
+	ld	a, c
+.lbl_2:
+	ld	de, (ix + 18)
+	ld	hl, (ix + 15)
+	add	hl, bc
+	or	a, a
+	sbc	hl, bc
+	ex	de, hl
+	ld	e, iyl
+	ex	de, hl
+	jq	nz, .lbl_4
+	ld	l, c
+.lbl_4:
+	and	a, l
+	ld	hl, (ix + 12)
+	or	a, a
+	sbc	hl, de
+	jq	z, .lbl_6
+	ld	iyl, c
+.lbl_6:
+	ld	hl, (ix + 6)
+	ld	bc, 65537
+	and	a, iyl
+	ld	e, 1
+	ld	(ix + -1), a
+	xor	a, e
+	bit	0, a
+	ld	de, (ix + 15)
+	push	de
+	push	bc
+	ld	de, (ix + 9)
+	push	de
+	push	hl
+	ld	hl, (ix + 12)
+	push	hl
+	call	z, _powmod
+	pop	hl
+	pop	hl
+	pop	hl
+	pop	hl
+	pop	hl
+	ld	a, (ix + -1)
+	inc	sp
+	pop	ix
+	ret
+ 
+ 
+ ;void powmod(uint8_t size, uint8_t *res, const uint8_t *base, uint24_t exp, const uint8_t *mod);
+ _powmod:
+    ld   iy, 0
+    add   iy, sp
+.size = iy + long
+.res = .size + long
+.base = .res + long
+.exp = .base + long
+.mod = .exp + long
+    ld   hl, (.base)
+    ld   de, (.res)
+;   or   a, a
+    call   .mulmod
+    scf
+    sbc   hl, hl
+    xor   a, a
+    sub   a, (.size)
+    ld   l, a
+    add   hl, sp
+    ld   sp, hl
+    ex   de, hl
+    ld   hl, (.exp)
+;   scf
+.normalize:
+   adc   hl, hl
+   jq   nc, .normalize ; leaks (.exp:long)
+   jq   .loop.enter
+.loop:
+   push   hl, af, de
+   ld   bc, (.res)
+   or   a, a
+   sbc   hl, hl
+   add   hl, bc
+   push   hl
+   scf
+   call   .mulmod
+   ld   bc, (.base)
+   pop   de, hl, af
+   push   hl
+   call   .mulmod
+   pop   de, hl
+.loop.enter:
+   or   a, a
+   adc   hl, hl
+   jq   nz, .loop ; leaks (.size:byte)
+   ld   sp, iy
+   ret
+.copy:
+   inc   bc
+   ldir ; leaks (.size:byte)
+   pop   bc
+   ret
+.mulmod: ; (ude:(.size:byte)) = cf ? (uhl:(.size:byte)) * (ubc:(.size:byte)) % (.mod:(.size:byte)) : (uhl:(.size:byte))
+   push   bc
+   ld   bc, 0
+   ld   c, (.size)
+   dec   c
+   jq   nc, .copy ; leaks (.exp:long)
+   add   hl, bc
+   push   hl, de
+   inc   de
+   scf
+   sbc   hl, hl
+   add   hl, de
+;   ld   b, 0
+   ld   (hl), b
+   ldir ; leaks (.size:byte)
+   pop   de, bc, hl
+   ld   a, (.size)
+.outer:
+   push   af
+   ld   a, (bc)
+   ld   (.digit), a
+   dec   bc
+   push   bc, hl, de
+   ld   c, a
+   ld   b, (hl)
+   mlt   bc
+   ld   a, b
+   or   a, a
+   ld   b, (.size)
+   jq   .inner.enter
+.inner:
+   push   bc
+   ld   c, 0
+.digit := $ - byte
+   inc   hl
+   ld   b, (hl)
+   mlt   bc
+   adc   a, c
+   push   af
+   ld   a, 0
+   rla
+   add   a, b
+   ld   b, a
+   pop   af
+   ex   de, hl
+   add   a, (hl)
+   ld   (hl), a
+   inc   hl
+   ex   de, hl
+   ld   a, b
+   pop   bc
+.inner.enter:
+   djnz   .inner ; leaks (.size:byte)
+   ex   de, hl
+   adc   a, (hl)
+   ld   (hl), a
+   pop   de, hl
+   ld   b, 9
+   push   bc
+   jq   .reduce.enter
+.reduce:
+   sla   c
+   push   bc, de
+   ex   de, hl
+   ld   b, (.size)
+.shift:
+   rl   (hl)
+   inc   hl
+   djnz   .shift ; leaks (.size:byte)
+   ex   de, hl
+   pop   de
+.reduce.enter:
+   push   hl
+   sbc   a, a
+   cpl
+   ld   c, a
+   or   a, a
+   ld   b, (.size)
+   ld   hl, (.mod)
+   push   hl, de
+.sub:
+   ld   a, (de)
+   sbc   a, (hl)
+   ld   (de), a
+   inc   de
+   inc   hl
+   djnz   .sub ; leaks (.size:byte)
+   pop   de, hl
+   sbc   a, a
+   and   a, c
+virtual
+   adc   a, (hl)
+load .adc_a__hl_: byte from $$
+end virtual
+virtual
+   ld   c, (hl)
+load .ld_c__hl_: byte from $$
+end virtual
+   and   a, .adc_a__hl_ xor .ld_c__hl_
+   xor   a, .ld_c__hl_
+   ld   (.mask), a
+;   or   a, a
+   ld   b, (.size)
+   push   de
+.add:
+   ld   a, (de)
+   adc   a, (hl)
+.mask := $ - byte
+   ld   (de), a
+   inc   de
+   inc   hl
+   djnz   .add ; leaks (.size:byte)
+   pop   de, hl, bc
+   djnz   .reduce
+   pop   bc, af
+   dec   a
+   jq   nz, .outer ; leaks (.size:byte)
+   ret
+
+ 
+ 
+ 
 _sprng_read_addr:		rb 3
 _sprng_entropy_pool		:=	$E30800
 _sprng_rand				:=	_sprng_entropy_pool + 119

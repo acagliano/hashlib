@@ -517,7 +517,16 @@ size_t hashlib_RSAEncodePSS(
 	size_t modulus_len,
 	uint8_t *salt);
 	
-	
+ 
+ 
+bool hashlib_RSAEncrypt(
+    uint8_t *ciphertext,
+    const uint8_t* msg,
+    size_t msglen,
+    const uint8_t* pubkey,
+    size_t keylen);
+ 
+
 // Miscellaneous Functions
 /**************************************************************************************************************
  * @brief Secure erase context.
@@ -548,6 +557,9 @@ void hashlib_EraseContext(void *ctx, size_t len);
  * @return True if the buffers were equal. False if not equal.
  **************************************************************************************************************/
 hashlib_CompareDigest(const uint8_t* digest1, const uint8_t* digest2, size_t len);
+
+
+bool hashlib_ReverseEndianness(const uint8_t* in, uint8_t* out, size_t len);
 
 
 #endif

@@ -114,10 +114,16 @@ size\+\_\+t \mbox{\hyperlink{hashlib_8h_ae575c99825f9b970c3d6f7a6bf552153}{hashl
 \begin{DoxyCompactList}\small\item\em RSA-\/\+OAEP padding scheme, reverse algorithm. \end{DoxyCompactList}\item 
 size\+\_\+t \mbox{\hyperlink{hashlib_8h_a01668b3f2dd85fe2f8696673b275b75a}{hashlib\+\_\+\+RSAEncode\+PSS}} (const uint8\+\_\+t $\ast$plaintext, size\+\_\+t len, uint8\+\_\+t $\ast$outbuf, size\+\_\+t modulus\+\_\+len, uint8\+\_\+t $\ast$salt)
 \begin{DoxyCompactList}\small\item\em RSA-\/\+PSS padding scheme. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{hashlib_8h_aed5a27a5eac7a9b69017c1da2b404322}\label{hashlib_8h_aed5a27a5eac7a9b69017c1da2b404322}} 
+bool {\bfseries hashlib\+\_\+\+RSAEncrypt} (uint8\+\_\+t $\ast$ciphertext, const uint8\+\_\+t $\ast$msg, size\+\_\+t msglen, const uint8\+\_\+t $\ast$pubkey, size\+\_\+t keylen)
+\item 
 void \mbox{\hyperlink{hashlib_8h_a24bf91aef912b8346523f37e16d22377}{hashlib\+\_\+\+Erase\+Context}} (void $\ast$ctx, size\+\_\+t len)
 \begin{DoxyCompactList}\small\item\em Secure erase context. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{hashlib_8h_a658b0b7f7139a429e3b77a9876e78970}{hashlib\+\_\+\+Compare\+Digest}} (const uint8\+\_\+t $\ast$digest1, const uint8\+\_\+t $\ast$digest2, size\+\_\+t len)
-\begin{DoxyCompactList}\small\item\em Secure buffer comparison. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Secure buffer comparison. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{hashlib_8h_a9d0901c0c719265d8ba5f30f4803560e}\label{hashlib_8h_a9d0901c0c719265d8ba5f30f4803560e}} 
+bool {\bfseries hashlib\+\_\+\+Reverse\+Endianness} (const uint8\+\_\+t $\ast$in, uint8\+\_\+t $\ast$out, size\+\_\+t len)
+\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
