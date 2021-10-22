@@ -114,8 +114,12 @@ size\+\_\+t \mbox{\hyperlink{hashlib_8h_ae575c99825f9b970c3d6f7a6bf552153}{hashl
 \begin{DoxyCompactList}\small\item\em RSA-\/\+OAEP padding scheme, reverse algorithm. \end{DoxyCompactList}\item 
 size\+\_\+t \mbox{\hyperlink{hashlib_8h_a01668b3f2dd85fe2f8696673b275b75a}{hashlib\+\_\+\+RSAEncode\+PSS}} (const uint8\+\_\+t $\ast$plaintext, size\+\_\+t len, uint8\+\_\+t $\ast$outbuf, size\+\_\+t modulus\+\_\+len, uint8\+\_\+t $\ast$salt)
 \begin{DoxyCompactList}\small\item\em RSA-\/\+PSS padding scheme. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{hashlib_8h_af1dd2bde099a6fadb6bcc842e502c21b}{hashlib\+\_\+\+RSAVerify\+PSS}} (const uint8\+\_\+t $\ast$in, size\+\_\+t len, const uint8\+\_\+t $\ast$expected, size\+\_\+t modulus\+\_\+len)
+\begin{DoxyCompactList}\small\item\em RSA-\/\+PSS verification. \end{DoxyCompactList}\item 
 bool \mbox{\hyperlink{hashlib_8h_a198f76fac9ea43d3bd602f8a212a7d39}{hashlib\+\_\+\+RSAEncrypt}} (const uint8\+\_\+t $\ast$msg, size\+\_\+t msglen, const uint8\+\_\+t $\ast$pubkey, size\+\_\+t keylen)
 \begin{DoxyCompactList}\small\item\em RSA Encryption. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{hashlib_8h_a7b705e6cf52b076b40f936af6d55b29c}{hashlib\+\_\+\+SSLVerify\+Signature}} (const uint8\+\_\+t $\ast$ca\+\_\+pubkey, size\+\_\+t keysize, const uint8\+\_\+t $\ast$cert, size\+\_\+t certlen, uint8\+\_\+t sig\+\_\+alg)
+\begin{DoxyCompactList}\small\item\em SSL Certificate Signature Verification. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{hashlib_8h_a24bf91aef912b8346523f37e16d22377}{hashlib\+\_\+\+Erase\+Context}} (void $\ast$ctx, size\+\_\+t len)
 \begin{DoxyCompactList}\small\item\em Secure erase context. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{hashlib_8h_a658b0b7f7139a429e3b77a9876e78970}{hashlib\+\_\+\+Compare\+Digest}} (const uint8\+\_\+t $\ast$digest1, const uint8\+\_\+t $\ast$digest2, size\+\_\+t len)
@@ -900,12 +904,38 @@ Applies the RSA-\/\+PSS padding scheme as indicated in PKCS\#1 v1.\+5.
 \begin{DoxyNote}{Note}
 {\bfseries{outbuf}} must be at least {\bfseries{modulus\+\_\+len}} bytes large. 
 
-{\bfseries{salt}} can be null to generate a salt automatically. You can also generate it yourself using \mbox{\hyperlink{hashlib_8h_aa0092aa4c122591fae447dda8fa25dfc}{hashlib\+\_\+\+Random\+Bytes()}} and pass a pointer to that buffer as {\bfseries{salt}}. 
+{\bfseries{salt}} can be NULL to generate a salt automatically. You can also generate it yourself using \mbox{\hyperlink{hashlib_8h_aa0092aa4c122591fae447dda8fa25dfc}{hashlib\+\_\+\+Random\+Bytes()}} and pass a pointer to that buffer as {\bfseries{salt}}. 
 
-If you are trying to validate a signature, use hashlib\+\_\+\+SSLVerify\+Signature(). 
+If you are trying to validate a signature, use \mbox{\hyperlink{hashlib_8h_a7b705e6cf52b076b40f936af6d55b29c}{hashlib\+\_\+\+SSLVerify\+Signature()}}. 
 \end{DoxyNote}
 \begin{DoxyReturn}{Returns}
 the padded length of the plaintext. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{hashlib_8h_af1dd2bde099a6fadb6bcc842e502c21b}\label{hashlib_8h_af1dd2bde099a6fadb6bcc842e502c21b}} 
+\index{hashlib.h@{hashlib.h}!hashlib\_RSAVerifyPSS@{hashlib\_RSAVerifyPSS}}
+\index{hashlib\_RSAVerifyPSS@{hashlib\_RSAVerifyPSS}!hashlib.h@{hashlib.h}}
+\doxysubsubsection{\texorpdfstring{hashlib\_RSAVerifyPSS()}{hashlib\_RSAVerifyPSS()}}
+{\footnotesize\ttfamily bool hashlib\+\_\+\+RSAVerify\+PSS (\begin{DoxyParamCaption}\item[{const uint8\+\_\+t $\ast$}]{in,  }\item[{size\+\_\+t}]{len,  }\item[{const uint8\+\_\+t $\ast$}]{expected,  }\item[{size\+\_\+t}]{modulus\+\_\+len }\end{DoxyParamCaption})}
+
+
+
+RSA-\/\+PSS verification. 
+
+Reverses the PSS MGF1 masking on {\bfseries{expected}} and retrieves the salt, then attempts to PSS pad the input given the retrieved salt.
+
+
+\begin{DoxyParams}{Parameters}
+{\em in} & Pointer to buffer containing data to verify PSS padding for. \\
+\hline
+{\em len} & Length of data at {\bfseries{in}}. \\
+\hline
+{\em expected} & Pointer to buffer containing expected signature. \\
+\hline
+{\em modulus\+\_\+len} & The size of the signature at {\bfseries{expected}}. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if signature match, False if failed to verify. 
 \end{DoxyReturn}
 \mbox{\Hypertarget{hashlib_8h_a198f76fac9ea43d3bd602f8a212a7d39}\label{hashlib_8h_a198f76fac9ea43d3bd602f8a212a7d39}} 
 \index{hashlib.h@{hashlib.h}!hashlib\_RSAEncrypt@{hashlib\_RSAEncrypt}}
@@ -934,9 +964,39 @@ Performs an in-\/place RSA encryption of a message over a public modulus {\bfser
 {\bfseries{msglen}} and {\bfseries{keylen}} must be equal in size. This is enforced. 
 
 output is written to {\bfseries{msg}} 
+
+msg and pubkey are both treated as byte arrays. 
 \end{DoxyNote}
 \begin{DoxyReturn}{Returns}
 True if encryption succeeded. False if failed. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{hashlib_8h_a7b705e6cf52b076b40f936af6d55b29c}\label{hashlib_8h_a7b705e6cf52b076b40f936af6d55b29c}} 
+\index{hashlib.h@{hashlib.h}!hashlib\_SSLVerifySignature@{hashlib\_SSLVerifySignature}}
+\index{hashlib\_SSLVerifySignature@{hashlib\_SSLVerifySignature}!hashlib.h@{hashlib.h}}
+\doxysubsubsection{\texorpdfstring{hashlib\_SSLVerifySignature()}{hashlib\_SSLVerifySignature()}}
+{\footnotesize\ttfamily bool hashlib\+\_\+\+SSLVerify\+Signature (\begin{DoxyParamCaption}\item[{const uint8\+\_\+t $\ast$}]{ca\+\_\+pubkey,  }\item[{size\+\_\+t}]{keysize,  }\item[{const uint8\+\_\+t $\ast$}]{cert,  }\item[{size\+\_\+t}]{certlen,  }\item[{uint8\+\_\+t}]{sig\+\_\+alg }\end{DoxyParamCaption})}
+
+
+
+SSL Certificate Signature Verification. 
+
+Verifies the signature of a given SSL certificate using SSLSIG\+\_\+\+RSA\+\_\+\+SHA256
+
+
+\begin{DoxyParams}{Parameters}
+{\em ca\+\_\+pubkey} & Pointer to buffer containing the public key of the certificate\textquotesingle{}s certifying authority. \\
+\hline
+{\em keysize} & Length of the public key at {\bfseries{ca\+\_\+pubkey}}. \\
+\hline
+{\em cert} & Pointer to buffer containing the certificate to verify. \\
+\hline
+{\em certlen} & The size of the certificate at {\bfseries{cert}}. \\
+\hline
+{\em sig\+\_\+alg} & The algorithm to use for SSL verification (presently only RSA with SHA-\/256 supported). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if the SSL certificate signature is valid. False is invalid or user error. 
 \end{DoxyReturn}
 \mbox{\Hypertarget{hashlib_8h_a24bf91aef912b8346523f37e16d22377}\label{hashlib_8h_a24bf91aef912b8346523f37e16d22377}} 
 \index{hashlib.h@{hashlib.h}!hashlib\_EraseContext@{hashlib\_EraseContext}}

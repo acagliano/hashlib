@@ -505,7 +505,7 @@ size_t hashlib_RSADecodeOAEP(
  * @param modulus_len The length of the modulus to pad for.
  * @param salt A nonce equal in length to the SHA-256 digest length.
  * @note @b outbuf must be at least @b modulus_len bytes large.
- * @note @b salt can be null to generate a salt automatically. You can also generate it yourself
+ * @note @b salt can be NULL to generate a salt automatically. You can also generate it yourself
  * 		 using hashlib_RandomBytes() and pass a pointer to that buffer as @b salt.
  * @note If you are trying to validate a signature, use hashlib_SSLVerifySignature().
  * @return the padded length of the plaintext.
@@ -516,6 +516,24 @@ size_t hashlib_RSAEncodePSS(
 	uint8_t *outbuf,
 	size_t modulus_len,
 	uint8_t *salt);
+ 
+ /**********************************************************************************************
+  * @brief RSA-PSS verification
+  *
+  * Reverses the PSS MGF1 masking on @b expected and retrieves the salt,
+  * then attempts to PSS pad the input given the retrieved salt.
+  *
+  * @param in Pointer to buffer containing data to verify PSS padding for.
+  * @param len Length of data at @b in.
+  * @param expected Pointer to buffer containing expected signature.
+  * @param modulus_len The size of the signature at @b expected.
+  * @return True if signature match, False if failed to verify.
+  * *******************************************************************************************/
+ bool hashlib_RSAVerifyPSS(
+    const uint8_t *in,
+    size_t len,
+    const uint8_t *expected,
+    size_t modulus_len);
 	
  
 /***************************************************************************************************
@@ -530,8 +548,8 @@ size_t hashlib_RSAEncodePSS(
  * @param keylen The length of the public key (modulus) to encrypt with.
  * @note @b msglen and @b keylen must be equal in size. This is enforced.
  * @note output is written to @b msg
+ * @note msg and pubkey are both treated as byte arrays.
  * @return True if encryption succeeded. False if failed.
- *
  **************************************************************************************************/
 bool hashlib_RSAEncrypt(
     const uint8_t* msg,
@@ -539,6 +557,24 @@ bool hashlib_RSAEncrypt(
     const uint8_t* pubkey,
     size_t keylen);
  
+/**********************************************************************************************
+ * @brief SSL Certificate Signature Verification
+ *
+ * Verifies the signature of a given SSL certificate using SSLSIG_RSA_SHA256
+ *
+ * @param ca_pubkey Pointer to buffer containing the public key of the certificate's certifying authority.
+ * @param keysize Length of the public key at @b ca_pubkey.
+ * @param cert Pointer to buffer containing the certificate to verify.
+ * @param certlen The size of the certificate at @b cert.
+ * @param sig_alg The algorithm to use for SSL verification (presently only RSA with SHA-256 supported).
+ * @returns True if the SSL certificate signature is valid. False is invalid or user error.
+ * *******************************************************************************************/
+bool hashlib_SSLVerifySignature(
+    const uint8_t *ca_pubkey,
+    size_t keysize,
+    const uint8_t *cert,
+    size_t certlen,
+    uint8_t sig_alg);
 
 // Miscellaneous Functions
 /**************************************************************************************************************

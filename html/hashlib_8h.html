@@ -205,9 +205,15 @@ Functions</h2></td></tr>
 <tr class="memitem:a01668b3f2dd85fe2f8696673b275b75a"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#a01668b3f2dd85fe2f8696673b275b75a">hashlib_RSAEncodePSS</a> (const uint8_t *plaintext, size_t len, uint8_t *outbuf, size_t modulus_len, uint8_t *salt)</td></tr>
 <tr class="memdesc:a01668b3f2dd85fe2f8696673b275b75a"><td class="mdescLeft">&#160;</td><td class="mdescRight">RSA-PSS padding scheme.  <a href="hashlib_8h.html#a01668b3f2dd85fe2f8696673b275b75a">More...</a><br /></td></tr>
 <tr class="separator:a01668b3f2dd85fe2f8696673b275b75a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af1dd2bde099a6fadb6bcc842e502c21b"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#af1dd2bde099a6fadb6bcc842e502c21b">hashlib_RSAVerifyPSS</a> (const uint8_t *in, size_t len, const uint8_t *expected, size_t modulus_len)</td></tr>
+<tr class="memdesc:af1dd2bde099a6fadb6bcc842e502c21b"><td class="mdescLeft">&#160;</td><td class="mdescRight">RSA-PSS verification.  <a href="hashlib_8h.html#af1dd2bde099a6fadb6bcc842e502c21b">More...</a><br /></td></tr>
+<tr class="separator:af1dd2bde099a6fadb6bcc842e502c21b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a198f76fac9ea43d3bd602f8a212a7d39"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#a198f76fac9ea43d3bd602f8a212a7d39">hashlib_RSAEncrypt</a> (const uint8_t *msg, size_t msglen, const uint8_t *pubkey, size_t keylen)</td></tr>
 <tr class="memdesc:a198f76fac9ea43d3bd602f8a212a7d39"><td class="mdescLeft">&#160;</td><td class="mdescRight">RSA Encryption.  <a href="hashlib_8h.html#a198f76fac9ea43d3bd602f8a212a7d39">More...</a><br /></td></tr>
 <tr class="separator:a198f76fac9ea43d3bd602f8a212a7d39"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7b705e6cf52b076b40f936af6d55b29c"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#a7b705e6cf52b076b40f936af6d55b29c">hashlib_SSLVerifySignature</a> (const uint8_t *ca_pubkey, size_t keysize, const uint8_t *cert, size_t certlen, uint8_t sig_alg)</td></tr>
+<tr class="memdesc:a7b705e6cf52b076b40f936af6d55b29c"><td class="mdescLeft">&#160;</td><td class="mdescRight">SSL Certificate Signature Verification.  <a href="hashlib_8h.html#a7b705e6cf52b076b40f936af6d55b29c">More...</a><br /></td></tr>
+<tr class="separator:a7b705e6cf52b076b40f936af6d55b29c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a24bf91aef912b8346523f37e16d22377"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#a24bf91aef912b8346523f37e16d22377">hashlib_EraseContext</a> (void *ctx, size_t len)</td></tr>
 <tr class="memdesc:a24bf91aef912b8346523f37e16d22377"><td class="mdescLeft">&#160;</td><td class="mdescRight">Secure erase context.  <a href="hashlib_8h.html#a24bf91aef912b8346523f37e16d22377">More...</a><br /></td></tr>
 <tr class="separator:a24bf91aef912b8346523f37e16d22377"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -1573,10 +1579,63 @@ For the most secure authenticated encryption scheme, use "encrypt-then-MAC". Thi
 </dl>
 <dl class="section note"><dt>Note</dt><dd><b>outbuf</b> must be at least <b>modulus_len</b> bytes large. </dd>
 <dd>
-<b>salt</b> can be null to generate a salt automatically. You can also generate it yourself using <a class="el" href="hashlib_8h.html#aa0092aa4c122591fae447dda8fa25dfc" title="Fills a buffer to size with random bytes.">hashlib_RandomBytes()</a> and pass a pointer to that buffer as <b>salt</b>. </dd>
+<b>salt</b> can be NULL to generate a salt automatically. You can also generate it yourself using <a class="el" href="hashlib_8h.html#aa0092aa4c122591fae447dda8fa25dfc" title="Fills a buffer to size with random bytes.">hashlib_RandomBytes()</a> and pass a pointer to that buffer as <b>salt</b>. </dd>
 <dd>
-If you are trying to validate a signature, use hashlib_SSLVerifySignature(). </dd></dl>
+If you are trying to validate a signature, use <a class="el" href="hashlib_8h.html#a7b705e6cf52b076b40f936af6d55b29c" title="SSL Certificate Signature Verification.">hashlib_SSLVerifySignature()</a>. </dd></dl>
 <dl class="section return"><dt>Returns</dt><dd>the padded length of the plaintext. </dd></dl>
+
+</div>
+</div>
+<a id="af1dd2bde099a6fadb6bcc842e502c21b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af1dd2bde099a6fadb6bcc842e502c21b">&#9670;&nbsp;</a></span>hashlib_RSAVerifyPSS()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool hashlib_RSAVerifyPSS </td>
+          <td>(</td>
+          <td class="paramtype">const uint8_t *&#160;</td>
+          <td class="paramname"><em>in</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>len</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const uint8_t *&#160;</td>
+          <td class="paramname"><em>expected</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>modulus_len</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>RSA-PSS verification. </p>
+<p>Reverses the PSS MGF1 masking on <b>expected</b> and retrieves the salt, then attempts to PSS pad the input given the retrieved salt.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">in</td><td>Pointer to buffer containing data to verify PSS padding for. </td></tr>
+    <tr><td class="paramname">len</td><td>Length of data at <b>in</b>. </td></tr>
+    <tr><td class="paramname">expected</td><td>Pointer to buffer containing expected signature. </td></tr>
+    <tr><td class="paramname">modulus_len</td><td>The size of the signature at <b>expected</b>. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>True if signature match, False if failed to verify. </dd></dl>
 
 </div>
 </div>
@@ -1631,8 +1690,70 @@ If you are trying to validate a signature, use hashlib_SSLVerifySignature(). </d
 </dl>
 <dl class="section note"><dt>Note</dt><dd><b>msglen</b> and <b>keylen</b> must be equal in size. This is enforced. </dd>
 <dd>
-output is written to <b>msg</b> </dd></dl>
+output is written to <b>msg</b> </dd>
+<dd>
+msg and pubkey are both treated as byte arrays. </dd></dl>
 <dl class="section return"><dt>Returns</dt><dd>True if encryption succeeded. False if failed. </dd></dl>
+
+</div>
+</div>
+<a id="a7b705e6cf52b076b40f936af6d55b29c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7b705e6cf52b076b40f936af6d55b29c">&#9670;&nbsp;</a></span>hashlib_SSLVerifySignature()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool hashlib_SSLVerifySignature </td>
+          <td>(</td>
+          <td class="paramtype">const uint8_t *&#160;</td>
+          <td class="paramname"><em>ca_pubkey</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>keysize</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const uint8_t *&#160;</td>
+          <td class="paramname"><em>cert</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>certlen</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>sig_alg</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>SSL Certificate Signature Verification. </p>
+<p>Verifies the signature of a given SSL certificate using SSLSIG_RSA_SHA256</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ca_pubkey</td><td>Pointer to buffer containing the public key of the certificate's certifying authority. </td></tr>
+    <tr><td class="paramname">keysize</td><td>Length of the public key at <b>ca_pubkey</b>. </td></tr>
+    <tr><td class="paramname">cert</td><td>Pointer to buffer containing the certificate to verify. </td></tr>
+    <tr><td class="paramname">certlen</td><td>The size of the certificate at <b>cert</b>. </td></tr>
+    <tr><td class="paramname">sig_alg</td><td>The algorithm to use for SSL verification (presently only RSA with SHA-256 supported). </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>True if the SSL certificate signature is valid. False is invalid or user error. </dd></dl>
 
 </div>
 </div>

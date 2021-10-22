@@ -30,6 +30,8 @@ library "HASHLIB", 6
 	export hashlib_RSADecodeOAEP
 	export hashlib_RSAEncodePSS
     export hashlib_RSAEncrypt
+    export hashlib_RSAVerifyPSS
+    export hashlib_SSLVerifySignature
 
     export hashlib_EraseContext
     export hashlib_CompareDigest
@@ -6384,6 +6386,326 @@ hashlib_RSAEncrypt:
 	pop	ix
 	ret
  
+ hashlib_RSAVerifyPSS:
+	ld	hl, -529
+	call	ti._frameset
+	ld	de, -517
+	lea	iy, ix + 0
+	add	iy, de
+	ld	bc, (ix + 15)
+	ld	de, -229
+	lea	hl, ix + 0
+	add	hl, de
+	push	ix
+	ld	de, -526
+	add	ix, de
+	ld	(ix + 0), hl
+	pop	ix
+	lea	de, iy + 32
+	ld	(ix + -3), bc
+	ld	bc, -520
+	lea	hl, ix + 0
+	add	hl, bc
+	ld	(hl), de
+	lea	hl, iy + 0
+	ld	bc, -523
+	lea	iy, ix + 0
+	add	iy, bc
+	ld	(iy + 0), hl
+	ld	bc, (ix + -3)
+	push	bc
+	pop	hl
+	push	bc
+	pop	iy
+	ld	bc, -33
+	add	hl, bc
+	push	ix
+	ld	bc, -529
+	add	ix, bc
+	ld	(ix + 0), hl
+	pop	ix
+	push	iy
+	ld	hl, (ix + 12)
+	push	hl
+	push	de
+	call	ti._memcpy
+	pop	hl
+	pop	hl
+	pop	hl
+	ld	bc, -520
+	lea	hl, ix + 0
+	add	hl, bc
+	ld	hl, (hl)
+	ld	bc, -529
+	lea	iy, ix + 0
+	add	iy, bc
+	ld	de, (iy + 0)
+	add	hl, de
+	push	de
+	push	ix
+	ld	bc, -526
+	add	ix, bc
+	ld	de, (ix + 0)
+	pop	ix
+	push	de
+	ld	de, 32
+	push	de
+	push	hl
+	call	hashlib_MGF1Hash
+	ld	de, -529
+	lea	hl, ix + 0
+	add	hl, de
+	ld	bc, (hl)
+	ld	de, 0
+	pop	hl
+	pop	hl
+	pop	hl
+	pop	hl
+.lbl_1:
+	push	bc
+	pop	hl
+	or	a, a
+	sbc	hl, de
+	jq	z, .lbl_2
+	ld	(ix + -3), bc
+	ld	bc, -526
+	lea	hl, ix + 0
+	add	hl, bc
+	ld	iy, (hl)
+	add	iy, de
+	push	ix
+	ld	bc, -520
+	add	ix, bc
+	ld	hl, (ix + 0)
+	pop	ix
+	add	hl, de
+	ld	a, (hl)
+	xor	a, (iy)
+	ld	(hl), a
+	inc	de
+	ld	bc, (ix + -3)
+	jq	.lbl_1
+.lbl_2:
+	ld	hl, (ix + 15)
+	ld	de, -65
+	add	hl, de
+	ex	de, hl
+	ld	bc, -520
+	lea	hl, ix + 0
+	add	hl, bc
+	ld	hl, (hl)
+	add	hl, de
+	ld	de, 32
+	push	de
+	push	hl
+	ld	bc, -523
+	lea	hl, ix + 0
+	add	hl, bc
+	ld	hl, (hl)
+	push	hl
+	call	ti._memcpy
+	pop	hl
+	pop	hl
+	pop	hl
+	ld	bc, -523
+	lea	hl, ix + 0
+	add	hl, bc
+	ld	hl, (hl)
+	push	hl
+	ld	hl, (ix + 15)
+	push	hl
+	ld	bc, -520
+	lea	hl, ix + 0
+	add	hl, bc
+	ld	hl, (hl)
+	push	hl
+	ld	hl, (ix + 9)
+	push	hl
+	ld	hl, (ix + 6)
+	push	hl
+	call	hashlib_RSAEncodePSS
+	pop	hl
+	pop	hl
+	pop	hl
+	pop	hl
+	pop	hl
+	ld	hl, (ix + 15)
+	push	hl
+	ld	hl, (ix + 12)
+	push	hl
+	ld	bc, -520
+	lea	hl, ix + 0
+	add	hl, bc
+	ld	hl, (hl)
+	push	hl
+	call	hashlib_CompareDigest
+	ld	sp, ix
+	pop	ix
+	ret
+	
+hashlib_SSLVerifySignature:
+	ld	hl, -670
+	call	ti._frameset
+	ld	hl, (ix + 6)
+	ld	e, 0
+	add	hl, bc
+	or	a, a
+	sbc	hl, bc
+	jq	z, .lbl_6
+	ld	hl, (ix + 12)
+	add	hl, bc
+	or	a, a
+	sbc	hl, bc
+	jq	z, .lbl_7
+	ld	hl, (ix + 9)
+	ld	bc, (ix + 15)
+	or	a, a
+	sbc	hl, bc
+	jq	nc, .lbl_8
+	ld	a, (ix + 18)
+	or	a, a
+	jq	nz, .lbl_5
+	ld	de, -402
+	lea	iy, ix + 0
+	add	iy, de
+	push	bc
+	pop	de
+	ld	(ix + -3), de
+	ld	de, -262
+	lea	hl, ix + 0
+	add	hl, de
+	push	hl
+	pop	bc
+	push	ix
+	ld	de, -667
+	add	ix, de
+	ld	(ix + 0), bc
+	pop	ix
+	lea	hl, iy + 108
+	push	ix
+	ld	de, -664
+	add	ix, de
+	ld	(ix + 0), hl
+	pop	ix
+	lea	hl, iy + 0
+	ld	de, -661
+	lea	iy, ix + 0
+	add	iy, de
+	ld	(iy + 0), hl
+	ld	de, (ix + -3)
+	ex	de, hl
+	ld	de, (ix + 9)
+	or	a, a
+	sbc	hl, de
+	push	de
+	pop	iy
+	push	ix
+	ld	de, -670
+	add	ix, de
+	ld	(ix + 0), hl
+	pop	ix
+	ex	de, hl
+	dec	de
+	ld	hl, (ix + 12)
+	add	hl, de
+	push	iy
+	push	hl
+	push	bc
+	call	ti._memcpy
+	pop	hl
+	pop	hl
+	pop	hl
+	ld	de, (ix + 9)
+	push	de
+	ld	hl, (ix + 6)
+	push	hl
+	push	de
+	ld	bc, -667
+	lea	hl, ix + 0
+	add	hl, bc
+	ld	hl, (hl)
+	push	hl
+	call	hashlib_RSAEncrypt
+	pop	hl
+	pop	hl
+	pop	hl
+	pop	hl
+	ld	bc, -658
+	lea	hl, ix + 0
+	add	hl, bc
+	push	hl
+	ld	bc, -661
+	lea	iy, ix + 0
+	add	iy, bc
+	ld	hl, (iy + 0)
+	push	hl
+	call	hashlib_Sha256Init
+	pop	hl
+	pop	hl
+	or	a, a
+	sbc	hl, hl
+	push	hl
+	ld	bc, -670
+	lea	hl, ix + 0
+	add	hl, bc
+	ld	hl, (hl)
+	push	hl
+	ld	hl, (ix + 12)
+	push	hl
+	ld	bc, -661
+	lea	hl, ix + 0
+	add	hl, bc
+	ld	hl, (hl)
+	push	hl
+	call	hashlib_Sha256Update
+	pop	hl
+	pop	hl
+	pop	hl
+	pop	hl
+	ld	bc, -664
+	lea	hl, ix + 0
+	add	hl, bc
+	ld	hl, (hl)
+	push	hl
+	ld	bc, -661
+	lea	hl, ix + 0
+	add	hl, bc
+	ld	hl, (hl)
+	push	hl
+	call	hashlib_Sha256Final
+	pop	hl
+	pop	hl
+	ld	hl, (ix + 9)
+	push	hl
+	ld	bc, -667
+	lea	hl, ix + 0
+	add	hl, bc
+	ld	hl, (hl)
+	push	hl
+	ld	hl, 32
+	push	hl
+	ld	bc, -664
+	lea	hl, ix + 0
+	add	hl, bc
+	ld	hl, (hl)
+	push	hl
+	call	hashlib_RSAVerifyPSS
+	ld	e, a
+	pop	hl
+	pop	hl
+	pop	hl
+	pop	hl
+	jq	.lbl_5
+.lbl_6:
+	jq	.lbl_5
+.lbl_7:
+	jq	.lbl_5
+.lbl_8:
+.lbl_5:
+	ld	a, e
+	ld	sp, ix
+	pop	ix
+	ret
  
 ;void powmod(uint8_t size, uint8_t *restrict base, uint24_t exp, const uint8_t *restrict mod);
 _powmod:
@@ -6611,12 +6933,7 @@ _sprng_sha_digest		:=	_sprng_rand + 4
 _sprng_sha_mbuffer		:=	_sprng_sha_digest + 32
 _sprng_sha_ctx			:=	_sprng_sha_mbuffer + (64*4)
 
-_Base64Code:
-	db	"./ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789",000o
- 
- _index_64:
-	db	"",377o,377o,377o,377o,377o,377o,377o,377o,377o,377o,377o,377o,377o,377o,377o,377o,377o,377o,377o,377o,377o,377o,377o,377o,377o,377o,377o,377o,377o,377o,377o,377o,377o,377o,377o,377o,377o,377o,377o,377o,377o,377o,377o,377o,377o,377o,000o,001o,"6789:;<=>?",377o,377o,377o,377o,377o,377o,377o,002o,003o,004o,005o,006o,007o,010o,011o,012o,013o,014o,015o,016o,017o,020o,021o,022o,023o,024o,025o,026o,027o,030o,031o,032o,033o,377o,377o,377o,377o,377o,377o,034o,035o,036o,037o," !""#$%&'()*+,-./012345",377o,377o,377o,377o,377o
- 
+
  _aes_sbox:
 	db	"c|w{",362o,"ko",305o,"0",001o,"g+",376o,327o,253o,"v"
 	db	"",312o,202o,311o,"}",372o,"YG",360o,255o,324o,242o,257o,234o,244o,"r",300o

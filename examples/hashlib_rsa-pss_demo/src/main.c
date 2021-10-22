@@ -33,7 +33,7 @@ int main(void)
 {
 	uint8_t encoded[256];
 	uint8_t decoded[256];
-	sprintf(CEMU_CONSOLE, "\n\n----------------------------------\nHashlib OAEP Demo\n");
+	sprintf(CEMU_CONSOLE, "\n\n----------------------------------\nHashlib PSS Demo\n");
 	hexdump(str, strlen(str), "---Original String---");
 	if(hashlib_RSAEncodePSS(str, strlen(str), encoded, 256, NULL))
 		hexdump(encoded, 256, "---PSS Encoded---");

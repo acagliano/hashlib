@@ -18,6 +18,8 @@ library	"HASHLIB", 6
 	export	hashlib_RSADecodeOAEP ; 48
 	export	hashlib_RSAEncodePSS ; 51
 	export	hashlib_RSAEncrypt ; 54
-	export	hashlib_EraseContext ; 57
-	export	hashlib_CompareDigest ; 60
-	export	hashlib_ReverseEndianness ; 63
+	export	hashlib_RSAVerifyPSS ; 57
+	export	hashlib_SSLVerifySignature ; 60
+	export	hashlib_EraseContext ; 63
+	export	hashlib_CompareDigest ; 66
+	export	hashlib_ReverseEndianness ; 69
