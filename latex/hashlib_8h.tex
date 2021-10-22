@@ -114,7 +114,7 @@ size\+\_\+t \mbox{\hyperlink{hashlib_8h_ae575c99825f9b970c3d6f7a6bf552153}{hashl
 \begin{DoxyCompactList}\small\item\em RSA-\/\+OAEP padding scheme, reverse algorithm. \end{DoxyCompactList}\item 
 size\+\_\+t \mbox{\hyperlink{hashlib_8h_a01668b3f2dd85fe2f8696673b275b75a}{hashlib\+\_\+\+RSAEncode\+PSS}} (const uint8\+\_\+t $\ast$plaintext, size\+\_\+t len, uint8\+\_\+t $\ast$outbuf, size\+\_\+t modulus\+\_\+len, uint8\+\_\+t $\ast$salt)
 \begin{DoxyCompactList}\small\item\em RSA-\/\+PSS padding scheme. \end{DoxyCompactList}\item 
-bool \mbox{\hyperlink{hashlib_8h_aed5a27a5eac7a9b69017c1da2b404322}{hashlib\+\_\+\+RSAEncrypt}} (uint8\+\_\+t $\ast$ciphertext, const uint8\+\_\+t $\ast$msg, size\+\_\+t msglen, const uint8\+\_\+t $\ast$pubkey, size\+\_\+t keylen)
+bool \mbox{\hyperlink{hashlib_8h_a198f76fac9ea43d3bd602f8a212a7d39}{hashlib\+\_\+\+RSAEncrypt}} (const uint8\+\_\+t $\ast$msg, size\+\_\+t msglen, const uint8\+\_\+t $\ast$pubkey, size\+\_\+t keylen)
 \begin{DoxyCompactList}\small\item\em RSA Encryption. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{hashlib_8h_a24bf91aef912b8346523f37e16d22377}{hashlib\+\_\+\+Erase\+Context}} (void $\ast$ctx, size\+\_\+t len)
 \begin{DoxyCompactList}\small\item\em Secure erase context. \end{DoxyCompactList}\item 
@@ -907,22 +907,20 @@ If you are trying to validate a signature, use hashlib\+\_\+\+SSLVerify\+Signatu
 \begin{DoxyReturn}{Returns}
 the padded length of the plaintext. 
 \end{DoxyReturn}
-\mbox{\Hypertarget{hashlib_8h_aed5a27a5eac7a9b69017c1da2b404322}\label{hashlib_8h_aed5a27a5eac7a9b69017c1da2b404322}} 
+\mbox{\Hypertarget{hashlib_8h_a198f76fac9ea43d3bd602f8a212a7d39}\label{hashlib_8h_a198f76fac9ea43d3bd602f8a212a7d39}} 
 \index{hashlib.h@{hashlib.h}!hashlib\_RSAEncrypt@{hashlib\_RSAEncrypt}}
 \index{hashlib\_RSAEncrypt@{hashlib\_RSAEncrypt}!hashlib.h@{hashlib.h}}
 \doxysubsubsection{\texorpdfstring{hashlib\_RSAEncrypt()}{hashlib\_RSAEncrypt()}}
-{\footnotesize\ttfamily bool hashlib\+\_\+\+RSAEncrypt (\begin{DoxyParamCaption}\item[{uint8\+\_\+t $\ast$}]{ciphertext,  }\item[{const uint8\+\_\+t $\ast$}]{msg,  }\item[{size\+\_\+t}]{msglen,  }\item[{const uint8\+\_\+t $\ast$}]{pubkey,  }\item[{size\+\_\+t}]{keylen }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily bool hashlib\+\_\+\+RSAEncrypt (\begin{DoxyParamCaption}\item[{const uint8\+\_\+t $\ast$}]{msg,  }\item[{size\+\_\+t}]{msglen,  }\item[{const uint8\+\_\+t $\ast$}]{pubkey,  }\item[{size\+\_\+t}]{keylen }\end{DoxyParamCaption})}
 
 
 
 RSA Encryption. 
 
-Performs an RSA encryption over a public modulus and a public exponent, 65537
+Performs an in-\/place RSA encryption of a message over a public modulus {\bfseries{pubkey}} and a public exponent, 65537
 
 
 \begin{DoxyParams}{Parameters}
-{\em ciphertext} & Pointer to a buffer to write the output RSA encrypted message. \\
-\hline
 {\em msg} & Pointer to an OAEP-\/encoded plaintext to encrypt using RSA. \\
 \hline
 {\em msglen} & The length of the message {\bfseries{msg}}. \\
@@ -934,6 +932,8 @@ Performs an RSA encryption over a public modulus and a public exponent, 65537
 \end{DoxyParams}
 \begin{DoxyNote}{Note}
 {\bfseries{msglen}} and {\bfseries{keylen}} must be equal in size. This is enforced. 
+
+output is written to {\bfseries{msg}} 
 \end{DoxyNote}
 \begin{DoxyReturn}{Returns}
 True if encryption succeeded. False if failed. 

@@ -6333,7 +6333,7 @@ hashlib_ReverseEndianness:
 hashlib_RSAEncrypt:
 	ld	hl, -1
 	call	ti._frameset
-	ld	hl, (ix + 9)
+	ld	hl, (ix + 6)
 	add	hl, bc
 	or	a, a
 	sbc	hl, bc
@@ -6343,8 +6343,8 @@ hashlib_RSAEncrypt:
 	jq	nz, .lbl_2
 	ld	a, c
 .lbl_2:
-	ld	de, (ix + 18)
-	ld	hl, (ix + 15)
+	ld	de, (ix + 15)
+	ld	hl, (ix + 12)
 	add	hl, bc
 	or	a, a
 	sbc	hl, bc
@@ -6355,29 +6355,26 @@ hashlib_RSAEncrypt:
 	ld	l, c
 .lbl_4:
 	and	a, l
-	ld	hl, (ix + 12)
+	ld	hl, (ix + 9)
 	or	a, a
 	sbc	hl, de
 	jq	z, .lbl_6
 	ld	iyl, c
 .lbl_6:
-	ld	hl, (ix + 6)
-	ld	bc, 65537
+	ld	hl, 65537
 	and	a, iyl
 	ld	e, 1
 	ld	(ix + -1), a
 	xor	a, e
 	bit	0, a
-	ld	de, (ix + 15)
-	push	de
-	push	bc
-	ld	de, (ix + 9)
+	ld	de, (ix + 12)
 	push	de
 	push	hl
-	ld	hl, (ix + 12)
+	ld	hl, (ix + 6)
+	push	hl
+	ld	hl, (ix + 9)
 	push	hl
 	call	z, _powmod
-	pop	hl
 	pop	hl
 	pop	hl
 	pop	hl
@@ -6388,179 +6385,224 @@ hashlib_RSAEncrypt:
 	ret
  
  
- ;void powmod(uint8_t size, uint8_t *res, const uint8_t *base, uint24_t exp, const uint8_t *mod);
- _powmod:
-    ld   iy, 0
-    add   iy, sp
-.size = iy + long
-.res = .size + long
-.base = .res + long
-.exp = .base + long
-.mod = .exp + long
-    ld   hl, (.base)
-    ld   de, (.res)
-;   or   a, a
-    call   .mulmod
-    scf
-    sbc   hl, hl
-    xor   a, a
-    sub   a, (.size)
-    ld   l, a
-    add   hl, sp
-    ld   sp, hl
-    ex   de, hl
-    ld   hl, (.exp)
-;   scf
-.normalize:
-   adc   hl, hl
-   jq   nc, .normalize ; leaks (.exp:long)
-   jq   .loop.enter
-.loop:
-   push   hl, af, de
-   ld   bc, (.res)
-   or   a, a
-   sbc   hl, hl
-   add   hl, bc
-   push   hl
-   scf
-   call   .mulmod
-   ld   bc, (.base)
-   pop   de, hl, af
-   push   hl
-   call   .mulmod
-   pop   de, hl
-.loop.enter:
-   or   a, a
-   adc   hl, hl
-   jq   nz, .loop ; leaks (.size:byte)
-   ld   sp, iy
-   ret
-.copy:
-   inc   bc
-   ldir ; leaks (.size:byte)
-   pop   bc
-   ret
-.mulmod: ; (ude:(.size:byte)) = cf ? (uhl:(.size:byte)) * (ubc:(.size:byte)) % (.mod:(.size:byte)) : (uhl:(.size:byte))
-   push   bc
-   ld   bc, 0
+;void powmod(uint8_t size, uint8_t *restrict base, uint24_t exp, const uint8_t *restrict mod);
+_powmod:
+   push   ix
+   ld   ix, 0
+   lea   bc, ix
+   add   ix, sp
+.ret  := ix    + long
+.size := .ret  + long
+.base := .size + long
+.exp  := .base + long
+.mod  := .exp  + long
+.acc  := ix    - long
+.tmp  := .acc  - long
+.end  := .tmp  - byte
    ld   c, (.size)
    dec   c
-   jq   nc, .copy ; leaks (.exp:long)
+   ld   hl, .end - ix
+   add   hl, sp
+   push   hl
+;   scf
+   sbc   hl, bc
+   push   hl
+;   or   a, a
+   sbc   hl, bc
+   ld   sp, hl
+   ld   hl, (.mod)
    add   hl, bc
-   push   hl, de
+   ld   (.mod), hl
+   ld   b, bsr 8
+   ld   e, b
+;   ld   e, 1
+.nmi.loop:
+   ld   a, e
+   ld   d, (hl)
+   mlt   de
    inc   de
-   scf
-   sbc   hl, hl
-   add   hl, de
-;   ld   b, 0
-   ld   (hl), b
-   ldir ; leaks (.size:byte)
-   pop   de, bc, hl
-   ld   a, (.size)
-.outer:
-   push   af
-   ld   a, (bc)
-   ld   (.digit), a
-   dec   bc
-   push   bc, hl, de
-   ld   c, a
-   ld   b, (hl)
-   mlt   bc
-   ld   a, b
-   or   a, a
+   inc   de
+   ld   d, a
+   mlt   de
+   djnz   .nmi.loop ; leaks size
+   ld   a, e
+   ld   (.nmi), a
+   ld   hl, (.base)
+   add   hl, bc
+   ld   (.base), hl
+   ld   c, 8
+.mod.outer:
    ld   b, (.size)
-   jq   .inner.enter
-.inner:
-   push   bc
-   ld   c, 0
-.digit := $ - byte
-   inc   hl
-   ld   b, (hl)
-   mlt   bc
-   adc   a, c
-   push   af
-   ld   a, 0
-   rla
-   add   a, b
-   ld   b, a
-   pop   af
-   ex   de, hl
-   add   a, (hl)
-   ld   (hl), a
-   inc   hl
-   ex   de, hl
-   ld   a, b
-   pop   bc
-.inner.enter:
-   djnz   .inner ; leaks (.size:byte)
-   ex   de, hl
-   adc   a, (hl)
-   ld   (hl), a
-   pop   de, hl
-   ld   b, 9
-   push   bc
-   jq   .reduce.enter
-.reduce:
-   sla   c
-   push   bc, de
-   ex   de, hl
+.mod.inner:
+   push   bc, hl
    ld   b, (.size)
+;   or   a, a
 .shift:
    rl   (hl)
-   inc   hl
-   djnz   .shift ; leaks (.size:byte)
-   ex   de, hl
-   pop   de
-.reduce.enter:
+   dec   hl
+   djnz   .shift ; leaks size
+   pop   hl
    push   hl
-   sbc   a, a
-   cpl
-   ld   c, a
+   call   .reduce
+   pop   hl, bc
+   djnz   .mod.inner ; leaks size
+   dec   c
+   jq   nz, .mod.outer ; leaks constant
+   ld   c, (.size)
+   dec   c
+   inc   bc
+   ld   de, (.acc)
+   lddr ; leaks size
+   ld   hl, (.exp)
+   scf
+.normalize:
+   adc   hl, hl
+   jq   nc, .normalize ; leaks exp
+   xor   a, a
+.loop:
+   push   hl, af
+   ld   hl, (.acc)
+   call   nz, .mul ; leaks exp
+   pop   af
+   ld   hl, (.base)
+   call   c, .mul ; leaks exp
+   pop   hl
+;   or   a, a
+   adc   hl, hl
+   jq   nz, .loop ; leaks exp
+   ld   de, (.tmp)
+   add   hl, de
+   dec   de
+;   ld   bc, 0
+   ld   c, (.size)
+   dec   c
+   ld   (hl), b
+   push   hl
+   lddr ; leaks size
+   pop   hl
+   inc   (hl)
+   ld   iy, (.base)
+   call   .mul.alt
+   ld   sp, ix
+   pop   ix
+   ret
+   ; vi(acc) = vi(acc) * vi(hl) % vi(mod)
+   ; assumes bc = 0
+   ; destroys vi(tmp)
+   ; returns bc = 0, cf = 0
+.mul:
+   ld   iy, (.tmp)
+.mul.alt:
+   push   hl
+   lea   hl, iy - 0
+   lea   de, iy - 1
+   ld   c, (.size)
+   dec   c
+   ld   (hl), b
+   lddr ; leaks size
+   ld   de, (.acc)
+   ld   (.acc), iy
+   ld   (.tmp), de
+   pop   hl
+   ld   c, (.size)
    or   a, a
-   ld   b, (.size)
-   ld   hl, (.mod)
-   push   hl, de
-.sub:
+.mul.outer:
    ld   a, (de)
-   sbc   a, (hl)
+   ld   (.cur), a
+   dec   de
+   push   de, hl, ix, iy, af
+   ld   e, (hl)
+   ld   d, a
+   mlt   de
+   push   hl
+   ld   l, (iy)
+   ld   h, 0
+   add   hl, de
+   ld   e, l
+   ld   d, 0
+.nmi := $ - byte
+   mlt   de
+   ld   a, e
+   ld   (.adj), a
+   ld   b, (.size)
+   dec   b
+   ld   ix, (.mod)
+   ld   d, (ix)
+   mlt   de
+   add.s   hl, de
+   ld   e, h
+   ld   d, l
+;   ld   d, 0
+   rl   d
+   pop   hl
+.mul.inner:
+   dec   hl
+   push   hl
+   ld   l, (hl)
+   ld   h, 0
+.cur := $ - byte
+   mlt   hl
+   adc   hl, de
+   dec   ix
+   ld   e, (ix)
+   ld   d, 0
+.adj := $ - byte
+   mlt   de
+   add.s   hl, de
+   ld   e, h
+   ld   d, 0
+   rl   d
+   ld   a, l
+   dec   iy
+   add   a, (iy)
+   ld   (iy + 1), a
+   pop   hl
+   djnz   .mul.inner ; leaks size
+   ld   l, b
+   rl   l
+   ld   h, b
+   pop   af
+   adc   hl, de
+   ld   (iy + 0), l
+   sra   h
+   pop   iy, ix, hl, de
+   dec   c
+   jq   nz, .mul.outer ; leaks size
+   lea   hl, iy
+   ; if (cf:vi(hl) >= vi(mod)) cf:vi(hl) -= vi(mod)
+   ; assumes bcu = 0
+   ; destroys vi(tmp)
+   ; returns bc = 0, cf = 0
+.reduce:
+   ccf
+   sbc   a, a
+   ld   c, a
+   ld   b, (.size)
+   ld   de, (.tmp)
+   ld   iy, (.mod)
+   or   a, a
+   push   hl, de
+.reduce.sub:
+   ld   a, (hl)
+   dec   hl
+   sbc   a, (iy)
+   dec   iy
    ld   (de), a
-   inc   de
-   inc   hl
-   djnz   .sub ; leaks (.size:byte)
-   pop   de, hl
+   dec   de
+   djnz   .reduce.sub ; leaks size
    sbc   a, a
    and   a, c
-virtual
-   adc   a, (hl)
-load .adc_a__hl_: byte from $$
-end virtual
-virtual
-   ld   c, (hl)
-load .ld_c__hl_: byte from $$
-end virtual
-   and   a, .adc_a__hl_ xor .ld_c__hl_
-   xor   a, .ld_c__hl_
-   ld   (.mask), a
-;   or   a, a
-   ld   b, (.size)
-   push   de
-.add:
-   ld   a, (de)
-   adc   a, (hl)
-.mask := $ - byte
-   ld   (de), a
-   inc   de
-   inc   hl
-   djnz   .add ; leaks (.size:byte)
-   pop   de, hl, bc
-   djnz   .reduce
-   pop   bc, af
-   dec   a
-   jq   nz, .outer ; leaks (.size:byte)
+   and   a, long
+   sbc   hl, hl
+   ld   l, a
+   add   hl, sp
+   ld   hl, (hl)
+   pop   de, de
+   ld   c, (.size)
+   dec   c
+   inc   bc
+   lddr ; leaks size, assuming that base and stack are in normal ram
    ret
-
- 
- 
  
 _sprng_read_addr:		rb 3
 _sprng_entropy_pool		:=	$E30800

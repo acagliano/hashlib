@@ -521,19 +521,19 @@ size_t hashlib_RSAEncodePSS(
 /***************************************************************************************************
  * @brief RSA Encryption
  *
- * Performs an RSA encryption over a public modulus and a public exponent, 65537
+ * Performs an in-place RSA encryption of a message
+ * over a public modulus \b pubkey and a public exponent, 65537
  *
- * @param ciphertext Pointer to a buffer to write the output RSA encrypted message.
  * @param msg Pointer to an OAEP-encoded plaintext to encrypt using RSA.
  * @param msglen The length of the message @b msg.
  * @param pubkey Pointer to a public key to use for encryption.
  * @param keylen The length of the public key (modulus) to encrypt with.
  * @note @b msglen and @b keylen must be equal in size. This is enforced.
+ * @note output is written to @b msg
  * @return True if encryption succeeded. False if failed.
  *
  **************************************************************************************************/
 bool hashlib_RSAEncrypt(
-    uint8_t *ciphertext,
     const uint8_t* msg,
     size_t msglen,
     const uint8_t* pubkey,

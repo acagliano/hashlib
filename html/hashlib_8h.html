@@ -205,9 +205,9 @@ Functions</h2></td></tr>
 <tr class="memitem:a01668b3f2dd85fe2f8696673b275b75a"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#a01668b3f2dd85fe2f8696673b275b75a">hashlib_RSAEncodePSS</a> (const uint8_t *plaintext, size_t len, uint8_t *outbuf, size_t modulus_len, uint8_t *salt)</td></tr>
 <tr class="memdesc:a01668b3f2dd85fe2f8696673b275b75a"><td class="mdescLeft">&#160;</td><td class="mdescRight">RSA-PSS padding scheme.  <a href="hashlib_8h.html#a01668b3f2dd85fe2f8696673b275b75a">More...</a><br /></td></tr>
 <tr class="separator:a01668b3f2dd85fe2f8696673b275b75a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aed5a27a5eac7a9b69017c1da2b404322"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#aed5a27a5eac7a9b69017c1da2b404322">hashlib_RSAEncrypt</a> (uint8_t *ciphertext, const uint8_t *msg, size_t msglen, const uint8_t *pubkey, size_t keylen)</td></tr>
-<tr class="memdesc:aed5a27a5eac7a9b69017c1da2b404322"><td class="mdescLeft">&#160;</td><td class="mdescRight">RSA Encryption.  <a href="hashlib_8h.html#aed5a27a5eac7a9b69017c1da2b404322">More...</a><br /></td></tr>
-<tr class="separator:aed5a27a5eac7a9b69017c1da2b404322"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a198f76fac9ea43d3bd602f8a212a7d39"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#a198f76fac9ea43d3bd602f8a212a7d39">hashlib_RSAEncrypt</a> (const uint8_t *msg, size_t msglen, const uint8_t *pubkey, size_t keylen)</td></tr>
+<tr class="memdesc:a198f76fac9ea43d3bd602f8a212a7d39"><td class="mdescLeft">&#160;</td><td class="mdescRight">RSA Encryption.  <a href="hashlib_8h.html#a198f76fac9ea43d3bd602f8a212a7d39">More...</a><br /></td></tr>
+<tr class="separator:a198f76fac9ea43d3bd602f8a212a7d39"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a24bf91aef912b8346523f37e16d22377"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#a24bf91aef912b8346523f37e16d22377">hashlib_EraseContext</a> (void *ctx, size_t len)</td></tr>
 <tr class="memdesc:a24bf91aef912b8346523f37e16d22377"><td class="mdescLeft">&#160;</td><td class="mdescRight">Secure erase context.  <a href="hashlib_8h.html#a24bf91aef912b8346523f37e16d22377">More...</a><br /></td></tr>
 <tr class="separator:a24bf91aef912b8346523f37e16d22377"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -1580,8 +1580,8 @@ If you are trying to validate a signature, use hashlib_SSLVerifySignature(). </d
 
 </div>
 </div>
-<a id="aed5a27a5eac7a9b69017c1da2b404322"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aed5a27a5eac7a9b69017c1da2b404322">&#9670;&nbsp;</a></span>hashlib_RSAEncrypt()</h2>
+<a id="a198f76fac9ea43d3bd602f8a212a7d39"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a198f76fac9ea43d3bd602f8a212a7d39">&#9670;&nbsp;</a></span>hashlib_RSAEncrypt()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1589,12 +1589,6 @@ If you are trying to validate a signature, use hashlib_SSLVerifySignature(). </d
         <tr>
           <td class="memname">bool hashlib_RSAEncrypt </td>
           <td>(</td>
-          <td class="paramtype">uint8_t *&#160;</td>
-          <td class="paramname"><em>ciphertext</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
           <td class="paramtype">const uint8_t *&#160;</td>
           <td class="paramname"><em>msg</em>, </td>
         </tr>
@@ -1625,10 +1619,9 @@ If you are trying to validate a signature, use hashlib_SSLVerifySignature(). </d
 </div><div class="memdoc">
 
 <p>RSA Encryption. </p>
-<p>Performs an RSA encryption over a public modulus and a public exponent, 65537</p>
+<p>Performs an in-place RSA encryption of a message over a public modulus <b>pubkey</b> and a public exponent, 65537</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">ciphertext</td><td>Pointer to a buffer to write the output RSA encrypted message. </td></tr>
     <tr><td class="paramname">msg</td><td>Pointer to an OAEP-encoded plaintext to encrypt using RSA. </td></tr>
     <tr><td class="paramname">msglen</td><td>The length of the message <b>msg</b>. </td></tr>
     <tr><td class="paramname">pubkey</td><td>Pointer to a public key to use for encryption. </td></tr>
@@ -1636,7 +1629,9 @@ If you are trying to validate a signature, use hashlib_SSLVerifySignature(). </d
   </table>
   </dd>
 </dl>
-<dl class="section note"><dt>Note</dt><dd><b>msglen</b> and <b>keylen</b> must be equal in size. This is enforced. </dd></dl>
+<dl class="section note"><dt>Note</dt><dd><b>msglen</b> and <b>keylen</b> must be equal in size. This is enforced. </dd>
+<dd>
+output is written to <b>msg</b> </dd></dl>
 <dl class="section return"><dt>Returns</dt><dd>True if encryption succeeded. False if failed. </dd></dl>
 
 </div>
