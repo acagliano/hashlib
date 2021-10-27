@@ -33,7 +33,6 @@ void hexdump(uint8_t *addr, size_t len, uint8_t *label){
 int main(void)
 {
 	uint8_t padded[MODSIZE];
-	uint8_t encrypted[MODSIZE];
     uint8_t pubkey[MODSIZE];
     hashlib_RandomBytes(pubkey, MODSIZE);
 	sprintf(CEMU_CONSOLE, "\n\n----------------------------------\nHashlib RSA Demo\n");
@@ -41,7 +40,7 @@ int main(void)
 	if(hashlib_RSAEncodeOAEP(str, strlen(str), padded, MODSIZE, NULL))
 		hexdump(padded, MODSIZE, "---OAEP Encoded---");
 	else sprintf(CEMU_CONSOLE, "encode error");
-	if(hashlib_RSAEncrypt(encrypted, padded, MODSIZE, pubkey, MODSIZE))
-        hexdump(encrypted, MODSIZE, "---RSA Encrypted---");
+	if(hashlib_RSAEncrypt(padded, MODSIZE, pubkey, MODSIZE))
+        hexdump(padded, MODSIZE, "---RSA Encrypted---");
     else sprintf(CEMU_CONSOLE, "encryption error");
 }
