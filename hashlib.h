@@ -384,7 +384,7 @@ bool hashlib_AESDecrypt(const uint8_t* ciphertext,
  *		While some authentication schemes do use "MAC-then-encrypt", there are more attack vectors against that.
  * @return True if the MAC generation succeeded. False if an error occured.
  ***************************************************************************************************************************************/
-bool hashlib_AESOutputMac(const uint8_t* plaintext,
+bool hashlib_AESOutputMac(const uint8_t* buf,
 						  size_t len,
 						  uint8_t* mac,
 						  const aes_ctx* ks);
@@ -541,19 +541,22 @@ size_t hashlib_RSAEncodePSS(
  *
  * Performs an in-place RSA encryption of a message
  * over a public modulus \b pubkey and a public exponent, 65537
+ * OAEP encoding of the input message is performed automatically.
  *
- * @param msg Pointer to an OAEP-encoded plaintext to encrypt using RSA.
+ * @param msg Pointer to a message to encrypt using RSA.
  * @param msglen The length of the message @b msg.
+ * @param ciphertext Pointer a buffer to write the ciphertext to.
  * @param pubkey Pointer to a public key to use for encryption.
  * @param keylen The length of the public key (modulus) to encrypt with.
- * @note @b msglen and @b keylen must be equal in size. This is enforced.
- * @note output is written to @b msg
+ * @note The size of @b ciphertext and @b keylen must be equal.
+ * @note The @b msg will be encoded using OAEP before encryption.
  * @note msg and pubkey are both treated as byte arrays.
  * @return True if encryption succeeded. False if failed.
  **************************************************************************************************/
 bool hashlib_RSAEncrypt(
     const uint8_t* msg,
     size_t msglen,
+    uint8_t* ciphertext,
     const uint8_t* pubkey,
     size_t keylen);
  

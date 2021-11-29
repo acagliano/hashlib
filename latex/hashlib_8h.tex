@@ -102,7 +102,7 @@ bool \mbox{\hyperlink{hashlib_8h_a745c5c4d6bdc248f20b18c7b848d8b6b}{hashlib\+\_\
 \begin{DoxyCompactList}\small\item\em General-\/\+Purpose AES Encryption. \end{DoxyCompactList}\item 
 bool \mbox{\hyperlink{hashlib_8h_a2b904b543405fdf8f283d028ce0d1da7}{hashlib\+\_\+\+AESDecrypt}} (const uint8\+\_\+t $\ast$ciphertext, size\+\_\+t len, uint8\+\_\+t $\ast$plaintext, const \mbox{\hyperlink{hashlib_8h_aa188bc2768a3b7aa6ad73cb2c77819e0}{aes\+\_\+ctx}} $\ast$ks, const uint8\+\_\+t $\ast$iv, uint8\+\_\+t ciphermode)
 \begin{DoxyCompactList}\small\item\em General-\/\+Purpose AES Decryption. \end{DoxyCompactList}\item 
-bool \mbox{\hyperlink{hashlib_8h_a6ca5ecde1fd675effbc4a29eac35a903}{hashlib\+\_\+\+AESOutput\+Mac}} (const uint8\+\_\+t $\ast$plaintext, size\+\_\+t len, uint8\+\_\+t $\ast$mac, const \mbox{\hyperlink{hashlib_8h_aa188bc2768a3b7aa6ad73cb2c77819e0}{aes\+\_\+ctx}} $\ast$ks)
+bool \mbox{\hyperlink{hashlib_8h_ac48a46d4a3cd8338857b326c0342fb1d}{hashlib\+\_\+\+AESOutput\+Mac}} (const uint8\+\_\+t $\ast$buf, size\+\_\+t len, uint8\+\_\+t $\ast$mac, const \mbox{\hyperlink{hashlib_8h_aa188bc2768a3b7aa6ad73cb2c77819e0}{aes\+\_\+ctx}} $\ast$ks)
 \begin{DoxyCompactList}\small\item\em Returns a message authentication code for an AES message. \end{DoxyCompactList}\item 
 size\+\_\+t \mbox{\hyperlink{hashlib_8h_aebac98a8537f3353aac9fbae5ed67f29}{hashlib\+\_\+\+AESPad\+Message}} (const uint8\+\_\+t $\ast$plaintext, size\+\_\+t len, uint8\+\_\+t $\ast$outbuf, uint8\+\_\+t schm)
 \begin{DoxyCompactList}\small\item\em Pads a plaintext according to the specified AES padding scheme. \end{DoxyCompactList}\item 
@@ -116,7 +116,7 @@ size\+\_\+t \mbox{\hyperlink{hashlib_8h_a01668b3f2dd85fe2f8696673b275b75a}{hashl
 \begin{DoxyCompactList}\small\item\em RSA-\/\+PSS padding scheme. \end{DoxyCompactList}\item 
 bool \mbox{\hyperlink{hashlib_8h_af1dd2bde099a6fadb6bcc842e502c21b}{hashlib\+\_\+\+RSAVerify\+PSS}} (const uint8\+\_\+t $\ast$in, size\+\_\+t len, const uint8\+\_\+t $\ast$expected, size\+\_\+t modulus\+\_\+len)
 \begin{DoxyCompactList}\small\item\em RSA-\/\+PSS verification. \end{DoxyCompactList}\item 
-bool \mbox{\hyperlink{hashlib_8h_a198f76fac9ea43d3bd602f8a212a7d39}{hashlib\+\_\+\+RSAEncrypt}} (const uint8\+\_\+t $\ast$msg, size\+\_\+t msglen, const uint8\+\_\+t $\ast$pubkey, size\+\_\+t keylen)
+bool \mbox{\hyperlink{hashlib_8h_a7fd65cc007d33c59279340121219290d}{hashlib\+\_\+\+RSAEncrypt}} (const uint8\+\_\+t $\ast$msg, size\+\_\+t msglen, uint8\+\_\+t $\ast$ciphertext, const uint8\+\_\+t $\ast$pubkey, size\+\_\+t keylen)
 \begin{DoxyCompactList}\small\item\em RSA Encryption. \end{DoxyCompactList}\item 
 bool \mbox{\hyperlink{hashlib_8h_a7b705e6cf52b076b40f936af6d55b29c}{hashlib\+\_\+\+SSLVerify\+Signature}} (const uint8\+\_\+t $\ast$ca\+\_\+pubkey, size\+\_\+t keysize, const uint8\+\_\+t $\ast$cert, size\+\_\+t certlen, uint8\+\_\+t sig\+\_\+alg)
 \begin{DoxyCompactList}\small\item\em SSL Certificate Signature Verification. \end{DoxyCompactList}\item 
@@ -684,11 +684,11 @@ General-\/\+Purpose AES Decryption.
 \begin{DoxyReturn}{Returns}
 True if the encryption succeded. False if an error occured. 
 \end{DoxyReturn}
-\mbox{\Hypertarget{hashlib_8h_a6ca5ecde1fd675effbc4a29eac35a903}\label{hashlib_8h_a6ca5ecde1fd675effbc4a29eac35a903}} 
+\mbox{\Hypertarget{hashlib_8h_ac48a46d4a3cd8338857b326c0342fb1d}\label{hashlib_8h_ac48a46d4a3cd8338857b326c0342fb1d}} 
 \index{hashlib.h@{hashlib.h}!hashlib\_AESOutputMac@{hashlib\_AESOutputMac}}
 \index{hashlib\_AESOutputMac@{hashlib\_AESOutputMac}!hashlib.h@{hashlib.h}}
 \doxysubsubsection{\texorpdfstring{hashlib\_AESOutputMac()}{hashlib\_AESOutputMac()}}
-{\footnotesize\ttfamily bool hashlib\+\_\+\+AESOutput\+Mac (\begin{DoxyParamCaption}\item[{const uint8\+\_\+t $\ast$}]{plaintext,  }\item[{size\+\_\+t}]{len,  }\item[{uint8\+\_\+t $\ast$}]{mac,  }\item[{const \mbox{\hyperlink{hashlib_8h_aa188bc2768a3b7aa6ad73cb2c77819e0}{aes\+\_\+ctx}} $\ast$}]{ks }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily bool hashlib\+\_\+\+AESOutput\+Mac (\begin{DoxyParamCaption}\item[{const uint8\+\_\+t $\ast$}]{buf,  }\item[{size\+\_\+t}]{len,  }\item[{uint8\+\_\+t $\ast$}]{mac,  }\item[{const \mbox{\hyperlink{hashlib_8h_aa188bc2768a3b7aa6ad73cb2c77819e0}{aes\+\_\+ctx}} $\ast$}]{ks }\end{DoxyParamCaption})}
 
 
 
@@ -714,7 +714,7 @@ To send a packet with authenticated encryption, you will need to append the MAC 
 \begin{DoxyCode}{0}
 \DoxyCodeLine{\mbox{\hyperlink{hashlib_8h_a745c5c4d6bdc248f20b18c7b848d8b6b}{hashlib\_AESEncrypt}}(plaintext, len, \&ciphertext[AES\_IV\_SIZE], ks\_encrypt, iv, <ciphermode>);}
 \DoxyCodeLine{memcpy(ciphertext, iv, AES\_IV\_SIZE);}
-\DoxyCodeLine{\mbox{\hyperlink{hashlib_8h_a6ca5ecde1fd675effbc4a29eac35a903}{hashlib\_AESOutputMac}}(ciphertext, <padded\_len>, \&ciphertext[<padded\_len> + AES\_IV\_SIZE], ks\_auth);}
+\DoxyCodeLine{\mbox{\hyperlink{hashlib_8h_ac48a46d4a3cd8338857b326c0342fb1d}{hashlib\_AESOutputMac}}(ciphertext, <padded\_len>, \&ciphertext[<padded\_len> + AES\_IV\_SIZE], ks\_auth);}
 \DoxyCodeLine{\textcolor{comment}{// note the use of two different key schedules}}
 
 \end{DoxyCode}
@@ -937,23 +937,25 @@ Reverses the PSS MGF1 masking on {\bfseries{expected}} and retrieves the salt, t
 \begin{DoxyReturn}{Returns}
 True if signature match, False if failed to verify. 
 \end{DoxyReturn}
-\mbox{\Hypertarget{hashlib_8h_a198f76fac9ea43d3bd602f8a212a7d39}\label{hashlib_8h_a198f76fac9ea43d3bd602f8a212a7d39}} 
+\mbox{\Hypertarget{hashlib_8h_a7fd65cc007d33c59279340121219290d}\label{hashlib_8h_a7fd65cc007d33c59279340121219290d}} 
 \index{hashlib.h@{hashlib.h}!hashlib\_RSAEncrypt@{hashlib\_RSAEncrypt}}
 \index{hashlib\_RSAEncrypt@{hashlib\_RSAEncrypt}!hashlib.h@{hashlib.h}}
 \doxysubsubsection{\texorpdfstring{hashlib\_RSAEncrypt()}{hashlib\_RSAEncrypt()}}
-{\footnotesize\ttfamily bool hashlib\+\_\+\+RSAEncrypt (\begin{DoxyParamCaption}\item[{const uint8\+\_\+t $\ast$}]{msg,  }\item[{size\+\_\+t}]{msglen,  }\item[{const uint8\+\_\+t $\ast$}]{pubkey,  }\item[{size\+\_\+t}]{keylen }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily bool hashlib\+\_\+\+RSAEncrypt (\begin{DoxyParamCaption}\item[{const uint8\+\_\+t $\ast$}]{msg,  }\item[{size\+\_\+t}]{msglen,  }\item[{uint8\+\_\+t $\ast$}]{ciphertext,  }\item[{const uint8\+\_\+t $\ast$}]{pubkey,  }\item[{size\+\_\+t}]{keylen }\end{DoxyParamCaption})}
 
 
 
 RSA Encryption. 
 
-Performs an in-\/place RSA encryption of a message over a public modulus {\bfseries{pubkey}} and a public exponent, 65537
+Performs an in-\/place RSA encryption of a message over a public modulus {\bfseries{pubkey}} and a public exponent, 65537 OAEP encoding of the input message is performed automatically.
 
 
 \begin{DoxyParams}{Parameters}
-{\em msg} & Pointer to an OAEP-\/encoded plaintext to encrypt using RSA. \\
+{\em msg} & Pointer to a message to encrypt using RSA. \\
 \hline
 {\em msglen} & The length of the message {\bfseries{msg}}. \\
+\hline
+{\em ciphertext} & Pointer a buffer to write the ciphertext to. \\
 \hline
 {\em pubkey} & Pointer to a public key to use for encryption. \\
 \hline
@@ -961,9 +963,9 @@ Performs an in-\/place RSA encryption of a message over a public modulus {\bfser
 \hline
 \end{DoxyParams}
 \begin{DoxyNote}{Note}
-{\bfseries{msglen}} and {\bfseries{keylen}} must be equal in size. This is enforced. 
+The size of {\bfseries{ciphertext}} and {\bfseries{keylen}} must be equal. 
 
-output is written to {\bfseries{msg}} 
+The {\bfseries{msg}} will be encoded using OAEP before encryption. 
 
 msg and pubkey are both treated as byte arrays. 
 \end{DoxyNote}

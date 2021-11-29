@@ -187,9 +187,9 @@ Functions</h2></td></tr>
 <tr class="memitem:a2b904b543405fdf8f283d028ce0d1da7"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#a2b904b543405fdf8f283d028ce0d1da7">hashlib_AESDecrypt</a> (const uint8_t *ciphertext, size_t len, uint8_t *plaintext, const <a class="el" href="hashlib_8h.html#aa188bc2768a3b7aa6ad73cb2c77819e0">aes_ctx</a> *ks, const uint8_t *iv, uint8_t ciphermode)</td></tr>
 <tr class="memdesc:a2b904b543405fdf8f283d028ce0d1da7"><td class="mdescLeft">&#160;</td><td class="mdescRight">General-Purpose AES Decryption.  <a href="hashlib_8h.html#a2b904b543405fdf8f283d028ce0d1da7">More...</a><br /></td></tr>
 <tr class="separator:a2b904b543405fdf8f283d028ce0d1da7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6ca5ecde1fd675effbc4a29eac35a903"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#a6ca5ecde1fd675effbc4a29eac35a903">hashlib_AESOutputMac</a> (const uint8_t *plaintext, size_t len, uint8_t *mac, const <a class="el" href="hashlib_8h.html#aa188bc2768a3b7aa6ad73cb2c77819e0">aes_ctx</a> *ks)</td></tr>
-<tr class="memdesc:a6ca5ecde1fd675effbc4a29eac35a903"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a message authentication code for an AES message.  <a href="hashlib_8h.html#a6ca5ecde1fd675effbc4a29eac35a903">More...</a><br /></td></tr>
-<tr class="separator:a6ca5ecde1fd675effbc4a29eac35a903"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac48a46d4a3cd8338857b326c0342fb1d"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#ac48a46d4a3cd8338857b326c0342fb1d">hashlib_AESOutputMac</a> (const uint8_t *buf, size_t len, uint8_t *mac, const <a class="el" href="hashlib_8h.html#aa188bc2768a3b7aa6ad73cb2c77819e0">aes_ctx</a> *ks)</td></tr>
+<tr class="memdesc:ac48a46d4a3cd8338857b326c0342fb1d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a message authentication code for an AES message.  <a href="hashlib_8h.html#ac48a46d4a3cd8338857b326c0342fb1d">More...</a><br /></td></tr>
+<tr class="separator:ac48a46d4a3cd8338857b326c0342fb1d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aebac98a8537f3353aac9fbae5ed67f29"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#aebac98a8537f3353aac9fbae5ed67f29">hashlib_AESPadMessage</a> (const uint8_t *plaintext, size_t len, uint8_t *outbuf, uint8_t schm)</td></tr>
 <tr class="memdesc:aebac98a8537f3353aac9fbae5ed67f29"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pads a plaintext according to the specified AES padding scheme.  <a href="hashlib_8h.html#aebac98a8537f3353aac9fbae5ed67f29">More...</a><br /></td></tr>
 <tr class="separator:aebac98a8537f3353aac9fbae5ed67f29"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -208,9 +208,9 @@ Functions</h2></td></tr>
 <tr class="memitem:af1dd2bde099a6fadb6bcc842e502c21b"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#af1dd2bde099a6fadb6bcc842e502c21b">hashlib_RSAVerifyPSS</a> (const uint8_t *in, size_t len, const uint8_t *expected, size_t modulus_len)</td></tr>
 <tr class="memdesc:af1dd2bde099a6fadb6bcc842e502c21b"><td class="mdescLeft">&#160;</td><td class="mdescRight">RSA-PSS verification.  <a href="hashlib_8h.html#af1dd2bde099a6fadb6bcc842e502c21b">More...</a><br /></td></tr>
 <tr class="separator:af1dd2bde099a6fadb6bcc842e502c21b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a198f76fac9ea43d3bd602f8a212a7d39"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#a198f76fac9ea43d3bd602f8a212a7d39">hashlib_RSAEncrypt</a> (const uint8_t *msg, size_t msglen, const uint8_t *pubkey, size_t keylen)</td></tr>
-<tr class="memdesc:a198f76fac9ea43d3bd602f8a212a7d39"><td class="mdescLeft">&#160;</td><td class="mdescRight">RSA Encryption.  <a href="hashlib_8h.html#a198f76fac9ea43d3bd602f8a212a7d39">More...</a><br /></td></tr>
-<tr class="separator:a198f76fac9ea43d3bd602f8a212a7d39"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7fd65cc007d33c59279340121219290d"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#a7fd65cc007d33c59279340121219290d">hashlib_RSAEncrypt</a> (const uint8_t *msg, size_t msglen, uint8_t *ciphertext, const uint8_t *pubkey, size_t keylen)</td></tr>
+<tr class="memdesc:a7fd65cc007d33c59279340121219290d"><td class="mdescLeft">&#160;</td><td class="mdescRight">RSA Encryption.  <a href="hashlib_8h.html#a7fd65cc007d33c59279340121219290d">More...</a><br /></td></tr>
+<tr class="separator:a7fd65cc007d33c59279340121219290d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7b705e6cf52b076b40f936af6d55b29c"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#a7b705e6cf52b076b40f936af6d55b29c">hashlib_SSLVerifySignature</a> (const uint8_t *ca_pubkey, size_t keysize, const uint8_t *cert, size_t certlen, uint8_t sig_alg)</td></tr>
 <tr class="memdesc:a7b705e6cf52b076b40f936af6d55b29c"><td class="mdescLeft">&#160;</td><td class="mdescRight">SSL Certificate Signature Verification.  <a href="hashlib_8h.html#a7b705e6cf52b076b40f936af6d55b29c">More...</a><br /></td></tr>
 <tr class="separator:a7b705e6cf52b076b40f936af6d55b29c"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -1212,8 +1212,8 @@ If cipher mode CBC is used, <b>len</b> must be a multiple of the blocksize. You 
 
 </div>
 </div>
-<a id="a6ca5ecde1fd675effbc4a29eac35a903"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6ca5ecde1fd675effbc4a29eac35a903">&#9670;&nbsp;</a></span>hashlib_AESOutputMac()</h2>
+<a id="ac48a46d4a3cd8338857b326c0342fb1d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac48a46d4a3cd8338857b326c0342fb1d">&#9670;&nbsp;</a></span>hashlib_AESOutputMac()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1222,7 +1222,7 @@ If cipher mode CBC is used, <b>len</b> must be a multiple of the blocksize. You 
           <td class="memname">bool hashlib_AESOutputMac </td>
           <td>(</td>
           <td class="paramtype">const uint8_t *&#160;</td>
-          <td class="paramname"><em>plaintext</em>, </td>
+          <td class="paramname"><em>buf</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -1265,9 +1265,9 @@ If cipher mode CBC is used, <b>len</b> must be a multiple of the blocksize. You 
 <dd>
 To send a packet with authenticated encryption, you will need to append the MAC digest to your ciphertext returned by the above functions. For example, assuming <b>ciphertext</b> is at least as large as the size returned by <a class="el" href="hashlib_8h.html#a14743a93cbf9c7237d0ac03d842f296f">hashlib_AESAuthMacCiphertextSize()</a>: <div class="fragment"><div class="line"><a class="code" href="hashlib_8h.html#a745c5c4d6bdc248f20b18c7b848d8b6b">hashlib_AESEncrypt</a>(plaintext, len, &amp;ciphertext[AES_IV_SIZE], ks_encrypt, iv, &lt;ciphermode&gt;);</div>
 <div class="line">memcpy(ciphertext, iv, AES_IV_SIZE);</div>
-<div class="line"><a class="code" href="hashlib_8h.html#a6ca5ecde1fd675effbc4a29eac35a903">hashlib_AESOutputMac</a>(ciphertext, &lt;padded_len&gt;, &amp;ciphertext[&lt;padded_len&gt; + AES_IV_SIZE], ks_auth);</div>
+<div class="line"><a class="code" href="hashlib_8h.html#ac48a46d4a3cd8338857b326c0342fb1d">hashlib_AESOutputMac</a>(ciphertext, &lt;padded_len&gt;, &amp;ciphertext[&lt;padded_len&gt; + AES_IV_SIZE], ks_auth);</div>
 <div class="line"><span class="comment">// note the use of two different key schedules</span></div>
-<div class="ttc" id="ahashlib_8h_html_a6ca5ecde1fd675effbc4a29eac35a903"><div class="ttname"><a href="hashlib_8h.html#a6ca5ecde1fd675effbc4a29eac35a903">hashlib_AESOutputMac</a></div><div class="ttdeci">bool hashlib_AESOutputMac(const uint8_t *plaintext, size_t len, uint8_t *mac, const aes_ctx *ks)</div><div class="ttdoc">Returns a message authentication code for an AES message.</div></div>
+<div class="ttc" id="ahashlib_8h_html_ac48a46d4a3cd8338857b326c0342fb1d"><div class="ttname"><a href="hashlib_8h.html#ac48a46d4a3cd8338857b326c0342fb1d">hashlib_AESOutputMac</a></div><div class="ttdeci">bool hashlib_AESOutputMac(const uint8_t *buf, size_t len, uint8_t *mac, const aes_ctx *ks)</div><div class="ttdoc">Returns a message authentication code for an AES message.</div></div>
 </div><!-- fragment --> </dd></dl>
 <dl class="section warning"><dt>Warning</dt><dd>Do not use the same AES key/key schedule for authentication and encryption. This exposes attack vectors. Use different key schedules. </dd>
 <dd>
@@ -1639,8 +1639,8 @@ If you are trying to validate a signature, use <a class="el" href="hashlib_8h.ht
 
 </div>
 </div>
-<a id="a198f76fac9ea43d3bd602f8a212a7d39"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a198f76fac9ea43d3bd602f8a212a7d39">&#9670;&nbsp;</a></span>hashlib_RSAEncrypt()</h2>
+<a id="a7fd65cc007d33c59279340121219290d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7fd65cc007d33c59279340121219290d">&#9670;&nbsp;</a></span>hashlib_RSAEncrypt()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1656,6 +1656,12 @@ If you are trying to validate a signature, use <a class="el" href="hashlib_8h.ht
           <td></td>
           <td class="paramtype">size_t&#160;</td>
           <td class="paramname"><em>msglen</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t *&#160;</td>
+          <td class="paramname"><em>ciphertext</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -1678,19 +1684,20 @@ If you are trying to validate a signature, use <a class="el" href="hashlib_8h.ht
 </div><div class="memdoc">
 
 <p>RSA Encryption. </p>
-<p>Performs an in-place RSA encryption of a message over a public modulus <b>pubkey</b> and a public exponent, 65537</p>
+<p>Performs an in-place RSA encryption of a message over a public modulus <b>pubkey</b> and a public exponent, 65537 OAEP encoding of the input message is performed automatically.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">msg</td><td>Pointer to an OAEP-encoded plaintext to encrypt using RSA. </td></tr>
+    <tr><td class="paramname">msg</td><td>Pointer to a message to encrypt using RSA. </td></tr>
     <tr><td class="paramname">msglen</td><td>The length of the message <b>msg</b>. </td></tr>
+    <tr><td class="paramname">ciphertext</td><td>Pointer a buffer to write the ciphertext to. </td></tr>
     <tr><td class="paramname">pubkey</td><td>Pointer to a public key to use for encryption. </td></tr>
     <tr><td class="paramname">keylen</td><td>The length of the public key (modulus) to encrypt with. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section note"><dt>Note</dt><dd><b>msglen</b> and <b>keylen</b> must be equal in size. This is enforced. </dd>
+<dl class="section note"><dt>Note</dt><dd>The size of <b>ciphertext</b> and <b>keylen</b> must be equal. </dd>
 <dd>
-output is written to <b>msg</b> </dd>
+The <b>msg</b> will be encoded using OAEP before encryption. </dd>
 <dd>
 msg and pubkey are both treated as byte arrays. </dd></dl>
 <dl class="section return"><dt>Returns</dt><dd>True if encryption succeeded. False if failed. </dd></dl>

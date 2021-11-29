@@ -1,4 +1,4 @@
-library	"HASHLIB", 6
+library	"HASHLIB", 7
 	export	hashlib_SPRNGInit ; 0
 	export	hashlib_SPRNGRandom ; 3
 	export	hashlib_RandomBytes ; 6

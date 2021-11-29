@@ -17,8 +17,6 @@
 
 #define CEMU_CONSOLE ((char*)0xFB0000)
 #define MODSIZE 256
-char hexc[16] = "0123456789ABCDEF";
-uint8_t str[] = "The daring fox jumped over the dog.";
 
 void hexdump(uint8_t *addr, size_t len, uint8_t *label){
     if(label) sprintf(CEMU_CONSOLE, "\n%s\n", label);
@@ -32,6 +30,8 @@ void hexdump(uint8_t *addr, size_t len, uint8_t *label){
 
 int main(void)
 {
+    //char hexc[16] = "0123456789ABCDEF";
+    uint8_t str[] = "The daring fox jumped over the dog.";
 	uint8_t padded[MODSIZE];
     uint8_t pubkey[MODSIZE];
     hashlib_RandomBytes(pubkey, MODSIZE);

@@ -3,7 +3,7 @@ include '../include/library.inc'
 ;include_library 'bigintce.asm'
 
 ;------------------------------------------
-library "HASHLIB", 6
+library "HASHLIB", 7
 
 ;------------------------------------------
 
@@ -6331,58 +6331,103 @@ hashlib_ReverseEndianness:
 	inc	iy
 	ld	(ix + -6), iy
 	jq	.lbl_8
+ 
 	
 hashlib_RSAEncrypt:
-	ld	hl, -1
+	ld	hl, -3
 	call	ti._frameset
-	ld	hl, (ix + 6)
+	ld	iy, (ix + 9)
+	ld	c, 0
+	xor	a, a
+	lea	hl, iy + 0
 	add	hl, bc
 	or	a, a
 	sbc	hl, bc
-	ld	iyl, 1
-	ld	c, 0
-	ld	a, iyl
-	jq	nz, .lbl_2
-	ld	a, c
-.lbl_2:
-	ld	de, (ix + 15)
+	jq	nz, .lbl_1
+	jq	.lbl_13
+.lbl_1:
 	ld	hl, (ix + 12)
 	add	hl, bc
 	or	a, a
 	sbc	hl, bc
-	ex	de, hl
-	ld	e, iyl
-	ex	de, hl
-	jq	nz, .lbl_4
-	ld	l, c
-.lbl_4:
-	and	a, l
-	ld	hl, (ix + 9)
+	jq	nz, .lbl_2
+	jq	.lbl_13
+.lbl_2:
+	ld	hl, (ix + 6)
+	add	hl, bc
+	or	a, a
+	sbc	hl, bc
+	jq	nz, .lbl_3
+	jq	.lbl_13
+.lbl_3:
+	ld	hl, (ix + 15)
+	add	hl, bc
+	or	a, a
+	sbc	hl, bc
+	jq	z, .lbl_13
+.lbl_5:
+	ld	de, 0
+	ld	e, c
+	ld	hl, (ix + 15)
+	add	hl, de
+	ld	a, (hl)
+	or	a, a
+	jq	nz, .lbl_7
+	inc	c
+	ld	hl, (ix + 12)
+	add	hl, de
+	ld	(hl), 0
+	jq	.lbl_5
+.lbl_7:
+	ld	hl, (ix + 12)
+	add	hl, de
+	push	hl
+	pop	bc
+	ld	hl, (ix + 18)
 	or	a, a
 	sbc	hl, de
-	jq	z, .lbl_6
-	ld	iyl, c
-.lbl_6:
-	ld	hl, 65537
-	and	a, iyl
-	ld	e, 1
-	ld	(ix + -1), a
-	xor	a, e
-	bit	0, a
-	ld	de, (ix + 12)
+	ld	de, 0
 	push	de
 	push	hl
+	push	bc
+	push	iy
 	ld	hl, (ix + 6)
 	push	hl
-	ld	hl, (ix + 9)
+	call	hashlib_RSAEncodeOAEP
+	pop	de
+	pop	de
+	pop	de
+	pop	de
+	pop	de
+	ld	(ix + -3), hl
+	add	hl, bc
+	or	a, a
+	sbc	hl, bc
+	ld	hl, (ix + 15)
 	push	hl
-	call	z, _powmod
+	ld	hl, 65537
+	push	hl
+	ld	hl, (ix + 12)
+	push	hl
+	ld	hl, (ix + 18)
+	push	hl
+	call	nz, _powmod
 	pop	hl
 	pop	hl
 	pop	hl
 	pop	hl
-	ld	a, (ix + -1)
-	inc	sp
+	ld	hl, (ix + -3)
+	add	hl, bc
+	or	a, a
+	sbc	hl, bc
+	jq	nz, .lbl_10
+	ld	a, 0
+	jq	.lbl_12
+.lbl_10:
+	ld	a, 1
+.lbl_12:
+.lbl_13:
+	pop	hl
 	pop	ix
 	ret
  
@@ -6615,17 +6660,18 @@ hashlib_SSLVerifySignature:
 	pop	hl
 	pop	hl
 	pop	hl
-	ld	de, (ix + 9)
-	push	de
 	ld	hl, (ix + 6)
 	push	hl
-	push	de
+	ld	hl, 65537
+	push	hl
 	ld	bc, -667
 	lea	hl, ix + 0
 	add	hl, bc
 	ld	hl, (hl)
 	push	hl
-	call	hashlib_RSAEncrypt
+	ld	hl, (ix + 9)
+	push	hl
+	call	_powmod
 	pop	hl
 	pop	hl
 	pop	hl
@@ -6932,6 +6978,8 @@ _sprng_rand				:=	_sprng_entropy_pool + 119
 _sprng_sha_digest		:=	_sprng_rand + 4
 _sprng_sha_mbuffer		:=	_sprng_sha_digest + 32
 _sprng_sha_ctx			:=	_sprng_sha_mbuffer + (64*4)
+
+
 
 
  _aes_sbox:
