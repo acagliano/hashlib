@@ -144,10 +144,31 @@ Enumerations</h2></td></tr>
 , <a class="el" href="hashlib_8h.html#a9933dec76c43b37331782bdd16ebc4a3a030a31bd034c7d20a80341ede899a6b7">SCHM_ISO2</a>
  }</td></tr>
 <tr class="separator:a9933dec76c43b37331782bdd16ebc4a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeb2e64abcc4317e3143fb820f21c3bfd"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#aeb2e64abcc4317e3143fb820f21c3bfd">aes_error_t</a> { <br />
+&#160;&#160;<a class="el" href="hashlib_8h.html#aeb2e64abcc4317e3143fb820f21c3bfdaacf07636102724d2a7913911b0cf74b2">AES_OK</a>
+, <a class="el" href="hashlib_8h.html#aeb2e64abcc4317e3143fb820f21c3bfda6d39b280aea9d8d62d126eef05d271db">AES_INVALID_ARG</a>
+, <a class="el" href="hashlib_8h.html#aeb2e64abcc4317e3143fb820f21c3bfdaae5e9a591aeda666b0e425d9a05834e3">AES_INVALID_MSG</a>
+, <a class="el" href="hashlib_8h.html#aeb2e64abcc4317e3143fb820f21c3bfdad2b49ffeabf14aaf47db3d1bad18f84e">AES_INVALID_CIPHERMODE</a>
+, <br />
+&#160;&#160;<a class="el" href="hashlib_8h.html#aeb2e64abcc4317e3143fb820f21c3bfda47bbd593fc3bdb7758a790bab86b41d9">AES_INVALID_PADDINGMODE</a>
+, <a class="el" href="hashlib_8h.html#aeb2e64abcc4317e3143fb820f21c3bfdaba928751c773ffa0287e47e1f86eae8b">AES_INVALID_CIPHERTEXT</a>
+<br />
+ }</td></tr>
+<tr class="separator:aeb2e64abcc4317e3143fb820f21c3bfd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7508a7cdffede3d44a818dd4a154bf95"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#a7508a7cdffede3d44a818dd4a154bf95">ssl_sig_modes</a> { <a class="el" href="hashlib_8h.html#a7508a7cdffede3d44a818dd4a154bf95a096ad031cbdad23c8d4053d9b7a3db31">SSLSIG_RSA_SHA256</a>
 , <a class="el" href="hashlib_8h.html#a7508a7cdffede3d44a818dd4a154bf95a3b885e134e618304b93f54b88eff9b25">SSLSIG_ECDSA</a>
  }</td></tr>
 <tr class="separator:a7508a7cdffede3d44a818dd4a154bf95"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0486449f609d0e485bad091a671d9294"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#a0486449f609d0e485bad091a671d9294">rsa_error_t</a> { <br />
+&#160;&#160;<a class="el" href="hashlib_8h.html#a0486449f609d0e485bad091a671d9294a2cafdb683e1870a33bcb821420626cae">RSA_OK</a>
+, <a class="el" href="hashlib_8h.html#a0486449f609d0e485bad091a671d9294aab9ab38286c4180a1aa9f6e8df42e5db">RSA_INVALID_ARG</a>
+, <a class="el" href="hashlib_8h.html#a0486449f609d0e485bad091a671d9294aedeb18a96b96e292369abed5b2f0a271">RSA_INVALID_MSG</a>
+, <a class="el" href="hashlib_8h.html#a0486449f609d0e485bad091a671d9294a843ec210de66176ef63e2d2b8ebdeb65">RSA_INVALID_MODULUS</a>
+, <br />
+&#160;&#160;<a class="el" href="hashlib_8h.html#a0486449f609d0e485bad091a671d9294a43eadc89540121b902e02afabc7a7eb9">RSA_ENCODING_ERROR</a>
+<br />
+ }</td></tr>
+<tr class="separator:a0486449f609d0e485bad091a671d9294"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
@@ -181,12 +202,12 @@ Functions</h2></td></tr>
 <tr class="memitem:a5dd423839387f0955b6061986c92a2ac"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#a5dd423839387f0955b6061986c92a2ac">hashlib_AESDecryptBlock</a> (const uint8_t *block_in, uint8_t *block_out, const <a class="el" href="hashlib_8h.html#aa188bc2768a3b7aa6ad73cb2c77819e0">aes_ctx</a> *ks)</td></tr>
 <tr class="memdesc:a5dd423839387f0955b6061986c92a2ac"><td class="mdescLeft">&#160;</td><td class="mdescRight">AES Single-Block Decryption (ECB Mode)  <a href="hashlib_8h.html#a5dd423839387f0955b6061986c92a2ac">More...</a><br /></td></tr>
 <tr class="separator:a5dd423839387f0955b6061986c92a2ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a745c5c4d6bdc248f20b18c7b848d8b6b"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#a745c5c4d6bdc248f20b18c7b848d8b6b">hashlib_AESEncrypt</a> (const uint8_t *plaintext, size_t len, uint8_t *ciphertext, const <a class="el" href="hashlib_8h.html#aa188bc2768a3b7aa6ad73cb2c77819e0">aes_ctx</a> *ks, const uint8_t *iv, uint8_t ciphermode)</td></tr>
-<tr class="memdesc:a745c5c4d6bdc248f20b18c7b848d8b6b"><td class="mdescLeft">&#160;</td><td class="mdescRight">General-Purpose AES Encryption.  <a href="hashlib_8h.html#a745c5c4d6bdc248f20b18c7b848d8b6b">More...</a><br /></td></tr>
-<tr class="separator:a745c5c4d6bdc248f20b18c7b848d8b6b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2b904b543405fdf8f283d028ce0d1da7"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#a2b904b543405fdf8f283d028ce0d1da7">hashlib_AESDecrypt</a> (const uint8_t *ciphertext, size_t len, uint8_t *plaintext, const <a class="el" href="hashlib_8h.html#aa188bc2768a3b7aa6ad73cb2c77819e0">aes_ctx</a> *ks, const uint8_t *iv, uint8_t ciphermode)</td></tr>
-<tr class="memdesc:a2b904b543405fdf8f283d028ce0d1da7"><td class="mdescLeft">&#160;</td><td class="mdescRight">General-Purpose AES Decryption.  <a href="hashlib_8h.html#a2b904b543405fdf8f283d028ce0d1da7">More...</a><br /></td></tr>
-<tr class="separator:a2b904b543405fdf8f283d028ce0d1da7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa4f60eb708a18d498faa51a33c248f90"><td class="memItemLeft" align="right" valign="top"><a class="el" href="hashlib_8h.html#aeb2e64abcc4317e3143fb820f21c3bfd">aes_error_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#aa4f60eb708a18d498faa51a33c248f90">hashlib_AESEncrypt</a> (const uint8_t *plaintext, size_t len, uint8_t *ciphertext, const <a class="el" href="hashlib_8h.html#aa188bc2768a3b7aa6ad73cb2c77819e0">aes_ctx</a> *ks, const uint8_t *iv, uint8_t ciphermode, uint8_t paddingmode)</td></tr>
+<tr class="memdesc:aa4f60eb708a18d498faa51a33c248f90"><td class="mdescLeft">&#160;</td><td class="mdescRight">General-Purpose AES Encryption.  <a href="hashlib_8h.html#aa4f60eb708a18d498faa51a33c248f90">More...</a><br /></td></tr>
+<tr class="separator:aa4f60eb708a18d498faa51a33c248f90"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a402aa47590cf2de4ea6cb2efba1fdb35"><td class="memItemLeft" align="right" valign="top"><a class="el" href="hashlib_8h.html#aeb2e64abcc4317e3143fb820f21c3bfd">aes_error_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#a402aa47590cf2de4ea6cb2efba1fdb35">hashlib_AESDecrypt</a> (const uint8_t *ciphertext, size_t len, uint8_t *plaintext, const <a class="el" href="hashlib_8h.html#aa188bc2768a3b7aa6ad73cb2c77819e0">aes_ctx</a> *ks, const uint8_t *iv, uint8_t ciphermode, uint8_t paddingmode)</td></tr>
+<tr class="memdesc:a402aa47590cf2de4ea6cb2efba1fdb35"><td class="mdescLeft">&#160;</td><td class="mdescRight">General-Purpose AES Decryption.  <a href="hashlib_8h.html#a402aa47590cf2de4ea6cb2efba1fdb35">More...</a><br /></td></tr>
+<tr class="separator:a402aa47590cf2de4ea6cb2efba1fdb35"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac48a46d4a3cd8338857b326c0342fb1d"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#ac48a46d4a3cd8338857b326c0342fb1d">hashlib_AESOutputMac</a> (const uint8_t *buf, size_t len, uint8_t *mac, const <a class="el" href="hashlib_8h.html#aa188bc2768a3b7aa6ad73cb2c77819e0">aes_ctx</a> *ks)</td></tr>
 <tr class="memdesc:ac48a46d4a3cd8338857b326c0342fb1d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a message authentication code for an AES message.  <a href="hashlib_8h.html#ac48a46d4a3cd8338857b326c0342fb1d">More...</a><br /></td></tr>
 <tr class="separator:ac48a46d4a3cd8338857b326c0342fb1d"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -208,9 +229,9 @@ Functions</h2></td></tr>
 <tr class="memitem:af1dd2bde099a6fadb6bcc842e502c21b"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#af1dd2bde099a6fadb6bcc842e502c21b">hashlib_RSAVerifyPSS</a> (const uint8_t *in, size_t len, const uint8_t *expected, size_t modulus_len)</td></tr>
 <tr class="memdesc:af1dd2bde099a6fadb6bcc842e502c21b"><td class="mdescLeft">&#160;</td><td class="mdescRight">RSA-PSS verification.  <a href="hashlib_8h.html#af1dd2bde099a6fadb6bcc842e502c21b">More...</a><br /></td></tr>
 <tr class="separator:af1dd2bde099a6fadb6bcc842e502c21b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7fd65cc007d33c59279340121219290d"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#a7fd65cc007d33c59279340121219290d">hashlib_RSAEncrypt</a> (const uint8_t *msg, size_t msglen, uint8_t *ciphertext, const uint8_t *pubkey, size_t keylen)</td></tr>
-<tr class="memdesc:a7fd65cc007d33c59279340121219290d"><td class="mdescLeft">&#160;</td><td class="mdescRight">RSA Encryption.  <a href="hashlib_8h.html#a7fd65cc007d33c59279340121219290d">More...</a><br /></td></tr>
-<tr class="separator:a7fd65cc007d33c59279340121219290d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3f2772b55bb9444c6b1d63976d35c9ff"><td class="memItemLeft" align="right" valign="top"><a class="el" href="hashlib_8h.html#a0486449f609d0e485bad091a671d9294">rsa_error_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#a3f2772b55bb9444c6b1d63976d35c9ff">hashlib_RSAEncrypt</a> (const uint8_t *msg, size_t msglen, uint8_t *ciphertext, const uint8_t *pubkey, size_t keylen)</td></tr>
+<tr class="memdesc:a3f2772b55bb9444c6b1d63976d35c9ff"><td class="mdescLeft">&#160;</td><td class="mdescRight">RSA Encryption.  <a href="hashlib_8h.html#a3f2772b55bb9444c6b1d63976d35c9ff">More...</a><br /></td></tr>
+<tr class="separator:a3f2772b55bb9444c6b1d63976d35c9ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7b705e6cf52b076b40f936af6d55b29c"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#a7b705e6cf52b076b40f936af6d55b29c">hashlib_SSLVerifySignature</a> (const uint8_t *ca_pubkey, size_t keysize, const uint8_t *cert, size_t certlen, uint8_t sig_alg)</td></tr>
 <tr class="memdesc:a7b705e6cf52b076b40f936af6d55b29c"><td class="mdescLeft">&#160;</td><td class="mdescRight">SSL Certificate Signature Verification.  <a href="hashlib_8h.html#a7b705e6cf52b076b40f936af6d55b29c">More...</a><br /></td></tr>
 <tr class="separator:a7b705e6cf52b076b40f936af6d55b29c"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -646,6 +667,35 @@ If the SPRNG is run, anything you have stored here will be destroyed. </dd></dl>
 
 </div>
 </div>
+<a id="aeb2e64abcc4317e3143fb820f21c3bfd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aeb2e64abcc4317e3143fb820f21c3bfd">&#9670;&nbsp;</a></span>aes_error_t</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="hashlib_8h.html#aeb2e64abcc4317e3143fb820f21c3bfd">aes_error_t</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>AES Error Codes (returned by hashlib_AESEncrypt/Decrypt) </p>
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="aeb2e64abcc4317e3143fb820f21c3bfdaacf07636102724d2a7913911b0cf74b2"></a>AES_OK&#160;</td><td class="fielddoc"><p>AES operation completed successfully </p>
+</td></tr>
+<tr><td class="fieldname"><a id="aeb2e64abcc4317e3143fb820f21c3bfda6d39b280aea9d8d62d126eef05d271db"></a>AES_INVALID_ARG&#160;</td><td class="fielddoc"><p>AES operation failed, bad argument </p>
+</td></tr>
+<tr><td class="fieldname"><a id="aeb2e64abcc4317e3143fb820f21c3bfdaae5e9a591aeda666b0e425d9a05834e3"></a>AES_INVALID_MSG&#160;</td><td class="fielddoc"><p>AES operation failed, message invalid </p>
+</td></tr>
+<tr><td class="fieldname"><a id="aeb2e64abcc4317e3143fb820f21c3bfdad2b49ffeabf14aaf47db3d1bad18f84e"></a>AES_INVALID_CIPHERMODE&#160;</td><td class="fielddoc"><p>AES operation failed, cipher mode undefined </p>
+</td></tr>
+<tr><td class="fieldname"><a id="aeb2e64abcc4317e3143fb820f21c3bfda47bbd593fc3bdb7758a790bab86b41d9"></a>AES_INVALID_PADDINGMODE&#160;</td><td class="fielddoc"><p>AES operation failed, padding mode undefined </p>
+</td></tr>
+<tr><td class="fieldname"><a id="aeb2e64abcc4317e3143fb820f21c3bfdaba928751c773ffa0287e47e1f86eae8b"></a>AES_INVALID_CIPHERTEXT&#160;</td><td class="fielddoc"><p>AES operation failed, ciphertext size error </p>
+</td></tr>
+</table>
+
+</div>
+</div>
 <a id="a7508a7cdffede3d44a818dd4a154bf95"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a7508a7cdffede3d44a818dd4a154bf95">&#9670;&nbsp;</a></span>ssl_sig_modes</h2>
 
@@ -662,6 +712,33 @@ If the SPRNG is run, anything you have stored here will be destroyed. </dd></dl>
 <tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a7508a7cdffede3d44a818dd4a154bf95a096ad031cbdad23c8d4053d9b7a3db31"></a>SSLSIG_RSA_SHA256&#160;</td><td class="fielddoc"><p>RSA with SHA-256 signature algorithm </p>
 </td></tr>
 <tr><td class="fieldname"><a id="a7508a7cdffede3d44a818dd4a154bf95a3b885e134e618304b93f54b88eff9b25"></a>SSLSIG_ECDSA&#160;</td><td class="fielddoc"><p>ECDSA (unimplemented, likely a long way off) </p>
+</td></tr>
+</table>
+
+</div>
+</div>
+<a id="a0486449f609d0e485bad091a671d9294"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0486449f609d0e485bad091a671d9294">&#9670;&nbsp;</a></span>rsa_error_t</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="hashlib_8h.html#a0486449f609d0e485bad091a671d9294">rsa_error_t</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>RSA Encryption Error Codes </p>
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a0486449f609d0e485bad091a671d9294a2cafdb683e1870a33bcb821420626cae"></a>RSA_OK&#160;</td><td class="fielddoc"><p>RSA encryption completed successfully </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a0486449f609d0e485bad091a671d9294aab9ab38286c4180a1aa9f6e8df42e5db"></a>RSA_INVALID_ARG&#160;</td><td class="fielddoc"><p>RSA encryption failed, bad argument </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a0486449f609d0e485bad091a671d9294aedeb18a96b96e292369abed5b2f0a271"></a>RSA_INVALID_MSG&#160;</td><td class="fielddoc"><p>RSA encryption failed, bad msg or msg too long </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a0486449f609d0e485bad091a671d9294a843ec210de66176ef63e2d2b8ebdeb65"></a>RSA_INVALID_MODULUS&#160;</td><td class="fielddoc"><p>RSA encryption failed, modulus invalid </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a0486449f609d0e485bad091a671d9294a43eadc89540121b902e02afabc7a7eb9"></a>RSA_ENCODING_ERROR&#160;</td><td class="fielddoc"><p>RSA encryption failed, OAEP encoding error </p>
 </td></tr>
 </table>
 
@@ -1016,7 +1093,7 @@ If the SPRNG is run, anything you have stored here will be destroyed. </dd></dl>
   </dd>
 </dl>
 <dl class="section note"><dt>Note</dt><dd><b>block_in</b> and <b>block_out</b> are aliasable. </dd></dl>
-<dl class="section warning"><dt>Warning</dt><dd>ECB-mode ciphers are insecure (see many-time pad vulnerability). These functions are exposed in case a user wants to construct a cipher mode other than CBC or CTR. Unless you know what you are doing, use <a class="el" href="hashlib_8h.html#a745c5c4d6bdc248f20b18c7b848d8b6b" title="General-Purpose AES Encryption.">hashlib_AESEncrypt()</a> instead. </dd></dl>
+<dl class="section warning"><dt>Warning</dt><dd>ECB-mode ciphers are insecure (see many-time pad vulnerability). These functions are exposed in case a user wants to construct a cipher mode other than CBC or CTR. Unless you know what you are doing, use <a class="el" href="hashlib_8h.html#aa4f60eb708a18d498faa51a33c248f90" title="General-Purpose AES Encryption.">hashlib_AESEncrypt()</a> instead. </dd></dl>
 <dl class="section return"><dt>Returns</dt><dd>True if encryption succeeded. False if failed. </dd></dl>
 
 </div>
@@ -1063,19 +1140,19 @@ If the SPRNG is run, anything you have stored here will be destroyed. </dd></dl>
   </dd>
 </dl>
 <dl class="section note"><dt>Note</dt><dd><b>block_in</b> and <b>block_out</b> are aliasable. </dd></dl>
-<dl class="section warning"><dt>Warning</dt><dd>ECB-mode ciphers are insecure (see many-time pad vulnerability). These functions are exposed in case a user wants to construct a cipher mode other than CBC or CTR. Unless you know what you are doing, use <a class="el" href="hashlib_8h.html#a2b904b543405fdf8f283d028ce0d1da7" title="General-Purpose AES Decryption.">hashlib_AESDecrypt()</a> instead. </dd></dl>
+<dl class="section warning"><dt>Warning</dt><dd>ECB-mode ciphers are insecure (see many-time pad vulnerability). These functions are exposed in case a user wants to construct a cipher mode other than CBC or CTR. Unless you know what you are doing, use <a class="el" href="hashlib_8h.html#a402aa47590cf2de4ea6cb2efba1fdb35" title="General-Purpose AES Decryption.">hashlib_AESDecrypt()</a> instead. </dd></dl>
 <dl class="section return"><dt>Returns</dt><dd>True if encryption succeeded. False if an error occured. </dd></dl>
 
 </div>
 </div>
-<a id="a745c5c4d6bdc248f20b18c7b848d8b6b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a745c5c4d6bdc248f20b18c7b848d8b6b">&#9670;&nbsp;</a></span>hashlib_AESEncrypt()</h2>
+<a id="aa4f60eb708a18d498faa51a33c248f90"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa4f60eb708a18d498faa51a33c248f90">&#9670;&nbsp;</a></span>hashlib_AESEncrypt()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">bool hashlib_AESEncrypt </td>
+          <td class="memname"><a class="el" href="hashlib_8h.html#aeb2e64abcc4317e3143fb820f21c3bfd">aes_error_t</a> hashlib_AESEncrypt </td>
           <td>(</td>
           <td class="paramtype">const uint8_t *&#160;</td>
           <td class="paramname"><em>plaintext</em>, </td>
@@ -1108,7 +1185,13 @@ If the SPRNG is run, anything you have stored here will be destroyed. </dd></dl>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">uint8_t&#160;</td>
-          <td class="paramname"><em>ciphermode</em>&#160;</td>
+          <td class="paramname"><em>ciphermode</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>paddingmode</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -1134,23 +1217,23 @@ If the SPRNG is run, anything you have stored here will be destroyed. </dd></dl>
 <dd>
 If cipher mode CBC is used, <b>len</b> must be a multiple of the blocksize. You can pass the plaintext through <a class="el" href="hashlib_8h.html#aebac98a8537f3353aac9fbae5ed67f29" title="Pads a plaintext according to the specified AES padding scheme.">hashlib_AESPadMessage()</a> prior to calling this function. </dd>
 <dd>
-<b>IV</b> is not written to the ciphertext buffer by this function, only the encrypted message. However, if your ciphertext buffer is large enough, you can do the following to get the IV prepended to the ciphertext. Otherwise you will have to join the IV and the ciphertext into a single larger buffer before sending it through whatever networking protocol you use. <div class="fragment"><div class="line"><a class="code" href="hashlib_8h.html#a745c5c4d6bdc248f20b18c7b848d8b6b">hashlib_AESEncrypt</a>(plaintext, len, &amp;ciphertext[AES_IV_SIZE], ks, iv, &lt;cipher_mode&gt;);</div>
+<b>IV</b> is not written to the ciphertext buffer by this function, only the encrypted message. However, if your ciphertext buffer is large enough, you can do the following to get the IV prepended to the ciphertext. Otherwise you will have to join the IV and the ciphertext into a single larger buffer before sending it through whatever networking protocol you use. <div class="fragment"><div class="line"><a class="code" href="hashlib_8h.html#aa4f60eb708a18d498faa51a33c248f90">hashlib_AESEncrypt</a>(plaintext, len, &amp;ciphertext[AES_IV_SIZE], ks, iv, &lt;cipher_mode&gt;);</div>
 <div class="line">memcpy(ciphertext, iv, AES_IV_SIZE);</div>
 <div class="line">send_packet(ciphertext);</div>
-<div class="ttc" id="ahashlib_8h_html_a745c5c4d6bdc248f20b18c7b848d8b6b"><div class="ttname"><a href="hashlib_8h.html#a745c5c4d6bdc248f20b18c7b848d8b6b">hashlib_AESEncrypt</a></div><div class="ttdeci">bool hashlib_AESEncrypt(const uint8_t *plaintext, size_t len, uint8_t *ciphertext, const aes_ctx *ks, const uint8_t *iv, uint8_t ciphermode)</div><div class="ttdoc">General-Purpose AES Encryption.</div></div>
+<div class="ttc" id="ahashlib_8h_html_aa4f60eb708a18d498faa51a33c248f90"><div class="ttname"><a href="hashlib_8h.html#aa4f60eb708a18d498faa51a33c248f90">hashlib_AESEncrypt</a></div><div class="ttdeci">aes_error_t hashlib_AESEncrypt(const uint8_t *plaintext, size_t len, uint8_t *ciphertext, const aes_ctx *ks, const uint8_t *iv, uint8_t ciphermode, uint8_t paddingmode)</div><div class="ttdoc">General-Purpose AES Encryption.</div></div>
 </div><!-- fragment --> This will require a buffer at least as large as the size returned by <a class="el" href="hashlib_8h.html#a1bfa78156f62c2e87f7af3a8533304b1">hashlib_AESCiphertextIVSize()</a>. </dd></dl>
 <dl class="section return"><dt>Returns</dt><dd>True if the encryption succeded. False if an error occured. </dd></dl>
 
 </div>
 </div>
-<a id="a2b904b543405fdf8f283d028ce0d1da7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2b904b543405fdf8f283d028ce0d1da7">&#9670;&nbsp;</a></span>hashlib_AESDecrypt()</h2>
+<a id="a402aa47590cf2de4ea6cb2efba1fdb35"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a402aa47590cf2de4ea6cb2efba1fdb35">&#9670;&nbsp;</a></span>hashlib_AESDecrypt()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">bool hashlib_AESDecrypt </td>
+          <td class="memname"><a class="el" href="hashlib_8h.html#aeb2e64abcc4317e3143fb820f21c3bfd">aes_error_t</a> hashlib_AESDecrypt </td>
           <td>(</td>
           <td class="paramtype">const uint8_t *&#160;</td>
           <td class="paramname"><em>ciphertext</em>, </td>
@@ -1183,7 +1266,13 @@ If cipher mode CBC is used, <b>len</b> must be a multiple of the blocksize. You 
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">uint8_t&#160;</td>
-          <td class="paramname"><em>ciphermode</em>&#160;</td>
+          <td class="paramname"><em>ciphermode</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>paddingmode</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -1263,7 +1352,7 @@ If cipher mode CBC is used, <b>len</b> must be a multiple of the blocksize. You 
 </dl>
 <dl class="section note"><dt>Note</dt><dd>CBC-MAC requires padding, as it uses CBC mode. You can use the <a class="el" href="hashlib_8h.html#aebac98a8537f3353aac9fbae5ed67f29" title="Pads a plaintext according to the specified AES padding scheme.">hashlib_AESPadMessage()</a> padding function. Padding mode ISO-9791 M2 is preferred for CBC-MAC, but either can be used. </dd>
 <dd>
-To send a packet with authenticated encryption, you will need to append the MAC digest to your ciphertext returned by the above functions. For example, assuming <b>ciphertext</b> is at least as large as the size returned by <a class="el" href="hashlib_8h.html#a14743a93cbf9c7237d0ac03d842f296f">hashlib_AESAuthMacCiphertextSize()</a>: <div class="fragment"><div class="line"><a class="code" href="hashlib_8h.html#a745c5c4d6bdc248f20b18c7b848d8b6b">hashlib_AESEncrypt</a>(plaintext, len, &amp;ciphertext[AES_IV_SIZE], ks_encrypt, iv, &lt;ciphermode&gt;);</div>
+To send a packet with authenticated encryption, you will need to append the MAC digest to your ciphertext returned by the above functions. For example, assuming <b>ciphertext</b> is at least as large as the size returned by <a class="el" href="hashlib_8h.html#a14743a93cbf9c7237d0ac03d842f296f">hashlib_AESAuthMacCiphertextSize()</a>: <div class="fragment"><div class="line"><a class="code" href="hashlib_8h.html#aa4f60eb708a18d498faa51a33c248f90">hashlib_AESEncrypt</a>(plaintext, len, &amp;ciphertext[AES_IV_SIZE], ks_encrypt, iv, &lt;ciphermode&gt;);</div>
 <div class="line">memcpy(ciphertext, iv, AES_IV_SIZE);</div>
 <div class="line"><a class="code" href="hashlib_8h.html#ac48a46d4a3cd8338857b326c0342fb1d">hashlib_AESOutputMac</a>(ciphertext, &lt;padded_len&gt;, &amp;ciphertext[&lt;padded_len&gt; + AES_IV_SIZE], ks_auth);</div>
 <div class="line"><span class="comment">// note the use of two different key schedules</span></div>
@@ -1639,14 +1728,14 @@ If you are trying to validate a signature, use <a class="el" href="hashlib_8h.ht
 
 </div>
 </div>
-<a id="a7fd65cc007d33c59279340121219290d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7fd65cc007d33c59279340121219290d">&#9670;&nbsp;</a></span>hashlib_RSAEncrypt()</h2>
+<a id="a3f2772b55bb9444c6b1d63976d35c9ff"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3f2772b55bb9444c6b1d63976d35c9ff">&#9670;&nbsp;</a></span>hashlib_RSAEncrypt()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">bool hashlib_RSAEncrypt </td>
+          <td class="memname"><a class="el" href="hashlib_8h.html#a0486449f609d0e485bad091a671d9294">rsa_error_t</a> hashlib_RSAEncrypt </td>
           <td>(</td>
           <td class="paramtype">const uint8_t *&#160;</td>
           <td class="paramname"><em>msg</em>, </td>

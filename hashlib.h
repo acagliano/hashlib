@@ -306,6 +306,22 @@ bool hashlib_AESDecryptBlock(const uint8_t* block_in,
 							 uint8_t* block_out,
 							 const aes_ctx* ks);
 
+
+/***************************************************
+ * @enum aes_error_t
+ * AES Error Codes
+ * (returned by hashlib_AESEncrypt/Decrypt)
+ ***************************************************/
+typedef enum {
+    AES_OK,                             /**< AES operation completed successfully */
+    AES_INVALID_ARG,                    /**< AES operation failed, bad argument */
+    AES_INVALID_MSG,                    /**< AES operation failed, message invalid */
+    AES_INVALID_CIPHERMODE,             /**< AES operation failed, cipher mode undefined */
+    AES_INVALID_PADDINGMODE,            /**< AES operation failed, padding mode undefined */
+    AES_INVALID_CIPHERTEXT              /**< AES operation failed, ciphertext size error */
+} aes_error_t;
+
+
 /**
  * @brief General-Purpose AES Encryption
  * @param plaintext Pointer to data to encrypt.
@@ -329,12 +345,13 @@ bool hashlib_AESDecryptBlock(const uint8_t* block_in,
  * 		This will require a buffer at least as large as the size returned by hashlib_AESCiphertextIVSize().
  * @return True if the encryption succeded. False if an error occured.
  */
-bool hashlib_AESEncrypt(const uint8_t* plaintext,
+aes_error_t hashlib_AESEncrypt(const uint8_t* plaintext,
 						size_t len,
 						uint8_t* ciphertext,
 						const aes_ctx* ks,
 						const uint8_t* iv,
-						uint8_t ciphermode);
+						uint8_t ciphermode,
+                        uint8_t paddingmode);
 
 /**
  * @brief General-Purpose AES Decryption
@@ -348,12 +365,13 @@ bool hashlib_AESEncrypt(const uint8_t* plaintext,
  * @note @b IV should be the same as what is used for encryption.
  * @return True if the encryption succeded. False if an error occured.
  */
-bool hashlib_AESDecrypt(const uint8_t* ciphertext,
+aes_error_t hashlib_AESDecrypt(const uint8_t* ciphertext,
 						size_t len,
 						uint8_t* plaintext,
 						const aes_ctx* ks,
 						const uint8_t* iv,
-						uint8_t ciphermode);
+						uint8_t ciphermode,
+                        uint8_t paddingmode);
     
 /*************************************************************************************************************************************
  * @brief Returns a message authentication code for an AES message.
@@ -534,7 +552,19 @@ size_t hashlib_RSAEncodePSS(
     size_t len,
     const uint8_t *expected,
     size_t modulus_len);
-	
+    
+
+/***************************************************
+ * @enum rsa_error_t
+ * RSA Encryption Error Codes
+ ***************************************************/
+typedef enum {
+    RSA_OK,                         /**< RSA encryption completed successfully */
+    RSA_INVALID_ARG,                /**< RSA encryption failed, bad argument */
+    RSA_INVALID_MSG,                /**< RSA encryption failed, bad msg or msg too long */
+    RSA_INVALID_MODULUS,            /**< RSA encryption failed, modulus invalid */
+    RSA_ENCODING_ERROR              /**< RSA encryption failed, OAEP encoding error */
+} rsa_error_t;
  
 /***************************************************************************************************
  * @brief RSA Encryption
@@ -553,7 +583,7 @@ size_t hashlib_RSAEncodePSS(
  * @note msg and pubkey are both treated as byte arrays.
  * @return True if encryption succeeded. False if failed.
  **************************************************************************************************/
-bool hashlib_RSAEncrypt(
+rsa_error_t hashlib_RSAEncrypt(
     const uint8_t* msg,
     size_t msglen,
     uint8_t* ciphertext,

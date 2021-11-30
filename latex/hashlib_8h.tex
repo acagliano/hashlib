@@ -71,8 +71,27 @@ enum \mbox{\hyperlink{hashlib_8h_a9933dec76c43b37331782bdd16ebc4a3}{aes\+\_\+pad
 , \mbox{\hyperlink{hashlib_8h_a9933dec76c43b37331782bdd16ebc4a3a030a31bd034c7d20a80341ede899a6b7}{SCHM\+\_\+\+ISO2}}
  \}
 \item 
+enum \mbox{\hyperlink{hashlib_8h_aeb2e64abcc4317e3143fb820f21c3bfd}{aes\+\_\+error\+\_\+t}} \{ \newline
+\mbox{\hyperlink{hashlib_8h_aeb2e64abcc4317e3143fb820f21c3bfdaacf07636102724d2a7913911b0cf74b2}{AES\+\_\+\+OK}}
+, \mbox{\hyperlink{hashlib_8h_aeb2e64abcc4317e3143fb820f21c3bfda6d39b280aea9d8d62d126eef05d271db}{AES\+\_\+\+INVALID\+\_\+\+ARG}}
+, \mbox{\hyperlink{hashlib_8h_aeb2e64abcc4317e3143fb820f21c3bfdaae5e9a591aeda666b0e425d9a05834e3}{AES\+\_\+\+INVALID\+\_\+\+MSG}}
+, \mbox{\hyperlink{hashlib_8h_aeb2e64abcc4317e3143fb820f21c3bfdad2b49ffeabf14aaf47db3d1bad18f84e}{AES\+\_\+\+INVALID\+\_\+\+CIPHERMODE}}
+, \newline
+\mbox{\hyperlink{hashlib_8h_aeb2e64abcc4317e3143fb820f21c3bfda47bbd593fc3bdb7758a790bab86b41d9}{AES\+\_\+\+INVALID\+\_\+\+PADDINGMODE}}
+, \mbox{\hyperlink{hashlib_8h_aeb2e64abcc4317e3143fb820f21c3bfdaba928751c773ffa0287e47e1f86eae8b}{AES\+\_\+\+INVALID\+\_\+\+CIPHERTEXT}}
+ \}
+\item 
 enum \mbox{\hyperlink{hashlib_8h_a7508a7cdffede3d44a818dd4a154bf95}{ssl\+\_\+sig\+\_\+modes}} \{ \mbox{\hyperlink{hashlib_8h_a7508a7cdffede3d44a818dd4a154bf95a096ad031cbdad23c8d4053d9b7a3db31}{SSLSIG\+\_\+\+RSA\+\_\+\+SHA256}}
 , \mbox{\hyperlink{hashlib_8h_a7508a7cdffede3d44a818dd4a154bf95a3b885e134e618304b93f54b88eff9b25}{SSLSIG\+\_\+\+ECDSA}}
+ \}
+\item 
+enum \mbox{\hyperlink{hashlib_8h_a0486449f609d0e485bad091a671d9294}{rsa\+\_\+error\+\_\+t}} \{ \newline
+\mbox{\hyperlink{hashlib_8h_a0486449f609d0e485bad091a671d9294a2cafdb683e1870a33bcb821420626cae}{RSA\+\_\+\+OK}}
+, \mbox{\hyperlink{hashlib_8h_a0486449f609d0e485bad091a671d9294aab9ab38286c4180a1aa9f6e8df42e5db}{RSA\+\_\+\+INVALID\+\_\+\+ARG}}
+, \mbox{\hyperlink{hashlib_8h_a0486449f609d0e485bad091a671d9294aedeb18a96b96e292369abed5b2f0a271}{RSA\+\_\+\+INVALID\+\_\+\+MSG}}
+, \mbox{\hyperlink{hashlib_8h_a0486449f609d0e485bad091a671d9294a843ec210de66176ef63e2d2b8ebdeb65}{RSA\+\_\+\+INVALID\+\_\+\+MODULUS}}
+, \newline
+\mbox{\hyperlink{hashlib_8h_a0486449f609d0e485bad091a671d9294a43eadc89540121b902e02afabc7a7eb9}{RSA\+\_\+\+ENCODING\+\_\+\+ERROR}}
  \}
 \end{DoxyCompactItemize}
 \doxysubsection*{Functions}
@@ -98,9 +117,9 @@ bool \mbox{\hyperlink{hashlib_8h_a6987499522b3b85b8ce4b272fadf75dd}{hashlib\+\_\
 \begin{DoxyCompactList}\small\item\em AES Single-\/\+Block Encryption (ECB mode) \end{DoxyCompactList}\item 
 bool \mbox{\hyperlink{hashlib_8h_a5dd423839387f0955b6061986c92a2ac}{hashlib\+\_\+\+AESDecrypt\+Block}} (const uint8\+\_\+t $\ast$block\+\_\+in, uint8\+\_\+t $\ast$block\+\_\+out, const \mbox{\hyperlink{hashlib_8h_aa188bc2768a3b7aa6ad73cb2c77819e0}{aes\+\_\+ctx}} $\ast$ks)
 \begin{DoxyCompactList}\small\item\em AES Single-\/\+Block Decryption (ECB Mode) \end{DoxyCompactList}\item 
-bool \mbox{\hyperlink{hashlib_8h_a745c5c4d6bdc248f20b18c7b848d8b6b}{hashlib\+\_\+\+AESEncrypt}} (const uint8\+\_\+t $\ast$plaintext, size\+\_\+t len, uint8\+\_\+t $\ast$ciphertext, const \mbox{\hyperlink{hashlib_8h_aa188bc2768a3b7aa6ad73cb2c77819e0}{aes\+\_\+ctx}} $\ast$ks, const uint8\+\_\+t $\ast$iv, uint8\+\_\+t ciphermode)
+\mbox{\hyperlink{hashlib_8h_aeb2e64abcc4317e3143fb820f21c3bfd}{aes\+\_\+error\+\_\+t}} \mbox{\hyperlink{hashlib_8h_aa4f60eb708a18d498faa51a33c248f90}{hashlib\+\_\+\+AESEncrypt}} (const uint8\+\_\+t $\ast$plaintext, size\+\_\+t len, uint8\+\_\+t $\ast$ciphertext, const \mbox{\hyperlink{hashlib_8h_aa188bc2768a3b7aa6ad73cb2c77819e0}{aes\+\_\+ctx}} $\ast$ks, const uint8\+\_\+t $\ast$iv, uint8\+\_\+t ciphermode, uint8\+\_\+t paddingmode)
 \begin{DoxyCompactList}\small\item\em General-\/\+Purpose AES Encryption. \end{DoxyCompactList}\item 
-bool \mbox{\hyperlink{hashlib_8h_a2b904b543405fdf8f283d028ce0d1da7}{hashlib\+\_\+\+AESDecrypt}} (const uint8\+\_\+t $\ast$ciphertext, size\+\_\+t len, uint8\+\_\+t $\ast$plaintext, const \mbox{\hyperlink{hashlib_8h_aa188bc2768a3b7aa6ad73cb2c77819e0}{aes\+\_\+ctx}} $\ast$ks, const uint8\+\_\+t $\ast$iv, uint8\+\_\+t ciphermode)
+\mbox{\hyperlink{hashlib_8h_aeb2e64abcc4317e3143fb820f21c3bfd}{aes\+\_\+error\+\_\+t}} \mbox{\hyperlink{hashlib_8h_a402aa47590cf2de4ea6cb2efba1fdb35}{hashlib\+\_\+\+AESDecrypt}} (const uint8\+\_\+t $\ast$ciphertext, size\+\_\+t len, uint8\+\_\+t $\ast$plaintext, const \mbox{\hyperlink{hashlib_8h_aa188bc2768a3b7aa6ad73cb2c77819e0}{aes\+\_\+ctx}} $\ast$ks, const uint8\+\_\+t $\ast$iv, uint8\+\_\+t ciphermode, uint8\+\_\+t paddingmode)
 \begin{DoxyCompactList}\small\item\em General-\/\+Purpose AES Decryption. \end{DoxyCompactList}\item 
 bool \mbox{\hyperlink{hashlib_8h_ac48a46d4a3cd8338857b326c0342fb1d}{hashlib\+\_\+\+AESOutput\+Mac}} (const uint8\+\_\+t $\ast$buf, size\+\_\+t len, uint8\+\_\+t $\ast$mac, const \mbox{\hyperlink{hashlib_8h_aa188bc2768a3b7aa6ad73cb2c77819e0}{aes\+\_\+ctx}} $\ast$ks)
 \begin{DoxyCompactList}\small\item\em Returns a message authentication code for an AES message. \end{DoxyCompactList}\item 
@@ -116,7 +135,7 @@ size\+\_\+t \mbox{\hyperlink{hashlib_8h_a01668b3f2dd85fe2f8696673b275b75a}{hashl
 \begin{DoxyCompactList}\small\item\em RSA-\/\+PSS padding scheme. \end{DoxyCompactList}\item 
 bool \mbox{\hyperlink{hashlib_8h_af1dd2bde099a6fadb6bcc842e502c21b}{hashlib\+\_\+\+RSAVerify\+PSS}} (const uint8\+\_\+t $\ast$in, size\+\_\+t len, const uint8\+\_\+t $\ast$expected, size\+\_\+t modulus\+\_\+len)
 \begin{DoxyCompactList}\small\item\em RSA-\/\+PSS verification. \end{DoxyCompactList}\item 
-bool \mbox{\hyperlink{hashlib_8h_a7fd65cc007d33c59279340121219290d}{hashlib\+\_\+\+RSAEncrypt}} (const uint8\+\_\+t $\ast$msg, size\+\_\+t msglen, uint8\+\_\+t $\ast$ciphertext, const uint8\+\_\+t $\ast$pubkey, size\+\_\+t keylen)
+\mbox{\hyperlink{hashlib_8h_a0486449f609d0e485bad091a671d9294}{rsa\+\_\+error\+\_\+t}} \mbox{\hyperlink{hashlib_8h_a3f2772b55bb9444c6b1d63976d35c9ff}{hashlib\+\_\+\+RSAEncrypt}} (const uint8\+\_\+t $\ast$msg, size\+\_\+t msglen, uint8\+\_\+t $\ast$ciphertext, const uint8\+\_\+t $\ast$pubkey, size\+\_\+t keylen)
 \begin{DoxyCompactList}\small\item\em RSA Encryption. \end{DoxyCompactList}\item 
 bool \mbox{\hyperlink{hashlib_8h_a7b705e6cf52b076b40f936af6d55b29c}{hashlib\+\_\+\+SSLVerify\+Signature}} (const uint8\+\_\+t $\ast$ca\+\_\+pubkey, size\+\_\+t keysize, const uint8\+\_\+t $\ast$cert, size\+\_\+t certlen, uint8\+\_\+t sig\+\_\+alg)
 \begin{DoxyCompactList}\small\item\em SSL Certificate Signature Verification. \end{DoxyCompactList}\item 
@@ -371,6 +390,38 @@ SCHM\+\_\+\+ISO2&ISO-\/9797 M2 padding \\
 \hline
 
 \end{DoxyEnumFields}
+\mbox{\Hypertarget{hashlib_8h_aeb2e64abcc4317e3143fb820f21c3bfd}\label{hashlib_8h_aeb2e64abcc4317e3143fb820f21c3bfd}} 
+\index{hashlib.h@{hashlib.h}!aes\_error\_t@{aes\_error\_t}}
+\index{aes\_error\_t@{aes\_error\_t}!hashlib.h@{hashlib.h}}
+\doxysubsubsection{\texorpdfstring{aes\_error\_t}{aes\_error\_t}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{hashlib_8h_aeb2e64abcc4317e3143fb820f21c3bfd}{aes\+\_\+error\+\_\+t}}}
+
+AES Error Codes (returned by hashlib\+\_\+\+AESEncrypt/\+Decrypt) \begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{AES\_OK@{AES\_OK}!hashlib.h@{hashlib.h}}\index{hashlib.h@{hashlib.h}!AES\_OK@{AES\_OK}}}\mbox{\Hypertarget{hashlib_8h_aeb2e64abcc4317e3143fb820f21c3bfdaacf07636102724d2a7913911b0cf74b2}\label{hashlib_8h_aeb2e64abcc4317e3143fb820f21c3bfdaacf07636102724d2a7913911b0cf74b2}} 
+AES\+\_\+\+OK&AES operation completed successfully \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{AES\_INVALID\_ARG@{AES\_INVALID\_ARG}!hashlib.h@{hashlib.h}}\index{hashlib.h@{hashlib.h}!AES\_INVALID\_ARG@{AES\_INVALID\_ARG}}}\mbox{\Hypertarget{hashlib_8h_aeb2e64abcc4317e3143fb820f21c3bfda6d39b280aea9d8d62d126eef05d271db}\label{hashlib_8h_aeb2e64abcc4317e3143fb820f21c3bfda6d39b280aea9d8d62d126eef05d271db}} 
+AES\+\_\+\+INVALID\+\_\+\+ARG&AES operation failed, bad argument \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{AES\_INVALID\_MSG@{AES\_INVALID\_MSG}!hashlib.h@{hashlib.h}}\index{hashlib.h@{hashlib.h}!AES\_INVALID\_MSG@{AES\_INVALID\_MSG}}}\mbox{\Hypertarget{hashlib_8h_aeb2e64abcc4317e3143fb820f21c3bfdaae5e9a591aeda666b0e425d9a05834e3}\label{hashlib_8h_aeb2e64abcc4317e3143fb820f21c3bfdaae5e9a591aeda666b0e425d9a05834e3}} 
+AES\+\_\+\+INVALID\+\_\+\+MSG&AES operation failed, message invalid \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{AES\_INVALID\_CIPHERMODE@{AES\_INVALID\_CIPHERMODE}!hashlib.h@{hashlib.h}}\index{hashlib.h@{hashlib.h}!AES\_INVALID\_CIPHERMODE@{AES\_INVALID\_CIPHERMODE}}}\mbox{\Hypertarget{hashlib_8h_aeb2e64abcc4317e3143fb820f21c3bfdad2b49ffeabf14aaf47db3d1bad18f84e}\label{hashlib_8h_aeb2e64abcc4317e3143fb820f21c3bfdad2b49ffeabf14aaf47db3d1bad18f84e}} 
+AES\+\_\+\+INVALID\+\_\+\+CIPHERMODE&AES operation failed, cipher mode undefined \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{AES\_INVALID\_PADDINGMODE@{AES\_INVALID\_PADDINGMODE}!hashlib.h@{hashlib.h}}\index{hashlib.h@{hashlib.h}!AES\_INVALID\_PADDINGMODE@{AES\_INVALID\_PADDINGMODE}}}\mbox{\Hypertarget{hashlib_8h_aeb2e64abcc4317e3143fb820f21c3bfda47bbd593fc3bdb7758a790bab86b41d9}\label{hashlib_8h_aeb2e64abcc4317e3143fb820f21c3bfda47bbd593fc3bdb7758a790bab86b41d9}} 
+AES\+\_\+\+INVALID\+\_\+\+PADDINGMODE&AES operation failed, padding mode undefined \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{AES\_INVALID\_CIPHERTEXT@{AES\_INVALID\_CIPHERTEXT}!hashlib.h@{hashlib.h}}\index{hashlib.h@{hashlib.h}!AES\_INVALID\_CIPHERTEXT@{AES\_INVALID\_CIPHERTEXT}}}\mbox{\Hypertarget{hashlib_8h_aeb2e64abcc4317e3143fb820f21c3bfdaba928751c773ffa0287e47e1f86eae8b}\label{hashlib_8h_aeb2e64abcc4317e3143fb820f21c3bfdaba928751c773ffa0287e47e1f86eae8b}} 
+AES\+\_\+\+INVALID\+\_\+\+CIPHERTEXT&AES operation failed, ciphertext size error \\
+\hline
+
+\end{DoxyEnumFields}
 \mbox{\Hypertarget{hashlib_8h_a7508a7cdffede3d44a818dd4a154bf95}\label{hashlib_8h_a7508a7cdffede3d44a818dd4a154bf95}} 
 \index{hashlib.h@{hashlib.h}!ssl\_sig\_modes@{ssl\_sig\_modes}}
 \index{ssl\_sig\_modes@{ssl\_sig\_modes}!hashlib.h@{hashlib.h}}
@@ -384,6 +435,34 @@ SSLSIG\+\_\+\+RSA\+\_\+\+SHA256&RSA with SHA-\/256 signature algorithm \\
 
 \raisebox{\heightof{T}}[0pt][0pt]{\index{SSLSIG\_ECDSA@{SSLSIG\_ECDSA}!hashlib.h@{hashlib.h}}\index{hashlib.h@{hashlib.h}!SSLSIG\_ECDSA@{SSLSIG\_ECDSA}}}\mbox{\Hypertarget{hashlib_8h_a7508a7cdffede3d44a818dd4a154bf95a3b885e134e618304b93f54b88eff9b25}\label{hashlib_8h_a7508a7cdffede3d44a818dd4a154bf95a3b885e134e618304b93f54b88eff9b25}} 
 SSLSIG\+\_\+\+ECDSA&ECDSA (unimplemented, likely a long way off) \\
+\hline
+
+\end{DoxyEnumFields}
+\mbox{\Hypertarget{hashlib_8h_a0486449f609d0e485bad091a671d9294}\label{hashlib_8h_a0486449f609d0e485bad091a671d9294}} 
+\index{hashlib.h@{hashlib.h}!rsa\_error\_t@{rsa\_error\_t}}
+\index{rsa\_error\_t@{rsa\_error\_t}!hashlib.h@{hashlib.h}}
+\doxysubsubsection{\texorpdfstring{rsa\_error\_t}{rsa\_error\_t}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{hashlib_8h_a0486449f609d0e485bad091a671d9294}{rsa\+\_\+error\+\_\+t}}}
+
+RSA Encryption Error Codes \begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{RSA\_OK@{RSA\_OK}!hashlib.h@{hashlib.h}}\index{hashlib.h@{hashlib.h}!RSA\_OK@{RSA\_OK}}}\mbox{\Hypertarget{hashlib_8h_a0486449f609d0e485bad091a671d9294a2cafdb683e1870a33bcb821420626cae}\label{hashlib_8h_a0486449f609d0e485bad091a671d9294a2cafdb683e1870a33bcb821420626cae}} 
+RSA\+\_\+\+OK&RSA encryption completed successfully \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{RSA\_INVALID\_ARG@{RSA\_INVALID\_ARG}!hashlib.h@{hashlib.h}}\index{hashlib.h@{hashlib.h}!RSA\_INVALID\_ARG@{RSA\_INVALID\_ARG}}}\mbox{\Hypertarget{hashlib_8h_a0486449f609d0e485bad091a671d9294aab9ab38286c4180a1aa9f6e8df42e5db}\label{hashlib_8h_a0486449f609d0e485bad091a671d9294aab9ab38286c4180a1aa9f6e8df42e5db}} 
+RSA\+\_\+\+INVALID\+\_\+\+ARG&RSA encryption failed, bad argument \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{RSA\_INVALID\_MSG@{RSA\_INVALID\_MSG}!hashlib.h@{hashlib.h}}\index{hashlib.h@{hashlib.h}!RSA\_INVALID\_MSG@{RSA\_INVALID\_MSG}}}\mbox{\Hypertarget{hashlib_8h_a0486449f609d0e485bad091a671d9294aedeb18a96b96e292369abed5b2f0a271}\label{hashlib_8h_a0486449f609d0e485bad091a671d9294aedeb18a96b96e292369abed5b2f0a271}} 
+RSA\+\_\+\+INVALID\+\_\+\+MSG&RSA encryption failed, bad msg or msg too long \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{RSA\_INVALID\_MODULUS@{RSA\_INVALID\_MODULUS}!hashlib.h@{hashlib.h}}\index{hashlib.h@{hashlib.h}!RSA\_INVALID\_MODULUS@{RSA\_INVALID\_MODULUS}}}\mbox{\Hypertarget{hashlib_8h_a0486449f609d0e485bad091a671d9294a843ec210de66176ef63e2d2b8ebdeb65}\label{hashlib_8h_a0486449f609d0e485bad091a671d9294a843ec210de66176ef63e2d2b8ebdeb65}} 
+RSA\+\_\+\+INVALID\+\_\+\+MODULUS&RSA encryption failed, modulus invalid \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{RSA\_ENCODING\_ERROR@{RSA\_ENCODING\_ERROR}!hashlib.h@{hashlib.h}}\index{hashlib.h@{hashlib.h}!RSA\_ENCODING\_ERROR@{RSA\_ENCODING\_ERROR}}}\mbox{\Hypertarget{hashlib_8h_a0486449f609d0e485bad091a671d9294a43eadc89540121b902e02afabc7a7eb9}\label{hashlib_8h_a0486449f609d0e485bad091a671d9294a43eadc89540121b902e02afabc7a7eb9}} 
+RSA\+\_\+\+ENCODING\+\_\+\+ERROR&RSA encryption failed, OAEP encoding error \\
 \hline
 
 \end{DoxyEnumFields}
@@ -576,7 +655,7 @@ AES Single-\/\+Block Encryption (ECB mode)
 {\bfseries{block\+\_\+in}} and {\bfseries{block\+\_\+out}} are aliasable. 
 \end{DoxyNote}
 \begin{DoxyWarning}{Warning}
-ECB-\/mode ciphers are insecure (see many-\/time pad vulnerability). These functions are exposed in case a user wants to construct a cipher mode other than CBC or CTR. Unless you know what you are doing, use \mbox{\hyperlink{hashlib_8h_a745c5c4d6bdc248f20b18c7b848d8b6b}{hashlib\+\_\+\+AESEncrypt()}} instead. 
+ECB-\/mode ciphers are insecure (see many-\/time pad vulnerability). These functions are exposed in case a user wants to construct a cipher mode other than CBC or CTR. Unless you know what you are doing, use \mbox{\hyperlink{hashlib_8h_aa4f60eb708a18d498faa51a33c248f90}{hashlib\+\_\+\+AESEncrypt()}} instead. 
 \end{DoxyWarning}
 \begin{DoxyReturn}{Returns}
 True if encryption succeeded. False if failed. 
@@ -604,16 +683,16 @@ AES Single-\/\+Block Decryption (ECB Mode)
 {\bfseries{block\+\_\+in}} and {\bfseries{block\+\_\+out}} are aliasable. 
 \end{DoxyNote}
 \begin{DoxyWarning}{Warning}
-ECB-\/mode ciphers are insecure (see many-\/time pad vulnerability). These functions are exposed in case a user wants to construct a cipher mode other than CBC or CTR. Unless you know what you are doing, use \mbox{\hyperlink{hashlib_8h_a2b904b543405fdf8f283d028ce0d1da7}{hashlib\+\_\+\+AESDecrypt()}} instead. 
+ECB-\/mode ciphers are insecure (see many-\/time pad vulnerability). These functions are exposed in case a user wants to construct a cipher mode other than CBC or CTR. Unless you know what you are doing, use \mbox{\hyperlink{hashlib_8h_a402aa47590cf2de4ea6cb2efba1fdb35}{hashlib\+\_\+\+AESDecrypt()}} instead. 
 \end{DoxyWarning}
 \begin{DoxyReturn}{Returns}
 True if encryption succeeded. False if an error occured. 
 \end{DoxyReturn}
-\mbox{\Hypertarget{hashlib_8h_a745c5c4d6bdc248f20b18c7b848d8b6b}\label{hashlib_8h_a745c5c4d6bdc248f20b18c7b848d8b6b}} 
+\mbox{\Hypertarget{hashlib_8h_aa4f60eb708a18d498faa51a33c248f90}\label{hashlib_8h_aa4f60eb708a18d498faa51a33c248f90}} 
 \index{hashlib.h@{hashlib.h}!hashlib\_AESEncrypt@{hashlib\_AESEncrypt}}
 \index{hashlib\_AESEncrypt@{hashlib\_AESEncrypt}!hashlib.h@{hashlib.h}}
 \doxysubsubsection{\texorpdfstring{hashlib\_AESEncrypt()}{hashlib\_AESEncrypt()}}
-{\footnotesize\ttfamily bool hashlib\+\_\+\+AESEncrypt (\begin{DoxyParamCaption}\item[{const uint8\+\_\+t $\ast$}]{plaintext,  }\item[{size\+\_\+t}]{len,  }\item[{uint8\+\_\+t $\ast$}]{ciphertext,  }\item[{const \mbox{\hyperlink{hashlib_8h_aa188bc2768a3b7aa6ad73cb2c77819e0}{aes\+\_\+ctx}} $\ast$}]{ks,  }\item[{const uint8\+\_\+t $\ast$}]{iv,  }\item[{uint8\+\_\+t}]{ciphermode }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \mbox{\hyperlink{hashlib_8h_aeb2e64abcc4317e3143fb820f21c3bfd}{aes\+\_\+error\+\_\+t}} hashlib\+\_\+\+AESEncrypt (\begin{DoxyParamCaption}\item[{const uint8\+\_\+t $\ast$}]{plaintext,  }\item[{size\+\_\+t}]{len,  }\item[{uint8\+\_\+t $\ast$}]{ciphertext,  }\item[{const \mbox{\hyperlink{hashlib_8h_aa188bc2768a3b7aa6ad73cb2c77819e0}{aes\+\_\+ctx}} $\ast$}]{ks,  }\item[{const uint8\+\_\+t $\ast$}]{iv,  }\item[{uint8\+\_\+t}]{ciphermode,  }\item[{uint8\+\_\+t}]{paddingmode }\end{DoxyParamCaption})}
 
 
 
@@ -641,7 +720,7 @@ If cipher mode CBC is used, {\bfseries{len}} must be a multiple of the blocksize
 
 {\bfseries{IV}} is not written to the ciphertext buffer by this function, only the encrypted message. However, if your ciphertext buffer is large enough, you can do the following to get the IV prepended to the ciphertext. Otherwise you will have to join the IV and the ciphertext into a single larger buffer before sending it through whatever networking protocol you use. 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{\mbox{\hyperlink{hashlib_8h_a745c5c4d6bdc248f20b18c7b848d8b6b}{hashlib\_AESEncrypt}}(plaintext, len, \&ciphertext[AES\_IV\_SIZE], ks, iv, <cipher\_mode>);}
+\DoxyCodeLine{\mbox{\hyperlink{hashlib_8h_aa4f60eb708a18d498faa51a33c248f90}{hashlib\_AESEncrypt}}(plaintext, len, \&ciphertext[AES\_IV\_SIZE], ks, iv, <cipher\_mode>);}
 \DoxyCodeLine{memcpy(ciphertext, iv, AES\_IV\_SIZE);}
 \DoxyCodeLine{send\_packet(ciphertext);}
 
@@ -651,11 +730,11 @@ If cipher mode CBC is used, {\bfseries{len}} must be a multiple of the blocksize
 \begin{DoxyReturn}{Returns}
 True if the encryption succeded. False if an error occured. 
 \end{DoxyReturn}
-\mbox{\Hypertarget{hashlib_8h_a2b904b543405fdf8f283d028ce0d1da7}\label{hashlib_8h_a2b904b543405fdf8f283d028ce0d1da7}} 
+\mbox{\Hypertarget{hashlib_8h_a402aa47590cf2de4ea6cb2efba1fdb35}\label{hashlib_8h_a402aa47590cf2de4ea6cb2efba1fdb35}} 
 \index{hashlib.h@{hashlib.h}!hashlib\_AESDecrypt@{hashlib\_AESDecrypt}}
 \index{hashlib\_AESDecrypt@{hashlib\_AESDecrypt}!hashlib.h@{hashlib.h}}
 \doxysubsubsection{\texorpdfstring{hashlib\_AESDecrypt()}{hashlib\_AESDecrypt()}}
-{\footnotesize\ttfamily bool hashlib\+\_\+\+AESDecrypt (\begin{DoxyParamCaption}\item[{const uint8\+\_\+t $\ast$}]{ciphertext,  }\item[{size\+\_\+t}]{len,  }\item[{uint8\+\_\+t $\ast$}]{plaintext,  }\item[{const \mbox{\hyperlink{hashlib_8h_aa188bc2768a3b7aa6ad73cb2c77819e0}{aes\+\_\+ctx}} $\ast$}]{ks,  }\item[{const uint8\+\_\+t $\ast$}]{iv,  }\item[{uint8\+\_\+t}]{ciphermode }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \mbox{\hyperlink{hashlib_8h_aeb2e64abcc4317e3143fb820f21c3bfd}{aes\+\_\+error\+\_\+t}} hashlib\+\_\+\+AESDecrypt (\begin{DoxyParamCaption}\item[{const uint8\+\_\+t $\ast$}]{ciphertext,  }\item[{size\+\_\+t}]{len,  }\item[{uint8\+\_\+t $\ast$}]{plaintext,  }\item[{const \mbox{\hyperlink{hashlib_8h_aa188bc2768a3b7aa6ad73cb2c77819e0}{aes\+\_\+ctx}} $\ast$}]{ks,  }\item[{const uint8\+\_\+t $\ast$}]{iv,  }\item[{uint8\+\_\+t}]{ciphermode,  }\item[{uint8\+\_\+t}]{paddingmode }\end{DoxyParamCaption})}
 
 
 
@@ -712,7 +791,7 @@ CBC-\/\+MAC requires padding, as it uses CBC mode. You can use the \mbox{\hyperl
 
 To send a packet with authenticated encryption, you will need to append the MAC digest to your ciphertext returned by the above functions. For example, assuming {\bfseries{ciphertext}} is at least as large as the size returned by \mbox{\hyperlink{hashlib_8h_a14743a93cbf9c7237d0ac03d842f296f}{hashlib\+\_\+\+AESAuth\+Mac\+Ciphertext\+Size()}}\+: 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{\mbox{\hyperlink{hashlib_8h_a745c5c4d6bdc248f20b18c7b848d8b6b}{hashlib\_AESEncrypt}}(plaintext, len, \&ciphertext[AES\_IV\_SIZE], ks\_encrypt, iv, <ciphermode>);}
+\DoxyCodeLine{\mbox{\hyperlink{hashlib_8h_aa4f60eb708a18d498faa51a33c248f90}{hashlib\_AESEncrypt}}(plaintext, len, \&ciphertext[AES\_IV\_SIZE], ks\_encrypt, iv, <ciphermode>);}
 \DoxyCodeLine{memcpy(ciphertext, iv, AES\_IV\_SIZE);}
 \DoxyCodeLine{\mbox{\hyperlink{hashlib_8h_ac48a46d4a3cd8338857b326c0342fb1d}{hashlib\_AESOutputMac}}(ciphertext, <padded\_len>, \&ciphertext[<padded\_len> + AES\_IV\_SIZE], ks\_auth);}
 \DoxyCodeLine{\textcolor{comment}{// note the use of two different key schedules}}
@@ -937,11 +1016,11 @@ Reverses the PSS MGF1 masking on {\bfseries{expected}} and retrieves the salt, t
 \begin{DoxyReturn}{Returns}
 True if signature match, False if failed to verify. 
 \end{DoxyReturn}
-\mbox{\Hypertarget{hashlib_8h_a7fd65cc007d33c59279340121219290d}\label{hashlib_8h_a7fd65cc007d33c59279340121219290d}} 
+\mbox{\Hypertarget{hashlib_8h_a3f2772b55bb9444c6b1d63976d35c9ff}\label{hashlib_8h_a3f2772b55bb9444c6b1d63976d35c9ff}} 
 \index{hashlib.h@{hashlib.h}!hashlib\_RSAEncrypt@{hashlib\_RSAEncrypt}}
 \index{hashlib\_RSAEncrypt@{hashlib\_RSAEncrypt}!hashlib.h@{hashlib.h}}
 \doxysubsubsection{\texorpdfstring{hashlib\_RSAEncrypt()}{hashlib\_RSAEncrypt()}}
-{\footnotesize\ttfamily bool hashlib\+\_\+\+RSAEncrypt (\begin{DoxyParamCaption}\item[{const uint8\+\_\+t $\ast$}]{msg,  }\item[{size\+\_\+t}]{msglen,  }\item[{uint8\+\_\+t $\ast$}]{ciphertext,  }\item[{const uint8\+\_\+t $\ast$}]{pubkey,  }\item[{size\+\_\+t}]{keylen }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \mbox{\hyperlink{hashlib_8h_a0486449f609d0e485bad091a671d9294}{rsa\+\_\+error\+\_\+t}} hashlib\+\_\+\+RSAEncrypt (\begin{DoxyParamCaption}\item[{const uint8\+\_\+t $\ast$}]{msg,  }\item[{size\+\_\+t}]{msglen,  }\item[{uint8\+\_\+t $\ast$}]{ciphertext,  }\item[{const uint8\+\_\+t $\ast$}]{pubkey,  }\item[{size\+\_\+t}]{keylen }\end{DoxyParamCaption})}
 
 
 
