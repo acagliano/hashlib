@@ -373,40 +373,6 @@ aes_error_t hashlib_AESDecrypt(const uint8_t* ciphertext,
 						uint8_t ciphermode,
                         uint8_t paddingmode);
     
-/*************************************************************************************************************************************
- * @brief Returns a message authentication code for an AES message.
- *
- * The MAC is a tag equal in length to the AES block size computed by passing the plaintext
- * through the CBC-MAC algorithm with a constant IV.
- *
- * @param plaintext Pointer to data to generate a MAC for.
- * @param len Length of data at @b plaintext to generate a MAC for.
- * @param mac Pointer to a buffer to write the MAC to. MAC must be at least @b AES_BLOCKSIZE bytes large.
- * @param ks Pointer to a AES key schedule context. Must be different than the one used for encryption.
- * @note CBC-MAC requires padding, as it uses CBC mode. You can use the hashlib_AESPadMessage()
- * 	padding function. Padding mode ISO-9791 M2 is preferred for CBC-MAC, but either can be used.
- * @note To send a packet with authenticated encryption, you will need to append the MAC digest to your
- * 		ciphertext returned by the above functions. For example, assuming @b ciphertext is at least as
- * 		large as the size returned by hashlib_AESAuthMacCiphertextSize():
- * 		@code
- * 		hashlib_AESEncrypt(plaintext, len, &ciphertext[AES_IV_SIZE], ks_encrypt, iv, <ciphermode>);
- * 		memcpy(ciphertext, iv, AES_IV_SIZE);
- * 		hashlib_AESOutputMac(ciphertext, <padded_len>, &ciphertext[<padded_len> + AES_IV_SIZE], ks_auth);
- * 		// note the use of two different key schedules
- * 		@endcode
- * @warning Do not use the same AES key/key schedule for authentication and encryption. This exposes
- * 	attack vectors. Use different key schedules.
- * @warning For the most secure authenticated encryption scheme,  use "encrypt-then-MAC".
- * 		This means that you encrypt first, then you return a MAC or hash of the ciphertext
- *		and any associated un-encrypted metadata (such as the IV).
- *		While some authentication schemes do use "MAC-then-encrypt", there are more attack vectors against that.
- * @return True if the MAC generation succeeded. False if an error occured.
- ***************************************************************************************************************************************/
-bool hashlib_AESOutputMac(const uint8_t* buf,
-						  size_t len,
-						  uint8_t* mac,
-						  const aes_ctx* ks);
-
 /*****************************************************************************************
  * @brief Pads a plaintext according to the specified AES padding scheme.
  * @param plaintext Pointer to buffer containing the data to pad.

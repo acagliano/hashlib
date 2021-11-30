@@ -121,8 +121,6 @@ bool \mbox{\hyperlink{hashlib_8h_a5dd423839387f0955b6061986c92a2ac}{hashlib\+\_\
 \begin{DoxyCompactList}\small\item\em General-\/\+Purpose AES Encryption. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{hashlib_8h_aeb2e64abcc4317e3143fb820f21c3bfd}{aes\+\_\+error\+\_\+t}} \mbox{\hyperlink{hashlib_8h_a402aa47590cf2de4ea6cb2efba1fdb35}{hashlib\+\_\+\+AESDecrypt}} (const uint8\+\_\+t $\ast$ciphertext, size\+\_\+t len, uint8\+\_\+t $\ast$plaintext, const \mbox{\hyperlink{hashlib_8h_aa188bc2768a3b7aa6ad73cb2c77819e0}{aes\+\_\+ctx}} $\ast$ks, const uint8\+\_\+t $\ast$iv, uint8\+\_\+t ciphermode, uint8\+\_\+t paddingmode)
 \begin{DoxyCompactList}\small\item\em General-\/\+Purpose AES Decryption. \end{DoxyCompactList}\item 
-bool \mbox{\hyperlink{hashlib_8h_ac48a46d4a3cd8338857b326c0342fb1d}{hashlib\+\_\+\+AESOutput\+Mac}} (const uint8\+\_\+t $\ast$buf, size\+\_\+t len, uint8\+\_\+t $\ast$mac, const \mbox{\hyperlink{hashlib_8h_aa188bc2768a3b7aa6ad73cb2c77819e0}{aes\+\_\+ctx}} $\ast$ks)
-\begin{DoxyCompactList}\small\item\em Returns a message authentication code for an AES message. \end{DoxyCompactList}\item 
 size\+\_\+t \mbox{\hyperlink{hashlib_8h_aebac98a8537f3353aac9fbae5ed67f29}{hashlib\+\_\+\+AESPad\+Message}} (const uint8\+\_\+t $\ast$plaintext, size\+\_\+t len, uint8\+\_\+t $\ast$outbuf, uint8\+\_\+t schm)
 \begin{DoxyCompactList}\small\item\em Pads a plaintext according to the specified AES padding scheme. \end{DoxyCompactList}\item 
 size\+\_\+t \mbox{\hyperlink{hashlib_8h_a152d6d62f1a21c97a551cea7e6110e59}{hashlib\+\_\+\+AESStrip\+Padding}} (const uint8\+\_\+t $\ast$plaintext, size\+\_\+t len, uint8\+\_\+t $\ast$outbuf, uint8\+\_\+t schm)
@@ -762,50 +760,6 @@ General-\/\+Purpose AES Decryption.
 \end{DoxyNote}
 \begin{DoxyReturn}{Returns}
 True if the encryption succeded. False if an error occured. 
-\end{DoxyReturn}
-\mbox{\Hypertarget{hashlib_8h_ac48a46d4a3cd8338857b326c0342fb1d}\label{hashlib_8h_ac48a46d4a3cd8338857b326c0342fb1d}} 
-\index{hashlib.h@{hashlib.h}!hashlib\_AESOutputMac@{hashlib\_AESOutputMac}}
-\index{hashlib\_AESOutputMac@{hashlib\_AESOutputMac}!hashlib.h@{hashlib.h}}
-\doxysubsubsection{\texorpdfstring{hashlib\_AESOutputMac()}{hashlib\_AESOutputMac()}}
-{\footnotesize\ttfamily bool hashlib\+\_\+\+AESOutput\+Mac (\begin{DoxyParamCaption}\item[{const uint8\+\_\+t $\ast$}]{buf,  }\item[{size\+\_\+t}]{len,  }\item[{uint8\+\_\+t $\ast$}]{mac,  }\item[{const \mbox{\hyperlink{hashlib_8h_aa188bc2768a3b7aa6ad73cb2c77819e0}{aes\+\_\+ctx}} $\ast$}]{ks }\end{DoxyParamCaption})}
-
-
-
-Returns a message authentication code for an AES message. 
-
-The MAC is a tag equal in length to the AES block size computed by passing the plaintext through the CBC-\/\+MAC algorithm with a constant IV.
-
-
-\begin{DoxyParams}{Parameters}
-{\em plaintext} & Pointer to data to generate a MAC for. \\
-\hline
-{\em len} & Length of data at {\bfseries{plaintext}} to generate a MAC for. \\
-\hline
-{\em mac} & Pointer to a buffer to write the MAC to. MAC must be at least {\bfseries{AES\+\_\+\+BLOCKSIZE}} bytes large. \\
-\hline
-{\em ks} & Pointer to a AES key schedule context. Must be different than the one used for encryption. \\
-\hline
-\end{DoxyParams}
-\begin{DoxyNote}{Note}
-CBC-\/\+MAC requires padding, as it uses CBC mode. You can use the \mbox{\hyperlink{hashlib_8h_aebac98a8537f3353aac9fbae5ed67f29}{hashlib\+\_\+\+AESPad\+Message()}} padding function. Padding mode ISO-\/9791 M2 is preferred for CBC-\/\+MAC, but either can be used. 
-
-To send a packet with authenticated encryption, you will need to append the MAC digest to your ciphertext returned by the above functions. For example, assuming {\bfseries{ciphertext}} is at least as large as the size returned by \mbox{\hyperlink{hashlib_8h_a14743a93cbf9c7237d0ac03d842f296f}{hashlib\+\_\+\+AESAuth\+Mac\+Ciphertext\+Size()}}\+: 
-\begin{DoxyCode}{0}
-\DoxyCodeLine{\mbox{\hyperlink{hashlib_8h_aa4f60eb708a18d498faa51a33c248f90}{hashlib\_AESEncrypt}}(plaintext, len, \&ciphertext[AES\_IV\_SIZE], ks\_encrypt, iv, <ciphermode>);}
-\DoxyCodeLine{memcpy(ciphertext, iv, AES\_IV\_SIZE);}
-\DoxyCodeLine{\mbox{\hyperlink{hashlib_8h_ac48a46d4a3cd8338857b326c0342fb1d}{hashlib\_AESOutputMac}}(ciphertext, <padded\_len>, \&ciphertext[<padded\_len> + AES\_IV\_SIZE], ks\_auth);}
-\DoxyCodeLine{\textcolor{comment}{// note the use of two different key schedules}}
-
-\end{DoxyCode}
- 
-\end{DoxyNote}
-\begin{DoxyWarning}{Warning}
-Do not use the same AES key/key schedule for authentication and encryption. This exposes attack vectors. Use different key schedules. 
-
-For the most secure authenticated encryption scheme, use \char`\"{}encrypt-\/then-\/\+MAC\char`\"{}. This means that you encrypt first, then you return a MAC or hash of the ciphertext and any associated un-\/encrypted metadata (such as the IV). While some authentication schemes do use \char`\"{}\+MAC-\/then-\/encrypt\char`\"{}, there are more attack vectors against that. 
-\end{DoxyWarning}
-\begin{DoxyReturn}{Returns}
-True if the MAC generation succeeded. False if an error occured. 
 \end{DoxyReturn}
 \mbox{\Hypertarget{hashlib_8h_aebac98a8537f3353aac9fbae5ed67f29}\label{hashlib_8h_aebac98a8537f3353aac9fbae5ed67f29}} 
 \index{hashlib.h@{hashlib.h}!hashlib\_AESPadMessage@{hashlib\_AESPadMessage}}

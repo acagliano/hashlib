@@ -208,9 +208,6 @@ Functions</h2></td></tr>
 <tr class="memitem:a402aa47590cf2de4ea6cb2efba1fdb35"><td class="memItemLeft" align="right" valign="top"><a class="el" href="hashlib_8h.html#aeb2e64abcc4317e3143fb820f21c3bfd">aes_error_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#a402aa47590cf2de4ea6cb2efba1fdb35">hashlib_AESDecrypt</a> (const uint8_t *ciphertext, size_t len, uint8_t *plaintext, const <a class="el" href="hashlib_8h.html#aa188bc2768a3b7aa6ad73cb2c77819e0">aes_ctx</a> *ks, const uint8_t *iv, uint8_t ciphermode, uint8_t paddingmode)</td></tr>
 <tr class="memdesc:a402aa47590cf2de4ea6cb2efba1fdb35"><td class="mdescLeft">&#160;</td><td class="mdescRight">General-Purpose AES Decryption.  <a href="hashlib_8h.html#a402aa47590cf2de4ea6cb2efba1fdb35">More...</a><br /></td></tr>
 <tr class="separator:a402aa47590cf2de4ea6cb2efba1fdb35"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac48a46d4a3cd8338857b326c0342fb1d"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#ac48a46d4a3cd8338857b326c0342fb1d">hashlib_AESOutputMac</a> (const uint8_t *buf, size_t len, uint8_t *mac, const <a class="el" href="hashlib_8h.html#aa188bc2768a3b7aa6ad73cb2c77819e0">aes_ctx</a> *ks)</td></tr>
-<tr class="memdesc:ac48a46d4a3cd8338857b326c0342fb1d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a message authentication code for an AES message.  <a href="hashlib_8h.html#ac48a46d4a3cd8338857b326c0342fb1d">More...</a><br /></td></tr>
-<tr class="separator:ac48a46d4a3cd8338857b326c0342fb1d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aebac98a8537f3353aac9fbae5ed67f29"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#aebac98a8537f3353aac9fbae5ed67f29">hashlib_AESPadMessage</a> (const uint8_t *plaintext, size_t len, uint8_t *outbuf, uint8_t schm)</td></tr>
 <tr class="memdesc:aebac98a8537f3353aac9fbae5ed67f29"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pads a plaintext according to the specified AES padding scheme.  <a href="hashlib_8h.html#aebac98a8537f3353aac9fbae5ed67f29">More...</a><br /></td></tr>
 <tr class="separator:aebac98a8537f3353aac9fbae5ed67f29"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -1298,70 +1295,6 @@ If cipher mode CBC is used, <b>len</b> must be a multiple of the blocksize. You 
 <dd>
 <b>IV</b> should be the same as what is used for encryption. </dd></dl>
 <dl class="section return"><dt>Returns</dt><dd>True if the encryption succeded. False if an error occured. </dd></dl>
-
-</div>
-</div>
-<a id="ac48a46d4a3cd8338857b326c0342fb1d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac48a46d4a3cd8338857b326c0342fb1d">&#9670;&nbsp;</a></span>hashlib_AESOutputMac()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool hashlib_AESOutputMac </td>
-          <td>(</td>
-          <td class="paramtype">const uint8_t *&#160;</td>
-          <td class="paramname"><em>buf</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">size_t&#160;</td>
-          <td class="paramname"><em>len</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">uint8_t *&#160;</td>
-          <td class="paramname"><em>mac</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="hashlib_8h.html#aa188bc2768a3b7aa6ad73cb2c77819e0">aes_ctx</a> *&#160;</td>
-          <td class="paramname"><em>ks</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Returns a message authentication code for an AES message. </p>
-<p>The MAC is a tag equal in length to the AES block size computed by passing the plaintext through the CBC-MAC algorithm with a constant IV.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">plaintext</td><td>Pointer to data to generate a MAC for. </td></tr>
-    <tr><td class="paramname">len</td><td>Length of data at <b>plaintext</b> to generate a MAC for. </td></tr>
-    <tr><td class="paramname">mac</td><td>Pointer to a buffer to write the MAC to. MAC must be at least <b>AES_BLOCKSIZE</b> bytes large. </td></tr>
-    <tr><td class="paramname">ks</td><td>Pointer to a AES key schedule context. Must be different than the one used for encryption. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section note"><dt>Note</dt><dd>CBC-MAC requires padding, as it uses CBC mode. You can use the <a class="el" href="hashlib_8h.html#aebac98a8537f3353aac9fbae5ed67f29" title="Pads a plaintext according to the specified AES padding scheme.">hashlib_AESPadMessage()</a> padding function. Padding mode ISO-9791 M2 is preferred for CBC-MAC, but either can be used. </dd>
-<dd>
-To send a packet with authenticated encryption, you will need to append the MAC digest to your ciphertext returned by the above functions. For example, assuming <b>ciphertext</b> is at least as large as the size returned by <a class="el" href="hashlib_8h.html#a14743a93cbf9c7237d0ac03d842f296f">hashlib_AESAuthMacCiphertextSize()</a>: <div class="fragment"><div class="line"><a class="code" href="hashlib_8h.html#aa4f60eb708a18d498faa51a33c248f90">hashlib_AESEncrypt</a>(plaintext, len, &amp;ciphertext[AES_IV_SIZE], ks_encrypt, iv, &lt;ciphermode&gt;);</div>
-<div class="line">memcpy(ciphertext, iv, AES_IV_SIZE);</div>
-<div class="line"><a class="code" href="hashlib_8h.html#ac48a46d4a3cd8338857b326c0342fb1d">hashlib_AESOutputMac</a>(ciphertext, &lt;padded_len&gt;, &amp;ciphertext[&lt;padded_len&gt; + AES_IV_SIZE], ks_auth);</div>
-<div class="line"><span class="comment">// note the use of two different key schedules</span></div>
-<div class="ttc" id="ahashlib_8h_html_ac48a46d4a3cd8338857b326c0342fb1d"><div class="ttname"><a href="hashlib_8h.html#ac48a46d4a3cd8338857b326c0342fb1d">hashlib_AESOutputMac</a></div><div class="ttdeci">bool hashlib_AESOutputMac(const uint8_t *buf, size_t len, uint8_t *mac, const aes_ctx *ks)</div><div class="ttdoc">Returns a message authentication code for an AES message.</div></div>
-</div><!-- fragment --> </dd></dl>
-<dl class="section warning"><dt>Warning</dt><dd>Do not use the same AES key/key schedule for authentication and encryption. This exposes attack vectors. Use different key schedules. </dd>
-<dd>
-For the most secure authenticated encryption scheme, use "encrypt-then-MAC". This means that you encrypt first, then you return a MAC or hash of the ciphertext and any associated un-encrypted metadata (such as the IV). While some authentication schemes do use "MAC-then-encrypt", there are more attack vectors against that. </dd></dl>
-<dl class="section return"><dt>Returns</dt><dd>True if the MAC generation succeeded. False if an error occured. </dd></dl>
 
 </div>
 </div>
