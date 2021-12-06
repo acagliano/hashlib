@@ -338,7 +338,7 @@ typedef enum {
  * 		Otherwise you will have to join the IV and the ciphertext into a single larger buffer before sending it through
  * 		whatever networking protocol you use.
  * 		@code
- * 		hashlib_AESEncrypt(plaintext, len, &ciphertext[AES_IV_SIZE], ks, iv, <cipher_mode>);
+ * 		hashlib_AESEncrypt(plaintext, len, &ciphertext[AES_IV_SIZE], ks, iv, <cipher_mode>, <padding_mode>);
  * 		memcpy(ciphertext, iv, AES_IV_SIZE);
  * 		send_packet(ciphertext);
  * 		@endcode

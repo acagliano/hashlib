@@ -718,7 +718,7 @@ If cipher mode CBC is used, {\bfseries{len}} must be a multiple of the blocksize
 
 {\bfseries{IV}} is not written to the ciphertext buffer by this function, only the encrypted message. However, if your ciphertext buffer is large enough, you can do the following to get the IV prepended to the ciphertext. Otherwise you will have to join the IV and the ciphertext into a single larger buffer before sending it through whatever networking protocol you use. 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{\mbox{\hyperlink{hashlib_8h_aa4f60eb708a18d498faa51a33c248f90}{hashlib\_AESEncrypt}}(plaintext, len, \&ciphertext[AES\_IV\_SIZE], ks, iv, <cipher\_mode>);}
+\DoxyCodeLine{\mbox{\hyperlink{hashlib_8h_aa4f60eb708a18d498faa51a33c248f90}{hashlib\_AESEncrypt}}(plaintext, len, \&ciphertext[AES\_IV\_SIZE], ks, iv, <cipher\_mode>, <padding\_mode>);}
 \DoxyCodeLine{memcpy(ciphertext, iv, AES\_IV\_SIZE);}
 \DoxyCodeLine{send\_packet(ciphertext);}
 
