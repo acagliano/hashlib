@@ -368,7 +368,7 @@ aes_error_t hashlib_AESEncrypt(
  * @param paddingmode The padding mode to use. Choose one of the padding modes in @b enum aes_padding_schemes.
  * @note @b plaintext and @b ciphertext are aliasable.
  * @note @b IV should be the same as what is used for encryption.
- * @return True if the encryption succeded. False if an error occured.
+ * @return True if the decryption succeded. False if an error occured.
  */
 aes_error_t hashlib_AESDecrypt(
     const uint8_t* ciphertext,
