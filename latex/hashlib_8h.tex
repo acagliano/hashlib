@@ -710,11 +710,13 @@ General-\/\+Purpose AES Encryption.
 \hline
 {\em ciphermode} & The cipher mode to use. Can be either {\itshape AES\+\_\+\+MODE\+\_\+\+CBC} or {\itshape AES\+\_\+\+MODE\+\_\+\+CTR}. \\
 \hline
+{\em paddingmode} & The padding mode to use. Choose one of the padding modes in {\bfseries{enum}} aes\+\_\+padding\+\_\+schemes. \\
+\hline
 \end{DoxyParams}
 \begin{DoxyNote}{Note}
-{\bfseries{plaintext}} and {\bfseries{ciphertext}} are aliasable. 
+{\bfseries{ciphertext}} should large enough to hold the encrypted message. For CBC mode, this is the smallest multiple of the blocksize that will hold the plaintext, plus 1 block if the blocksize divides the plaintext evenly. For CTR mode, this is the same size as the plaintext. 
 
-If cipher mode CBC is used, {\bfseries{len}} must be a multiple of the blocksize. You can pass the plaintext through \mbox{\hyperlink{hashlib_8h_aebac98a8537f3353aac9fbae5ed67f29}{hashlib\+\_\+\+AESPad\+Message()}} prior to calling this function. 
+{\bfseries{plaintext}} and {\bfseries{ciphertext}} are aliasable. 
 
 {\bfseries{IV}} is not written to the ciphertext buffer by this function, only the encrypted message. However, if your ciphertext buffer is large enough, you can do the following to get the IV prepended to the ciphertext. Otherwise you will have to join the IV and the ciphertext into a single larger buffer before sending it through whatever networking protocol you use. 
 \begin{DoxyCode}{0}
@@ -752,6 +754,8 @@ General-\/\+Purpose AES Decryption.
 \hline
 {\em ciphermode} & The cipher mode to use. Can be either {\itshape AES\+\_\+\+MODE\+\_\+\+CBC} or {\itshape AES\+\_\+\+MODE\+\_\+\+CTR}. \\
 \hline
+{\em paddingmode} & The padding mode to use. Choose one of the padding modes in {\bfseries{enum}} aes\+\_\+padding\+\_\+schemes. \\
+\hline
 \end{DoxyParams}
 \begin{DoxyNote}{Note}
 {\bfseries{plaintext}} and {\bfseries{ciphertext}} are aliasable. 
@@ -784,6 +788,8 @@ Pads a plaintext according to the specified AES padding scheme.
 \end{DoxyParams}
 \begin{DoxyNote}{Note}
 {\bfseries{plaintext}} and {\bfseries{outbuf}} are aliasable. 
+
+\mbox{\hyperlink{hashlib_8h_aa4f60eb708a18d498faa51a33c248f90}{hashlib\+\_\+\+AESEncrypt()}} calls this function automatically. There is no need to do so yourself. 
 \end{DoxyNote}
 \begin{DoxyReturn}{Returns}
 The padded length of the message. 
@@ -811,6 +817,8 @@ Strips the padding from a message according to the specified AES padding scheme.
 \end{DoxyParams}
 \begin{DoxyNote}{Note}
 {\bfseries{plaintext}} and {\bfseries{outbuf}} are aliasable. 
+
+\mbox{\hyperlink{hashlib_8h_a402aa47590cf2de4ea6cb2efba1fdb35}{hashlib\+\_\+\+AESDecrypt()}} calls this function automatically. There is no need to do so yourself. 
 \end{DoxyNote}
 \begin{DoxyReturn}{Returns}
 The length of the message with padding removed. 
@@ -856,6 +864,8 @@ Applies the RSA-\/\+OAEP padding scheme as indicated in PKCS\#1 v2.\+2. This is 
 \end{DoxyParams}
 \begin{DoxyNote}{Note}
 {\bfseries{outbuf}} must be at least {\bfseries{modulus\+\_\+len}} bytes large. 
+
+\mbox{\hyperlink{hashlib_8h_a3f2772b55bb9444c6b1d63976d35c9ff}{hashlib\+\_\+\+RSAEncrypt()}} calls this function automatically. There is no need to do it yourself. 
 
 {\bfseries{auth}} both sender and receiver must know this string. Pass NULL to omit. 
 \end{DoxyNote}

@@ -1207,12 +1207,13 @@ If the SPRNG is run, anything you have stored here will be destroyed. </dd></dl>
     <tr><td class="paramname">ks</td><td>Pointer to an AES key schedule context. </td></tr>
     <tr><td class="paramname">iv</td><td>Pointer to an initialization vector (a nonce of length equal to the block size). </td></tr>
     <tr><td class="paramname">ciphermode</td><td>The cipher mode to use. Can be either <em>AES_MODE_CBC</em> or <em>AES_MODE_CTR</em>. </td></tr>
+    <tr><td class="paramname">paddingmode</td><td>The padding mode to use. Choose one of the padding modes in <b>enum</b> aes_padding_schemes. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section note"><dt>Note</dt><dd><b>plaintext</b> and <b>ciphertext</b> are aliasable. </dd>
+<dl class="section note"><dt>Note</dt><dd><b>ciphertext</b> should large enough to hold the encrypted message. For CBC mode, this is the smallest multiple of the blocksize that will hold the plaintext, plus 1 block if the blocksize divides the plaintext evenly. For CTR mode, this is the same size as the plaintext. </dd>
 <dd>
-If cipher mode CBC is used, <b>len</b> must be a multiple of the blocksize. You can pass the plaintext through <a class="el" href="hashlib_8h.html#aebac98a8537f3353aac9fbae5ed67f29" title="Pads a plaintext according to the specified AES padding scheme.">hashlib_AESPadMessage()</a> prior to calling this function. </dd>
+<b>plaintext</b> and <b>ciphertext</b> are aliasable. </dd>
 <dd>
 <b>IV</b> is not written to the ciphertext buffer by this function, only the encrypted message. However, if your ciphertext buffer is large enough, you can do the following to get the IV prepended to the ciphertext. Otherwise you will have to join the IV and the ciphertext into a single larger buffer before sending it through whatever networking protocol you use. <div class="fragment"><div class="line"><a class="code" href="hashlib_8h.html#aa4f60eb708a18d498faa51a33c248f90">hashlib_AESEncrypt</a>(plaintext, len, &amp;ciphertext[AES_IV_SIZE], ks, iv, &lt;cipher_mode&gt;, &lt;padding_mode&gt;);</div>
 <div class="line">memcpy(ciphertext, iv, AES_IV_SIZE);</div>
@@ -1288,6 +1289,7 @@ If cipher mode CBC is used, <b>len</b> must be a multiple of the blocksize. You 
     <tr><td class="paramname">ks</td><td>Pointer to an AES key schedule context. </td></tr>
     <tr><td class="paramname">iv</td><td>Pointer to an initialization vector (a nonce of length equal to the block size). </td></tr>
     <tr><td class="paramname">ciphermode</td><td>The cipher mode to use. Can be either <em>AES_MODE_CBC</em> or <em>AES_MODE_CTR</em>. </td></tr>
+    <tr><td class="paramname">paddingmode</td><td>The padding mode to use. Choose one of the padding modes in <b>enum</b> aes_padding_schemes. </td></tr>
   </table>
   </dd>
 </dl>
@@ -1346,7 +1348,9 @@ If cipher mode CBC is used, <b>len</b> must be a multiple of the blocksize. You 
   </table>
   </dd>
 </dl>
-<dl class="section note"><dt>Note</dt><dd><b>plaintext</b> and <b>outbuf</b> are aliasable. </dd></dl>
+<dl class="section note"><dt>Note</dt><dd><b>plaintext</b> and <b>outbuf</b> are aliasable. </dd>
+<dd>
+<a class="el" href="hashlib_8h.html#aa4f60eb708a18d498faa51a33c248f90" title="General-Purpose AES Encryption.">hashlib_AESEncrypt()</a> calls this function automatically. There is no need to do so yourself. </dd></dl>
 <dl class="section return"><dt>Returns</dt><dd>The padded length of the message. </dd></dl>
 
 </div>
@@ -1399,7 +1403,9 @@ If cipher mode CBC is used, <b>len</b> must be a multiple of the blocksize. You 
   </table>
   </dd>
 </dl>
-<dl class="section note"><dt>Note</dt><dd><b>plaintext</b> and <b>outbuf</b> are aliasable. </dd></dl>
+<dl class="section note"><dt>Note</dt><dd><b>plaintext</b> and <b>outbuf</b> are aliasable. </dd>
+<dd>
+<a class="el" href="hashlib_8h.html#a402aa47590cf2de4ea6cb2efba1fdb35" title="General-Purpose AES Decryption.">hashlib_AESDecrypt()</a> calls this function automatically. There is no need to do so yourself. </dd></dl>
 <dl class="section return"><dt>Returns</dt><dd>The length of the message with padding removed. </dd></dl>
 
 </div>
@@ -1470,6 +1476,8 @@ If cipher mode CBC is used, <b>len</b> must be a multiple of the blocksize. You 
   </dd>
 </dl>
 <dl class="section note"><dt>Note</dt><dd><b>outbuf</b> must be at least <b>modulus_len</b> bytes large. </dd>
+<dd>
+<a class="el" href="hashlib_8h.html#a3f2772b55bb9444c6b1d63976d35c9ff" title="RSA Encryption.">hashlib_RSAEncrypt()</a> calls this function automatically. There is no need to do it yourself. </dd>
 <dd>
 <b>auth</b> both sender and receiver must know this string. Pass NULL to omit. </dd></dl>
 <dl class="section return"><dt>Returns</dt><dd>The padded length of the plaintext. </dd></dl>

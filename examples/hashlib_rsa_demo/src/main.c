@@ -37,10 +37,7 @@ int main(void)
     hashlib_RandomBytes(pubkey, MODSIZE);
 	sprintf(CEMU_CONSOLE, "\n\n----------------------------------\nHashlib RSA Demo\n");
 	hexdump(str, strlen(str), "---Original String---");
-	if(hashlib_RSAEncodeOAEP(str, strlen(str), padded, MODSIZE, NULL))
-		hexdump(padded, MODSIZE, "---OAEP Encoded---");
-	else sprintf(CEMU_CONSOLE, "encode error");
-	if(hashlib_RSAEncrypt(padded, MODSIZE, pubkey, MODSIZE))
+	if(hashlib_RSAEncrypt(str, strlen(str), padded, pubkey, MODSIZE))
         hexdump(padded, MODSIZE, "---RSA Encrypted---");
     else sprintf(CEMU_CONSOLE, "encryption error");
 }

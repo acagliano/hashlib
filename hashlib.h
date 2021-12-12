@@ -330,9 +330,12 @@ typedef enum {
  * @param ks Pointer to an AES key schedule context.
  * @param iv Pointer to an initialization vector (a nonce of length equal to the block size).
  * @param ciphermode The cipher mode to use. Can be either @e AES_MODE_CBC or @e AES_MODE_CTR.
+ * @param paddingmode The padding mode to use. Choose one of the padding modes in @b enum aes_padding_schemes.
+ * @note @b ciphertext should large enough to hold the encrypted message.
+ *          For CBC mode, this is the smallest multiple of the blocksize that will hold the plaintext,
+ *              plus 1 block if the blocksize divides the plaintext evenly.
+ *          For CTR mode, this is the same size as the plaintext.
  * @note @b plaintext and @b ciphertext are aliasable.
- * @note If cipher mode CBC is used, @b len must be a multiple of the blocksize.
- * 		You can pass the plaintext through hashlib_AESPadMessage() prior to calling this function.
  * @note @b IV is not written to the ciphertext buffer by this function, only the encrypted message. However, if
  * 		your ciphertext buffer is large enough, you can do the following to get the IV prepended to the ciphertext.
  * 		Otherwise you will have to join the IV and the ciphertext into a single larger buffer before sending it through
@@ -361,6 +364,7 @@ aes_error_t hashlib_AESEncrypt(const uint8_t* plaintext,
  * @param ks Pointer to an AES key schedule context.
  * @param iv Pointer to an initialization vector (a nonce of length equal to the block size).
  * @param ciphermode The cipher mode to use. Can be either  @e AES_MODE_CBC or  @e AES_MODE_CTR.
+ * @param paddingmode The padding mode to use. Choose one of the padding modes in @b enum aes_padding_schemes.
  * @note @b plaintext and @b ciphertext are aliasable.
  * @note @b IV should be the same as what is used for encryption.
  * @return True if the encryption succeded. False if an error occured.
@@ -380,6 +384,8 @@ aes_error_t hashlib_AESDecrypt(const uint8_t* ciphertext,
  * @param outbuf Pointer to buffer to write padded data.
  * @param schm The AES padding scheme to use.
  * @note @b plaintext and @b outbuf are aliasable.
+ * @note hashlib_AESEncrypt() calls this function automatically.
+ *      There is no need to do so yourself.
  * @return The padded length of the message.
  ******************************************************************************************/
 size_t hashlib_AESPadMessage(const uint8_t* plaintext,
@@ -394,6 +400,8 @@ size_t hashlib_AESPadMessage(const uint8_t* plaintext,
  * @param outbuf Pointer to buffer to write stripped data.
  * @param schm The AES padding scheme to use.
  * @note @b plaintext and @b outbuf are aliasable.
+ * @note hashlib_AESDecrypt() calls this function automatically.
+ *      There is no need to do so yourself.
  * @return The length of the message with padding removed.
  ****************************************************************************************************************/
 size_t hashlib_AESStripPadding(const uint8_t* plaintext,
@@ -435,6 +443,7 @@ enum ssl_sig_modes {
  * @param modulus_len The byte length of the modulus to pad for.
  * @param auth Pointer to an authentication string (similar to a password) to include in the encoding.
  * @note @b outbuf must be at least @b modulus_len bytes large.
+ * @note hashlib_RSAEncrypt() calls this function automatically. There is no need to do it yourself.
  * @note @b auth both sender and receiver must know this string. Pass NULL to omit.
  * @return The padded length of the plaintext.
  ***********************************************************************************************************************/
