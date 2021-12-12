@@ -348,13 +348,14 @@ typedef enum {
  * 		This will require a buffer at least as large as the size returned by hashlib_AESCiphertextIVSize().
  * @return True if the encryption succeded. False if an error occured.
  */
-aes_error_t hashlib_AESEncrypt(const uint8_t* plaintext,
-						size_t len,
-						uint8_t* ciphertext,
-						const aes_ctx* ks,
-						const uint8_t* iv,
-						uint8_t ciphermode,
-                        uint8_t paddingmode);
+aes_error_t hashlib_AESEncrypt(
+    const uint8_t* plaintext,
+    size_t len,
+    uint8_t* ciphertext,
+    const aes_ctx* ks,
+    const uint8_t* iv,
+    uint8_t ciphermode,
+    uint8_t paddingmode);
 
 /**
  * @brief General-Purpose AES Decryption
@@ -369,13 +370,14 @@ aes_error_t hashlib_AESEncrypt(const uint8_t* plaintext,
  * @note @b IV should be the same as what is used for encryption.
  * @return True if the encryption succeded. False if an error occured.
  */
-aes_error_t hashlib_AESDecrypt(const uint8_t* ciphertext,
-						size_t len,
-						uint8_t* plaintext,
-						const aes_ctx* ks,
-						const uint8_t* iv,
-						uint8_t ciphermode,
-                        uint8_t paddingmode);
+aes_error_t hashlib_AESDecrypt(
+    const uint8_t* ciphertext,
+    size_t len,
+    uint8_t* plaintext,
+    const aes_ctx* ks,
+    const uint8_t* iv,
+    uint8_t ciphermode,
+    uint8_t paddingmode);
     
 /*****************************************************************************************
  * @brief Pads a plaintext according to the specified AES padding scheme.
@@ -388,10 +390,11 @@ aes_error_t hashlib_AESDecrypt(const uint8_t* ciphertext,
  *      There is no need to do so yourself.
  * @return The padded length of the message.
  ******************************************************************************************/
-size_t hashlib_AESPadMessage(const uint8_t* plaintext,
-							 size_t len,
-							 uint8_t* outbuf,
-							 uint8_t schm);
+size_t hashlib_AESPadMessage(
+    const uint8_t* plaintext,
+    size_t len,
+    uint8_t* outbuf,
+    uint8_t schm);
 
 /***************************************************************************************************************
  * @brief Strips the padding from a message according to the specified AES padding scheme.
@@ -404,10 +407,11 @@ size_t hashlib_AESPadMessage(const uint8_t* plaintext,
  *      There is no need to do so yourself.
  * @return The length of the message with padding removed.
  ****************************************************************************************************************/
-size_t hashlib_AESStripPadding(const uint8_t* plaintext,
-							   size_t len,
-							   uint8_t* outbuf,
-							   uint8_t schm);
+size_t hashlib_AESStripPadding(
+    const uint8_t* plaintext,
+    size_t len,
+    uint8_t* outbuf,
+    uint8_t schm);
 
 // RSA Public Key Encryption
 /*************************************************************************************************
