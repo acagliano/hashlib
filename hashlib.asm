@@ -87,6 +87,39 @@ u64_addi:
 	inc hl
 	djnz .loop
 	ret
+ 
+ 
+?stackBot		:= 0D1987Eh
+; use to erase the stack to prevent buffer leak side-channel attack
+stack_clear:
+    
+    ; save a, hl, e
+    ld (.smc_a), a
+    ld (.smc_hl), hl
+    ld a, e
+    ld (.smc_e), a
+    
+    ; set from stackBot + 4 to ix - 1 to 0
+    lea de, ix - 2
+    ld hl, -(stackBot + 3)
+    add hl, de
+    push hl
+    pop bc
+    lea hl, ix - 1
+    ld (hl), 0
+    lddr
+    
+    ; restore a, hl, e
+    ld e, 0
+.smc_e:=$-1
+    ld a, 0
+.smc_a:=$-1
+    ld hl, 0
+.smc_hl:=$-3
+    ld sp, ix
+    pop ix
+    ret
+ 
 ;------------------------------------------
     
 
@@ -4384,9 +4417,7 @@ hashlib_AESEncrypt:
 .lbl_21:
 	push	bc
 	pop	hl
-	ld	sp, ix
-	pop	ix
-	ret
+	jp stack_clear
 .lbl_6:
 	ld	l, (ix + 21)
 	ld	a, l
@@ -4802,9 +4833,7 @@ hashlib_AESDecrypt:
 	ld	de, 0
 .lbl_9:
 	ex	de, hl
-	ld	sp, ix
-	pop	ix
-	ret
+	jp stack_clear
 	
 	
  hashlib_AESPadMessage:
@@ -5200,9 +5229,7 @@ hashlib_RSAEncodeOAEP:
 	ex	de, hl
 .lbl_13:
 	ex	de, hl
-	ld	sp, ix
-	pop	ix
-	ret
+	jp stack_clear
 	
  
 hashlib_AESStripPadding:
@@ -5632,9 +5659,7 @@ hashlib_RSADecodeOAEP:
 	pop	hl
 .lbl_28:
 	lea	hl, iy + 0
-	ld	sp, ix
-	pop	ix
-	ret
+	jp stack_clear
     
 hashlib_RSAEncodePSS:
 	ld	hl, -681
@@ -5926,9 +5951,7 @@ hashlib_RSAEncodePSS:
 	ld	de, (ix + 15)
 .lbl_16:
 	ex	de, hl
-	ld	sp, ix
-	pop	ix
-	ret
+	jp stack_clear
 
  hashlib_CompareDigest:
     pop	iy, de, hl, bc
@@ -6201,9 +6224,7 @@ hashlib_MGF1Hash:
 	ld	bc, (ix + -3)
 	jq	.lbl1
 .lbl2:
-	ld	sp, ix
-	pop	ix
-	ret
+	jp stack_clear
 	
 hashlib_ReverseEndianness:
 	ld	hl, -6
@@ -6397,9 +6418,7 @@ hashlib_RSAEncrypt:
 	ld	de, 0
 .lbl_12:
 	ex	de, hl
-	ld	sp, ix
-	pop	ix
-	ret
+	jp stack_clear
  
  hashlib_RSAVerifyPSS:
 	ld	hl, -529
@@ -6554,9 +6573,7 @@ hashlib_RSAEncrypt:
 	ld	hl, (hl)
 	push	hl
 	call	hashlib_CompareDigest
-	ld	sp, ix
-	pop	ix
-	ret
+	jp stack_clear
 	
 hashlib_SSLVerifySignature:
 	ld	hl, -670
@@ -6719,9 +6736,7 @@ hashlib_SSLVerifySignature:
 .lbl_8:
 .lbl_5:
 	ld	a, e
-	ld	sp, ix
-	pop	ix
-	ret
+	jp stack_clear
  
 ;void powmod(uint8_t size, uint8_t *restrict base, uint24_t exp, const uint8_t *restrict mod);
 _powmod:
