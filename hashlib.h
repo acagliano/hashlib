@@ -321,7 +321,6 @@ typedef enum {
     AES_INVALID_CIPHERTEXT              /**< AES operation failed, ciphertext size error */
 } aes_error_t;
 
-
 /**
  * @brief General-Purpose AES Encryption
  * @param plaintext Pointer to data to encrypt.
@@ -379,6 +378,118 @@ aes_error_t hashlib_AESDecrypt(
     uint8_t ciphermode,
     uint8_t paddingmode);
     
+
+// RSA Public Key Encryption
+/*************************************************************************************************
+ * @enum ssl_sig_modes
+ * SSL signature algorithms
+****************************************************************************************************/
+enum ssl_sig_modes {
+	SSLSIG_RSA_SHA256,		/**< RSA with SHA-256 signature algorithm */
+	SSLSIG_ECDSA			/**< ECDSA (unimplemented, likely a long way off) */
+};
+
+/***************************************************
+ * @enum rsa_error_t
+ * RSA Encryption Error Codes
+ ***************************************************/
+typedef enum {
+    RSA_OK,                         /**< RSA encryption completed successfully */
+    RSA_INVALID_ARG,                /**< RSA encryption failed, bad argument */
+    RSA_INVALID_MSG,                /**< RSA encryption failed, bad msg or msg too long */
+    RSA_INVALID_MODULUS,            /**< RSA encryption failed, modulus invalid */
+    RSA_ENCODING_ERROR              /**< RSA encryption failed, OAEP encoding error */
+} rsa_error_t;
+ 
+/***************************************************************************************************
+ * @brief RSA Encryption
+ *
+ * Performs an in-place RSA encryption of a message
+ * over a public modulus \b pubkey and a public exponent, 65537
+ * OAEP encoding of the input message is performed automatically.
+ *
+ * @param msg Pointer to a message to encrypt using RSA.
+ * @param msglen The length of the message @b msg.
+ * @param ciphertext Pointer a buffer to write the ciphertext to.
+ * @param pubkey Pointer to a public key to use for encryption.
+ * @param keylen The length of the public key (modulus) to encrypt with.
+ * @note The size of @b ciphertext and @b keylen must be equal.
+ * @note The @b msg will be encoded using OAEP before encryption.
+ * @note msg and pubkey are both treated as byte arrays.
+ * @return True if encryption succeeded. False if failed.
+ **************************************************************************************************/
+rsa_error_t hashlib_RSAEncrypt(
+    const uint8_t* msg,
+    size_t msglen,
+    uint8_t* ciphertext,
+    const uint8_t* pubkey,
+    size_t keylen);
+ 
+/**********************************************************************************************
+ * @brief SSL Certificate Signature Verification
+ *
+ * Verifies the signature of a given SSL certificate using SSLSIG_RSA_SHA256
+ *
+ * @param ca_pubkey Pointer to buffer containing the public key of the certificate's certifying authority.
+ * @param keysize Length of the public key at @b ca_pubkey.
+ * @param cert Pointer to buffer containing the certificate to verify.
+ * @param certlen The size of the certificate at @b cert.
+ * @param sig_alg The algorithm to use for SSL verification (presently only RSA with SHA-256 supported).
+ * @returns True if the SSL certificate signature is valid. False is invalid or user error.
+ * *******************************************************************************************/
+bool hashlib_SSLVerifySignature(
+    const uint8_t *ca_pubkey,
+    size_t keysize,
+    const uint8_t *cert,
+    size_t certlen,
+    uint8_t sig_alg);
+
+// Miscellaneous Functions
+/**************************************************************************************************************
+ * @brief Secure erase context.
+ * @param ctx Pointer to any context or buffer you want to erase.
+ * @param len Number of bytes at @b ctx to erase.
+ * @note It is advised to call this on every cryptographic context and encryption buffer used.
+ **************************************************************************************************************/
+void hashlib_EraseContext(void *ctx, size_t len);
+
+/*************************************************************************************************
+ * @def hashlib_MallocContext()
+ *
+ * Dynamically allocates a block of memory to be used for a context or buffer.
+ *
+ * @param size Size of the buffer to malloc.
+ * @return Same as @b malloc.
+ *************************************************************************************************/
+#define hashlib_MallocContext(size)		malloc((size))
+
+/*************************************************************************************************************
+ * @brief Secure buffer comparison
+ *
+ * Evaluates the equality of two buffers using a method that offers resistance to timing attacks.
+ *
+ * @param digest1 The first buffer to compare.
+ * @param digest2 The second buffer to compare.
+ * @param len The number of bytes to compare.
+ * @return True if the buffers were equal. False if not equal.
+ **************************************************************************************************************/
+hashlib_CompareDigest(const uint8_t* digest1, const uint8_t* digest2, size_t len);
+
+/*************************************************************************************************************
+ * @brief Reverses the endianness of a buffer
+ *
+ * @param in Pointer to buffer containing data to reverse.
+ * @param out Pointer to buffer to write the reversed data.
+ * @param len The number of bytes to reverse.
+ * @note @b in and @b out are not aliasable.
+ **************************************************************************************************************/
+bool hashlib_ReverseEndianness(const uint8_t* in, uint8_t* out, size_t len);
+
+
+/*********************************************************
+ * ##### MISCELLANEOUS FUNCTIONS #####
+ *********************************************************/
+
 /*****************************************************************************************
  * @brief Pads a plaintext according to the specified AES padding scheme.
  * @param plaintext Pointer to buffer containing the data to pad.
@@ -412,16 +523,6 @@ size_t hashlib_AESStripPadding(
     size_t len,
     uint8_t* outbuf,
     uint8_t schm);
-
-// RSA Public Key Encryption
-/*************************************************************************************************
- * @enum ssl_sig_modes
- * SSL signature algorithms
-****************************************************************************************************/
-enum ssl_sig_modes {
-	SSLSIG_RSA_SHA256,		/**< RSA with SHA-256 signature algorithm */
-	SSLSIG_ECDSA			/**< ECDSA (unimplemented, likely a long way off) */
-};
 
 /************************************************************************************************************************
  * @brief RSA-OAEP padding scheme
@@ -532,102 +633,19 @@ size_t hashlib_RSAEncodePSS(
     const uint8_t *expected,
     size_t modulus_len);
     
-
-/***************************************************
- * @enum rsa_error_t
- * RSA Encryption Error Codes
- ***************************************************/
-typedef enum {
-    RSA_OK,                         /**< RSA encryption completed successfully */
-    RSA_INVALID_ARG,                /**< RSA encryption failed, bad argument */
-    RSA_INVALID_MSG,                /**< RSA encryption failed, bad msg or msg too long */
-    RSA_INVALID_MODULUS,            /**< RSA encryption failed, modulus invalid */
-    RSA_ENCODING_ERROR              /**< RSA encryption failed, OAEP encoding error */
-} rsa_error_t;
- 
-/***************************************************************************************************
- * @brief RSA Encryption
+    
+/**********************************************************************************************************************************
+ * @brief Authenticated Encryption Scheme Guidelines
  *
- * Performs an in-place RSA encryption of a message
- * over a public modulus \b pubkey and a public exponent, 65537
- * OAEP encoding of the input message is performed automatically.
+ * Authenticated encryption is the process of attaching a means of detecting data tampering to an encryption
+ * algorithm to ensure integrity as well as confidentiality. Authentication usually involves a hash appended to the
+ * ciphertext. There is no provided function for it because implementations may differ by here are some guidelines.
  *
- * @param msg Pointer to a message to encrypt using RSA.
- * @param msglen The length of the message @b msg.
- * @param ciphertext Pointer a buffer to write the ciphertext to.
- * @param pubkey Pointer to a public key to use for encryption.
- * @param keylen The length of the public key (modulus) to encrypt with.
- * @note The size of @b ciphertext and @b keylen must be equal.
- * @note The @b msg will be encoded using OAEP before encryption.
- * @note msg and pubkey are both treated as byte arrays.
- * @return True if encryption succeeded. False if failed.
- **************************************************************************************************/
-rsa_error_t hashlib_RSAEncrypt(
-    const uint8_t* msg,
-    size_t msglen,
-    uint8_t* ciphertext,
-    const uint8_t* pubkey,
-    size_t keylen);
- 
-/**********************************************************************************************
- * @brief SSL Certificate Signature Verification
- *
- * Verifies the signature of a given SSL certificate using SSLSIG_RSA_SHA256
- *
- * @param ca_pubkey Pointer to buffer containing the public key of the certificate's certifying authority.
- * @param keysize Length of the public key at @b ca_pubkey.
- * @param cert Pointer to buffer containing the certificate to verify.
- * @param certlen The size of the certificate at @b cert.
- * @param sig_alg The algorithm to use for SSL verification (presently only RSA with SHA-256 supported).
- * @returns True if the SSL certificate signature is valid. False is invalid or user error.
- * *******************************************************************************************/
-bool hashlib_SSLVerifySignature(
-    const uint8_t *ca_pubkey,
-    size_t keysize,
-    const uint8_t *cert,
-    size_t certlen,
-    uint8_t sig_alg);
-
-// Miscellaneous Functions
-/**************************************************************************************************************
- * @brief Secure erase context.
- * @param ctx Pointer to any context or buffer you want to erase.
- * @param len Number of bytes at @b ctx to erase.
- * @note It is advised to call this on every cryptographic context and encryption buffer used.
- **************************************************************************************************************/
-void hashlib_EraseContext(void *ctx, size_t len);
-
-/*************************************************************************************************
- * @def hashlib_MallocContext()
- *
- * Dynamically allocates a block of memory to be used for a context or buffer.
- *
- * @param size Size of the buffer to malloc.
- * @return Same as @b malloc.
- *************************************************************************************************/
-#define hashlib_MallocContext(size)		malloc((size))
-
-/*************************************************************************************************************
- * @brief Secure buffer comparison
- *
- * Evaluates the equality of two buffers using a method that offers resistance to timing attacks.
- *
- * @param digest1 The first buffer to compare.
- * @param digest2 The second buffer to compare.
- * @param len The number of bytes to compare.
- * @return True if the buffers were equal. False if not equal.
- **************************************************************************************************************/
-hashlib_CompareDigest(const uint8_t* digest1, const uint8_t* digest2, size_t len);
-
-/*************************************************************************************************************
- * @brief Reverses the endianness of a buffer
- *
- * @param in Pointer to buffer containing data to reverse.
- * @param out Pointer to buffer to write the reversed data.
- * @param len The number of bytes to reverse.
- * @note @b in and @b out are not aliasable.
- **************************************************************************************************************/
-bool hashlib_ReverseEndianness(const uint8_t* in, uint8_t* out, size_t len);
-
+ * @note Hash the data you will be transmitting @b AFTER encryption, not before.
+ * @note Hash both encrypted and unencrypted parts of your packet.
+ * @note Append the hash to the ciphertext before transmitting.
+ * @note The same guidelines apply to both AES and RSA.
+ * @warning When decrypting, <b>validate the hash first</b>. If the hash is invalid, do not decrypt the message.
+ ***********************************************************************************************************************************/
 
 #endif
