@@ -192,12 +192,6 @@ enum aes_padding_schemes {
  *****************************************************************/
 #define AES_IVSIZE		AES_BLOCKSIZE
 
-/************************************************************
- * @def AES_MACSIZE
- * Defines the length of the AES CBC-MAC digest.
- ************************************************************/
-#define AES_MACSIZE		AES_BLOCKSIZE
-
 /******************************************************
  * @def AES128_KEYLEN
  * Defines the byte-length of a 128-bit AES key
@@ -235,28 +229,6 @@ enum aes_padding_schemes {
  * @param len The length of the plaintext.
  ************************************************************************************************************************/
  #define hashlib_AESCiphertextIVSize(len)	(hashlib_AESCiphertextSize((len)) + AES_IVSIZE)
- 
- /******************************************************************************************************
-  * @def hashlib_AESAuthMacCiphertextSize()
-  *
-  * Defines a macro to return the size of an AES ciphertext with CBC-MAC authentication.
-  * This includes two extra blocks- one for the IV and another for the MAC digest.
-  *
-  * @param len The length of the plaintext.
-  ******************************************************************************************************/
-  #define hashlib_AESAuthMacCiphertextSize(len) \
-	(hashlib_AESCiphertextIVSize((len)) + AES_MACSIZE)
-	
-/******************************************************************************************************
- * @def hashlib_AESAuthSha256CiphertextSize()
- *
- * Defines a macro to return the size of an AES ciphertext with SHA-256 authentication.
- * This includes one extra block for the IV and an additional 32 bytes for the SHA-256 digest.
- *
- * @param len The length of the plaintext.
-  ******************************************************************************************************/
-  #define hashlib_AESAuthSha256CiphertextSize(len) \
-	(hashlib_AESCiphertextIVSize((len)) + SHA256_DIGEST_LEN)
 
 /***************************************************************************************
  * @def hashlib_AESKeygen()
