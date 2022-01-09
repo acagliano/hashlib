@@ -639,7 +639,7 @@ size_t hashlib_RSAEncodePSS(
  *
  * Authenticated encryption is the process of attaching a means of detecting data tampering to an encryption
  * algorithm to ensure integrity as well as confidentiality. Authentication usually involves a hash appended to the
- * ciphertext. There is no provided function for it because implementations may differ by here are some guidelines.
+ * ciphertext. There is no provided function for it because implementations may differ but here are some guidelines.
  *
  * @note Hash the data you will be transmitting @b AFTER encryption, not before.
  * @note Hash both encrypted and unencrypted parts of your packet.
