@@ -533,7 +533,7 @@ If the SPRNG is run, anything you have stored here will be destroyed. </dd></dl>
 </div><div class="memdoc">
 
 <p>Authenticated Encryption Scheme Guidelines. </p>
-<p>Authenticated encryption is the process of attaching a means of detecting data tampering to an encryption algorithm to ensure integrity as well as confidentiality. Authentication usually involves a hash or signature appended to the ciphertext. There is no provided function for it in this library because implementations may differ but here are some guidelines.</p>
+<p>Authenticated encryption is the process of attaching a means of detecting data tampering to an encryption algorithm to ensure integrity as well as confidentiality. Authentication usually involves a hash or signature appended to the ciphertext. There is no provided authenticated encryption implementation in this library because it is dependent on the protocol used, but you can use the included SHA-256 implementation as a means of validation.</p>
 <dl class="section note"><dt>Note</dt><dd>Hash the data you will be transmitting <b>AFTER</b> encryption, not before. </dd>
 <dd>
 Hash both encrypted and unencrypted parts of your packet. </dd>

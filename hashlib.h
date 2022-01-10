@@ -611,8 +611,9 @@ size_t hashlib_RSAEncodePSS(
  *
  * Authenticated encryption is the process of attaching a means of detecting data tampering to an encryption
  * algorithm to ensure integrity as well as confidentiality. Authentication usually involves a hash or signature
- * appended to the ciphertext. There is no provided function for it in this library because implementations
- * may differ but here are some guidelines.
+ * appended to the ciphertext. There is no provided authenticated encryption implementation in this library because
+ * it is dependent on the protocol used, but you can use the included SHA-256 implementation as a means of
+ * validation.
  *
  * @note Hash the data you will be transmitting @b AFTER encryption, not before.
  * @note Hash both encrypted and unencrypted parts of your packet.
