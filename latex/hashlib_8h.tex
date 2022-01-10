@@ -641,7 +641,9 @@ AES Single-\/\+Block Encryption (ECB mode)
 {\bfseries{block\+\_\+in}} and {\bfseries{block\+\_\+out}} are aliasable. 
 \end{DoxyNote}
 \begin{DoxyWarning}{Warning}
-ECB-\/mode ciphers are insecure (see many-\/time pad vulnerability). These functions are exposed in case a user wants to construct a cipher mode other than CBC or CTR. Unless you know what you are doing, use \mbox{\hyperlink{hashlib_8h_aa4f60eb708a18d498faa51a33c248f90}{hashlib\+\_\+\+AESEncrypt()}} instead. 
+ECB-\/mode ciphers are insecure (see many-\/time pad vulnerability). Unless you know what you are doing, use \mbox{\hyperlink{hashlib_8h_aa4f60eb708a18d498faa51a33c248f90}{hashlib\+\_\+\+AESEncrypt()}} instead. 
+
+The ECB mode single-\/block encryptors lack the buffer leak protections that \mbox{\hyperlink{hashlib_8h_aa4f60eb708a18d498faa51a33c248f90}{hashlib\+\_\+\+AESEncrypt()}} has. If you are writing your own cipher mode, you will need to implement that yourself. 
 \end{DoxyWarning}
 \begin{DoxyReturn}{Returns}
 True if encryption succeeded. False if failed. 
@@ -669,7 +671,9 @@ AES Single-\/\+Block Decryption (ECB Mode)
 {\bfseries{block\+\_\+in}} and {\bfseries{block\+\_\+out}} are aliasable. 
 \end{DoxyNote}
 \begin{DoxyWarning}{Warning}
-ECB-\/mode ciphers are insecure (see many-\/time pad vulnerability). These functions are exposed in case a user wants to construct a cipher mode other than CBC or CTR. Unless you know what you are doing, use \mbox{\hyperlink{hashlib_8h_a402aa47590cf2de4ea6cb2efba1fdb35}{hashlib\+\_\+\+AESDecrypt()}} instead. 
+ECB-\/mode ciphers are insecure (see many-\/time pad vulnerability). Unless you know what you are doing, use \mbox{\hyperlink{hashlib_8h_a402aa47590cf2de4ea6cb2efba1fdb35}{hashlib\+\_\+\+AESDecrypt()}} instead. 
+
+The ECB mode single-\/block encryptors lack the buffer leak protections that \mbox{\hyperlink{hashlib_8h_a402aa47590cf2de4ea6cb2efba1fdb35}{hashlib\+\_\+\+AESDecrypt()}} has. If you are writing your own cipher mode, you will need to implement that yourself. 
 \end{DoxyWarning}
 \begin{DoxyReturn}{Returns}
 True if encryption succeeded. False if an error occured. 

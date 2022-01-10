@@ -255,8 +255,9 @@ bool hashlib_AESLoadKey(const uint8_t* key, const aes_ctx* ks, size_t keylen);
  * @param ks Pointer to an AES key schedule context.
  * @note @b block_in and @b block_out are aliasable.
  * @warning ECB-mode ciphers are insecure (see many-time pad vulnerability).
- * 		These functions are exposed in case a user wants to construct a cipher mode other than CBC or CTR.
- * 		Unless you know what you are doing, use hashlib_AESEncrypt() instead.
+ *          Unless you know what you are doing, use hashlib_AESEncrypt() instead.
+ * @warning The ECB mode single-block encryptors lack the buffer leak protections that hashlib_AESEncrypt()
+ *          has. If you are writing your own cipher mode, you will need to implement that yourself.
  * @return True if encryption succeeded. False if failed.
  **********************************************************************************************************************************/
 bool hashlib_AESEncryptBlock(const uint8_t* block_in,
@@ -269,9 +270,10 @@ bool hashlib_AESEncryptBlock(const uint8_t* block_in,
  *	@param block_out Pointer to buffer to write decrypted block.
  *	@param ks Pointer to an AES key schedule context.
  *	@note @b block_in and @b block_out are aliasable.
- *	@warning ECB-mode ciphers are insecure (see many-time pad vulnerability).
- *		These functions are exposed in case a user wants to construct a cipher mode other than CBC or CTR.
- *		Unless you know what you are doing, use hashlib_AESDecrypt() instead.
+ * @warning ECB-mode ciphers are insecure (see many-time pad vulnerability).
+ *          Unless you know what you are doing, use hashlib_AESDecrypt() instead.
+ * @warning The ECB mode single-block encryptors lack the buffer leak protections that hashlib_AESDecrypt()
+ *          has. If you are writing your own cipher mode, you will need to implement that yourself.
  *	@return True if encryption succeeded. False if an error occured.
  **********************************************************************************************************************************/
 bool hashlib_AESDecryptBlock(const uint8_t* block_in,

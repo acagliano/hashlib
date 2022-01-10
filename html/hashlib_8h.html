@@ -1047,7 +1047,9 @@ The same guidelines apply to both AES and RSA. </dd></dl>
   </dd>
 </dl>
 <dl class="section note"><dt>Note</dt><dd><b>block_in</b> and <b>block_out</b> are aliasable. </dd></dl>
-<dl class="section warning"><dt>Warning</dt><dd>ECB-mode ciphers are insecure (see many-time pad vulnerability). These functions are exposed in case a user wants to construct a cipher mode other than CBC or CTR. Unless you know what you are doing, use <a class="el" href="hashlib_8h.html#aa4f60eb708a18d498faa51a33c248f90" title="General-Purpose AES Encryption.">hashlib_AESEncrypt()</a> instead. </dd></dl>
+<dl class="section warning"><dt>Warning</dt><dd>ECB-mode ciphers are insecure (see many-time pad vulnerability). Unless you know what you are doing, use <a class="el" href="hashlib_8h.html#aa4f60eb708a18d498faa51a33c248f90" title="General-Purpose AES Encryption.">hashlib_AESEncrypt()</a> instead. </dd>
+<dd>
+The ECB mode single-block encryptors lack the buffer leak protections that <a class="el" href="hashlib_8h.html#aa4f60eb708a18d498faa51a33c248f90" title="General-Purpose AES Encryption.">hashlib_AESEncrypt()</a> has. If you are writing your own cipher mode, you will need to implement that yourself. </dd></dl>
 <dl class="section return"><dt>Returns</dt><dd>True if encryption succeeded. False if failed. </dd></dl>
 
 </div>
@@ -1094,7 +1096,9 @@ The same guidelines apply to both AES and RSA. </dd></dl>
   </dd>
 </dl>
 <dl class="section note"><dt>Note</dt><dd><b>block_in</b> and <b>block_out</b> are aliasable. </dd></dl>
-<dl class="section warning"><dt>Warning</dt><dd>ECB-mode ciphers are insecure (see many-time pad vulnerability). These functions are exposed in case a user wants to construct a cipher mode other than CBC or CTR. Unless you know what you are doing, use <a class="el" href="hashlib_8h.html#a402aa47590cf2de4ea6cb2efba1fdb35" title="General-Purpose AES Decryption.">hashlib_AESDecrypt()</a> instead. </dd></dl>
+<dl class="section warning"><dt>Warning</dt><dd>ECB-mode ciphers are insecure (see many-time pad vulnerability). Unless you know what you are doing, use <a class="el" href="hashlib_8h.html#a402aa47590cf2de4ea6cb2efba1fdb35" title="General-Purpose AES Decryption.">hashlib_AESDecrypt()</a> instead. </dd>
+<dd>
+The ECB mode single-block encryptors lack the buffer leak protections that <a class="el" href="hashlib_8h.html#a402aa47590cf2de4ea6cb2efba1fdb35" title="General-Purpose AES Decryption.">hashlib_AESDecrypt()</a> has. If you are writing your own cipher mode, you will need to implement that yourself. </dd></dl>
 <dl class="section return"><dt>Returns</dt><dd>True if encryption succeeded. False if an error occured. </dd></dl>
 
 </div>
