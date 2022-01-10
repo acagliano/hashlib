@@ -610,8 +610,9 @@ size_t hashlib_RSAEncodePSS(
  * @brief Authenticated Encryption Scheme Guidelines
  *
  * Authenticated encryption is the process of attaching a means of detecting data tampering to an encryption
- * algorithm to ensure integrity as well as confidentiality. Authentication usually involves a hash appended to the
- * ciphertext. There is no provided function for it because implementations may differ but here are some guidelines.
+ * algorithm to ensure integrity as well as confidentiality. Authentication usually involves a hash or signature
+ * appended to the ciphertext. There is no provided function for it in this library because implementations
+ * may differ but here are some guidelines.
  *
  * @note Hash the data you will be transmitting @b AFTER encryption, not before.
  * @note Hash both encrypted and unencrypted parts of your packet.
@@ -619,5 +620,6 @@ size_t hashlib_RSAEncodePSS(
  * @note The same guidelines apply to both AES and RSA.
  * @warning When decrypting, <b>validate the hash first</b>. If the hash is invalid, do not decrypt the message.
  ***********************************************************************************************************************************/
+#define AUTH_SHA256_LEN     SHA256_DIGEST_LEN
 
 #endif

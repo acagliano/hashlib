@@ -45,7 +45,9 @@ struct \mbox{\hyperlink{struct__aes__ctx}{\+\_\+aes\+\_\+ctx}}
 \#define \mbox{\hyperlink{hashlib_8h_a864d96afe89419821aed4293d979b2b9}{hashlib\+\_\+\+AESKeygen}}(key,  keylen)~\mbox{\hyperlink{hashlib_8h_aa0092aa4c122591fae447dda8fa25dfc}{hashlib\+\_\+\+Random\+Bytes}}((key), (keylen))
 \item 
 \#define \mbox{\hyperlink{hashlib_8h_ad4ea46d5db12669bb2687771d094638f}{hashlib\+\_\+\+Malloc\+Context}}(size)~malloc((size))
-\end{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{hashlib_8h_a5387d4504d29343ebd710ec09fde7aad}{AUTH\+\_\+\+SHA256\+\_\+\+LEN}}~\mbox{\hyperlink{hashlib_8h_af5aa539ae202ddf9e0c9211309869fc8}{SHA256\+\_\+\+DIGEST\+\_\+\+LEN}}
+\begin{DoxyCompactList}\small\item\em Authenticated Encryption Scheme Guidelines. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Typedefs}
 \begin{DoxyCompactItemize}
 \item 
@@ -293,6 +295,30 @@ Dynamically allocates a block of memory to be used for a context or buffer.
 \begin{DoxyReturn}{Returns}
 Same as {\bfseries{malloc}}. 
 \end{DoxyReturn}
+\mbox{\Hypertarget{hashlib_8h_a5387d4504d29343ebd710ec09fde7aad}\label{hashlib_8h_a5387d4504d29343ebd710ec09fde7aad}} 
+\index{hashlib.h@{hashlib.h}!AUTH\_SHA256\_LEN@{AUTH\_SHA256\_LEN}}
+\index{AUTH\_SHA256\_LEN@{AUTH\_SHA256\_LEN}!hashlib.h@{hashlib.h}}
+\doxysubsubsection{\texorpdfstring{AUTH\_SHA256\_LEN}{AUTH\_SHA256\_LEN}}
+{\footnotesize\ttfamily \#define AUTH\+\_\+\+SHA256\+\_\+\+LEN~\mbox{\hyperlink{hashlib_8h_af5aa539ae202ddf9e0c9211309869fc8}{SHA256\+\_\+\+DIGEST\+\_\+\+LEN}}}
+
+
+
+Authenticated Encryption Scheme Guidelines. 
+
+Authenticated encryption is the process of attaching a means of detecting data tampering to an encryption algorithm to ensure integrity as well as confidentiality. Authentication usually involves a hash or signature appended to the ciphertext. There is no provided function for it in this library because implementations may differ but here are some guidelines.
+
+\begin{DoxyNote}{Note}
+Hash the data you will be transmitting {\bfseries{AFTER}} encryption, not before. 
+
+Hash both encrypted and unencrypted parts of your packet. 
+
+Append the hash to the ciphertext before transmitting. 
+
+The same guidelines apply to both AES and RSA. 
+\end{DoxyNote}
+\begin{DoxyWarning}{Warning}
+When decrypting, {\bfseries{validate the hash first}}. If the hash is invalid, do not decrypt the message. 
+\end{DoxyWarning}
 
 
 \doxysubsection{Typedef Documentation}

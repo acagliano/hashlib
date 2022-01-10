@@ -119,6 +119,9 @@ Macros</h2></td></tr>
 <tr class="separator:a864d96afe89419821aed4293d979b2b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad4ea46d5db12669bb2687771d094638f"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#ad4ea46d5db12669bb2687771d094638f">hashlib_MallocContext</a>(size)&#160;&#160;&#160;malloc((size))</td></tr>
 <tr class="separator:ad4ea46d5db12669bb2687771d094638f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5387d4504d29343ebd710ec09fde7aad"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#a5387d4504d29343ebd710ec09fde7aad">AUTH_SHA256_LEN</a>&#160;&#160;&#160;<a class="el" href="hashlib_8h.html#af5aa539ae202ddf9e0c9211309869fc8">SHA256_DIGEST_LEN</a></td></tr>
+<tr class="memdesc:a5387d4504d29343ebd710ec09fde7aad"><td class="mdescLeft">&#160;</td><td class="mdescRight">Authenticated Encryption Scheme Guidelines.  <a href="hashlib_8h.html#a5387d4504d29343ebd710ec09fde7aad">More...</a><br /></td></tr>
+<tr class="separator:a5387d4504d29343ebd710ec09fde7aad"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
 Typedefs</h2></td></tr>
@@ -514,6 +517,31 @@ If the SPRNG is run, anything you have stored here will be destroyed. </dd></dl>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Same as <b>malloc</b>. </dd></dl>
+
+</div>
+</div>
+<a id="a5387d4504d29343ebd710ec09fde7aad"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5387d4504d29343ebd710ec09fde7aad">&#9670;&nbsp;</a></span>AUTH_SHA256_LEN</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define AUTH_SHA256_LEN&#160;&#160;&#160;<a class="el" href="hashlib_8h.html#af5aa539ae202ddf9e0c9211309869fc8">SHA256_DIGEST_LEN</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Authenticated Encryption Scheme Guidelines. </p>
+<p>Authenticated encryption is the process of attaching a means of detecting data tampering to an encryption algorithm to ensure integrity as well as confidentiality. Authentication usually involves a hash or signature appended to the ciphertext. There is no provided function for it in this library because implementations may differ but here are some guidelines.</p>
+<dl class="section note"><dt>Note</dt><dd>Hash the data you will be transmitting <b>AFTER</b> encryption, not before. </dd>
+<dd>
+Hash both encrypted and unencrypted parts of your packet. </dd>
+<dd>
+Append the hash to the ciphertext before transmitting. </dd>
+<dd>
+The same guidelines apply to both AES and RSA. </dd></dl>
+<dl class="section warning"><dt>Warning</dt><dd>When decrypting, <b>validate the hash first</b>. If the hash is invalid, do not decrypt the message. </dd></dl>
 
 </div>
 </div>
