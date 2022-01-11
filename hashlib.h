@@ -626,6 +626,7 @@ size_t hashlib_RSAEncodePSS(
  * @param encryption_len The size of the data to be encrypted. This is useful if you have trailing bytes
  *                       that should not be encrypted.
  * @return aes_error_t
+ * @note Uses SCHM_DEFAULT (PKCS7) as the padding scheme where needed.
  * @note While this function can encrypt part or all of the message, it hashes it in its entirely. This is because
  *      when sending a packet, only sensitive data need be encrypted but the entire packet should be
  *      authenticated.
@@ -660,6 +661,7 @@ aes_error_t hashlib_AESAuthEncrypt(
  * @param decryption_len The size of the data to be decrypted. This is useful if you have trailing bytes
  *                       that should not be decrypted.
  * @param return aes_error_t
+ * @note Uses SCHM_DEFAULT (PKCS7) as the padding scheme where needed.
  * @note This function authenticates the message first by hashing from offset @b zero to @b len-32 of the ciphertext
  *      and comparing that hash to the last 32 bytes of the ciphertext. It assumes those 32 bytes are a hash appended
  *      by the remote host. If the hashes do not match, AES_INVALID_CIPHERTEXT is returned and the message

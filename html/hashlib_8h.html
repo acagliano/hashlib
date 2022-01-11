@@ -1944,7 +1944,9 @@ If you are trying to validate a signature, use <a class="el" href="hashlib_8h.ht
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>aes_error_t </dd></dl>
-<dl class="section note"><dt>Note</dt><dd>While this function can encrypt part or all of the message, it hashes it in its entirely. This is because when sending a packet, only sensitive data need be encrypted but the entire packet should be authenticated. </dd>
+<dl class="section note"><dt>Note</dt><dd>Uses SCHM_DEFAULT (PKCS7) as the padding scheme where needed. </dd>
+<dd>
+While this function can encrypt part or all of the message, it hashes it in its entirely. This is because when sending a packet, only sensitive data need be encrypted but the entire packet should be authenticated. </dd>
 <dd>
 To encrypt the entire message, pass 0 for <b>encryption_offset</b> and <b>len</b> for <b>encryption_len</b>. </dd>
 <dd>
@@ -2030,7 +2032,9 @@ To encrypt the entire message, pass 0 for <b>encryption_offset</b> and <b>len</b
   </table>
   </dd>
 </dl>
-<dl class="section note"><dt>Note</dt><dd>This function authenticates the message first by hashing from offset <b>zero</b> to <b>len-32</b> of the ciphertext and comparing that hash to the last 32 bytes of the ciphertext. It assumes those 32 bytes are a hash appended by the remote host. If the hashes do not match, AES_INVALID_CIPHERTEXT is returned and the message is not decrypted. </dd>
+<dl class="section note"><dt>Note</dt><dd>Uses SCHM_DEFAULT (PKCS7) as the padding scheme where needed. </dd>
+<dd>
+This function authenticates the message first by hashing from offset <b>zero</b> to <b>len-32</b> of the ciphertext and comparing that hash to the last 32 bytes of the ciphertext. It assumes those 32 bytes are a hash appended by the remote host. If the hashes do not match, AES_INVALID_CIPHERTEXT is returned and the message is not decrypted. </dd>
 <dd>
 To decrypt the entire message, pass 0 for <b>decryption_offset</b> and <b>len-32</b> for <b>decryption_len</b>. </dd>
 <dd>
