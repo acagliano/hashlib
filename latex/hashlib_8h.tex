@@ -141,9 +141,8 @@ bool \mbox{\hyperlink{hashlib_8h_af1dd2bde099a6fadb6bcc842e502c21b}{hashlib\+\_\
 \begin{DoxyCompactList}\small\item\em Authenticated AES Encryption. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{hashlib_8h_aeb2e64abcc4317e3143fb820f21c3bfd}{aes\+\_\+error\+\_\+t}} \mbox{\hyperlink{hashlib_8h_af5dcf95ad2b71a15049abaa1a9ffa50c}{hashlib\+\_\+\+AESAuth\+Decrypt}} (const uint8\+\_\+t $\ast$ciphertext, size\+\_\+t len, uint8\+\_\+t $\ast$plaintext, \mbox{\hyperlink{hashlib_8h_aa188bc2768a3b7aa6ad73cb2c77819e0}{aes\+\_\+ctx}} $\ast$key, const uint8\+\_\+t $\ast$iv, uint8\+\_\+t ciphermode, size\+\_\+t decryption\+\_\+offset, size\+\_\+t decryption\+\_\+len)
 \begin{DoxyCompactList}\small\item\em Authenticated AES Decryption. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{hashlib_8h_a5abb2858fc926de7f9d16232f2193a7d}\label{hashlib_8h_a5abb2858fc926de7f9d16232f2193a7d}} 
-\mbox{\hyperlink{hashlib_8h_a0486449f609d0e485bad091a671d9294}{rsa\+\_\+error\+\_\+t}} {\bfseries hashlib\+\_\+\+RSAAuth\+Encrypt} (const uint8\+\_\+t $\ast$msg, size\+\_\+t msglen, uint8\+\_\+t $\ast$ct, const uint8\+\_\+t $\ast$pubkey, size\+\_\+t keylen)
-\end{DoxyCompactItemize}
+\mbox{\hyperlink{hashlib_8h_a0486449f609d0e485bad091a671d9294}{rsa\+\_\+error\+\_\+t}} \mbox{\hyperlink{hashlib_8h_a94346a8d2bea7e20c86f668c7bf25f41}{hashlib\+\_\+\+RSAAuth\+Encrypt}} (const uint8\+\_\+t $\ast$msg, size\+\_\+t msglen, uint8\+\_\+t $\ast$ciphertext, const uint8\+\_\+t $\ast$pubkey, size\+\_\+t keylen)
+\begin{DoxyCompactList}\small\item\em Authenticated RSA Encryption. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
@@ -1137,7 +1136,7 @@ To encrypt the entire message, pass 0 for {\bfseries{encryption\+\_\+offset}} an
 
 Authenticated AES Decryption. 
 
-Performs an authenticated decryption of the given message. Supports partial decryption via the {\bfseries{encryption\+\_\+offset}} and {\bfseries{encryption\+\_\+len}} parameters.
+Performs an authenticated decryption of the given message. Supports partial decryption via the {\bfseries{decryption\+\_\+offset}} and {\bfseries{decryption\+\_\+len}} parameters.
 
 
 \begin{DoxyParams}{Parameters}
@@ -1166,4 +1165,36 @@ This function authenticates the message first by hashing from offset {\bfseries{
 To decrypt the entire message, pass 0 for {\bfseries{decryption\+\_\+offset}} and {\bfseries{len-\/32}} for {\bfseries{decryption\+\_\+len}}. 
 
 {\bfseries{plaintext}} and {\bfseries{ciphertext}} are aliasable as long as {\bfseries{plaintext}} $>$= {\bfseries{ciphertext}}. 
+\end{DoxyNote}
+\mbox{\Hypertarget{hashlib_8h_a94346a8d2bea7e20c86f668c7bf25f41}\label{hashlib_8h_a94346a8d2bea7e20c86f668c7bf25f41}} 
+\index{hashlib.h@{hashlib.h}!hashlib\_RSAAuthEncrypt@{hashlib\_RSAAuthEncrypt}}
+\index{hashlib\_RSAAuthEncrypt@{hashlib\_RSAAuthEncrypt}!hashlib.h@{hashlib.h}}
+\doxysubsubsection{\texorpdfstring{hashlib\_RSAAuthEncrypt()}{hashlib\_RSAAuthEncrypt()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{hashlib_8h_a0486449f609d0e485bad091a671d9294}{rsa\+\_\+error\+\_\+t}} hashlib\+\_\+\+RSAAuth\+Encrypt (\begin{DoxyParamCaption}\item[{const uint8\+\_\+t $\ast$}]{msg,  }\item[{size\+\_\+t}]{msglen,  }\item[{uint8\+\_\+t $\ast$}]{ciphertext,  }\item[{const uint8\+\_\+t $\ast$}]{pubkey,  }\item[{size\+\_\+t}]{keylen }\end{DoxyParamCaption})}
+
+
+
+Authenticated RSA Encryption. 
+
+Performs an authenticated encryption of the given message. Does not support partial encryption.
+
+
+\begin{DoxyParams}{Parameters}
+{\em msg} & Pointer to the data to encrypt and authenticate. \\
+\hline
+{\em msglen} & The size of the message to encrypt. \\
+\hline
+{\em ct} & The buffer to write the authenticated encryption to. Must be at least {\bfseries{keylen+32}} bytes large. \\
+\hline
+{\em pubkey} & Pointer to a bytearray containing the RSA public modulus to encrypt with. \\
+\hline
+{\em keylen} & The length of the RSA public modulus. \\
+\hline
+{\em return} & rsa\+\_\+error\+\_\+t \\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+This function calls \mbox{\hyperlink{hashlib_8h_a3f2772b55bb9444c6b1d63976d35c9ff}{hashlib\+\_\+\+RSAEncrypt()}}, which applies the OAEP 2.\+2 encoding scheme to the message and then encrypts the message using the public modulus supplied. It then hashes the resulting encryption and appends that hash to the end of the ciphertext. 
+
+{\bfseries{msg}} and {\bfseries{ciphertext}} are NOT aliasable. 
 \end{DoxyNote}

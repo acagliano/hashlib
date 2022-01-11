@@ -647,7 +647,7 @@ aes_error_t hashlib_AESAuthEncrypt(
  * @brief Authenticated AES Decryption
  *
  * Performs an authenticated decryption of the given message. Supports partial decryption via the
- * @b encryption_offset and @b encryption_len parameters.
+ * @b decryption_offset and @b decryption_len parameters.
  *
  * @param ciphertext Pointer to the data to decrypt and authenticate.
  * @param len The size of the plaintext to decrypt and authenticate.
@@ -678,7 +678,28 @@ aes_error_t hashlib_AESAuthDecrypt(
     size_t decryption_len);
     
     
-rsa_error_t hashlib_RSAAuthEncrypt(const uint8_t* msg, size_t msglen, uint8_t *ct, const uint8_t* pubkey, size_t keylen);
+/**********************************************************************************************************************************
+ * @brief Authenticated RSA Encryption
+ *
+ * Performs an authenticated encryption of the given message. Does not support partial encryption.
+ *
+ * @param msg Pointer to the data to encrypt and authenticate.
+ * @param msglen The size of the message to encrypt.
+ * @param ct The buffer to write the authenticated encryption to. Must be at least @b keylen+32 bytes large.
+ * @param pubkey Pointer to a bytearray containing the RSA public modulus to encrypt with.
+ * @param keylen The length of the RSA public modulus.
+ * @param return rsa_error_t
+ * @note This function calls hashlib_RSAEncrypt(), which applies the OAEP 2.2 encoding scheme to the message
+ *      and then encrypts the message using the public modulus supplied. It then hashes the resulting encryption
+ *      and appends that hash to the end of the ciphertext.
+ * @note @b msg and @b ciphertext are NOT aliasable.
+ ***********************************************************************************************************************************/
+rsa_error_t hashlib_RSAAuthEncrypt(
+    const uint8_t* msg,
+    size_t msglen,
+    uint8_t *ciphertext,
+    const uint8_t* pubkey,
+    size_t keylen);
 
 
 

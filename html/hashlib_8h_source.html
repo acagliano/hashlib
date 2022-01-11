@@ -329,11 +329,17 @@ $(function() {
 <div class="line"><a name="l00678"></a><span class="lineno">  678</span>&#160;    <span class="keywordtype">size_t</span> decryption_len);</div>
 <div class="line"><a name="l00679"></a><span class="lineno">  679</span>&#160;    </div>
 <div class="line"><a name="l00680"></a><span class="lineno">  680</span>&#160;    </div>
-<div class="line"><a name="l00681"></a><span class="lineno">  681</span>&#160;<a class="code" href="hashlib_8h.html#a0486449f609d0e485bad091a671d9294">rsa_error_t</a> hashlib_RSAAuthEncrypt(<span class="keyword">const</span> uint8_t* msg, <span class="keywordtype">size_t</span> msglen, uint8_t *ct, <span class="keyword">const</span> uint8_t* pubkey, <span class="keywordtype">size_t</span> keylen);</div>
-<div class="line"><a name="l00682"></a><span class="lineno">  682</span>&#160; </div>
-<div class="line"><a name="l00683"></a><span class="lineno">  683</span>&#160; </div>
-<div class="line"><a name="l00684"></a><span class="lineno">  684</span>&#160; </div>
-<div class="line"><a name="l00685"></a><span class="lineno">  685</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00681"></a><span class="lineno">  681</span>&#160; </div>
+<div class="line"><a name="l00697"></a><span class="lineno"><a class="line" href="hashlib_8h.html#a94346a8d2bea7e20c86f668c7bf25f41">  697</a></span>&#160;<a class="code" href="hashlib_8h.html#a0486449f609d0e485bad091a671d9294">rsa_error_t</a> <a class="code" href="hashlib_8h.html#a94346a8d2bea7e20c86f668c7bf25f41">hashlib_RSAAuthEncrypt</a>(</div>
+<div class="line"><a name="l00698"></a><span class="lineno">  698</span>&#160;    <span class="keyword">const</span> uint8_t* msg,</div>
+<div class="line"><a name="l00699"></a><span class="lineno">  699</span>&#160;    <span class="keywordtype">size_t</span> msglen,</div>
+<div class="line"><a name="l00700"></a><span class="lineno">  700</span>&#160;    uint8_t *ciphertext,</div>
+<div class="line"><a name="l00701"></a><span class="lineno">  701</span>&#160;    <span class="keyword">const</span> uint8_t* pubkey,</div>
+<div class="line"><a name="l00702"></a><span class="lineno">  702</span>&#160;    <span class="keywordtype">size_t</span> keylen);</div>
+<div class="line"><a name="l00703"></a><span class="lineno">  703</span>&#160; </div>
+<div class="line"><a name="l00704"></a><span class="lineno">  704</span>&#160; </div>
+<div class="line"><a name="l00705"></a><span class="lineno">  705</span>&#160; </div>
+<div class="line"><a name="l00706"></a><span class="lineno">  706</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="ttc" id="ahashlib_8h_html_a01668b3f2dd85fe2f8696673b275b75a"><div class="ttname"><a href="hashlib_8h.html#a01668b3f2dd85fe2f8696673b275b75a">hashlib_RSAEncodePSS</a></div><div class="ttdeci">size_t hashlib_RSAEncodePSS(const uint8_t *plaintext, size_t len, uint8_t *outbuf, size_t modulus_len, uint8_t *salt)</div><div class="ttdoc">RSA-PSS padding scheme.</div></div>
 <div class="ttc" id="ahashlib_8h_html_a0486449f609d0e485bad091a671d9294"><div class="ttname"><a href="hashlib_8h.html#a0486449f609d0e485bad091a671d9294">rsa_error_t</a></div><div class="ttdeci">rsa_error_t</div><div class="ttdef"><b>Definition:</b> hashlib.h:370</div></div>
 <div class="ttc" id="ahashlib_8h_html_a0486449f609d0e485bad091a671d9294a2cafdb683e1870a33bcb821420626cae"><div class="ttname"><a href="hashlib_8h.html#a0486449f609d0e485bad091a671d9294a2cafdb683e1870a33bcb821420626cae">RSA_OK</a></div><div class="ttdeci">@ RSA_OK</div><div class="ttdef"><b>Definition:</b> hashlib.h:371</div></div>
@@ -362,6 +368,7 @@ $(function() {
 <div class="ttc" id="ahashlib_8h_html_a7508a7cdffede3d44a818dd4a154bf95a096ad031cbdad23c8d4053d9b7a3db31"><div class="ttname"><a href="hashlib_8h.html#a7508a7cdffede3d44a818dd4a154bf95a096ad031cbdad23c8d4053d9b7a3db31">SSLSIG_RSA_SHA256</a></div><div class="ttdeci">@ SSLSIG_RSA_SHA256</div><div class="ttdef"><b>Definition:</b> hashlib.h:362</div></div>
 <div class="ttc" id="ahashlib_8h_html_a7508a7cdffede3d44a818dd4a154bf95a3b885e134e618304b93f54b88eff9b25"><div class="ttname"><a href="hashlib_8h.html#a7508a7cdffede3d44a818dd4a154bf95a3b885e134e618304b93f54b88eff9b25">SSLSIG_ECDSA</a></div><div class="ttdeci">@ SSLSIG_ECDSA</div><div class="ttdef"><b>Definition:</b> hashlib.h:363</div></div>
 <div class="ttc" id="ahashlib_8h_html_a7b705e6cf52b076b40f936af6d55b29c"><div class="ttname"><a href="hashlib_8h.html#a7b705e6cf52b076b40f936af6d55b29c">hashlib_SSLVerifySignature</a></div><div class="ttdeci">bool hashlib_SSLVerifySignature(const uint8_t *ca_pubkey, size_t keysize, const uint8_t *cert, size_t certlen, uint8_t sig_alg)</div><div class="ttdoc">SSL Certificate Signature Verification.</div></div>
+<div class="ttc" id="ahashlib_8h_html_a94346a8d2bea7e20c86f668c7bf25f41"><div class="ttname"><a href="hashlib_8h.html#a94346a8d2bea7e20c86f668c7bf25f41">hashlib_RSAAuthEncrypt</a></div><div class="ttdeci">rsa_error_t hashlib_RSAAuthEncrypt(const uint8_t *msg, size_t msglen, uint8_t *ciphertext, const uint8_t *pubkey, size_t keylen)</div><div class="ttdoc">Authenticated RSA Encryption.</div></div>
 <div class="ttc" id="ahashlib_8h_html_a9933dec76c43b37331782bdd16ebc4a3"><div class="ttname"><a href="hashlib_8h.html#a9933dec76c43b37331782bdd16ebc4a3">aes_padding_schemes</a></div><div class="ttdeci">aes_padding_schemes</div><div class="ttdef"><b>Definition:</b> hashlib.h:174</div></div>
 <div class="ttc" id="ahashlib_8h_html_a9933dec76c43b37331782bdd16ebc4a3a030a31bd034c7d20a80341ede899a6b7"><div class="ttname"><a href="hashlib_8h.html#a9933dec76c43b37331782bdd16ebc4a3a030a31bd034c7d20a80341ede899a6b7">SCHM_ISO2</a></div><div class="ttdeci">@ SCHM_ISO2</div><div class="ttdef"><b>Definition:</b> hashlib.h:179</div></div>
 <div class="ttc" id="ahashlib_8h_html_a9933dec76c43b37331782bdd16ebc4a3a1446879dbb5f2f777c955fcf6723ee4a"><div class="ttname"><a href="hashlib_8h.html#a9933dec76c43b37331782bdd16ebc4a3a1446879dbb5f2f777c955fcf6723ee4a">SCHM_DEFAULT</a></div><div class="ttdeci">@ SCHM_DEFAULT</div><div class="ttdef"><b>Definition:</b> hashlib.h:176</div></div>

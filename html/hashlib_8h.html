@@ -241,9 +241,9 @@ Functions</h2></td></tr>
 <tr class="memitem:af5dcf95ad2b71a15049abaa1a9ffa50c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="hashlib_8h.html#aeb2e64abcc4317e3143fb820f21c3bfd">aes_error_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#af5dcf95ad2b71a15049abaa1a9ffa50c">hashlib_AESAuthDecrypt</a> (const uint8_t *ciphertext, size_t len, uint8_t *plaintext, <a class="el" href="hashlib_8h.html#aa188bc2768a3b7aa6ad73cb2c77819e0">aes_ctx</a> *key, const uint8_t *iv, uint8_t ciphermode, size_t decryption_offset, size_t decryption_len)</td></tr>
 <tr class="memdesc:af5dcf95ad2b71a15049abaa1a9ffa50c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Authenticated AES Decryption.  <a href="hashlib_8h.html#af5dcf95ad2b71a15049abaa1a9ffa50c">More...</a><br /></td></tr>
 <tr class="separator:af5dcf95ad2b71a15049abaa1a9ffa50c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5abb2858fc926de7f9d16232f2193a7d"><td class="memItemLeft" align="right" valign="top"><a id="a5abb2858fc926de7f9d16232f2193a7d"></a>
-<a class="el" href="hashlib_8h.html#a0486449f609d0e485bad091a671d9294">rsa_error_t</a>&#160;</td><td class="memItemRight" valign="bottom"><b>hashlib_RSAAuthEncrypt</b> (const uint8_t *msg, size_t msglen, uint8_t *ct, const uint8_t *pubkey, size_t keylen)</td></tr>
-<tr class="separator:a5abb2858fc926de7f9d16232f2193a7d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a94346a8d2bea7e20c86f668c7bf25f41"><td class="memItemLeft" align="right" valign="top"><a class="el" href="hashlib_8h.html#a0486449f609d0e485bad091a671d9294">rsa_error_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#a94346a8d2bea7e20c86f668c7bf25f41">hashlib_RSAAuthEncrypt</a> (const uint8_t *msg, size_t msglen, uint8_t *ciphertext, const uint8_t *pubkey, size_t keylen)</td></tr>
+<tr class="memdesc:a94346a8d2bea7e20c86f668c7bf25f41"><td class="mdescLeft">&#160;</td><td class="mdescRight">Authenticated RSA Encryption.  <a href="hashlib_8h.html#a94346a8d2bea7e20c86f668c7bf25f41">More...</a><br /></td></tr>
+<tr class="separator:a94346a8d2bea7e20c86f668c7bf25f41"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Cryptography Library for the TI-84+ CE. </p>
@@ -2015,7 +2015,7 @@ To encrypt the entire message, pass 0 for <b>encryption_offset</b> and <b>len</b
 </div><div class="memdoc">
 
 <p>Authenticated AES Decryption. </p>
-<p>Performs an authenticated decryption of the given message. Supports partial decryption via the <b>encryption_offset</b> and <b>encryption_len</b> parameters.</p>
+<p>Performs an authenticated decryption of the given message. Supports partial decryption via the <b>decryption_offset</b> and <b>decryption_len</b> parameters.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">ciphertext</td><td>Pointer to the data to decrypt and authenticate. </td></tr>
@@ -2035,6 +2035,69 @@ To encrypt the entire message, pass 0 for <b>encryption_offset</b> and <b>len</b
 To decrypt the entire message, pass 0 for <b>decryption_offset</b> and <b>len-32</b> for <b>decryption_len</b>. </dd>
 <dd>
 <b>plaintext</b> and <b>ciphertext</b> are aliasable as long as <b>plaintext</b> &gt;= <b>ciphertext</b>. </dd></dl>
+
+</div>
+</div>
+<a id="a94346a8d2bea7e20c86f668c7bf25f41"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a94346a8d2bea7e20c86f668c7bf25f41">&#9670;&nbsp;</a></span>hashlib_RSAAuthEncrypt()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="hashlib_8h.html#a0486449f609d0e485bad091a671d9294">rsa_error_t</a> hashlib_RSAAuthEncrypt </td>
+          <td>(</td>
+          <td class="paramtype">const uint8_t *&#160;</td>
+          <td class="paramname"><em>msg</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>msglen</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t *&#160;</td>
+          <td class="paramname"><em>ciphertext</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const uint8_t *&#160;</td>
+          <td class="paramname"><em>pubkey</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>keylen</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Authenticated RSA Encryption. </p>
+<p>Performs an authenticated encryption of the given message. Does not support partial encryption.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">msg</td><td>Pointer to the data to encrypt and authenticate. </td></tr>
+    <tr><td class="paramname">msglen</td><td>The size of the message to encrypt. </td></tr>
+    <tr><td class="paramname">ct</td><td>The buffer to write the authenticated encryption to. Must be at least <b>keylen+32</b> bytes large. </td></tr>
+    <tr><td class="paramname">pubkey</td><td>Pointer to a bytearray containing the RSA public modulus to encrypt with. </td></tr>
+    <tr><td class="paramname">keylen</td><td>The length of the RSA public modulus. </td></tr>
+    <tr><td class="paramname">return</td><td>rsa_error_t </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>Note</dt><dd>This function calls <a class="el" href="hashlib_8h.html#a3f2772b55bb9444c6b1d63976d35c9ff" title="RSA Encryption.">hashlib_RSAEncrypt()</a>, which applies the OAEP 2.2 encoding scheme to the message and then encrypts the message using the public modulus supplied. It then hashes the resulting encryption and appends that hash to the end of the ciphertext. </dd>
+<dd>
+<b>msg</b> and <b>ciphertext</b> are NOT aliasable. </dd></dl>
 
 </div>
 </div>
