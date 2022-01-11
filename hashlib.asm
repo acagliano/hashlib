@@ -7065,36 +7065,82 @@ _powmod:
 	ret
 	
 hashlib_AESAuthDecrypt:
-	ld	hl, -408
+	ld	hl, -414
 	call	ti._frameset
-	ld	bc, -402
+	ld	de, -402
 	lea	iy, ix + 0
-	add	iy, bc
+	add	iy, de
+	ld	hl, (ix + 6)
+	ld	bc, (ix + 9)
 	lea	de, ix + -114
-	ld	bc, -408
-	lea	hl, ix + 0
-	add	hl, bc
-	ld	(hl), de
-	lea	hl, iy + 0
+	ld	(ix + -3), bc
 	push	ix
 	ld	bc, -405
 	add	ix, bc
-	ld	(ix + 0), hl
+	ld	(ix + 0), de
 	pop	ix
-	pea	iy + 32
-	push	de
-	call	hashlib_Sha256Init
-	pop	hl
-	pop	hl
-	ld	hl, (ix + 9)
+	push	ix
+	ld	bc, -414
+	add	ix, bc
+	ld	(ix + 0), iy
+	pop	ix
+	lea	de, iy + 0
+	ld	bc, -408
+	lea	iy, ix + 0
+	add	iy, bc
+	ld	(iy + 0), de
+	ld	bc, (ix + -3)
+	push	bc
+	pop	iy
 	ld	de, -32
-	add	hl, de
-	ld	de, 0
-	push	de
+	add	iy, de
+	push	ix
+	ld	bc, -411
+	add	ix, bc
+	ld	(ix + 0), iy
+	pop	ix
+	ld	de, (ix + 12)
+	or	a, a
+	sbc	hl, de
+	jq	z, .lbl_2
+	ld	bc, -411
+	lea	hl, ix + 0
+	add	hl, bc
+	ld	hl, (hl)
 	push	hl
 	ld	hl, (ix + 6)
 	push	hl
-	ld	bc, -408
+	ld	hl, (ix + 12)
+	push	hl
+	call	ti._memcpy
+	pop	hl
+	pop	hl
+	pop	hl
+.lbl_2:
+	ld	bc, -414
+	lea	hl, ix + 0
+	add	hl, bc
+	ld	iy, (hl)
+	pea	iy + 32
+	ld	bc, -405
+	lea	iy, ix + 0
+	add	iy, bc
+	ld	hl, (iy + 0)
+	push	hl
+	call	hashlib_Sha256Init
+	pop	hl
+	pop	hl
+	or	a, a
+	sbc	hl, hl
+	push	hl
+	ld	bc, -411
+	lea	hl, ix + 0
+	add	hl, bc
+	ld	hl, (hl)
+	push	hl
+	ld	hl, (ix + 6)
+	push	hl
+	ld	bc, -405
 	lea	hl, ix + 0
 	add	hl, bc
 	ld	hl, (hl)
@@ -7104,12 +7150,12 @@ hashlib_AESAuthDecrypt:
 	pop	hl
 	pop	hl
 	pop	hl
-	ld	bc, -405
+	ld	bc, -408
 	lea	hl, ix + 0
 	add	hl, bc
 	ld	hl, (hl)
 	push	hl
-	ld	bc, -408
+	ld	bc, -405
 	lea	hl, ix + 0
 	add	hl, bc
 	ld	hl, (hl)
@@ -7121,16 +7167,16 @@ hashlib_AESAuthDecrypt:
 	ld	de, -32
 	add	hl, de
 	ex	de, hl
-	ld	hl, (ix + 6)
-	add	hl, de
-	ld	de, 32
-	push	de
-	ld	bc, -405
-	lea	iy, ix + 0
-	add	iy, bc
-	ld	de, (iy + 0)
-	push	de
+	ld	iy, (ix + 6)
+	add	iy, de
+	ld	hl, 32
 	push	hl
+	ld	bc, -408
+	lea	hl, ix + 0
+	add	hl, bc
+	ld	hl, (hl)
+	push	hl
+	push	iy
 	call	hashlib_CompareDigest
 	pop	hl
 	pop	hl
@@ -7138,43 +7184,29 @@ hashlib_AESAuthDecrypt:
 	ld	l, 1
 	xor	a, l
 	bit	0, a
-	jq	nz, .lbl_1
-	ld	de, (ix + 12)
+	jq	nz, .lbl_3
+	ld	iy, (ix + 18)
 	ld	a, (ix + 21)
-	ld	bc, (ix + 24)
-	ld	hl, (ix + 6)
-	push	hl
-	pop	iy
-	or	a, a
-	sbc	hl, de
-	push	bc
-	pop	de
-	jq	z, .lbl_4
+	ld	de, (ix + 24)
+	ld	bc, (ix + 27)
+	ld	hl, (ix + 12)
+	add	hl, de
 	ld	de, 0
-.lbl_4:
-	add	iy, bc
-	lea	bc, iy + 0
-	ld	iy, (ix + 12)
-	add	iy, de
-	or	a, a
-	sbc	hl, hl
-	push	hl
-	ld	l, a
-	push	hl
-	ld	hl, (ix + 18)
-	push	hl
-	ld	hl, (ix + 15)
-	push	hl
+	push	de
+	ld	e, a
+	push	de
 	push	iy
-	ld	hl, (ix + 27)
+	ld	de, (ix + 15)
+	push	de
 	push	hl
 	push	bc
+	push	hl
 	call	hashlib_AESDecrypt
 	ld	iy, 21
 	add	iy, sp
 	ld	sp, iy
 	jq	.lbl_5
-.lbl_1:
+.lbl_3:
 	ld	hl, 5
 .lbl_5:
 	ld	sp, ix
