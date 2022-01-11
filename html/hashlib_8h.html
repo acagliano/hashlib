@@ -238,9 +238,9 @@ Functions</h2></td></tr>
 <tr class="memitem:a44592eaae569a9cd22a4f7c5cb1c227a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="hashlib_8h.html#aeb2e64abcc4317e3143fb820f21c3bfd">aes_error_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#a44592eaae569a9cd22a4f7c5cb1c227a">hashlib_AESAuthEncrypt</a> (const uint8_t *plaintext, size_t len, uint8_t *ciphertext, <a class="el" href="hashlib_8h.html#aa188bc2768a3b7aa6ad73cb2c77819e0">aes_ctx</a> *key, const uint8_t *iv, uint8_t ciphermode, size_t encryption_offset, size_t encryption_len)</td></tr>
 <tr class="memdesc:a44592eaae569a9cd22a4f7c5cb1c227a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Authenticated AES Encryption.  <a href="hashlib_8h.html#a44592eaae569a9cd22a4f7c5cb1c227a">More...</a><br /></td></tr>
 <tr class="separator:a44592eaae569a9cd22a4f7c5cb1c227a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4f695c831642579cd415773036fd49b8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="hashlib_8h.html#aeb2e64abcc4317e3143fb820f21c3bfd">aes_error_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#a4f695c831642579cd415773036fd49b8">hashlib_AESAuthDecrypt</a> (const uint8_t *ciphertext, size_t len, uint8_t *plaintext, <a class="el" href="hashlib_8h.html#aa188bc2768a3b7aa6ad73cb2c77819e0">aes_ctx</a> *key, const uint8_t *iv, uint8_t ciphermode, size_t encryption_offset, size_t encryption_len)</td></tr>
-<tr class="memdesc:a4f695c831642579cd415773036fd49b8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Authenticated AES Decryption.  <a href="hashlib_8h.html#a4f695c831642579cd415773036fd49b8">More...</a><br /></td></tr>
-<tr class="separator:a4f695c831642579cd415773036fd49b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af5dcf95ad2b71a15049abaa1a9ffa50c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="hashlib_8h.html#aeb2e64abcc4317e3143fb820f21c3bfd">aes_error_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#af5dcf95ad2b71a15049abaa1a9ffa50c">hashlib_AESAuthDecrypt</a> (const uint8_t *ciphertext, size_t len, uint8_t *plaintext, <a class="el" href="hashlib_8h.html#aa188bc2768a3b7aa6ad73cb2c77819e0">aes_ctx</a> *key, const uint8_t *iv, uint8_t ciphermode, size_t decryption_offset, size_t decryption_len)</td></tr>
+<tr class="memdesc:af5dcf95ad2b71a15049abaa1a9ffa50c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Authenticated AES Decryption.  <a href="hashlib_8h.html#af5dcf95ad2b71a15049abaa1a9ffa50c">More...</a><br /></td></tr>
+<tr class="separator:af5dcf95ad2b71a15049abaa1a9ffa50c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5abb2858fc926de7f9d16232f2193a7d"><td class="memItemLeft" align="right" valign="top"><a id="a5abb2858fc926de7f9d16232f2193a7d"></a>
 <a class="el" href="hashlib_8h.html#a0486449f609d0e485bad091a671d9294">rsa_error_t</a>&#160;</td><td class="memItemRight" valign="bottom"><b>hashlib_RSAAuthEncrypt</b> (const uint8_t *msg, size_t msglen, uint8_t *ct, const uint8_t *pubkey, size_t keylen)</td></tr>
 <tr class="separator:a5abb2858fc926de7f9d16232f2193a7d"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -1952,8 +1952,8 @@ To encrypt the entire message, pass 0 for <b>encryption_offset</b> and <b>len</b
 
 </div>
 </div>
-<a id="a4f695c831642579cd415773036fd49b8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4f695c831642579cd415773036fd49b8">&#9670;&nbsp;</a></span>hashlib_AESAuthDecrypt()</h2>
+<a id="af5dcf95ad2b71a15049abaa1a9ffa50c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af5dcf95ad2b71a15049abaa1a9ffa50c">&#9670;&nbsp;</a></span>hashlib_AESAuthDecrypt()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1998,13 +1998,13 @@ To encrypt the entire message, pass 0 for <b>encryption_offset</b> and <b>len</b
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">size_t&#160;</td>
-          <td class="paramname"><em>encryption_offset</em>, </td>
+          <td class="paramname"><em>decryption_offset</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">size_t&#160;</td>
-          <td class="paramname"><em>encryption_len</em>&#160;</td>
+          <td class="paramname"><em>decryption_len</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -2024,15 +2024,15 @@ To encrypt the entire message, pass 0 for <b>encryption_offset</b> and <b>len</b
     <tr><td class="paramname">ks</td><td>Pointer to an AES key schedule context. </td></tr>
     <tr><td class="paramname">iv</td><td>Pointer to an initialization vector (a nonce of length equal to the block size). </td></tr>
     <tr><td class="paramname">ciphermode</td><td>The cipher mode to use. Can be either <em>AES_MODE_CBC</em> or <em>AES_MODE_CTR</em>. </td></tr>
-    <tr><td class="paramname">encryption_offset</td><td>The offset from the start of the plaintext to begin decryption. This is useful if you have control bytes or metadata that should not be decrypted. </td></tr>
-    <tr><td class="paramname">encryption_len</td><td>The size of the data to be decrypted. This is useful if you have trailing bytes that should not be decrypted. </td></tr>
+    <tr><td class="paramname">decryption_offset</td><td>The offset from the start of the plaintext to begin decryption. This is useful if you have control bytes or metadata that should not be decrypted. </td></tr>
+    <tr><td class="paramname">decryption_len</td><td>The size of the data to be decrypted. This is useful if you have trailing bytes that should not be decrypted. </td></tr>
     <tr><td class="paramname">return</td><td>aes_error_t </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section note"><dt>Note</dt><dd>This function authenticates the message first by hashing from offset <b>zero</b> to <b>len-32</b> of the ciphertext and comparing that hash to the last 32 bytes of the ciphertext. It assumes those 32 bytes are a hash appended by the remote host. If the hashes do not match, AES_INVALID_CIPHERTEXT is returned and the message is not decrypted. </dd>
 <dd>
-To decrypt the entire message, pass 0 for <b>encryption_offset</b> and <b>len</b> for <b>encryption_len</b>. </dd>
+To decrypt the entire message, pass 0 for <b>decryption_offset</b> and <b>len</b> for <b>decryption_len</b>. </dd>
 <dd>
 <b>plaintext</b> and <b>ciphertext</b> are aliasable as long as <b>plaintext</b> &gt;= <b>ciphertext</b>. </dd></dl>
 

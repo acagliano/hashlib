@@ -655,16 +655,16 @@ aes_error_t hashlib_AESAuthEncrypt(
  * @param ks Pointer to an AES key schedule context.
  * @param iv Pointer to an initialization vector (a nonce of length equal to the block size).
  * @param ciphermode The cipher mode to use. Can be either @e AES_MODE_CBC or @e AES_MODE_CTR.
- * @param encryption_offset The offset from the start of the plaintext to begin decryption. This is useful if
+ * @param decryption_offset The offset from the start of the plaintext to begin decryption. This is useful if
  *                          you have control bytes or metadata that should not be decrypted.
- * @param encryption_len The size of the data to be decrypted. This is useful if you have trailing bytes
+ * @param decryption_len The size of the data to be decrypted. This is useful if you have trailing bytes
  *                       that should not be decrypted.
  * @param return aes_error_t
  * @note This function authenticates the message first by hashing from offset @b zero to @b len-32 of the ciphertext
  *      and comparing that hash to the last 32 bytes of the ciphertext. It assumes those 32 bytes are a hash appended
  *      by the remote host. If the hashes do not match, AES_INVALID_CIPHERTEXT is returned and the message
  *      is not decrypted.
- * @note To decrypt the entire message, pass 0 for @b encryption_offset and @b len for @b encryption_len.
+ * @note To decrypt the entire message, pass 0 for @b decryption_offset and @b len for @b decryption_len.
  * @note @b plaintext and @b ciphertext are aliasable as long as @b plaintext >= @b ciphertext.
  ***********************************************************************************************************************************/
 aes_error_t hashlib_AESAuthDecrypt(
@@ -674,8 +674,8 @@ aes_error_t hashlib_AESAuthDecrypt(
     aes_ctx* key,
     const uint8_t* iv,
     uint8_t ciphermode,
-    size_t encryption_offset,
-    size_t encryption_len);
+    size_t decryption_offset,
+    size_t decryption_len);
 rsa_error_t hashlib_RSAAuthEncrypt(const uint8_t* msg, size_t msglen, uint8_t *ct, const uint8_t* pubkey, size_t keylen);
 
 
