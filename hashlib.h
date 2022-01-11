@@ -664,7 +664,7 @@ aes_error_t hashlib_AESAuthEncrypt(
  *      and comparing that hash to the last 32 bytes of the ciphertext. It assumes those 32 bytes are a hash appended
  *      by the remote host. If the hashes do not match, AES_INVALID_CIPHERTEXT is returned and the message
  *      is not decrypted.
- * @note To decrypt the entire message, pass 0 for @b decryption_offset and @b len for @b decryption_len.
+ * @note To decrypt the entire message, pass 0 for @b decryption_offset and @b len-32 for @b decryption_len.
  * @note @b plaintext and @b ciphertext are aliasable as long as @b plaintext >= @b ciphertext.
  ***********************************************************************************************************************************/
 aes_error_t hashlib_AESAuthDecrypt(
@@ -676,6 +676,8 @@ aes_error_t hashlib_AESAuthDecrypt(
     uint8_t ciphermode,
     size_t decryption_offset,
     size_t decryption_len);
+    
+    
 rsa_error_t hashlib_RSAAuthEncrypt(const uint8_t* msg, size_t msglen, uint8_t *ct, const uint8_t* pubkey, size_t keylen);
 
 

@@ -2032,7 +2032,7 @@ To encrypt the entire message, pass 0 for <b>encryption_offset</b> and <b>len</b
 </dl>
 <dl class="section note"><dt>Note</dt><dd>This function authenticates the message first by hashing from offset <b>zero</b> to <b>len-32</b> of the ciphertext and comparing that hash to the last 32 bytes of the ciphertext. It assumes those 32 bytes are a hash appended by the remote host. If the hashes do not match, AES_INVALID_CIPHERTEXT is returned and the message is not decrypted. </dd>
 <dd>
-To decrypt the entire message, pass 0 for <b>decryption_offset</b> and <b>len</b> for <b>decryption_len</b>. </dd>
+To decrypt the entire message, pass 0 for <b>decryption_offset</b> and <b>len-32</b> for <b>decryption_len</b>. </dd>
 <dd>
 <b>plaintext</b> and <b>ciphertext</b> are aliasable as long as <b>plaintext</b> &gt;= <b>ciphertext</b>. </dd></dl>
 

@@ -1163,7 +1163,7 @@ Performs an authenticated decryption of the given message. Supports partial decr
 \begin{DoxyNote}{Note}
 This function authenticates the message first by hashing from offset {\bfseries{zero}} to {\bfseries{len-\/32}} of the ciphertext and comparing that hash to the last 32 bytes of the ciphertext. It assumes those 32 bytes are a hash appended by the remote host. If the hashes do not match, AES\+\_\+\+INVALID\+\_\+\+CIPHERTEXT is returned and the message is not decrypted. 
 
-To decrypt the entire message, pass 0 for {\bfseries{decryption\+\_\+offset}} and {\bfseries{len}} for {\bfseries{decryption\+\_\+len}}. 
+To decrypt the entire message, pass 0 for {\bfseries{decryption\+\_\+offset}} and {\bfseries{len-\/32}} for {\bfseries{decryption\+\_\+len}}. 
 
 {\bfseries{plaintext}} and {\bfseries{ciphertext}} are aliasable as long as {\bfseries{plaintext}} $>$= {\bfseries{ciphertext}}. 
 \end{DoxyNote}
