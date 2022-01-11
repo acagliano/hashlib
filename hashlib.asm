@@ -36,6 +36,10 @@ library "HASHLIB", 8
     export hashlib_CompareDigest
     export hashlib_ReverseEndianness
     
+    export hashlib_AESAuthEncrypt
+    export hashlib_AESAuthDecrypt
+    export hashlib_RSAAuthEncrypt
+    
 
 ;------------------------------------------
 ; defines
@@ -6956,6 +6960,307 @@ _powmod:
    inc   bc
    lddr ; leaks size, assuming that base and stack are in normal ram
    ret
+ 
+ 
+ hashlib_AESAuthEncrypt:
+	ld	hl, -376
+	call	ti._frameset
+	ld	iy, (ix + 6)
+	ld	de, (ix + 12)
+	ld	a, (ix + 21)
+	lea	hl, iy + 0
+	push	de
+	pop	bc
+	or	a, a
+	sbc	hl, bc
+	jq	z, .lbl_2
+	ld	hl, (ix + 9)
+	push	hl
+	push	iy
+	push	de
+	call	ti._memcpy
+	ld	a, (ix + 21)
+	ld	de, (ix + 12)
+	pop	hl
+	pop	hl
+	pop	hl
+.lbl_2:
+	ex	de, hl
+	ld	de, (ix + 24)
+	add	hl, de
+	ld	de, 0
+	push	de
+	ld	e, a
+	push	de
+	ld	de, (ix + 18)
+	push	de
+	ld	de, (ix + 15)
+	push	de
+	push	hl
+	ld	de, (ix + 27)
+	push	de
+	push	hl
+	call	hashlib_AESEncrypt
+	ld	iy, 21
+	add	iy, sp
+	ld	sp, iy
+	add	hl, bc
+	or	a, a
+	sbc	hl, bc
+	jq	nz, .lbl_4
+	lea	de, ix + -114
+	ld	bc, -373
+	lea	iy, ix + 0
+	add	iy, bc
+	ld	(iy + 0), de
+	push	ix
+	ld	bc, -370
+	add	ix, bc
+	ex	(sp), ix
+	push	de
+	push	ix
+	ld	bc, -376
+	add	ix, bc
+	ld	(ix + 0), hl
+	pop	ix
+	call	hashlib_Sha256Init
+	pop	hl
+	pop	hl
+	or	a, a
+	sbc	hl, hl
+	push	hl
+	ld	hl, (ix + 9)
+	push	hl
+	ld	hl, (ix + 12)
+	push	hl
+	ld	bc, -373
+	lea	hl, ix + 0
+	add	hl, bc
+	ld	hl, (hl)
+	push	hl
+	call	hashlib_Sha256Update
+	pop	hl
+	pop	hl
+	pop	hl
+	pop	hl
+	ld	hl, (ix + 12)
+	ld	de, (ix + 9)
+	add	hl, de
+	push	hl
+	ld	bc, -373
+	lea	hl, ix + 0
+	add	hl, bc
+	ld	hl, (hl)
+	push	hl
+	call	hashlib_Sha256Final
+	ld	bc, -376
+	lea	hl, ix + 0
+	add	hl, bc
+	ld	hl, (hl)
+	pop	de
+	pop	de
+.lbl_4:
+	ld	sp, ix
+	pop	ix
+	ret
+	
+hashlib_AESAuthDecrypt:
+	ld	hl, -408
+	call	ti._frameset
+	ld	bc, -402
+	lea	iy, ix + 0
+	add	iy, bc
+	lea	de, ix + -114
+	ld	bc, -408
+	lea	hl, ix + 0
+	add	hl, bc
+	ld	(hl), de
+	lea	hl, iy + 0
+	push	ix
+	ld	bc, -405
+	add	ix, bc
+	ld	(ix + 0), hl
+	pop	ix
+	pea	iy + 32
+	push	de
+	call	hashlib_Sha256Init
+	pop	hl
+	pop	hl
+	ld	hl, (ix + 9)
+	ld	de, -32
+	add	hl, de
+	ld	de, 0
+	push	de
+	push	hl
+	ld	hl, (ix + 6)
+	push	hl
+	ld	bc, -408
+	lea	hl, ix + 0
+	add	hl, bc
+	ld	hl, (hl)
+	push	hl
+	call	hashlib_Sha256Update
+	pop	hl
+	pop	hl
+	pop	hl
+	pop	hl
+	ld	bc, -405
+	lea	hl, ix + 0
+	add	hl, bc
+	ld	hl, (hl)
+	push	hl
+	ld	bc, -408
+	lea	hl, ix + 0
+	add	hl, bc
+	ld	hl, (hl)
+	push	hl
+	call	hashlib_Sha256Final
+	pop	hl
+	pop	hl
+	ld	hl, (ix + 9)
+	ld	de, -32
+	add	hl, de
+	ex	de, hl
+	ld	hl, (ix + 6)
+	add	hl, de
+	ld	de, 32
+	push	de
+	ld	bc, -405
+	lea	iy, ix + 0
+	add	iy, bc
+	ld	de, (iy + 0)
+	push	de
+	push	hl
+	call	hashlib_CompareDigest
+	pop	hl
+	pop	hl
+	pop	hl
+	ld	l, 1
+	xor	a, l
+	bit	0, a
+	jq	nz, .lbl_1
+	ld	de, (ix + 12)
+	ld	a, (ix + 21)
+	ld	bc, (ix + 24)
+	ld	hl, (ix + 6)
+	push	hl
+	pop	iy
+	or	a, a
+	sbc	hl, de
+	push	bc
+	pop	de
+	jq	z, .lbl_4
+	ld	de, 0
+.lbl_4:
+	add	iy, bc
+	lea	bc, iy + 0
+	ld	iy, (ix + 12)
+	add	iy, de
+	or	a, a
+	sbc	hl, hl
+	push	hl
+	ld	l, a
+	push	hl
+	ld	hl, (ix + 18)
+	push	hl
+	ld	hl, (ix + 15)
+	push	hl
+	push	iy
+	ld	hl, (ix + 27)
+	push	hl
+	push	bc
+	call	hashlib_AESDecrypt
+	ld	iy, 21
+	add	iy, sp
+	ld	sp, iy
+	jq	.lbl_5
+.lbl_1:
+	ld	hl, 5
+.lbl_5:
+	ld	sp, ix
+	pop	ix
+	ret
+ 
+ hashlib_RSAAuthEncrypt:
+	ld	hl, -376
+	call	ti._frameset
+	ld	iy, (ix + 9)
+	ld	de, (ix + 12)
+	ld	bc, (ix + 15)
+	ld	hl, (ix + 18)
+	push	hl
+	push	bc
+	push	de
+	push	iy
+	ld	hl, (ix + 6)
+	push	hl
+	call	hashlib_RSAEncrypt
+	pop	de
+	pop	de
+	pop	de
+	pop	de
+	pop	de
+	add	hl, bc
+	or	a, a
+	sbc	hl, bc
+	jq	nz, .lbl_2
+	lea	de, ix + -114
+	ld	bc, -373
+	lea	iy, ix + 0
+	add	iy, bc
+	ld	(iy + 0), de
+	push	ix
+	ld	bc, -370
+	add	ix, bc
+	ex	(sp), ix
+	push	de
+	push	ix
+	ld	bc, -376
+	add	ix, bc
+	ld	(ix + 0), hl
+	pop	ix
+	call	hashlib_Sha256Init
+	pop	hl
+	pop	hl
+	or	a, a
+	sbc	hl, hl
+	push	hl
+	ld	hl, (ix + 18)
+	push	hl
+	ld	hl, (ix + 12)
+	push	hl
+	ld	bc, -373
+	lea	hl, ix + 0
+	add	hl, bc
+	ld	hl, (hl)
+	push	hl
+	call	hashlib_Sha256Update
+	pop	hl
+	pop	hl
+	pop	hl
+	pop	hl
+	ld	hl, (ix + 12)
+	ld	de, (ix + 18)
+	add	hl, de
+	push	hl
+	ld	bc, -373
+	lea	hl, ix + 0
+	add	hl, bc
+	ld	hl, (hl)
+	push	hl
+	call	hashlib_Sha256Final
+	ld	bc, -376
+	lea	hl, ix + 0
+	add	hl, bc
+	ld	hl, (hl)
+	pop	de
+	pop	de
+.lbl_2:
+	ld	sp, ix
+	pop	ix
+	ret
+ 
+ 
  
 _sprng_read_addr:		rb 3
 _sprng_entropy_pool		:=	$E30800

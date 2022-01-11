@@ -22,3 +22,6 @@ library	"HASHLIB", 8
 	export	hashlib_EraseContext ; 60
 	export	hashlib_CompareDigest ; 63
 	export	hashlib_ReverseEndianness ; 66
+	export	hashlib_AESAuthEncrypt ; 69
+	export	hashlib_AESAuthDecrypt ; 72
+	export	hashlib_RSAAuthEncrypt ; 75

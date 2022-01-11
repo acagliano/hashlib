@@ -1,6 +1,7 @@
 var searchData=
 [
-  ['hashlib_2eh_24',['hashlib.h',['../hashlib_8h.html',1,'']]],
+  ['hashlib_2eh_23',['hashlib.h',['../hashlib_8h.html',1,'']]],
+  ['hashlib_5faesauthencrypt_24',['hashlib_AESAuthEncrypt',['../hashlib_8h.html#a44592eaae569a9cd22a4f7c5cb1c227a',1,'hashlib.h']]],
   ['hashlib_5faesciphertextivsize_25',['hashlib_AESCiphertextIVSize',['../hashlib_8h.html#a1bfa78156f62c2e87f7af3a8533304b1',1,'hashlib.h']]],
   ['hashlib_5faesciphertextsize_26',['hashlib_AESCiphertextSize',['../hashlib_8h.html#a2bd39d64a42b6a8d56b0b18efc9d164c',1,'hashlib.h']]],
   ['hashlib_5faesdecrypt_27',['hashlib_AESDecrypt',['../hashlib_8h.html#a402aa47590cf2de4ea6cb2efba1fdb35',1,'hashlib.h']]],

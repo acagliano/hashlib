@@ -45,9 +45,7 @@ struct \mbox{\hyperlink{struct__aes__ctx}{\+\_\+aes\+\_\+ctx}}
 \#define \mbox{\hyperlink{hashlib_8h_a864d96afe89419821aed4293d979b2b9}{hashlib\+\_\+\+AESKeygen}}(key,  keylen)~\mbox{\hyperlink{hashlib_8h_aa0092aa4c122591fae447dda8fa25dfc}{hashlib\+\_\+\+Random\+Bytes}}((key), (keylen))
 \item 
 \#define \mbox{\hyperlink{hashlib_8h_ad4ea46d5db12669bb2687771d094638f}{hashlib\+\_\+\+Malloc\+Context}}(size)~malloc((size))
-\item 
-\#define \mbox{\hyperlink{hashlib_8h_a5387d4504d29343ebd710ec09fde7aad}{AUTH\+\_\+\+SHA256\+\_\+\+LEN}}~\mbox{\hyperlink{hashlib_8h_af5aa539ae202ddf9e0c9211309869fc8}{SHA256\+\_\+\+DIGEST\+\_\+\+LEN}}
-\begin{DoxyCompactList}\small\item\em Authenticated Encryption Scheme Guidelines. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{DoxyCompactItemize}
 \doxysubsection*{Typedefs}
 \begin{DoxyCompactItemize}
 \item 
@@ -138,7 +136,15 @@ size\+\_\+t \mbox{\hyperlink{hashlib_8h_ae575c99825f9b970c3d6f7a6bf552153}{hashl
 size\+\_\+t \mbox{\hyperlink{hashlib_8h_a01668b3f2dd85fe2f8696673b275b75a}{hashlib\+\_\+\+RSAEncode\+PSS}} (const uint8\+\_\+t $\ast$plaintext, size\+\_\+t len, uint8\+\_\+t $\ast$outbuf, size\+\_\+t modulus\+\_\+len, uint8\+\_\+t $\ast$salt)
 \begin{DoxyCompactList}\small\item\em RSA-\/\+PSS padding scheme. \end{DoxyCompactList}\item 
 bool \mbox{\hyperlink{hashlib_8h_af1dd2bde099a6fadb6bcc842e502c21b}{hashlib\+\_\+\+RSAVerify\+PSS}} (const uint8\+\_\+t $\ast$in, size\+\_\+t len, const uint8\+\_\+t $\ast$expected, size\+\_\+t modulus\+\_\+len)
-\begin{DoxyCompactList}\small\item\em RSA-\/\+PSS verification. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em RSA-\/\+PSS verification. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{hashlib_8h_aeb2e64abcc4317e3143fb820f21c3bfd}{aes\+\_\+error\+\_\+t}} \mbox{\hyperlink{hashlib_8h_a44592eaae569a9cd22a4f7c5cb1c227a}{hashlib\+\_\+\+AESAuth\+Encrypt}} (const uint8\+\_\+t $\ast$plaintext, size\+\_\+t len, uint8\+\_\+t $\ast$ciphertext, \mbox{\hyperlink{hashlib_8h_aa188bc2768a3b7aa6ad73cb2c77819e0}{aes\+\_\+ctx}} $\ast$key, const uint8\+\_\+t $\ast$iv, uint8\+\_\+t ciphermode, size\+\_\+t encryption\+\_\+offset, size\+\_\+t encryption\+\_\+len)
+\begin{DoxyCompactList}\small\item\em Authenticated AES Encryption. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{hashlib_8h_adca1f4dac795080d2b68d211ae598bc7}\label{hashlib_8h_adca1f4dac795080d2b68d211ae598bc7}} 
+\mbox{\hyperlink{hashlib_8h_aeb2e64abcc4317e3143fb820f21c3bfd}{aes\+\_\+error\+\_\+t}} {\bfseries hashlib\+\_\+\+AESAuth\+Decrypt} (const uint8\+\_\+t $\ast$in, size\+\_\+t in\+\_\+len, uint8\+\_\+t $\ast$out, \mbox{\hyperlink{hashlib_8h_aa188bc2768a3b7aa6ad73cb2c77819e0}{aes\+\_\+ctx}} $\ast$key, const uint8\+\_\+t $\ast$iv, uint8\+\_\+t ciphermode, size\+\_\+t encr\+\_\+start, size\+\_\+t encr\+\_\+len)
+\item 
+\mbox{\Hypertarget{hashlib_8h_a5abb2858fc926de7f9d16232f2193a7d}\label{hashlib_8h_a5abb2858fc926de7f9d16232f2193a7d}} 
+\mbox{\hyperlink{hashlib_8h_a0486449f609d0e485bad091a671d9294}{rsa\+\_\+error\+\_\+t}} {\bfseries hashlib\+\_\+\+RSAAuth\+Encrypt} (const uint8\+\_\+t $\ast$msg, size\+\_\+t msglen, uint8\+\_\+t $\ast$ct, const uint8\+\_\+t $\ast$pubkey, size\+\_\+t keylen)
+\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
@@ -295,30 +301,6 @@ Dynamically allocates a block of memory to be used for a context or buffer.
 \begin{DoxyReturn}{Returns}
 Same as {\bfseries{malloc}}. 
 \end{DoxyReturn}
-\mbox{\Hypertarget{hashlib_8h_a5387d4504d29343ebd710ec09fde7aad}\label{hashlib_8h_a5387d4504d29343ebd710ec09fde7aad}} 
-\index{hashlib.h@{hashlib.h}!AUTH\_SHA256\_LEN@{AUTH\_SHA256\_LEN}}
-\index{AUTH\_SHA256\_LEN@{AUTH\_SHA256\_LEN}!hashlib.h@{hashlib.h}}
-\doxysubsubsection{\texorpdfstring{AUTH\_SHA256\_LEN}{AUTH\_SHA256\_LEN}}
-{\footnotesize\ttfamily \#define AUTH\+\_\+\+SHA256\+\_\+\+LEN~\mbox{\hyperlink{hashlib_8h_af5aa539ae202ddf9e0c9211309869fc8}{SHA256\+\_\+\+DIGEST\+\_\+\+LEN}}}
-
-
-
-Authenticated Encryption Scheme Guidelines. 
-
-Authenticated encryption is the process of attaching a means of detecting data tampering to an encryption algorithm to ensure integrity as well as confidentiality. Authentication usually involves a hash or signature appended to the ciphertext. There is no provided authenticated encryption implementation in this library because it is dependent on the protocol used, but you can use the included SHA-\/256 implementation as a means of validation.
-
-\begin{DoxyNote}{Note}
-Hash the data you will be transmitting {\bfseries{AFTER}} encryption, not before. 
-
-Hash both encrypted and unencrypted parts of your packet. 
-
-Append the hash to the ciphertext before transmitting. 
-
-The same guidelines apply to both AES and RSA. 
-\end{DoxyNote}
-\begin{DoxyWarning}{Warning}
-When decrypting, {\bfseries{validate the hash first}}. If the hash is invalid, do not decrypt the message. 
-\end{DoxyWarning}
 
 
 \doxysubsection{Typedef Documentation}
@@ -1105,3 +1087,39 @@ Reverses the PSS MGF1 masking on {\bfseries{expected}} and retrieves the salt, t
 \begin{DoxyReturn}{Returns}
 True if signature match, False if failed to verify. 
 \end{DoxyReturn}
+\mbox{\Hypertarget{hashlib_8h_a44592eaae569a9cd22a4f7c5cb1c227a}\label{hashlib_8h_a44592eaae569a9cd22a4f7c5cb1c227a}} 
+\index{hashlib.h@{hashlib.h}!hashlib\_AESAuthEncrypt@{hashlib\_AESAuthEncrypt}}
+\index{hashlib\_AESAuthEncrypt@{hashlib\_AESAuthEncrypt}!hashlib.h@{hashlib.h}}
+\doxysubsubsection{\texorpdfstring{hashlib\_AESAuthEncrypt()}{hashlib\_AESAuthEncrypt()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{hashlib_8h_aeb2e64abcc4317e3143fb820f21c3bfd}{aes\+\_\+error\+\_\+t}} hashlib\+\_\+\+AESAuth\+Encrypt (\begin{DoxyParamCaption}\item[{const uint8\+\_\+t $\ast$}]{plaintext,  }\item[{size\+\_\+t}]{len,  }\item[{uint8\+\_\+t $\ast$}]{ciphertext,  }\item[{\mbox{\hyperlink{hashlib_8h_aa188bc2768a3b7aa6ad73cb2c77819e0}{aes\+\_\+ctx}} $\ast$}]{key,  }\item[{const uint8\+\_\+t $\ast$}]{iv,  }\item[{uint8\+\_\+t}]{ciphermode,  }\item[{size\+\_\+t}]{encryption\+\_\+offset,  }\item[{size\+\_\+t}]{encryption\+\_\+len }\end{DoxyParamCaption})}
+
+
+
+Authenticated AES Encryption. 
+
+Performs an authenticated encryption of the given message. Supports partial encryption via the {\bfseries{encryption\+\_\+offset}} and {\bfseries{encryption\+\_\+len}} parameters.
+
+
+\begin{DoxyParams}{Parameters}
+{\em plaintext} & Pointer to the data to encrypt and authenticate. \\
+\hline
+{\em len} & The size of the plaintext to encrypt and authenticate. \\
+\hline
+{\em ciphertext} & The buffer to write the authenticated encryption to. Must be large enough to hold the ciphertext (including any padding) as well as the SHA-\/256 hash. \\
+\hline
+{\em ks} & Pointer to an AES key schedule context. \\
+\hline
+{\em iv} & Pointer to an initialization vector (a nonce of length equal to the block size). \\
+\hline
+{\em ciphermode} & The cipher mode to use. Can be either {\itshape AES\+\_\+\+MODE\+\_\+\+CBC} or {\itshape AES\+\_\+\+MODE\+\_\+\+CTR}. \\
+\hline
+{\em encryption\+\_\+offset} & The offset from the start of the plaintext to begin encryption. This is useful if you have control bytes or metadata that should not be encrypted. \\
+\hline
+{\em encryption\+\_\+len} & The size of the data to be encrypted. This is useful if you have trailing bytes that should not be encrypted. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+While this function can encrypt part or all of the message, it hashes it in its entirely. This is because when sending a packet, only sensitive data need be encrypted but the entire packet should be authenticated. 
+
+To encrypt the entire message, pass 0 for {\bfseries{encryption\+\_\+offset}} and {\bfseries{len}} for {\bfseries{encryption\+\_\+len}}. 
+\end{DoxyNote}

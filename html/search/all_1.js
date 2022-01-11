@@ -16,6 +16,5 @@ var searchData=
   ['aes_5fmode_5fcbc_15',['AES_MODE_CBC',['../hashlib_8h.html#a194ef6b5934dff6dceed4dd819e76340ad21a3698b98b7368b14ec3d48314a132',1,'hashlib.h']]],
   ['aes_5fmode_5fctr_16',['AES_MODE_CTR',['../hashlib_8h.html#a194ef6b5934dff6dceed4dd819e76340a5ecd63cd0bd97d46f273461b6550cb8e',1,'hashlib.h']]],
   ['aes_5fok_17',['AES_OK',['../hashlib_8h.html#aeb2e64abcc4317e3143fb820f21c3bfdaacf07636102724d2a7913911b0cf74b2',1,'hashlib.h']]],
-  ['aes_5fpadding_5fschemes_18',['aes_padding_schemes',['../hashlib_8h.html#a9933dec76c43b37331782bdd16ebc4a3',1,'hashlib.h']]],
-  ['auth_5fsha256_5flen_19',['AUTH_SHA256_LEN',['../hashlib_8h.html#a5387d4504d29343ebd710ec09fde7aad',1,'hashlib.h']]]
+  ['aes_5fpadding_5fschemes_18',['aes_padding_schemes',['../hashlib_8h.html#a9933dec76c43b37331782bdd16ebc4a3',1,'hashlib.h']]]
 ];

@@ -609,20 +609,42 @@ size_t hashlib_RSAEncodePSS(
     
     
 /**********************************************************************************************************************************
- * @brief Authenticated Encryption Scheme Guidelines
+ * @brief Authenticated AES Encryption
  *
- * Authenticated encryption is the process of attaching a means of detecting data tampering to an encryption
- * algorithm to ensure integrity as well as confidentiality. Authentication usually involves a hash or signature
- * appended to the ciphertext. There is no provided authenticated encryption implementation in this library because
- * it is dependent on the protocol used, but you can use the included SHA-256 implementation as a means of
- * validation.
+ * Performs an authenticated encryption of the given message. Supports partial encryption via the
+ * @b encryption_offset and @b encryption_len parameters.
  *
- * @note Hash the data you will be transmitting @b AFTER encryption, not before.
- * @note Hash both encrypted and unencrypted parts of your packet.
- * @note Append the hash to the ciphertext before transmitting.
- * @note The same guidelines apply to both AES and RSA.
- * @warning When decrypting, <b>validate the hash first</b>. If the hash is invalid, do not decrypt the message.
+ * @param plaintext Pointer to the data to encrypt and authenticate.
+ * @param len The size of the plaintext to encrypt and authenticate.
+ * @param ciphertext The buffer to write the authenticated encryption to. Must be large enough to hold
+ *                  the ciphertext (including any padding) as well as the SHA-256 hash.
+ * @param ks Pointer to an AES key schedule context.
+ * @param iv Pointer to an initialization vector (a nonce of length equal to the block size).
+ * @param ciphermode The cipher mode to use. Can be either @e AES_MODE_CBC or @e AES_MODE_CTR.
+ * @param encryption_offset The offset from the start of the plaintext to begin encryption. This is useful if
+ *                          you have control bytes or metadata that should not be encrypted.
+ * @param encryption_len The size of the data to be encrypted. This is useful if you have trailing bytes
+ *                       that should not be encrypted.
+ * @note While this function can encrypt part or all of the message, it hashes it in its entirely. This is because
+ *      when sending a packet, only sensitive data need be encrypted but the entire packet should be
+ *      authenticated.
+ * @note To encrypt the entire message, pass 0 for @b encryption_offset and @b len for @b encryption_len.
  ***********************************************************************************************************************************/
-#define AUTH_SHA256_LEN     SHA256_DIGEST_LEN
+aes_error_t hashlib_AESAuthEncrypt(
+    const uint8_t* plaintext,
+    size_t len,
+    uint8_t* ciphertext,
+    aes_ctx* key,
+    const uint8_t* iv,
+    uint8_t ciphermode,
+    size_t encryption_offset,
+    size_t encryption_len);
+    
+    
+
+aes_error_t hashlib_AESAuthDecrypt(const uint8_t* in, size_t in_len, uint8_t* out, aes_ctx* key, const uint8_t* iv, uint8_t ciphermode, size_t encr_start, size_t encr_len);
+rsa_error_t hashlib_RSAAuthEncrypt(const uint8_t* msg, size_t msglen, uint8_t *ct, const uint8_t* pubkey, size_t keylen);
+
+
 
 #endif

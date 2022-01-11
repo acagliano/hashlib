@@ -119,9 +119,6 @@ Macros</h2></td></tr>
 <tr class="separator:a864d96afe89419821aed4293d979b2b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad4ea46d5db12669bb2687771d094638f"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#ad4ea46d5db12669bb2687771d094638f">hashlib_MallocContext</a>(size)&#160;&#160;&#160;malloc((size))</td></tr>
 <tr class="separator:ad4ea46d5db12669bb2687771d094638f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5387d4504d29343ebd710ec09fde7aad"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#a5387d4504d29343ebd710ec09fde7aad">AUTH_SHA256_LEN</a>&#160;&#160;&#160;<a class="el" href="hashlib_8h.html#af5aa539ae202ddf9e0c9211309869fc8">SHA256_DIGEST_LEN</a></td></tr>
-<tr class="memdesc:a5387d4504d29343ebd710ec09fde7aad"><td class="mdescLeft">&#160;</td><td class="mdescRight">Authenticated Encryption Scheme Guidelines.  <a href="hashlib_8h.html#a5387d4504d29343ebd710ec09fde7aad">More...</a><br /></td></tr>
-<tr class="separator:a5387d4504d29343ebd710ec09fde7aad"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
 Typedefs</h2></td></tr>
@@ -238,6 +235,15 @@ Functions</h2></td></tr>
 <tr class="memitem:af1dd2bde099a6fadb6bcc842e502c21b"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#af1dd2bde099a6fadb6bcc842e502c21b">hashlib_RSAVerifyPSS</a> (const uint8_t *in, size_t len, const uint8_t *expected, size_t modulus_len)</td></tr>
 <tr class="memdesc:af1dd2bde099a6fadb6bcc842e502c21b"><td class="mdescLeft">&#160;</td><td class="mdescRight">RSA-PSS verification.  <a href="hashlib_8h.html#af1dd2bde099a6fadb6bcc842e502c21b">More...</a><br /></td></tr>
 <tr class="separator:af1dd2bde099a6fadb6bcc842e502c21b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a44592eaae569a9cd22a4f7c5cb1c227a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="hashlib_8h.html#aeb2e64abcc4317e3143fb820f21c3bfd">aes_error_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#a44592eaae569a9cd22a4f7c5cb1c227a">hashlib_AESAuthEncrypt</a> (const uint8_t *plaintext, size_t len, uint8_t *ciphertext, <a class="el" href="hashlib_8h.html#aa188bc2768a3b7aa6ad73cb2c77819e0">aes_ctx</a> *key, const uint8_t *iv, uint8_t ciphermode, size_t encryption_offset, size_t encryption_len)</td></tr>
+<tr class="memdesc:a44592eaae569a9cd22a4f7c5cb1c227a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Authenticated AES Encryption.  <a href="hashlib_8h.html#a44592eaae569a9cd22a4f7c5cb1c227a">More...</a><br /></td></tr>
+<tr class="separator:a44592eaae569a9cd22a4f7c5cb1c227a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adca1f4dac795080d2b68d211ae598bc7"><td class="memItemLeft" align="right" valign="top"><a id="adca1f4dac795080d2b68d211ae598bc7"></a>
+<a class="el" href="hashlib_8h.html#aeb2e64abcc4317e3143fb820f21c3bfd">aes_error_t</a>&#160;</td><td class="memItemRight" valign="bottom"><b>hashlib_AESAuthDecrypt</b> (const uint8_t *in, size_t in_len, uint8_t *out, <a class="el" href="hashlib_8h.html#aa188bc2768a3b7aa6ad73cb2c77819e0">aes_ctx</a> *key, const uint8_t *iv, uint8_t ciphermode, size_t encr_start, size_t encr_len)</td></tr>
+<tr class="separator:adca1f4dac795080d2b68d211ae598bc7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5abb2858fc926de7f9d16232f2193a7d"><td class="memItemLeft" align="right" valign="top"><a id="a5abb2858fc926de7f9d16232f2193a7d"></a>
+<a class="el" href="hashlib_8h.html#a0486449f609d0e485bad091a671d9294">rsa_error_t</a>&#160;</td><td class="memItemRight" valign="bottom"><b>hashlib_RSAAuthEncrypt</b> (const uint8_t *msg, size_t msglen, uint8_t *ct, const uint8_t *pubkey, size_t keylen)</td></tr>
+<tr class="separator:a5abb2858fc926de7f9d16232f2193a7d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Cryptography Library for the TI-84+ CE. </p>
@@ -517,31 +523,6 @@ If the SPRNG is run, anything you have stored here will be destroyed. </dd></dl>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Same as <b>malloc</b>. </dd></dl>
-
-</div>
-</div>
-<a id="a5387d4504d29343ebd710ec09fde7aad"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5387d4504d29343ebd710ec09fde7aad">&#9670;&nbsp;</a></span>AUTH_SHA256_LEN</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define AUTH_SHA256_LEN&#160;&#160;&#160;<a class="el" href="hashlib_8h.html#af5aa539ae202ddf9e0c9211309869fc8">SHA256_DIGEST_LEN</a></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Authenticated Encryption Scheme Guidelines. </p>
-<p>Authenticated encryption is the process of attaching a means of detecting data tampering to an encryption algorithm to ensure integrity as well as confidentiality. Authentication usually involves a hash or signature appended to the ciphertext. There is no provided authenticated encryption implementation in this library because it is dependent on the protocol used, but you can use the included SHA-256 implementation as a means of validation.</p>
-<dl class="section note"><dt>Note</dt><dd>Hash the data you will be transmitting <b>AFTER</b> encryption, not before. </dd>
-<dd>
-Hash both encrypted and unencrypted parts of your packet. </dd>
-<dd>
-Append the hash to the ciphertext before transmitting. </dd>
-<dd>
-The same guidelines apply to both AES and RSA. </dd></dl>
-<dl class="section warning"><dt>Warning</dt><dd>When decrypting, <b>validate the hash first</b>. If the hash is invalid, do not decrypt the message. </dd></dl>
 
 </div>
 </div>
@@ -1882,6 +1863,89 @@ If you are trying to validate a signature, use <a class="el" href="hashlib_8h.ht
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>True if signature match, False if failed to verify. </dd></dl>
+
+</div>
+</div>
+<a id="a44592eaae569a9cd22a4f7c5cb1c227a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a44592eaae569a9cd22a4f7c5cb1c227a">&#9670;&nbsp;</a></span>hashlib_AESAuthEncrypt()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="hashlib_8h.html#aeb2e64abcc4317e3143fb820f21c3bfd">aes_error_t</a> hashlib_AESAuthEncrypt </td>
+          <td>(</td>
+          <td class="paramtype">const uint8_t *&#160;</td>
+          <td class="paramname"><em>plaintext</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>len</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t *&#160;</td>
+          <td class="paramname"><em>ciphertext</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="hashlib_8h.html#aa188bc2768a3b7aa6ad73cb2c77819e0">aes_ctx</a> *&#160;</td>
+          <td class="paramname"><em>key</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const uint8_t *&#160;</td>
+          <td class="paramname"><em>iv</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>ciphermode</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>encryption_offset</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>encryption_len</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Authenticated AES Encryption. </p>
+<p>Performs an authenticated encryption of the given message. Supports partial encryption via the <b>encryption_offset</b> and <b>encryption_len</b> parameters.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">plaintext</td><td>Pointer to the data to encrypt and authenticate. </td></tr>
+    <tr><td class="paramname">len</td><td>The size of the plaintext to encrypt and authenticate. </td></tr>
+    <tr><td class="paramname">ciphertext</td><td>The buffer to write the authenticated encryption to. Must be large enough to hold the ciphertext (including any padding) as well as the SHA-256 hash. </td></tr>
+    <tr><td class="paramname">ks</td><td>Pointer to an AES key schedule context. </td></tr>
+    <tr><td class="paramname">iv</td><td>Pointer to an initialization vector (a nonce of length equal to the block size). </td></tr>
+    <tr><td class="paramname">ciphermode</td><td>The cipher mode to use. Can be either <em>AES_MODE_CBC</em> or <em>AES_MODE_CTR</em>. </td></tr>
+    <tr><td class="paramname">encryption_offset</td><td>The offset from the start of the plaintext to begin encryption. This is useful if you have control bytes or metadata that should not be encrypted. </td></tr>
+    <tr><td class="paramname">encryption_len</td><td>The size of the data to be encrypted. This is useful if you have trailing bytes that should not be encrypted. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>Note</dt><dd>While this function can encrypt part or all of the message, it hashes it in its entirely. This is because when sending a packet, only sensitive data need be encrypted but the entire packet should be authenticated. </dd>
+<dd>
+To encrypt the entire message, pass 0 for <b>encryption_offset</b> and <b>len</b> for <b>encryption_len</b>. </dd></dl>
 
 </div>
 </div>
