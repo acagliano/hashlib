@@ -25,3 +25,8 @@ library	"HASHLIB", 8
 	export	hashlib_AESAuthEncrypt ; 69
 	export	hashlib_AESAuthDecrypt ; 72
 	export	hashlib_RSAAuthEncrypt ; 75
+	export	hashlib_PBKDF2 ; 78
+	export	hashlib_HMACSha256Init ; 81
+	export	hashlib_HMACSha256Update ; 84
+	export	hashlib_HMACSha256Final ; 87
+	export	hashlib_HMACSha256Reset ; 90

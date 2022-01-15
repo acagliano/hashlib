@@ -86,6 +86,8 @@ $(function() {
 Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct__sha256__ctx.html">_sha256_ctx</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct__hmac__ctx.html">_hmac_ctx</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct__aes__ctx.html">_aes_ctx</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
@@ -124,6 +126,8 @@ Macros</h2></td></tr>
 Typedefs</h2></td></tr>
 <tr class="memitem:a53df9e7d871973d59c7b58a6c3963c5d"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="struct__sha256__ctx.html">_sha256_ctx</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#a53df9e7d871973d59c7b58a6c3963c5d">sha256_ctx</a></td></tr>
 <tr class="separator:a53df9e7d871973d59c7b58a6c3963c5d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8d813300476744f01319600478572f62"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="struct__hmac__ctx.html">_hmac_ctx</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#a8d813300476744f01319600478572f62">hmac_ctx</a></td></tr>
+<tr class="separator:a8d813300476744f01319600478572f62"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa188bc2768a3b7aa6ad73cb2c77819e0"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="struct__aes__ctx.html">_aes_ctx</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#aa188bc2768a3b7aa6ad73cb2c77819e0">aes_ctx</a></td></tr>
 <tr class="separator:aa188bc2768a3b7aa6ad73cb2c77819e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
@@ -175,9 +179,9 @@ Functions</h2></td></tr>
 <tr class="memitem:aa0092aa4c122591fae447dda8fa25dfc"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#aa0092aa4c122591fae447dda8fa25dfc">hashlib_RandomBytes</a> (uint8_t *buffer, size_t size)</td></tr>
 <tr class="memdesc:aa0092aa4c122591fae447dda8fa25dfc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fills a buffer to size with random bytes.  <a href="hashlib_8h.html#aa0092aa4c122591fae447dda8fa25dfc">More...</a><br /></td></tr>
 <tr class="separator:aa0092aa4c122591fae447dda8fa25dfc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad2fa6bc8d3a1156a5734b81f5195afc4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#ad2fa6bc8d3a1156a5734b81f5195afc4">hashlib_Sha256Init</a> (<a class="el" href="hashlib_8h.html#a53df9e7d871973d59c7b58a6c3963c5d">sha256_ctx</a> *ctx, uint32_t *mbuffer)</td></tr>
-<tr class="memdesc:ad2fa6bc8d3a1156a5734b81f5195afc4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Context initializer for SHA-256. Initializes the given context with the starting state for SHA-256.  <a href="hashlib_8h.html#ad2fa6bc8d3a1156a5734b81f5195afc4">More...</a><br /></td></tr>
-<tr class="separator:ad2fa6bc8d3a1156a5734b81f5195afc4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac901e0546d0cb0c218fedbe4a43fc005"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#ac901e0546d0cb0c218fedbe4a43fc005">hashlib_Sha256Init</a> (<a class="el" href="hashlib_8h.html#a53df9e7d871973d59c7b58a6c3963c5d">sha256_ctx</a> *ctx)</td></tr>
+<tr class="memdesc:ac901e0546d0cb0c218fedbe4a43fc005"><td class="mdescLeft">&#160;</td><td class="mdescRight">Context initializer for SHA-256. Initializes the given context with the starting state for SHA-256.  <a href="hashlib_8h.html#ac901e0546d0cb0c218fedbe4a43fc005">More...</a><br /></td></tr>
+<tr class="separator:ac901e0546d0cb0c218fedbe4a43fc005"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aeed1dabf7c19464f01c87dcb25a77636"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#aeed1dabf7c19464f01c87dcb25a77636">hashlib_Sha256Update</a> (<a class="el" href="hashlib_8h.html#a53df9e7d871973d59c7b58a6c3963c5d">sha256_ctx</a> *ctx, const uint8_t *buf, uint32_t len)</td></tr>
 <tr class="memdesc:aeed1dabf7c19464f01c87dcb25a77636"><td class="mdescLeft">&#160;</td><td class="mdescRight">Updates the SHA-256 context for the given data.  <a href="hashlib_8h.html#aeed1dabf7c19464f01c87dcb25a77636">More...</a><br /></td></tr>
 <tr class="separator:aeed1dabf7c19464f01c87dcb25a77636"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -187,6 +191,21 @@ Functions</h2></td></tr>
 <tr class="memitem:a2c1bd7ec5809afead6583128c9052d8b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#a2c1bd7ec5809afead6583128c9052d8b">hashlib_MGF1Hash</a> (uint8_t *data, size_t datalen, uint8_t *outbuf, size_t outlen)</td></tr>
 <tr class="memdesc:a2c1bd7ec5809afead6583128c9052d8b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Arbitrary Length Hashing Function.  <a href="hashlib_8h.html#a2c1bd7ec5809afead6583128c9052d8b">More...</a><br /></td></tr>
 <tr class="separator:a2c1bd7ec5809afead6583128c9052d8b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2f8d26c10043feee515d7c08cc79a9c7"><td class="memItemLeft" align="right" valign="top"><a id="a2f8d26c10043feee515d7c08cc79a9c7"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>hashlib_HMACSha256Init</b> (<a class="el" href="hashlib_8h.html#a8d813300476744f01319600478572f62">hmac_ctx</a> *hmac, const uint8_t *key, size_t keylen)</td></tr>
+<tr class="separator:a2f8d26c10043feee515d7c08cc79a9c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a49ed25dd9a2fdf89b283acd23c855581"><td class="memItemLeft" align="right" valign="top"><a id="a49ed25dd9a2fdf89b283acd23c855581"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>hashlib_HMACSha256Update</b> (<a class="el" href="hashlib_8h.html#a8d813300476744f01319600478572f62">hmac_ctx</a> *hmac, const uint8_t *msg, size_t len)</td></tr>
+<tr class="separator:a49ed25dd9a2fdf89b283acd23c855581"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a785dd3982d59a7567a4738f4fc27fb7e"><td class="memItemLeft" align="right" valign="top"><a id="a785dd3982d59a7567a4738f4fc27fb7e"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>hashlib_HMACSha256Final</b> (<a class="el" href="hashlib_8h.html#a8d813300476744f01319600478572f62">hmac_ctx</a> *hmac, uint8_t *output)</td></tr>
+<tr class="separator:a785dd3982d59a7567a4738f4fc27fb7e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7f510d5a8a1bf0e81d9777066e3b07fc"><td class="memItemLeft" align="right" valign="top"><a id="a7f510d5a8a1bf0e81d9777066e3b07fc"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>hashlib_HMACSha256Reset</b> (<a class="el" href="hashlib_8h.html#a8d813300476744f01319600478572f62">hmac_ctx</a> *hmac)</td></tr>
+<tr class="separator:a7f510d5a8a1bf0e81d9777066e3b07fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aab1072341b442847719cda42efddbcf2"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#aab1072341b442847719cda42efddbcf2">hashlib_PBKDF2</a> (const uint8_t *password, size_t passlen, uint8_t *key, const uint8_t *salt, size_t saltlen, size_t rounds, size_t keylen)</td></tr>
+<tr class="memdesc:aab1072341b442847719cda42efddbcf2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Password-Based Key Derivation Function (via SHA-256 HMAC)  <a href="hashlib_8h.html#aab1072341b442847719cda42efddbcf2">More...</a><br /></td></tr>
+<tr class="separator:aab1072341b442847719cda42efddbcf2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0653a6a286fb1bedfb3e964d36e3b0bd"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#a0653a6a286fb1bedfb3e964d36e3b0bd">hashlib_AESLoadKey</a> (const uint8_t *key, const <a class="el" href="hashlib_8h.html#aa188bc2768a3b7aa6ad73cb2c77819e0">aes_ctx</a> *ks, size_t keylen)</td></tr>
 <tr class="memdesc:a0653a6a286fb1bedfb3e964d36e3b0bd"><td class="mdescLeft">&#160;</td><td class="mdescRight">AES import key to key schedule context.  <a href="hashlib_8h.html#a0653a6a286fb1bedfb3e964d36e3b0bd">More...</a><br /></td></tr>
 <tr class="separator:a0653a6a286fb1bedfb3e964d36e3b0bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -304,7 +323,7 @@ If the SPRNG is run, anything you have stored here will be destroyed. </dd></dl>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Temporary SHA-256 memory buffer. A buffer of this length, in uint32_ts, must be passed to <a class="el" href="hashlib_8h.html#ad2fa6bc8d3a1156a5734b81f5195afc4" title="Context initializer for SHA-256. Initializes the given context with the starting state for SHA-256.">hashlib_Sha256Init()</a>. </p><div class="fragment"><div class="line">uint32_t mbuffer[<a class="code" href="hashlib_8h.html#a939c5eb79064fb776e34fd0c632a588b">SHA256_MBUFFER_LEN</a>];</div>
+<p>Temporary SHA-256 memory buffer. A buffer of this length, in uint32_ts, must be passed to <a class="el" href="hashlib_8h.html#ac901e0546d0cb0c218fedbe4a43fc005" title="Context initializer for SHA-256. Initializes the given context with the starting state for SHA-256.">hashlib_Sha256Init()</a>. </p><div class="fragment"><div class="line">uint32_t mbuffer[<a class="code" href="hashlib_8h.html#a939c5eb79064fb776e34fd0c632a588b">SHA256_MBUFFER_LEN</a>];</div>
 <div class="ttc" id="ahashlib_8h_html_a939c5eb79064fb776e34fd0c632a588b"><div class="ttname"><a href="hashlib_8h.html#a939c5eb79064fb776e34fd0c632a588b">SHA256_MBUFFER_LEN</a></div><div class="ttdeci">#define SHA256_MBUFFER_LEN</div><div class="ttdef"><b>Definition:</b> hashlib.h:97</div></div>
 </div><!-- fragment --> 
 </div>
@@ -542,6 +561,21 @@ If the SPRNG is run, anything you have stored here will be destroyed. </dd></dl>
 
 </div>
 </div>
+<a id="a8d813300476744f01319600478572f62"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8d813300476744f01319600478572f62">&#9670;&nbsp;</a></span>hmac_ctx</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="hashlib_8h.html#a8d813300476744f01319600478572f62">hmac_ctx</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Defines hash-state data for an instance of SHA-256-HMAC. </p><dl class="section note"><dt>Note</dt><dd>If you are hashing multiple data streams concurrently, allocate a seperate context for each. </dd></dl>
+
+</div>
+</div>
 <a id="aa188bc2768a3b7aa6ad73cb2c77819e0"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aa188bc2768a3b7aa6ad73cb2c77819e0">&#9670;&nbsp;</a></span>aes_ctx</h2>
 
@@ -767,8 +801,8 @@ If the SPRNG is run, anything you have stored here will be destroyed. </dd></dl>
 
 </div>
 </div>
-<a id="ad2fa6bc8d3a1156a5734b81f5195afc4"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad2fa6bc8d3a1156a5734b81f5195afc4">&#9670;&nbsp;</a></span>hashlib_Sha256Init()</h2>
+<a id="ac901e0546d0cb0c218fedbe4a43fc005"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac901e0546d0cb0c218fedbe4a43fc005">&#9670;&nbsp;</a></span>hashlib_Sha256Init()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -777,18 +811,8 @@ If the SPRNG is run, anything you have stored here will be destroyed. </dd></dl>
           <td class="memname">void hashlib_Sha256Init </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="hashlib_8h.html#a53df9e7d871973d59c7b58a6c3963c5d">sha256_ctx</a> *&#160;</td>
-          <td class="paramname"><em>ctx</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
+          <td class="paramname"><em>ctx</em></td><td>)</td>
           <td></td>
-          <td class="paramtype">uint32_t *&#160;</td>
-          <td class="paramname"><em>mbuffer</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -846,7 +870,7 @@ If the SPRNG is run, anything you have stored here will be destroyed. </dd></dl>
   </table>
   </dd>
 </dl>
-<dl class="section warning"><dt>Warning</dt><dd>You must call <a class="el" href="hashlib_8h.html#ad2fa6bc8d3a1156a5734b81f5195afc4" title="Context initializer for SHA-256. Initializes the given context with the starting state for SHA-256.">hashlib_Sha256Init()</a> first or your hash state will be invalid. </dd></dl>
+<dl class="section warning"><dt>Warning</dt><dd>You must call <a class="el" href="hashlib_8h.html#ac901e0546d0cb0c218fedbe4a43fc005" title="Context initializer for SHA-256. Initializes the given context with the starting state for SHA-256.">hashlib_Sha256Init()</a> first or your hash state will be invalid. </dd></dl>
 
 </div>
 </div>
@@ -938,6 +962,80 @@ If the SPRNG is run, anything you have stored here will be destroyed. </dd></dl>
   </dd>
 </dl>
 <dl class="section note"><dt>Note</dt><dd><b>outbuf</b> must be at least <b>outlen</b> bytes large. </dd></dl>
+
+</div>
+</div>
+<a id="aab1072341b442847719cda42efddbcf2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aab1072341b442847719cda42efddbcf2">&#9670;&nbsp;</a></span>hashlib_PBKDF2()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool hashlib_PBKDF2 </td>
+          <td>(</td>
+          <td class="paramtype">const uint8_t *&#160;</td>
+          <td class="paramname"><em>password</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>passlen</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t *&#160;</td>
+          <td class="paramname"><em>key</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const uint8_t *&#160;</td>
+          <td class="paramname"><em>salt</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>saltlen</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>rounds</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>keylen</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Password-Based Key Derivation Function (via SHA-256 HMAC) </p>
+<p>Computes a key derived from a password, a 16-byte salt, and a given number of rounds.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">password</td><td>Pointer to a string containing the password to derive a key from. </td></tr>
+    <tr><td class="paramname">passlen</td><td>The length of the password (in bytes). </td></tr>
+    <tr><td class="paramname">key</td><td>The buffer to write the key to. Must be at least <b>keylen</b> bytes large. </td></tr>
+    <tr><td class="paramname">salt</td><td>A psuedo-random string to use when computing the key. </td></tr>
+    <tr><td class="paramname">saltlen</td><td>The length of the salt to use (in bytes). </td></tr>
+    <tr><td class="paramname">rounds</td><td>The number of times to iterate the SHA-256 function per 32-byte block of <b>keylen</b>. </td></tr>
+    <tr><td class="paramname">keylen</td><td>The length of the key to generate (in bytes). </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>Note</dt><dd><b>rounds</b> is used to increase the cost (computational time) of generating a key. What makes password- hashing algorithms secure is the time needed to generate a rainbow table attack against it. More rounds means a more secure key, but more time spent generating it. Current cryptography standards recommend </dd></dl>
 
 </div>
 </div>

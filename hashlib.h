@@ -115,7 +115,7 @@ typedef struct _sha256_ctx {
  *	@param mbuffer Pointer to a temporary memory buffer.
  *	@note @b mbuffer must be at least @b SHA256_MBUFFER_LEN bytes large.
  **************************************************************************************************/
-void hashlib_Sha256Init(sha256_ctx *ctx, uint32_t *mbuffer);
+void hashlib_Sha256Init(sha256_ctx *ctx);
 
 /******************************************************************************************************
  *	@brief Updates the SHA-256 context for the given data.
@@ -146,6 +146,50 @@ void hashlib_Sha256Final(sha256_ctx *ctx, uint8_t *digest);
  *	@note @b outbuf must be at least @b outlen bytes large.
  **********************************************************************************************************************/
 void hashlib_MGF1Hash(uint8_t* data, size_t datalen, uint8_t* outbuf, size_t outlen);
+
+
+// SHA-256 HMAC Cryptographic Hash
+// (Hash-Based Message Authentication Code)
+/*******************************************************************************************************************
+ * @typedef hmac_ctx
+ * Defines hash-state data for an instance of SHA-256-HMAC.
+ * @note If you are hashing multiple data streams concurrently, allocate a seperate context for each.
+ ********************************************************************************************************************/
+typedef struct _hmac_ctx {
+    uint8_t ipad[64];
+    uint8_t opad[64];
+    sha256_ctx ctx;
+} hmac_ctx;
+
+void hashlib_HMACSha256Init(hmac_ctx* hmac, const uint8_t* key, size_t keylen);
+void hashlib_HMACSha256Update(hmac_ctx* hmac, const uint8_t* msg, size_t len);
+void hashlib_HMACSha256Final(hmac_ctx* hmac, uint8_t* output);
+void hashlib_HMACSha256Reset(hmac_ctx* hmac);
+
+/*********************************************************************************************************************************
+ * @brief Password-Based Key Derivation Function (via SHA-256 HMAC)
+ *
+ * Computes a key derived from a password, a 16-byte salt, and a given number of rounds.
+ *
+ * @param password Pointer to a string containing the password to derive a key from.
+ * @param passlen The length of the password (in bytes).
+ * @param key The buffer to write the key to. Must be at least @b keylen bytes large.
+ * @param salt A psuedo-random string to use when computing the key.
+ * @param saltlen The length of the salt to use (in bytes).
+ * @param rounds The number of times to iterate the SHA-256 function per 32-byte block of @b keylen.
+ * @param keylen The length of the key to generate (in bytes).
+ * @note @b rounds is used to increase the cost (computational time) of generating a key. What makes password-
+ * hashing algorithms secure is the time needed to generate a rainbow table attack against it. More rounds means
+ * a more secure key, but more time spent generating it. Current cryptography standards recommend
+*/
+bool hashlib_PBKDF2(
+    const uint8_t* password,
+    size_t passlen,
+    uint8_t* key,
+    const uint8_t* salt,
+    size_t saltlen,
+    size_t rounds,
+    size_t keylen);
 
 
 // Advanced Encryption Standard (AES)
@@ -702,7 +746,6 @@ rsa_error_t hashlib_RSAAuthEncrypt(
     uint8_t *ciphertext,
     const uint8_t* pubkey,
     size_t keylen);
-
 
 
 #endif
