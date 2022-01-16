@@ -15,7 +15,12 @@
 #include <hashlib.h>
 
 #define CEMU_CONSOLE ((char*)0xFB0000)
-uint8_t str[] = "The daring fox jumped over the rabid kitten and is sleeping inside.";
+#define RECD_MIN_SALT_LEN   16      // recommended minimum salt length
+uint8_t salt[RECD_MIN_SALT_LEN] = {
+    0xea,0x53,0xad,0xb5,0x34,0x96,0xdc,0xdd,
+    0xd9,0xd8,0xf1,0x50,0x4c,0x9d,0xfb,0x4d};   // 16 bytes
+uint8_t passwd[] = "testing123";
+
 
 void hexdump(uint8_t *addr, size_t len, uint8_t *label){
     if(label) sprintf(CEMU_CONSOLE, "\n%s\n", label);
@@ -29,13 +34,11 @@ void hexdump(uint8_t *addr, size_t len, uint8_t *label){
 
 int main(void)
 {
-    sha256_ctx sha256;
-    uint8_t sha256_digest[SHA256_DIGEST_LEN];
-    size_t str_len = strlen(str);
+	char outbuf[64];
+    size_t str_len = strlen(passwd);
     
-    hashlib_Sha256Init(&sha256);
-    hashlib_Sha256Update(&sha256, str, str_len);
-    hashlib_Sha256Final(&sha256, sha256_digest);
-
-	hexdump(sha256_digest, sizeof sha256_digest, "-SHA-256 Output-");
+    hashlib_PBKDF2(passwd, str_len, outbuf, salt, RECD_MIN_SALT_LEN, 100, 64);
+    
+    hexdump(outbuf, sizeof outbuf, "-PBKDF2 output-");
+    strcpy(CEMU_CONSOLE, "\n");
 }

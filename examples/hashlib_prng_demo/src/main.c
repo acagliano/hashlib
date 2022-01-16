@@ -26,7 +26,6 @@ int main(void)
     uint8_t salt[SALT_LEN];
     // hashlib_SPRNGInit() is called automatically by SPRNGRandom or RandomBytes
     // no need to call it yourself
-    if(!(fp = ti_Open("RandInt", "w"))) return 1;
     // generate a random uint32_t
 	sprintf(CEMU_CONSOLE, "The rand is %lu.\n", hashlib_SPRNGRandom());
     
@@ -35,8 +34,6 @@ int main(void)
     strcpy(CEMU_CONSOLE, "The buffer contents are: \n");
     for(uint8_t i=0; i<SALT_LEN; i++)
         sprintf(CEMU_CONSOLE, "%02X ", salt[i]);
-	ti_Write(salt, 4, 1, fp);
-	ti_CloseAll();
     
     return 0;
     

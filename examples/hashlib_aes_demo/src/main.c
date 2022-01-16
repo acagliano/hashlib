@@ -15,10 +15,10 @@
 #include <hashlib.h>
 
 #define CEMU_CONSOLE ((char*)0xFB0000)
-uint8_t *str = "The lazy fox jumped over the dog!";
+char *str = "The lazy fox jumped over the dog!";
 #define KEYSIZE (256>>3)    // 256 bits converted to bytes
 
-void hexdump(uint8_t *addr, size_t len, uint8_t *label){
+void hexdump(uint8_t *addr, size_t len, char *label){
     if(label) sprintf(CEMU_CONSOLE, "\n%s\n", label);
     else sprintf(CEMU_CONSOLE, "\n");
     for(size_t rem_len = len, ct=1; rem_len>0; rem_len--, addr++, ct++){
@@ -34,7 +34,6 @@ int main(void)
     aes_ctx ctx;
     uint8_t key[KEYSIZE];
     uint8_t iv[AES_IVSIZE];
-    size_t stripped_len;
     
     // compute size of the plaintext
     // return and allocate a few ciphertext-sized buffers
@@ -59,7 +58,7 @@ int main(void)
     hexdump(buf, padded_len, "-- Encrypted Message --");
     
 	sprintf(CEMU_CONSOLE, "CBC decrypt done, exit code %u\n", hashlib_AESDecrypt(buf, padded_len, stripped, &ctx, iv, AES_MODE_CBC, SCHM_DEFAULT));
-    hexdump(stripped, msg_len, "-- Original String --");
+    hexdump(stripped, msg_len, "-- Decrypted Message --");
 
 
 	// free *buf and *stripped.
@@ -67,14 +66,11 @@ int main(void)
     free(buf);
     free(stripped);
     
-    sprintf(CEMU_CONSOLE, "\n\n----- CTR Mode -----\n");
-    hexdump(str, msg_len, "-- Original String --");
-    
     sprintf(CEMU_CONSOLE, "CTR encrypt done, exit code %u\n", hashlib_AESEncrypt(str, msg_len, buf, &ctx, iv, AES_MODE_CTR, 0));
     hexdump(buf, padded_len, "-- Encrypted Message --");
 	
 	sprintf(CEMU_CONSOLE, "CTR decrypt done, exit code %u\n", hashlib_AESDecrypt(buf, msg_len, stripped, &ctx, iv, AES_MODE_CTR, 0));
-    hexdump(stripped, msg_len, "-- Original String --");
+    hexdump(stripped, msg_len, "-- Decrypted Message --");
 
 	
     

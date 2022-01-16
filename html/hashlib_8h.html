@@ -228,9 +228,9 @@ Functions</h2></td></tr>
 <tr class="memitem:a24bf91aef912b8346523f37e16d22377"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#a24bf91aef912b8346523f37e16d22377">hashlib_EraseContext</a> (void *ctx, size_t len)</td></tr>
 <tr class="memdesc:a24bf91aef912b8346523f37e16d22377"><td class="mdescLeft">&#160;</td><td class="mdescRight">Secure erase context.  <a href="hashlib_8h.html#a24bf91aef912b8346523f37e16d22377">More...</a><br /></td></tr>
 <tr class="separator:a24bf91aef912b8346523f37e16d22377"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a374b45aa5f57dfccafd6894acd27c520"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#a374b45aa5f57dfccafd6894acd27c520">hashlib_CompareDigest</a> (const void *digest1, const void *digest2, size_t len)</td></tr>
-<tr class="memdesc:a374b45aa5f57dfccafd6894acd27c520"><td class="mdescLeft">&#160;</td><td class="mdescRight">Secure buffer comparison.  <a href="hashlib_8h.html#a374b45aa5f57dfccafd6894acd27c520">More...</a><br /></td></tr>
-<tr class="separator:a374b45aa5f57dfccafd6894acd27c520"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afa2188204b9ee6024de788c221a33863"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#afa2188204b9ee6024de788c221a33863">hashlib_CompareDigest</a> (const void *digest1, const void *digest2, size_t len)</td></tr>
+<tr class="memdesc:afa2188204b9ee6024de788c221a33863"><td class="mdescLeft">&#160;</td><td class="mdescRight">Secure buffer comparison.  <a href="hashlib_8h.html#afa2188204b9ee6024de788c221a33863">More...</a><br /></td></tr>
+<tr class="separator:afa2188204b9ee6024de788c221a33863"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aceec2ce59159467d7f78142834360d63"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#aceec2ce59159467d7f78142834360d63">hashlib_ReverseEndianness</a> (const void *in, void *out, size_t len)</td></tr>
 <tr class="memdesc:aceec2ce59159467d7f78142834360d63"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reverses the endianness of a buffer.  <a href="hashlib_8h.html#aceec2ce59159467d7f78142834360d63">More...</a><br /></td></tr>
 <tr class="separator:aceec2ce59159467d7f78142834360d63"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -1638,14 +1638,14 @@ msg and pubkey are both treated as byte arrays. </dd></dl>
 
 </div>
 </div>
-<a id="a374b45aa5f57dfccafd6894acd27c520"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a374b45aa5f57dfccafd6894acd27c520">&#9670;&nbsp;</a></span>hashlib_CompareDigest()</h2>
+<a id="afa2188204b9ee6024de788c221a33863"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afa2188204b9ee6024de788c221a33863">&#9670;&nbsp;</a></span>hashlib_CompareDigest()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">hashlib_CompareDigest </td>
+          <td class="memname">bool hashlib_CompareDigest </td>
           <td>(</td>
           <td class="paramtype">const void *&#160;</td>
           <td class="paramname"><em>digest1</em>, </td>

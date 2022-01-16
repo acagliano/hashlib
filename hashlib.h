@@ -573,7 +573,7 @@ void hashlib_EraseContext(void* ctx, size_t len);
  * @param len The number of bytes to compare.
  * @return True if the buffers were equal. False if not equal.
  **************************************************************************************************************/
-hashlib_CompareDigest(const void* digest1, const void* digest2, size_t len);
+bool hashlib_CompareDigest(const void* digest1, const void* digest2, size_t len);
 
 /*************************************************************************************************************
  * @brief Reverses the endianness of a buffer
