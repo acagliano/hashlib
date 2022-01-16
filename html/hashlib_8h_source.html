@@ -242,200 +242,202 @@ $(function() {
 <div class="line"><a name="l00350"></a><span class="lineno"><a class="line" href="hashlib_8h.html#a0653a6a286fb1bedfb3e964d36e3b0bd">  350</a></span>&#160;<span class="keywordtype">bool</span> <a class="code" href="hashlib_8h.html#a0653a6a286fb1bedfb3e964d36e3b0bd">hashlib_AESLoadKey</a>(<span class="keyword">const</span> uint8_t* key, <span class="keyword">const</span> <a class="code" href="struct__aes__ctx.html">aes_ctx</a>* ks, <span class="keywordtype">size_t</span> keylen);</div>
 <div class="line"><a name="l00351"></a><span class="lineno">  351</span>&#160; </div>
 <div class="line"><a name="l00352"></a><span class="lineno">  352</span>&#160; </div>
-<div class="line"><a name="l00364"></a><span class="lineno"><a class="line" href="hashlib_8h.html#a6987499522b3b85b8ce4b272fadf75dd">  364</a></span>&#160;<span class="keywordtype">bool</span> <a class="code" href="hashlib_8h.html#a6987499522b3b85b8ce4b272fadf75dd">hashlib_AESEncryptBlock</a>(<span class="keyword">const</span> uint8_t* block_in,</div>
-<div class="line"><a name="l00365"></a><span class="lineno">  365</span>&#160;                             uint8_t* block_out,</div>
-<div class="line"><a name="l00366"></a><span class="lineno">  366</span>&#160;                             <span class="keyword">const</span> <a class="code" href="struct__aes__ctx.html">aes_ctx</a>* ks);</div>
-<div class="line"><a name="l00367"></a><span class="lineno">  367</span>&#160;    </div>
-<div class="line"><a name="l00368"></a><span class="lineno">  368</span>&#160; </div>
-<div class="line"><a name="l00380"></a><span class="lineno"><a class="line" href="hashlib_8h.html#a5dd423839387f0955b6061986c92a2ac">  380</a></span>&#160;<span class="keywordtype">bool</span> <a class="code" href="hashlib_8h.html#a5dd423839387f0955b6061986c92a2ac">hashlib_AESDecryptBlock</a>(<span class="keyword">const</span> uint8_t* block_in,</div>
-<div class="line"><a name="l00381"></a><span class="lineno">  381</span>&#160;                             uint8_t* block_out,</div>
-<div class="line"><a name="l00382"></a><span class="lineno">  382</span>&#160;                             <span class="keyword">const</span> <a class="code" href="struct__aes__ctx.html">aes_ctx</a>* ks);</div>
-<div class="line"><a name="l00383"></a><span class="lineno">  383</span>&#160; </div>
-<div class="line"><a name="l00384"></a><span class="lineno">  384</span>&#160; </div>
+<div class="line"><a name="l00364"></a><span class="lineno"><a class="line" href="hashlib_8h.html#a6987499522b3b85b8ce4b272fadf75dd">  364</a></span>&#160;<span class="keywordtype">bool</span> <a class="code" href="hashlib_8h.html#a6987499522b3b85b8ce4b272fadf75dd">hashlib_AESEncryptBlock</a>(</div>
+<div class="line"><a name="l00365"></a><span class="lineno">  365</span>&#160;        <span class="keyword">const</span> uint8_t* block_in,</div>
+<div class="line"><a name="l00366"></a><span class="lineno">  366</span>&#160;        uint8_t* block_out,</div>
+<div class="line"><a name="l00367"></a><span class="lineno">  367</span>&#160;        <span class="keyword">const</span> <a class="code" href="struct__aes__ctx.html">aes_ctx</a>* ks);</div>
+<div class="line"><a name="l00368"></a><span class="lineno">  368</span>&#160;    </div>
+<div class="line"><a name="l00369"></a><span class="lineno">  369</span>&#160; </div>
+<div class="line"><a name="l00381"></a><span class="lineno"><a class="line" href="hashlib_8h.html#a5dd423839387f0955b6061986c92a2ac">  381</a></span>&#160;<span class="keywordtype">bool</span> <a class="code" href="hashlib_8h.html#a5dd423839387f0955b6061986c92a2ac">hashlib_AESDecryptBlock</a>(</div>
+<div class="line"><a name="l00382"></a><span class="lineno">  382</span>&#160;        <span class="keyword">const</span> uint8_t* block_in,</div>
+<div class="line"><a name="l00383"></a><span class="lineno">  383</span>&#160;        uint8_t* block_out,</div>
+<div class="line"><a name="l00384"></a><span class="lineno">  384</span>&#160;        <span class="keyword">const</span> <a class="code" href="struct__aes__ctx.html">aes_ctx</a>* ks);</div>
 <div class="line"><a name="l00385"></a><span class="lineno">  385</span>&#160; </div>
-<div class="line"><a name="l00390"></a><span class="lineno"><a class="line" href="hashlib_8h.html#aeb2e64abcc4317e3143fb820f21c3bfd">  390</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">enum</span> {</div>
-<div class="line"><a name="l00391"></a><span class="lineno"><a class="line" href="hashlib_8h.html#aeb2e64abcc4317e3143fb820f21c3bfdaacf07636102724d2a7913911b0cf74b2">  391</a></span>&#160;    <a class="code" href="hashlib_8h.html#aeb2e64abcc4317e3143fb820f21c3bfdaacf07636102724d2a7913911b0cf74b2">AES_OK</a>,                             </div>
-<div class="line"><a name="l00392"></a><span class="lineno"><a class="line" href="hashlib_8h.html#aeb2e64abcc4317e3143fb820f21c3bfda6d39b280aea9d8d62d126eef05d271db">  392</a></span>&#160;    <a class="code" href="hashlib_8h.html#aeb2e64abcc4317e3143fb820f21c3bfda6d39b280aea9d8d62d126eef05d271db">AES_INVALID_ARG</a>,                    </div>
-<div class="line"><a name="l00393"></a><span class="lineno"><a class="line" href="hashlib_8h.html#aeb2e64abcc4317e3143fb820f21c3bfdaae5e9a591aeda666b0e425d9a05834e3">  393</a></span>&#160;    <a class="code" href="hashlib_8h.html#aeb2e64abcc4317e3143fb820f21c3bfdaae5e9a591aeda666b0e425d9a05834e3">AES_INVALID_MSG</a>,                    </div>
-<div class="line"><a name="l00394"></a><span class="lineno"><a class="line" href="hashlib_8h.html#aeb2e64abcc4317e3143fb820f21c3bfdad2b49ffeabf14aaf47db3d1bad18f84e">  394</a></span>&#160;    <a class="code" href="hashlib_8h.html#aeb2e64abcc4317e3143fb820f21c3bfdad2b49ffeabf14aaf47db3d1bad18f84e">AES_INVALID_CIPHERMODE</a>,             </div>
-<div class="line"><a name="l00395"></a><span class="lineno"><a class="line" href="hashlib_8h.html#aeb2e64abcc4317e3143fb820f21c3bfda47bbd593fc3bdb7758a790bab86b41d9">  395</a></span>&#160;    <a class="code" href="hashlib_8h.html#aeb2e64abcc4317e3143fb820f21c3bfda47bbd593fc3bdb7758a790bab86b41d9">AES_INVALID_PADDINGMODE</a>,            </div>
-<div class="line"><a name="l00396"></a><span class="lineno">  396</span>&#160;    <a class="code" href="hashlib_8h.html#aeb2e64abcc4317e3143fb820f21c3bfdaba928751c773ffa0287e47e1f86eae8b">AES_INVALID_CIPHERTEXT</a>              </div>
-<div class="line"><a name="l00397"></a><span class="lineno"><a class="line" href="hashlib_8h.html#aeb2e64abcc4317e3143fb820f21c3bfdaba928751c773ffa0287e47e1f86eae8b">  397</a></span>&#160;} <a class="code" href="hashlib_8h.html#aeb2e64abcc4317e3143fb820f21c3bfd">aes_error_t</a>;</div>
-<div class="line"><a name="l00398"></a><span class="lineno">  398</span>&#160; </div>
-<div class="line"><a name="l00425"></a><span class="lineno"><a class="line" href="hashlib_8h.html#aa4f60eb708a18d498faa51a33c248f90">  425</a></span>&#160;<a class="code" href="hashlib_8h.html#aeb2e64abcc4317e3143fb820f21c3bfd">aes_error_t</a> <a class="code" href="hashlib_8h.html#aa4f60eb708a18d498faa51a33c248f90">hashlib_AESEncrypt</a>(</div>
-<div class="line"><a name="l00426"></a><span class="lineno">  426</span>&#160;    <span class="keyword">const</span> uint8_t* plaintext,</div>
-<div class="line"><a name="l00427"></a><span class="lineno">  427</span>&#160;    <span class="keywordtype">size_t</span> len,</div>
-<div class="line"><a name="l00428"></a><span class="lineno">  428</span>&#160;    uint8_t* ciphertext,</div>
-<div class="line"><a name="l00429"></a><span class="lineno">  429</span>&#160;    <span class="keyword">const</span> <a class="code" href="struct__aes__ctx.html">aes_ctx</a>* ks,</div>
-<div class="line"><a name="l00430"></a><span class="lineno">  430</span>&#160;    <span class="keyword">const</span> uint8_t* iv,</div>
-<div class="line"><a name="l00431"></a><span class="lineno">  431</span>&#160;    uint8_t ciphermode,</div>
-<div class="line"><a name="l00432"></a><span class="lineno">  432</span>&#160;    uint8_t paddingmode);</div>
-<div class="line"><a name="l00433"></a><span class="lineno">  433</span>&#160; </div>
-<div class="line"><a name="l00447"></a><span class="lineno"><a class="line" href="hashlib_8h.html#a402aa47590cf2de4ea6cb2efba1fdb35">  447</a></span>&#160;<a class="code" href="hashlib_8h.html#aeb2e64abcc4317e3143fb820f21c3bfd">aes_error_t</a> <a class="code" href="hashlib_8h.html#a402aa47590cf2de4ea6cb2efba1fdb35">hashlib_AESDecrypt</a>(</div>
-<div class="line"><a name="l00448"></a><span class="lineno">  448</span>&#160;    <span class="keyword">const</span> uint8_t* ciphertext,</div>
-<div class="line"><a name="l00449"></a><span class="lineno">  449</span>&#160;    <span class="keywordtype">size_t</span> len,</div>
-<div class="line"><a name="l00450"></a><span class="lineno">  450</span>&#160;    uint8_t* plaintext,</div>
-<div class="line"><a name="l00451"></a><span class="lineno">  451</span>&#160;    <span class="keyword">const</span> <a class="code" href="struct__aes__ctx.html">aes_ctx</a>* ks,</div>
-<div class="line"><a name="l00452"></a><span class="lineno">  452</span>&#160;    <span class="keyword">const</span> uint8_t* iv,</div>
-<div class="line"><a name="l00453"></a><span class="lineno">  453</span>&#160;    uint8_t ciphermode,</div>
-<div class="line"><a name="l00454"></a><span class="lineno">  454</span>&#160;    uint8_t paddingmode);</div>
-<div class="line"><a name="l00455"></a><span class="lineno">  455</span>&#160;    </div>
-<div class="line"><a name="l00456"></a><span class="lineno">  456</span>&#160; </div>
-<div class="line"><a name="l00457"></a><span class="lineno">  457</span>&#160;<span class="comment">/*</span></div>
-<div class="line"><a name="l00458"></a><span class="lineno">  458</span>&#160;<span class="comment"> RSA Public Key Encryption</span></div>
-<div class="line"><a name="l00459"></a><span class="lineno">  459</span>&#160;<span class="comment"> </span></div>
-<div class="line"><a name="l00460"></a><span class="lineno">  460</span>&#160;<span class="comment"> Public key encryption is a form of asymmetric encryption.</span></div>
-<div class="line"><a name="l00461"></a><span class="lineno">  461</span>&#160;<span class="comment"> This means that a key only works in one direction, and both parties need a public key</span></div>
-<div class="line"><a name="l00462"></a><span class="lineno">  462</span>&#160;<span class="comment"> and a private key. The private key is used to decrypt a message and the public key is</span></div>
-<div class="line"><a name="l00463"></a><span class="lineno">  463</span>&#160;<span class="comment"> used to encrypt.</span></div>
-<div class="line"><a name="l00464"></a><span class="lineno">  464</span>&#160;<span class="comment"> In RSA, the public and private keys are modular inverses of each other, such that:</span></div>
-<div class="line"><a name="l00465"></a><span class="lineno">  465</span>&#160;<span class="comment"> encrypted = message ** public exponent % public key, and</span></div>
-<div class="line"><a name="l00466"></a><span class="lineno">  466</span>&#160;<span class="comment"> message = encrypted ** private exponent % private modulus</span></div>
-<div class="line"><a name="l00467"></a><span class="lineno">  467</span>&#160;<span class="comment"> ** means power, % means modulus</span></div>
-<div class="line"><a name="l00468"></a><span class="lineno">  468</span>&#160;<span class="comment"> </span></div>
-<div class="line"><a name="l00469"></a><span class="lineno">  469</span>&#160;<span class="comment"> 65537 (and a few other Fermat primes) are commonly used as public exponents.</span></div>
-<div class="line"><a name="l00470"></a><span class="lineno">  470</span>&#160;<span class="comment"> The public key (modulus) is sent in the clear and is known to to everyone.</span></div>
-<div class="line"><a name="l00471"></a><span class="lineno">  471</span>&#160;<span class="comment"> The cryptographic strength of RSA comes from the difficulty of factoring the modulus.</span></div>
-<div class="line"><a name="l00472"></a><span class="lineno">  472</span>&#160;<span class="comment"> Asymmetric encryption is generally VERY slow. Using even RSA-1024 on the TI-84+ CE will</span></div>
-<div class="line"><a name="l00473"></a><span class="lineno">  473</span>&#160;<span class="comment"> take several seconds. For this reason, you usually do not use RSA for sustained encrypted</span></div>
-<div class="line"><a name="l00474"></a><span class="lineno">  474</span>&#160;<span class="comment"> communication. Use RSA to share a symmetric key, and then use AES for future messages.</span></div>
-<div class="line"><a name="l00475"></a><span class="lineno">  475</span>&#160;<span class="comment"> </span></div>
-<div class="line"><a name="l00476"></a><span class="lineno">  476</span>&#160;<span class="comment"> RSA is also involved in SSL signature verification for some certificates that still use</span></div>
-<div class="line"><a name="l00477"></a><span class="lineno">  477</span>&#160;<span class="comment"> that signing algorithm (RSA w/ Sha-256). Most sigs use ECDSA nowadays though, so if you</span></div>
-<div class="line"><a name="l00478"></a><span class="lineno">  478</span>&#160;<span class="comment"> want a certificate that is compatible with this library, specify RSA with SHA-256 when creating it.</span></div>
-<div class="line"><a name="l00479"></a><span class="lineno">  479</span>&#160;<span class="comment"> */</span></div>
-<div class="line"><a name="l00480"></a><span class="lineno">  480</span>&#160; </div>
-<div class="line"><a name="l00484"></a><span class="lineno"><a class="line" href="hashlib_8h.html#a7508a7cdffede3d44a818dd4a154bf95">  484</a></span>&#160;<span class="keyword">enum</span> <a class="code" href="hashlib_8h.html#a7508a7cdffede3d44a818dd4a154bf95">ssl_sig_modes</a> {</div>
-<div class="line"><a name="l00485"></a><span class="lineno"><a class="line" href="hashlib_8h.html#a7508a7cdffede3d44a818dd4a154bf95a096ad031cbdad23c8d4053d9b7a3db31">  485</a></span>&#160;    <a class="code" href="hashlib_8h.html#a7508a7cdffede3d44a818dd4a154bf95a096ad031cbdad23c8d4053d9b7a3db31">SSLSIG_RSA_SHA256</a>,      </div>
-<div class="line"><a name="l00486"></a><span class="lineno">  486</span>&#160;    <a class="code" href="hashlib_8h.html#a7508a7cdffede3d44a818dd4a154bf95a3b885e134e618304b93f54b88eff9b25">SSLSIG_ECDSA</a>            </div>
-<div class="line"><a name="l00487"></a><span class="lineno"><a class="line" href="hashlib_8h.html#a7508a7cdffede3d44a818dd4a154bf95a3b885e134e618304b93f54b88eff9b25">  487</a></span>&#160;};</div>
-<div class="line"><a name="l00488"></a><span class="lineno">  488</span>&#160; </div>
-<div class="line"><a name="l00489"></a><span class="lineno">  489</span>&#160; </div>
-<div class="line"><a name="l00493"></a><span class="lineno"><a class="line" href="hashlib_8h.html#a0486449f609d0e485bad091a671d9294">  493</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">enum</span> {</div>
-<div class="line"><a name="l00494"></a><span class="lineno"><a class="line" href="hashlib_8h.html#a0486449f609d0e485bad091a671d9294a2cafdb683e1870a33bcb821420626cae">  494</a></span>&#160;    <a class="code" href="hashlib_8h.html#a0486449f609d0e485bad091a671d9294a2cafdb683e1870a33bcb821420626cae">RSA_OK</a>,                         </div>
-<div class="line"><a name="l00495"></a><span class="lineno"><a class="line" href="hashlib_8h.html#a0486449f609d0e485bad091a671d9294aab9ab38286c4180a1aa9f6e8df42e5db">  495</a></span>&#160;    <a class="code" href="hashlib_8h.html#a0486449f609d0e485bad091a671d9294aab9ab38286c4180a1aa9f6e8df42e5db">RSA_INVALID_ARG</a>,                </div>
-<div class="line"><a name="l00496"></a><span class="lineno"><a class="line" href="hashlib_8h.html#a0486449f609d0e485bad091a671d9294aedeb18a96b96e292369abed5b2f0a271">  496</a></span>&#160;    <a class="code" href="hashlib_8h.html#a0486449f609d0e485bad091a671d9294aedeb18a96b96e292369abed5b2f0a271">RSA_INVALID_MSG</a>,                </div>
-<div class="line"><a name="l00497"></a><span class="lineno"><a class="line" href="hashlib_8h.html#a0486449f609d0e485bad091a671d9294a843ec210de66176ef63e2d2b8ebdeb65">  497</a></span>&#160;    <a class="code" href="hashlib_8h.html#a0486449f609d0e485bad091a671d9294a843ec210de66176ef63e2d2b8ebdeb65">RSA_INVALID_MODULUS</a>,            </div>
-<div class="line"><a name="l00498"></a><span class="lineno">  498</span>&#160;    <a class="code" href="hashlib_8h.html#a0486449f609d0e485bad091a671d9294a43eadc89540121b902e02afabc7a7eb9">RSA_ENCODING_ERROR</a>              </div>
-<div class="line"><a name="l00499"></a><span class="lineno"><a class="line" href="hashlib_8h.html#a0486449f609d0e485bad091a671d9294a43eadc89540121b902e02afabc7a7eb9">  499</a></span>&#160;} <a class="code" href="hashlib_8h.html#a0486449f609d0e485bad091a671d9294">rsa_error_t</a>;</div>
-<div class="line"><a name="l00500"></a><span class="lineno">  500</span>&#160; </div>
-<div class="line"><a name="l00501"></a><span class="lineno">  501</span>&#160; </div>
-<div class="line"><a name="l00518"></a><span class="lineno"><a class="line" href="hashlib_8h.html#a3f2772b55bb9444c6b1d63976d35c9ff">  518</a></span>&#160;<a class="code" href="hashlib_8h.html#a0486449f609d0e485bad091a671d9294">rsa_error_t</a> <a class="code" href="hashlib_8h.html#a3f2772b55bb9444c6b1d63976d35c9ff">hashlib_RSAEncrypt</a>(</div>
-<div class="line"><a name="l00519"></a><span class="lineno">  519</span>&#160;    <span class="keyword">const</span> uint8_t* msg,</div>
-<div class="line"><a name="l00520"></a><span class="lineno">  520</span>&#160;    <span class="keywordtype">size_t</span> msglen,</div>
-<div class="line"><a name="l00521"></a><span class="lineno">  521</span>&#160;    uint8_t* ciphertext,</div>
-<div class="line"><a name="l00522"></a><span class="lineno">  522</span>&#160;    <span class="keyword">const</span> uint8_t* pubkey,</div>
-<div class="line"><a name="l00523"></a><span class="lineno">  523</span>&#160;    <span class="keywordtype">size_t</span> keylen);</div>
-<div class="line"><a name="l00524"></a><span class="lineno">  524</span>&#160; </div>
-<div class="line"><a name="l00525"></a><span class="lineno">  525</span>&#160; </div>
-<div class="line"><a name="l00537"></a><span class="lineno"><a class="line" href="hashlib_8h.html#a7b705e6cf52b076b40f936af6d55b29c">  537</a></span>&#160;<span class="keywordtype">bool</span> <a class="code" href="hashlib_8h.html#a7b705e6cf52b076b40f936af6d55b29c">hashlib_SSLVerifySignature</a>(</div>
-<div class="line"><a name="l00538"></a><span class="lineno">  538</span>&#160;    <span class="keyword">const</span> uint8_t *ca_pubkey,</div>
-<div class="line"><a name="l00539"></a><span class="lineno">  539</span>&#160;    <span class="keywordtype">size_t</span> keysize,</div>
-<div class="line"><a name="l00540"></a><span class="lineno">  540</span>&#160;    <span class="keyword">const</span> uint8_t *cert,</div>
-<div class="line"><a name="l00541"></a><span class="lineno">  541</span>&#160;    <span class="keywordtype">size_t</span> certlen,</div>
-<div class="line"><a name="l00542"></a><span class="lineno">  542</span>&#160;    uint8_t sig_alg);</div>
-<div class="line"><a name="l00543"></a><span class="lineno">  543</span>&#160; </div>
-<div class="line"><a name="l00544"></a><span class="lineno">  544</span>&#160;<span class="comment">// Miscellaneous Functions</span></div>
+<div class="line"><a name="l00386"></a><span class="lineno">  386</span>&#160; </div>
+<div class="line"><a name="l00387"></a><span class="lineno">  387</span>&#160; </div>
+<div class="line"><a name="l00392"></a><span class="lineno"><a class="line" href="hashlib_8h.html#aeb2e64abcc4317e3143fb820f21c3bfd">  392</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">enum</span> {</div>
+<div class="line"><a name="l00393"></a><span class="lineno"><a class="line" href="hashlib_8h.html#aeb2e64abcc4317e3143fb820f21c3bfdaacf07636102724d2a7913911b0cf74b2">  393</a></span>&#160;    <a class="code" href="hashlib_8h.html#aeb2e64abcc4317e3143fb820f21c3bfdaacf07636102724d2a7913911b0cf74b2">AES_OK</a>,                             </div>
+<div class="line"><a name="l00394"></a><span class="lineno"><a class="line" href="hashlib_8h.html#aeb2e64abcc4317e3143fb820f21c3bfda6d39b280aea9d8d62d126eef05d271db">  394</a></span>&#160;    <a class="code" href="hashlib_8h.html#aeb2e64abcc4317e3143fb820f21c3bfda6d39b280aea9d8d62d126eef05d271db">AES_INVALID_ARG</a>,                    </div>
+<div class="line"><a name="l00395"></a><span class="lineno"><a class="line" href="hashlib_8h.html#aeb2e64abcc4317e3143fb820f21c3bfdaae5e9a591aeda666b0e425d9a05834e3">  395</a></span>&#160;    <a class="code" href="hashlib_8h.html#aeb2e64abcc4317e3143fb820f21c3bfdaae5e9a591aeda666b0e425d9a05834e3">AES_INVALID_MSG</a>,                    </div>
+<div class="line"><a name="l00396"></a><span class="lineno"><a class="line" href="hashlib_8h.html#aeb2e64abcc4317e3143fb820f21c3bfdad2b49ffeabf14aaf47db3d1bad18f84e">  396</a></span>&#160;    <a class="code" href="hashlib_8h.html#aeb2e64abcc4317e3143fb820f21c3bfdad2b49ffeabf14aaf47db3d1bad18f84e">AES_INVALID_CIPHERMODE</a>,             </div>
+<div class="line"><a name="l00397"></a><span class="lineno"><a class="line" href="hashlib_8h.html#aeb2e64abcc4317e3143fb820f21c3bfda47bbd593fc3bdb7758a790bab86b41d9">  397</a></span>&#160;    <a class="code" href="hashlib_8h.html#aeb2e64abcc4317e3143fb820f21c3bfda47bbd593fc3bdb7758a790bab86b41d9">AES_INVALID_PADDINGMODE</a>,            </div>
+<div class="line"><a name="l00398"></a><span class="lineno">  398</span>&#160;    <a class="code" href="hashlib_8h.html#aeb2e64abcc4317e3143fb820f21c3bfdaba928751c773ffa0287e47e1f86eae8b">AES_INVALID_CIPHERTEXT</a>              </div>
+<div class="line"><a name="l00399"></a><span class="lineno"><a class="line" href="hashlib_8h.html#aeb2e64abcc4317e3143fb820f21c3bfdaba928751c773ffa0287e47e1f86eae8b">  399</a></span>&#160;} <a class="code" href="hashlib_8h.html#aeb2e64abcc4317e3143fb820f21c3bfd">aes_error_t</a>;</div>
+<div class="line"><a name="l00400"></a><span class="lineno">  400</span>&#160; </div>
+<div class="line"><a name="l00427"></a><span class="lineno"><a class="line" href="hashlib_8h.html#aa4f60eb708a18d498faa51a33c248f90">  427</a></span>&#160;<a class="code" href="hashlib_8h.html#aeb2e64abcc4317e3143fb820f21c3bfd">aes_error_t</a> <a class="code" href="hashlib_8h.html#aa4f60eb708a18d498faa51a33c248f90">hashlib_AESEncrypt</a>(</div>
+<div class="line"><a name="l00428"></a><span class="lineno">  428</span>&#160;    <span class="keyword">const</span> uint8_t* plaintext,</div>
+<div class="line"><a name="l00429"></a><span class="lineno">  429</span>&#160;    <span class="keywordtype">size_t</span> len,</div>
+<div class="line"><a name="l00430"></a><span class="lineno">  430</span>&#160;    uint8_t* ciphertext,</div>
+<div class="line"><a name="l00431"></a><span class="lineno">  431</span>&#160;    <span class="keyword">const</span> <a class="code" href="struct__aes__ctx.html">aes_ctx</a>* ks,</div>
+<div class="line"><a name="l00432"></a><span class="lineno">  432</span>&#160;    <span class="keyword">const</span> uint8_t* iv,</div>
+<div class="line"><a name="l00433"></a><span class="lineno">  433</span>&#160;    uint8_t ciphermode,</div>
+<div class="line"><a name="l00434"></a><span class="lineno">  434</span>&#160;    uint8_t paddingmode);</div>
+<div class="line"><a name="l00435"></a><span class="lineno">  435</span>&#160; </div>
+<div class="line"><a name="l00449"></a><span class="lineno"><a class="line" href="hashlib_8h.html#a402aa47590cf2de4ea6cb2efba1fdb35">  449</a></span>&#160;<a class="code" href="hashlib_8h.html#aeb2e64abcc4317e3143fb820f21c3bfd">aes_error_t</a> <a class="code" href="hashlib_8h.html#a402aa47590cf2de4ea6cb2efba1fdb35">hashlib_AESDecrypt</a>(</div>
+<div class="line"><a name="l00450"></a><span class="lineno">  450</span>&#160;    <span class="keyword">const</span> uint8_t* ciphertext,</div>
+<div class="line"><a name="l00451"></a><span class="lineno">  451</span>&#160;    <span class="keywordtype">size_t</span> len,</div>
+<div class="line"><a name="l00452"></a><span class="lineno">  452</span>&#160;    uint8_t* plaintext,</div>
+<div class="line"><a name="l00453"></a><span class="lineno">  453</span>&#160;    <span class="keyword">const</span> <a class="code" href="struct__aes__ctx.html">aes_ctx</a>* ks,</div>
+<div class="line"><a name="l00454"></a><span class="lineno">  454</span>&#160;    <span class="keyword">const</span> uint8_t* iv,</div>
+<div class="line"><a name="l00455"></a><span class="lineno">  455</span>&#160;    uint8_t ciphermode,</div>
+<div class="line"><a name="l00456"></a><span class="lineno">  456</span>&#160;    uint8_t paddingmode);</div>
+<div class="line"><a name="l00457"></a><span class="lineno">  457</span>&#160;    </div>
+<div class="line"><a name="l00458"></a><span class="lineno">  458</span>&#160; </div>
+<div class="line"><a name="l00459"></a><span class="lineno">  459</span>&#160;<span class="comment">/*</span></div>
+<div class="line"><a name="l00460"></a><span class="lineno">  460</span>&#160;<span class="comment"> RSA Public Key Encryption</span></div>
+<div class="line"><a name="l00461"></a><span class="lineno">  461</span>&#160;<span class="comment"> </span></div>
+<div class="line"><a name="l00462"></a><span class="lineno">  462</span>&#160;<span class="comment"> Public key encryption is a form of asymmetric encryption.</span></div>
+<div class="line"><a name="l00463"></a><span class="lineno">  463</span>&#160;<span class="comment"> This means that a key only works in one direction, and both parties need a public key</span></div>
+<div class="line"><a name="l00464"></a><span class="lineno">  464</span>&#160;<span class="comment"> and a private key. The private key is used to decrypt a message and the public key is</span></div>
+<div class="line"><a name="l00465"></a><span class="lineno">  465</span>&#160;<span class="comment"> used to encrypt.</span></div>
+<div class="line"><a name="l00466"></a><span class="lineno">  466</span>&#160;<span class="comment"> In RSA, the public and private keys are modular inverses of each other, such that:</span></div>
+<div class="line"><a name="l00467"></a><span class="lineno">  467</span>&#160;<span class="comment"> encrypted = message ** public exponent % public key, and</span></div>
+<div class="line"><a name="l00468"></a><span class="lineno">  468</span>&#160;<span class="comment"> message = encrypted ** private exponent % private modulus</span></div>
+<div class="line"><a name="l00469"></a><span class="lineno">  469</span>&#160;<span class="comment"> ** means power, % means modulus</span></div>
+<div class="line"><a name="l00470"></a><span class="lineno">  470</span>&#160;<span class="comment"> </span></div>
+<div class="line"><a name="l00471"></a><span class="lineno">  471</span>&#160;<span class="comment"> 65537 (and a few other Fermat primes) are commonly used as public exponents.</span></div>
+<div class="line"><a name="l00472"></a><span class="lineno">  472</span>&#160;<span class="comment"> The public key (modulus) is sent in the clear and is known to to everyone.</span></div>
+<div class="line"><a name="l00473"></a><span class="lineno">  473</span>&#160;<span class="comment"> The cryptographic strength of RSA comes from the difficulty of factoring the modulus.</span></div>
+<div class="line"><a name="l00474"></a><span class="lineno">  474</span>&#160;<span class="comment"> Asymmetric encryption is generally VERY slow. Using even RSA-1024 on the TI-84+ CE will</span></div>
+<div class="line"><a name="l00475"></a><span class="lineno">  475</span>&#160;<span class="comment"> take several seconds. For this reason, you usually do not use RSA for sustained encrypted</span></div>
+<div class="line"><a name="l00476"></a><span class="lineno">  476</span>&#160;<span class="comment"> communication. Use RSA to share a symmetric key, and then use AES for future messages.</span></div>
+<div class="line"><a name="l00477"></a><span class="lineno">  477</span>&#160;<span class="comment"> </span></div>
+<div class="line"><a name="l00478"></a><span class="lineno">  478</span>&#160;<span class="comment"> RSA is also involved in SSL signature verification for some certificates that still use</span></div>
+<div class="line"><a name="l00479"></a><span class="lineno">  479</span>&#160;<span class="comment"> that signing algorithm (RSA w/ Sha-256). Most sigs use ECDSA nowadays though, so if you</span></div>
+<div class="line"><a name="l00480"></a><span class="lineno">  480</span>&#160;<span class="comment"> want a certificate that is compatible with this library, specify RSA with SHA-256 when creating it.</span></div>
+<div class="line"><a name="l00481"></a><span class="lineno">  481</span>&#160;<span class="comment"> */</span></div>
+<div class="line"><a name="l00482"></a><span class="lineno">  482</span>&#160; </div>
+<div class="line"><a name="l00486"></a><span class="lineno"><a class="line" href="hashlib_8h.html#a7508a7cdffede3d44a818dd4a154bf95">  486</a></span>&#160;<span class="keyword">enum</span> <a class="code" href="hashlib_8h.html#a7508a7cdffede3d44a818dd4a154bf95">ssl_sig_modes</a> {</div>
+<div class="line"><a name="l00487"></a><span class="lineno"><a class="line" href="hashlib_8h.html#a7508a7cdffede3d44a818dd4a154bf95a096ad031cbdad23c8d4053d9b7a3db31">  487</a></span>&#160;    <a class="code" href="hashlib_8h.html#a7508a7cdffede3d44a818dd4a154bf95a096ad031cbdad23c8d4053d9b7a3db31">SSLSIG_RSA_SHA256</a>,      </div>
+<div class="line"><a name="l00488"></a><span class="lineno">  488</span>&#160;    <a class="code" href="hashlib_8h.html#a7508a7cdffede3d44a818dd4a154bf95a3b885e134e618304b93f54b88eff9b25">SSLSIG_ECDSA</a>            </div>
+<div class="line"><a name="l00489"></a><span class="lineno"><a class="line" href="hashlib_8h.html#a7508a7cdffede3d44a818dd4a154bf95a3b885e134e618304b93f54b88eff9b25">  489</a></span>&#160;};</div>
+<div class="line"><a name="l00490"></a><span class="lineno">  490</span>&#160; </div>
+<div class="line"><a name="l00491"></a><span class="lineno">  491</span>&#160; </div>
+<div class="line"><a name="l00495"></a><span class="lineno"><a class="line" href="hashlib_8h.html#a0486449f609d0e485bad091a671d9294">  495</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">enum</span> {</div>
+<div class="line"><a name="l00496"></a><span class="lineno"><a class="line" href="hashlib_8h.html#a0486449f609d0e485bad091a671d9294a2cafdb683e1870a33bcb821420626cae">  496</a></span>&#160;    <a class="code" href="hashlib_8h.html#a0486449f609d0e485bad091a671d9294a2cafdb683e1870a33bcb821420626cae">RSA_OK</a>,                         </div>
+<div class="line"><a name="l00497"></a><span class="lineno"><a class="line" href="hashlib_8h.html#a0486449f609d0e485bad091a671d9294aab9ab38286c4180a1aa9f6e8df42e5db">  497</a></span>&#160;    <a class="code" href="hashlib_8h.html#a0486449f609d0e485bad091a671d9294aab9ab38286c4180a1aa9f6e8df42e5db">RSA_INVALID_ARG</a>,                </div>
+<div class="line"><a name="l00498"></a><span class="lineno"><a class="line" href="hashlib_8h.html#a0486449f609d0e485bad091a671d9294aedeb18a96b96e292369abed5b2f0a271">  498</a></span>&#160;    <a class="code" href="hashlib_8h.html#a0486449f609d0e485bad091a671d9294aedeb18a96b96e292369abed5b2f0a271">RSA_INVALID_MSG</a>,                </div>
+<div class="line"><a name="l00499"></a><span class="lineno"><a class="line" href="hashlib_8h.html#a0486449f609d0e485bad091a671d9294a843ec210de66176ef63e2d2b8ebdeb65">  499</a></span>&#160;    <a class="code" href="hashlib_8h.html#a0486449f609d0e485bad091a671d9294a843ec210de66176ef63e2d2b8ebdeb65">RSA_INVALID_MODULUS</a>,            </div>
+<div class="line"><a name="l00500"></a><span class="lineno">  500</span>&#160;    <a class="code" href="hashlib_8h.html#a0486449f609d0e485bad091a671d9294a43eadc89540121b902e02afabc7a7eb9">RSA_ENCODING_ERROR</a>              </div>
+<div class="line"><a name="l00501"></a><span class="lineno"><a class="line" href="hashlib_8h.html#a0486449f609d0e485bad091a671d9294a43eadc89540121b902e02afabc7a7eb9">  501</a></span>&#160;} <a class="code" href="hashlib_8h.html#a0486449f609d0e485bad091a671d9294">rsa_error_t</a>;</div>
+<div class="line"><a name="l00502"></a><span class="lineno">  502</span>&#160; </div>
+<div class="line"><a name="l00503"></a><span class="lineno">  503</span>&#160; </div>
+<div class="line"><a name="l00520"></a><span class="lineno"><a class="line" href="hashlib_8h.html#a3f2772b55bb9444c6b1d63976d35c9ff">  520</a></span>&#160;<a class="code" href="hashlib_8h.html#a0486449f609d0e485bad091a671d9294">rsa_error_t</a> <a class="code" href="hashlib_8h.html#a3f2772b55bb9444c6b1d63976d35c9ff">hashlib_RSAEncrypt</a>(</div>
+<div class="line"><a name="l00521"></a><span class="lineno">  521</span>&#160;    <span class="keyword">const</span> uint8_t* msg,</div>
+<div class="line"><a name="l00522"></a><span class="lineno">  522</span>&#160;    <span class="keywordtype">size_t</span> msglen,</div>
+<div class="line"><a name="l00523"></a><span class="lineno">  523</span>&#160;    uint8_t* ciphertext,</div>
+<div class="line"><a name="l00524"></a><span class="lineno">  524</span>&#160;    <span class="keyword">const</span> uint8_t* pubkey,</div>
+<div class="line"><a name="l00525"></a><span class="lineno">  525</span>&#160;    <span class="keywordtype">size_t</span> keylen);</div>
+<div class="line"><a name="l00526"></a><span class="lineno">  526</span>&#160; </div>
+<div class="line"><a name="l00527"></a><span class="lineno">  527</span>&#160; </div>
+<div class="line"><a name="l00539"></a><span class="lineno"><a class="line" href="hashlib_8h.html#a7b705e6cf52b076b40f936af6d55b29c">  539</a></span>&#160;<span class="keywordtype">bool</span> <a class="code" href="hashlib_8h.html#a7b705e6cf52b076b40f936af6d55b29c">hashlib_SSLVerifySignature</a>(</div>
+<div class="line"><a name="l00540"></a><span class="lineno">  540</span>&#160;    <span class="keyword">const</span> uint8_t *ca_pubkey,</div>
+<div class="line"><a name="l00541"></a><span class="lineno">  541</span>&#160;    <span class="keywordtype">size_t</span> keysize,</div>
+<div class="line"><a name="l00542"></a><span class="lineno">  542</span>&#160;    <span class="keyword">const</span> uint8_t *cert,</div>
+<div class="line"><a name="l00543"></a><span class="lineno">  543</span>&#160;    <span class="keywordtype">size_t</span> certlen,</div>
+<div class="line"><a name="l00544"></a><span class="lineno">  544</span>&#160;    uint8_t sig_alg);</div>
 <div class="line"><a name="l00545"></a><span class="lineno">  545</span>&#160; </div>
-<div class="line"><a name="l00551"></a><span class="lineno"><a class="line" href="hashlib_8h.html#a24bf91aef912b8346523f37e16d22377">  551</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="hashlib_8h.html#a24bf91aef912b8346523f37e16d22377">hashlib_EraseContext</a>(<span class="keywordtype">void</span> *ctx, <span class="keywordtype">size_t</span> len);</div>
-<div class="line"><a name="l00552"></a><span class="lineno">  552</span>&#160; </div>
-<div class="line"><a name="l00553"></a><span class="lineno">  553</span>&#160; </div>
-<div class="line"><a name="l00561"></a><span class="lineno"><a class="line" href="hashlib_8h.html#ad4ea46d5db12669bb2687771d094638f">  561</a></span>&#160;<span class="preprocessor">#define hashlib_MallocContext(size)     malloc((size))</span></div>
-<div class="line"><a name="l00562"></a><span class="lineno">  562</span>&#160; </div>
-<div class="line"><a name="l00563"></a><span class="lineno">  563</span>&#160; </div>
-<div class="line"><a name="l00573"></a><span class="lineno"><a class="line" href="hashlib_8h.html#a658b0b7f7139a429e3b77a9876e78970">  573</a></span>&#160;<a class="code" href="hashlib_8h.html#a658b0b7f7139a429e3b77a9876e78970">hashlib_CompareDigest</a>(<span class="keyword">const</span> uint8_t* digest1, <span class="keyword">const</span> uint8_t* digest2, <span class="keywordtype">size_t</span> len);</div>
-<div class="line"><a name="l00574"></a><span class="lineno">  574</span>&#160; </div>
-<div class="line"><a name="l00575"></a><span class="lineno">  575</span>&#160; </div>
-<div class="line"><a name="l00583"></a><span class="lineno"><a class="line" href="hashlib_8h.html#a9d0901c0c719265d8ba5f30f4803560e">  583</a></span>&#160;<span class="keywordtype">bool</span> <a class="code" href="hashlib_8h.html#a9d0901c0c719265d8ba5f30f4803560e">hashlib_ReverseEndianness</a>(<span class="keyword">const</span> uint8_t* in, uint8_t* out, <span class="keywordtype">size_t</span> len);</div>
-<div class="line"><a name="l00584"></a><span class="lineno">  584</span>&#160; </div>
-<div class="line"><a name="l00585"></a><span class="lineno">  585</span>&#160; </div>
+<div class="line"><a name="l00546"></a><span class="lineno">  546</span>&#160;<span class="comment">// Miscellaneous Functions</span></div>
+<div class="line"><a name="l00547"></a><span class="lineno">  547</span>&#160; </div>
+<div class="line"><a name="l00553"></a><span class="lineno"><a class="line" href="hashlib_8h.html#a24bf91aef912b8346523f37e16d22377">  553</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="hashlib_8h.html#a24bf91aef912b8346523f37e16d22377">hashlib_EraseContext</a>(<span class="keywordtype">void</span> *ctx, <span class="keywordtype">size_t</span> len);</div>
+<div class="line"><a name="l00554"></a><span class="lineno">  554</span>&#160; </div>
+<div class="line"><a name="l00555"></a><span class="lineno">  555</span>&#160; </div>
+<div class="line"><a name="l00563"></a><span class="lineno"><a class="line" href="hashlib_8h.html#ad4ea46d5db12669bb2687771d094638f">  563</a></span>&#160;<span class="preprocessor">#define hashlib_MallocContext(size)     malloc((size))</span></div>
+<div class="line"><a name="l00564"></a><span class="lineno">  564</span>&#160; </div>
+<div class="line"><a name="l00565"></a><span class="lineno">  565</span>&#160; </div>
+<div class="line"><a name="l00575"></a><span class="lineno"><a class="line" href="hashlib_8h.html#a658b0b7f7139a429e3b77a9876e78970">  575</a></span>&#160;<a class="code" href="hashlib_8h.html#a658b0b7f7139a429e3b77a9876e78970">hashlib_CompareDigest</a>(<span class="keyword">const</span> uint8_t* digest1, <span class="keyword">const</span> uint8_t* digest2, <span class="keywordtype">size_t</span> len);</div>
+<div class="line"><a name="l00576"></a><span class="lineno">  576</span>&#160; </div>
+<div class="line"><a name="l00577"></a><span class="lineno">  577</span>&#160; </div>
+<div class="line"><a name="l00585"></a><span class="lineno"><a class="line" href="hashlib_8h.html#a9d0901c0c719265d8ba5f30f4803560e">  585</a></span>&#160;<span class="keywordtype">bool</span> <a class="code" href="hashlib_8h.html#a9d0901c0c719265d8ba5f30f4803560e">hashlib_ReverseEndianness</a>(<span class="keyword">const</span> uint8_t* in, uint8_t* out, <span class="keywordtype">size_t</span> len);</div>
 <div class="line"><a name="l00586"></a><span class="lineno">  586</span>&#160; </div>
-<div class="line"><a name="l00590"></a><span class="lineno">  590</span>&#160; </div>
-<div class="line"><a name="l00601"></a><span class="lineno"><a class="line" href="hashlib_8h.html#aebac98a8537f3353aac9fbae5ed67f29">  601</a></span>&#160;<span class="keywordtype">size_t</span> <a class="code" href="hashlib_8h.html#aebac98a8537f3353aac9fbae5ed67f29">hashlib_AESPadMessage</a>(</div>
-<div class="line"><a name="l00602"></a><span class="lineno">  602</span>&#160;    <span class="keyword">const</span> uint8_t* plaintext,</div>
-<div class="line"><a name="l00603"></a><span class="lineno">  603</span>&#160;    <span class="keywordtype">size_t</span> len,</div>
-<div class="line"><a name="l00604"></a><span class="lineno">  604</span>&#160;    uint8_t* outbuf,</div>
-<div class="line"><a name="l00605"></a><span class="lineno">  605</span>&#160;    uint8_t schm);</div>
-<div class="line"><a name="l00606"></a><span class="lineno">  606</span>&#160; </div>
-<div class="line"><a name="l00607"></a><span class="lineno">  607</span>&#160; </div>
-<div class="line"><a name="l00618"></a><span class="lineno"><a class="line" href="hashlib_8h.html#a152d6d62f1a21c97a551cea7e6110e59">  618</a></span>&#160;<span class="keywordtype">size_t</span> <a class="code" href="hashlib_8h.html#a152d6d62f1a21c97a551cea7e6110e59">hashlib_AESStripPadding</a>(</div>
-<div class="line"><a name="l00619"></a><span class="lineno">  619</span>&#160;    <span class="keyword">const</span> uint8_t* plaintext,</div>
-<div class="line"><a name="l00620"></a><span class="lineno">  620</span>&#160;    <span class="keywordtype">size_t</span> len,</div>
-<div class="line"><a name="l00621"></a><span class="lineno">  621</span>&#160;    uint8_t* outbuf,</div>
-<div class="line"><a name="l00622"></a><span class="lineno">  622</span>&#160;    uint8_t schm);</div>
-<div class="line"><a name="l00623"></a><span class="lineno">  623</span>&#160; </div>
-<div class="line"><a name="l00624"></a><span class="lineno">  624</span>&#160; </div>
-<div class="line"><a name="l00652"></a><span class="lineno"><a class="line" href="hashlib_8h.html#a52c65f6e14ae6287fc2753895ce947be">  652</a></span>&#160;<span class="keywordtype">size_t</span> <a class="code" href="hashlib_8h.html#a52c65f6e14ae6287fc2753895ce947be">hashlib_RSAEncodeOAEP</a>(</div>
-<div class="line"><a name="l00653"></a><span class="lineno">  653</span>&#160;    <span class="keyword">const</span> uint8_t* plaintext,</div>
-<div class="line"><a name="l00654"></a><span class="lineno">  654</span>&#160;    <span class="keywordtype">size_t</span> len,</div>
-<div class="line"><a name="l00655"></a><span class="lineno">  655</span>&#160;    uint8_t* outbuf,</div>
-<div class="line"><a name="l00656"></a><span class="lineno">  656</span>&#160;    <span class="keywordtype">size_t</span> modulus_len,</div>
-<div class="line"><a name="l00657"></a><span class="lineno">  657</span>&#160;    <span class="keyword">const</span> uint8_t *auth);</div>
-<div class="line"><a name="l00658"></a><span class="lineno">  658</span>&#160;    </div>
-<div class="line"><a name="l00659"></a><span class="lineno">  659</span>&#160; </div>
-<div class="line"><a name="l00672"></a><span class="lineno"><a class="line" href="hashlib_8h.html#ae575c99825f9b970c3d6f7a6bf552153">  672</a></span>&#160;<span class="keywordtype">size_t</span> <a class="code" href="hashlib_8h.html#ae575c99825f9b970c3d6f7a6bf552153">hashlib_RSADecodeOAEP</a>(</div>
-<div class="line"><a name="l00673"></a><span class="lineno">  673</span>&#160;    <span class="keyword">const</span> uint8_t* plaintext,</div>
-<div class="line"><a name="l00674"></a><span class="lineno">  674</span>&#160;    <span class="keywordtype">size_t</span> len,</div>
-<div class="line"><a name="l00675"></a><span class="lineno">  675</span>&#160;    uint8_t* outbuf,</div>
-<div class="line"><a name="l00676"></a><span class="lineno">  676</span>&#160;    <span class="keyword">const</span> uint8_t *auth);</div>
-<div class="line"><a name="l00677"></a><span class="lineno">  677</span>&#160; </div>
-<div class="line"><a name="l00678"></a><span class="lineno">  678</span>&#160; </div>
-<div class="line"><a name="l00708"></a><span class="lineno"><a class="line" href="hashlib_8h.html#a01668b3f2dd85fe2f8696673b275b75a">  708</a></span>&#160;<span class="keywordtype">size_t</span> <a class="code" href="hashlib_8h.html#a01668b3f2dd85fe2f8696673b275b75a">hashlib_RSAEncodePSS</a>(</div>
-<div class="line"><a name="l00709"></a><span class="lineno">  709</span>&#160;    <span class="keyword">const</span> uint8_t *plaintext,</div>
-<div class="line"><a name="l00710"></a><span class="lineno">  710</span>&#160;    <span class="keywordtype">size_t</span> len,</div>
-<div class="line"><a name="l00711"></a><span class="lineno">  711</span>&#160;    uint8_t *outbuf,</div>
-<div class="line"><a name="l00712"></a><span class="lineno">  712</span>&#160;    <span class="keywordtype">size_t</span> modulus_len,</div>
-<div class="line"><a name="l00713"></a><span class="lineno">  713</span>&#160;    uint8_t *salt);</div>
-<div class="line"><a name="l00714"></a><span class="lineno">  714</span>&#160; </div>
-<div class="line"><a name="l00715"></a><span class="lineno">  715</span>&#160; </div>
-<div class="line"><a name="l00727"></a><span class="lineno"><a class="line" href="hashlib_8h.html#af1dd2bde099a6fadb6bcc842e502c21b">  727</a></span>&#160; <span class="keywordtype">bool</span> <a class="code" href="hashlib_8h.html#af1dd2bde099a6fadb6bcc842e502c21b">hashlib_RSAVerifyPSS</a>(</div>
-<div class="line"><a name="l00728"></a><span class="lineno">  728</span>&#160;    <span class="keyword">const</span> uint8_t *in,</div>
-<div class="line"><a name="l00729"></a><span class="lineno">  729</span>&#160;    <span class="keywordtype">size_t</span> len,</div>
-<div class="line"><a name="l00730"></a><span class="lineno">  730</span>&#160;    <span class="keyword">const</span> uint8_t *expected,</div>
-<div class="line"><a name="l00731"></a><span class="lineno">  731</span>&#160;    <span class="keywordtype">size_t</span> modulus_len);</div>
-<div class="line"><a name="l00732"></a><span class="lineno">  732</span>&#160;    </div>
-<div class="line"><a name="l00733"></a><span class="lineno">  733</span>&#160;    </div>
-<div class="line"><a name="l00734"></a><span class="lineno">  734</span>&#160; </div>
-<div class="line"><a name="l00759"></a><span class="lineno"><a class="line" href="hashlib_8h.html#a44592eaae569a9cd22a4f7c5cb1c227a">  759</a></span>&#160;<a class="code" href="hashlib_8h.html#aeb2e64abcc4317e3143fb820f21c3bfd">aes_error_t</a> <a class="code" href="hashlib_8h.html#a44592eaae569a9cd22a4f7c5cb1c227a">hashlib_AESAuthEncrypt</a>(</div>
-<div class="line"><a name="l00760"></a><span class="lineno">  760</span>&#160;    <span class="keyword">const</span> uint8_t* plaintext,</div>
-<div class="line"><a name="l00761"></a><span class="lineno">  761</span>&#160;    <span class="keywordtype">size_t</span> len,</div>
-<div class="line"><a name="l00762"></a><span class="lineno">  762</span>&#160;    uint8_t* ciphertext,</div>
-<div class="line"><a name="l00763"></a><span class="lineno">  763</span>&#160;    <a class="code" href="struct__aes__ctx.html">aes_ctx</a>* key,</div>
-<div class="line"><a name="l00764"></a><span class="lineno">  764</span>&#160;    <span class="keyword">const</span> uint8_t* iv,</div>
-<div class="line"><a name="l00765"></a><span class="lineno">  765</span>&#160;    uint8_t ciphermode,</div>
-<div class="line"><a name="l00766"></a><span class="lineno">  766</span>&#160;    <span class="keywordtype">size_t</span> encryption_offset,</div>
-<div class="line"><a name="l00767"></a><span class="lineno">  767</span>&#160;    <span class="keywordtype">size_t</span> encryption_len);</div>
-<div class="line"><a name="l00768"></a><span class="lineno">  768</span>&#160;    </div>
-<div class="line"><a name="l00769"></a><span class="lineno">  769</span>&#160;    </div>
-<div class="line"><a name="l00770"></a><span class="lineno">  770</span>&#160; </div>
-<div class="line"><a name="l00795"></a><span class="lineno"><a class="line" href="hashlib_8h.html#af5dcf95ad2b71a15049abaa1a9ffa50c">  795</a></span>&#160;<a class="code" href="hashlib_8h.html#aeb2e64abcc4317e3143fb820f21c3bfd">aes_error_t</a> <a class="code" href="hashlib_8h.html#af5dcf95ad2b71a15049abaa1a9ffa50c">hashlib_AESAuthDecrypt</a>(</div>
-<div class="line"><a name="l00796"></a><span class="lineno">  796</span>&#160;    <span class="keyword">const</span> uint8_t* ciphertext,</div>
-<div class="line"><a name="l00797"></a><span class="lineno">  797</span>&#160;    <span class="keywordtype">size_t</span> len,</div>
-<div class="line"><a name="l00798"></a><span class="lineno">  798</span>&#160;    uint8_t* plaintext,</div>
-<div class="line"><a name="l00799"></a><span class="lineno">  799</span>&#160;    <a class="code" href="struct__aes__ctx.html">aes_ctx</a>* key,</div>
-<div class="line"><a name="l00800"></a><span class="lineno">  800</span>&#160;    <span class="keyword">const</span> uint8_t* iv,</div>
-<div class="line"><a name="l00801"></a><span class="lineno">  801</span>&#160;    uint8_t ciphermode,</div>
-<div class="line"><a name="l00802"></a><span class="lineno">  802</span>&#160;    <span class="keywordtype">size_t</span> decryption_offset,</div>
-<div class="line"><a name="l00803"></a><span class="lineno">  803</span>&#160;    <span class="keywordtype">size_t</span> decryption_len);</div>
-<div class="line"><a name="l00804"></a><span class="lineno">  804</span>&#160;    </div>
-<div class="line"><a name="l00805"></a><span class="lineno">  805</span>&#160;    </div>
-<div class="line"><a name="l00806"></a><span class="lineno">  806</span>&#160; </div>
-<div class="line"><a name="l00822"></a><span class="lineno"><a class="line" href="hashlib_8h.html#a94346a8d2bea7e20c86f668c7bf25f41">  822</a></span>&#160;<a class="code" href="hashlib_8h.html#a0486449f609d0e485bad091a671d9294">rsa_error_t</a> <a class="code" href="hashlib_8h.html#a94346a8d2bea7e20c86f668c7bf25f41">hashlib_RSAAuthEncrypt</a>(</div>
-<div class="line"><a name="l00823"></a><span class="lineno">  823</span>&#160;    <span class="keyword">const</span> uint8_t* msg,</div>
-<div class="line"><a name="l00824"></a><span class="lineno">  824</span>&#160;    <span class="keywordtype">size_t</span> msglen,</div>
-<div class="line"><a name="l00825"></a><span class="lineno">  825</span>&#160;    uint8_t *ciphertext,</div>
-<div class="line"><a name="l00826"></a><span class="lineno">  826</span>&#160;    <span class="keyword">const</span> uint8_t* pubkey,</div>
-<div class="line"><a name="l00827"></a><span class="lineno">  827</span>&#160;    <span class="keywordtype">size_t</span> keylen);</div>
-<div class="line"><a name="l00828"></a><span class="lineno">  828</span>&#160; </div>
-<div class="line"><a name="l00829"></a><span class="lineno">  829</span>&#160; </div>
-<div class="line"><a name="l00830"></a><span class="lineno">  830</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00587"></a><span class="lineno">  587</span>&#160; </div>
+<div class="line"><a name="l00588"></a><span class="lineno">  588</span>&#160; </div>
+<div class="line"><a name="l00592"></a><span class="lineno">  592</span>&#160; </div>
+<div class="line"><a name="l00603"></a><span class="lineno"><a class="line" href="hashlib_8h.html#aebac98a8537f3353aac9fbae5ed67f29">  603</a></span>&#160;<span class="keywordtype">size_t</span> <a class="code" href="hashlib_8h.html#aebac98a8537f3353aac9fbae5ed67f29">hashlib_AESPadMessage</a>(</div>
+<div class="line"><a name="l00604"></a><span class="lineno">  604</span>&#160;    <span class="keyword">const</span> uint8_t* plaintext,</div>
+<div class="line"><a name="l00605"></a><span class="lineno">  605</span>&#160;    <span class="keywordtype">size_t</span> len,</div>
+<div class="line"><a name="l00606"></a><span class="lineno">  606</span>&#160;    uint8_t* outbuf,</div>
+<div class="line"><a name="l00607"></a><span class="lineno">  607</span>&#160;    uint8_t schm);</div>
+<div class="line"><a name="l00608"></a><span class="lineno">  608</span>&#160; </div>
+<div class="line"><a name="l00609"></a><span class="lineno">  609</span>&#160; </div>
+<div class="line"><a name="l00620"></a><span class="lineno"><a class="line" href="hashlib_8h.html#a152d6d62f1a21c97a551cea7e6110e59">  620</a></span>&#160;<span class="keywordtype">size_t</span> <a class="code" href="hashlib_8h.html#a152d6d62f1a21c97a551cea7e6110e59">hashlib_AESStripPadding</a>(</div>
+<div class="line"><a name="l00621"></a><span class="lineno">  621</span>&#160;    <span class="keyword">const</span> uint8_t* plaintext,</div>
+<div class="line"><a name="l00622"></a><span class="lineno">  622</span>&#160;    <span class="keywordtype">size_t</span> len,</div>
+<div class="line"><a name="l00623"></a><span class="lineno">  623</span>&#160;    uint8_t* outbuf,</div>
+<div class="line"><a name="l00624"></a><span class="lineno">  624</span>&#160;    uint8_t schm);</div>
+<div class="line"><a name="l00625"></a><span class="lineno">  625</span>&#160; </div>
+<div class="line"><a name="l00626"></a><span class="lineno">  626</span>&#160; </div>
+<div class="line"><a name="l00654"></a><span class="lineno"><a class="line" href="hashlib_8h.html#a52c65f6e14ae6287fc2753895ce947be">  654</a></span>&#160;<span class="keywordtype">size_t</span> <a class="code" href="hashlib_8h.html#a52c65f6e14ae6287fc2753895ce947be">hashlib_RSAEncodeOAEP</a>(</div>
+<div class="line"><a name="l00655"></a><span class="lineno">  655</span>&#160;    <span class="keyword">const</span> uint8_t* plaintext,</div>
+<div class="line"><a name="l00656"></a><span class="lineno">  656</span>&#160;    <span class="keywordtype">size_t</span> len,</div>
+<div class="line"><a name="l00657"></a><span class="lineno">  657</span>&#160;    uint8_t* outbuf,</div>
+<div class="line"><a name="l00658"></a><span class="lineno">  658</span>&#160;    <span class="keywordtype">size_t</span> modulus_len,</div>
+<div class="line"><a name="l00659"></a><span class="lineno">  659</span>&#160;    <span class="keyword">const</span> uint8_t *auth);</div>
+<div class="line"><a name="l00660"></a><span class="lineno">  660</span>&#160;    </div>
+<div class="line"><a name="l00661"></a><span class="lineno">  661</span>&#160; </div>
+<div class="line"><a name="l00674"></a><span class="lineno"><a class="line" href="hashlib_8h.html#ae575c99825f9b970c3d6f7a6bf552153">  674</a></span>&#160;<span class="keywordtype">size_t</span> <a class="code" href="hashlib_8h.html#ae575c99825f9b970c3d6f7a6bf552153">hashlib_RSADecodeOAEP</a>(</div>
+<div class="line"><a name="l00675"></a><span class="lineno">  675</span>&#160;    <span class="keyword">const</span> uint8_t* plaintext,</div>
+<div class="line"><a name="l00676"></a><span class="lineno">  676</span>&#160;    <span class="keywordtype">size_t</span> len,</div>
+<div class="line"><a name="l00677"></a><span class="lineno">  677</span>&#160;    uint8_t* outbuf,</div>
+<div class="line"><a name="l00678"></a><span class="lineno">  678</span>&#160;    <span class="keyword">const</span> uint8_t *auth);</div>
+<div class="line"><a name="l00679"></a><span class="lineno">  679</span>&#160; </div>
+<div class="line"><a name="l00680"></a><span class="lineno">  680</span>&#160; </div>
+<div class="line"><a name="l00710"></a><span class="lineno"><a class="line" href="hashlib_8h.html#a01668b3f2dd85fe2f8696673b275b75a">  710</a></span>&#160;<span class="keywordtype">size_t</span> <a class="code" href="hashlib_8h.html#a01668b3f2dd85fe2f8696673b275b75a">hashlib_RSAEncodePSS</a>(</div>
+<div class="line"><a name="l00711"></a><span class="lineno">  711</span>&#160;    <span class="keyword">const</span> uint8_t *plaintext,</div>
+<div class="line"><a name="l00712"></a><span class="lineno">  712</span>&#160;    <span class="keywordtype">size_t</span> len,</div>
+<div class="line"><a name="l00713"></a><span class="lineno">  713</span>&#160;    uint8_t *outbuf,</div>
+<div class="line"><a name="l00714"></a><span class="lineno">  714</span>&#160;    <span class="keywordtype">size_t</span> modulus_len,</div>
+<div class="line"><a name="l00715"></a><span class="lineno">  715</span>&#160;    uint8_t *salt);</div>
+<div class="line"><a name="l00716"></a><span class="lineno">  716</span>&#160; </div>
+<div class="line"><a name="l00717"></a><span class="lineno">  717</span>&#160; </div>
+<div class="line"><a name="l00729"></a><span class="lineno"><a class="line" href="hashlib_8h.html#af1dd2bde099a6fadb6bcc842e502c21b">  729</a></span>&#160; <span class="keywordtype">bool</span> <a class="code" href="hashlib_8h.html#af1dd2bde099a6fadb6bcc842e502c21b">hashlib_RSAVerifyPSS</a>(</div>
+<div class="line"><a name="l00730"></a><span class="lineno">  730</span>&#160;    <span class="keyword">const</span> uint8_t *in,</div>
+<div class="line"><a name="l00731"></a><span class="lineno">  731</span>&#160;    <span class="keywordtype">size_t</span> len,</div>
+<div class="line"><a name="l00732"></a><span class="lineno">  732</span>&#160;    <span class="keyword">const</span> uint8_t *expected,</div>
+<div class="line"><a name="l00733"></a><span class="lineno">  733</span>&#160;    <span class="keywordtype">size_t</span> modulus_len);</div>
+<div class="line"><a name="l00734"></a><span class="lineno">  734</span>&#160;    </div>
+<div class="line"><a name="l00735"></a><span class="lineno">  735</span>&#160;    </div>
+<div class="line"><a name="l00736"></a><span class="lineno">  736</span>&#160; </div>
+<div class="line"><a name="l00761"></a><span class="lineno"><a class="line" href="hashlib_8h.html#a44592eaae569a9cd22a4f7c5cb1c227a">  761</a></span>&#160;<a class="code" href="hashlib_8h.html#aeb2e64abcc4317e3143fb820f21c3bfd">aes_error_t</a> <a class="code" href="hashlib_8h.html#a44592eaae569a9cd22a4f7c5cb1c227a">hashlib_AESAuthEncrypt</a>(</div>
+<div class="line"><a name="l00762"></a><span class="lineno">  762</span>&#160;    <span class="keyword">const</span> uint8_t* plaintext,</div>
+<div class="line"><a name="l00763"></a><span class="lineno">  763</span>&#160;    <span class="keywordtype">size_t</span> len,</div>
+<div class="line"><a name="l00764"></a><span class="lineno">  764</span>&#160;    uint8_t* ciphertext,</div>
+<div class="line"><a name="l00765"></a><span class="lineno">  765</span>&#160;    <a class="code" href="struct__aes__ctx.html">aes_ctx</a>* key,</div>
+<div class="line"><a name="l00766"></a><span class="lineno">  766</span>&#160;    <span class="keyword">const</span> uint8_t* iv,</div>
+<div class="line"><a name="l00767"></a><span class="lineno">  767</span>&#160;    uint8_t ciphermode,</div>
+<div class="line"><a name="l00768"></a><span class="lineno">  768</span>&#160;    <span class="keywordtype">size_t</span> encryption_offset,</div>
+<div class="line"><a name="l00769"></a><span class="lineno">  769</span>&#160;    <span class="keywordtype">size_t</span> encryption_len);</div>
+<div class="line"><a name="l00770"></a><span class="lineno">  770</span>&#160;    </div>
+<div class="line"><a name="l00771"></a><span class="lineno">  771</span>&#160;    </div>
+<div class="line"><a name="l00772"></a><span class="lineno">  772</span>&#160; </div>
+<div class="line"><a name="l00797"></a><span class="lineno"><a class="line" href="hashlib_8h.html#af5dcf95ad2b71a15049abaa1a9ffa50c">  797</a></span>&#160;<a class="code" href="hashlib_8h.html#aeb2e64abcc4317e3143fb820f21c3bfd">aes_error_t</a> <a class="code" href="hashlib_8h.html#af5dcf95ad2b71a15049abaa1a9ffa50c">hashlib_AESAuthDecrypt</a>(</div>
+<div class="line"><a name="l00798"></a><span class="lineno">  798</span>&#160;    <span class="keyword">const</span> uint8_t* ciphertext,</div>
+<div class="line"><a name="l00799"></a><span class="lineno">  799</span>&#160;    <span class="keywordtype">size_t</span> len,</div>
+<div class="line"><a name="l00800"></a><span class="lineno">  800</span>&#160;    uint8_t* plaintext,</div>
+<div class="line"><a name="l00801"></a><span class="lineno">  801</span>&#160;    <a class="code" href="struct__aes__ctx.html">aes_ctx</a>* key,</div>
+<div class="line"><a name="l00802"></a><span class="lineno">  802</span>&#160;    <span class="keyword">const</span> uint8_t* iv,</div>
+<div class="line"><a name="l00803"></a><span class="lineno">  803</span>&#160;    uint8_t ciphermode,</div>
+<div class="line"><a name="l00804"></a><span class="lineno">  804</span>&#160;    <span class="keywordtype">size_t</span> decryption_offset,</div>
+<div class="line"><a name="l00805"></a><span class="lineno">  805</span>&#160;    <span class="keywordtype">size_t</span> decryption_len);</div>
+<div class="line"><a name="l00806"></a><span class="lineno">  806</span>&#160;    </div>
+<div class="line"><a name="l00807"></a><span class="lineno">  807</span>&#160;    </div>
+<div class="line"><a name="l00808"></a><span class="lineno">  808</span>&#160; </div>
+<div class="line"><a name="l00824"></a><span class="lineno"><a class="line" href="hashlib_8h.html#a94346a8d2bea7e20c86f668c7bf25f41">  824</a></span>&#160;<a class="code" href="hashlib_8h.html#a0486449f609d0e485bad091a671d9294">rsa_error_t</a> <a class="code" href="hashlib_8h.html#a94346a8d2bea7e20c86f668c7bf25f41">hashlib_RSAAuthEncrypt</a>(</div>
+<div class="line"><a name="l00825"></a><span class="lineno">  825</span>&#160;    <span class="keyword">const</span> uint8_t* msg,</div>
+<div class="line"><a name="l00826"></a><span class="lineno">  826</span>&#160;    <span class="keywordtype">size_t</span> msglen,</div>
+<div class="line"><a name="l00827"></a><span class="lineno">  827</span>&#160;    uint8_t *ciphertext,</div>
+<div class="line"><a name="l00828"></a><span class="lineno">  828</span>&#160;    <span class="keyword">const</span> uint8_t* pubkey,</div>
+<div class="line"><a name="l00829"></a><span class="lineno">  829</span>&#160;    <span class="keywordtype">size_t</span> keylen);</div>
+<div class="line"><a name="l00830"></a><span class="lineno">  830</span>&#160; </div>
+<div class="line"><a name="l00831"></a><span class="lineno">  831</span>&#160; </div>
+<div class="line"><a name="l00832"></a><span class="lineno">  832</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="ttc" id="ahashlib_8h_html_a01668b3f2dd85fe2f8696673b275b75a"><div class="ttname"><a href="hashlib_8h.html#a01668b3f2dd85fe2f8696673b275b75a">hashlib_RSAEncodePSS</a></div><div class="ttdeci">size_t hashlib_RSAEncodePSS(const uint8_t *plaintext, size_t len, uint8_t *outbuf, size_t modulus_len, uint8_t *salt)</div><div class="ttdoc">RSA-PSS padding scheme.</div></div>
-<div class="ttc" id="ahashlib_8h_html_a0486449f609d0e485bad091a671d9294"><div class="ttname"><a href="hashlib_8h.html#a0486449f609d0e485bad091a671d9294">rsa_error_t</a></div><div class="ttdeci">rsa_error_t</div><div class="ttdef"><b>Definition:</b> hashlib.h:493</div></div>
-<div class="ttc" id="ahashlib_8h_html_a0486449f609d0e485bad091a671d9294a2cafdb683e1870a33bcb821420626cae"><div class="ttname"><a href="hashlib_8h.html#a0486449f609d0e485bad091a671d9294a2cafdb683e1870a33bcb821420626cae">RSA_OK</a></div><div class="ttdeci">@ RSA_OK</div><div class="ttdef"><b>Definition:</b> hashlib.h:494</div></div>
-<div class="ttc" id="ahashlib_8h_html_a0486449f609d0e485bad091a671d9294a43eadc89540121b902e02afabc7a7eb9"><div class="ttname"><a href="hashlib_8h.html#a0486449f609d0e485bad091a671d9294a43eadc89540121b902e02afabc7a7eb9">RSA_ENCODING_ERROR</a></div><div class="ttdeci">@ RSA_ENCODING_ERROR</div><div class="ttdef"><b>Definition:</b> hashlib.h:498</div></div>
-<div class="ttc" id="ahashlib_8h_html_a0486449f609d0e485bad091a671d9294a843ec210de66176ef63e2d2b8ebdeb65"><div class="ttname"><a href="hashlib_8h.html#a0486449f609d0e485bad091a671d9294a843ec210de66176ef63e2d2b8ebdeb65">RSA_INVALID_MODULUS</a></div><div class="ttdeci">@ RSA_INVALID_MODULUS</div><div class="ttdef"><b>Definition:</b> hashlib.h:497</div></div>
-<div class="ttc" id="ahashlib_8h_html_a0486449f609d0e485bad091a671d9294aab9ab38286c4180a1aa9f6e8df42e5db"><div class="ttname"><a href="hashlib_8h.html#a0486449f609d0e485bad091a671d9294aab9ab38286c4180a1aa9f6e8df42e5db">RSA_INVALID_ARG</a></div><div class="ttdeci">@ RSA_INVALID_ARG</div><div class="ttdef"><b>Definition:</b> hashlib.h:495</div></div>
-<div class="ttc" id="ahashlib_8h_html_a0486449f609d0e485bad091a671d9294aedeb18a96b96e292369abed5b2f0a271"><div class="ttname"><a href="hashlib_8h.html#a0486449f609d0e485bad091a671d9294aedeb18a96b96e292369abed5b2f0a271">RSA_INVALID_MSG</a></div><div class="ttdeci">@ RSA_INVALID_MSG</div><div class="ttdef"><b>Definition:</b> hashlib.h:496</div></div>
+<div class="ttc" id="ahashlib_8h_html_a0486449f609d0e485bad091a671d9294"><div class="ttname"><a href="hashlib_8h.html#a0486449f609d0e485bad091a671d9294">rsa_error_t</a></div><div class="ttdeci">rsa_error_t</div><div class="ttdef"><b>Definition:</b> hashlib.h:495</div></div>
+<div class="ttc" id="ahashlib_8h_html_a0486449f609d0e485bad091a671d9294a2cafdb683e1870a33bcb821420626cae"><div class="ttname"><a href="hashlib_8h.html#a0486449f609d0e485bad091a671d9294a2cafdb683e1870a33bcb821420626cae">RSA_OK</a></div><div class="ttdeci">@ RSA_OK</div><div class="ttdef"><b>Definition:</b> hashlib.h:496</div></div>
+<div class="ttc" id="ahashlib_8h_html_a0486449f609d0e485bad091a671d9294a43eadc89540121b902e02afabc7a7eb9"><div class="ttname"><a href="hashlib_8h.html#a0486449f609d0e485bad091a671d9294a43eadc89540121b902e02afabc7a7eb9">RSA_ENCODING_ERROR</a></div><div class="ttdeci">@ RSA_ENCODING_ERROR</div><div class="ttdef"><b>Definition:</b> hashlib.h:500</div></div>
+<div class="ttc" id="ahashlib_8h_html_a0486449f609d0e485bad091a671d9294a843ec210de66176ef63e2d2b8ebdeb65"><div class="ttname"><a href="hashlib_8h.html#a0486449f609d0e485bad091a671d9294a843ec210de66176ef63e2d2b8ebdeb65">RSA_INVALID_MODULUS</a></div><div class="ttdeci">@ RSA_INVALID_MODULUS</div><div class="ttdef"><b>Definition:</b> hashlib.h:499</div></div>
+<div class="ttc" id="ahashlib_8h_html_a0486449f609d0e485bad091a671d9294aab9ab38286c4180a1aa9f6e8df42e5db"><div class="ttname"><a href="hashlib_8h.html#a0486449f609d0e485bad091a671d9294aab9ab38286c4180a1aa9f6e8df42e5db">RSA_INVALID_ARG</a></div><div class="ttdeci">@ RSA_INVALID_ARG</div><div class="ttdef"><b>Definition:</b> hashlib.h:497</div></div>
+<div class="ttc" id="ahashlib_8h_html_a0486449f609d0e485bad091a671d9294aedeb18a96b96e292369abed5b2f0a271"><div class="ttname"><a href="hashlib_8h.html#a0486449f609d0e485bad091a671d9294aedeb18a96b96e292369abed5b2f0a271">RSA_INVALID_MSG</a></div><div class="ttdeci">@ RSA_INVALID_MSG</div><div class="ttdef"><b>Definition:</b> hashlib.h:498</div></div>
 <div class="ttc" id="ahashlib_8h_html_a0653a6a286fb1bedfb3e964d36e3b0bd"><div class="ttname"><a href="hashlib_8h.html#a0653a6a286fb1bedfb3e964d36e3b0bd">hashlib_AESLoadKey</a></div><div class="ttdeci">bool hashlib_AESLoadKey(const uint8_t *key, const aes_ctx *ks, size_t keylen)</div><div class="ttdoc">AES import key to key schedule context.</div></div>
 <div class="ttc" id="ahashlib_8h_html_a152d6d62f1a21c97a551cea7e6110e59"><div class="ttname"><a href="hashlib_8h.html#a152d6d62f1a21c97a551cea7e6110e59">hashlib_AESStripPadding</a></div><div class="ttdeci">size_t hashlib_AESStripPadding(const uint8_t *plaintext, size_t len, uint8_t *outbuf, uint8_t schm)</div><div class="ttdoc">Strips the padding from a message according to the specified AES padding scheme.</div></div>
 <div class="ttc" id="ahashlib_8h_html_a179d02d08f13b8a2ec239ae3f6fc81de"><div class="ttname"><a href="hashlib_8h.html#a179d02d08f13b8a2ec239ae3f6fc81de">hashlib_SPRNGInit</a></div><div class="ttdeci">void * hashlib_SPRNGInit(void)</div><div class="ttdoc">Initializes the SPRNG.</div></div>
@@ -455,9 +457,9 @@ $(function() {
 <div class="ttc" id="ahashlib_8h_html_a5e0e235ac96b3f4c4a8e6d037efc053f"><div class="ttname"><a href="hashlib_8h.html#a5e0e235ac96b3f4c4a8e6d037efc053f">hashlib_HMACSha256Reset</a></div><div class="ttdeci">void hashlib_HMACSha256Reset(hmac_ctx *ctx)</div><div class="ttdoc">Resets the SHA-256 HMAC context to its state after a call to hashlib_HMACSha256Init()</div></div>
 <div class="ttc" id="ahashlib_8h_html_a658b0b7f7139a429e3b77a9876e78970"><div class="ttname"><a href="hashlib_8h.html#a658b0b7f7139a429e3b77a9876e78970">hashlib_CompareDigest</a></div><div class="ttdeci">hashlib_CompareDigest(const uint8_t *digest1, const uint8_t *digest2, size_t len)</div><div class="ttdoc">Secure buffer comparison.</div></div>
 <div class="ttc" id="ahashlib_8h_html_a6987499522b3b85b8ce4b272fadf75dd"><div class="ttname"><a href="hashlib_8h.html#a6987499522b3b85b8ce4b272fadf75dd">hashlib_AESEncryptBlock</a></div><div class="ttdeci">bool hashlib_AESEncryptBlock(const uint8_t *block_in, uint8_t *block_out, const aes_ctx *ks)</div><div class="ttdoc">AES Single-Block Encryption (ECB mode)</div></div>
-<div class="ttc" id="ahashlib_8h_html_a7508a7cdffede3d44a818dd4a154bf95"><div class="ttname"><a href="hashlib_8h.html#a7508a7cdffede3d44a818dd4a154bf95">ssl_sig_modes</a></div><div class="ttdeci">ssl_sig_modes</div><div class="ttdef"><b>Definition:</b> hashlib.h:484</div></div>
-<div class="ttc" id="ahashlib_8h_html_a7508a7cdffede3d44a818dd4a154bf95a096ad031cbdad23c8d4053d9b7a3db31"><div class="ttname"><a href="hashlib_8h.html#a7508a7cdffede3d44a818dd4a154bf95a096ad031cbdad23c8d4053d9b7a3db31">SSLSIG_RSA_SHA256</a></div><div class="ttdeci">@ SSLSIG_RSA_SHA256</div><div class="ttdef"><b>Definition:</b> hashlib.h:485</div></div>
-<div class="ttc" id="ahashlib_8h_html_a7508a7cdffede3d44a818dd4a154bf95a3b885e134e618304b93f54b88eff9b25"><div class="ttname"><a href="hashlib_8h.html#a7508a7cdffede3d44a818dd4a154bf95a3b885e134e618304b93f54b88eff9b25">SSLSIG_ECDSA</a></div><div class="ttdeci">@ SSLSIG_ECDSA</div><div class="ttdef"><b>Definition:</b> hashlib.h:486</div></div>
+<div class="ttc" id="ahashlib_8h_html_a7508a7cdffede3d44a818dd4a154bf95"><div class="ttname"><a href="hashlib_8h.html#a7508a7cdffede3d44a818dd4a154bf95">ssl_sig_modes</a></div><div class="ttdeci">ssl_sig_modes</div><div class="ttdef"><b>Definition:</b> hashlib.h:486</div></div>
+<div class="ttc" id="ahashlib_8h_html_a7508a7cdffede3d44a818dd4a154bf95a096ad031cbdad23c8d4053d9b7a3db31"><div class="ttname"><a href="hashlib_8h.html#a7508a7cdffede3d44a818dd4a154bf95a096ad031cbdad23c8d4053d9b7a3db31">SSLSIG_RSA_SHA256</a></div><div class="ttdeci">@ SSLSIG_RSA_SHA256</div><div class="ttdef"><b>Definition:</b> hashlib.h:487</div></div>
+<div class="ttc" id="ahashlib_8h_html_a7508a7cdffede3d44a818dd4a154bf95a3b885e134e618304b93f54b88eff9b25"><div class="ttname"><a href="hashlib_8h.html#a7508a7cdffede3d44a818dd4a154bf95a3b885e134e618304b93f54b88eff9b25">SSLSIG_ECDSA</a></div><div class="ttdeci">@ SSLSIG_ECDSA</div><div class="ttdef"><b>Definition:</b> hashlib.h:488</div></div>
 <div class="ttc" id="ahashlib_8h_html_a7b705e6cf52b076b40f936af6d55b29c"><div class="ttname"><a href="hashlib_8h.html#a7b705e6cf52b076b40f936af6d55b29c">hashlib_SSLVerifySignature</a></div><div class="ttdeci">bool hashlib_SSLVerifySignature(const uint8_t *ca_pubkey, size_t keysize, const uint8_t *cert, size_t certlen, uint8_t sig_alg)</div><div class="ttdoc">SSL Certificate Signature Verification.</div></div>
 <div class="ttc" id="ahashlib_8h_html_a8d813300476744f01319600478572f62"><div class="ttname"><a href="hashlib_8h.html#a8d813300476744f01319600478572f62">hmac_ctx</a></div><div class="ttdeci">struct _hmac_ctx hmac_ctx</div></div>
 <div class="ttc" id="ahashlib_8h_html_a94346a8d2bea7e20c86f668c7bf25f41"><div class="ttname"><a href="hashlib_8h.html#a94346a8d2bea7e20c86f668c7bf25f41">hashlib_RSAAuthEncrypt</a></div><div class="ttdeci">rsa_error_t hashlib_RSAAuthEncrypt(const uint8_t *msg, size_t msglen, uint8_t *ciphertext, const uint8_t *pubkey, size_t keylen)</div><div class="ttdoc">Authenticated RSA Encryption.</div></div>
@@ -476,13 +478,13 @@ $(function() {
 <div class="ttc" id="ahashlib_8h_html_ad4e253aa114047e5a49af2fd49781559"><div class="ttname"><a href="hashlib_8h.html#ad4e253aa114047e5a49af2fd49781559">hashlib_SPRNGRandom</a></div><div class="ttdeci">uint32_t hashlib_SPRNGRandom(void)</div><div class="ttdoc">Generates a random 32-bit number.</div></div>
 <div class="ttc" id="ahashlib_8h_html_ae23d818e30210064557610249880d4fe"><div class="ttname"><a href="hashlib_8h.html#ae23d818e30210064557610249880d4fe">hashlib_Sha256Update</a></div><div class="ttdeci">void hashlib_Sha256Update(sha256_ctx *ctx, const uint8_t *data, uint32_t len)</div><div class="ttdoc">Updates the SHA-256 context for the given data.</div></div>
 <div class="ttc" id="ahashlib_8h_html_ae575c99825f9b970c3d6f7a6bf552153"><div class="ttname"><a href="hashlib_8h.html#ae575c99825f9b970c3d6f7a6bf552153">hashlib_RSADecodeOAEP</a></div><div class="ttdeci">size_t hashlib_RSADecodeOAEP(const uint8_t *plaintext, size_t len, uint8_t *outbuf, const uint8_t *auth)</div><div class="ttdoc">RSA-OAEP padding scheme, reverse algorithm.</div></div>
-<div class="ttc" id="ahashlib_8h_html_aeb2e64abcc4317e3143fb820f21c3bfd"><div class="ttname"><a href="hashlib_8h.html#aeb2e64abcc4317e3143fb820f21c3bfd">aes_error_t</a></div><div class="ttdeci">aes_error_t</div><div class="ttdef"><b>Definition:</b> hashlib.h:390</div></div>
-<div class="ttc" id="ahashlib_8h_html_aeb2e64abcc4317e3143fb820f21c3bfda47bbd593fc3bdb7758a790bab86b41d9"><div class="ttname"><a href="hashlib_8h.html#aeb2e64abcc4317e3143fb820f21c3bfda47bbd593fc3bdb7758a790bab86b41d9">AES_INVALID_PADDINGMODE</a></div><div class="ttdeci">@ AES_INVALID_PADDINGMODE</div><div class="ttdef"><b>Definition:</b> hashlib.h:395</div></div>
-<div class="ttc" id="ahashlib_8h_html_aeb2e64abcc4317e3143fb820f21c3bfda6d39b280aea9d8d62d126eef05d271db"><div class="ttname"><a href="hashlib_8h.html#aeb2e64abcc4317e3143fb820f21c3bfda6d39b280aea9d8d62d126eef05d271db">AES_INVALID_ARG</a></div><div class="ttdeci">@ AES_INVALID_ARG</div><div class="ttdef"><b>Definition:</b> hashlib.h:392</div></div>
-<div class="ttc" id="ahashlib_8h_html_aeb2e64abcc4317e3143fb820f21c3bfdaacf07636102724d2a7913911b0cf74b2"><div class="ttname"><a href="hashlib_8h.html#aeb2e64abcc4317e3143fb820f21c3bfdaacf07636102724d2a7913911b0cf74b2">AES_OK</a></div><div class="ttdeci">@ AES_OK</div><div class="ttdef"><b>Definition:</b> hashlib.h:391</div></div>
-<div class="ttc" id="ahashlib_8h_html_aeb2e64abcc4317e3143fb820f21c3bfdaae5e9a591aeda666b0e425d9a05834e3"><div class="ttname"><a href="hashlib_8h.html#aeb2e64abcc4317e3143fb820f21c3bfdaae5e9a591aeda666b0e425d9a05834e3">AES_INVALID_MSG</a></div><div class="ttdeci">@ AES_INVALID_MSG</div><div class="ttdef"><b>Definition:</b> hashlib.h:393</div></div>
-<div class="ttc" id="ahashlib_8h_html_aeb2e64abcc4317e3143fb820f21c3bfdaba928751c773ffa0287e47e1f86eae8b"><div class="ttname"><a href="hashlib_8h.html#aeb2e64abcc4317e3143fb820f21c3bfdaba928751c773ffa0287e47e1f86eae8b">AES_INVALID_CIPHERTEXT</a></div><div class="ttdeci">@ AES_INVALID_CIPHERTEXT</div><div class="ttdef"><b>Definition:</b> hashlib.h:396</div></div>
-<div class="ttc" id="ahashlib_8h_html_aeb2e64abcc4317e3143fb820f21c3bfdad2b49ffeabf14aaf47db3d1bad18f84e"><div class="ttname"><a href="hashlib_8h.html#aeb2e64abcc4317e3143fb820f21c3bfdad2b49ffeabf14aaf47db3d1bad18f84e">AES_INVALID_CIPHERMODE</a></div><div class="ttdeci">@ AES_INVALID_CIPHERMODE</div><div class="ttdef"><b>Definition:</b> hashlib.h:394</div></div>
+<div class="ttc" id="ahashlib_8h_html_aeb2e64abcc4317e3143fb820f21c3bfd"><div class="ttname"><a href="hashlib_8h.html#aeb2e64abcc4317e3143fb820f21c3bfd">aes_error_t</a></div><div class="ttdeci">aes_error_t</div><div class="ttdef"><b>Definition:</b> hashlib.h:392</div></div>
+<div class="ttc" id="ahashlib_8h_html_aeb2e64abcc4317e3143fb820f21c3bfda47bbd593fc3bdb7758a790bab86b41d9"><div class="ttname"><a href="hashlib_8h.html#aeb2e64abcc4317e3143fb820f21c3bfda47bbd593fc3bdb7758a790bab86b41d9">AES_INVALID_PADDINGMODE</a></div><div class="ttdeci">@ AES_INVALID_PADDINGMODE</div><div class="ttdef"><b>Definition:</b> hashlib.h:397</div></div>
+<div class="ttc" id="ahashlib_8h_html_aeb2e64abcc4317e3143fb820f21c3bfda6d39b280aea9d8d62d126eef05d271db"><div class="ttname"><a href="hashlib_8h.html#aeb2e64abcc4317e3143fb820f21c3bfda6d39b280aea9d8d62d126eef05d271db">AES_INVALID_ARG</a></div><div class="ttdeci">@ AES_INVALID_ARG</div><div class="ttdef"><b>Definition:</b> hashlib.h:394</div></div>
+<div class="ttc" id="ahashlib_8h_html_aeb2e64abcc4317e3143fb820f21c3bfdaacf07636102724d2a7913911b0cf74b2"><div class="ttname"><a href="hashlib_8h.html#aeb2e64abcc4317e3143fb820f21c3bfdaacf07636102724d2a7913911b0cf74b2">AES_OK</a></div><div class="ttdeci">@ AES_OK</div><div class="ttdef"><b>Definition:</b> hashlib.h:393</div></div>
+<div class="ttc" id="ahashlib_8h_html_aeb2e64abcc4317e3143fb820f21c3bfdaae5e9a591aeda666b0e425d9a05834e3"><div class="ttname"><a href="hashlib_8h.html#aeb2e64abcc4317e3143fb820f21c3bfdaae5e9a591aeda666b0e425d9a05834e3">AES_INVALID_MSG</a></div><div class="ttdeci">@ AES_INVALID_MSG</div><div class="ttdef"><b>Definition:</b> hashlib.h:395</div></div>
+<div class="ttc" id="ahashlib_8h_html_aeb2e64abcc4317e3143fb820f21c3bfdaba928751c773ffa0287e47e1f86eae8b"><div class="ttname"><a href="hashlib_8h.html#aeb2e64abcc4317e3143fb820f21c3bfdaba928751c773ffa0287e47e1f86eae8b">AES_INVALID_CIPHERTEXT</a></div><div class="ttdeci">@ AES_INVALID_CIPHERTEXT</div><div class="ttdef"><b>Definition:</b> hashlib.h:398</div></div>
+<div class="ttc" id="ahashlib_8h_html_aeb2e64abcc4317e3143fb820f21c3bfdad2b49ffeabf14aaf47db3d1bad18f84e"><div class="ttname"><a href="hashlib_8h.html#aeb2e64abcc4317e3143fb820f21c3bfdad2b49ffeabf14aaf47db3d1bad18f84e">AES_INVALID_CIPHERMODE</a></div><div class="ttdeci">@ AES_INVALID_CIPHERMODE</div><div class="ttdef"><b>Definition:</b> hashlib.h:396</div></div>
 <div class="ttc" id="ahashlib_8h_html_aebac98a8537f3353aac9fbae5ed67f29"><div class="ttname"><a href="hashlib_8h.html#aebac98a8537f3353aac9fbae5ed67f29">hashlib_AESPadMessage</a></div><div class="ttdeci">size_t hashlib_AESPadMessage(const uint8_t *plaintext, size_t len, uint8_t *outbuf, uint8_t schm)</div><div class="ttdoc">Pads a plaintext according to the specified AES padding scheme.</div></div>
 <div class="ttc" id="ahashlib_8h_html_af1dd2bde099a6fadb6bcc842e502c21b"><div class="ttname"><a href="hashlib_8h.html#af1dd2bde099a6fadb6bcc842e502c21b">hashlib_RSAVerifyPSS</a></div><div class="ttdeci">bool hashlib_RSAVerifyPSS(const uint8_t *in, size_t len, const uint8_t *expected, size_t modulus_len)</div><div class="ttdoc">RSA-PSS verification.</div></div>
 <div class="ttc" id="ahashlib_8h_html_af5dcf95ad2b71a15049abaa1a9ffa50c"><div class="ttname"><a href="hashlib_8h.html#af5dcf95ad2b71a15049abaa1a9ffa50c">hashlib_AESAuthDecrypt</a></div><div class="ttdeci">aes_error_t hashlib_AESAuthDecrypt(const uint8_t *ciphertext, size_t len, uint8_t *plaintext, aes_ctx *key, const uint8_t *iv, uint8_t ciphermode, size_t decryption_offset, size_t decryption_len)</div><div class="ttdoc">Authenticated AES Decryption.</div></div>

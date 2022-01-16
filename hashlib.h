@@ -361,9 +361,10 @@ bool hashlib_AESLoadKey(const uint8_t* key, const aes_ctx* ks, size_t keylen);
  *          has. If you are writing your own cipher mode, you will need to implement that yourself.
  * @return True if encryption succeeded. False if failed.
  **********************************************************************************************************************************/
-bool hashlib_AESEncryptBlock(const uint8_t* block_in,
-							 uint8_t* block_out,
-							 const aes_ctx* ks);
+bool hashlib_AESEncryptBlock(
+        const uint8_t* block_in,
+        uint8_t* block_out,
+        const aes_ctx* ks);
     
 /********************************************************************************************************************************
  *	@brief AES Single-Block Decryption (ECB Mode)
@@ -377,9 +378,10 @@ bool hashlib_AESEncryptBlock(const uint8_t* block_in,
  *          has. If you are writing your own cipher mode, you will need to implement that yourself.
  *	@return True if encryption succeeded. False if an error occured.
  **********************************************************************************************************************************/
-bool hashlib_AESDecryptBlock(const uint8_t* block_in,
-							 uint8_t* block_out,
-							 const aes_ctx* ks);
+bool hashlib_AESDecryptBlock(
+        const uint8_t* block_in,
+        uint8_t* block_out,
+        const aes_ctx* ks);
 
 
 /***************************************************
