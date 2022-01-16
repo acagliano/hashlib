@@ -477,7 +477,8 @@ aes_error_t hashlib_AESDecrypt(
  
  RSA is also involved in SSL signature verification for some certificates that still use
  that signing algorithm (RSA w/ Sha-256). Most sigs use ECDSA nowadays though, so if you
- want a certificate that is compatible with this library, specify RSA with SHA-256 when creating it.
+ want a certificate that is compatible with this library, specify RSA with SHA-256 as your
+ signature algorithm when creating it.
  */
 /*************************************************************************************************
  * @enum ssl_sig_modes
