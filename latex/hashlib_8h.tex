@@ -26,8 +26,7 @@ struct \mbox{\hyperlink{struct__aes__ctx}{\+\_\+aes\+\_\+ctx}}
 \item 
 \#define \mbox{\hyperlink{hashlib_8h_af5aa539ae202ddf9e0c9211309869fc8}{SHA256\+\_\+\+DIGEST\+\_\+\+LEN}}~32
 \item 
-\mbox{\Hypertarget{hashlib_8h_a7781b6f83e2f311020d3b926b70743ed}\label{hashlib_8h_a7781b6f83e2f311020d3b926b70743ed}} 
-\#define {\bfseries SHA256\+\_\+\+HEXDIGEST\+\_\+\+LEN}~(\mbox{\hyperlink{hashlib_8h_af5aa539ae202ddf9e0c9211309869fc8}{SHA256\+\_\+\+DIGEST\+\_\+\+LEN}}$<$$<$1) + 1
+\#define \mbox{\hyperlink{hashlib_8h_a7781b6f83e2f311020d3b926b70743ed}{SHA256\+\_\+\+HEXDIGEST\+\_\+\+LEN}}~(\mbox{\hyperlink{hashlib_8h_af5aa539ae202ddf9e0c9211309869fc8}{SHA256\+\_\+\+DIGEST\+\_\+\+LEN}}$<$$<$1) + 1
 \item 
 \#define \mbox{\hyperlink{hashlib_8h_afab0742642db9c0609c00bf8a54f386f}{AES\+\_\+\+BLOCKSIZE}}~16
 \item 
@@ -207,7 +206,13 @@ If the SPRNG is run, anything you have stored here will be destroyed.
 \doxysubsubsection{\texorpdfstring{SHA256\_DIGEST\_LEN}{SHA256\_DIGEST\_LEN}}
 {\footnotesize\ttfamily \#define SHA256\+\_\+\+DIGEST\+\_\+\+LEN~32}
 
-Binary length of the SHA-\/256 hash output. \mbox{\Hypertarget{hashlib_8h_afab0742642db9c0609c00bf8a54f386f}\label{hashlib_8h_afab0742642db9c0609c00bf8a54f386f}} 
+Binary length of the SHA-\/256 hash output. \mbox{\Hypertarget{hashlib_8h_a7781b6f83e2f311020d3b926b70743ed}\label{hashlib_8h_a7781b6f83e2f311020d3b926b70743ed}} 
+\index{hashlib.h@{hashlib.h}!SHA256\_HEXDIGEST\_LEN@{SHA256\_HEXDIGEST\_LEN}}
+\index{SHA256\_HEXDIGEST\_LEN@{SHA256\_HEXDIGEST\_LEN}!hashlib.h@{hashlib.h}}
+\doxysubsubsection{\texorpdfstring{SHA256\_HEXDIGEST\_LEN}{SHA256\_HEXDIGEST\_LEN}}
+{\footnotesize\ttfamily \#define SHA256\+\_\+\+HEXDIGEST\+\_\+\+LEN~(\mbox{\hyperlink{hashlib_8h_af5aa539ae202ddf9e0c9211309869fc8}{SHA256\+\_\+\+DIGEST\+\_\+\+LEN}}$<$$<$1) + 1}
+
+Length of a string containing the SHA-\/256 hash. \mbox{\Hypertarget{hashlib_8h_afab0742642db9c0609c00bf8a54f386f}\label{hashlib_8h_afab0742642db9c0609c00bf8a54f386f}} 
 \index{hashlib.h@{hashlib.h}!AES\_BLOCKSIZE@{AES\_BLOCKSIZE}}
 \index{AES\_BLOCKSIZE@{AES\_BLOCKSIZE}!hashlib.h@{hashlib.h}}
 \doxysubsubsection{\texorpdfstring{AES\_BLOCKSIZE}{AES\_BLOCKSIZE}}
