@@ -81,7 +81,7 @@ uint32_t hashlib_SPRNGRandom(void);
  * @param size Number of bytes to write.
  * @note @b buffer must be at least @b size bytes large.
  ****************************************************************************************/
-bool hashlib_RandomBytes(uint8_t *buffer, size_t size);
+bool hashlib_RandomBytes(void* buffer, size_t size);
  
  
 /*
@@ -134,7 +134,7 @@ void hashlib_Sha256Init(sha256_ctx *ctx);
  *	@param len Number of bytes at @b data to hash.
  *	@warning You must call hashlib_Sha256Init() first or your hash state will be invalid.
  ******************************************************************************************************/
-void hashlib_Sha256Update(sha256_ctx *ctx, const void* data, uint32_t len);
+void hashlib_Sha256Update(sha256_ctx *ctx, const void* data, size_t len);
 
 /**************************************************************************
  *	@brief Finalize Context and Render Digest for SHA-256
@@ -142,7 +142,7 @@ void hashlib_Sha256Update(sha256_ctx *ctx, const void* data, uint32_t len);
  *	@param digest Pointer to a buffer to write the hash to.
  *	@note @b digest must be at least 32 bytes large.
  ***************************************************************************/
-void hashlib_Sha256Final(sha256_ctx *ctx, uint8_t* digest);
+void hashlib_Sha256Final(sha256_ctx *ctx, void* digest);
 
 /**********************************************************************************************************************
  *	@brief Arbitrary Length Hashing Function
@@ -155,7 +155,7 @@ void hashlib_Sha256Final(sha256_ctx *ctx, uint8_t* digest);
  *	@param outlen Number of bytes to write to @b outbuf.
  *	@note @b outbuf must be at least @b outlen bytes large.
  **********************************************************************************************************************/
-void hashlib_MGF1Hash(void* data, size_t datalen, uint8_t* outbuf, size_t outlen);
+void hashlib_MGF1Hash(void* data, size_t datalen, void* outbuf, size_t outlen);
 
 
 /*
@@ -203,7 +203,7 @@ void hashlib_HMACSha256Update(hmac_ctx* ctx, const void* data, size_t len);
  *	@param digest Pointer to a buffer to write the hash to.
  *	@note @b digest must be at least 32 bytes large.
  ***************************************************************************/
-void hashlib_HMACSha256Final(hmac_ctx* ctx, uint8_t* output);
+void hashlib_HMACSha256Final(hmac_ctx* ctx, void* output);
 
 /*************************************************************************************************************************
  *	@brief Resets the SHA-256 HMAC context to its state after a call to hashlib_HMACSha256Init()
@@ -231,8 +231,8 @@ void hashlib_HMACSha256Reset(hmac_ctx* ctx);
 bool hashlib_PBKDF2(
     const char* password,
     size_t passlen,
-    uint8_t* key,
-    const uint8_t* salt,
+    void* key,
+    const void* salt,
     size_t saltlen,
     size_t rounds,
     size_t keylen);
@@ -363,7 +363,7 @@ bool hashlib_AESLoadKey(const void* key, const aes_ctx* ks, size_t keylen);
  **********************************************************************************************************************************/
 bool hashlib_AESEncryptBlock(
         const void* block_in,
-        uint8_t* block_out,
+        void* block_out,
         const aes_ctx* ks);
     
 /********************************************************************************************************************************
@@ -380,7 +380,7 @@ bool hashlib_AESEncryptBlock(
  **********************************************************************************************************************************/
 bool hashlib_AESDecryptBlock(
         const void* block_in,
-        uint8_t* block_out,
+        void* block_out,
         const aes_ctx* ks);
 
 
@@ -427,7 +427,7 @@ typedef enum {
 aes_error_t hashlib_AESEncrypt(
     const void* plaintext,
     size_t len,
-    uint8_t* ciphertext,
+    void* ciphertext,
     const aes_ctx* ks,
     const void* iv,
     uint8_t ciphermode,
@@ -449,7 +449,7 @@ aes_error_t hashlib_AESEncrypt(
 aes_error_t hashlib_AESDecrypt(
     const void* ciphertext,
     size_t len,
-    uint8_t* plaintext,
+    void* plaintext,
     const aes_ctx* ks,
     const void* iv,
     uint8_t ciphermode,
@@ -521,7 +521,7 @@ typedef enum {
 rsa_error_t hashlib_RSAEncrypt(
     const void* msg,
     size_t msglen,
-    uint8_t* ciphertext,
+    void* ciphertext,
     const void* pubkey,
     size_t keylen);
  
@@ -604,7 +604,7 @@ bool hashlib_ReverseEndianness(const void* in, void* out, size_t len);
 size_t hashlib_AESPadMessage(
     const void* plaintext,
     size_t len,
-    uint8_t* outbuf,
+    void* outbuf,
     uint8_t schm);
 
 /***************************************************************************************************************
@@ -621,7 +621,7 @@ size_t hashlib_AESPadMessage(
 size_t hashlib_AESStripPadding(
     const void* plaintext,
     size_t len,
-    uint8_t* outbuf,
+    void* outbuf,
     uint8_t schm);
 
 /************************************************************************************************************************
@@ -655,7 +655,7 @@ size_t hashlib_AESStripPadding(
 size_t hashlib_RSAEncodeOAEP(
     const void* plaintext,
     size_t len,
-    uint8_t* outbuf,
+    void* outbuf,
     size_t modulus_len,
     const void *auth);
     
@@ -675,7 +675,7 @@ size_t hashlib_RSAEncodeOAEP(
 size_t hashlib_RSADecodeOAEP(
     const void* plaintext,
     size_t len,
-    uint8_t* outbuf,
+    void* outbuf,
     const void *auth);
 
 /************************************************************************************************************************
@@ -711,7 +711,7 @@ size_t hashlib_RSADecodeOAEP(
 size_t hashlib_RSAEncodePSS(
 	const void* plaintext,
 	size_t len,
-	uint8_t *outbuf,
+	void *outbuf,
 	size_t modulus_len,
 	void* salt);
  
@@ -762,7 +762,7 @@ size_t hashlib_RSAEncodePSS(
 aes_error_t hashlib_AESAuthEncrypt(
     const void* plaintext,
     size_t len,
-    uint8_t* ciphertext,
+    void* ciphertext,
     aes_ctx* key,
     const void* iv,
     uint8_t ciphermode,
@@ -798,7 +798,7 @@ aes_error_t hashlib_AESAuthEncrypt(
 aes_error_t hashlib_AESAuthDecrypt(
     const void* ciphertext,
     size_t len,
-    uint8_t* plaintext,
+    void* plaintext,
     aes_ctx* key,
     const void* iv,
     uint8_t ciphermode,
@@ -825,7 +825,7 @@ aes_error_t hashlib_AESAuthDecrypt(
 rsa_error_t hashlib_RSAAuthEncrypt(
     const void* msg,
     size_t msglen,
-    uint8_t *ciphertext,
+    void *ciphertext,
     const void* pubkey,
     size_t keylen);
 
