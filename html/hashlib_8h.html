@@ -180,87 +180,87 @@ Functions</h2></td></tr>
 <tr class="memitem:ac901e0546d0cb0c218fedbe4a43fc005"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#ac901e0546d0cb0c218fedbe4a43fc005">hashlib_Sha256Init</a> (<a class="el" href="hashlib_8h.html#a53df9e7d871973d59c7b58a6c3963c5d">sha256_ctx</a> *ctx)</td></tr>
 <tr class="memdesc:ac901e0546d0cb0c218fedbe4a43fc005"><td class="mdescLeft">&#160;</td><td class="mdescRight">Context initializer for SHA-256. Initializes the given context with the starting state for SHA-256.  <a href="hashlib_8h.html#ac901e0546d0cb0c218fedbe4a43fc005">More...</a><br /></td></tr>
 <tr class="separator:ac901e0546d0cb0c218fedbe4a43fc005"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae23d818e30210064557610249880d4fe"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#ae23d818e30210064557610249880d4fe">hashlib_Sha256Update</a> (<a class="el" href="hashlib_8h.html#a53df9e7d871973d59c7b58a6c3963c5d">sha256_ctx</a> *ctx, const uint8_t *data, uint32_t len)</td></tr>
-<tr class="memdesc:ae23d818e30210064557610249880d4fe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Updates the SHA-256 context for the given data.  <a href="hashlib_8h.html#ae23d818e30210064557610249880d4fe">More...</a><br /></td></tr>
-<tr class="separator:ae23d818e30210064557610249880d4fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6ec403dc3c96f3754d9b8e5340808762"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#a6ec403dc3c96f3754d9b8e5340808762">hashlib_Sha256Update</a> (<a class="el" href="hashlib_8h.html#a53df9e7d871973d59c7b58a6c3963c5d">sha256_ctx</a> *ctx, const void *data, uint32_t len)</td></tr>
+<tr class="memdesc:a6ec403dc3c96f3754d9b8e5340808762"><td class="mdescLeft">&#160;</td><td class="mdescRight">Updates the SHA-256 context for the given data.  <a href="hashlib_8h.html#a6ec403dc3c96f3754d9b8e5340808762">More...</a><br /></td></tr>
+<tr class="separator:a6ec403dc3c96f3754d9b8e5340808762"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a27eda4d2b18a026f199abdcab6d1cc8c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#a27eda4d2b18a026f199abdcab6d1cc8c">hashlib_Sha256Final</a> (<a class="el" href="hashlib_8h.html#a53df9e7d871973d59c7b58a6c3963c5d">sha256_ctx</a> *ctx, uint8_t *digest)</td></tr>
 <tr class="memdesc:a27eda4d2b18a026f199abdcab6d1cc8c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Finalize Context and Render Digest for SHA-256.  <a href="hashlib_8h.html#a27eda4d2b18a026f199abdcab6d1cc8c">More...</a><br /></td></tr>
 <tr class="separator:a27eda4d2b18a026f199abdcab6d1cc8c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2c1bd7ec5809afead6583128c9052d8b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#a2c1bd7ec5809afead6583128c9052d8b">hashlib_MGF1Hash</a> (uint8_t *data, size_t datalen, uint8_t *outbuf, size_t outlen)</td></tr>
-<tr class="memdesc:a2c1bd7ec5809afead6583128c9052d8b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Arbitrary Length Hashing Function.  <a href="hashlib_8h.html#a2c1bd7ec5809afead6583128c9052d8b">More...</a><br /></td></tr>
-<tr class="separator:a2c1bd7ec5809afead6583128c9052d8b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad324e9742251c041b88fc63cbf3da0d1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#ad324e9742251c041b88fc63cbf3da0d1">hashlib_HMACSha256Init</a> (<a class="el" href="hashlib_8h.html#a8d813300476744f01319600478572f62">hmac_ctx</a> *ctx, const uint8_t *key, size_t keylen)</td></tr>
-<tr class="memdesc:ad324e9742251c041b88fc63cbf3da0d1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Context Initializer for SHA-256 HMAC.  <a href="hashlib_8h.html#ad324e9742251c041b88fc63cbf3da0d1">More...</a><br /></td></tr>
-<tr class="separator:ad324e9742251c041b88fc63cbf3da0d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac83153f41599220b003aa8548ecb82bd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#ac83153f41599220b003aa8548ecb82bd">hashlib_HMACSha256Update</a> (<a class="el" href="hashlib_8h.html#a8d813300476744f01319600478572f62">hmac_ctx</a> *ctx, const uint8_t *data, size_t len)</td></tr>
-<tr class="memdesc:ac83153f41599220b003aa8548ecb82bd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Updates the SHA-256 HMAC context for the given data.  <a href="hashlib_8h.html#ac83153f41599220b003aa8548ecb82bd">More...</a><br /></td></tr>
-<tr class="separator:ac83153f41599220b003aa8548ecb82bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:affed2a4dddf1e3147ccc254294d49ef4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#affed2a4dddf1e3147ccc254294d49ef4">hashlib_MGF1Hash</a> (void *data, size_t datalen, uint8_t *outbuf, size_t outlen)</td></tr>
+<tr class="memdesc:affed2a4dddf1e3147ccc254294d49ef4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Arbitrary Length Hashing Function.  <a href="hashlib_8h.html#affed2a4dddf1e3147ccc254294d49ef4">More...</a><br /></td></tr>
+<tr class="separator:affed2a4dddf1e3147ccc254294d49ef4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a86e269917830fb7802cea159baadf079"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#a86e269917830fb7802cea159baadf079">hashlib_HMACSha256Init</a> (<a class="el" href="hashlib_8h.html#a8d813300476744f01319600478572f62">hmac_ctx</a> *ctx, const void *key, size_t keylen)</td></tr>
+<tr class="memdesc:a86e269917830fb7802cea159baadf079"><td class="mdescLeft">&#160;</td><td class="mdescRight">Context Initializer for SHA-256 HMAC.  <a href="hashlib_8h.html#a86e269917830fb7802cea159baadf079">More...</a><br /></td></tr>
+<tr class="separator:a86e269917830fb7802cea159baadf079"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af7f72de7b1416b6a30b8a2a1198d0098"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#af7f72de7b1416b6a30b8a2a1198d0098">hashlib_HMACSha256Update</a> (<a class="el" href="hashlib_8h.html#a8d813300476744f01319600478572f62">hmac_ctx</a> *ctx, const void *data, size_t len)</td></tr>
+<tr class="memdesc:af7f72de7b1416b6a30b8a2a1198d0098"><td class="mdescLeft">&#160;</td><td class="mdescRight">Updates the SHA-256 HMAC context for the given data.  <a href="hashlib_8h.html#af7f72de7b1416b6a30b8a2a1198d0098">More...</a><br /></td></tr>
+<tr class="separator:af7f72de7b1416b6a30b8a2a1198d0098"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a531a7fd701143706ea48163367d04d68"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#a531a7fd701143706ea48163367d04d68">hashlib_HMACSha256Final</a> (<a class="el" href="hashlib_8h.html#a8d813300476744f01319600478572f62">hmac_ctx</a> *ctx, uint8_t *output)</td></tr>
 <tr class="memdesc:a531a7fd701143706ea48163367d04d68"><td class="mdescLeft">&#160;</td><td class="mdescRight">Finalize Context and Render Digest for SHA-256 HMAC.  <a href="hashlib_8h.html#a531a7fd701143706ea48163367d04d68">More...</a><br /></td></tr>
 <tr class="separator:a531a7fd701143706ea48163367d04d68"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5e0e235ac96b3f4c4a8e6d037efc053f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#a5e0e235ac96b3f4c4a8e6d037efc053f">hashlib_HMACSha256Reset</a> (<a class="el" href="hashlib_8h.html#a8d813300476744f01319600478572f62">hmac_ctx</a> *ctx)</td></tr>
-<tr class="memdesc:a5e0e235ac96b3f4c4a8e6d037efc053f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Resets the SHA-256 HMAC context to its state after a call to <a class="el" href="hashlib_8h.html#ad324e9742251c041b88fc63cbf3da0d1" title="Context Initializer for SHA-256 HMAC.">hashlib_HMACSha256Init()</a>  <a href="hashlib_8h.html#a5e0e235ac96b3f4c4a8e6d037efc053f">More...</a><br /></td></tr>
+<tr class="memdesc:a5e0e235ac96b3f4c4a8e6d037efc053f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Resets the SHA-256 HMAC context to its state after a call to <a class="el" href="hashlib_8h.html#a86e269917830fb7802cea159baadf079" title="Context Initializer for SHA-256 HMAC.">hashlib_HMACSha256Init()</a>  <a href="hashlib_8h.html#a5e0e235ac96b3f4c4a8e6d037efc053f">More...</a><br /></td></tr>
 <tr class="separator:a5e0e235ac96b3f4c4a8e6d037efc053f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aab1072341b442847719cda42efddbcf2"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#aab1072341b442847719cda42efddbcf2">hashlib_PBKDF2</a> (const uint8_t *password, size_t passlen, uint8_t *key, const uint8_t *salt, size_t saltlen, size_t rounds, size_t keylen)</td></tr>
-<tr class="memdesc:aab1072341b442847719cda42efddbcf2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Password-Based Key Derivation Function (via SHA-256 HMAC)  <a href="hashlib_8h.html#aab1072341b442847719cda42efddbcf2">More...</a><br /></td></tr>
-<tr class="separator:aab1072341b442847719cda42efddbcf2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0653a6a286fb1bedfb3e964d36e3b0bd"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#a0653a6a286fb1bedfb3e964d36e3b0bd">hashlib_AESLoadKey</a> (const uint8_t *key, const <a class="el" href="hashlib_8h.html#aa188bc2768a3b7aa6ad73cb2c77819e0">aes_ctx</a> *ks, size_t keylen)</td></tr>
-<tr class="memdesc:a0653a6a286fb1bedfb3e964d36e3b0bd"><td class="mdescLeft">&#160;</td><td class="mdescRight">AES import key to key schedule context.  <a href="hashlib_8h.html#a0653a6a286fb1bedfb3e964d36e3b0bd">More...</a><br /></td></tr>
-<tr class="separator:a0653a6a286fb1bedfb3e964d36e3b0bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6987499522b3b85b8ce4b272fadf75dd"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#a6987499522b3b85b8ce4b272fadf75dd">hashlib_AESEncryptBlock</a> (const uint8_t *block_in, uint8_t *block_out, const <a class="el" href="hashlib_8h.html#aa188bc2768a3b7aa6ad73cb2c77819e0">aes_ctx</a> *ks)</td></tr>
-<tr class="memdesc:a6987499522b3b85b8ce4b272fadf75dd"><td class="mdescLeft">&#160;</td><td class="mdescRight">AES Single-Block Encryption (ECB mode)  <a href="hashlib_8h.html#a6987499522b3b85b8ce4b272fadf75dd">More...</a><br /></td></tr>
-<tr class="separator:a6987499522b3b85b8ce4b272fadf75dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5dd423839387f0955b6061986c92a2ac"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#a5dd423839387f0955b6061986c92a2ac">hashlib_AESDecryptBlock</a> (const uint8_t *block_in, uint8_t *block_out, const <a class="el" href="hashlib_8h.html#aa188bc2768a3b7aa6ad73cb2c77819e0">aes_ctx</a> *ks)</td></tr>
-<tr class="memdesc:a5dd423839387f0955b6061986c92a2ac"><td class="mdescLeft">&#160;</td><td class="mdescRight">AES Single-Block Decryption (ECB Mode)  <a href="hashlib_8h.html#a5dd423839387f0955b6061986c92a2ac">More...</a><br /></td></tr>
-<tr class="separator:a5dd423839387f0955b6061986c92a2ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa4f60eb708a18d498faa51a33c248f90"><td class="memItemLeft" align="right" valign="top"><a class="el" href="hashlib_8h.html#aeb2e64abcc4317e3143fb820f21c3bfd">aes_error_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#aa4f60eb708a18d498faa51a33c248f90">hashlib_AESEncrypt</a> (const uint8_t *plaintext, size_t len, uint8_t *ciphertext, const <a class="el" href="hashlib_8h.html#aa188bc2768a3b7aa6ad73cb2c77819e0">aes_ctx</a> *ks, const uint8_t *iv, uint8_t ciphermode, uint8_t paddingmode)</td></tr>
-<tr class="memdesc:aa4f60eb708a18d498faa51a33c248f90"><td class="mdescLeft">&#160;</td><td class="mdescRight">General-Purpose AES Encryption.  <a href="hashlib_8h.html#aa4f60eb708a18d498faa51a33c248f90">More...</a><br /></td></tr>
-<tr class="separator:aa4f60eb708a18d498faa51a33c248f90"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a402aa47590cf2de4ea6cb2efba1fdb35"><td class="memItemLeft" align="right" valign="top"><a class="el" href="hashlib_8h.html#aeb2e64abcc4317e3143fb820f21c3bfd">aes_error_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#a402aa47590cf2de4ea6cb2efba1fdb35">hashlib_AESDecrypt</a> (const uint8_t *ciphertext, size_t len, uint8_t *plaintext, const <a class="el" href="hashlib_8h.html#aa188bc2768a3b7aa6ad73cb2c77819e0">aes_ctx</a> *ks, const uint8_t *iv, uint8_t ciphermode, uint8_t paddingmode)</td></tr>
-<tr class="memdesc:a402aa47590cf2de4ea6cb2efba1fdb35"><td class="mdescLeft">&#160;</td><td class="mdescRight">General-Purpose AES Decryption.  <a href="hashlib_8h.html#a402aa47590cf2de4ea6cb2efba1fdb35">More...</a><br /></td></tr>
-<tr class="separator:a402aa47590cf2de4ea6cb2efba1fdb35"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3f2772b55bb9444c6b1d63976d35c9ff"><td class="memItemLeft" align="right" valign="top"><a class="el" href="hashlib_8h.html#a0486449f609d0e485bad091a671d9294">rsa_error_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#a3f2772b55bb9444c6b1d63976d35c9ff">hashlib_RSAEncrypt</a> (const uint8_t *msg, size_t msglen, uint8_t *ciphertext, const uint8_t *pubkey, size_t keylen)</td></tr>
-<tr class="memdesc:a3f2772b55bb9444c6b1d63976d35c9ff"><td class="mdescLeft">&#160;</td><td class="mdescRight">RSA Encryption.  <a href="hashlib_8h.html#a3f2772b55bb9444c6b1d63976d35c9ff">More...</a><br /></td></tr>
-<tr class="separator:a3f2772b55bb9444c6b1d63976d35c9ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7b705e6cf52b076b40f936af6d55b29c"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#a7b705e6cf52b076b40f936af6d55b29c">hashlib_SSLVerifySignature</a> (const uint8_t *ca_pubkey, size_t keysize, const uint8_t *cert, size_t certlen, uint8_t sig_alg)</td></tr>
-<tr class="memdesc:a7b705e6cf52b076b40f936af6d55b29c"><td class="mdescLeft">&#160;</td><td class="mdescRight">SSL Certificate Signature Verification.  <a href="hashlib_8h.html#a7b705e6cf52b076b40f936af6d55b29c">More...</a><br /></td></tr>
-<tr class="separator:a7b705e6cf52b076b40f936af6d55b29c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5f5b8691d577354bfa8c3fb1afc31ab5"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#a5f5b8691d577354bfa8c3fb1afc31ab5">hashlib_PBKDF2</a> (const char *password, size_t passlen, uint8_t *key, const uint8_t *salt, size_t saltlen, size_t rounds, size_t keylen)</td></tr>
+<tr class="memdesc:a5f5b8691d577354bfa8c3fb1afc31ab5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Password-Based Key Derivation Function (via SHA-256 HMAC)  <a href="hashlib_8h.html#a5f5b8691d577354bfa8c3fb1afc31ab5">More...</a><br /></td></tr>
+<tr class="separator:a5f5b8691d577354bfa8c3fb1afc31ab5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a72c38b8e422c65a946ed0bb433e2dc3c"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#a72c38b8e422c65a946ed0bb433e2dc3c">hashlib_AESLoadKey</a> (const void *key, const <a class="el" href="hashlib_8h.html#aa188bc2768a3b7aa6ad73cb2c77819e0">aes_ctx</a> *ks, size_t keylen)</td></tr>
+<tr class="memdesc:a72c38b8e422c65a946ed0bb433e2dc3c"><td class="mdescLeft">&#160;</td><td class="mdescRight">AES import key to key schedule context.  <a href="hashlib_8h.html#a72c38b8e422c65a946ed0bb433e2dc3c">More...</a><br /></td></tr>
+<tr class="separator:a72c38b8e422c65a946ed0bb433e2dc3c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4b66c4a6bd58401e72ce67bf0f44608d"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#a4b66c4a6bd58401e72ce67bf0f44608d">hashlib_AESEncryptBlock</a> (const void *block_in, uint8_t *block_out, const <a class="el" href="hashlib_8h.html#aa188bc2768a3b7aa6ad73cb2c77819e0">aes_ctx</a> *ks)</td></tr>
+<tr class="memdesc:a4b66c4a6bd58401e72ce67bf0f44608d"><td class="mdescLeft">&#160;</td><td class="mdescRight">AES Single-Block Encryption (ECB mode)  <a href="hashlib_8h.html#a4b66c4a6bd58401e72ce67bf0f44608d">More...</a><br /></td></tr>
+<tr class="separator:a4b66c4a6bd58401e72ce67bf0f44608d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acc00a0dd77b69854366627d0552a64d7"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#acc00a0dd77b69854366627d0552a64d7">hashlib_AESDecryptBlock</a> (const void *block_in, uint8_t *block_out, const <a class="el" href="hashlib_8h.html#aa188bc2768a3b7aa6ad73cb2c77819e0">aes_ctx</a> *ks)</td></tr>
+<tr class="memdesc:acc00a0dd77b69854366627d0552a64d7"><td class="mdescLeft">&#160;</td><td class="mdescRight">AES Single-Block Decryption (ECB Mode)  <a href="hashlib_8h.html#acc00a0dd77b69854366627d0552a64d7">More...</a><br /></td></tr>
+<tr class="separator:acc00a0dd77b69854366627d0552a64d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a98ab3ae2365719384a83e739baa6dded"><td class="memItemLeft" align="right" valign="top"><a class="el" href="hashlib_8h.html#aeb2e64abcc4317e3143fb820f21c3bfd">aes_error_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#a98ab3ae2365719384a83e739baa6dded">hashlib_AESEncrypt</a> (const void *plaintext, size_t len, uint8_t *ciphertext, const <a class="el" href="hashlib_8h.html#aa188bc2768a3b7aa6ad73cb2c77819e0">aes_ctx</a> *ks, const void *iv, uint8_t ciphermode, uint8_t paddingmode)</td></tr>
+<tr class="memdesc:a98ab3ae2365719384a83e739baa6dded"><td class="mdescLeft">&#160;</td><td class="mdescRight">General-Purpose AES Encryption.  <a href="hashlib_8h.html#a98ab3ae2365719384a83e739baa6dded">More...</a><br /></td></tr>
+<tr class="separator:a98ab3ae2365719384a83e739baa6dded"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3ca1995c046661d86e755f69938efdd4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="hashlib_8h.html#aeb2e64abcc4317e3143fb820f21c3bfd">aes_error_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#a3ca1995c046661d86e755f69938efdd4">hashlib_AESDecrypt</a> (const void *ciphertext, size_t len, uint8_t *plaintext, const <a class="el" href="hashlib_8h.html#aa188bc2768a3b7aa6ad73cb2c77819e0">aes_ctx</a> *ks, const void *iv, uint8_t ciphermode, uint8_t paddingmode)</td></tr>
+<tr class="memdesc:a3ca1995c046661d86e755f69938efdd4"><td class="mdescLeft">&#160;</td><td class="mdescRight">General-Purpose AES Decryption.  <a href="hashlib_8h.html#a3ca1995c046661d86e755f69938efdd4">More...</a><br /></td></tr>
+<tr class="separator:a3ca1995c046661d86e755f69938efdd4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a344d363bc1a7e9dd0018f36af1c9dc07"><td class="memItemLeft" align="right" valign="top"><a class="el" href="hashlib_8h.html#a0486449f609d0e485bad091a671d9294">rsa_error_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#a344d363bc1a7e9dd0018f36af1c9dc07">hashlib_RSAEncrypt</a> (const void *msg, size_t msglen, uint8_t *ciphertext, const void *pubkey, size_t keylen)</td></tr>
+<tr class="memdesc:a344d363bc1a7e9dd0018f36af1c9dc07"><td class="mdescLeft">&#160;</td><td class="mdescRight">RSA Encryption.  <a href="hashlib_8h.html#a344d363bc1a7e9dd0018f36af1c9dc07">More...</a><br /></td></tr>
+<tr class="separator:a344d363bc1a7e9dd0018f36af1c9dc07"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ada9751a5d91dc4cfcdb90de0518a79f6"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#ada9751a5d91dc4cfcdb90de0518a79f6">hashlib_SSLVerifySignature</a> (const void *ca_pubkey, size_t keysize, const void *cert, size_t certlen, uint8_t sig_alg)</td></tr>
+<tr class="memdesc:ada9751a5d91dc4cfcdb90de0518a79f6"><td class="mdescLeft">&#160;</td><td class="mdescRight">SSL Certificate Signature Verification.  <a href="hashlib_8h.html#ada9751a5d91dc4cfcdb90de0518a79f6">More...</a><br /></td></tr>
+<tr class="separator:ada9751a5d91dc4cfcdb90de0518a79f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a24bf91aef912b8346523f37e16d22377"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#a24bf91aef912b8346523f37e16d22377">hashlib_EraseContext</a> (void *ctx, size_t len)</td></tr>
 <tr class="memdesc:a24bf91aef912b8346523f37e16d22377"><td class="mdescLeft">&#160;</td><td class="mdescRight">Secure erase context.  <a href="hashlib_8h.html#a24bf91aef912b8346523f37e16d22377">More...</a><br /></td></tr>
 <tr class="separator:a24bf91aef912b8346523f37e16d22377"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a658b0b7f7139a429e3b77a9876e78970"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#a658b0b7f7139a429e3b77a9876e78970">hashlib_CompareDigest</a> (const uint8_t *digest1, const uint8_t *digest2, size_t len)</td></tr>
-<tr class="memdesc:a658b0b7f7139a429e3b77a9876e78970"><td class="mdescLeft">&#160;</td><td class="mdescRight">Secure buffer comparison.  <a href="hashlib_8h.html#a658b0b7f7139a429e3b77a9876e78970">More...</a><br /></td></tr>
-<tr class="separator:a658b0b7f7139a429e3b77a9876e78970"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9d0901c0c719265d8ba5f30f4803560e"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#a9d0901c0c719265d8ba5f30f4803560e">hashlib_ReverseEndianness</a> (const uint8_t *in, uint8_t *out, size_t len)</td></tr>
-<tr class="memdesc:a9d0901c0c719265d8ba5f30f4803560e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reverses the endianness of a buffer.  <a href="hashlib_8h.html#a9d0901c0c719265d8ba5f30f4803560e">More...</a><br /></td></tr>
-<tr class="separator:a9d0901c0c719265d8ba5f30f4803560e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aebac98a8537f3353aac9fbae5ed67f29"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#aebac98a8537f3353aac9fbae5ed67f29">hashlib_AESPadMessage</a> (const uint8_t *plaintext, size_t len, uint8_t *outbuf, uint8_t schm)</td></tr>
-<tr class="memdesc:aebac98a8537f3353aac9fbae5ed67f29"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pads a plaintext according to the specified AES padding scheme.  <a href="hashlib_8h.html#aebac98a8537f3353aac9fbae5ed67f29">More...</a><br /></td></tr>
-<tr class="separator:aebac98a8537f3353aac9fbae5ed67f29"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a152d6d62f1a21c97a551cea7e6110e59"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#a152d6d62f1a21c97a551cea7e6110e59">hashlib_AESStripPadding</a> (const uint8_t *plaintext, size_t len, uint8_t *outbuf, uint8_t schm)</td></tr>
-<tr class="memdesc:a152d6d62f1a21c97a551cea7e6110e59"><td class="mdescLeft">&#160;</td><td class="mdescRight">Strips the padding from a message according to the specified AES padding scheme.  <a href="hashlib_8h.html#a152d6d62f1a21c97a551cea7e6110e59">More...</a><br /></td></tr>
-<tr class="separator:a152d6d62f1a21c97a551cea7e6110e59"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a52c65f6e14ae6287fc2753895ce947be"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#a52c65f6e14ae6287fc2753895ce947be">hashlib_RSAEncodeOAEP</a> (const uint8_t *plaintext, size_t len, uint8_t *outbuf, size_t modulus_len, const uint8_t *auth)</td></tr>
-<tr class="memdesc:a52c65f6e14ae6287fc2753895ce947be"><td class="mdescLeft">&#160;</td><td class="mdescRight">RSA-OAEP padding scheme.  <a href="hashlib_8h.html#a52c65f6e14ae6287fc2753895ce947be">More...</a><br /></td></tr>
-<tr class="separator:a52c65f6e14ae6287fc2753895ce947be"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae575c99825f9b970c3d6f7a6bf552153"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#ae575c99825f9b970c3d6f7a6bf552153">hashlib_RSADecodeOAEP</a> (const uint8_t *plaintext, size_t len, uint8_t *outbuf, const uint8_t *auth)</td></tr>
-<tr class="memdesc:ae575c99825f9b970c3d6f7a6bf552153"><td class="mdescLeft">&#160;</td><td class="mdescRight">RSA-OAEP padding scheme, reverse algorithm.  <a href="hashlib_8h.html#ae575c99825f9b970c3d6f7a6bf552153">More...</a><br /></td></tr>
-<tr class="separator:ae575c99825f9b970c3d6f7a6bf552153"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a01668b3f2dd85fe2f8696673b275b75a"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#a01668b3f2dd85fe2f8696673b275b75a">hashlib_RSAEncodePSS</a> (const uint8_t *plaintext, size_t len, uint8_t *outbuf, size_t modulus_len, uint8_t *salt)</td></tr>
-<tr class="memdesc:a01668b3f2dd85fe2f8696673b275b75a"><td class="mdescLeft">&#160;</td><td class="mdescRight">RSA-PSS padding scheme.  <a href="hashlib_8h.html#a01668b3f2dd85fe2f8696673b275b75a">More...</a><br /></td></tr>
-<tr class="separator:a01668b3f2dd85fe2f8696673b275b75a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af1dd2bde099a6fadb6bcc842e502c21b"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#af1dd2bde099a6fadb6bcc842e502c21b">hashlib_RSAVerifyPSS</a> (const uint8_t *in, size_t len, const uint8_t *expected, size_t modulus_len)</td></tr>
-<tr class="memdesc:af1dd2bde099a6fadb6bcc842e502c21b"><td class="mdescLeft">&#160;</td><td class="mdescRight">RSA-PSS verification.  <a href="hashlib_8h.html#af1dd2bde099a6fadb6bcc842e502c21b">More...</a><br /></td></tr>
-<tr class="separator:af1dd2bde099a6fadb6bcc842e502c21b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a44592eaae569a9cd22a4f7c5cb1c227a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="hashlib_8h.html#aeb2e64abcc4317e3143fb820f21c3bfd">aes_error_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#a44592eaae569a9cd22a4f7c5cb1c227a">hashlib_AESAuthEncrypt</a> (const uint8_t *plaintext, size_t len, uint8_t *ciphertext, <a class="el" href="hashlib_8h.html#aa188bc2768a3b7aa6ad73cb2c77819e0">aes_ctx</a> *key, const uint8_t *iv, uint8_t ciphermode, size_t encryption_offset, size_t encryption_len)</td></tr>
-<tr class="memdesc:a44592eaae569a9cd22a4f7c5cb1c227a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Authenticated AES Encryption.  <a href="hashlib_8h.html#a44592eaae569a9cd22a4f7c5cb1c227a">More...</a><br /></td></tr>
-<tr class="separator:a44592eaae569a9cd22a4f7c5cb1c227a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af5dcf95ad2b71a15049abaa1a9ffa50c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="hashlib_8h.html#aeb2e64abcc4317e3143fb820f21c3bfd">aes_error_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#af5dcf95ad2b71a15049abaa1a9ffa50c">hashlib_AESAuthDecrypt</a> (const uint8_t *ciphertext, size_t len, uint8_t *plaintext, <a class="el" href="hashlib_8h.html#aa188bc2768a3b7aa6ad73cb2c77819e0">aes_ctx</a> *key, const uint8_t *iv, uint8_t ciphermode, size_t decryption_offset, size_t decryption_len)</td></tr>
-<tr class="memdesc:af5dcf95ad2b71a15049abaa1a9ffa50c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Authenticated AES Decryption.  <a href="hashlib_8h.html#af5dcf95ad2b71a15049abaa1a9ffa50c">More...</a><br /></td></tr>
-<tr class="separator:af5dcf95ad2b71a15049abaa1a9ffa50c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a94346a8d2bea7e20c86f668c7bf25f41"><td class="memItemLeft" align="right" valign="top"><a class="el" href="hashlib_8h.html#a0486449f609d0e485bad091a671d9294">rsa_error_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#a94346a8d2bea7e20c86f668c7bf25f41">hashlib_RSAAuthEncrypt</a> (const uint8_t *msg, size_t msglen, uint8_t *ciphertext, const uint8_t *pubkey, size_t keylen)</td></tr>
-<tr class="memdesc:a94346a8d2bea7e20c86f668c7bf25f41"><td class="mdescLeft">&#160;</td><td class="mdescRight">Authenticated RSA Encryption.  <a href="hashlib_8h.html#a94346a8d2bea7e20c86f668c7bf25f41">More...</a><br /></td></tr>
-<tr class="separator:a94346a8d2bea7e20c86f668c7bf25f41"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a374b45aa5f57dfccafd6894acd27c520"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#a374b45aa5f57dfccafd6894acd27c520">hashlib_CompareDigest</a> (const void *digest1, const void *digest2, size_t len)</td></tr>
+<tr class="memdesc:a374b45aa5f57dfccafd6894acd27c520"><td class="mdescLeft">&#160;</td><td class="mdescRight">Secure buffer comparison.  <a href="hashlib_8h.html#a374b45aa5f57dfccafd6894acd27c520">More...</a><br /></td></tr>
+<tr class="separator:a374b45aa5f57dfccafd6894acd27c520"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aceec2ce59159467d7f78142834360d63"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#aceec2ce59159467d7f78142834360d63">hashlib_ReverseEndianness</a> (const void *in, void *out, size_t len)</td></tr>
+<tr class="memdesc:aceec2ce59159467d7f78142834360d63"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reverses the endianness of a buffer.  <a href="hashlib_8h.html#aceec2ce59159467d7f78142834360d63">More...</a><br /></td></tr>
+<tr class="separator:aceec2ce59159467d7f78142834360d63"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adef0e438c50992ac3a93cdf0381f130a"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#adef0e438c50992ac3a93cdf0381f130a">hashlib_AESPadMessage</a> (const void *plaintext, size_t len, uint8_t *outbuf, uint8_t schm)</td></tr>
+<tr class="memdesc:adef0e438c50992ac3a93cdf0381f130a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pads a plaintext according to the specified AES padding scheme.  <a href="hashlib_8h.html#adef0e438c50992ac3a93cdf0381f130a">More...</a><br /></td></tr>
+<tr class="separator:adef0e438c50992ac3a93cdf0381f130a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab8edadc2e283d3d4296c70cfd91b44db"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#ab8edadc2e283d3d4296c70cfd91b44db">hashlib_AESStripPadding</a> (const void *plaintext, size_t len, uint8_t *outbuf, uint8_t schm)</td></tr>
+<tr class="memdesc:ab8edadc2e283d3d4296c70cfd91b44db"><td class="mdescLeft">&#160;</td><td class="mdescRight">Strips the padding from a message according to the specified AES padding scheme.  <a href="hashlib_8h.html#ab8edadc2e283d3d4296c70cfd91b44db">More...</a><br /></td></tr>
+<tr class="separator:ab8edadc2e283d3d4296c70cfd91b44db"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a86436d7dd0bc9d196f89cf40311100c8"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#a86436d7dd0bc9d196f89cf40311100c8">hashlib_RSAEncodeOAEP</a> (const void *plaintext, size_t len, uint8_t *outbuf, size_t modulus_len, const void *auth)</td></tr>
+<tr class="memdesc:a86436d7dd0bc9d196f89cf40311100c8"><td class="mdescLeft">&#160;</td><td class="mdescRight">RSA-OAEP padding scheme.  <a href="hashlib_8h.html#a86436d7dd0bc9d196f89cf40311100c8">More...</a><br /></td></tr>
+<tr class="separator:a86436d7dd0bc9d196f89cf40311100c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4d2b1e46f607cc5880dffb4d74743bdc"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#a4d2b1e46f607cc5880dffb4d74743bdc">hashlib_RSADecodeOAEP</a> (const void *plaintext, size_t len, uint8_t *outbuf, const void *auth)</td></tr>
+<tr class="memdesc:a4d2b1e46f607cc5880dffb4d74743bdc"><td class="mdescLeft">&#160;</td><td class="mdescRight">RSA-OAEP padding scheme, reverse algorithm.  <a href="hashlib_8h.html#a4d2b1e46f607cc5880dffb4d74743bdc">More...</a><br /></td></tr>
+<tr class="separator:a4d2b1e46f607cc5880dffb4d74743bdc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad412a9f6ddfbc99326bc9636681d3c56"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#ad412a9f6ddfbc99326bc9636681d3c56">hashlib_RSAEncodePSS</a> (const void *plaintext, size_t len, uint8_t *outbuf, size_t modulus_len, void *salt)</td></tr>
+<tr class="memdesc:ad412a9f6ddfbc99326bc9636681d3c56"><td class="mdescLeft">&#160;</td><td class="mdescRight">RSA-PSS padding scheme.  <a href="hashlib_8h.html#ad412a9f6ddfbc99326bc9636681d3c56">More...</a><br /></td></tr>
+<tr class="separator:ad412a9f6ddfbc99326bc9636681d3c56"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a07f95403c8ef99fd39d5fcec33cb0ab3"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#a07f95403c8ef99fd39d5fcec33cb0ab3">hashlib_RSAVerifyPSS</a> (const void *data, size_t len, const void *expected, size_t modulus_len)</td></tr>
+<tr class="memdesc:a07f95403c8ef99fd39d5fcec33cb0ab3"><td class="mdescLeft">&#160;</td><td class="mdescRight">RSA-PSS verification.  <a href="hashlib_8h.html#a07f95403c8ef99fd39d5fcec33cb0ab3">More...</a><br /></td></tr>
+<tr class="separator:a07f95403c8ef99fd39d5fcec33cb0ab3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a670f1f0205bf748b53309bb6bf2f034e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="hashlib_8h.html#aeb2e64abcc4317e3143fb820f21c3bfd">aes_error_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#a670f1f0205bf748b53309bb6bf2f034e">hashlib_AESAuthEncrypt</a> (const void *plaintext, size_t len, uint8_t *ciphertext, <a class="el" href="hashlib_8h.html#aa188bc2768a3b7aa6ad73cb2c77819e0">aes_ctx</a> *key, const void *iv, uint8_t ciphermode, size_t encryption_offset, size_t encryption_len)</td></tr>
+<tr class="memdesc:a670f1f0205bf748b53309bb6bf2f034e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Authenticated AES Encryption.  <a href="hashlib_8h.html#a670f1f0205bf748b53309bb6bf2f034e">More...</a><br /></td></tr>
+<tr class="separator:a670f1f0205bf748b53309bb6bf2f034e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8ebc21a9d0d4c7f776fd26bb09cb33b9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="hashlib_8h.html#aeb2e64abcc4317e3143fb820f21c3bfd">aes_error_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#a8ebc21a9d0d4c7f776fd26bb09cb33b9">hashlib_AESAuthDecrypt</a> (const void *ciphertext, size_t len, uint8_t *plaintext, <a class="el" href="hashlib_8h.html#aa188bc2768a3b7aa6ad73cb2c77819e0">aes_ctx</a> *key, const void *iv, uint8_t ciphermode, size_t decryption_offset, size_t decryption_len)</td></tr>
+<tr class="memdesc:a8ebc21a9d0d4c7f776fd26bb09cb33b9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Authenticated AES Decryption.  <a href="hashlib_8h.html#a8ebc21a9d0d4c7f776fd26bb09cb33b9">More...</a><br /></td></tr>
+<tr class="separator:a8ebc21a9d0d4c7f776fd26bb09cb33b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afad3a00fdac94f6fd03dc775093582ad"><td class="memItemLeft" align="right" valign="top"><a class="el" href="hashlib_8h.html#a0486449f609d0e485bad091a671d9294">rsa_error_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#afad3a00fdac94f6fd03dc775093582ad">hashlib_RSAAuthEncrypt</a> (const void *msg, size_t msglen, uint8_t *ciphertext, const void *pubkey, size_t keylen)</td></tr>
+<tr class="memdesc:afad3a00fdac94f6fd03dc775093582ad"><td class="mdescLeft">&#160;</td><td class="mdescRight">Authenticated RSA Encryption.  <a href="hashlib_8h.html#afad3a00fdac94f6fd03dc775093582ad">More...</a><br /></td></tr>
+<tr class="separator:afad3a00fdac94f6fd03dc775093582ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Cryptography Library for the TI-84+ CE. </p>
@@ -809,8 +809,8 @@ If the SPRNG is run, anything you have stored here will be destroyed. </dd></dl>
 
 </div>
 </div>
-<a id="ae23d818e30210064557610249880d4fe"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae23d818e30210064557610249880d4fe">&#9670;&nbsp;</a></span>hashlib_Sha256Update()</h2>
+<a id="a6ec403dc3c96f3754d9b8e5340808762"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6ec403dc3c96f3754d9b8e5340808762">&#9670;&nbsp;</a></span>hashlib_Sha256Update()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -824,7 +824,7 @@ If the SPRNG is run, anything you have stored here will be destroyed. </dd></dl>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const uint8_t *&#160;</td>
+          <td class="paramtype">const void *&#160;</td>
           <td class="paramname"><em>data</em>, </td>
         </tr>
         <tr>
@@ -892,8 +892,8 @@ If the SPRNG is run, anything you have stored here will be destroyed. </dd></dl>
 
 </div>
 </div>
-<a id="a2c1bd7ec5809afead6583128c9052d8b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2c1bd7ec5809afead6583128c9052d8b">&#9670;&nbsp;</a></span>hashlib_MGF1Hash()</h2>
+<a id="affed2a4dddf1e3147ccc254294d49ef4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#affed2a4dddf1e3147ccc254294d49ef4">&#9670;&nbsp;</a></span>hashlib_MGF1Hash()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -901,7 +901,7 @@ If the SPRNG is run, anything you have stored here will be destroyed. </dd></dl>
         <tr>
           <td class="memname">void hashlib_MGF1Hash </td>
           <td>(</td>
-          <td class="paramtype">uint8_t *&#160;</td>
+          <td class="paramtype">void *&#160;</td>
           <td class="paramname"><em>data</em>, </td>
         </tr>
         <tr>
@@ -945,8 +945,8 @@ If the SPRNG is run, anything you have stored here will be destroyed. </dd></dl>
 
 </div>
 </div>
-<a id="ad324e9742251c041b88fc63cbf3da0d1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad324e9742251c041b88fc63cbf3da0d1">&#9670;&nbsp;</a></span>hashlib_HMACSha256Init()</h2>
+<a id="a86e269917830fb7802cea159baadf079"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a86e269917830fb7802cea159baadf079">&#9670;&nbsp;</a></span>hashlib_HMACSha256Init()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -960,7 +960,7 @@ If the SPRNG is run, anything you have stored here will be destroyed. </dd></dl>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const uint8_t *&#160;</td>
+          <td class="paramtype">const void *&#160;</td>
           <td class="paramname"><em>key</em>, </td>
         </tr>
         <tr>
@@ -990,8 +990,8 @@ If the SPRNG is run, anything you have stored here will be destroyed. </dd></dl>
 
 </div>
 </div>
-<a id="ac83153f41599220b003aa8548ecb82bd"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac83153f41599220b003aa8548ecb82bd">&#9670;&nbsp;</a></span>hashlib_HMACSha256Update()</h2>
+<a id="af7f72de7b1416b6a30b8a2a1198d0098"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af7f72de7b1416b6a30b8a2a1198d0098">&#9670;&nbsp;</a></span>hashlib_HMACSha256Update()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1005,7 +1005,7 @@ If the SPRNG is run, anything you have stored here will be destroyed. </dd></dl>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const uint8_t *&#160;</td>
+          <td class="paramtype">const void *&#160;</td>
           <td class="paramname"><em>data</em>, </td>
         </tr>
         <tr>
@@ -1031,7 +1031,7 @@ If the SPRNG is run, anything you have stored here will be destroyed. </dd></dl>
   </table>
   </dd>
 </dl>
-<dl class="section warning"><dt>Warning</dt><dd>You must call <a class="el" href="hashlib_8h.html#ad324e9742251c041b88fc63cbf3da0d1" title="Context Initializer for SHA-256 HMAC.">hashlib_HMACSha256Init()</a> first or your hash state will be invalid. </dd></dl>
+<dl class="section warning"><dt>Warning</dt><dd>You must call <a class="el" href="hashlib_8h.html#a86e269917830fb7802cea159baadf079" title="Context Initializer for SHA-256 HMAC.">hashlib_HMACSha256Init()</a> first or your hash state will be invalid. </dd></dl>
 
 </div>
 </div>
@@ -1089,7 +1089,7 @@ If the SPRNG is run, anything you have stored here will be destroyed. </dd></dl>
       </table>
 </div><div class="memdoc">
 
-<p>Resets the SHA-256 HMAC context to its state after a call to <a class="el" href="hashlib_8h.html#ad324e9742251c041b88fc63cbf3da0d1" title="Context Initializer for SHA-256 HMAC.">hashlib_HMACSha256Init()</a> </p>
+<p>Resets the SHA-256 HMAC context to its state after a call to <a class="el" href="hashlib_8h.html#a86e269917830fb7802cea159baadf079" title="Context Initializer for SHA-256 HMAC.">hashlib_HMACSha256Init()</a> </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">ctx</td><td>Pointer to a SHA-256 HMAC context. </td></tr>
@@ -1100,8 +1100,8 @@ If the SPRNG is run, anything you have stored here will be destroyed. </dd></dl>
 
 </div>
 </div>
-<a id="aab1072341b442847719cda42efddbcf2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aab1072341b442847719cda42efddbcf2">&#9670;&nbsp;</a></span>hashlib_PBKDF2()</h2>
+<a id="a5f5b8691d577354bfa8c3fb1afc31ab5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5f5b8691d577354bfa8c3fb1afc31ab5">&#9670;&nbsp;</a></span>hashlib_PBKDF2()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1109,7 +1109,7 @@ If the SPRNG is run, anything you have stored here will be destroyed. </dd></dl>
         <tr>
           <td class="memname">bool hashlib_PBKDF2 </td>
           <td>(</td>
-          <td class="paramtype">const uint8_t *&#160;</td>
+          <td class="paramtype">const char *&#160;</td>
           <td class="paramname"><em>password</em>, </td>
         </tr>
         <tr>
@@ -1174,8 +1174,8 @@ If the SPRNG is run, anything you have stored here will be destroyed. </dd></dl>
 
 </div>
 </div>
-<a id="a0653a6a286fb1bedfb3e964d36e3b0bd"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0653a6a286fb1bedfb3e964d36e3b0bd">&#9670;&nbsp;</a></span>hashlib_AESLoadKey()</h2>
+<a id="a72c38b8e422c65a946ed0bb433e2dc3c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a72c38b8e422c65a946ed0bb433e2dc3c">&#9670;&nbsp;</a></span>hashlib_AESLoadKey()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1183,7 +1183,7 @@ If the SPRNG is run, anything you have stored here will be destroyed. </dd></dl>
         <tr>
           <td class="memname">bool hashlib_AESLoadKey </td>
           <td>(</td>
-          <td class="paramtype">const uint8_t *&#160;</td>
+          <td class="paramtype">const void *&#160;</td>
           <td class="paramname"><em>key</em>, </td>
         </tr>
         <tr>
@@ -1219,8 +1219,8 @@ If the SPRNG is run, anything you have stored here will be destroyed. </dd></dl>
 
 </div>
 </div>
-<a id="a6987499522b3b85b8ce4b272fadf75dd"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6987499522b3b85b8ce4b272fadf75dd">&#9670;&nbsp;</a></span>hashlib_AESEncryptBlock()</h2>
+<a id="a4b66c4a6bd58401e72ce67bf0f44608d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4b66c4a6bd58401e72ce67bf0f44608d">&#9670;&nbsp;</a></span>hashlib_AESEncryptBlock()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1228,7 +1228,7 @@ If the SPRNG is run, anything you have stored here will be destroyed. </dd></dl>
         <tr>
           <td class="memname">bool hashlib_AESEncryptBlock </td>
           <td>(</td>
-          <td class="paramtype">const uint8_t *&#160;</td>
+          <td class="paramtype">const void *&#160;</td>
           <td class="paramname"><em>block_in</em>, </td>
         </tr>
         <tr>
@@ -1261,15 +1261,15 @@ If the SPRNG is run, anything you have stored here will be destroyed. </dd></dl>
   </dd>
 </dl>
 <dl class="section note"><dt>Note</dt><dd><b>block_in</b> and <b>block_out</b> are aliasable. </dd></dl>
-<dl class="section warning"><dt>Warning</dt><dd>ECB-mode ciphers are insecure (see many-time pad vulnerability). Unless you know what you are doing, use <a class="el" href="hashlib_8h.html#aa4f60eb708a18d498faa51a33c248f90" title="General-Purpose AES Encryption.">hashlib_AESEncrypt()</a> instead. </dd>
+<dl class="section warning"><dt>Warning</dt><dd>ECB-mode ciphers are insecure (see many-time pad vulnerability). Unless you know what you are doing, use <a class="el" href="hashlib_8h.html#a98ab3ae2365719384a83e739baa6dded" title="General-Purpose AES Encryption.">hashlib_AESEncrypt()</a> instead. </dd>
 <dd>
-The ECB mode single-block encryptors lack the buffer leak protections that <a class="el" href="hashlib_8h.html#aa4f60eb708a18d498faa51a33c248f90" title="General-Purpose AES Encryption.">hashlib_AESEncrypt()</a> has. If you are writing your own cipher mode, you will need to implement that yourself. </dd></dl>
+The ECB mode single-block encryptors lack the buffer leak protections that <a class="el" href="hashlib_8h.html#a98ab3ae2365719384a83e739baa6dded" title="General-Purpose AES Encryption.">hashlib_AESEncrypt()</a> has. If you are writing your own cipher mode, you will need to implement that yourself. </dd></dl>
 <dl class="section return"><dt>Returns</dt><dd>True if encryption succeeded. False if failed. </dd></dl>
 
 </div>
 </div>
-<a id="a5dd423839387f0955b6061986c92a2ac"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5dd423839387f0955b6061986c92a2ac">&#9670;&nbsp;</a></span>hashlib_AESDecryptBlock()</h2>
+<a id="acc00a0dd77b69854366627d0552a64d7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acc00a0dd77b69854366627d0552a64d7">&#9670;&nbsp;</a></span>hashlib_AESDecryptBlock()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1277,7 +1277,7 @@ The ECB mode single-block encryptors lack the buffer leak protections that <a cl
         <tr>
           <td class="memname">bool hashlib_AESDecryptBlock </td>
           <td>(</td>
-          <td class="paramtype">const uint8_t *&#160;</td>
+          <td class="paramtype">const void *&#160;</td>
           <td class="paramname"><em>block_in</em>, </td>
         </tr>
         <tr>
@@ -1310,15 +1310,15 @@ The ECB mode single-block encryptors lack the buffer leak protections that <a cl
   </dd>
 </dl>
 <dl class="section note"><dt>Note</dt><dd><b>block_in</b> and <b>block_out</b> are aliasable. </dd></dl>
-<dl class="section warning"><dt>Warning</dt><dd>ECB-mode ciphers are insecure (see many-time pad vulnerability). Unless you know what you are doing, use <a class="el" href="hashlib_8h.html#a402aa47590cf2de4ea6cb2efba1fdb35" title="General-Purpose AES Decryption.">hashlib_AESDecrypt()</a> instead. </dd>
+<dl class="section warning"><dt>Warning</dt><dd>ECB-mode ciphers are insecure (see many-time pad vulnerability). Unless you know what you are doing, use <a class="el" href="hashlib_8h.html#a3ca1995c046661d86e755f69938efdd4" title="General-Purpose AES Decryption.">hashlib_AESDecrypt()</a> instead. </dd>
 <dd>
-The ECB mode single-block encryptors lack the buffer leak protections that <a class="el" href="hashlib_8h.html#a402aa47590cf2de4ea6cb2efba1fdb35" title="General-Purpose AES Decryption.">hashlib_AESDecrypt()</a> has. If you are writing your own cipher mode, you will need to implement that yourself. </dd></dl>
+The ECB mode single-block encryptors lack the buffer leak protections that <a class="el" href="hashlib_8h.html#a3ca1995c046661d86e755f69938efdd4" title="General-Purpose AES Decryption.">hashlib_AESDecrypt()</a> has. If you are writing your own cipher mode, you will need to implement that yourself. </dd></dl>
 <dl class="section return"><dt>Returns</dt><dd>True if encryption succeeded. False if an error occured. </dd></dl>
 
 </div>
 </div>
-<a id="aa4f60eb708a18d498faa51a33c248f90"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa4f60eb708a18d498faa51a33c248f90">&#9670;&nbsp;</a></span>hashlib_AESEncrypt()</h2>
+<a id="a98ab3ae2365719384a83e739baa6dded"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a98ab3ae2365719384a83e739baa6dded">&#9670;&nbsp;</a></span>hashlib_AESEncrypt()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1326,7 +1326,7 @@ The ECB mode single-block encryptors lack the buffer leak protections that <a cl
         <tr>
           <td class="memname"><a class="el" href="hashlib_8h.html#aeb2e64abcc4317e3143fb820f21c3bfd">aes_error_t</a> hashlib_AESEncrypt </td>
           <td>(</td>
-          <td class="paramtype">const uint8_t *&#160;</td>
+          <td class="paramtype">const void *&#160;</td>
           <td class="paramname"><em>plaintext</em>, </td>
         </tr>
         <tr>
@@ -1350,7 +1350,7 @@ The ECB mode single-block encryptors lack the buffer leak protections that <a cl
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const uint8_t *&#160;</td>
+          <td class="paramtype">const void *&#160;</td>
           <td class="paramname"><em>iv</em>, </td>
         </tr>
         <tr>
@@ -1390,17 +1390,17 @@ The ECB mode single-block encryptors lack the buffer leak protections that <a cl
 <dd>
 <b>plaintext</b> and <b>ciphertext</b> are aliasable. </dd>
 <dd>
-<b>IV</b> is not written to the ciphertext buffer by this function, only the encrypted message. However, if your ciphertext buffer is large enough, you can do the following to get the IV prepended to the ciphertext. Otherwise you will have to join the IV and the ciphertext into a single larger buffer before sending it through whatever networking protocol you use. <div class="fragment"><div class="line"><a class="code" href="hashlib_8h.html#aa4f60eb708a18d498faa51a33c248f90">hashlib_AESEncrypt</a>(plaintext, len, &amp;ciphertext[AES_IV_SIZE], ks, iv, &lt;cipher_mode&gt;, &lt;padding_mode&gt;);</div>
+<b>IV</b> is not written to the ciphertext buffer by this function, only the encrypted message. However, if your ciphertext buffer is large enough, you can do the following to get the IV prepended to the ciphertext. Otherwise you will have to join the IV and the ciphertext into a single larger buffer before sending it through whatever networking protocol you use. <div class="fragment"><div class="line"><a class="code" href="hashlib_8h.html#a98ab3ae2365719384a83e739baa6dded">hashlib_AESEncrypt</a>(plaintext, len, &amp;ciphertext[AES_IV_SIZE], ks, iv, &lt;cipher_mode&gt;, &lt;padding_mode&gt;);</div>
 <div class="line">memcpy(ciphertext, iv, AES_IV_SIZE);</div>
 <div class="line">send_packet(ciphertext);</div>
-<div class="ttc" id="ahashlib_8h_html_aa4f60eb708a18d498faa51a33c248f90"><div class="ttname"><a href="hashlib_8h.html#aa4f60eb708a18d498faa51a33c248f90">hashlib_AESEncrypt</a></div><div class="ttdeci">aes_error_t hashlib_AESEncrypt(const uint8_t *plaintext, size_t len, uint8_t *ciphertext, const aes_ctx *ks, const uint8_t *iv, uint8_t ciphermode, uint8_t paddingmode)</div><div class="ttdoc">General-Purpose AES Encryption.</div></div>
+<div class="ttc" id="ahashlib_8h_html_a98ab3ae2365719384a83e739baa6dded"><div class="ttname"><a href="hashlib_8h.html#a98ab3ae2365719384a83e739baa6dded">hashlib_AESEncrypt</a></div><div class="ttdeci">aes_error_t hashlib_AESEncrypt(const void *plaintext, size_t len, uint8_t *ciphertext, const aes_ctx *ks, const void *iv, uint8_t ciphermode, uint8_t paddingmode)</div><div class="ttdoc">General-Purpose AES Encryption.</div></div>
 </div><!-- fragment --> This will require a buffer at least as large as the size returned by <a class="el" href="hashlib_8h.html#a1bfa78156f62c2e87f7af3a8533304b1">hashlib_AESCiphertextIVSize()</a>. </dd></dl>
 <dl class="section return"><dt>Returns</dt><dd>aes_error_t </dd></dl>
 
 </div>
 </div>
-<a id="a402aa47590cf2de4ea6cb2efba1fdb35"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a402aa47590cf2de4ea6cb2efba1fdb35">&#9670;&nbsp;</a></span>hashlib_AESDecrypt()</h2>
+<a id="a3ca1995c046661d86e755f69938efdd4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3ca1995c046661d86e755f69938efdd4">&#9670;&nbsp;</a></span>hashlib_AESDecrypt()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1408,7 +1408,7 @@ The ECB mode single-block encryptors lack the buffer leak protections that <a cl
         <tr>
           <td class="memname"><a class="el" href="hashlib_8h.html#aeb2e64abcc4317e3143fb820f21c3bfd">aes_error_t</a> hashlib_AESDecrypt </td>
           <td>(</td>
-          <td class="paramtype">const uint8_t *&#160;</td>
+          <td class="paramtype">const void *&#160;</td>
           <td class="paramname"><em>ciphertext</em>, </td>
         </tr>
         <tr>
@@ -1432,7 +1432,7 @@ The ECB mode single-block encryptors lack the buffer leak protections that <a cl
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const uint8_t *&#160;</td>
+          <td class="paramtype">const void *&#160;</td>
           <td class="paramname"><em>iv</em>, </td>
         </tr>
         <tr>
@@ -1475,8 +1475,8 @@ The ECB mode single-block encryptors lack the buffer leak protections that <a cl
 
 </div>
 </div>
-<a id="a3f2772b55bb9444c6b1d63976d35c9ff"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3f2772b55bb9444c6b1d63976d35c9ff">&#9670;&nbsp;</a></span>hashlib_RSAEncrypt()</h2>
+<a id="a344d363bc1a7e9dd0018f36af1c9dc07"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a344d363bc1a7e9dd0018f36af1c9dc07">&#9670;&nbsp;</a></span>hashlib_RSAEncrypt()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1484,7 +1484,7 @@ The ECB mode single-block encryptors lack the buffer leak protections that <a cl
         <tr>
           <td class="memname"><a class="el" href="hashlib_8h.html#a0486449f609d0e485bad091a671d9294">rsa_error_t</a> hashlib_RSAEncrypt </td>
           <td>(</td>
-          <td class="paramtype">const uint8_t *&#160;</td>
+          <td class="paramtype">const void *&#160;</td>
           <td class="paramname"><em>msg</em>, </td>
         </tr>
         <tr>
@@ -1502,7 +1502,7 @@ The ECB mode single-block encryptors lack the buffer leak protections that <a cl
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const uint8_t *&#160;</td>
+          <td class="paramtype">const void *&#160;</td>
           <td class="paramname"><em>pubkey</em>, </td>
         </tr>
         <tr>
@@ -1540,8 +1540,8 @@ msg and pubkey are both treated as byte arrays. </dd></dl>
 
 </div>
 </div>
-<a id="a7b705e6cf52b076b40f936af6d55b29c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7b705e6cf52b076b40f936af6d55b29c">&#9670;&nbsp;</a></span>hashlib_SSLVerifySignature()</h2>
+<a id="ada9751a5d91dc4cfcdb90de0518a79f6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ada9751a5d91dc4cfcdb90de0518a79f6">&#9670;&nbsp;</a></span>hashlib_SSLVerifySignature()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1549,7 +1549,7 @@ msg and pubkey are both treated as byte arrays. </dd></dl>
         <tr>
           <td class="memname">bool hashlib_SSLVerifySignature </td>
           <td>(</td>
-          <td class="paramtype">const uint8_t *&#160;</td>
+          <td class="paramtype">const void *&#160;</td>
           <td class="paramname"><em>ca_pubkey</em>, </td>
         </tr>
         <tr>
@@ -1561,7 +1561,7 @@ msg and pubkey are both treated as byte arrays. </dd></dl>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const uint8_t *&#160;</td>
+          <td class="paramtype">const void *&#160;</td>
           <td class="paramname"><em>cert</em>, </td>
         </tr>
         <tr>
@@ -1638,8 +1638,8 @@ msg and pubkey are both treated as byte arrays. </dd></dl>
 
 </div>
 </div>
-<a id="a658b0b7f7139a429e3b77a9876e78970"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a658b0b7f7139a429e3b77a9876e78970">&#9670;&nbsp;</a></span>hashlib_CompareDigest()</h2>
+<a id="a374b45aa5f57dfccafd6894acd27c520"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a374b45aa5f57dfccafd6894acd27c520">&#9670;&nbsp;</a></span>hashlib_CompareDigest()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1647,13 +1647,13 @@ msg and pubkey are both treated as byte arrays. </dd></dl>
         <tr>
           <td class="memname">hashlib_CompareDigest </td>
           <td>(</td>
-          <td class="paramtype">const uint8_t *&#160;</td>
+          <td class="paramtype">const void *&#160;</td>
           <td class="paramname"><em>digest1</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const uint8_t *&#160;</td>
+          <td class="paramtype">const void *&#160;</td>
           <td class="paramname"><em>digest2</em>, </td>
         </tr>
         <tr>
@@ -1684,8 +1684,8 @@ msg and pubkey are both treated as byte arrays. </dd></dl>
 
 </div>
 </div>
-<a id="a9d0901c0c719265d8ba5f30f4803560e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9d0901c0c719265d8ba5f30f4803560e">&#9670;&nbsp;</a></span>hashlib_ReverseEndianness()</h2>
+<a id="aceec2ce59159467d7f78142834360d63"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aceec2ce59159467d7f78142834360d63">&#9670;&nbsp;</a></span>hashlib_ReverseEndianness()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1693,13 +1693,13 @@ msg and pubkey are both treated as byte arrays. </dd></dl>
         <tr>
           <td class="memname">bool hashlib_ReverseEndianness </td>
           <td>(</td>
-          <td class="paramtype">const uint8_t *&#160;</td>
+          <td class="paramtype">const void *&#160;</td>
           <td class="paramname"><em>in</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">uint8_t *&#160;</td>
+          <td class="paramtype">void *&#160;</td>
           <td class="paramname"><em>out</em>, </td>
         </tr>
         <tr>
@@ -1729,8 +1729,8 @@ msg and pubkey are both treated as byte arrays. </dd></dl>
 
 </div>
 </div>
-<a id="aebac98a8537f3353aac9fbae5ed67f29"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aebac98a8537f3353aac9fbae5ed67f29">&#9670;&nbsp;</a></span>hashlib_AESPadMessage()</h2>
+<a id="adef0e438c50992ac3a93cdf0381f130a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adef0e438c50992ac3a93cdf0381f130a">&#9670;&nbsp;</a></span>hashlib_AESPadMessage()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1738,7 +1738,7 @@ msg and pubkey are both treated as byte arrays. </dd></dl>
         <tr>
           <td class="memname">size_t hashlib_AESPadMessage </td>
           <td>(</td>
-          <td class="paramtype">const uint8_t *&#160;</td>
+          <td class="paramtype">const void *&#160;</td>
           <td class="paramname"><em>plaintext</em>, </td>
         </tr>
         <tr>
@@ -1780,13 +1780,13 @@ msg and pubkey are both treated as byte arrays. </dd></dl>
 </dl>
 <dl class="section note"><dt>Note</dt><dd><b>plaintext</b> and <b>outbuf</b> are aliasable. </dd>
 <dd>
-<a class="el" href="hashlib_8h.html#aa4f60eb708a18d498faa51a33c248f90" title="General-Purpose AES Encryption.">hashlib_AESEncrypt()</a> calls this function automatically. There is no need to do so yourself. </dd></dl>
+<a class="el" href="hashlib_8h.html#a98ab3ae2365719384a83e739baa6dded" title="General-Purpose AES Encryption.">hashlib_AESEncrypt()</a> calls this function automatically. There is no need to do so yourself. </dd></dl>
 <dl class="section return"><dt>Returns</dt><dd>The padded length of the message. </dd></dl>
 
 </div>
 </div>
-<a id="a152d6d62f1a21c97a551cea7e6110e59"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a152d6d62f1a21c97a551cea7e6110e59">&#9670;&nbsp;</a></span>hashlib_AESStripPadding()</h2>
+<a id="ab8edadc2e283d3d4296c70cfd91b44db"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab8edadc2e283d3d4296c70cfd91b44db">&#9670;&nbsp;</a></span>hashlib_AESStripPadding()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1794,7 +1794,7 @@ msg and pubkey are both treated as byte arrays. </dd></dl>
         <tr>
           <td class="memname">size_t hashlib_AESStripPadding </td>
           <td>(</td>
-          <td class="paramtype">const uint8_t *&#160;</td>
+          <td class="paramtype">const void *&#160;</td>
           <td class="paramname"><em>plaintext</em>, </td>
         </tr>
         <tr>
@@ -1835,13 +1835,13 @@ msg and pubkey are both treated as byte arrays. </dd></dl>
 </dl>
 <dl class="section note"><dt>Note</dt><dd><b>plaintext</b> and <b>outbuf</b> are aliasable. </dd>
 <dd>
-<a class="el" href="hashlib_8h.html#a402aa47590cf2de4ea6cb2efba1fdb35" title="General-Purpose AES Decryption.">hashlib_AESDecrypt()</a> calls this function automatically. There is no need to do so yourself. </dd></dl>
+<a class="el" href="hashlib_8h.html#a3ca1995c046661d86e755f69938efdd4" title="General-Purpose AES Decryption.">hashlib_AESDecrypt()</a> calls this function automatically. There is no need to do so yourself. </dd></dl>
 <dl class="section return"><dt>Returns</dt><dd>The length of the message with padding removed. </dd></dl>
 
 </div>
 </div>
-<a id="a52c65f6e14ae6287fc2753895ce947be"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a52c65f6e14ae6287fc2753895ce947be">&#9670;&nbsp;</a></span>hashlib_RSAEncodeOAEP()</h2>
+<a id="a86436d7dd0bc9d196f89cf40311100c8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a86436d7dd0bc9d196f89cf40311100c8">&#9670;&nbsp;</a></span>hashlib_RSAEncodeOAEP()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1849,7 +1849,7 @@ msg and pubkey are both treated as byte arrays. </dd></dl>
         <tr>
           <td class="memname">size_t hashlib_RSAEncodeOAEP </td>
           <td>(</td>
-          <td class="paramtype">const uint8_t *&#160;</td>
+          <td class="paramtype">const void *&#160;</td>
           <td class="paramname"><em>plaintext</em>, </td>
         </tr>
         <tr>
@@ -1873,7 +1873,7 @@ msg and pubkey are both treated as byte arrays. </dd></dl>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const uint8_t *&#160;</td>
+          <td class="paramtype">const void *&#160;</td>
           <td class="paramname"><em>auth</em>&#160;</td>
         </tr>
         <tr>
@@ -1907,15 +1907,15 @@ msg and pubkey are both treated as byte arrays. </dd></dl>
 </dl>
 <dl class="section note"><dt>Note</dt><dd><b>outbuf</b> must be at least <b>modulus_len</b> bytes large. </dd>
 <dd>
-<a class="el" href="hashlib_8h.html#a3f2772b55bb9444c6b1d63976d35c9ff" title="RSA Encryption.">hashlib_RSAEncrypt()</a> calls this function automatically. There is no need to do it yourself. </dd>
+<a class="el" href="hashlib_8h.html#a344d363bc1a7e9dd0018f36af1c9dc07" title="RSA Encryption.">hashlib_RSAEncrypt()</a> calls this function automatically. There is no need to do it yourself. </dd>
 <dd>
 <b>auth</b> both sender and receiver must know this string. Pass NULL to omit. </dd></dl>
 <dl class="section return"><dt>Returns</dt><dd>The padded length of the plaintext. </dd></dl>
 
 </div>
 </div>
-<a id="ae575c99825f9b970c3d6f7a6bf552153"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae575c99825f9b970c3d6f7a6bf552153">&#9670;&nbsp;</a></span>hashlib_RSADecodeOAEP()</h2>
+<a id="a4d2b1e46f607cc5880dffb4d74743bdc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4d2b1e46f607cc5880dffb4d74743bdc">&#9670;&nbsp;</a></span>hashlib_RSADecodeOAEP()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1923,7 +1923,7 @@ msg and pubkey are both treated as byte arrays. </dd></dl>
         <tr>
           <td class="memname">size_t hashlib_RSADecodeOAEP </td>
           <td>(</td>
-          <td class="paramtype">const uint8_t *&#160;</td>
+          <td class="paramtype">const void *&#160;</td>
           <td class="paramname"><em>plaintext</em>, </td>
         </tr>
         <tr>
@@ -1941,7 +1941,7 @@ msg and pubkey are both treated as byte arrays. </dd></dl>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const uint8_t *&#160;</td>
+          <td class="paramtype">const void *&#160;</td>
           <td class="paramname"><em>auth</em>&#160;</td>
         </tr>
         <tr>
@@ -1970,8 +1970,8 @@ msg and pubkey are both treated as byte arrays. </dd></dl>
 
 </div>
 </div>
-<a id="a01668b3f2dd85fe2f8696673b275b75a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a01668b3f2dd85fe2f8696673b275b75a">&#9670;&nbsp;</a></span>hashlib_RSAEncodePSS()</h2>
+<a id="ad412a9f6ddfbc99326bc9636681d3c56"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad412a9f6ddfbc99326bc9636681d3c56">&#9670;&nbsp;</a></span>hashlib_RSAEncodePSS()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1979,7 +1979,7 @@ msg and pubkey are both treated as byte arrays. </dd></dl>
         <tr>
           <td class="memname">size_t hashlib_RSAEncodePSS </td>
           <td>(</td>
-          <td class="paramtype">const uint8_t *&#160;</td>
+          <td class="paramtype">const void *&#160;</td>
           <td class="paramname"><em>plaintext</em>, </td>
         </tr>
         <tr>
@@ -2003,7 +2003,7 @@ msg and pubkey are both treated as byte arrays. </dd></dl>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">uint8_t *&#160;</td>
+          <td class="paramtype">void *&#160;</td>
           <td class="paramname"><em>salt</em>&#160;</td>
         </tr>
         <tr>
@@ -2041,13 +2041,13 @@ msg and pubkey are both treated as byte arrays. </dd></dl>
 <dd>
 <b>salt</b> can be NULL to generate a salt automatically. You can also generate it yourself using <a class="el" href="hashlib_8h.html#aa0092aa4c122591fae447dda8fa25dfc" title="Fills a buffer to size with random bytes.">hashlib_RandomBytes()</a> and pass a pointer to that buffer as <b>salt</b>. </dd>
 <dd>
-If you are trying to validate a signature, use <a class="el" href="hashlib_8h.html#a7b705e6cf52b076b40f936af6d55b29c" title="SSL Certificate Signature Verification.">hashlib_SSLVerifySignature()</a>. </dd></dl>
+If you are trying to validate a signature, use <a class="el" href="hashlib_8h.html#ada9751a5d91dc4cfcdb90de0518a79f6" title="SSL Certificate Signature Verification.">hashlib_SSLVerifySignature()</a>. </dd></dl>
 <dl class="section return"><dt>Returns</dt><dd>the padded length of the plaintext. </dd></dl>
 
 </div>
 </div>
-<a id="af1dd2bde099a6fadb6bcc842e502c21b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af1dd2bde099a6fadb6bcc842e502c21b">&#9670;&nbsp;</a></span>hashlib_RSAVerifyPSS()</h2>
+<a id="a07f95403c8ef99fd39d5fcec33cb0ab3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a07f95403c8ef99fd39d5fcec33cb0ab3">&#9670;&nbsp;</a></span>hashlib_RSAVerifyPSS()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -2055,8 +2055,8 @@ If you are trying to validate a signature, use <a class="el" href="hashlib_8h.ht
         <tr>
           <td class="memname">bool hashlib_RSAVerifyPSS </td>
           <td>(</td>
-          <td class="paramtype">const uint8_t *&#160;</td>
-          <td class="paramname"><em>in</em>, </td>
+          <td class="paramtype">const void *&#160;</td>
+          <td class="paramname"><em>data</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -2067,7 +2067,7 @@ If you are trying to validate a signature, use <a class="el" href="hashlib_8h.ht
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const uint8_t *&#160;</td>
+          <td class="paramtype">const void *&#160;</td>
           <td class="paramname"><em>expected</em>, </td>
         </tr>
         <tr>
@@ -2088,7 +2088,7 @@ If you are trying to validate a signature, use <a class="el" href="hashlib_8h.ht
 <p>Reverses the PSS MGF1 masking on <b>expected</b> and retrieves the salt, then attempts to PSS pad the input given the retrieved salt.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">in</td><td>Pointer to buffer containing data to verify PSS padding for. </td></tr>
+    <tr><td class="paramname">data</td><td>Pointer to buffer containing data to verify PSS padding for. </td></tr>
     <tr><td class="paramname">len</td><td>Length of data at <b>in</b>. </td></tr>
     <tr><td class="paramname">expected</td><td>Pointer to buffer containing expected signature. </td></tr>
     <tr><td class="paramname">modulus_len</td><td>The size of the signature at <b>expected</b>. </td></tr>
@@ -2099,8 +2099,8 @@ If you are trying to validate a signature, use <a class="el" href="hashlib_8h.ht
 
 </div>
 </div>
-<a id="a44592eaae569a9cd22a4f7c5cb1c227a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a44592eaae569a9cd22a4f7c5cb1c227a">&#9670;&nbsp;</a></span>hashlib_AESAuthEncrypt()</h2>
+<a id="a670f1f0205bf748b53309bb6bf2f034e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a670f1f0205bf748b53309bb6bf2f034e">&#9670;&nbsp;</a></span>hashlib_AESAuthEncrypt()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -2108,7 +2108,7 @@ If you are trying to validate a signature, use <a class="el" href="hashlib_8h.ht
         <tr>
           <td class="memname"><a class="el" href="hashlib_8h.html#aeb2e64abcc4317e3143fb820f21c3bfd">aes_error_t</a> hashlib_AESAuthEncrypt </td>
           <td>(</td>
-          <td class="paramtype">const uint8_t *&#160;</td>
+          <td class="paramtype">const void *&#160;</td>
           <td class="paramname"><em>plaintext</em>, </td>
         </tr>
         <tr>
@@ -2132,7 +2132,7 @@ If you are trying to validate a signature, use <a class="el" href="hashlib_8h.ht
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const uint8_t *&#160;</td>
+          <td class="paramtype">const void *&#160;</td>
           <td class="paramname"><em>iv</em>, </td>
         </tr>
         <tr>
@@ -2187,8 +2187,8 @@ To encrypt the entire message, pass 0 for <b>encryption_offset</b> and <b>len</b
 
 </div>
 </div>
-<a id="af5dcf95ad2b71a15049abaa1a9ffa50c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af5dcf95ad2b71a15049abaa1a9ffa50c">&#9670;&nbsp;</a></span>hashlib_AESAuthDecrypt()</h2>
+<a id="a8ebc21a9d0d4c7f776fd26bb09cb33b9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8ebc21a9d0d4c7f776fd26bb09cb33b9">&#9670;&nbsp;</a></span>hashlib_AESAuthDecrypt()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -2196,7 +2196,7 @@ To encrypt the entire message, pass 0 for <b>encryption_offset</b> and <b>len</b
         <tr>
           <td class="memname"><a class="el" href="hashlib_8h.html#aeb2e64abcc4317e3143fb820f21c3bfd">aes_error_t</a> hashlib_AESAuthDecrypt </td>
           <td>(</td>
-          <td class="paramtype">const uint8_t *&#160;</td>
+          <td class="paramtype">const void *&#160;</td>
           <td class="paramname"><em>ciphertext</em>, </td>
         </tr>
         <tr>
@@ -2220,7 +2220,7 @@ To encrypt the entire message, pass 0 for <b>encryption_offset</b> and <b>len</b
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const uint8_t *&#160;</td>
+          <td class="paramtype">const void *&#160;</td>
           <td class="paramname"><em>iv</em>, </td>
         </tr>
         <tr>
@@ -2275,8 +2275,8 @@ To decrypt the entire message, pass 0 for <b>decryption_offset</b> and <b>len-32
 
 </div>
 </div>
-<a id="a94346a8d2bea7e20c86f668c7bf25f41"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a94346a8d2bea7e20c86f668c7bf25f41">&#9670;&nbsp;</a></span>hashlib_RSAAuthEncrypt()</h2>
+<a id="afad3a00fdac94f6fd03dc775093582ad"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afad3a00fdac94f6fd03dc775093582ad">&#9670;&nbsp;</a></span>hashlib_RSAAuthEncrypt()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -2284,7 +2284,7 @@ To decrypt the entire message, pass 0 for <b>decryption_offset</b> and <b>len-32
         <tr>
           <td class="memname"><a class="el" href="hashlib_8h.html#a0486449f609d0e485bad091a671d9294">rsa_error_t</a> hashlib_RSAAuthEncrypt </td>
           <td>(</td>
-          <td class="paramtype">const uint8_t *&#160;</td>
+          <td class="paramtype">const void *&#160;</td>
           <td class="paramname"><em>msg</em>, </td>
         </tr>
         <tr>
@@ -2302,7 +2302,7 @@ To decrypt the entire message, pass 0 for <b>decryption_offset</b> and <b>len-32
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const uint8_t *&#160;</td>
+          <td class="paramtype">const void *&#160;</td>
           <td class="paramname"><em>pubkey</em>, </td>
         </tr>
         <tr>
@@ -2332,7 +2332,7 @@ To decrypt the entire message, pass 0 for <b>decryption_offset</b> and <b>len-32
   </table>
   </dd>
 </dl>
-<dl class="section note"><dt>Note</dt><dd>This function calls <a class="el" href="hashlib_8h.html#a3f2772b55bb9444c6b1d63976d35c9ff" title="RSA Encryption.">hashlib_RSAEncrypt()</a>, which applies the OAEP 2.2 encoding scheme to the message and then encrypts the message using the public modulus supplied. It then hashes the resulting encryption and appends that hash to the end of the ciphertext. </dd>
+<dl class="section note"><dt>Note</dt><dd>This function calls <a class="el" href="hashlib_8h.html#a344d363bc1a7e9dd0018f36af1c9dc07" title="RSA Encryption.">hashlib_RSAEncrypt()</a>, which applies the OAEP 2.2 encoding scheme to the message and then encrypts the message using the public modulus supplied. It then hashes the resulting encryption and appends that hash to the end of the ciphertext. </dd>
 <dd>
 <b>msg</b> and <b>ciphertext</b> are NOT aliasable. </dd></dl>
 
