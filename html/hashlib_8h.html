@@ -97,12 +97,11 @@ Macros</h2></td></tr>
 <tr class="separator:a97c7527aa5efe0f229c45c54ebcc6b55"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab981c88a4cd7407b2c4b4bfe86fc021b"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#ab981c88a4cd7407b2c4b4bfe86fc021b">hashlib_FastMemBufferUnsafe</a>&#160;&#160;&#160;((void*)0xE30800)</td></tr>
 <tr class="separator:ab981c88a4cd7407b2c4b4bfe86fc021b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a939c5eb79064fb776e34fd0c632a588b"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#a939c5eb79064fb776e34fd0c632a588b">SHA256_MBUFFER_LEN</a>&#160;&#160;&#160;(64)</td></tr>
-<tr class="separator:a939c5eb79064fb776e34fd0c632a588b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af5aa539ae202ddf9e0c9211309869fc8"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#af5aa539ae202ddf9e0c9211309869fc8">SHA256_DIGEST_LEN</a>&#160;&#160;&#160;32</td></tr>
 <tr class="separator:af5aa539ae202ddf9e0c9211309869fc8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7a767ce32adaa3ad3e7e4aafff0ae7e3"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#a7a767ce32adaa3ad3e7e4aafff0ae7e3">SHA256_HEXSTR_LEN</a>&#160;&#160;&#160;(<a class="el" href="hashlib_8h.html#af5aa539ae202ddf9e0c9211309869fc8">SHA256_DIGEST_LEN</a>&lt;&lt;1) + 1</td></tr>
-<tr class="separator:a7a767ce32adaa3ad3e7e4aafff0ae7e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7781b6f83e2f311020d3b926b70743ed"><td class="memItemLeft" align="right" valign="top"><a id="a7781b6f83e2f311020d3b926b70743ed"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>SHA256_HEXDIGEST_LEN</b>&#160;&#160;&#160;(<a class="el" href="hashlib_8h.html#af5aa539ae202ddf9e0c9211309869fc8">SHA256_DIGEST_LEN</a>&lt;&lt;1) + 1</td></tr>
+<tr class="separator:a7781b6f83e2f311020d3b926b70743ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afab0742642db9c0609c00bf8a54f386f"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#afab0742642db9c0609c00bf8a54f386f">AES_BLOCKSIZE</a>&#160;&#160;&#160;16</td></tr>
 <tr class="separator:afab0742642db9c0609c00bf8a54f386f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6c2d58d8dd281845fdc027b499dea89d"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#a6c2d58d8dd281845fdc027b499dea89d">AES_IVSIZE</a>&#160;&#160;&#160;<a class="el" href="hashlib_8h.html#afab0742642db9c0609c00bf8a54f386f">AES_BLOCKSIZE</a></td></tr>
@@ -182,27 +181,27 @@ Functions</h2></td></tr>
 <tr class="memitem:ac901e0546d0cb0c218fedbe4a43fc005"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#ac901e0546d0cb0c218fedbe4a43fc005">hashlib_Sha256Init</a> (<a class="el" href="hashlib_8h.html#a53df9e7d871973d59c7b58a6c3963c5d">sha256_ctx</a> *ctx)</td></tr>
 <tr class="memdesc:ac901e0546d0cb0c218fedbe4a43fc005"><td class="mdescLeft">&#160;</td><td class="mdescRight">Context initializer for SHA-256. Initializes the given context with the starting state for SHA-256.  <a href="hashlib_8h.html#ac901e0546d0cb0c218fedbe4a43fc005">More...</a><br /></td></tr>
 <tr class="separator:ac901e0546d0cb0c218fedbe4a43fc005"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aeed1dabf7c19464f01c87dcb25a77636"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#aeed1dabf7c19464f01c87dcb25a77636">hashlib_Sha256Update</a> (<a class="el" href="hashlib_8h.html#a53df9e7d871973d59c7b58a6c3963c5d">sha256_ctx</a> *ctx, const uint8_t *buf, uint32_t len)</td></tr>
-<tr class="memdesc:aeed1dabf7c19464f01c87dcb25a77636"><td class="mdescLeft">&#160;</td><td class="mdescRight">Updates the SHA-256 context for the given data.  <a href="hashlib_8h.html#aeed1dabf7c19464f01c87dcb25a77636">More...</a><br /></td></tr>
-<tr class="separator:aeed1dabf7c19464f01c87dcb25a77636"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae23d818e30210064557610249880d4fe"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#ae23d818e30210064557610249880d4fe">hashlib_Sha256Update</a> (<a class="el" href="hashlib_8h.html#a53df9e7d871973d59c7b58a6c3963c5d">sha256_ctx</a> *ctx, const uint8_t *data, uint32_t len)</td></tr>
+<tr class="memdesc:ae23d818e30210064557610249880d4fe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Updates the SHA-256 context for the given data.  <a href="hashlib_8h.html#ae23d818e30210064557610249880d4fe">More...</a><br /></td></tr>
+<tr class="separator:ae23d818e30210064557610249880d4fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a27eda4d2b18a026f199abdcab6d1cc8c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#a27eda4d2b18a026f199abdcab6d1cc8c">hashlib_Sha256Final</a> (<a class="el" href="hashlib_8h.html#a53df9e7d871973d59c7b58a6c3963c5d">sha256_ctx</a> *ctx, uint8_t *digest)</td></tr>
 <tr class="memdesc:a27eda4d2b18a026f199abdcab6d1cc8c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Finalize Context and Render Digest for SHA-256.  <a href="hashlib_8h.html#a27eda4d2b18a026f199abdcab6d1cc8c">More...</a><br /></td></tr>
 <tr class="separator:a27eda4d2b18a026f199abdcab6d1cc8c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2c1bd7ec5809afead6583128c9052d8b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#a2c1bd7ec5809afead6583128c9052d8b">hashlib_MGF1Hash</a> (uint8_t *data, size_t datalen, uint8_t *outbuf, size_t outlen)</td></tr>
 <tr class="memdesc:a2c1bd7ec5809afead6583128c9052d8b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Arbitrary Length Hashing Function.  <a href="hashlib_8h.html#a2c1bd7ec5809afead6583128c9052d8b">More...</a><br /></td></tr>
 <tr class="separator:a2c1bd7ec5809afead6583128c9052d8b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2f8d26c10043feee515d7c08cc79a9c7"><td class="memItemLeft" align="right" valign="top"><a id="a2f8d26c10043feee515d7c08cc79a9c7"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>hashlib_HMACSha256Init</b> (<a class="el" href="hashlib_8h.html#a8d813300476744f01319600478572f62">hmac_ctx</a> *hmac, const uint8_t *key, size_t keylen)</td></tr>
-<tr class="separator:a2f8d26c10043feee515d7c08cc79a9c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a49ed25dd9a2fdf89b283acd23c855581"><td class="memItemLeft" align="right" valign="top"><a id="a49ed25dd9a2fdf89b283acd23c855581"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>hashlib_HMACSha256Update</b> (<a class="el" href="hashlib_8h.html#a8d813300476744f01319600478572f62">hmac_ctx</a> *hmac, const uint8_t *msg, size_t len)</td></tr>
-<tr class="separator:a49ed25dd9a2fdf89b283acd23c855581"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a785dd3982d59a7567a4738f4fc27fb7e"><td class="memItemLeft" align="right" valign="top"><a id="a785dd3982d59a7567a4738f4fc27fb7e"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>hashlib_HMACSha256Final</b> (<a class="el" href="hashlib_8h.html#a8d813300476744f01319600478572f62">hmac_ctx</a> *hmac, uint8_t *output)</td></tr>
-<tr class="separator:a785dd3982d59a7567a4738f4fc27fb7e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7f510d5a8a1bf0e81d9777066e3b07fc"><td class="memItemLeft" align="right" valign="top"><a id="a7f510d5a8a1bf0e81d9777066e3b07fc"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>hashlib_HMACSha256Reset</b> (<a class="el" href="hashlib_8h.html#a8d813300476744f01319600478572f62">hmac_ctx</a> *hmac)</td></tr>
-<tr class="separator:a7f510d5a8a1bf0e81d9777066e3b07fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad324e9742251c041b88fc63cbf3da0d1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#ad324e9742251c041b88fc63cbf3da0d1">hashlib_HMACSha256Init</a> (<a class="el" href="hashlib_8h.html#a8d813300476744f01319600478572f62">hmac_ctx</a> *ctx, const uint8_t *key, size_t keylen)</td></tr>
+<tr class="memdesc:ad324e9742251c041b88fc63cbf3da0d1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Context Initializer for SHA-256 HMAC.  <a href="hashlib_8h.html#ad324e9742251c041b88fc63cbf3da0d1">More...</a><br /></td></tr>
+<tr class="separator:ad324e9742251c041b88fc63cbf3da0d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac83153f41599220b003aa8548ecb82bd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#ac83153f41599220b003aa8548ecb82bd">hashlib_HMACSha256Update</a> (<a class="el" href="hashlib_8h.html#a8d813300476744f01319600478572f62">hmac_ctx</a> *ctx, const uint8_t *data, size_t len)</td></tr>
+<tr class="memdesc:ac83153f41599220b003aa8548ecb82bd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Updates the SHA-256 HMAC context for the given data.  <a href="hashlib_8h.html#ac83153f41599220b003aa8548ecb82bd">More...</a><br /></td></tr>
+<tr class="separator:ac83153f41599220b003aa8548ecb82bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a531a7fd701143706ea48163367d04d68"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#a531a7fd701143706ea48163367d04d68">hashlib_HMACSha256Final</a> (<a class="el" href="hashlib_8h.html#a8d813300476744f01319600478572f62">hmac_ctx</a> *ctx, uint8_t *output)</td></tr>
+<tr class="memdesc:a531a7fd701143706ea48163367d04d68"><td class="mdescLeft">&#160;</td><td class="mdescRight">Finalize Context and Render Digest for SHA-256 HMAC.  <a href="hashlib_8h.html#a531a7fd701143706ea48163367d04d68">More...</a><br /></td></tr>
+<tr class="separator:a531a7fd701143706ea48163367d04d68"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5e0e235ac96b3f4c4a8e6d037efc053f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#a5e0e235ac96b3f4c4a8e6d037efc053f">hashlib_HMACSha256Reset</a> (<a class="el" href="hashlib_8h.html#a8d813300476744f01319600478572f62">hmac_ctx</a> *ctx)</td></tr>
+<tr class="memdesc:a5e0e235ac96b3f4c4a8e6d037efc053f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Resets the SHA-256 HMAC context to its state after a call to <a class="el" href="hashlib_8h.html#ad324e9742251c041b88fc63cbf3da0d1" title="Context Initializer for SHA-256 HMAC.">hashlib_HMACSha256Init()</a>  <a href="hashlib_8h.html#a5e0e235ac96b3f4c4a8e6d037efc053f">More...</a><br /></td></tr>
+<tr class="separator:a5e0e235ac96b3f4c4a8e6d037efc053f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aab1072341b442847719cda42efddbcf2"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#aab1072341b442847719cda42efddbcf2">hashlib_PBKDF2</a> (const uint8_t *password, size_t passlen, uint8_t *key, const uint8_t *salt, size_t saltlen, size_t rounds, size_t keylen)</td></tr>
 <tr class="memdesc:aab1072341b442847719cda42efddbcf2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Password-Based Key Derivation Function (via SHA-256 HMAC)  <a href="hashlib_8h.html#aab1072341b442847719cda42efddbcf2">More...</a><br /></td></tr>
 <tr class="separator:aab1072341b442847719cda42efddbcf2"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -312,22 +311,6 @@ If the SPRNG is run, anything you have stored here will be destroyed. </dd></dl>
 
 </div>
 </div>
-<a id="a939c5eb79064fb776e34fd0c632a588b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a939c5eb79064fb776e34fd0c632a588b">&#9670;&nbsp;</a></span>SHA256_MBUFFER_LEN</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define SHA256_MBUFFER_LEN&#160;&#160;&#160;(64)</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Temporary SHA-256 memory buffer. A buffer of this length, in uint32_ts, must be passed to <a class="el" href="hashlib_8h.html#ac901e0546d0cb0c218fedbe4a43fc005" title="Context initializer for SHA-256. Initializes the given context with the starting state for SHA-256.">hashlib_Sha256Init()</a>. </p><div class="fragment"><div class="line">uint32_t mbuffer[<a class="code" href="hashlib_8h.html#a939c5eb79064fb776e34fd0c632a588b">SHA256_MBUFFER_LEN</a>];</div>
-<div class="ttc" id="ahashlib_8h_html_a939c5eb79064fb776e34fd0c632a588b"><div class="ttname"><a href="hashlib_8h.html#a939c5eb79064fb776e34fd0c632a588b">SHA256_MBUFFER_LEN</a></div><div class="ttdeci">#define SHA256_MBUFFER_LEN</div><div class="ttdef"><b>Definition:</b> hashlib.h:97</div></div>
-</div><!-- fragment --> 
-</div>
-</div>
 <a id="af5aa539ae202ddf9e0c9211309869fc8"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#af5aa539ae202ddf9e0c9211309869fc8">&#9670;&nbsp;</a></span>SHA256_DIGEST_LEN</h2>
 
@@ -340,21 +323,6 @@ If the SPRNG is run, anything you have stored here will be destroyed. </dd></dl>
       </table>
 </div><div class="memdoc">
 <p>Binary length of the SHA-256 hash output. </p>
-
-</div>
-</div>
-<a id="a7a767ce32adaa3ad3e7e4aafff0ae7e3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7a767ce32adaa3ad3e7e4aafff0ae7e3">&#9670;&nbsp;</a></span>SHA256_HEXSTR_LEN</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define SHA256_HEXSTR_LEN&#160;&#160;&#160;(<a class="el" href="hashlib_8h.html#af5aa539ae202ddf9e0c9211309869fc8">SHA256_DIGEST_LEN</a>&lt;&lt;1) + 1</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Length of a string containing the SHA-256 hash. </p>
 
 </div>
 </div>
@@ -821,16 +789,14 @@ If the SPRNG is run, anything you have stored here will be destroyed. </dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">ctx</td><td>Pointer to a SHA-256 context. </td></tr>
-    <tr><td class="paramname">mbuffer</td><td>Pointer to a temporary memory buffer. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section note"><dt>Note</dt><dd><b>mbuffer</b> must be at least <b>SHA256_MBUFFER_LEN</b> bytes large. </dd></dl>
 
 </div>
 </div>
-<a id="aeed1dabf7c19464f01c87dcb25a77636"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aeed1dabf7c19464f01c87dcb25a77636">&#9670;&nbsp;</a></span>hashlib_Sha256Update()</h2>
+<a id="ae23d818e30210064557610249880d4fe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae23d818e30210064557610249880d4fe">&#9670;&nbsp;</a></span>hashlib_Sha256Update()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -845,7 +811,7 @@ If the SPRNG is run, anything you have stored here will be destroyed. </dd></dl>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">const uint8_t *&#160;</td>
-          <td class="paramname"><em>buf</em>, </td>
+          <td class="paramname"><em>data</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -865,8 +831,8 @@ If the SPRNG is run, anything you have stored here will be destroyed. </dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">ctx</td><td>Pointer to a SHA-256 context. </td></tr>
-    <tr><td class="paramname">buf</td><td>Pointer to data to hash. </td></tr>
-    <tr><td class="paramname">len</td><td>Number of bytes at <b>buf</b> to hash. </td></tr>
+    <tr><td class="paramname">data</td><td>Pointer to data to hash. </td></tr>
+    <tr><td class="paramname">len</td><td>Number of bytes at <b>data</b> to hash. </td></tr>
   </table>
   </dd>
 </dl>
@@ -962,6 +928,161 @@ If the SPRNG is run, anything you have stored here will be destroyed. </dd></dl>
   </dd>
 </dl>
 <dl class="section note"><dt>Note</dt><dd><b>outbuf</b> must be at least <b>outlen</b> bytes large. </dd></dl>
+
+</div>
+</div>
+<a id="ad324e9742251c041b88fc63cbf3da0d1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad324e9742251c041b88fc63cbf3da0d1">&#9670;&nbsp;</a></span>hashlib_HMACSha256Init()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void hashlib_HMACSha256Init </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="hashlib_8h.html#a8d813300476744f01319600478572f62">hmac_ctx</a> *&#160;</td>
+          <td class="paramname"><em>ctx</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const uint8_t *&#160;</td>
+          <td class="paramname"><em>key</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>keylen</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Context Initializer for SHA-256 HMAC. </p>
+<p>Initializes the given context with the starting state for SHA-256 HMAC.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ctx</td><td>Pointer to a SHA-256 HMAC context. </td></tr>
+    <tr><td class="paramname">key</td><td>Pointer to an authentication key used to initialize the base SHA-256 context. </td></tr>
+    <tr><td class="paramname">keylen</td><td>Length of <b>key</b>, in bytes. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ac83153f41599220b003aa8548ecb82bd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac83153f41599220b003aa8548ecb82bd">&#9670;&nbsp;</a></span>hashlib_HMACSha256Update()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void hashlib_HMACSha256Update </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="hashlib_8h.html#a8d813300476744f01319600478572f62">hmac_ctx</a> *&#160;</td>
+          <td class="paramname"><em>ctx</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const uint8_t *&#160;</td>
+          <td class="paramname"><em>data</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>len</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Updates the SHA-256 HMAC context for the given data. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ctx</td><td>Pointer to a SHA-256 HMAC context. </td></tr>
+    <tr><td class="paramname">data</td><td>Pointer to data to hash. </td></tr>
+    <tr><td class="paramname">len</td><td>Number of bytes at <b>data</b> to hash. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section warning"><dt>Warning</dt><dd>You must call <a class="el" href="hashlib_8h.html#ad324e9742251c041b88fc63cbf3da0d1" title="Context Initializer for SHA-256 HMAC.">hashlib_HMACSha256Init()</a> first or your hash state will be invalid. </dd></dl>
+
+</div>
+</div>
+<a id="a531a7fd701143706ea48163367d04d68"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a531a7fd701143706ea48163367d04d68">&#9670;&nbsp;</a></span>hashlib_HMACSha256Final()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void hashlib_HMACSha256Final </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="hashlib_8h.html#a8d813300476744f01319600478572f62">hmac_ctx</a> *&#160;</td>
+          <td class="paramname"><em>ctx</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t *&#160;</td>
+          <td class="paramname"><em>output</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Finalize Context and Render Digest for SHA-256 HMAC. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ctx</td><td>Pointer to a SHA-256 HMAC context. </td></tr>
+    <tr><td class="paramname">digest</td><td>Pointer to a buffer to write the hash to. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>Note</dt><dd><b>digest</b> must be at least 32 bytes large. </dd></dl>
+
+</div>
+</div>
+<a id="a5e0e235ac96b3f4c4a8e6d037efc053f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5e0e235ac96b3f4c4a8e6d037efc053f">&#9670;&nbsp;</a></span>hashlib_HMACSha256Reset()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void hashlib_HMACSha256Reset </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="hashlib_8h.html#a8d813300476744f01319600478572f62">hmac_ctx</a> *&#160;</td>
+          <td class="paramname"><em>ctx</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Resets the SHA-256 HMAC context to its state after a call to <a class="el" href="hashlib_8h.html#ad324e9742251c041b88fc63cbf3da0d1" title="Context Initializer for SHA-256 HMAC.">hashlib_HMACSha256Init()</a> </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ctx</td><td>Pointer to a SHA-256 HMAC context. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>Note</dt><dd>Calls the SHA-256 Init function, then Updates() the context with the ipad. </dd></dl>
 
 </div>
 </div>

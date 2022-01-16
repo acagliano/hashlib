@@ -24,11 +24,10 @@ struct \mbox{\hyperlink{struct__aes__ctx}{\+\_\+aes\+\_\+ctx}}
 \item 
 \#define \mbox{\hyperlink{hashlib_8h_ab981c88a4cd7407b2c4b4bfe86fc021b}{hashlib\+\_\+\+Fast\+Mem\+Buffer\+Unsafe}}~((void$\ast$)0x\+E30800)
 \item 
-\#define \mbox{\hyperlink{hashlib_8h_a939c5eb79064fb776e34fd0c632a588b}{SHA256\+\_\+\+MBUFFER\+\_\+\+LEN}}~(64)
-\item 
 \#define \mbox{\hyperlink{hashlib_8h_af5aa539ae202ddf9e0c9211309869fc8}{SHA256\+\_\+\+DIGEST\+\_\+\+LEN}}~32
 \item 
-\#define \mbox{\hyperlink{hashlib_8h_a7a767ce32adaa3ad3e7e4aafff0ae7e3}{SHA256\+\_\+\+HEXSTR\+\_\+\+LEN}}~(\mbox{\hyperlink{hashlib_8h_af5aa539ae202ddf9e0c9211309869fc8}{SHA256\+\_\+\+DIGEST\+\_\+\+LEN}}$<$$<$1) + 1
+\mbox{\Hypertarget{hashlib_8h_a7781b6f83e2f311020d3b926b70743ed}\label{hashlib_8h_a7781b6f83e2f311020d3b926b70743ed}} 
+\#define {\bfseries SHA256\+\_\+\+HEXDIGEST\+\_\+\+LEN}~(\mbox{\hyperlink{hashlib_8h_af5aa539ae202ddf9e0c9211309869fc8}{SHA256\+\_\+\+DIGEST\+\_\+\+LEN}}$<$$<$1) + 1
 \item 
 \#define \mbox{\hyperlink{hashlib_8h_afab0742642db9c0609c00bf8a54f386f}{AES\+\_\+\+BLOCKSIZE}}~16
 \item 
@@ -103,24 +102,20 @@ bool \mbox{\hyperlink{hashlib_8h_aa0092aa4c122591fae447dda8fa25dfc}{hashlib\+\_\
 \begin{DoxyCompactList}\small\item\em Fills a buffer to size with random bytes. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{hashlib_8h_ac901e0546d0cb0c218fedbe4a43fc005}{hashlib\+\_\+\+Sha256\+Init}} (\mbox{\hyperlink{hashlib_8h_a53df9e7d871973d59c7b58a6c3963c5d}{sha256\+\_\+ctx}} $\ast$ctx)
 \begin{DoxyCompactList}\small\item\em Context initializer for SHA-\/256. Initializes the given context with the starting state for SHA-\/256. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{hashlib_8h_aeed1dabf7c19464f01c87dcb25a77636}{hashlib\+\_\+\+Sha256\+Update}} (\mbox{\hyperlink{hashlib_8h_a53df9e7d871973d59c7b58a6c3963c5d}{sha256\+\_\+ctx}} $\ast$ctx, const uint8\+\_\+t $\ast$buf, uint32\+\_\+t len)
+void \mbox{\hyperlink{hashlib_8h_ae23d818e30210064557610249880d4fe}{hashlib\+\_\+\+Sha256\+Update}} (\mbox{\hyperlink{hashlib_8h_a53df9e7d871973d59c7b58a6c3963c5d}{sha256\+\_\+ctx}} $\ast$ctx, const uint8\+\_\+t $\ast$data, uint32\+\_\+t len)
 \begin{DoxyCompactList}\small\item\em Updates the SHA-\/256 context for the given data. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{hashlib_8h_a27eda4d2b18a026f199abdcab6d1cc8c}{hashlib\+\_\+\+Sha256\+Final}} (\mbox{\hyperlink{hashlib_8h_a53df9e7d871973d59c7b58a6c3963c5d}{sha256\+\_\+ctx}} $\ast$ctx, uint8\+\_\+t $\ast$digest)
 \begin{DoxyCompactList}\small\item\em Finalize Context and Render Digest for SHA-\/256. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{hashlib_8h_a2c1bd7ec5809afead6583128c9052d8b}{hashlib\+\_\+\+MGF1\+Hash}} (uint8\+\_\+t $\ast$data, size\+\_\+t datalen, uint8\+\_\+t $\ast$outbuf, size\+\_\+t outlen)
 \begin{DoxyCompactList}\small\item\em Arbitrary Length Hashing Function. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{hashlib_8h_a2f8d26c10043feee515d7c08cc79a9c7}\label{hashlib_8h_a2f8d26c10043feee515d7c08cc79a9c7}} 
-void {\bfseries hashlib\+\_\+\+HMACSha256\+Init} (\mbox{\hyperlink{hashlib_8h_a8d813300476744f01319600478572f62}{hmac\+\_\+ctx}} $\ast$hmac, const uint8\+\_\+t $\ast$key, size\+\_\+t keylen)
-\item 
-\mbox{\Hypertarget{hashlib_8h_a49ed25dd9a2fdf89b283acd23c855581}\label{hashlib_8h_a49ed25dd9a2fdf89b283acd23c855581}} 
-void {\bfseries hashlib\+\_\+\+HMACSha256\+Update} (\mbox{\hyperlink{hashlib_8h_a8d813300476744f01319600478572f62}{hmac\+\_\+ctx}} $\ast$hmac, const uint8\+\_\+t $\ast$msg, size\+\_\+t len)
-\item 
-\mbox{\Hypertarget{hashlib_8h_a785dd3982d59a7567a4738f4fc27fb7e}\label{hashlib_8h_a785dd3982d59a7567a4738f4fc27fb7e}} 
-void {\bfseries hashlib\+\_\+\+HMACSha256\+Final} (\mbox{\hyperlink{hashlib_8h_a8d813300476744f01319600478572f62}{hmac\+\_\+ctx}} $\ast$hmac, uint8\+\_\+t $\ast$output)
-\item 
-\mbox{\Hypertarget{hashlib_8h_a7f510d5a8a1bf0e81d9777066e3b07fc}\label{hashlib_8h_a7f510d5a8a1bf0e81d9777066e3b07fc}} 
-void {\bfseries hashlib\+\_\+\+HMACSha256\+Reset} (\mbox{\hyperlink{hashlib_8h_a8d813300476744f01319600478572f62}{hmac\+\_\+ctx}} $\ast$hmac)
-\item 
+void \mbox{\hyperlink{hashlib_8h_ad324e9742251c041b88fc63cbf3da0d1}{hashlib\+\_\+\+HMACSha256\+Init}} (\mbox{\hyperlink{hashlib_8h_a8d813300476744f01319600478572f62}{hmac\+\_\+ctx}} $\ast$ctx, const uint8\+\_\+t $\ast$key, size\+\_\+t keylen)
+\begin{DoxyCompactList}\small\item\em Context Initializer for SHA-\/256 HMAC. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{hashlib_8h_ac83153f41599220b003aa8548ecb82bd}{hashlib\+\_\+\+HMACSha256\+Update}} (\mbox{\hyperlink{hashlib_8h_a8d813300476744f01319600478572f62}{hmac\+\_\+ctx}} $\ast$ctx, const uint8\+\_\+t $\ast$data, size\+\_\+t len)
+\begin{DoxyCompactList}\small\item\em Updates the SHA-\/256 HMAC context for the given data. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{hashlib_8h_a531a7fd701143706ea48163367d04d68}{hashlib\+\_\+\+HMACSha256\+Final}} (\mbox{\hyperlink{hashlib_8h_a8d813300476744f01319600478572f62}{hmac\+\_\+ctx}} $\ast$ctx, uint8\+\_\+t $\ast$output)
+\begin{DoxyCompactList}\small\item\em Finalize Context and Render Digest for SHA-\/256 HMAC. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{hashlib_8h_a5e0e235ac96b3f4c4a8e6d037efc053f}{hashlib\+\_\+\+HMACSha256\+Reset}} (\mbox{\hyperlink{hashlib_8h_a8d813300476744f01319600478572f62}{hmac\+\_\+ctx}} $\ast$ctx)
+\begin{DoxyCompactList}\small\item\em Resets the SHA-\/256 HMAC context to its state after a call to \mbox{\hyperlink{hashlib_8h_ad324e9742251c041b88fc63cbf3da0d1}{hashlib\+\_\+\+HMACSha256\+Init()}} \end{DoxyCompactList}\item 
 bool \mbox{\hyperlink{hashlib_8h_aab1072341b442847719cda42efddbcf2}{hashlib\+\_\+\+PBKDF2}} (const uint8\+\_\+t $\ast$password, size\+\_\+t passlen, uint8\+\_\+t $\ast$key, const uint8\+\_\+t $\ast$salt, size\+\_\+t saltlen, size\+\_\+t rounds, size\+\_\+t keylen)
 \begin{DoxyCompactList}\small\item\em Password-\/\+Based Key Derivation Function (via SHA-\/256 HMAC) \end{DoxyCompactList}\item 
 bool \mbox{\hyperlink{hashlib_8h_a0653a6a286fb1bedfb3e964d36e3b0bd}{hashlib\+\_\+\+AESLoad\+Key}} (const uint8\+\_\+t $\ast$key, const \mbox{\hyperlink{hashlib_8h_aa188bc2768a3b7aa6ad73cb2c77819e0}{aes\+\_\+ctx}} $\ast$ks, size\+\_\+t keylen)
@@ -206,30 +201,13 @@ Fast Memory gets clobbered by Lib\+Load. Don\textquotesingle{}t keep long-\/term
 
 If the SPRNG is run, anything you have stored here will be destroyed. 
 \end{DoxyWarning}
-\mbox{\Hypertarget{hashlib_8h_a939c5eb79064fb776e34fd0c632a588b}\label{hashlib_8h_a939c5eb79064fb776e34fd0c632a588b}} 
-\index{hashlib.h@{hashlib.h}!SHA256\_MBUFFER\_LEN@{SHA256\_MBUFFER\_LEN}}
-\index{SHA256\_MBUFFER\_LEN@{SHA256\_MBUFFER\_LEN}!hashlib.h@{hashlib.h}}
-\doxysubsubsection{\texorpdfstring{SHA256\_MBUFFER\_LEN}{SHA256\_MBUFFER\_LEN}}
-{\footnotesize\ttfamily \#define SHA256\+\_\+\+MBUFFER\+\_\+\+LEN~(64)}
-
-Temporary SHA-\/256 memory buffer. A buffer of this length, in uint32\+\_\+ts, must be passed to \mbox{\hyperlink{hashlib_8h_ac901e0546d0cb0c218fedbe4a43fc005}{hashlib\+\_\+\+Sha256\+Init()}}. 
-\begin{DoxyCode}{0}
-\DoxyCodeLine{uint32\_t mbuffer[\mbox{\hyperlink{hashlib_8h_a939c5eb79064fb776e34fd0c632a588b}{SHA256\_MBUFFER\_LEN}}];}
-
-\end{DoxyCode}
- \mbox{\Hypertarget{hashlib_8h_af5aa539ae202ddf9e0c9211309869fc8}\label{hashlib_8h_af5aa539ae202ddf9e0c9211309869fc8}} 
+\mbox{\Hypertarget{hashlib_8h_af5aa539ae202ddf9e0c9211309869fc8}\label{hashlib_8h_af5aa539ae202ddf9e0c9211309869fc8}} 
 \index{hashlib.h@{hashlib.h}!SHA256\_DIGEST\_LEN@{SHA256\_DIGEST\_LEN}}
 \index{SHA256\_DIGEST\_LEN@{SHA256\_DIGEST\_LEN}!hashlib.h@{hashlib.h}}
 \doxysubsubsection{\texorpdfstring{SHA256\_DIGEST\_LEN}{SHA256\_DIGEST\_LEN}}
 {\footnotesize\ttfamily \#define SHA256\+\_\+\+DIGEST\+\_\+\+LEN~32}
 
-Binary length of the SHA-\/256 hash output. \mbox{\Hypertarget{hashlib_8h_a7a767ce32adaa3ad3e7e4aafff0ae7e3}\label{hashlib_8h_a7a767ce32adaa3ad3e7e4aafff0ae7e3}} 
-\index{hashlib.h@{hashlib.h}!SHA256\_HEXSTR\_LEN@{SHA256\_HEXSTR\_LEN}}
-\index{SHA256\_HEXSTR\_LEN@{SHA256\_HEXSTR\_LEN}!hashlib.h@{hashlib.h}}
-\doxysubsubsection{\texorpdfstring{SHA256\_HEXSTR\_LEN}{SHA256\_HEXSTR\_LEN}}
-{\footnotesize\ttfamily \#define SHA256\+\_\+\+HEXSTR\+\_\+\+LEN~(\mbox{\hyperlink{hashlib_8h_af5aa539ae202ddf9e0c9211309869fc8}{SHA256\+\_\+\+DIGEST\+\_\+\+LEN}}$<$$<$1) + 1}
-
-Length of a string containing the SHA-\/256 hash. \mbox{\Hypertarget{hashlib_8h_afab0742642db9c0609c00bf8a54f386f}\label{hashlib_8h_afab0742642db9c0609c00bf8a54f386f}} 
+Binary length of the SHA-\/256 hash output. \mbox{\Hypertarget{hashlib_8h_afab0742642db9c0609c00bf8a54f386f}\label{hashlib_8h_afab0742642db9c0609c00bf8a54f386f}} 
 \index{hashlib.h@{hashlib.h}!AES\_BLOCKSIZE@{AES\_BLOCKSIZE}}
 \index{AES\_BLOCKSIZE@{AES\_BLOCKSIZE}!hashlib.h@{hashlib.h}}
 \doxysubsubsection{\texorpdfstring{AES\_BLOCKSIZE}{AES\_BLOCKSIZE}}
@@ -529,17 +507,12 @@ Context initializer for SHA-\/256. Initializes the given context with the starti
 \begin{DoxyParams}{Parameters}
 {\em ctx} & Pointer to a SHA-\/256 context. \\
 \hline
-{\em mbuffer} & Pointer to a temporary memory buffer. \\
-\hline
 \end{DoxyParams}
-\begin{DoxyNote}{Note}
-{\bfseries{mbuffer}} must be at least {\bfseries{SHA256\+\_\+\+MBUFFER\+\_\+\+LEN}} bytes large. 
-\end{DoxyNote}
-\mbox{\Hypertarget{hashlib_8h_aeed1dabf7c19464f01c87dcb25a77636}\label{hashlib_8h_aeed1dabf7c19464f01c87dcb25a77636}} 
+\mbox{\Hypertarget{hashlib_8h_ae23d818e30210064557610249880d4fe}\label{hashlib_8h_ae23d818e30210064557610249880d4fe}} 
 \index{hashlib.h@{hashlib.h}!hashlib\_Sha256Update@{hashlib\_Sha256Update}}
 \index{hashlib\_Sha256Update@{hashlib\_Sha256Update}!hashlib.h@{hashlib.h}}
 \doxysubsubsection{\texorpdfstring{hashlib\_Sha256Update()}{hashlib\_Sha256Update()}}
-{\footnotesize\ttfamily void hashlib\+\_\+\+Sha256\+Update (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{hashlib_8h_a53df9e7d871973d59c7b58a6c3963c5d}{sha256\+\_\+ctx}} $\ast$}]{ctx,  }\item[{const uint8\+\_\+t $\ast$}]{buf,  }\item[{uint32\+\_\+t}]{len }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void hashlib\+\_\+\+Sha256\+Update (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{hashlib_8h_a53df9e7d871973d59c7b58a6c3963c5d}{sha256\+\_\+ctx}} $\ast$}]{ctx,  }\item[{const uint8\+\_\+t $\ast$}]{data,  }\item[{uint32\+\_\+t}]{len }\end{DoxyParamCaption})}
 
 
 
@@ -549,9 +522,9 @@ Updates the SHA-\/256 context for the given data.
 \begin{DoxyParams}{Parameters}
 {\em ctx} & Pointer to a SHA-\/256 context. \\
 \hline
-{\em buf} & Pointer to data to hash. \\
+{\em data} & Pointer to data to hash. \\
 \hline
-{\em len} & Number of bytes at {\bfseries{buf}} to hash. \\
+{\em len} & Number of bytes at {\bfseries{data}} to hash. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyWarning}{Warning}
@@ -602,6 +575,87 @@ Computes SHA-\/256 of the data with a counter appended to generate a hash of arb
 \end{DoxyParams}
 \begin{DoxyNote}{Note}
 {\bfseries{outbuf}} must be at least {\bfseries{outlen}} bytes large. 
+\end{DoxyNote}
+\mbox{\Hypertarget{hashlib_8h_ad324e9742251c041b88fc63cbf3da0d1}\label{hashlib_8h_ad324e9742251c041b88fc63cbf3da0d1}} 
+\index{hashlib.h@{hashlib.h}!hashlib\_HMACSha256Init@{hashlib\_HMACSha256Init}}
+\index{hashlib\_HMACSha256Init@{hashlib\_HMACSha256Init}!hashlib.h@{hashlib.h}}
+\doxysubsubsection{\texorpdfstring{hashlib\_HMACSha256Init()}{hashlib\_HMACSha256Init()}}
+{\footnotesize\ttfamily void hashlib\+\_\+\+HMACSha256\+Init (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{hashlib_8h_a8d813300476744f01319600478572f62}{hmac\+\_\+ctx}} $\ast$}]{ctx,  }\item[{const uint8\+\_\+t $\ast$}]{key,  }\item[{size\+\_\+t}]{keylen }\end{DoxyParamCaption})}
+
+
+
+Context Initializer for SHA-\/256 HMAC. 
+
+Initializes the given context with the starting state for SHA-\/256 HMAC.
+
+
+\begin{DoxyParams}{Parameters}
+{\em ctx} & Pointer to a SHA-\/256 HMAC context. \\
+\hline
+{\em key} & Pointer to an authentication key used to initialize the base SHA-\/256 context. \\
+\hline
+{\em keylen} & Length of {\bfseries{key}}, in bytes. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{hashlib_8h_ac83153f41599220b003aa8548ecb82bd}\label{hashlib_8h_ac83153f41599220b003aa8548ecb82bd}} 
+\index{hashlib.h@{hashlib.h}!hashlib\_HMACSha256Update@{hashlib\_HMACSha256Update}}
+\index{hashlib\_HMACSha256Update@{hashlib\_HMACSha256Update}!hashlib.h@{hashlib.h}}
+\doxysubsubsection{\texorpdfstring{hashlib\_HMACSha256Update()}{hashlib\_HMACSha256Update()}}
+{\footnotesize\ttfamily void hashlib\+\_\+\+HMACSha256\+Update (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{hashlib_8h_a8d813300476744f01319600478572f62}{hmac\+\_\+ctx}} $\ast$}]{ctx,  }\item[{const uint8\+\_\+t $\ast$}]{data,  }\item[{size\+\_\+t}]{len }\end{DoxyParamCaption})}
+
+
+
+Updates the SHA-\/256 HMAC context for the given data. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ctx} & Pointer to a SHA-\/256 HMAC context. \\
+\hline
+{\em data} & Pointer to data to hash. \\
+\hline
+{\em len} & Number of bytes at {\bfseries{data}} to hash. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyWarning}{Warning}
+You must call \mbox{\hyperlink{hashlib_8h_ad324e9742251c041b88fc63cbf3da0d1}{hashlib\+\_\+\+HMACSha256\+Init()}} first or your hash state will be invalid. 
+\end{DoxyWarning}
+\mbox{\Hypertarget{hashlib_8h_a531a7fd701143706ea48163367d04d68}\label{hashlib_8h_a531a7fd701143706ea48163367d04d68}} 
+\index{hashlib.h@{hashlib.h}!hashlib\_HMACSha256Final@{hashlib\_HMACSha256Final}}
+\index{hashlib\_HMACSha256Final@{hashlib\_HMACSha256Final}!hashlib.h@{hashlib.h}}
+\doxysubsubsection{\texorpdfstring{hashlib\_HMACSha256Final()}{hashlib\_HMACSha256Final()}}
+{\footnotesize\ttfamily void hashlib\+\_\+\+HMACSha256\+Final (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{hashlib_8h_a8d813300476744f01319600478572f62}{hmac\+\_\+ctx}} $\ast$}]{ctx,  }\item[{uint8\+\_\+t $\ast$}]{output }\end{DoxyParamCaption})}
+
+
+
+Finalize Context and Render Digest for SHA-\/256 HMAC. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ctx} & Pointer to a SHA-\/256 HMAC context. \\
+\hline
+{\em digest} & Pointer to a buffer to write the hash to. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+{\bfseries{digest}} must be at least 32 bytes large. 
+\end{DoxyNote}
+\mbox{\Hypertarget{hashlib_8h_a5e0e235ac96b3f4c4a8e6d037efc053f}\label{hashlib_8h_a5e0e235ac96b3f4c4a8e6d037efc053f}} 
+\index{hashlib.h@{hashlib.h}!hashlib\_HMACSha256Reset@{hashlib\_HMACSha256Reset}}
+\index{hashlib\_HMACSha256Reset@{hashlib\_HMACSha256Reset}!hashlib.h@{hashlib.h}}
+\doxysubsubsection{\texorpdfstring{hashlib\_HMACSha256Reset()}{hashlib\_HMACSha256Reset()}}
+{\footnotesize\ttfamily void hashlib\+\_\+\+HMACSha256\+Reset (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{hashlib_8h_a8d813300476744f01319600478572f62}{hmac\+\_\+ctx}} $\ast$}]{ctx }\end{DoxyParamCaption})}
+
+
+
+Resets the SHA-\/256 HMAC context to its state after a call to \mbox{\hyperlink{hashlib_8h_ad324e9742251c041b88fc63cbf3da0d1}{hashlib\+\_\+\+HMACSha256\+Init()}} 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ctx} & Pointer to a SHA-\/256 HMAC context. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+Calls the SHA-\/256 Init function, then Updates() the context with the ipad. 
 \end{DoxyNote}
 \mbox{\Hypertarget{hashlib_8h_aab1072341b442847719cda42efddbcf2}\label{hashlib_8h_aab1072341b442847719cda42efddbcf2}} 
 \index{hashlib.h@{hashlib.h}!hashlib\_PBKDF2@{hashlib\_PBKDF2}}

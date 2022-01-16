@@ -39,7 +39,18 @@
 #define hashlib_FastMemBufferUnsafe		((void*)0xE30800)
 
 
-// Secure Psuedorandom Number Generator
+/*
+Secure Psuedorandom Number Generator (SPRNG)
+
+A secure PRNG is an random number generator that produces strings of random bytes
+such that, given the prior output of the PRNG (bits 0=>i), the next bit (i+1) of
+the output cannot be predicted by a polynomial time statistical test with a probability
+non-negligibly greater than 50%.
+In simpler terms, it produces unpredictable, "entropic" output.
+When generating values for anything in this library that requires a key or a
+salt/iv or other random value, USE THIS SPRNG. Do not use the toolchain's random
+functions for cryptography. They are deterministic (predictable) algorithms.
+*/
 /****************************************************************************************************************************
  * @brief Initializes the SPRNG.
  *
@@ -73,7 +84,18 @@ uint32_t hashlib_SPRNGRandom(void);
 bool hashlib_RandomBytes(uint8_t *buffer, size_t size);
  
  
-// SHA-256 Cryptographic Hash
+/*
+ SHA-256 Cryptographic Hash
+ 
+ A cryptographic hash is used to validate that data is unchanged between two endpoints.
+ It is similar to a checksum, but checksums can be easily fooled; cryptographic hashes
+ are a lot harder to fool due to how they distribute the bits in a data stream.
+ The general use of a hash is as follows: the party sending a message hashes it and
+ includes that hash as part of the message. The recipient hashes the message (except the hash)
+ themselves and then compares that hash to the one included in the message. If the hashes match,
+ the message is complete and unaltered. If the hashes do not match, the message is incomplete
+ or has been tampered with.
+*/
 /*******************************************************************************************************************
  * @typedef sha256_ctx
  * Defines hash-state data for an instance of SHA-256.
@@ -85,16 +107,6 @@ typedef struct _sha256_ctx {
 	uint8_t bitlen[8];		/**< holds the current length of transformed data */
 	uint32_t state[8];		/**< holds hash state for transformed data */
 } sha256_ctx;
-
-/**************************************************************************************
- * @def SHA256_MBUFFER_LEN
- * Temporary SHA-256 memory buffer.
- * A buffer of this length, in uint32_ts, must be passed to hashlib_Sha256Init().
- * @code
- * uint32_t mbuffer[SHA256_MBUFFER_LEN];
- * @endcode
- **************************************************************************************/
- #define SHA256_MBUFFER_LEN		(64)
  
  /******************************************************
   * @def SHA256_DIGEST_LEN
@@ -106,25 +118,23 @@ typedef struct _sha256_ctx {
   * @def SHA256_HEXSTR_LEN
   * Length of a string containing the SHA-256 hash.
   **********************************************************/
-#define SHA256_HEXSTR_LEN		(SHA256_DIGEST_LEN<<1) + 1
+#define SHA256_HEXDIGEST_LEN		(SHA256_DIGEST_LEN<<1) + 1
 
 /**************************************************************************************************
  *	@brief Context initializer for SHA-256.
  *	Initializes the given context with the starting state for SHA-256.
  *	@param ctx Pointer to a SHA-256 context.
- *	@param mbuffer Pointer to a temporary memory buffer.
- *	@note @b mbuffer must be at least @b SHA256_MBUFFER_LEN bytes large.
  **************************************************************************************************/
 void hashlib_Sha256Init(sha256_ctx *ctx);
 
 /******************************************************************************************************
  *	@brief Updates the SHA-256 context for the given data.
  *	@param ctx Pointer to a SHA-256 context.
- *	@param buf Pointer to data to hash.
- *	@param len Number of bytes at @b buf to hash.
+ *	@param data Pointer to data to hash.
+ *	@param len Number of bytes at @b data to hash.
  *	@warning You must call hashlib_Sha256Init() first or your hash state will be invalid.
  ******************************************************************************************************/
-void hashlib_Sha256Update(sha256_ctx *ctx, const uint8_t *buf, uint32_t len);
+void hashlib_Sha256Update(sha256_ctx *ctx, const uint8_t *data, uint32_t len);
 
 /**************************************************************************
  *	@brief Finalize Context and Render Digest for SHA-256
@@ -148,23 +158,59 @@ void hashlib_Sha256Final(sha256_ctx *ctx, uint8_t *digest);
 void hashlib_MGF1Hash(uint8_t* data, size_t datalen, uint8_t* outbuf, size_t outlen);
 
 
-// SHA-256 HMAC Cryptographic Hash
-// (Hash-Based Message Authentication Code)
+/*
+SHA-256 HMAC Cryptographic Hash
+(Hash-Based Message Authentication Code)
+
+HMAC generates a more secure hash by using a key known only to authorized
+parties as part of the hash initialization. Thus, while normal SHA-256 can be
+verified by anyone, only the parties with the key can validate using a HMAC hash.
+*/
 /*******************************************************************************************************************
  * @typedef hmac_ctx
  * Defines hash-state data for an instance of SHA-256-HMAC.
  * @note If you are hashing multiple data streams concurrently, allocate a seperate context for each.
  ********************************************************************************************************************/
 typedef struct _hmac_ctx {
-    uint8_t ipad[64];
-    uint8_t opad[64];
-    sha256_ctx ctx;
+    uint8_t ipad[64];       /**< holds the key xored with a magic value to be hashed with the inner digest */
+    uint8_t opad[64];       /**< holds the key xored with a magic value to be hashed with the outer digest */
+    sha256_ctx ctx;         /**< holds the SHA-256 context used by the HMAC function */
 } hmac_ctx;
 
-void hashlib_HMACSha256Init(hmac_ctx* hmac, const uint8_t* key, size_t keylen);
-void hashlib_HMACSha256Update(hmac_ctx* hmac, const uint8_t* msg, size_t len);
-void hashlib_HMACSha256Final(hmac_ctx* hmac, uint8_t* output);
-void hashlib_HMACSha256Reset(hmac_ctx* hmac);
+/**********************************************************************************************************************
+ *	@brief Context Initializer for SHA-256 HMAC
+ *
+ *	Initializes the given context with the starting state for SHA-256 HMAC.
+ *
+ *	@param ctx Pointer to a SHA-256 HMAC context.
+ *	@param key Pointer to an authentication key used to initialize the base SHA-256 context.
+ *	@param keylen Length of @b key, in bytes.
+ **********************************************************************************************************************/
+void hashlib_HMACSha256Init(hmac_ctx* ctx, const uint8_t* key, size_t keylen);
+
+/*************************************************************************************************************
+ *	@brief Updates the SHA-256 HMAC context for the given data.
+ *	@param ctx Pointer to a SHA-256 HMAC context.
+ *	@param data Pointer to data to hash.
+ *	@param len Number of bytes at @b data to hash.
+ *	@warning You must call hashlib_HMACSha256Init() first or your hash state will be invalid.
+ **************************************************************************************************************/
+void hashlib_HMACSha256Update(hmac_ctx* ctx, const uint8_t* data, size_t len);
+
+/***********************************************************************************
+ *	@brief Finalize Context and Render Digest for SHA-256 HMAC
+ *	@param ctx Pointer to a SHA-256 HMAC context.
+ *	@param digest Pointer to a buffer to write the hash to.
+ *	@note @b digest must be at least 32 bytes large.
+ ***************************************************************************/
+void hashlib_HMACSha256Final(hmac_ctx* ctx, uint8_t* output);
+
+/*************************************************************************************************************************
+ *	@brief Resets the SHA-256 HMAC context to its state after a call to hashlib_HMACSha256Init()
+ *	@param ctx Pointer to a SHA-256 HMAC context.
+ *	@note Calls the SHA-256 Init function, then Updates() the context with the ipad.
+ *************************************************************************************************************************/
+void hashlib_HMACSha256Reset(hmac_ctx* ctx);
 
 /*********************************************************************************************************************************
  * @brief Password-Based Key Derivation Function (via SHA-256 HMAC)
@@ -192,7 +238,18 @@ bool hashlib_PBKDF2(
     size_t keylen);
 
 
-// Advanced Encryption Standard (AES)
+/*
+ Advanced Encryption Standard (AES)
+ 
+ AES is a form of symmetric encryption, and also is a form of block cipher.
+ Symmetric encryption means that the same key works in both directions.
+ A block cipher is an encryption algorithm that operates on data in segments (for AES, 16 bytes),
+ moving through it one segment at a time.
+ 
+ Symmetric encryption is usually fast, and is generally more secure for smaller key sizes.
+ AES is one of the most secure encryption systems in use today.
+ The most secure version of the algorithm is AES-256 (uses a 256-bit key).
+*/
 /***************************************************************************************************
  * @typedef aes_ctx
  * Stores AES key instance data: key size and round keys generated from an AES key.
@@ -397,7 +454,29 @@ aes_error_t hashlib_AESDecrypt(
     uint8_t paddingmode);
     
 
-// RSA Public Key Encryption
+/*
+ RSA Public Key Encryption
+ 
+ Public key encryption is a form of asymmetric encryption.
+ This means that a key only works in one direction, and both parties need a public key
+ and a private key. The private key is used to decrypt a message and the public key is
+ used to encrypt.
+ In RSA, the public and private keys are modular inverses of each other, such that:
+ encrypted = message ** public exponent % public key, and
+ message = encrypted ** private exponent % private modulus
+ ** means power, % means modulus
+ 
+ 65537 (and a few other Fermat primes) are commonly used as public exponents.
+ The public key (modulus) is sent in the clear and is known to to everyone.
+ The cryptographic strength of RSA comes from the difficulty of factoring the modulus.
+ Asymmetric encryption is generally VERY slow. Using even RSA-1024 on the TI-84+ CE will
+ take several seconds. For this reason, you usually do not use RSA for sustained encrypted
+ communication. Use RSA to share a symmetric key, and then use AES for future messages.
+ 
+ RSA is also involved in SSL signature verification for some certificates that still use
+ that signing algorithm (RSA w/ Sha-256). Most sigs use ECDSA nowadays though, so if you
+ want a certificate that is compatible with this library, specify RSA with SHA-256 when creating it.
+ */
 /*************************************************************************************************
  * @enum ssl_sig_modes
  * SSL signature algorithms

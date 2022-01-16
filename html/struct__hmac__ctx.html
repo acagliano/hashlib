@@ -73,16 +73,59 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:a010b68ec772d854d51d66a8a8e321571"><td class="memItemLeft" align="right" valign="top"><a id="a010b68ec772d854d51d66a8a8e321571"></a>
-uint8_t&#160;</td><td class="memItemRight" valign="bottom"><b>ipad</b> [64]</td></tr>
+<tr class="memitem:a010b68ec772d854d51d66a8a8e321571"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct__hmac__ctx.html#a010b68ec772d854d51d66a8a8e321571">ipad</a> [64]</td></tr>
 <tr class="separator:a010b68ec772d854d51d66a8a8e321571"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3ee88b93200effd0e21446bd3016a5c2"><td class="memItemLeft" align="right" valign="top"><a id="a3ee88b93200effd0e21446bd3016a5c2"></a>
-uint8_t&#160;</td><td class="memItemRight" valign="bottom"><b>opad</b> [64]</td></tr>
+<tr class="memitem:a3ee88b93200effd0e21446bd3016a5c2"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct__hmac__ctx.html#a3ee88b93200effd0e21446bd3016a5c2">opad</a> [64]</td></tr>
 <tr class="separator:a3ee88b93200effd0e21446bd3016a5c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a533d9a8a79af889cf667cfa5f2536caf"><td class="memItemLeft" align="right" valign="top"><a id="a533d9a8a79af889cf667cfa5f2536caf"></a>
-<a class="el" href="hashlib_8h.html#a53df9e7d871973d59c7b58a6c3963c5d">sha256_ctx</a>&#160;</td><td class="memItemRight" valign="bottom"><b>ctx</b></td></tr>
+<tr class="memitem:a533d9a8a79af889cf667cfa5f2536caf"><td class="memItemLeft" align="right" valign="top"><a class="el" href="hashlib_8h.html#a53df9e7d871973d59c7b58a6c3963c5d">sha256_ctx</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct__hmac__ctx.html#a533d9a8a79af889cf667cfa5f2536caf">ctx</a></td></tr>
 <tr class="separator:a533d9a8a79af889cf667cfa5f2536caf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a id="a010b68ec772d854d51d66a8a8e321571"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a010b68ec772d854d51d66a8a8e321571">&#9670;&nbsp;</a></span>ipad</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t _hmac_ctx::ipad[64]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>holds the key xored with a magic value to be hashed with the inner digest </p>
+
+</div>
+</div>
+<a id="a3ee88b93200effd0e21446bd3016a5c2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3ee88b93200effd0e21446bd3016a5c2">&#9670;&nbsp;</a></span>opad</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t _hmac_ctx::opad[64]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>holds the key xored with a magic value to be hashed with the outer digest </p>
+
+</div>
+</div>
+<a id="a533d9a8a79af889cf667cfa5f2536caf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a533d9a8a79af889cf667cfa5f2536caf">&#9670;&nbsp;</a></span>ctx</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="hashlib_8h.html#a53df9e7d871973d59c7b58a6c3963c5d">sha256_ctx</a> _hmac_ctx::ctx</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>holds the SHA-256 context used by the HMAC function </p>
+
+</div>
+</div>
 <hr/>The documentation for this struct was generated from the following file:<ul>
 <li><a class="el" href="hashlib_8h_source.html">hashlib.h</a></li>
 </ul>

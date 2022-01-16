@@ -3,16 +3,34 @@
 \doxysubsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{struct__hmac__ctx_a010b68ec772d854d51d66a8a8e321571}\label{struct__hmac__ctx_a010b68ec772d854d51d66a8a8e321571}} 
-uint8\+\_\+t {\bfseries ipad} \mbox{[}64\mbox{]}
+uint8\+\_\+t \mbox{\hyperlink{struct__hmac__ctx_a010b68ec772d854d51d66a8a8e321571}{ipad}} \mbox{[}64\mbox{]}
 \item 
-\mbox{\Hypertarget{struct__hmac__ctx_a3ee88b93200effd0e21446bd3016a5c2}\label{struct__hmac__ctx_a3ee88b93200effd0e21446bd3016a5c2}} 
-uint8\+\_\+t {\bfseries opad} \mbox{[}64\mbox{]}
+uint8\+\_\+t \mbox{\hyperlink{struct__hmac__ctx_a3ee88b93200effd0e21446bd3016a5c2}{opad}} \mbox{[}64\mbox{]}
 \item 
-\mbox{\Hypertarget{struct__hmac__ctx_a533d9a8a79af889cf667cfa5f2536caf}\label{struct__hmac__ctx_a533d9a8a79af889cf667cfa5f2536caf}} 
-\mbox{\hyperlink{hashlib_8h_a53df9e7d871973d59c7b58a6c3963c5d}{sha256\+\_\+ctx}} {\bfseries ctx}
+\mbox{\hyperlink{hashlib_8h_a53df9e7d871973d59c7b58a6c3963c5d}{sha256\+\_\+ctx}} \mbox{\hyperlink{struct__hmac__ctx_a533d9a8a79af889cf667cfa5f2536caf}{ctx}}
 \end{DoxyCompactItemize}
 
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{struct__hmac__ctx_a010b68ec772d854d51d66a8a8e321571}\label{struct__hmac__ctx_a010b68ec772d854d51d66a8a8e321571}} 
+\index{\_hmac\_ctx@{\_hmac\_ctx}!ipad@{ipad}}
+\index{ipad@{ipad}!\_hmac\_ctx@{\_hmac\_ctx}}
+\doxysubsubsection{\texorpdfstring{ipad}{ipad}}
+{\footnotesize\ttfamily uint8\+\_\+t \+\_\+hmac\+\_\+ctx\+::ipad\mbox{[}64\mbox{]}}
+
+holds the key xored with a magic value to be hashed with the inner digest \mbox{\Hypertarget{struct__hmac__ctx_a3ee88b93200effd0e21446bd3016a5c2}\label{struct__hmac__ctx_a3ee88b93200effd0e21446bd3016a5c2}} 
+\index{\_hmac\_ctx@{\_hmac\_ctx}!opad@{opad}}
+\index{opad@{opad}!\_hmac\_ctx@{\_hmac\_ctx}}
+\doxysubsubsection{\texorpdfstring{opad}{opad}}
+{\footnotesize\ttfamily uint8\+\_\+t \+\_\+hmac\+\_\+ctx\+::opad\mbox{[}64\mbox{]}}
+
+holds the key xored with a magic value to be hashed with the outer digest \mbox{\Hypertarget{struct__hmac__ctx_a533d9a8a79af889cf667cfa5f2536caf}\label{struct__hmac__ctx_a533d9a8a79af889cf667cfa5f2536caf}} 
+\index{\_hmac\_ctx@{\_hmac\_ctx}!ctx@{ctx}}
+\index{ctx@{ctx}!\_hmac\_ctx@{\_hmac\_ctx}}
+\doxysubsubsection{\texorpdfstring{ctx}{ctx}}
+{\footnotesize\ttfamily \mbox{\hyperlink{hashlib_8h_a53df9e7d871973d59c7b58a6c3963c5d}{sha256\+\_\+ctx}} \+\_\+hmac\+\_\+ctx\+::ctx}
+
+holds the SHA-\/256 context used by the HMAC function 
 
 The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 
