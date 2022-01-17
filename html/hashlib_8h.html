@@ -168,9 +168,9 @@ Enumerations</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a179d02d08f13b8a2ec239ae3f6fc81de"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#a179d02d08f13b8a2ec239ae3f6fc81de">hashlib_SPRNGInit</a> (void)</td></tr>
-<tr class="memdesc:a179d02d08f13b8a2ec239ae3f6fc81de"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes the SPRNG.  <a href="hashlib_8h.html#a179d02d08f13b8a2ec239ae3f6fc81de">More...</a><br /></td></tr>
-<tr class="separator:a179d02d08f13b8a2ec239ae3f6fc81de"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9e1bc8499482660a4163b5f025023493"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#a9e1bc8499482660a4163b5f025023493">hashlib_SPRNGInit</a> (void)</td></tr>
+<tr class="memdesc:a9e1bc8499482660a4163b5f025023493"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes the SPRNG.  <a href="hashlib_8h.html#a9e1bc8499482660a4163b5f025023493">More...</a><br /></td></tr>
+<tr class="separator:a9e1bc8499482660a4163b5f025023493"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad4e253aa114047e5a49af2fd49781559"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#ad4e253aa114047e5a49af2fd49781559">hashlib_SPRNGRandom</a> (void)</td></tr>
 <tr class="memdesc:ad4e253aa114047e5a49af2fd49781559"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generates a random 32-bit number.  <a href="hashlib_8h.html#ad4e253aa114047e5a49af2fd49781559">More...</a><br /></td></tr>
 <tr class="separator:ad4e253aa114047e5a49af2fd49781559"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -699,14 +699,14 @@ If the SPRNG is run, anything you have stored here will be destroyed. </dd></dl>
 </div>
 </div>
 <h2 class="groupheader">Function Documentation</h2>
-<a id="a179d02d08f13b8a2ec239ae3f6fc81de"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a179d02d08f13b8a2ec239ae3f6fc81de">&#9670;&nbsp;</a></span>hashlib_SPRNGInit()</h2>
+<a id="a9e1bc8499482660a4163b5f025023493"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9e1bc8499482660a4163b5f025023493">&#9670;&nbsp;</a></span>hashlib_SPRNGInit()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void* hashlib_SPRNGInit </td>
+          <td class="memname">void hashlib_SPRNGInit </td>
           <td>(</td>
           <td class="paramtype">void&#160;</td>
           <td class="paramname"></td><td>)</td>
@@ -716,7 +716,7 @@ If the SPRNG is run, anything you have stored here will be destroyed. </dd></dl>
 </div><div class="memdoc">
 
 <p>Initializes the SPRNG. </p>
-<p>The SPRNG is initialized by polling the 512-bytes from address 0xD65800 to 0xD66000. This region consists of unmapped memory that contains bus noise. Each bit in that region is polled 1024 times and the address with the bit that is the least biased is selected. That will be the byte the SPRNG uses to generate entropy. </p><dl class="section return"><dt>Returns</dt><dd>The unmapped address selected for use generating entropy </dd></dl>
+<p>The SPRNG is initialized by polling the 512-bytes from address 0xD65800 to 0xD66000. This region consists of unmapped memory that contains bus noise. Each bit in that region is polled 1024 times and the address with the bit that is the least biased is selected. That will be the byte the SPRNG uses to generate entropy. </p>
 
 </div>
 </div>
@@ -738,7 +738,7 @@ If the SPRNG is run, anything you have stored here will be destroyed. </dd></dl>
 
 <p>Generates a random 32-bit number. </p>
 <ul>
-<li>Calls <a class="el" href="hashlib_8h.html#a179d02d08f13b8a2ec239ae3f6fc81de" title="Initializes the SPRNG.">hashlib_SPRNGInit()</a> if it hasn't already been done.</li>
+<li>Calls <a class="el" href="hashlib_8h.html#a9e1bc8499482660a4163b5f025023493" title="Initializes the SPRNG.">hashlib_SPRNGInit()</a> if it hasn't already been done.</li>
 <li>Populates a 119-byte entropy pool by xor'ing 7 distinct reads from the unmapped address together per byte.</li>
 <li>Hashes the entropy pool using SHA-256.</li>
 <li>Breaks the SHA-256 hash into 8-byte blocks, then xor's all 8 bytes each block together, leaving four (4) composite bytes.</li>

@@ -140,34 +140,24 @@ hashlib_SPRNGInit:
 ; bc = bytes to check
 ; outputs: hl = address
     push ix
-    ld ix, 0
-    ld de, _max_deviation
-    ld hl, $D65800
-    ld bc, 513
+        ld ix, 0
+        ld de, _max_deviation
+        ld hl, $D65800
+        ld bc, 513
 .test_range_loop:
-    push bc
-    push hl
-    call _test_byte
-    pop hl
-    pop bc
-    inc hl
-    dec bc
-    ld a,c
-    or a,b
-    jq nz,.test_range_loop
-    push ix
-    pop hl
-    ld (_sprng_read_addr), hl
-	push hl
-    ld hl,$E30800 ;zero 192 bytes at $E30800
-    ld (hl),l
-    push hl
-    pop de
-    inc de
-    ld bc,192
-    ldir
-    ;call hashlib_SPRNGAddEntropy
-    pop hl
+        push bc
+            push hl
+                call _test_byte
+            pop hl
+        pop bc
+        inc hl
+        dec bc
+        ld a,c
+        or a,b
+        jq nz,.test_range_loop
+        push ix
+        pop hl
+        ld (_sprng_read_addr), hl
     pop ix
     ret
 
@@ -273,19 +263,20 @@ hashlib_SPRNGAddEntropy:
     
  
 hashlib_SPRNGRandom:
-	ld e,5+1
-	scf
-.init:
-	dec e
-	ret z
-	push de
-	call nc, hashlib_SPRNGInit
-	pop de
-	ld hl, (_sprng_read_addr)
+
+    ; if _sprng_read_addr == 0, initialize
+    ld hl, (_sprng_read_addr)
 	add hl,de
 	or a,a
-	sbc hl,de
-	jq z,.init
+	sbc hl, de
+	call z, hashlib_SPRNGInit
+    
+    ; hashlib_SPRNGInit returns the address selected in hl or 0
+    ; if _sprng_read_addr == 0, quit
+    add hl, de
+    or a, a
+    sbc hl, de
+    ret z
 	
 .have_addr:
 ; set rand to 0
@@ -328,8 +319,13 @@ hashlib_SPRNGRandom:
 	dec c
 	jq nz,.outer
 	
-; add entropy
-	call hashlib_SPRNGAddEntropy
+; destroy sprng state
+    ld hl, _sprng_entropy_pool
+    ld (hl), 0
+    ld de, _sprng_entropy_pool + 1
+    ld bc, _sprng_rand - _sprng_entropy_pool - 1
+    ldir
+    
 	ld hl, (_sprng_rand)
 	ld a, (_sprng_rand+3)
 	ld e, a
@@ -8039,15 +8035,17 @@ hashlib_DigestToHexStr:
 	ret
  
  _hexc:     db	"0123456789ABCDEF"
- 
-_sprng_read_addr:		rb 3
-_sprng_entropy_pool		:=	$E30800
-_sprng_rand				:=	_sprng_entropy_pool + 119
-_sprng_sha_digest		:=	_sprng_rand + 4
-_sprng_sha_mbuffer		:=	_sprng_sha_digest + 32
-_sprng_sha_ctx			:=	_sprng_sha_mbuffer + (64*4)
-_sha256_m_buffer        :=  _sprng_sha_mbuffer
 
+_sprng_read_addr:        rb 3
+_sprng_entropy_pool.size = 119
+virtual at $E30800
+    _sprng_entropy_pool     rb _sprng_entropy_pool.size
+    _sprng_sha_digest       rb 32
+    _sprng_sha_mbuffer      rb (64*4)
+    _sprng_sha_ctx          rb _sha256ctx_size
+    _sprng_rand             rb 4
+end virtual
+_sha256_m_buffer    :=  _sprng_sha_mbuffer
 
 
 

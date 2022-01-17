@@ -42,14 +42,40 @@
 /*
 Secure Psuedorandom Number Generator (SPRNG)
 
-A secure PRNG is an random number generator that produces strings of random bytes
-such that, given the prior output of the PRNG (bits 0=>i), the next bit (i+1) of
-the output cannot be predicted by a polynomial time statistical test with a probability
-non-negligibly greater than 50%.
-In simpler terms, it produces unpredictable, "entropic" output.
-When generating values for anything in this library that requires a key or a
-salt/iv or other random value, USE THIS SPRNG. Do not use the toolchain's random
-functions for cryptography. They are deterministic (predictable) algorithms.
+Many of the psuedorandom number generators (PRNGs) you find in computers and
+even the one within the C toolchain for the CE are insecure for cryptographic
+purposes. They produce statistical randomness, but the state is generally seeded
+using a value such as rtc_Time(). If an adversary reconstructs the seed, every
+output of the PRNG becomes computable with little effort. These types of PRNGs
+are called deterministic algorithms--given the input, the output is predictable.
+These PRNGs work for games and other applications where the illusion of randomness
+is sufficient, but they are not safe for cryptography.
+
+A secure PRNG is an random number generator that is not only statistically random, but
+also passes the next-bit and state compromise tests. The _next-bit test_ is defined like so:
+given the prior output of the PRNG (bits 0=>i), the next bit (i+1) of the output cannot be
+predicted by a polynomial time statistical test with a probability non-negligibly greater than 50%.
+In simpler terms, a secure PRNG must be unpredictable, or "entropic".
+The _state compromise test_ means that an adversary gaining knowledge of the initial state of
+the PRNG does not give them any information about its output.
+
+The PRNG previded by HASHLIB solves both tests like so:
+(next-bit)
+    <>  The PRNG's output is derived from a 119-byte entropy pool created by reading
+        data from the most entropic byte located within floating memory on the device.
+    <>  The "entropic byte" is a byte containing a bit that that, out of 1024 test reads,
+        has the closest to a 50/50 split between 1's and 0's.
+    <>  The byte containing that bit is read in xor mode seven times per byte to offset
+        any hardware-based correlation between subsequent reads from the entropic byte.
+    <>  The entropy pool is then run through a cryptographic hash to spread that entropy
+        evenly through the returned random value.
+    <>  The PRNG produces 96.51 bits of entropy per 32 bit number returned.
+(state compromise)
+    <>  The entropy pool is discarded after it is used once, and a new pool is
+        generated for the next random number.
+    <>  ^ This means that the prior state has no bearing on the next output of the PRNG.
+    <>  The PRNG destroys its own state after the random number is generated so that
+        the state used to generate it does not persist in memory.
 */
 /****************************************************************************************************************************
  * @brief Initializes the SPRNG.
@@ -58,9 +84,8 @@ functions for cryptography. They are deterministic (predictable) algorithms.
  * This region consists of unmapped memory that contains bus noise.
  * Each bit in that region is polled 1024 times and the address with the bit that is the least biased is selected.
  * That will be the byte the SPRNG uses to generate entropy.
- * @return The unmapped address selected for use generating entropy
  ***************************************************************************************************************************/
-void* hashlib_SPRNGInit(void);
+void hashlib_SPRNGInit(void);
 
 /***************************************************************************************************************************
  * @brief Generates a random 32-bit number.
@@ -125,7 +150,7 @@ typedef struct _sha256_ctx {
  *	Initializes the given context with the starting state for SHA-256.
  *	@param ctx Pointer to a SHA-256 context.
  **************************************************************************************************/
-void hashlib_Sha256Init(sha256_ctx *ctx);
+void hashlib_Sha256Init(sha256_ctx* ctx);
 
 /******************************************************************************************************
  *	@brief Updates the SHA-256 context for the given data.
@@ -134,7 +159,7 @@ void hashlib_Sha256Init(sha256_ctx *ctx);
  *	@param len Number of bytes at @b data to hash.
  *	@warning You must call hashlib_Sha256Init() first or your hash state will be invalid.
  ******************************************************************************************************/
-void hashlib_Sha256Update(sha256_ctx *ctx, const void* data, size_t len);
+void hashlib_Sha256Update(sha256_ctx* ctx, const void* data, size_t len);
 
 /**************************************************************************
  *	@brief Finalize Context and Render Digest for SHA-256
@@ -142,7 +167,7 @@ void hashlib_Sha256Update(sha256_ctx *ctx, const void* data, size_t len);
  *	@param digest Pointer to a buffer to write the hash to.
  *	@note @b digest must be at least 32 bytes large.
  ***************************************************************************/
-void hashlib_Sha256Final(sha256_ctx *ctx, void* digest);
+void hashlib_Sha256Final(sha256_ctx* ctx, void* digest);
 
 /**********************************************************************************************************************
  *	@brief Arbitrary Length Hashing Function
