@@ -225,6 +225,9 @@ Functions</h2></td></tr>
 <tr class="memitem:ada9751a5d91dc4cfcdb90de0518a79f6"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#ada9751a5d91dc4cfcdb90de0518a79f6">hashlib_SSLVerifySignature</a> (const void *ca_pubkey, size_t keysize, const void *cert, size_t certlen, uint8_t sig_alg)</td></tr>
 <tr class="memdesc:ada9751a5d91dc4cfcdb90de0518a79f6"><td class="mdescLeft">&#160;</td><td class="mdescRight">SSL Certificate Signature Verification.  <a href="hashlib_8h.html#ada9751a5d91dc4cfcdb90de0518a79f6">More...</a><br /></td></tr>
 <tr class="separator:ada9751a5d91dc4cfcdb90de0518a79f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abcd45eebced6dc44199f553456dc94f4"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#abcd45eebced6dc44199f553456dc94f4">hashlib_DigestToHexStr</a> (const void *digest, size_t len, uint8_t *hexstr)</td></tr>
+<tr class="memdesc:abcd45eebced6dc44199f553456dc94f4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert a digest to a valid hex string.  <a href="hashlib_8h.html#abcd45eebced6dc44199f553456dc94f4">More...</a><br /></td></tr>
+<tr class="separator:abcd45eebced6dc44199f553456dc94f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a24bf91aef912b8346523f37e16d22377"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#a24bf91aef912b8346523f37e16d22377">hashlib_EraseContext</a> (void *ctx, size_t len)</td></tr>
 <tr class="memdesc:a24bf91aef912b8346523f37e16d22377"><td class="mdescLeft">&#160;</td><td class="mdescRight">Secure erase context.  <a href="hashlib_8h.html#a24bf91aef912b8346523f37e16d22377">More...</a><br /></td></tr>
 <tr class="separator:a24bf91aef912b8346523f37e16d22377"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -1597,6 +1600,50 @@ msg and pubkey are both treated as byte arrays. </dd></dl>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>True if the SSL certificate signature is valid. False is invalid or user error. </dd></dl>
+
+</div>
+</div>
+<a id="abcd45eebced6dc44199f553456dc94f4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abcd45eebced6dc44199f553456dc94f4">&#9670;&nbsp;</a></span>hashlib_DigestToHexStr()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool hashlib_DigestToHexStr </td>
+          <td>(</td>
+          <td class="paramtype">const void *&#160;</td>
+          <td class="paramname"><em>digest</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>len</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t *&#160;</td>
+          <td class="paramname"><em>hexstr</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Convert a digest to a valid hex string. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">digest</td><td>Pointer to a buffer or digest to convert. </td></tr>
+    <tr><td class="paramname">len</td><td>Number of bytes at <b>digest</b> to convert. </td></tr>
+    <tr><td class="paramname">hexstr</td><td>A buffer to write the output hex string to. Must be at least 2 * len + 1 bytes large. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>

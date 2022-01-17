@@ -44,6 +44,7 @@ library "HASHLIB", 8
     export hashlib_HMACSha256Update
     export hashlib_HMACSha256Final
     export hashlib_HMACSha256Reset
+    export hashlib_DigestToHexStr
     
 
 ;------------------------------------------
@@ -1024,7 +1025,7 @@ _sha256_transform:
  ; input de = len to zero
  hashlib_EraseContext:
     pop de,hl,bc
-    push bc
+    push bc,hl
 .eraseloop:
     ld (hl),0
     inc hl
@@ -7949,6 +7950,95 @@ hashlib_PBKDF2:
 	ld	a, e
 	jq	.lbl_12
  
+
+hashlib_DigestToHexStr:
+	ld	hl, -9
+	call	ti._frameset
+	ld	iy, (ix + 6)
+	ld	hl, (ix + 12)
+	ld	(ix + -3), hl
+	lea	hl, iy + 0
+	add	hl, bc
+	or	a, a
+	sbc	hl, bc
+	ld	c, 1
+	ld	b, 0
+	ld	a, c
+	jq	z, .lbl_2
+	ld	a, b
+.lbl_2:
+	ld	de, (ix + 9)
+	ld	hl, (ix + 12)
+	add	hl, bc
+	or	a, a
+	sbc	hl, bc
+	ld	l, c
+	jq	z, .lbl_4
+	ld	l, b
+.lbl_4:
+	or	a, l
+	ld	b, a
+	push	de
+	pop	hl
+	add	hl, bc
+	or	a, a
+	sbc	hl, bc
+	jq	z, .lbl_6
+	ld	c, 0
+.lbl_6:
+	ld	l, 1
+	ld	a, c
+	or	a, b
+	ld	c, a
+	bit	0, c
+	jq	nz, .lbl_11
+	ld	b, 4
+.lbl_8:
+	push	de
+	pop	hl
+	add	hl, bc
+	or	a, a
+	sbc	hl, bc
+	jq	z, .lbl_9
+	ld	a, (iy)
+	call	ti._bshru
+	ld	(ix + -9), de
+	ld	de, 0
+	ld	e, a
+	ld	hl, _hexc
+	add	hl, de
+	ld	a, (hl)
+	ld	(ix + -6), iy
+	ld	iy, (ix + -3)
+	ld	(iy), a
+	ld	hl, (ix + -6)
+	ld	a, (hl)
+	and	a, 15
+	ld	de, 0
+	ld	e, a
+	ld	hl, _hexc
+	add	hl, de
+	ld	de, (ix + -9)
+	ld	a, (hl)
+	ld	(iy + 1), a
+	lea	iy, iy + 2
+	ld	(ix + -3), iy
+	ld	iy, (ix + -6)
+	dec	de
+	inc	iy
+	jq	.lbl_8
+.lbl_9:
+	ld	hl, (ix + -3)
+	ld	(hl), 0
+	ld	l, 1
+.lbl_11:
+	ld	a, c
+	xor	a, l
+	ld	sp, ix
+	pop	ix
+	ret
+ 
+ _hexc:     db	"0123456789ABCDEF"
  
 _sprng_read_addr:		rb 3
 _sprng_entropy_pool		:=	$E30800

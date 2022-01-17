@@ -31,11 +31,13 @@ int main(void)
 {
     sha256_ctx sha256;
     uint8_t sha256_digest[SHA256_DIGEST_LEN];
+    uint8_t sha256_hex[SHA256_HEXDIGEST_LEN];
     size_t str_len = strlen(str);
     
     hashlib_Sha256Init(&sha256);
     hashlib_Sha256Update(&sha256, str, str_len);
     hashlib_Sha256Final(&sha256, sha256_digest);
-
-	hexdump(sha256_digest, sizeof sha256_digest, "-SHA-256 Output-");
+   
+    hashlib_DigestToHexStr(sha256_digest, sizeof sha256_digest, sha256_hex);
+    strcpy(CEMU_CONSOLE, sha256_hex);
 }

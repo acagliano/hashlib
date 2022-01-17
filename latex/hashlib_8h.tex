@@ -131,6 +131,8 @@ bool \mbox{\hyperlink{hashlib_8h_a12af5da58cdba7080c6101d1fc0542b2}{hashlib\+\_\
 \begin{DoxyCompactList}\small\item\em RSA Encryption. \end{DoxyCompactList}\item 
 bool \mbox{\hyperlink{hashlib_8h_ada9751a5d91dc4cfcdb90de0518a79f6}{hashlib\+\_\+\+SSLVerify\+Signature}} (const void $\ast$ca\+\_\+pubkey, size\+\_\+t keysize, const void $\ast$cert, size\+\_\+t certlen, uint8\+\_\+t sig\+\_\+alg)
 \begin{DoxyCompactList}\small\item\em SSL Certificate Signature Verification. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{hashlib_8h_abcd45eebced6dc44199f553456dc94f4}{hashlib\+\_\+\+Digest\+To\+Hex\+Str}} (const void $\ast$digest, size\+\_\+t len, uint8\+\_\+t $\ast$hexstr)
+\begin{DoxyCompactList}\small\item\em Convert a digest to a valid hex string. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{hashlib_8h_a24bf91aef912b8346523f37e16d22377}{hashlib\+\_\+\+Erase\+Context}} (void $\ast$ctx, size\+\_\+t len)
 \begin{DoxyCompactList}\small\item\em Secure erase context. \end{DoxyCompactList}\item 
 bool \mbox{\hyperlink{hashlib_8h_afa2188204b9ee6024de788c221a33863}{hashlib\+\_\+\+Compare\+Digest}} (const void $\ast$digest1, const void $\ast$digest2, size\+\_\+t len)
@@ -918,6 +920,25 @@ Verifies the signature of a given SSL certificate using SSLSIG\+\_\+\+RSA\+\_\+\
 \begin{DoxyReturn}{Returns}
 True if the SSL certificate signature is valid. False is invalid or user error. 
 \end{DoxyReturn}
+\mbox{\Hypertarget{hashlib_8h_abcd45eebced6dc44199f553456dc94f4}\label{hashlib_8h_abcd45eebced6dc44199f553456dc94f4}} 
+\index{hashlib.h@{hashlib.h}!hashlib\_DigestToHexStr@{hashlib\_DigestToHexStr}}
+\index{hashlib\_DigestToHexStr@{hashlib\_DigestToHexStr}!hashlib.h@{hashlib.h}}
+\doxysubsubsection{\texorpdfstring{hashlib\_DigestToHexStr()}{hashlib\_DigestToHexStr()}}
+{\footnotesize\ttfamily bool hashlib\+\_\+\+Digest\+To\+Hex\+Str (\begin{DoxyParamCaption}\item[{const void $\ast$}]{digest,  }\item[{size\+\_\+t}]{len,  }\item[{uint8\+\_\+t $\ast$}]{hexstr }\end{DoxyParamCaption})}
+
+
+
+Convert a digest to a valid hex string. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em digest} & Pointer to a buffer or digest to convert. \\
+\hline
+{\em len} & Number of bytes at {\bfseries{digest}} to convert. \\
+\hline
+{\em hexstr} & A buffer to write the output hex string to. Must be at least 2 $\ast$ len + 1 bytes large. \\
+\hline
+\end{DoxyParams}
 \mbox{\Hypertarget{hashlib_8h_a24bf91aef912b8346523f37e16d22377}\label{hashlib_8h_a24bf91aef912b8346523f37e16d22377}} 
 \index{hashlib.h@{hashlib.h}!hashlib\_EraseContext@{hashlib\_EraseContext}}
 \index{hashlib\_EraseContext@{hashlib\_EraseContext}!hashlib.h@{hashlib.h}}

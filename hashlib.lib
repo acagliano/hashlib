@@ -30,3 +30,4 @@ library	"HASHLIB", 8
 	export	hashlib_HMACSha256Update ; 84
 	export	hashlib_HMACSha256Final ; 87
 	export	hashlib_HMACSha256Reset ; 90
+	export	hashlib_DigestToHexStr ; 93

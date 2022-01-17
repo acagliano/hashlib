@@ -545,6 +545,15 @@ bool hashlib_SSLVerifySignature(
     uint8_t sig_alg);
 
 // Miscellaneous Functions
+
+/**************************************************************************************************************
+ * @brief Convert a digest to a valid hex string.
+ * @param digest Pointer to a buffer or digest to convert.
+ * @param len Number of bytes at @b digest to convert.
+ * @param hexstr A buffer to write the output hex string to. Must be at least 2 * len + 1 bytes large.
+ **************************************************************************************************************/
+bool hashlib_DigestToHexStr(const void* digest, size_t len, uint8_t* hexstr);
+
 /**************************************************************************************************************
  * @brief Secure erase context.
  * @param ctx Pointer to any context or buffer you want to erase.
