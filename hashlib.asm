@@ -461,7 +461,9 @@ _sha256_update_apply_transform:
 
 ; void hashlib_Sha256Final(SHA256_CTX *ctx, BYTE hash[]);
 hashlib_Sha256Final:
-	call ti._frameset0
+	ld hl,-_sha256ctx_size
+	call ti._frameset
+	; ix-_sha256ctx_size to ix-1
 	; (ix + 0) Return address
 	; (ix + 3) saved IX
 	; (ix + 6) arg1: ctx
@@ -472,6 +474,10 @@ hashlib_Sha256Final:
 	; ld (hl),2
 
 	ld iy, (ix + 6)					; iy =  context block
+	lea de,ix-_sha256ctx_size
+	lea hl,iy
+	ld bc,_sha256ctx_size
+	ldir
 
 	ld bc, 0
 	ld c, (iy + offset_datalen)     ; data length
@@ -535,9 +541,16 @@ _sha256_final_pad_message_len_loop:
 	ld hl, (ix + 9)
 	lea iy, iy + offset_state
 	ld b, 8
+	call _sha256_reverse_endianness
 
+	lea hl,ix-_sha256ctx_size
+	ld de,(ix+6)
+	ld bc,_sha256ctx_size
+	ldir
+
+	ld sp,ix
 	pop ix
-	; continue running into _sha256_reverse_endianness
+	ret
 
 ; reverse b longs endianness from iy to hl
 _sha256_reverse_endianness:
