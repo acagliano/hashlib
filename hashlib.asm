@@ -474,37 +474,37 @@ hashlib_Sha256Final:
 	; ld (hl),2
 
 	ld iy, (ix + 6)					; iy =  context block
-	lea de,ix-_sha256ctx_size
-	lea hl,iy
-	ld bc,_sha256ctx_size
+	lea hl, iy
+	lea de, ix-_sha256ctx_size
+	ld bc, _sha256ctx_size
 	ldir
 
 	ld bc, 0
 	ld c, (iy + offset_datalen)     ; data length
-	ld hl, (ix + 6)					; ld hl, context_block_cache_addr
+	lea hl, ix-_sha256ctx_size					; ld hl, context_block_cache_addr
 	add hl, bc						; hl + bc (context_block_cache_addr + bytes cached)
 
 	ld a,55
 	sub a,c ;c is set to datalen earlier
 	ld (hl),$80
-	jq c,_sha256_final_over_56
+	jq c, _sha256_final_over_56
 	inc a
 _sha256_final_under_56:
 	ld b,a
 	xor a,a
 _sha256_final_pad_loop2:
 	inc hl
-	ld (hl),a
+	ld (hl), a
 	djnz _sha256_final_pad_loop2
 	jq _sha256_final_done_pad
 _sha256_final_over_56:
-	ld a,64
+	ld a, 64
 	sub a,c
 	ld b,a
 	xor a,a
 _sha256_final_pad_loop1:
 	inc hl
-	ld (hl),a
+	ld (hl), a
 	djnz _sha256_final_pad_loop1
 	push iy
 	call _sha256_transform
@@ -513,7 +513,7 @@ _sha256_final_pad_loop1:
 	ld bc,56
 	ldir
 _sha256_final_done_pad:
-	ld iy, (ix + 6)
+	lea iy, ix-_sha256ctx_size
 	ld c, (iy + offset_datalen)
 	ld b,8
 	mlt bc ;multiply 8-bit datalen by 8-bit value 8
@@ -522,7 +522,7 @@ _sha256_final_done_pad:
 	call u64_addi
 	pop bc,bc
 
-	ld iy, (ix + 6) ;ctx
+	lea iy, ix-_sha256ctx_size ;ctx
 	lea hl,iy + offset_bitlen
 	lea de,iy + offset_data + 63
 
@@ -541,16 +541,10 @@ _sha256_final_pad_message_len_loop:
 	ld hl, (ix + 9)
 	lea iy, iy + offset_state
 	ld b, 8
-	call _sha256_reverse_endianness
-
-	lea hl,ix-_sha256ctx_size
-	ld de,(ix+6)
-	ld bc,_sha256ctx_size
-	ldir
 
 	ld sp,ix
 	pop ix
-	ret
+	; flow into the next routine for efficiency
 
 ; reverse b longs endianness from iy to hl
 _sha256_reverse_endianness:
