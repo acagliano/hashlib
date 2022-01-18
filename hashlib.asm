@@ -48,6 +48,65 @@ library "HASHLIB", 8
     
 
 ;------------------------------------------
+; helper macro for saving the interrupt state, then disabling interrupts
+macro save_interrupts?
+	ld a,i
+	push af
+	pop bc
+	ld (.__interrupt_state),bc
+end macro
+
+;------------------------------------------
+; helper macro for restoring the interrupt state
+macro restore_interrupts? parent
+	ld bc,0
+parent.__interrupt_state = $-3
+	push bc
+	pop af
+	ret po
+	ei
+end macro
+
+;------------------------------------------
+; helper macro for restoring the interrupt state without prematurely returning
+macro restore_interrupts_noret? parent
+	ld bc,0
+parent.__interrupt_state = $-3
+	push bc
+	pop af
+	jp po,.__dont_reenable_interrupts
+	ei
+parent.__dont_reenable_interrupts = $
+end macro
+
+;------------------------------------------
+; helper macro for restoring the interrupt state, preserving a
+macro restore_interrupts_preserve_a? parent
+	ld bc,0
+parent.__interrupt_state = $-3
+	push bc
+	ld c,a
+	pop af
+	ld a,c
+	ret po
+	ei
+end macro
+
+;------------------------------------------
+; helper macro for restoring the interrupt state without prematurely returning, preserving a
+macro restore_interrupts_preserve_a? parent
+	ld bc,0
+parent.__interrupt_state = $-3
+	push bc
+	ld c,a
+	pop af
+	ld a,c
+	jp po,.__dont_reenable_interrupts
+	ei
+parent.__dont_reenable_interrupts = $
+end macro
+
+;------------------------------------------
 ; defines
 
 _indcallhl:
@@ -264,20 +323,22 @@ hashlib_SPRNGAddEntropy:
  
 hashlib_SPRNGRandom:
 
+	save_interrupts
+
     ; if _sprng_read_addr == 0, initialize
     ld hl, (_sprng_read_addr)
 	add hl,de
 	or a,a
 	sbc hl, de
 	call z, hashlib_SPRNGInit
-    
+
     ; hashlib_SPRNGInit returns the address selected in hl or 0
     ; if _sprng_read_addr == 0, quit
     add hl, de
     or a, a
     sbc hl, de
-    ret z
-	
+    jr z, .return
+
 .have_addr:
 ; set rand to 0
 	ld hl, 0
@@ -329,6 +390,9 @@ hashlib_SPRNGRandom:
 	ld hl, (_sprng_rand)
 	ld a, (_sprng_rand+3)
 	ld e, a
+
+.return:
+	restore_interrupts hashlib_SPRNGRandom
 	ret
 	
  
@@ -336,6 +400,8 @@ hashlib_SPRNGRandom:
 	db	"%lu",012o,000o
  
 hashlib_RandomBytes:
+	save_interrupts
+
 	ld	hl, -10
 	call	ti._frameset
 	ld	de, (ix + 9)
@@ -381,6 +447,8 @@ hashlib_RandomBytes:
 .lbl2:
 	ld	sp, ix
 	pop	ix
+
+	restore_interrupts hashlib_RandomBytes
 	ret
 	
 	
@@ -399,6 +467,8 @@ hashlib_Sha256Init:
 
 ; void hashlib_Sha256Update(SHA256_CTX *ctx, const BYTE data[], size_t len);
 hashlib_Sha256Update:
+	save_interrupts
+
 	call ti._frameset0
 	; (ix + 0) RV
 	; (ix + 3) old IX
@@ -432,6 +502,8 @@ hashlib_Sha256Update:
 	ld iy, (ix + 6)
 	ld (iy + offset_datalen), a		   ;save current datalen
 	pop ix
+
+	restore_interrupts hashlib_Sha256Update
 	ret
 
 _sha256_update_loop:
@@ -458,6 +530,8 @@ _sha256_update_apply_transform:
 
 ; void hashlib_Sha256Final(SHA256_CTX *ctx, BYTE hash[]);
 hashlib_Sha256Final:
+	save_interrupts
+
 	ld hl,-_sha256ctx_size
 	call ti._frameset
 	; ix-_sha256ctx_size to ix-1
@@ -538,10 +612,13 @@ _sha256_final_pad_message_len_loop:
 	ld hl, (ix + 9)
 	lea iy, iy + offset_state
 	ld b, 8
+	call _sha256_reverse_endianness
 
 	ld sp,ix
 	pop ix
-	; flow into the next routine for efficiency
+
+	restore_interrupts hashlib_Sha256Final
+	ret
 
 ; reverse b longs endianness from iy to hl
 _sha256_reverse_endianness:
@@ -1231,6 +1308,8 @@ _aes_SubWord:
 	ret
 	
 hashlib_AESLoadKey:
+	save_interrupts
+
 	ld	hl, -25
 	call	ti._frameset
 	ld	hl, (ix + 12)
@@ -1457,6 +1536,8 @@ hashlib_AESLoadKey:
 .lbl_20:
 	ld	sp, ix
 	pop	ix
+	
+	restore_interrupts hashlib_AESLoadKey
 	ret
 	
 _aes_AddRoundKey:
@@ -3035,6 +3116,8 @@ _increment_iv:
 	
 	
 hashlib_AESEncryptBlock:
+	save_interrupts
+
 	ld	hl, -22
 	call	ti._frameset
 	ld	iy, (ix + 6)
@@ -3695,9 +3778,13 @@ hashlib_AESEncryptBlock:
 	ld	(iy + 15), a
 	ld	sp, ix
 	pop	ix
+
+	restore_interrupts hashlib_AESEncryptBlock
 	ret
 	
 hashlib_AESDecryptBlock:
+	save_interrupts
+
 	ld	hl, -19
 	call	ti._frameset
 	ld	iy, (ix + 6)
@@ -4375,9 +4462,13 @@ hashlib_AESDecryptBlock:
 	ld	(iy + 15), a
 	ld	sp, ix
 	pop	ix
+	
+	restore_interrupts hashlib_AESDecryptBlock
 	ret
 	
 hashlib_AESEncrypt:
+	save_interrupts
+
 	ld	hl, -95
 	call	ti._frameset
 	ld	de, (ix + 6)
@@ -4420,6 +4511,7 @@ hashlib_AESEncrypt:
 	ld	bc, 2
 .lbl_21:
 	push	bc
+	restore_interrupts_noret hashlib_AESEncrypt
 	pop	hl
 	jp stack_clear
 .lbl_6:
@@ -4659,6 +4751,8 @@ hashlib_AESEncrypt:
 	jq	.lbl_21
 	
 hashlib_AESDecrypt:
+	save_interrupts
+
 	ld	hl, -66
 	call	ti._frameset
 	ld	hl, (ix + 6)
@@ -4837,10 +4931,12 @@ hashlib_AESDecrypt:
 	ld	de, 0
 .lbl_9:
 	ex	de, hl
+	restore_interrupts_noret hashlib_AESDecrypt
 	jp stack_clear
 	
 	
- hashlib_AESPadMessage:
+hashlib_AESPadMessage:
+	save_interrupts
   	ld	hl, -6
 	call	ti._frameset
 	ld	bc, (ix + 9)
@@ -4937,9 +5033,13 @@ hashlib_AESDecrypt:
 	ex	de, hl
 	ld	sp, ix
 	pop	ix
+
+	restore_interrupts hashlib_AESPadMessage
 	ret
  
 hashlib_RSAEncodeOAEP:
+	save_interrupts
+
 	ld	hl, -359
 	call	ti._frameset
 	ld	bc, (ix + 9)
@@ -5228,10 +5328,13 @@ hashlib_RSAEncodeOAEP:
 	ex	de, hl
 .lbl_13:
 	ex	de, hl
+	restore_interrupts_noret hashlib_RSAEncodeOAEP
 	jp stack_clear
 	
  
 hashlib_AESStripPadding:
+	save_interrupts
+
  	ld	hl, -3
 	call	ti._frameset
 	ld	bc, (ix + 9)
@@ -5324,9 +5427,13 @@ hashlib_AESStripPadding:
 	ex	de, hl
 	ld	sp, ix
 	pop	ix
+
+	restore_interrupts hashlib_AESStripPadding
 	ret
  
 hashlib_RSADecodeOAEP:
+	save_interrupts
+
 	ld	hl, -644
 	call	ti._frameset
 	ld	de, (ix + 9)
@@ -5653,10 +5760,13 @@ hashlib_RSADecodeOAEP:
 	pop	hl
 .lbl_28:
 	lea	hl, iy + 0
+	restore_interrupts_noret hashlib_RSADecodeOAEP
 	jp stack_clear
     
     
 hashlib_RSAEncodePSS:
+	save_interrupts
+
 	ld	hl, -456
 	call	ti._frameset
 	ld	de, (ix + 9)
@@ -5698,6 +5808,7 @@ hashlib_RSAEncodePSS:
 	or	a, a
 	sbc	hl, hl
 .lbl_16:
+	restore_interrupts_noret hashlib_RSAEncodePSS
 	jp stack_clear
 .lbl_8:
 	ld	bc, -218
@@ -5982,6 +6093,8 @@ hashlib_RSAEncodePSS:
     
 	
 hashlib_MGF1Hash:
+	save_interrupts
+
 	ld	hl, -280
 	call	ti._frameset
 	ld	bc, -258
@@ -6210,10 +6323,13 @@ hashlib_MGF1Hash:
 	ld	bc, (ix + -3)
 	jq	.lbl_1
 .lbl_2:
+	restore_interrupts_noret hashlib_MGF1Hash
 	jp stack_clear
     
 	
 hashlib_ReverseEndianness:
+	save_interrupts
+
 	ld	hl, -6
 	call	ti._frameset
 	ld	hl, (ix + 6)
@@ -6260,6 +6376,8 @@ hashlib_ReverseEndianness:
 	xor	a, e
 	ld	sp, ix
 	pop	ix
+
+	restore_interrupts hashlib_ReverseEndianness
 	ret
 .lbl_7:
 	ld	hl, (ix + -3)
@@ -6284,6 +6402,8 @@ hashlib_ReverseEndianness:
  
 	
 hashlib_RSAEncrypt:
+	save_interrupts
+
 	ld	hl, -6
 	call	ti._frameset
 	ld	hl, (ix + 12)
@@ -6405,9 +6525,12 @@ hashlib_RSAEncrypt:
 	ld	de, 0
 .lbl_12:
 	ex	de, hl
+	restore_interrupts_noret hashlib_RSAEncrypt
 	jp stack_clear
  
- hashlib_RSAVerifyPSS:
+hashlib_RSAVerifyPSS:
+	save_interrupts
+
 	ld	hl, -529
 	call	ti._frameset
 	ld	de, -517
@@ -6560,10 +6683,14 @@ hashlib_RSAEncrypt:
 	ld	hl, (hl)
 	push	hl
 	call	hashlib_CompareDigest
+
+	restore_interrupts_noret hashlib_RSAVerifyPSS
 	jp stack_clear
 	
     
 hashlib_SSLVerifySignature:
+	save_interrupts
+
 	ld	hl, -414
 	call	ti._frameset
 	ld	hl, (ix + 6)
@@ -6718,6 +6845,7 @@ hashlib_SSLVerifySignature:
 	jq	.lbl_5
 .lbl_8:
 .lbl_5:
+	restore_interrupts_noret hashlib_SSLVerifySignature
 	ld	a, e
 	jp stack_clear
  
@@ -6943,6 +7071,8 @@ _powmod:
  
  
  hashlib_AESAuthEncrypt:
+	save_interrupts
+
 	ld	hl, -111
 	call	ti._frameset
 	ld	hl, (ix + 9)
@@ -7064,9 +7194,13 @@ _powmod:
 	ex	de, hl
 	ld	sp, ix
 	pop	ix
+
+	restore_interrupts hashlib_AESAuthEncrypt
 	ret
 	
 hashlib_AESAuthDecrypt:
+	save_interrupts
+
 	ld	hl, -155
 	call	ti._frameset
 	ld	iy, (ix + 9)
@@ -7244,9 +7378,13 @@ hashlib_AESAuthDecrypt:
 	ex	de, hl
 	ld	sp, ix
 	pop	ix
+
+	restore_interrupts hashlib_AESAuthDecrypt
 	ret
  
- hashlib_RSAAuthEncrypt:
+hashlib_RSAAuthEncrypt:
+	save_interrupts
+
 	ld	hl, -114
 	call	ti._frameset
 	ld	iy, (ix + 9)
@@ -7302,10 +7440,14 @@ hashlib_AESAuthDecrypt:
 .lbl_2:
 	ld	sp, ix
 	pop	ix
+
+	restore_interrupts hashlib_RSAAuthEncrypt
 	ret
  
  
 hashlib_HMACSha256Init:
+	save_interrupts
+
 	ld	hl, -70
 	call	ti._frameset
 	ld	hl, 64
@@ -7422,6 +7564,8 @@ hashlib_HMACSha256Init:
 	ld	hl, (ix + -67)
 	push	hl
 	call	hashlib_Sha256Update
+
+	restore_interrupts_noret hashlib_HMACSha256Init
 	jp stack_clear
     
  
@@ -7444,6 +7588,8 @@ hashlib_HMACSha256Update:
 	
     
 hashlib_HMACSha256Final:
+	save_interrupts
+
     ld	hl, -38
 	call	ti._frameset
 	ld	hl, (ix + 6)
@@ -7494,10 +7640,14 @@ hashlib_HMACSha256Final:
 	ld	hl, (ix + -35)
 	push	hl
 	call	hashlib_Sha256Final
+
+	restore_interrupts_noret hashlib_HMACSha256Final
 	jp stack_clear
 	
     
 hashlib_HMACSha256Reset:
+	save_interrupts
+
     ld	hl, -3
 	call	ti._frameset
 	ld	hl, (ix + 6)
@@ -7519,10 +7669,14 @@ hashlib_HMACSha256Reset:
 	call	hashlib_Sha256Update
 	ld	sp, ix
 	pop	ix
+
+	restore_interrupts hashlib_HMACSha256Reset
 	ret
     
     
 hashlib_PBKDF2:
+	save_interrupts
+
 	ld	hl, -575
 	call	ti._frameset
 	ld	hl, 236
@@ -7606,6 +7760,8 @@ hashlib_PBKDF2:
 	xor	a, l
 	ld	sp, ix
 	pop	ix
+
+	restore_interrupts hashlib_PBKDF2
 	ret
 .lbl_11:
 	lea	hl, ix + -38
@@ -7948,6 +8104,8 @@ hashlib_PBKDF2:
  
 
 hashlib_DigestToHexStr:
+	save_interrupts
+
 	ld	hl, -9
 	call	ti._frameset
 	ld	iy, (ix + 6)
@@ -8032,6 +8190,8 @@ hashlib_DigestToHexStr:
 	xor	a, l
 	ld	sp, ix
 	pop	ix
+
+	restore_interrupts hashlib_DigestToHexStr
 	ret
  
  _hexc:     db	"0123456789ABCDEF"
