@@ -4,10 +4,11 @@
  *
  *	Provides several cryptographic implementations for the TI-84+ CE graphing calculator.
  *	- secure random number generator
- *	- SHA-256
- *	- AES: CBC, CTR, CBC-MAC
+ *	- SHA-256, SHA-256 (HMAC)
+ *  - PBKDF2_HMAC
+ *	- AES: CBC and CTR cipher modes
  *	- AES Padding: PKCS#7, ISO-9797 M2
- *	- RSA public key encryption, modulus <= 2048 bits
+ *	- RSA public key encryption, 1024 bits <= modulus <= 2048 bits
  *	- RSA Padding: RSA-OAEP via PKCS#7 v2.2, RSA-PSS via PKCS#7 v1.5
  *
  *	@author Anthony @e ACagliano Cagliano
@@ -54,10 +55,10 @@ is sufficient, but they are not safe for cryptography.
 A secure PRNG is an random number generator that is not only statistically random, but
 also passes the next-bit and state compromise tests. The _next-bit test_ is defined like so:
 given the prior output of the PRNG (bits 0=>i), the next bit (i+1) of the output cannot be
-predicted by a polynomial time statistical test with a probability non-negligibly greater than 50%.
+predicted by a polynomial-time statistical test with a probability non-negligibly greater than 50%.
 In simpler terms, a secure PRNG must be unpredictable, or "entropic".
 The _state compromise test_ means that an adversary gaining knowledge of the initial state of
-the PRNG does not give them any information about its output.
+the PRNG does not gain any information about its output.
 
 The PRNG previded by HASHLIB solves both tests like so:
 (next-bit)
@@ -70,12 +71,15 @@ The PRNG previded by HASHLIB solves both tests like so:
     <>  The entropy pool is then run through a cryptographic hash to spread that entropy
         evenly through the returned random value.
     <>  The PRNG produces 96.51 bits of entropy per 32 bit number returned.
+    <>  Assertion: A source of randomness with sufficient entropy passed through a cryptographic hash
+        will produce output that passes all statistical randomness tests as well as the next-bit test.
 (state compromise)
     <>  The entropy pool is discarded after it is used once, and a new pool is
         generated for the next random number.
     <>  ^ This means that the prior state has no bearing on the next output of the PRNG.
     <>  The PRNG destroys its own state after the random number is generated so that
         the state used to generate it does not persist in memory.
+    
 */
 /****************************************************************************************************************************
  * @brief Initializes the SPRNG.
@@ -180,7 +184,7 @@ void hashlib_Sha256Final(sha256_ctx* ctx, void* digest);
  *	@param outlen Number of bytes to write to @b outbuf.
  *	@note @b outbuf must be at least @b outlen bytes large.
  **********************************************************************************************************************/
-void hashlib_MGF1Hash(void* data, size_t datalen, void* outbuf, size_t outlen);
+void hashlib_MGF1Hash(const void* data, size_t datalen, void* outbuf, size_t outlen);
 
 
 /*
@@ -274,6 +278,8 @@ bool hashlib_PBKDF2(
  Symmetric encryption is usually fast, and is generally more secure for smaller key sizes.
  AES is one of the most secure encryption systems in use today.
  The most secure version of the algorithm is AES-256 (uses a 256-bit key).
+ AES is one of the open-source encryption schemes believed secure enough to withstand even
+ the advent of quantum computing.
 */
 /***************************************************************************************************
  * @typedef aes_ctx
@@ -420,7 +426,7 @@ typedef enum {
     AES_INVALID_MSG,                    /**< AES operation failed, message invalid */
     AES_INVALID_CIPHERMODE,             /**< AES operation failed, cipher mode undefined */
     AES_INVALID_PADDINGMODE,            /**< AES operation failed, padding mode undefined */
-    AES_INVALID_CIPHERTEXT              /**< AES operation failed, ciphertext size error */
+    AES_INVALID_CIPHERTEXT              /**< AES operation failed, ciphertext error */
 } aes_error_t;
 
 /**
@@ -469,7 +475,7 @@ aes_error_t hashlib_AESEncrypt(
  * @param paddingmode The padding mode to use. Choose one of the padding modes in @b enum aes_padding_schemes.
  * @note @b plaintext and @b ciphertext are aliasable.
  * @note @b IV should be the same as what is used for encryption.
- * @return True if the decryption succeded. False if an error occured.
+ * @return aes_error_t
  */
 aes_error_t hashlib_AESDecrypt(
     const void* ciphertext,
@@ -541,7 +547,7 @@ typedef enum {
  * @note The size of @b ciphertext and @b keylen must be equal.
  * @note The @b msg will be encoded using OAEP before encryption.
  * @note msg and pubkey are both treated as byte arrays.
- * @return True if encryption succeeded. False if failed.
+ * @return rsa_error_t
  **************************************************************************************************/
 rsa_error_t hashlib_RSAEncrypt(
     const void* msg,
@@ -577,7 +583,7 @@ bool hashlib_SSLVerifySignature(
  * @param len Number of bytes at @b digest to convert.
  * @param hexstr A buffer to write the output hex string to. Must be at least 2 * len + 1 bytes large.
  **************************************************************************************************************/
-bool hashlib_DigestToHexStr(const void* digest, size_t len, uint8_t* hexstr);
+bool hashlib_DigestToHexStr(const void* digest, size_t len, char* hexstr);
 
 /**************************************************************************************************************
  * @brief Secure erase context.

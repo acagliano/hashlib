@@ -105,7 +105,7 @@ void \mbox{\hyperlink{hashlib_8h_a4075cc831db34aa54acc825849ac8dd7}{hashlib\+\_\
 \begin{DoxyCompactList}\small\item\em Updates the SHA-\/256 context for the given data. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{hashlib_8h_a7cae93c13fd3323059f3ca2afe4f93b4}{hashlib\+\_\+\+Sha256\+Final}} (\mbox{\hyperlink{hashlib_8h_a53df9e7d871973d59c7b58a6c3963c5d}{sha256\+\_\+ctx}} $\ast$ctx, void $\ast$digest)
 \begin{DoxyCompactList}\small\item\em Finalize Context and Render Digest for SHA-\/256. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{hashlib_8h_a32d689fd511015c4a7f499ec4bd02241}{hashlib\+\_\+\+MGF1\+Hash}} (void $\ast$data, size\+\_\+t datalen, void $\ast$outbuf, size\+\_\+t outlen)
+void \mbox{\hyperlink{hashlib_8h_ae8745d49bced3eb01f9b41329e82299c}{hashlib\+\_\+\+MGF1\+Hash}} (const void $\ast$data, size\+\_\+t datalen, void $\ast$outbuf, size\+\_\+t outlen)
 \begin{DoxyCompactList}\small\item\em Arbitrary Length Hashing Function. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{hashlib_8h_a86e269917830fb7802cea159baadf079}{hashlib\+\_\+\+HMACSha256\+Init}} (\mbox{\hyperlink{hashlib_8h_a8d813300476744f01319600478572f62}{hmac\+\_\+ctx}} $\ast$ctx, const void $\ast$key, size\+\_\+t keylen)
 \begin{DoxyCompactList}\small\item\em Context Initializer for SHA-\/256 HMAC. \end{DoxyCompactList}\item 
@@ -131,7 +131,7 @@ bool \mbox{\hyperlink{hashlib_8h_a12af5da58cdba7080c6101d1fc0542b2}{hashlib\+\_\
 \begin{DoxyCompactList}\small\item\em RSA Encryption. \end{DoxyCompactList}\item 
 bool \mbox{\hyperlink{hashlib_8h_ada9751a5d91dc4cfcdb90de0518a79f6}{hashlib\+\_\+\+SSLVerify\+Signature}} (const void $\ast$ca\+\_\+pubkey, size\+\_\+t keysize, const void $\ast$cert, size\+\_\+t certlen, uint8\+\_\+t sig\+\_\+alg)
 \begin{DoxyCompactList}\small\item\em SSL Certificate Signature Verification. \end{DoxyCompactList}\item 
-bool \mbox{\hyperlink{hashlib_8h_abcd45eebced6dc44199f553456dc94f4}{hashlib\+\_\+\+Digest\+To\+Hex\+Str}} (const void $\ast$digest, size\+\_\+t len, uint8\+\_\+t $\ast$hexstr)
+bool \mbox{\hyperlink{hashlib_8h_afef56629c9316e022d77dfc4623cffeb}{hashlib\+\_\+\+Digest\+To\+Hex\+Str}} (const void $\ast$digest, size\+\_\+t len, char $\ast$hexstr)
 \begin{DoxyCompactList}\small\item\em Convert a digest to a valid hex string. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{hashlib_8h_a24bf91aef912b8346523f37e16d22377}{hashlib\+\_\+\+Erase\+Context}} (void $\ast$ctx, size\+\_\+t len)
 \begin{DoxyCompactList}\small\item\em Secure erase context. \end{DoxyCompactList}\item 
@@ -165,10 +165,11 @@ Cryptography Library for the TI-\/84+ CE.
 Provides several cryptographic implementations for the TI-\/84+ CE graphing calculator.
 \begin{DoxyItemize}
 \item secure random number generator
-\item SHA-\/256
-\item AES\+: CBC, CTR, CBC-\/\+MAC
+\item SHA-\/256, SHA-\/256 (HMAC)
+\item PBKDF2\+\_\+\+HMAC
+\item AES\+: CBC and CTR cipher modes
 \item AES Padding\+: PKCS\#7, ISO-\/9797 M2
-\item RSA public key encryption, modulus $<$= 2048 bits
+\item RSA public key encryption, 1024 bits $<$= modulus $<$= 2048 bits
 \item RSA Padding\+: RSA-\/\+OAEP via PKCS\#7 v2.\+2, RSA-\/\+PSS via PKCS\#7 v1.\+5
 \end{DoxyItemize}
 
@@ -396,7 +397,7 @@ AES\+\_\+\+INVALID\+\_\+\+PADDINGMODE&AES operation failed, padding mode undefin
 \hline
 
 \raisebox{\heightof{T}}[0pt][0pt]{\index{AES\_INVALID\_CIPHERTEXT@{AES\_INVALID\_CIPHERTEXT}!hashlib.h@{hashlib.h}}\index{hashlib.h@{hashlib.h}!AES\_INVALID\_CIPHERTEXT@{AES\_INVALID\_CIPHERTEXT}}}\mbox{\Hypertarget{hashlib_8h_aeb2e64abcc4317e3143fb820f21c3bfdaba928751c773ffa0287e47e1f86eae8b}\label{hashlib_8h_aeb2e64abcc4317e3143fb820f21c3bfdaba928751c773ffa0287e47e1f86eae8b}} 
-AES\+\_\+\+INVALID\+\_\+\+CIPHERTEXT&AES operation failed, ciphertext size error \\
+AES\+\_\+\+INVALID\+\_\+\+CIPHERTEXT&AES operation failed, ciphertext error \\
 \hline
 
 \end{DoxyEnumFields}
@@ -554,11 +555,11 @@ Finalize Context and Render Digest for SHA-\/256.
 \begin{DoxyNote}{Note}
 {\bfseries{digest}} must be at least 32 bytes large. 
 \end{DoxyNote}
-\mbox{\Hypertarget{hashlib_8h_a32d689fd511015c4a7f499ec4bd02241}\label{hashlib_8h_a32d689fd511015c4a7f499ec4bd02241}} 
+\mbox{\Hypertarget{hashlib_8h_ae8745d49bced3eb01f9b41329e82299c}\label{hashlib_8h_ae8745d49bced3eb01f9b41329e82299c}} 
 \index{hashlib.h@{hashlib.h}!hashlib\_MGF1Hash@{hashlib\_MGF1Hash}}
 \index{hashlib\_MGF1Hash@{hashlib\_MGF1Hash}!hashlib.h@{hashlib.h}}
 \doxysubsubsection{\texorpdfstring{hashlib\_MGF1Hash()}{hashlib\_MGF1Hash()}}
-{\footnotesize\ttfamily void hashlib\+\_\+\+MGF1\+Hash (\begin{DoxyParamCaption}\item[{void $\ast$}]{data,  }\item[{size\+\_\+t}]{datalen,  }\item[{void $\ast$}]{outbuf,  }\item[{size\+\_\+t}]{outlen }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void hashlib\+\_\+\+MGF1\+Hash (\begin{DoxyParamCaption}\item[{const void $\ast$}]{data,  }\item[{size\+\_\+t}]{datalen,  }\item[{void $\ast$}]{outbuf,  }\item[{size\+\_\+t}]{outlen }\end{DoxyParamCaption})}
 
 
 
@@ -852,7 +853,7 @@ General-\/\+Purpose AES Decryption.
 {\bfseries{IV}} should be the same as what is used for encryption. 
 \end{DoxyNote}
 \begin{DoxyReturn}{Returns}
-True if the decryption succeded. False if an error occured. 
+aes\+\_\+error\+\_\+t 
 \end{DoxyReturn}
 \mbox{\Hypertarget{hashlib_8h_a5fb66f3d3437a9f5a16e9191a4d46d74}\label{hashlib_8h_a5fb66f3d3437a9f5a16e9191a4d46d74}} 
 \index{hashlib.h@{hashlib.h}!hashlib\_RSAEncrypt@{hashlib\_RSAEncrypt}}
@@ -887,7 +888,7 @@ The {\bfseries{msg}} will be encoded using OAEP before encryption.
 msg and pubkey are both treated as byte arrays. 
 \end{DoxyNote}
 \begin{DoxyReturn}{Returns}
-True if encryption succeeded. False if failed. 
+rsa\+\_\+error\+\_\+t 
 \end{DoxyReturn}
 \mbox{\Hypertarget{hashlib_8h_ada9751a5d91dc4cfcdb90de0518a79f6}\label{hashlib_8h_ada9751a5d91dc4cfcdb90de0518a79f6}} 
 \index{hashlib.h@{hashlib.h}!hashlib\_SSLVerifySignature@{hashlib\_SSLVerifySignature}}
@@ -917,11 +918,11 @@ Verifies the signature of a given SSL certificate using SSLSIG\+\_\+\+RSA\+\_\+\
 \begin{DoxyReturn}{Returns}
 True if the SSL certificate signature is valid. False is invalid or user error. 
 \end{DoxyReturn}
-\mbox{\Hypertarget{hashlib_8h_abcd45eebced6dc44199f553456dc94f4}\label{hashlib_8h_abcd45eebced6dc44199f553456dc94f4}} 
+\mbox{\Hypertarget{hashlib_8h_afef56629c9316e022d77dfc4623cffeb}\label{hashlib_8h_afef56629c9316e022d77dfc4623cffeb}} 
 \index{hashlib.h@{hashlib.h}!hashlib\_DigestToHexStr@{hashlib\_DigestToHexStr}}
 \index{hashlib\_DigestToHexStr@{hashlib\_DigestToHexStr}!hashlib.h@{hashlib.h}}
 \doxysubsubsection{\texorpdfstring{hashlib\_DigestToHexStr()}{hashlib\_DigestToHexStr()}}
-{\footnotesize\ttfamily bool hashlib\+\_\+\+Digest\+To\+Hex\+Str (\begin{DoxyParamCaption}\item[{const void $\ast$}]{digest,  }\item[{size\+\_\+t}]{len,  }\item[{uint8\+\_\+t $\ast$}]{hexstr }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily bool hashlib\+\_\+\+Digest\+To\+Hex\+Str (\begin{DoxyParamCaption}\item[{const void $\ast$}]{digest,  }\item[{size\+\_\+t}]{len,  }\item[{char $\ast$}]{hexstr }\end{DoxyParamCaption})}
 
 
 

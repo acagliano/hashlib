@@ -186,9 +186,9 @@ Functions</h2></td></tr>
 <tr class="memitem:a7cae93c13fd3323059f3ca2afe4f93b4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#a7cae93c13fd3323059f3ca2afe4f93b4">hashlib_Sha256Final</a> (<a class="el" href="hashlib_8h.html#a53df9e7d871973d59c7b58a6c3963c5d">sha256_ctx</a> *ctx, void *digest)</td></tr>
 <tr class="memdesc:a7cae93c13fd3323059f3ca2afe4f93b4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Finalize Context and Render Digest for SHA-256.  <a href="hashlib_8h.html#a7cae93c13fd3323059f3ca2afe4f93b4">More...</a><br /></td></tr>
 <tr class="separator:a7cae93c13fd3323059f3ca2afe4f93b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a32d689fd511015c4a7f499ec4bd02241"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#a32d689fd511015c4a7f499ec4bd02241">hashlib_MGF1Hash</a> (void *data, size_t datalen, void *outbuf, size_t outlen)</td></tr>
-<tr class="memdesc:a32d689fd511015c4a7f499ec4bd02241"><td class="mdescLeft">&#160;</td><td class="mdescRight">Arbitrary Length Hashing Function.  <a href="hashlib_8h.html#a32d689fd511015c4a7f499ec4bd02241">More...</a><br /></td></tr>
-<tr class="separator:a32d689fd511015c4a7f499ec4bd02241"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae8745d49bced3eb01f9b41329e82299c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#ae8745d49bced3eb01f9b41329e82299c">hashlib_MGF1Hash</a> (const void *data, size_t datalen, void *outbuf, size_t outlen)</td></tr>
+<tr class="memdesc:ae8745d49bced3eb01f9b41329e82299c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Arbitrary Length Hashing Function.  <a href="hashlib_8h.html#ae8745d49bced3eb01f9b41329e82299c">More...</a><br /></td></tr>
+<tr class="separator:ae8745d49bced3eb01f9b41329e82299c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a86e269917830fb7802cea159baadf079"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#a86e269917830fb7802cea159baadf079">hashlib_HMACSha256Init</a> (<a class="el" href="hashlib_8h.html#a8d813300476744f01319600478572f62">hmac_ctx</a> *ctx, const void *key, size_t keylen)</td></tr>
 <tr class="memdesc:a86e269917830fb7802cea159baadf079"><td class="mdescLeft">&#160;</td><td class="mdescRight">Context Initializer for SHA-256 HMAC.  <a href="hashlib_8h.html#a86e269917830fb7802cea159baadf079">More...</a><br /></td></tr>
 <tr class="separator:a86e269917830fb7802cea159baadf079"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -225,9 +225,9 @@ Functions</h2></td></tr>
 <tr class="memitem:ada9751a5d91dc4cfcdb90de0518a79f6"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#ada9751a5d91dc4cfcdb90de0518a79f6">hashlib_SSLVerifySignature</a> (const void *ca_pubkey, size_t keysize, const void *cert, size_t certlen, uint8_t sig_alg)</td></tr>
 <tr class="memdesc:ada9751a5d91dc4cfcdb90de0518a79f6"><td class="mdescLeft">&#160;</td><td class="mdescRight">SSL Certificate Signature Verification.  <a href="hashlib_8h.html#ada9751a5d91dc4cfcdb90de0518a79f6">More...</a><br /></td></tr>
 <tr class="separator:ada9751a5d91dc4cfcdb90de0518a79f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abcd45eebced6dc44199f553456dc94f4"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#abcd45eebced6dc44199f553456dc94f4">hashlib_DigestToHexStr</a> (const void *digest, size_t len, uint8_t *hexstr)</td></tr>
-<tr class="memdesc:abcd45eebced6dc44199f553456dc94f4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert a digest to a valid hex string.  <a href="hashlib_8h.html#abcd45eebced6dc44199f553456dc94f4">More...</a><br /></td></tr>
-<tr class="separator:abcd45eebced6dc44199f553456dc94f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afef56629c9316e022d77dfc4623cffeb"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#afef56629c9316e022d77dfc4623cffeb">hashlib_DigestToHexStr</a> (const void *digest, size_t len, char *hexstr)</td></tr>
+<tr class="memdesc:afef56629c9316e022d77dfc4623cffeb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert a digest to a valid hex string.  <a href="hashlib_8h.html#afef56629c9316e022d77dfc4623cffeb">More...</a><br /></td></tr>
+<tr class="separator:afef56629c9316e022d77dfc4623cffeb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a24bf91aef912b8346523f37e16d22377"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#a24bf91aef912b8346523f37e16d22377">hashlib_EraseContext</a> (void *ctx, size_t len)</td></tr>
 <tr class="memdesc:a24bf91aef912b8346523f37e16d22377"><td class="mdescLeft">&#160;</td><td class="mdescRight">Secure erase context.  <a href="hashlib_8h.html#a24bf91aef912b8346523f37e16d22377">More...</a><br /></td></tr>
 <tr class="separator:a24bf91aef912b8346523f37e16d22377"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -269,10 +269,11 @@ Functions</h2></td></tr>
 <div class="textblock"><p>Cryptography Library for the TI-84+ CE. </p>
 <p>Provides several cryptographic implementations for the TI-84+ CE graphing calculator.</p><ul>
 <li>secure random number generator</li>
-<li>SHA-256</li>
-<li>AES: CBC, CTR, CBC-MAC</li>
+<li>SHA-256, SHA-256 (HMAC)</li>
+<li>PBKDF2_HMAC</li>
+<li>AES: CBC and CTR cipher modes</li>
 <li>AES Padding: PKCS#7, ISO-9797 M2</li>
-<li>RSA public key encryption, modulus &lt;= 2048 bits</li>
+<li>RSA public key encryption, 1024 bits &lt;= modulus &lt;= 2048 bits</li>
 <li>RSA Padding: RSA-OAEP via PKCS#7 v2.2, RSA-PSS via PKCS#7 v1.5</li>
 </ul>
 <dl class="section author"><dt>Author</dt><dd>Anthony <em>ACagliano</em> Cagliano </dd>
@@ -644,7 +645,7 @@ If the SPRNG is run, anything you have stored here will be destroyed. </dd></dl>
 </td></tr>
 <tr><td class="fieldname"><a id="aeb2e64abcc4317e3143fb820f21c3bfda47bbd593fc3bdb7758a790bab86b41d9"></a>AES_INVALID_PADDINGMODE&#160;</td><td class="fielddoc"><p>AES operation failed, padding mode undefined </p>
 </td></tr>
-<tr><td class="fieldname"><a id="aeb2e64abcc4317e3143fb820f21c3bfdaba928751c773ffa0287e47e1f86eae8b"></a>AES_INVALID_CIPHERTEXT&#160;</td><td class="fielddoc"><p>AES operation failed, ciphertext size error </p>
+<tr><td class="fieldname"><a id="aeb2e64abcc4317e3143fb820f21c3bfdaba928751c773ffa0287e47e1f86eae8b"></a>AES_INVALID_CIPHERTEXT&#160;</td><td class="fielddoc"><p>AES operation failed, ciphertext error </p>
 </td></tr>
 </table>
 
@@ -895,8 +896,8 @@ If the SPRNG is run, anything you have stored here will be destroyed. </dd></dl>
 
 </div>
 </div>
-<a id="a32d689fd511015c4a7f499ec4bd02241"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a32d689fd511015c4a7f499ec4bd02241">&#9670;&nbsp;</a></span>hashlib_MGF1Hash()</h2>
+<a id="ae8745d49bced3eb01f9b41329e82299c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae8745d49bced3eb01f9b41329e82299c">&#9670;&nbsp;</a></span>hashlib_MGF1Hash()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -904,7 +905,7 @@ If the SPRNG is run, anything you have stored here will be destroyed. </dd></dl>
         <tr>
           <td class="memname">void hashlib_MGF1Hash </td>
           <td>(</td>
-          <td class="paramtype">void *&#160;</td>
+          <td class="paramtype">const void *&#160;</td>
           <td class="paramname"><em>data</em>, </td>
         </tr>
         <tr>
@@ -1474,7 +1475,7 @@ The ECB mode single-block encryptors lack the buffer leak protections that <a cl
 <dl class="section note"><dt>Note</dt><dd><b>plaintext</b> and <b>ciphertext</b> are aliasable. </dd>
 <dd>
 <b>IV</b> should be the same as what is used for encryption. </dd></dl>
-<dl class="section return"><dt>Returns</dt><dd>True if the decryption succeded. False if an error occured. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>aes_error_t </dd></dl>
 
 </div>
 </div>
@@ -1539,7 +1540,7 @@ The ECB mode single-block encryptors lack the buffer leak protections that <a cl
 The <b>msg</b> will be encoded using OAEP before encryption. </dd>
 <dd>
 msg and pubkey are both treated as byte arrays. </dd></dl>
-<dl class="section return"><dt>Returns</dt><dd>True if encryption succeeded. False if failed. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>rsa_error_t </dd></dl>
 
 </div>
 </div>
@@ -1603,8 +1604,8 @@ msg and pubkey are both treated as byte arrays. </dd></dl>
 
 </div>
 </div>
-<a id="abcd45eebced6dc44199f553456dc94f4"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#abcd45eebced6dc44199f553456dc94f4">&#9670;&nbsp;</a></span>hashlib_DigestToHexStr()</h2>
+<a id="afef56629c9316e022d77dfc4623cffeb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afef56629c9316e022d77dfc4623cffeb">&#9670;&nbsp;</a></span>hashlib_DigestToHexStr()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1624,7 +1625,7 @@ msg and pubkey are both treated as byte arrays. </dd></dl>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">uint8_t *&#160;</td>
+          <td class="paramtype">char *&#160;</td>
           <td class="paramname"><em>hexstr</em>&#160;</td>
         </tr>
         <tr>
