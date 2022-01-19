@@ -253,7 +253,7 @@ void hashlib_HMACSha256Reset(hmac_ctx* ctx);
  * @param saltlen The length of the salt to use (in bytes).
  * @param rounds The number of times to iterate the SHA-256 function per 32-byte block of @b keylen.
  * @param keylen The length of the key to generate (in bytes).
- * @note @b NIST recommends a salt of at least 128 bits (16 bytes).
+ * @note Standards recommend a salt of at least 128 bits (16 bytes).
  * @note @b rounds is used to increase the cost (computational time) of generating a key. What makes password-
  * hashing algorithms secure is the time needed to generate a rainbow table attack against it. More rounds means
  * a more secure key, but more time spent generating it. Current cryptography standards recommend in excess of 1000
