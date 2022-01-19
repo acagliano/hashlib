@@ -255,7 +255,8 @@ void hashlib_HMACSha256Reset(hmac_ctx* ctx);
  * @param keylen The length of the key to generate (in bytes).
  * @note @b rounds is used to increase the cost (computational time) of generating a key. What makes password-
  * hashing algorithms secure is the time needed to generate a rainbow table attack against it. More rounds means
- * a more secure key, but more time spent generating it. Current cryptography standards recommend
+ * a more secure key, but more time spent generating it. Current cryptography standards recommend in excess of 1000
+ * rounds but that may not be feasible on the CE.
 */
 bool hashlib_PBKDF2(
     const char* password,
