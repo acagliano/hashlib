@@ -692,6 +692,8 @@ Computes a key derived from a password, a 16-\/byte salt, and a given number of 
 \hline
 \end{DoxyParams}
 \begin{DoxyNote}{Note}
+{\bfseries{NIST}} recommends a salt of at least 128 bits (16 bytes). 
+
 {\bfseries{rounds}} is used to increase the cost (computational time) of generating a key. What makes password-\/ hashing algorithms secure is the time needed to generate a rainbow table attack against it. More rounds means a more secure key, but more time spent generating it. Current cryptography standards recommend in excess of 1000 rounds but that may not be feasible on the CE. 
 \end{DoxyNote}
 \mbox{\Hypertarget{hashlib_8h_a72c38b8e422c65a946ed0bb433e2dc3c}\label{hashlib_8h_a72c38b8e422c65a946ed0bb433e2dc3c}} 
