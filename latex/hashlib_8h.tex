@@ -129,6 +129,8 @@ bool \mbox{\hyperlink{hashlib_8h_a72c38b8e422c65a946ed0bb433e2dc3c}{hashlib\+\_\
 \begin{DoxyCompactList}\small\item\em Authenticated AES Decryption. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{hashlib_8h_a0486449f609d0e485bad091a671d9294}{rsa\+\_\+error\+\_\+t}} \mbox{\hyperlink{hashlib_8h_a5fb66f3d3437a9f5a16e9191a4d46d74}{hashlib\+\_\+\+RSAEncrypt}} (const void $\ast$msg, size\+\_\+t msglen, void $\ast$ciphertext, const void $\ast$pubkey, size\+\_\+t keylen)
 \begin{DoxyCompactList}\small\item\em RSA Encryption. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{hashlib_8h_a0486449f609d0e485bad091a671d9294}{rsa\+\_\+error\+\_\+t}} \mbox{\hyperlink{hashlib_8h_a382c457497fc3f8f8dac7f9dfb296a71}{hashlib\+\_\+\+RSAAuth\+Encrypt}} (const void $\ast$msg, size\+\_\+t msglen, void $\ast$ciphertext, const void $\ast$pubkey, size\+\_\+t keylen)
+\begin{DoxyCompactList}\small\item\em Authenticated RSA Encryption. \end{DoxyCompactList}\item 
 bool \mbox{\hyperlink{hashlib_8h_ada9751a5d91dc4cfcdb90de0518a79f6}{hashlib\+\_\+\+SSLVerify\+Signature}} (const void $\ast$ca\+\_\+pubkey, size\+\_\+t keysize, const void $\ast$cert, size\+\_\+t certlen, uint8\+\_\+t sig\+\_\+alg)
 \begin{DoxyCompactList}\small\item\em SSL Certificate Signature Verification. \end{DoxyCompactList}\item 
 bool \mbox{\hyperlink{hashlib_8h_afef56629c9316e022d77dfc4623cffeb}{hashlib\+\_\+\+Digest\+To\+Hex\+Str}} (const void $\ast$digest, size\+\_\+t len, char $\ast$hexstr)
@@ -154,9 +156,7 @@ size\+\_\+t \mbox{\hyperlink{hashlib_8h_ab5f471e18b48999cdd4aa61e19cfbfa7}{hashl
 size\+\_\+t \mbox{\hyperlink{hashlib_8h_a63abd0c582f39039601eb341d5c9cb35}{hashlib\+\_\+\+RSAEncode\+PSS}} (const void $\ast$plaintext, size\+\_\+t len, void $\ast$outbuf, size\+\_\+t modulus\+\_\+len, void $\ast$salt)
 \begin{DoxyCompactList}\small\item\em RSA-\/\+PSS padding scheme. \end{DoxyCompactList}\item 
 bool \mbox{\hyperlink{hashlib_8h_a07f95403c8ef99fd39d5fcec33cb0ab3}{hashlib\+\_\+\+RSAVerify\+PSS}} (const void $\ast$data, size\+\_\+t len, const void $\ast$expected, size\+\_\+t modulus\+\_\+len)
-\begin{DoxyCompactList}\small\item\em RSA-\/\+PSS verification. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{hashlib_8h_a0486449f609d0e485bad091a671d9294}{rsa\+\_\+error\+\_\+t}} \mbox{\hyperlink{hashlib_8h_a382c457497fc3f8f8dac7f9dfb296a71}{hashlib\+\_\+\+RSAAuth\+Encrypt}} (const void $\ast$msg, size\+\_\+t msglen, void $\ast$ciphertext, const void $\ast$pubkey, size\+\_\+t keylen)
-\begin{DoxyCompactList}\small\item\em Authenticated RSA Encryption. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em RSA-\/\+PSS verification. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
@@ -457,13 +457,6 @@ RSA\+\_\+\+ENCODING\+\_\+\+ERROR&RSA encryption failed, OAEP encoding error \\
 
 
 Initializes the SPRNG. 
-
-\hypertarget{hashlib_8h_sprng}{}\doxysubsection{\{\+Secure Psuedorandom Number Generator (\+SPRNG)\}}\label{hashlib_8h_sprng}
-Many of the psuedorandom number generators (PRNGs) you find in computers and even the one within the C toolchain for the CE are insecure for cryptographic purposes. They produce statistical randomness, but the state is generally seeded using a value such as rtc\+\_\+\+Time(). If an adversary reconstructs the seed, every output of the PRNG becomes computable with little effort. These types of PRNGs are called deterministic algorithms--given the input, the output is predictable. These PRNGs work for games and other applications where the illusion of randomness is sufficient, but they are not safe for cryptography.
-
-A secure PRNG is an random number generator that is not only statistically random, but also passes the next-\/bit and state compromise tests. The {\itshape next-\/bit test} is defined like so\+: given the prior output of the PRNG (bits 0=$>$i), the next bit (i+1) of the output cannot be predicted by a polynomial-\/time statistical test with a probability non-\/negligibly greater than 50\%. In simpler terms, a secure PRNG must be unpredictable, or \char`\"{}entropic\char`\"{}. The {\itshape state compromise test} means that an adversary gaining knowledge of the initial state of the PRNG does not gain any information about its output.
-
-The PRNG previded by HASHLIB solves both tests like so\+: (next-\/bit) $<$$>$ The PRNG\textquotesingle{}s output is derived from a 119-\/byte entropy pool created by reading data from the most entropic byte located within floating memory on the device. $<$$>$ The \char`\"{}entropic byte\char`\"{} is a byte containing a bit that that, out of 1024 test reads, has the closest to a 50/50 split between 1\textquotesingle{}s and 0\textquotesingle{}s. $<$$>$ The byte containing that bit is read in xor mode seven times per byte to offset any hardware-\/based correlation between subsequent reads from the entropic byte. $<$$>$ The entropy pool is then run through a cryptographic hash to spread that entropy evenly through the returned random value. $<$$>$ The PRNG produces 96.\+51 bits of entropy per 32 bit number returned. $<$$>$ Assertion\+: A source of randomness with sufficient entropy passed through a cryptographic hash will produce output that passes all statistical randomness tests as well as the next-\/bit test. (state compromise) $<$$>$ The entropy pool is discarded after it is used once, and a new pool is generated for the next random number. $<$$>$ $^\wedge$ This means that the prior state has no bearing on the next output of the PRNG. $<$$>$ The PRNG destroys its own state after the random number is generated so that the state used to generate it does not persist in memory.
 
 The SPRNG is initialized by polling the 512-\/bytes from address 0x\+D65800 to 0x\+D66000. This region consists of unmapped memory that contains bus noise. Each bit in that region is polled 1024 times and the address with the bit that is the least biased is selected. That will be the byte the SPRNG uses to generate entropy. \mbox{\Hypertarget{hashlib_8h_ad4e253aa114047e5a49af2fd49781559}\label{hashlib_8h_ad4e253aa114047e5a49af2fd49781559}} 
 \index{hashlib.h@{hashlib.h}!hashlib\_SPRNGRandom@{hashlib\_SPRNGRandom}}
@@ -924,6 +917,38 @@ msg and pubkey are both treated as byte arrays.
 \begin{DoxyReturn}{Returns}
 rsa\+\_\+error\+\_\+t 
 \end{DoxyReturn}
+\mbox{\Hypertarget{hashlib_8h_a382c457497fc3f8f8dac7f9dfb296a71}\label{hashlib_8h_a382c457497fc3f8f8dac7f9dfb296a71}} 
+\index{hashlib.h@{hashlib.h}!hashlib\_RSAAuthEncrypt@{hashlib\_RSAAuthEncrypt}}
+\index{hashlib\_RSAAuthEncrypt@{hashlib\_RSAAuthEncrypt}!hashlib.h@{hashlib.h}}
+\doxysubsubsection{\texorpdfstring{hashlib\_RSAAuthEncrypt()}{hashlib\_RSAAuthEncrypt()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{hashlib_8h_a0486449f609d0e485bad091a671d9294}{rsa\+\_\+error\+\_\+t}} hashlib\+\_\+\+RSAAuth\+Encrypt (\begin{DoxyParamCaption}\item[{const void $\ast$}]{msg,  }\item[{size\+\_\+t}]{msglen,  }\item[{void $\ast$}]{ciphertext,  }\item[{const void $\ast$}]{pubkey,  }\item[{size\+\_\+t}]{keylen }\end{DoxyParamCaption})}
+
+
+
+Authenticated RSA Encryption. 
+
+Performs an authenticated encryption of the given message. Does not support partial encryption.
+
+
+\begin{DoxyParams}{Parameters}
+{\em msg} & Pointer to the data to encrypt and authenticate. \\
+\hline
+{\em msglen} & The size of the message to encrypt. \\
+\hline
+{\em ct} & The buffer to write the authenticated encryption to. Must be at least {\bfseries{keylen+32}} bytes large. \\
+\hline
+{\em pubkey} & Pointer to a bytearray containing the RSA public modulus to encrypt with. \\
+\hline
+{\em keylen} & The length of the RSA public modulus. \\
+\hline
+{\em return} & rsa\+\_\+error\+\_\+t \\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+This function calls \mbox{\hyperlink{hashlib_8h_a5fb66f3d3437a9f5a16e9191a4d46d74}{hashlib\+\_\+\+RSAEncrypt()}}, which applies the OAEP 2.\+2 encoding scheme to the message and then encrypts the message using the public modulus supplied. It then hashes the resulting encryption and appends that hash to the end of the ciphertext. 
+
+{\bfseries{msg}} and {\bfseries{ciphertext}} are NOT aliasable. 
+\end{DoxyNote}
 \mbox{\Hypertarget{hashlib_8h_ada9751a5d91dc4cfcdb90de0518a79f6}\label{hashlib_8h_ada9751a5d91dc4cfcdb90de0518a79f6}} 
 \index{hashlib.h@{hashlib.h}!hashlib\_SSLVerifySignature@{hashlib\_SSLVerifySignature}}
 \index{hashlib\_SSLVerifySignature@{hashlib\_SSLVerifySignature}!hashlib.h@{hashlib.h}}
@@ -1316,35 +1341,3 @@ Reverses the PSS MGF1 masking on {\bfseries{expected}} and retrieves the salt, t
 \begin{DoxyReturn}{Returns}
 True if signature match, False if failed to verify. 
 \end{DoxyReturn}
-\mbox{\Hypertarget{hashlib_8h_a382c457497fc3f8f8dac7f9dfb296a71}\label{hashlib_8h_a382c457497fc3f8f8dac7f9dfb296a71}} 
-\index{hashlib.h@{hashlib.h}!hashlib\_RSAAuthEncrypt@{hashlib\_RSAAuthEncrypt}}
-\index{hashlib\_RSAAuthEncrypt@{hashlib\_RSAAuthEncrypt}!hashlib.h@{hashlib.h}}
-\doxysubsubsection{\texorpdfstring{hashlib\_RSAAuthEncrypt()}{hashlib\_RSAAuthEncrypt()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{hashlib_8h_a0486449f609d0e485bad091a671d9294}{rsa\+\_\+error\+\_\+t}} hashlib\+\_\+\+RSAAuth\+Encrypt (\begin{DoxyParamCaption}\item[{const void $\ast$}]{msg,  }\item[{size\+\_\+t}]{msglen,  }\item[{void $\ast$}]{ciphertext,  }\item[{const void $\ast$}]{pubkey,  }\item[{size\+\_\+t}]{keylen }\end{DoxyParamCaption})}
-
-
-
-Authenticated RSA Encryption. 
-
-Performs an authenticated encryption of the given message. Does not support partial encryption.
-
-
-\begin{DoxyParams}{Parameters}
-{\em msg} & Pointer to the data to encrypt and authenticate. \\
-\hline
-{\em msglen} & The size of the message to encrypt. \\
-\hline
-{\em ct} & The buffer to write the authenticated encryption to. Must be at least {\bfseries{keylen+32}} bytes large. \\
-\hline
-{\em pubkey} & Pointer to a bytearray containing the RSA public modulus to encrypt with. \\
-\hline
-{\em keylen} & The length of the RSA public modulus. \\
-\hline
-{\em return} & rsa\+\_\+error\+\_\+t \\
-\hline
-\end{DoxyParams}
-\begin{DoxyNote}{Note}
-This function calls \mbox{\hyperlink{hashlib_8h_a5fb66f3d3437a9f5a16e9191a4d46d74}{hashlib\+\_\+\+RSAEncrypt()}}, which applies the OAEP 2.\+2 encoding scheme to the message and then encrypts the message using the public modulus supplied. It then hashes the resulting encryption and appends that hash to the end of the ciphertext. 
-
-{\bfseries{msg}} and {\bfseries{ciphertext}} are NOT aliasable. 
-\end{DoxyNote}

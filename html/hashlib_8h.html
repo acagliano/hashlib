@@ -222,6 +222,9 @@ Functions</h2></td></tr>
 <tr class="memitem:a5fb66f3d3437a9f5a16e9191a4d46d74"><td class="memItemLeft" align="right" valign="top"><a class="el" href="hashlib_8h.html#a0486449f609d0e485bad091a671d9294">rsa_error_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#a5fb66f3d3437a9f5a16e9191a4d46d74">hashlib_RSAEncrypt</a> (const void *msg, size_t msglen, void *ciphertext, const void *pubkey, size_t keylen)</td></tr>
 <tr class="memdesc:a5fb66f3d3437a9f5a16e9191a4d46d74"><td class="mdescLeft">&#160;</td><td class="mdescRight">RSA Encryption.  <a href="hashlib_8h.html#a5fb66f3d3437a9f5a16e9191a4d46d74">More...</a><br /></td></tr>
 <tr class="separator:a5fb66f3d3437a9f5a16e9191a4d46d74"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a382c457497fc3f8f8dac7f9dfb296a71"><td class="memItemLeft" align="right" valign="top"><a class="el" href="hashlib_8h.html#a0486449f609d0e485bad091a671d9294">rsa_error_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#a382c457497fc3f8f8dac7f9dfb296a71">hashlib_RSAAuthEncrypt</a> (const void *msg, size_t msglen, void *ciphertext, const void *pubkey, size_t keylen)</td></tr>
+<tr class="memdesc:a382c457497fc3f8f8dac7f9dfb296a71"><td class="mdescLeft">&#160;</td><td class="mdescRight">Authenticated RSA Encryption.  <a href="hashlib_8h.html#a382c457497fc3f8f8dac7f9dfb296a71">More...</a><br /></td></tr>
+<tr class="separator:a382c457497fc3f8f8dac7f9dfb296a71"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ada9751a5d91dc4cfcdb90de0518a79f6"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#ada9751a5d91dc4cfcdb90de0518a79f6">hashlib_SSLVerifySignature</a> (const void *ca_pubkey, size_t keysize, const void *cert, size_t certlen, uint8_t sig_alg)</td></tr>
 <tr class="memdesc:ada9751a5d91dc4cfcdb90de0518a79f6"><td class="mdescLeft">&#160;</td><td class="mdescRight">SSL Certificate Signature Verification.  <a href="hashlib_8h.html#ada9751a5d91dc4cfcdb90de0518a79f6">More...</a><br /></td></tr>
 <tr class="separator:ada9751a5d91dc4cfcdb90de0518a79f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -261,9 +264,6 @@ Functions</h2></td></tr>
 <tr class="memitem:a07f95403c8ef99fd39d5fcec33cb0ab3"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#a07f95403c8ef99fd39d5fcec33cb0ab3">hashlib_RSAVerifyPSS</a> (const void *data, size_t len, const void *expected, size_t modulus_len)</td></tr>
 <tr class="memdesc:a07f95403c8ef99fd39d5fcec33cb0ab3"><td class="mdescLeft">&#160;</td><td class="mdescRight">RSA-PSS verification.  <a href="hashlib_8h.html#a07f95403c8ef99fd39d5fcec33cb0ab3">More...</a><br /></td></tr>
 <tr class="separator:a07f95403c8ef99fd39d5fcec33cb0ab3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a382c457497fc3f8f8dac7f9dfb296a71"><td class="memItemLeft" align="right" valign="top"><a class="el" href="hashlib_8h.html#a0486449f609d0e485bad091a671d9294">rsa_error_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#a382c457497fc3f8f8dac7f9dfb296a71">hashlib_RSAAuthEncrypt</a> (const void *msg, size_t msglen, void *ciphertext, const void *pubkey, size_t keylen)</td></tr>
-<tr class="memdesc:a382c457497fc3f8f8dac7f9dfb296a71"><td class="mdescLeft">&#160;</td><td class="mdescRight">Authenticated RSA Encryption.  <a href="hashlib_8h.html#a382c457497fc3f8f8dac7f9dfb296a71">More...</a><br /></td></tr>
-<tr class="separator:a382c457497fc3f8f8dac7f9dfb296a71"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Cryptography Library for the TI-84+ CE. </p>
@@ -717,11 +717,6 @@ If the SPRNG is run, anything you have stored here will be destroyed. </dd></dl>
 </div><div class="memdoc">
 
 <p>Initializes the SPRNG. </p>
-<h1><a class="anchor" id="sprng"></a>
-{Secure Psuedorandom Number Generator (SPRNG)}</h1>
-<p>Many of the psuedorandom number generators (PRNGs) you find in computers and even the one within the C toolchain for the CE are insecure for cryptographic purposes. They produce statistical randomness, but the state is generally seeded using a value such as rtc_Time(). If an adversary reconstructs the seed, every output of the PRNG becomes computable with little effort. These types of PRNGs are called deterministic algorithms&ndash;given the input, the output is predictable. These PRNGs work for games and other applications where the illusion of randomness is sufficient, but they are not safe for cryptography.</p>
-<p>A secure PRNG is an random number generator that is not only statistically random, but also passes the next-bit and state compromise tests. The <em>next-bit test</em> is defined like so: given the prior output of the PRNG (bits 0=&gt;i), the next bit (i+1) of the output cannot be predicted by a polynomial-time statistical test with a probability non-negligibly greater than 50%. In simpler terms, a secure PRNG must be unpredictable, or "entropic". The <em>state compromise test</em> means that an adversary gaining knowledge of the initial state of the PRNG does not gain any information about its output.</p>
-<p>The PRNG previded by HASHLIB solves both tests like so: (next-bit) &lt;&gt; The PRNG's output is derived from a 119-byte entropy pool created by reading data from the most entropic byte located within floating memory on the device. &lt;&gt; The "entropic byte" is a byte containing a bit that that, out of 1024 test reads, has the closest to a 50/50 split between 1's and 0's. &lt;&gt; The byte containing that bit is read in xor mode seven times per byte to offset any hardware-based correlation between subsequent reads from the entropic byte. &lt;&gt; The entropy pool is then run through a cryptographic hash to spread that entropy evenly through the returned random value. &lt;&gt; The PRNG produces 96.51 bits of entropy per 32 bit number returned. &lt;&gt; Assertion: A source of randomness with sufficient entropy passed through a cryptographic hash will produce output that passes all statistical randomness tests as well as the next-bit test. (state compromise) &lt;&gt; The entropy pool is discarded after it is used once, and a new pool is generated for the next random number. &lt;&gt; ^ This means that the prior state has no bearing on the next output of the PRNG. &lt;&gt; The PRNG destroys its own state after the random number is generated so that the state used to generate it does not persist in memory.</p>
 <p>The SPRNG is initialized by polling the 512-bytes from address 0xD65800 to 0xD66000. This region consists of unmapped memory that contains bus noise. Each bit in that region is polled 1024 times and the address with the bit that is the least biased is selected. That will be the byte the SPRNG uses to generate entropy. </p>
 
 </div>
@@ -1629,6 +1624,69 @@ msg and pubkey are both treated as byte arrays. </dd></dl>
 
 </div>
 </div>
+<a id="a382c457497fc3f8f8dac7f9dfb296a71"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a382c457497fc3f8f8dac7f9dfb296a71">&#9670;&nbsp;</a></span>hashlib_RSAAuthEncrypt()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="hashlib_8h.html#a0486449f609d0e485bad091a671d9294">rsa_error_t</a> hashlib_RSAAuthEncrypt </td>
+          <td>(</td>
+          <td class="paramtype">const void *&#160;</td>
+          <td class="paramname"><em>msg</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>msglen</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>ciphertext</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const void *&#160;</td>
+          <td class="paramname"><em>pubkey</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>keylen</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Authenticated RSA Encryption. </p>
+<p>Performs an authenticated encryption of the given message. Does not support partial encryption.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">msg</td><td>Pointer to the data to encrypt and authenticate. </td></tr>
+    <tr><td class="paramname">msglen</td><td>The size of the message to encrypt. </td></tr>
+    <tr><td class="paramname">ct</td><td>The buffer to write the authenticated encryption to. Must be at least <b>keylen+32</b> bytes large. </td></tr>
+    <tr><td class="paramname">pubkey</td><td>Pointer to a bytearray containing the RSA public modulus to encrypt with. </td></tr>
+    <tr><td class="paramname">keylen</td><td>The length of the RSA public modulus. </td></tr>
+    <tr><td class="paramname">return</td><td>rsa_error_t </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>Note</dt><dd>This function calls <a class="el" href="hashlib_8h.html#a5fb66f3d3437a9f5a16e9191a4d46d74" title="RSA Encryption.">hashlib_RSAEncrypt()</a>, which applies the OAEP 2.2 encoding scheme to the message and then encrypts the message using the public modulus supplied. It then hashes the resulting encryption and appends that hash to the end of the ciphertext. </dd>
+<dd>
+<b>msg</b> and <b>ciphertext</b> are NOT aliasable. </dd></dl>
+
+</div>
+</div>
 <a id="ada9751a5d91dc4cfcdb90de0518a79f6"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ada9751a5d91dc4cfcdb90de0518a79f6">&#9670;&nbsp;</a></span>hashlib_SSLVerifySignature()</h2>
 
@@ -2327,69 +2385,6 @@ If you are trying to validate a signature, use <a class="el" href="hashlib_8h.ht
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>True if signature match, False if failed to verify. </dd></dl>
-
-</div>
-</div>
-<a id="a382c457497fc3f8f8dac7f9dfb296a71"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a382c457497fc3f8f8dac7f9dfb296a71">&#9670;&nbsp;</a></span>hashlib_RSAAuthEncrypt()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="hashlib_8h.html#a0486449f609d0e485bad091a671d9294">rsa_error_t</a> hashlib_RSAAuthEncrypt </td>
-          <td>(</td>
-          <td class="paramtype">const void *&#160;</td>
-          <td class="paramname"><em>msg</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">size_t&#160;</td>
-          <td class="paramname"><em>msglen</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">void *&#160;</td>
-          <td class="paramname"><em>ciphertext</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const void *&#160;</td>
-          <td class="paramname"><em>pubkey</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">size_t&#160;</td>
-          <td class="paramname"><em>keylen</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Authenticated RSA Encryption. </p>
-<p>Performs an authenticated encryption of the given message. Does not support partial encryption.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">msg</td><td>Pointer to the data to encrypt and authenticate. </td></tr>
-    <tr><td class="paramname">msglen</td><td>The size of the message to encrypt. </td></tr>
-    <tr><td class="paramname">ct</td><td>The buffer to write the authenticated encryption to. Must be at least <b>keylen+32</b> bytes large. </td></tr>
-    <tr><td class="paramname">pubkey</td><td>Pointer to a bytearray containing the RSA public modulus to encrypt with. </td></tr>
-    <tr><td class="paramname">keylen</td><td>The length of the RSA public modulus. </td></tr>
-    <tr><td class="paramname">return</td><td>rsa_error_t </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section note"><dt>Note</dt><dd>This function calls <a class="el" href="hashlib_8h.html#a5fb66f3d3437a9f5a16e9191a4d46d74" title="RSA Encryption.">hashlib_RSAEncrypt()</a>, which applies the OAEP 2.2 encoding scheme to the message and then encrypts the message using the public modulus supplied. It then hashes the resulting encryption and appends that hash to the end of the ciphertext. </dd>
-<dd>
-<b>msg</b> and <b>ciphertext</b> are NOT aliasable. </dd></dl>
 
 </div>
 </div>

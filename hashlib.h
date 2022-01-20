@@ -40,9 +40,8 @@
 #define hashlib_FastMemBufferUnsafe		((void*)0xE30800)
 
 
-//  ############################################################################################
-/**************************************************************************************************************************
-@section sprng {Secure Psuedorandom Number Generator (SPRNG)}
+/*
+Secure Psuedorandom Number Generator (SPRNG)
 
 Many of the psuedorandom number generators (PRNGs) you find in computers and
 even the one within the C toolchain for the CE are insecure for cryptographic
@@ -80,7 +79,7 @@ The PRNG previded by HASHLIB solves both tests like so:
     <>  ^ This means that the prior state has no bearing on the next output of the PRNG.
     <>  The PRNG destroys its own state after the random number is generated so that
         the state used to generate it does not persist in memory.
-******************************************************************************************************************************/
+*/
 /****************************************************************************************************************************
  * @brief Initializes the SPRNG.
  *
@@ -113,17 +112,17 @@ uint32_t hashlib_SPRNGRandom(void);
 bool hashlib_RandomBytes(void* buffer, size_t size);
  
  
-/*  ############################################################################################################
-        SHA-256 Cryptographic Hash
+/*
+SHA-256 Cryptographic Hash
  
- A cryptographic hash is used to validate that data is unchanged between two endpoints.
- It is similar to a checksum, but checksums can be easily fooled; cryptographic hashes
- are a lot harder to fool due to how they distribute the bits in a data stream.
- The general use of a hash is as follows: the party sending a message hashes it and
- includes that hash as part of the message. The recipient hashes the message (except the hash)
- themselves and then compares that hash to the one included in the message. If the hashes match,
- the message is complete and unaltered. If the hashes do not match, the message is incomplete
- or has been tampered with.
+A cryptographic hash is used to validate that data is unchanged between two endpoints.
+It is similar to a checksum, but checksums can be easily fooled; cryptographic hashes
+are a lot harder to fool due to how they distribute the bits in a data stream.
+The general use of a hash is as follows: the party sending a message hashes it and
+includes that hash as part of the message. The recipient hashes the message (except the hash)
+themselves and then compares that hash to the one included in the message. If the hashes match,
+the message is complete and unaltered. If the hashes do not match, the message is incomplete
+or has been tampered with.
 */
 /*******************************************************************************************************************
  * @typedef sha256_ctx
@@ -187,8 +186,8 @@ void hashlib_Sha256Final(sha256_ctx* ctx, void* digest);
 void hashlib_MGF1Hash(const void* data, size_t datalen, void* outbuf, size_t outlen);
 
 
-/*  ##################################################################################################
-        SHA-256 HMAC Cryptographic Hash (Hash-Based Message Authentication Code)
+/*
+SHA-256 HMAC Cryptographic Hash (Hash-Based Message Authentication Code)
 
 HMAC generates a more secure hash by using a key known only to authorized
 parties as part of the hash initialization. Thus, while normal SHA-256 can be
@@ -269,18 +268,18 @@ bool hashlib_PBKDF2(
 
 
 /*
- Advanced Encryption Standard (AES)
+Advanced Encryption Standard (AES)
  
- AES is a form of symmetric encryption, and also is a form of block cipher.
- Symmetric encryption means that the same key works in both directions.
- A block cipher is an encryption algorithm that operates on data in segments (for AES, 16 bytes),
- moving through it one segment at a time.
+AES is a form of symmetric encryption, and also is a form of block cipher.
+Symmetric encryption means that the same key works in both directions.
+A block cipher is an encryption algorithm that operates on data in segments (for AES, 16 bytes),
+moving through it one segment at a time.
  
- Symmetric encryption is usually fast, and is generally more secure for smaller key sizes.
- AES is one of the most secure encryption systems in use today.
- The most secure version of the algorithm is AES-256 (uses a 256-bit key).
- AES is one of the open-source encryption schemes believed secure enough to withstand even
- the advent of quantum computing.
+Symmetric encryption is usually fast, and is generally more secure for smaller key sizes.
+AES is one of the most secure encryption systems in use today.
+The most secure version of the algorithm is AES-256 (uses a 256-bit key).
+AES is one of the open-source encryption schemes believed secure enough to withstand even
+the advent of quantum computing.
 */
 /***************************************************************************************************
  * @typedef aes_ctx
@@ -592,6 +591,29 @@ rsa_error_t hashlib_RSAEncrypt(
     const void* pubkey,
     size_t keylen);
  
+/**********************************************************************************************************************************
+ * @brief Authenticated RSA Encryption
+ *
+ * Performs an authenticated encryption of the given message. Does not support partial encryption.
+ *
+ * @param msg Pointer to the data to encrypt and authenticate.
+ * @param msglen The size of the message to encrypt.
+ * @param ct The buffer to write the authenticated encryption to. Must be at least @b keylen+32 bytes large.
+ * @param pubkey Pointer to a bytearray containing the RSA public modulus to encrypt with.
+ * @param keylen The length of the RSA public modulus.
+ * @param return rsa_error_t
+ * @note This function calls hashlib_RSAEncrypt(), which applies the OAEP 2.2 encoding scheme to the message
+ *      and then encrypts the message using the public modulus supplied. It then hashes the resulting encryption
+ *      and appends that hash to the end of the ciphertext.
+ * @note @b msg and @b ciphertext are NOT aliasable.
+ ***********************************************************************************************************************************/
+rsa_error_t hashlib_RSAAuthEncrypt(
+    const void* msg,
+    size_t msglen,
+    void *ciphertext,
+    const void* pubkey,
+    size_t keylen);
+    
 /**********************************************************************************************
  * @brief SSL Certificate Signature Verification
  *
@@ -844,35 +866,6 @@ size_t hashlib_RSAEncodePSS(
     size_t len,
     const void* expected,
     size_t modulus_len);
-    
-    
-
-    
-
-    
-    
-/**********************************************************************************************************************************
- * @brief Authenticated RSA Encryption
- *
- * Performs an authenticated encryption of the given message. Does not support partial encryption.
- *
- * @param msg Pointer to the data to encrypt and authenticate.
- * @param msglen The size of the message to encrypt.
- * @param ct The buffer to write the authenticated encryption to. Must be at least @b keylen+32 bytes large.
- * @param pubkey Pointer to a bytearray containing the RSA public modulus to encrypt with.
- * @param keylen The length of the RSA public modulus.
- * @param return rsa_error_t
- * @note This function calls hashlib_RSAEncrypt(), which applies the OAEP 2.2 encoding scheme to the message
- *      and then encrypts the message using the public modulus supplied. It then hashes the resulting encryption
- *      and appends that hash to the end of the ciphertext.
- * @note @b msg and @b ciphertext are NOT aliasable.
- ***********************************************************************************************************************************/
-rsa_error_t hashlib_RSAAuthEncrypt(
-    const void* msg,
-    size_t msglen,
-    void *ciphertext,
-    const void* pubkey,
-    size_t keylen);
 
 
 #endif
