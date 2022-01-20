@@ -21,13 +21,9 @@ library	"HASHLIB", 8
 	export	hashlib_SSLVerifySignature ; 57
 	export	hashlib_EraseContext ; 60
 	export	hashlib_CompareDigest ; 63
-	export	hashlib_ReverseEndianness ; 66
-	export	hashlib_AESAuthEncrypt ; 69
-	export	hashlib_AESAuthDecrypt ; 72
-	export	hashlib_RSAAuthEncrypt ; 75
-	export	hashlib_PBKDF2 ; 78
-	export	hashlib_HMACSha256Init ; 81
-	export	hashlib_HMACSha256Update ; 84
-	export	hashlib_HMACSha256Final ; 87
-	export	hashlib_HMACSha256Reset ; 90
-	export	hashlib_DigestToHexStr ; 93
+	export	hashlib_PBKDF2 ; 66
+	export	hashlib_HMACSha256Init ; 69
+	export	hashlib_HMACSha256Update ; 72
+	export	hashlib_HMACSha256Final ; 75
+	export	hashlib_HMACSha256Reset ; 78
+	export	hashlib_DigestToHexStr ; 81
