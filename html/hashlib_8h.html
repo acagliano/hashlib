@@ -207,18 +207,18 @@ Functions</h2></td></tr>
 <tr class="memitem:a72c38b8e422c65a946ed0bb433e2dc3c"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#a72c38b8e422c65a946ed0bb433e2dc3c">hashlib_AESLoadKey</a> (const void *key, const <a class="el" href="hashlib_8h.html#aa188bc2768a3b7aa6ad73cb2c77819e0">aes_ctx</a> *ks, size_t keylen)</td></tr>
 <tr class="memdesc:a72c38b8e422c65a946ed0bb433e2dc3c"><td class="mdescLeft">&#160;</td><td class="mdescRight">AES import key to key schedule context.  <a href="hashlib_8h.html#a72c38b8e422c65a946ed0bb433e2dc3c">More...</a><br /></td></tr>
 <tr class="separator:a72c38b8e422c65a946ed0bb433e2dc3c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab5b8f870cb2e787f0cce92f24c61f070"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#ab5b8f870cb2e787f0cce92f24c61f070">hashlib_AESEncryptBlock</a> (const void *block_in, void *block_out, const <a class="el" href="hashlib_8h.html#aa188bc2768a3b7aa6ad73cb2c77819e0">aes_ctx</a> *ks)</td></tr>
-<tr class="memdesc:ab5b8f870cb2e787f0cce92f24c61f070"><td class="mdescLeft">&#160;</td><td class="mdescRight">AES Single-Block Encryption (ECB mode)  <a href="hashlib_8h.html#ab5b8f870cb2e787f0cce92f24c61f070">More...</a><br /></td></tr>
-<tr class="separator:ab5b8f870cb2e787f0cce92f24c61f070"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a12af5da58cdba7080c6101d1fc0542b2"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#a12af5da58cdba7080c6101d1fc0542b2">hashlib_AESDecryptBlock</a> (const void *block_in, void *block_out, const <a class="el" href="hashlib_8h.html#aa188bc2768a3b7aa6ad73cb2c77819e0">aes_ctx</a> *ks)</td></tr>
-<tr class="memdesc:a12af5da58cdba7080c6101d1fc0542b2"><td class="mdescLeft">&#160;</td><td class="mdescRight">AES Single-Block Decryption (ECB Mode)  <a href="hashlib_8h.html#a12af5da58cdba7080c6101d1fc0542b2">More...</a><br /></td></tr>
-<tr class="separator:a12af5da58cdba7080c6101d1fc0542b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1206cd9923279d06108d363a9881f79b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="hashlib_8h.html#aeb2e64abcc4317e3143fb820f21c3bfd">aes_error_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#a1206cd9923279d06108d363a9881f79b">hashlib_AESEncrypt</a> (const void *plaintext, size_t len, void *ciphertext, const <a class="el" href="hashlib_8h.html#aa188bc2768a3b7aa6ad73cb2c77819e0">aes_ctx</a> *ks, const void *iv, uint8_t ciphermode, uint8_t paddingmode)</td></tr>
 <tr class="memdesc:a1206cd9923279d06108d363a9881f79b"><td class="mdescLeft">&#160;</td><td class="mdescRight">General-Purpose AES Encryption.  <a href="hashlib_8h.html#a1206cd9923279d06108d363a9881f79b">More...</a><br /></td></tr>
 <tr class="separator:a1206cd9923279d06108d363a9881f79b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9213710a9ffc0358220c8aa11f395bb2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="hashlib_8h.html#aeb2e64abcc4317e3143fb820f21c3bfd">aes_error_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#a9213710a9ffc0358220c8aa11f395bb2">hashlib_AESDecrypt</a> (const void *ciphertext, size_t len, void *plaintext, const <a class="el" href="hashlib_8h.html#aa188bc2768a3b7aa6ad73cb2c77819e0">aes_ctx</a> *ks, const void *iv, uint8_t ciphermode, uint8_t paddingmode)</td></tr>
 <tr class="memdesc:a9213710a9ffc0358220c8aa11f395bb2"><td class="mdescLeft">&#160;</td><td class="mdescRight">General-Purpose AES Decryption.  <a href="hashlib_8h.html#a9213710a9ffc0358220c8aa11f395bb2">More...</a><br /></td></tr>
 <tr class="separator:a9213710a9ffc0358220c8aa11f395bb2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a104fbe2d5097020e89cca09af982dea6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="hashlib_8h.html#aeb2e64abcc4317e3143fb820f21c3bfd">aes_error_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#a104fbe2d5097020e89cca09af982dea6">hashlib_AESAuthEncrypt</a> (const void *plaintext, size_t len, void *ciphertext, <a class="el" href="hashlib_8h.html#aa188bc2768a3b7aa6ad73cb2c77819e0">aes_ctx</a> *key, const void *iv, uint8_t ciphermode, size_t encryption_offset, size_t encryption_len)</td></tr>
+<tr class="memdesc:a104fbe2d5097020e89cca09af982dea6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Authenticated AES Encryption.  <a href="hashlib_8h.html#a104fbe2d5097020e89cca09af982dea6">More...</a><br /></td></tr>
+<tr class="separator:a104fbe2d5097020e89cca09af982dea6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7609df266293fd2fcc98279be119b8e3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="hashlib_8h.html#aeb2e64abcc4317e3143fb820f21c3bfd">aes_error_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#a7609df266293fd2fcc98279be119b8e3">hashlib_AESAuthDecrypt</a> (const void *ciphertext, size_t len, void *plaintext, <a class="el" href="hashlib_8h.html#aa188bc2768a3b7aa6ad73cb2c77819e0">aes_ctx</a> *key, const void *iv, uint8_t ciphermode, size_t decryption_offset, size_t decryption_len)</td></tr>
+<tr class="memdesc:a7609df266293fd2fcc98279be119b8e3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Authenticated AES Decryption.  <a href="hashlib_8h.html#a7609df266293fd2fcc98279be119b8e3">More...</a><br /></td></tr>
+<tr class="separator:a7609df266293fd2fcc98279be119b8e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5fb66f3d3437a9f5a16e9191a4d46d74"><td class="memItemLeft" align="right" valign="top"><a class="el" href="hashlib_8h.html#a0486449f609d0e485bad091a671d9294">rsa_error_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#a5fb66f3d3437a9f5a16e9191a4d46d74">hashlib_RSAEncrypt</a> (const void *msg, size_t msglen, void *ciphertext, const void *pubkey, size_t keylen)</td></tr>
 <tr class="memdesc:a5fb66f3d3437a9f5a16e9191a4d46d74"><td class="mdescLeft">&#160;</td><td class="mdescRight">RSA Encryption.  <a href="hashlib_8h.html#a5fb66f3d3437a9f5a16e9191a4d46d74">More...</a><br /></td></tr>
 <tr class="separator:a5fb66f3d3437a9f5a16e9191a4d46d74"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -237,6 +237,12 @@ Functions</h2></td></tr>
 <tr class="memitem:aceec2ce59159467d7f78142834360d63"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#aceec2ce59159467d7f78142834360d63">hashlib_ReverseEndianness</a> (const void *in, void *out, size_t len)</td></tr>
 <tr class="memdesc:aceec2ce59159467d7f78142834360d63"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reverses the endianness of a buffer.  <a href="hashlib_8h.html#aceec2ce59159467d7f78142834360d63">More...</a><br /></td></tr>
 <tr class="separator:aceec2ce59159467d7f78142834360d63"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab5b8f870cb2e787f0cce92f24c61f070"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#ab5b8f870cb2e787f0cce92f24c61f070">hashlib_AESEncryptBlock</a> (const void *block_in, void *block_out, const <a class="el" href="hashlib_8h.html#aa188bc2768a3b7aa6ad73cb2c77819e0">aes_ctx</a> *ks)</td></tr>
+<tr class="memdesc:ab5b8f870cb2e787f0cce92f24c61f070"><td class="mdescLeft">&#160;</td><td class="mdescRight">AES Single-Block Encryption (ECB mode)  <a href="hashlib_8h.html#ab5b8f870cb2e787f0cce92f24c61f070">More...</a><br /></td></tr>
+<tr class="separator:ab5b8f870cb2e787f0cce92f24c61f070"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a12af5da58cdba7080c6101d1fc0542b2"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#a12af5da58cdba7080c6101d1fc0542b2">hashlib_AESDecryptBlock</a> (const void *block_in, void *block_out, const <a class="el" href="hashlib_8h.html#aa188bc2768a3b7aa6ad73cb2c77819e0">aes_ctx</a> *ks)</td></tr>
+<tr class="memdesc:a12af5da58cdba7080c6101d1fc0542b2"><td class="mdescLeft">&#160;</td><td class="mdescRight">AES Single-Block Decryption (ECB Mode)  <a href="hashlib_8h.html#a12af5da58cdba7080c6101d1fc0542b2">More...</a><br /></td></tr>
+<tr class="separator:a12af5da58cdba7080c6101d1fc0542b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a266d90502e38e3bf17c2a2fc5be02388"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#a266d90502e38e3bf17c2a2fc5be02388">hashlib_AESPadMessage</a> (const void *plaintext, size_t len, void *outbuf, uint8_t schm)</td></tr>
 <tr class="memdesc:a266d90502e38e3bf17c2a2fc5be02388"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pads a plaintext according to the specified AES padding scheme.  <a href="hashlib_8h.html#a266d90502e38e3bf17c2a2fc5be02388">More...</a><br /></td></tr>
 <tr class="separator:a266d90502e38e3bf17c2a2fc5be02388"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -255,12 +261,6 @@ Functions</h2></td></tr>
 <tr class="memitem:a07f95403c8ef99fd39d5fcec33cb0ab3"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#a07f95403c8ef99fd39d5fcec33cb0ab3">hashlib_RSAVerifyPSS</a> (const void *data, size_t len, const void *expected, size_t modulus_len)</td></tr>
 <tr class="memdesc:a07f95403c8ef99fd39d5fcec33cb0ab3"><td class="mdescLeft">&#160;</td><td class="mdescRight">RSA-PSS verification.  <a href="hashlib_8h.html#a07f95403c8ef99fd39d5fcec33cb0ab3">More...</a><br /></td></tr>
 <tr class="separator:a07f95403c8ef99fd39d5fcec33cb0ab3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a104fbe2d5097020e89cca09af982dea6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="hashlib_8h.html#aeb2e64abcc4317e3143fb820f21c3bfd">aes_error_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#a104fbe2d5097020e89cca09af982dea6">hashlib_AESAuthEncrypt</a> (const void *plaintext, size_t len, void *ciphertext, <a class="el" href="hashlib_8h.html#aa188bc2768a3b7aa6ad73cb2c77819e0">aes_ctx</a> *key, const void *iv, uint8_t ciphermode, size_t encryption_offset, size_t encryption_len)</td></tr>
-<tr class="memdesc:a104fbe2d5097020e89cca09af982dea6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Authenticated AES Encryption.  <a href="hashlib_8h.html#a104fbe2d5097020e89cca09af982dea6">More...</a><br /></td></tr>
-<tr class="separator:a104fbe2d5097020e89cca09af982dea6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7609df266293fd2fcc98279be119b8e3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="hashlib_8h.html#aeb2e64abcc4317e3143fb820f21c3bfd">aes_error_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#a7609df266293fd2fcc98279be119b8e3">hashlib_AESAuthDecrypt</a> (const void *ciphertext, size_t len, void *plaintext, <a class="el" href="hashlib_8h.html#aa188bc2768a3b7aa6ad73cb2c77819e0">aes_ctx</a> *key, const void *iv, uint8_t ciphermode, size_t decryption_offset, size_t decryption_len)</td></tr>
-<tr class="memdesc:a7609df266293fd2fcc98279be119b8e3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Authenticated AES Decryption.  <a href="hashlib_8h.html#a7609df266293fd2fcc98279be119b8e3">More...</a><br /></td></tr>
-<tr class="separator:a7609df266293fd2fcc98279be119b8e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a382c457497fc3f8f8dac7f9dfb296a71"><td class="memItemLeft" align="right" valign="top"><a class="el" href="hashlib_8h.html#a0486449f609d0e485bad091a671d9294">rsa_error_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#a382c457497fc3f8f8dac7f9dfb296a71">hashlib_RSAAuthEncrypt</a> (const void *msg, size_t msglen, void *ciphertext, const void *pubkey, size_t keylen)</td></tr>
 <tr class="memdesc:a382c457497fc3f8f8dac7f9dfb296a71"><td class="mdescLeft">&#160;</td><td class="mdescRight">Authenticated RSA Encryption.  <a href="hashlib_8h.html#a382c457497fc3f8f8dac7f9dfb296a71">More...</a><br /></td></tr>
 <tr class="separator:a382c457497fc3f8f8dac7f9dfb296a71"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -717,6 +717,10 @@ If the SPRNG is run, anything you have stored here will be destroyed. </dd></dl>
 </div><div class="memdoc">
 
 <p>Initializes the SPRNG. </p>
+<p>Secure Psuedorandom Number Generator (SPRNG)</p>
+<p>Many of the psuedorandom number generators (PRNGs) you find in computers and even the one within the C toolchain for the CE are insecure for cryptographic purposes. They produce statistical randomness, but the state is generally seeded using a value such as rtc_Time(). If an adversary reconstructs the seed, every output of the PRNG becomes computable with little effort. These types of PRNGs are called deterministic algorithms&ndash;given the input, the output is predictable. These PRNGs work for games and other applications where the illusion of randomness is sufficient, but they are not safe for cryptography.</p>
+<p>A secure PRNG is an random number generator that is not only statistically random, but also passes the next-bit and state compromise tests. The <em>next-bit test</em> is defined like so: given the prior output of the PRNG (bits 0=&gt;i), the next bit (i+1) of the output cannot be predicted by a polynomial-time statistical test with a probability non-negligibly greater than 50%. In simpler terms, a secure PRNG must be unpredictable, or "entropic". The <em>state compromise test</em> means that an adversary gaining knowledge of the initial state of the PRNG does not gain any information about its output.</p>
+<p>The PRNG previded by HASHLIB solves both tests like so: (next-bit) &lt;&gt; The PRNG's output is derived from a 119-byte entropy pool created by reading data from the most entropic byte located within floating memory on the device. &lt;&gt; The "entropic byte" is a byte containing a bit that that, out of 1024 test reads, has the closest to a 50/50 split between 1's and 0's. &lt;&gt; The byte containing that bit is read in xor mode seven times per byte to offset any hardware-based correlation between subsequent reads from the entropic byte. &lt;&gt; The entropy pool is then run through a cryptographic hash to spread that entropy evenly through the returned random value. &lt;&gt; The PRNG produces 96.51 bits of entropy per 32 bit number returned. &lt;&gt; Assertion: A source of randomness with sufficient entropy passed through a cryptographic hash will produce output that passes all statistical randomness tests as well as the next-bit test. (state compromise) &lt;&gt; The entropy pool is discarded after it is used once, and a new pool is generated for the next random number. &lt;&gt; ^ This means that the prior state has no bearing on the next output of the PRNG. &lt;&gt; The PRNG destroys its own state after the random number is generated so that the state used to generate it does not persist in memory. </p>
 <p>The SPRNG is initialized by polling the 512-bytes from address 0xD65800 to 0xD66000. This region consists of unmapped memory that contains bus noise. Each bit in that region is polled 1024 times and the address with the bit that is the least biased is selected. That will be the byte the SPRNG uses to generate entropy. </p>
 
 </div>
@@ -1225,104 +1229,6 @@ If the SPRNG is run, anything you have stored here will be destroyed. </dd></dl>
 
 </div>
 </div>
-<a id="ab5b8f870cb2e787f0cce92f24c61f070"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab5b8f870cb2e787f0cce92f24c61f070">&#9670;&nbsp;</a></span>hashlib_AESEncryptBlock()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool hashlib_AESEncryptBlock </td>
-          <td>(</td>
-          <td class="paramtype">const void *&#160;</td>
-          <td class="paramname"><em>block_in</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">void *&#160;</td>
-          <td class="paramname"><em>block_out</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="hashlib_8h.html#aa188bc2768a3b7aa6ad73cb2c77819e0">aes_ctx</a> *&#160;</td>
-          <td class="paramname"><em>ks</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>AES Single-Block Encryption (ECB mode) </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">block_in</td><td>Pointer to block of data to encrypt. </td></tr>
-    <tr><td class="paramname">block_out</td><td>Pointer to buffer to write encrypted block. </td></tr>
-    <tr><td class="paramname">ks</td><td>Pointer to an AES key schedule context. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section note"><dt>Note</dt><dd><b>block_in</b> and <b>block_out</b> are aliasable. </dd></dl>
-<dl class="section warning"><dt>Warning</dt><dd>ECB-mode ciphers are insecure (see many-time pad vulnerability). Unless you know what you are doing, use <a class="el" href="hashlib_8h.html#a1206cd9923279d06108d363a9881f79b" title="General-Purpose AES Encryption.">hashlib_AESEncrypt()</a> instead. </dd>
-<dd>
-The ECB mode single-block encryptors lack the buffer leak protections that <a class="el" href="hashlib_8h.html#a1206cd9923279d06108d363a9881f79b" title="General-Purpose AES Encryption.">hashlib_AESEncrypt()</a> has. If you are writing your own cipher mode, you will need to implement that yourself. </dd></dl>
-<dl class="section return"><dt>Returns</dt><dd>True if encryption succeeded. False if failed. </dd></dl>
-
-</div>
-</div>
-<a id="a12af5da58cdba7080c6101d1fc0542b2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a12af5da58cdba7080c6101d1fc0542b2">&#9670;&nbsp;</a></span>hashlib_AESDecryptBlock()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool hashlib_AESDecryptBlock </td>
-          <td>(</td>
-          <td class="paramtype">const void *&#160;</td>
-          <td class="paramname"><em>block_in</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">void *&#160;</td>
-          <td class="paramname"><em>block_out</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="hashlib_8h.html#aa188bc2768a3b7aa6ad73cb2c77819e0">aes_ctx</a> *&#160;</td>
-          <td class="paramname"><em>ks</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>AES Single-Block Decryption (ECB Mode) </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">block_in</td><td>Pointer to block of data to decrypt. </td></tr>
-    <tr><td class="paramname">block_out</td><td>Pointer to buffer to write decrypted block. </td></tr>
-    <tr><td class="paramname">ks</td><td>Pointer to an AES key schedule context. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section note"><dt>Note</dt><dd><b>block_in</b> and <b>block_out</b> are aliasable. </dd></dl>
-<dl class="section warning"><dt>Warning</dt><dd>ECB-mode ciphers are insecure (see many-time pad vulnerability). Unless you know what you are doing, use <a class="el" href="hashlib_8h.html#a9213710a9ffc0358220c8aa11f395bb2" title="General-Purpose AES Decryption.">hashlib_AESDecrypt()</a> instead. </dd>
-<dd>
-The ECB mode single-block encryptors lack the buffer leak protections that <a class="el" href="hashlib_8h.html#a9213710a9ffc0358220c8aa11f395bb2" title="General-Purpose AES Decryption.">hashlib_AESDecrypt()</a> has. If you are writing your own cipher mode, you will need to implement that yourself. </dd></dl>
-<dl class="section return"><dt>Returns</dt><dd>True if encryption succeeded. False if an error occured. </dd></dl>
-
-</div>
-</div>
 <a id="a1206cd9923279d06108d363a9881f79b"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a1206cd9923279d06108d363a9881f79b">&#9670;&nbsp;</a></span>hashlib_AESEncrypt()</h2>
 
@@ -1478,6 +1384,182 @@ The ECB mode single-block encryptors lack the buffer leak protections that <a cl
 <dd>
 <b>IV</b> should be the same as what is used for encryption. </dd></dl>
 <dl class="section return"><dt>Returns</dt><dd>aes_error_t </dd></dl>
+
+</div>
+</div>
+<a id="a104fbe2d5097020e89cca09af982dea6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a104fbe2d5097020e89cca09af982dea6">&#9670;&nbsp;</a></span>hashlib_AESAuthEncrypt()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="hashlib_8h.html#aeb2e64abcc4317e3143fb820f21c3bfd">aes_error_t</a> hashlib_AESAuthEncrypt </td>
+          <td>(</td>
+          <td class="paramtype">const void *&#160;</td>
+          <td class="paramname"><em>plaintext</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>len</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>ciphertext</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="hashlib_8h.html#aa188bc2768a3b7aa6ad73cb2c77819e0">aes_ctx</a> *&#160;</td>
+          <td class="paramname"><em>key</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const void *&#160;</td>
+          <td class="paramname"><em>iv</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>ciphermode</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>encryption_offset</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>encryption_len</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Authenticated AES Encryption. </p>
+<p>Performs an authenticated encryption of the given message. Supports partial encryption via the <b>encryption_offset</b> and <b>encryption_len</b> parameters.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">plaintext</td><td>Pointer to the data to encrypt and authenticate. </td></tr>
+    <tr><td class="paramname">len</td><td>The size of the plaintext to encrypt and authenticate. </td></tr>
+    <tr><td class="paramname">ciphertext</td><td>The buffer to write the authenticated encryption to. Must be large enough to hold the ciphertext (including any padding) as well as the SHA-256 hash. </td></tr>
+    <tr><td class="paramname">ks</td><td>Pointer to an AES key schedule context. </td></tr>
+    <tr><td class="paramname">iv</td><td>Pointer to an initialization vector (a nonce of length equal to the block size). </td></tr>
+    <tr><td class="paramname">ciphermode</td><td>The cipher mode to use. Can be either <em>AES_MODE_CBC</em> or <em>AES_MODE_CTR</em>. </td></tr>
+    <tr><td class="paramname">encryption_offset</td><td>The offset from the start of the plaintext to begin encryption. This is useful if you have control bytes or metadata that should not be encrypted. </td></tr>
+    <tr><td class="paramname">encryption_len</td><td>The size of the data to be encrypted. This is useful if you have trailing bytes that should not be encrypted. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>aes_error_t </dd></dl>
+<dl class="section note"><dt>Note</dt><dd>Uses SCHM_DEFAULT (PKCS7) as the padding scheme where needed. </dd>
+<dd>
+While this function can encrypt part or all of the message, it hashes it in its entirely. This is because when sending a packet, only sensitive data need be encrypted but the entire packet should be authenticated. </dd>
+<dd>
+To encrypt the entire message, pass 0 for <b>encryption_offset</b> and <b>len</b> for <b>encryption_len</b>. </dd>
+<dd>
+<b>plaintext</b> and <b>ciphertext</b> are aliasable as long as <b>plaintext</b> &gt;= <b>ciphertext</b>. </dd></dl>
+
+</div>
+</div>
+<a id="a7609df266293fd2fcc98279be119b8e3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7609df266293fd2fcc98279be119b8e3">&#9670;&nbsp;</a></span>hashlib_AESAuthDecrypt()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="hashlib_8h.html#aeb2e64abcc4317e3143fb820f21c3bfd">aes_error_t</a> hashlib_AESAuthDecrypt </td>
+          <td>(</td>
+          <td class="paramtype">const void *&#160;</td>
+          <td class="paramname"><em>ciphertext</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>len</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>plaintext</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="hashlib_8h.html#aa188bc2768a3b7aa6ad73cb2c77819e0">aes_ctx</a> *&#160;</td>
+          <td class="paramname"><em>key</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const void *&#160;</td>
+          <td class="paramname"><em>iv</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>ciphermode</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>decryption_offset</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>decryption_len</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Authenticated AES Decryption. </p>
+<p>Performs an authenticated decryption of the given message. Supports partial decryption via the <b>decryption_offset</b> and <b>decryption_len</b> parameters.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ciphertext</td><td>Pointer to the data to decrypt and authenticate. </td></tr>
+    <tr><td class="paramname">len</td><td>The size of the plaintext to decrypt and authenticate. </td></tr>
+    <tr><td class="paramname">plaintext</td><td>The buffer to write the authenticated decryption to. Must be at least <b>len-32</b> bytes large. </td></tr>
+    <tr><td class="paramname">ks</td><td>Pointer to an AES key schedule context. </td></tr>
+    <tr><td class="paramname">iv</td><td>Pointer to an initialization vector (a nonce of length equal to the block size). </td></tr>
+    <tr><td class="paramname">ciphermode</td><td>The cipher mode to use. Can be either <em>AES_MODE_CBC</em> or <em>AES_MODE_CTR</em>. </td></tr>
+    <tr><td class="paramname">decryption_offset</td><td>The offset from the start of the plaintext to begin decryption. This is useful if you have control bytes or metadata that should not be decrypted. </td></tr>
+    <tr><td class="paramname">decryption_len</td><td>The size of the data to be decrypted. This is useful if you have trailing bytes that should not be decrypted. </td></tr>
+    <tr><td class="paramname">return</td><td>aes_error_t </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>Note</dt><dd>Uses SCHM_DEFAULT (PKCS7) as the padding scheme where needed. </dd>
+<dd>
+This function authenticates the message first by hashing from offset <b>zero</b> to <b>len-32</b> of the ciphertext and comparing that hash to the last 32 bytes of the ciphertext. It assumes those 32 bytes are a hash appended by the remote host. If the hashes do not match, AES_INVALID_CIPHERTEXT is returned and the message is not decrypted. </dd>
+<dd>
+To decrypt the entire message, pass 0 for <b>decryption_offset</b> and <b>len-32</b> for <b>decryption_len</b>. </dd>
+<dd>
+<b>plaintext</b> and <b>ciphertext</b> are aliasable as long as <b>plaintext</b> &gt;= <b>ciphertext</b>. </dd></dl>
 
 </div>
 </div>
@@ -1779,6 +1861,105 @@ msg and pubkey are both treated as byte arrays. </dd></dl>
 
 </div>
 </div>
+<a id="ab5b8f870cb2e787f0cce92f24c61f070"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab5b8f870cb2e787f0cce92f24c61f070">&#9670;&nbsp;</a></span>hashlib_AESEncryptBlock()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool hashlib_AESEncryptBlock </td>
+          <td>(</td>
+          <td class="paramtype">const void *&#160;</td>
+          <td class="paramname"><em>block_in</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>block_out</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="hashlib_8h.html#aa188bc2768a3b7aa6ad73cb2c77819e0">aes_ctx</a> *&#160;</td>
+          <td class="paramname"><em>ks</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>AES Single-Block Encryption (ECB mode) </p>
+<p><a class="anchor" id="autotoc_md0"></a> </p><h5>HELPER FUNCTIONS</h5>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">block_in</td><td>Pointer to block of data to encrypt. </td></tr>
+    <tr><td class="paramname">block_out</td><td>Pointer to buffer to write encrypted block. </td></tr>
+    <tr><td class="paramname">ks</td><td>Pointer to an AES key schedule context. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>Note</dt><dd><b>block_in</b> and <b>block_out</b> are aliasable. </dd></dl>
+<dl class="section warning"><dt>Warning</dt><dd>ECB-mode ciphers are insecure (see many-time pad vulnerability). Unless you know what you are doing, use <a class="el" href="hashlib_8h.html#a1206cd9923279d06108d363a9881f79b" title="General-Purpose AES Encryption.">hashlib_AESEncrypt()</a> instead. </dd>
+<dd>
+The ECB mode single-block encryptors lack the buffer leak protections that <a class="el" href="hashlib_8h.html#a1206cd9923279d06108d363a9881f79b" title="General-Purpose AES Encryption.">hashlib_AESEncrypt()</a> has. If you are writing your own cipher mode, you will need to implement that yourself. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>True if encryption succeeded. False if failed. </dd></dl>
+
+</div>
+</div>
+<a id="a12af5da58cdba7080c6101d1fc0542b2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a12af5da58cdba7080c6101d1fc0542b2">&#9670;&nbsp;</a></span>hashlib_AESDecryptBlock()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool hashlib_AESDecryptBlock </td>
+          <td>(</td>
+          <td class="paramtype">const void *&#160;</td>
+          <td class="paramname"><em>block_in</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>block_out</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="hashlib_8h.html#aa188bc2768a3b7aa6ad73cb2c77819e0">aes_ctx</a> *&#160;</td>
+          <td class="paramname"><em>ks</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>AES Single-Block Decryption (ECB Mode) </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">block_in</td><td>Pointer to block of data to decrypt. </td></tr>
+    <tr><td class="paramname">block_out</td><td>Pointer to buffer to write decrypted block. </td></tr>
+    <tr><td class="paramname">ks</td><td>Pointer to an AES key schedule context. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>Note</dt><dd><b>block_in</b> and <b>block_out</b> are aliasable. </dd></dl>
+<dl class="section warning"><dt>Warning</dt><dd>ECB-mode ciphers are insecure (see many-time pad vulnerability). Unless you know what you are doing, use <a class="el" href="hashlib_8h.html#a9213710a9ffc0358220c8aa11f395bb2" title="General-Purpose AES Decryption.">hashlib_AESDecrypt()</a> instead. </dd>
+<dd>
+The ECB mode single-block encryptors lack the buffer leak protections that <a class="el" href="hashlib_8h.html#a9213710a9ffc0358220c8aa11f395bb2" title="General-Purpose AES Decryption.">hashlib_AESDecrypt()</a> has. If you are writing your own cipher mode, you will need to implement that yourself. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>True if encryption succeeded. False if an error occured. </dd></dl>
+
+</div>
+</div>
 <a id="a266d90502e38e3bf17c2a2fc5be02388"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a266d90502e38e3bf17c2a2fc5be02388">&#9670;&nbsp;</a></span>hashlib_AESPadMessage()</h2>
 
@@ -1818,7 +1999,6 @@ msg and pubkey are both treated as byte arrays. </dd></dl>
 </div><div class="memdoc">
 
 <p>Pads a plaintext according to the specified AES padding scheme. </p>
-<p><a class="anchor" id="autotoc_md0"></a> </p><h5>MISCELLANEOUS FUNCTIONS</h5>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">plaintext</td><td>Pointer to buffer containing the data to pad. </td></tr>
@@ -2146,182 +2326,6 @@ If you are trying to validate a signature, use <a class="el" href="hashlib_8h.ht
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>True if signature match, False if failed to verify. </dd></dl>
-
-</div>
-</div>
-<a id="a104fbe2d5097020e89cca09af982dea6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a104fbe2d5097020e89cca09af982dea6">&#9670;&nbsp;</a></span>hashlib_AESAuthEncrypt()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="hashlib_8h.html#aeb2e64abcc4317e3143fb820f21c3bfd">aes_error_t</a> hashlib_AESAuthEncrypt </td>
-          <td>(</td>
-          <td class="paramtype">const void *&#160;</td>
-          <td class="paramname"><em>plaintext</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">size_t&#160;</td>
-          <td class="paramname"><em>len</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">void *&#160;</td>
-          <td class="paramname"><em>ciphertext</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="hashlib_8h.html#aa188bc2768a3b7aa6ad73cb2c77819e0">aes_ctx</a> *&#160;</td>
-          <td class="paramname"><em>key</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const void *&#160;</td>
-          <td class="paramname"><em>iv</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">uint8_t&#160;</td>
-          <td class="paramname"><em>ciphermode</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">size_t&#160;</td>
-          <td class="paramname"><em>encryption_offset</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">size_t&#160;</td>
-          <td class="paramname"><em>encryption_len</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Authenticated AES Encryption. </p>
-<p>Performs an authenticated encryption of the given message. Supports partial encryption via the <b>encryption_offset</b> and <b>encryption_len</b> parameters.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">plaintext</td><td>Pointer to the data to encrypt and authenticate. </td></tr>
-    <tr><td class="paramname">len</td><td>The size of the plaintext to encrypt and authenticate. </td></tr>
-    <tr><td class="paramname">ciphertext</td><td>The buffer to write the authenticated encryption to. Must be large enough to hold the ciphertext (including any padding) as well as the SHA-256 hash. </td></tr>
-    <tr><td class="paramname">ks</td><td>Pointer to an AES key schedule context. </td></tr>
-    <tr><td class="paramname">iv</td><td>Pointer to an initialization vector (a nonce of length equal to the block size). </td></tr>
-    <tr><td class="paramname">ciphermode</td><td>The cipher mode to use. Can be either <em>AES_MODE_CBC</em> or <em>AES_MODE_CTR</em>. </td></tr>
-    <tr><td class="paramname">encryption_offset</td><td>The offset from the start of the plaintext to begin encryption. This is useful if you have control bytes or metadata that should not be encrypted. </td></tr>
-    <tr><td class="paramname">encryption_len</td><td>The size of the data to be encrypted. This is useful if you have trailing bytes that should not be encrypted. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>aes_error_t </dd></dl>
-<dl class="section note"><dt>Note</dt><dd>Uses SCHM_DEFAULT (PKCS7) as the padding scheme where needed. </dd>
-<dd>
-While this function can encrypt part or all of the message, it hashes it in its entirely. This is because when sending a packet, only sensitive data need be encrypted but the entire packet should be authenticated. </dd>
-<dd>
-To encrypt the entire message, pass 0 for <b>encryption_offset</b> and <b>len</b> for <b>encryption_len</b>. </dd>
-<dd>
-<b>plaintext</b> and <b>ciphertext</b> are aliasable as long as <b>plaintext</b> &gt;= <b>ciphertext</b>. </dd></dl>
-
-</div>
-</div>
-<a id="a7609df266293fd2fcc98279be119b8e3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7609df266293fd2fcc98279be119b8e3">&#9670;&nbsp;</a></span>hashlib_AESAuthDecrypt()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="hashlib_8h.html#aeb2e64abcc4317e3143fb820f21c3bfd">aes_error_t</a> hashlib_AESAuthDecrypt </td>
-          <td>(</td>
-          <td class="paramtype">const void *&#160;</td>
-          <td class="paramname"><em>ciphertext</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">size_t&#160;</td>
-          <td class="paramname"><em>len</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">void *&#160;</td>
-          <td class="paramname"><em>plaintext</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="hashlib_8h.html#aa188bc2768a3b7aa6ad73cb2c77819e0">aes_ctx</a> *&#160;</td>
-          <td class="paramname"><em>key</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const void *&#160;</td>
-          <td class="paramname"><em>iv</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">uint8_t&#160;</td>
-          <td class="paramname"><em>ciphermode</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">size_t&#160;</td>
-          <td class="paramname"><em>decryption_offset</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">size_t&#160;</td>
-          <td class="paramname"><em>decryption_len</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Authenticated AES Decryption. </p>
-<p>Performs an authenticated decryption of the given message. Supports partial decryption via the <b>decryption_offset</b> and <b>decryption_len</b> parameters.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">ciphertext</td><td>Pointer to the data to decrypt and authenticate. </td></tr>
-    <tr><td class="paramname">len</td><td>The size of the plaintext to decrypt and authenticate. </td></tr>
-    <tr><td class="paramname">plaintext</td><td>The buffer to write the authenticated decryption to. Must be at least <b>len-32</b> bytes large. </td></tr>
-    <tr><td class="paramname">ks</td><td>Pointer to an AES key schedule context. </td></tr>
-    <tr><td class="paramname">iv</td><td>Pointer to an initialization vector (a nonce of length equal to the block size). </td></tr>
-    <tr><td class="paramname">ciphermode</td><td>The cipher mode to use. Can be either <em>AES_MODE_CBC</em> or <em>AES_MODE_CTR</em>. </td></tr>
-    <tr><td class="paramname">decryption_offset</td><td>The offset from the start of the plaintext to begin decryption. This is useful if you have control bytes or metadata that should not be decrypted. </td></tr>
-    <tr><td class="paramname">decryption_len</td><td>The size of the data to be decrypted. This is useful if you have trailing bytes that should not be decrypted. </td></tr>
-    <tr><td class="paramname">return</td><td>aes_error_t </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section note"><dt>Note</dt><dd>Uses SCHM_DEFAULT (PKCS7) as the padding scheme where needed. </dd>
-<dd>
-This function authenticates the message first by hashing from offset <b>zero</b> to <b>len-32</b> of the ciphertext and comparing that hash to the last 32 bytes of the ciphertext. It assumes those 32 bytes are a hash appended by the remote host. If the hashes do not match, AES_INVALID_CIPHERTEXT is returned and the message is not decrypted. </dd>
-<dd>
-To decrypt the entire message, pass 0 for <b>decryption_offset</b> and <b>len-32</b> for <b>decryption_len</b>. </dd>
-<dd>
-<b>plaintext</b> and <b>ciphertext</b> are aliasable as long as <b>plaintext</b> &gt;= <b>ciphertext</b>. </dd></dl>
 
 </div>
 </div>

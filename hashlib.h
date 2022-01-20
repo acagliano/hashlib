@@ -40,8 +40,8 @@
 #define hashlib_FastMemBufferUnsafe		((void*)0xE30800)
 
 
-/*
-Secure Psuedorandom Number Generator (SPRNG)
+/**************************************************************************************************************************
+@parblock    Secure Psuedorandom Number Generator (SPRNG)
 
 Many of the psuedorandom number generators (PRNGs) you find in computers and
 even the one within the C toolchain for the CE are insecure for cryptographic
@@ -79,8 +79,8 @@ The PRNG previded by HASHLIB solves both tests like so:
     <>  ^ This means that the prior state has no bearing on the next output of the PRNG.
     <>  The PRNG destroys its own state after the random number is generated so that
         the state used to generate it does not persist in memory.
-    
-*/
+@endparblock
+******************************************************************************************************************************/
 /****************************************************************************************************************************
  * @brief Initializes the SPRNG.
  *
@@ -113,8 +113,8 @@ uint32_t hashlib_SPRNGRandom(void);
 bool hashlib_RandomBytes(void* buffer, size_t size);
  
  
-/*
- SHA-256 Cryptographic Hash
+/*  ############################################################################################################
+        SHA-256 Cryptographic Hash
  
  A cryptographic hash is used to validate that data is unchanged between two endpoints.
  It is similar to a checksum, but checksums can be easily fooled; cryptographic hashes
@@ -187,9 +187,8 @@ void hashlib_Sha256Final(sha256_ctx* ctx, void* digest);
 void hashlib_MGF1Hash(const void* data, size_t datalen, void* outbuf, size_t outlen);
 
 
-/*
-SHA-256 HMAC Cryptographic Hash
-(Hash-Based Message Authentication Code)
+/*  ##################################################################################################
+        SHA-256 HMAC Cryptographic Hash (Hash-Based Message Authentication Code)
 
 HMAC generates a more secure hash by using a key known only to authorized
 parties as part of the hash initialization. Thus, while normal SHA-256 can be
@@ -382,41 +381,6 @@ enum aes_padding_schemes {
 ************************************************************************************/
 bool hashlib_AESLoadKey(const void* key, const aes_ctx* ks, size_t keylen);
 
-/**********************************************************************************************************************************
- * @brief AES Single-Block Encryption (ECB mode)
- * @param block_in	Pointer to block of data to encrypt.
- * @param block_out Pointer to buffer to write encrypted block.
- * @param ks Pointer to an AES key schedule context.
- * @note @b block_in and @b block_out are aliasable.
- * @warning ECB-mode ciphers are insecure (see many-time pad vulnerability).
- *          Unless you know what you are doing, use hashlib_AESEncrypt() instead.
- * @warning The ECB mode single-block encryptors lack the buffer leak protections that hashlib_AESEncrypt()
- *          has. If you are writing your own cipher mode, you will need to implement that yourself.
- * @return True if encryption succeeded. False if failed.
- **********************************************************************************************************************************/
-bool hashlib_AESEncryptBlock(
-        const void* block_in,
-        void* block_out,
-        const aes_ctx* ks);
-    
-/********************************************************************************************************************************
- *	@brief AES Single-Block Decryption (ECB Mode)
- *	@param block_in Pointer to block of data to decrypt.
- *	@param block_out Pointer to buffer to write decrypted block.
- *	@param ks Pointer to an AES key schedule context.
- *	@note @b block_in and @b block_out are aliasable.
- * @warning ECB-mode ciphers are insecure (see many-time pad vulnerability).
- *          Unless you know what you are doing, use hashlib_AESDecrypt() instead.
- * @warning The ECB mode single-block encryptors lack the buffer leak protections that hashlib_AESDecrypt()
- *          has. If you are writing your own cipher mode, you will need to implement that yourself.
- *	@return True if encryption succeeded. False if an error occured.
- **********************************************************************************************************************************/
-bool hashlib_AESDecryptBlock(
-        const void* block_in,
-        void* block_out,
-        const aes_ctx* ks);
-
-
 /***************************************************
  * @enum aes_error_t
  * AES Error Codes
@@ -431,7 +395,7 @@ typedef enum {
     AES_INVALID_CIPHERTEXT              /**< AES operation failed, ciphertext error */
 } aes_error_t;
 
-/**
+/**********************************************************************************************************************************************************************
  * @brief General-Purpose AES Encryption
  * @param plaintext Pointer to data to encrypt.
  * @param len Length of data at @b plaintext to encrypt. This can be the output of hashlib_AESCiphertextSize().
@@ -456,7 +420,7 @@ typedef enum {
  * 		@endcode
  * 		This will require a buffer at least as large as the size returned by hashlib_AESCiphertextIVSize().
  * @return aes_error_t
- */
+ *************************************************************************************************************************************************************************/
 aes_error_t hashlib_AESEncrypt(
     const void* plaintext,
     size_t len,
@@ -466,7 +430,7 @@ aes_error_t hashlib_AESEncrypt(
     uint8_t ciphermode,
     uint8_t paddingmode);
 
-/**
+/**************************************************************************************************************************************************
  * @brief General-Purpose AES Decryption
  * @param ciphertext Pointer to data to decrypt.
  * @param len Length of data at @b ciphertext to decrypt.
@@ -478,7 +442,7 @@ aes_error_t hashlib_AESEncrypt(
  * @note @b plaintext and @b ciphertext are aliasable.
  * @note @b IV should be the same as what is used for encryption.
  * @return aes_error_t
- */
+ **************************************************************************************************************************************************/
 aes_error_t hashlib_AESDecrypt(
     const void* ciphertext,
     size_t len,
@@ -488,6 +452,76 @@ aes_error_t hashlib_AESDecrypt(
     uint8_t ciphermode,
     uint8_t paddingmode);
     
+/**********************************************************************************************************************************
+ * @brief Authenticated AES Encryption
+ *
+ * Performs an authenticated encryption of the given message. Supports partial encryption via the
+ * @b encryption_offset and @b encryption_len parameters.
+ *
+ * @param plaintext Pointer to the data to encrypt and authenticate.
+ * @param len The size of the plaintext to encrypt and authenticate.
+ * @param ciphertext The buffer to write the authenticated encryption to. Must be large enough to hold
+ *                  the ciphertext (including any padding) as well as the SHA-256 hash.
+ * @param ks Pointer to an AES key schedule context.
+ * @param iv Pointer to an initialization vector (a nonce of length equal to the block size).
+ * @param ciphermode The cipher mode to use. Can be either @e AES_MODE_CBC or @e AES_MODE_CTR.
+ * @param encryption_offset The offset from the start of the plaintext to begin encryption. This is useful if
+ *                          you have control bytes or metadata that should not be encrypted.
+ * @param encryption_len The size of the data to be encrypted. This is useful if you have trailing bytes
+ *                       that should not be encrypted.
+ * @return aes_error_t
+ * @note Uses SCHM_DEFAULT (PKCS7) as the padding scheme where needed.
+ * @note While this function can encrypt part or all of the message, it hashes it in its entirely. This is because
+ *      when sending a packet, only sensitive data need be encrypted but the entire packet should be
+ *      authenticated.
+ * @note To encrypt the entire message, pass 0 for @b encryption_offset and @b len for @b encryption_len.
+ * @note @b plaintext and @b ciphertext are aliasable as long as @b plaintext >= @b ciphertext.
+ ***********************************************************************************************************************************/
+aes_error_t hashlib_AESAuthEncrypt(
+    const void* plaintext,
+    size_t len,
+    void* ciphertext,
+    aes_ctx* key,
+    const void* iv,
+    uint8_t ciphermode,
+    size_t encryption_offset,
+    size_t encryption_len);
+    
+ 
+/**********************************************************************************************************************************
+ * @brief Authenticated AES Decryption
+ *
+ * Performs an authenticated decryption of the given message. Supports partial decryption via the
+ * @b decryption_offset and @b decryption_len parameters.
+ *
+ * @param ciphertext Pointer to the data to decrypt and authenticate.
+ * @param len The size of the plaintext to decrypt and authenticate.
+ * @param plaintext The buffer to write the authenticated decryption to. Must be at least @b len-32 bytes large.
+ * @param ks Pointer to an AES key schedule context.
+ * @param iv Pointer to an initialization vector (a nonce of length equal to the block size).
+ * @param ciphermode The cipher mode to use. Can be either @e AES_MODE_CBC or @e AES_MODE_CTR.
+ * @param decryption_offset The offset from the start of the plaintext to begin decryption. This is useful if
+ *                          you have control bytes or metadata that should not be decrypted.
+ * @param decryption_len The size of the data to be decrypted. This is useful if you have trailing bytes
+ *                       that should not be decrypted.
+ * @param return aes_error_t
+ * @note Uses SCHM_DEFAULT (PKCS7) as the padding scheme where needed.
+ * @note This function authenticates the message first by hashing from offset @b zero to @b len-32 of the ciphertext
+ *      and comparing that hash to the last 32 bytes of the ciphertext. It assumes those 32 bytes are a hash appended
+ *      by the remote host. If the hashes do not match, AES_INVALID_CIPHERTEXT is returned and the message
+ *      is not decrypted.
+ * @note To decrypt the entire message, pass 0 for @b decryption_offset and @b len-32 for @b decryption_len.
+ * @note @b plaintext and @b ciphertext are aliasable as long as @b plaintext >= @b ciphertext.
+ ***********************************************************************************************************************************/
+aes_error_t hashlib_AESAuthDecrypt(
+    const void* ciphertext,
+    size_t len,
+    void* plaintext,
+    aes_ctx* key,
+    const void* iv,
+    uint8_t ciphermode,
+    size_t decryption_offset,
+    size_t decryption_len);
 
 /*
  RSA Public Key Encryption
@@ -628,9 +662,45 @@ bool hashlib_CompareDigest(const void* digest1, const void* digest2, size_t len)
 bool hashlib_ReverseEndianness(const void* in, void* out, size_t len);
 
 
-/*********************************************************
- * ##### MISCELLANEOUS FUNCTIONS #####
- *********************************************************/
+/********************************************
+ * ##### HELPER FUNCTIONS #####
+ ********************************************/
+// You should not have to use these unless you know what you are doing and
+// are trying to design your own cipher constructs.
+
+/**********************************************************************************************************************************
+ * @brief AES Single-Block Encryption (ECB mode)
+ * @param block_in	Pointer to block of data to encrypt.
+ * @param block_out Pointer to buffer to write encrypted block.
+ * @param ks Pointer to an AES key schedule context.
+ * @note @b block_in and @b block_out are aliasable.
+ * @warning ECB-mode ciphers are insecure (see many-time pad vulnerability).
+ *          Unless you know what you are doing, use hashlib_AESEncrypt() instead.
+ * @warning The ECB mode single-block encryptors lack the buffer leak protections that hashlib_AESEncrypt()
+ *          has. If you are writing your own cipher mode, you will need to implement that yourself.
+ * @return True if encryption succeeded. False if failed.
+ **********************************************************************************************************************************/
+bool hashlib_AESEncryptBlock(
+        const void* block_in,
+        void* block_out,
+        const aes_ctx* ks);
+    
+/********************************************************************************************************************************
+ *	@brief AES Single-Block Decryption (ECB Mode)
+ *	@param block_in Pointer to block of data to decrypt.
+ *	@param block_out Pointer to buffer to write decrypted block.
+ *	@param ks Pointer to an AES key schedule context.
+ *	@note @b block_in and @b block_out are aliasable.
+ * @warning ECB-mode ciphers are insecure (see many-time pad vulnerability).
+ *          Unless you know what you are doing, use hashlib_AESDecrypt() instead.
+ * @warning The ECB mode single-block encryptors lack the buffer leak protections that hashlib_AESDecrypt()
+ *          has. If you are writing your own cipher mode, you will need to implement that yourself.
+ *	@return True if encryption succeeded. False if an error occured.
+ **********************************************************************************************************************************/
+bool hashlib_AESDecryptBlock(
+        const void* block_in,
+        void* block_out,
+        const aes_ctx* ks);
 
 /*****************************************************************************************
  * @brief Pads a plaintext according to the specified AES padding scheme.
@@ -776,76 +846,9 @@ size_t hashlib_RSAEncodePSS(
     size_t modulus_len);
     
     
-/**********************************************************************************************************************************
- * @brief Authenticated AES Encryption
- *
- * Performs an authenticated encryption of the given message. Supports partial encryption via the
- * @b encryption_offset and @b encryption_len parameters.
- *
- * @param plaintext Pointer to the data to encrypt and authenticate.
- * @param len The size of the plaintext to encrypt and authenticate.
- * @param ciphertext The buffer to write the authenticated encryption to. Must be large enough to hold
- *                  the ciphertext (including any padding) as well as the SHA-256 hash.
- * @param ks Pointer to an AES key schedule context.
- * @param iv Pointer to an initialization vector (a nonce of length equal to the block size).
- * @param ciphermode The cipher mode to use. Can be either @e AES_MODE_CBC or @e AES_MODE_CTR.
- * @param encryption_offset The offset from the start of the plaintext to begin encryption. This is useful if
- *                          you have control bytes or metadata that should not be encrypted.
- * @param encryption_len The size of the data to be encrypted. This is useful if you have trailing bytes
- *                       that should not be encrypted.
- * @return aes_error_t
- * @note Uses SCHM_DEFAULT (PKCS7) as the padding scheme where needed.
- * @note While this function can encrypt part or all of the message, it hashes it in its entirely. This is because
- *      when sending a packet, only sensitive data need be encrypted but the entire packet should be
- *      authenticated.
- * @note To encrypt the entire message, pass 0 for @b encryption_offset and @b len for @b encryption_len.
- * @note @b plaintext and @b ciphertext are aliasable as long as @b plaintext >= @b ciphertext.
- ***********************************************************************************************************************************/
-aes_error_t hashlib_AESAuthEncrypt(
-    const void* plaintext,
-    size_t len,
-    void* ciphertext,
-    aes_ctx* key,
-    const void* iv,
-    uint8_t ciphermode,
-    size_t encryption_offset,
-    size_t encryption_len);
+
     
-    
-/**********************************************************************************************************************************
- * @brief Authenticated AES Decryption
- *
- * Performs an authenticated decryption of the given message. Supports partial decryption via the
- * @b decryption_offset and @b decryption_len parameters.
- *
- * @param ciphertext Pointer to the data to decrypt and authenticate.
- * @param len The size of the plaintext to decrypt and authenticate.
- * @param plaintext The buffer to write the authenticated decryption to. Must be at least @b len-32 bytes large.
- * @param ks Pointer to an AES key schedule context.
- * @param iv Pointer to an initialization vector (a nonce of length equal to the block size).
- * @param ciphermode The cipher mode to use. Can be either @e AES_MODE_CBC or @e AES_MODE_CTR.
- * @param decryption_offset The offset from the start of the plaintext to begin decryption. This is useful if
- *                          you have control bytes or metadata that should not be decrypted.
- * @param decryption_len The size of the data to be decrypted. This is useful if you have trailing bytes
- *                       that should not be decrypted.
- * @param return aes_error_t
- * @note Uses SCHM_DEFAULT (PKCS7) as the padding scheme where needed.
- * @note This function authenticates the message first by hashing from offset @b zero to @b len-32 of the ciphertext
- *      and comparing that hash to the last 32 bytes of the ciphertext. It assumes those 32 bytes are a hash appended
- *      by the remote host. If the hashes do not match, AES_INVALID_CIPHERTEXT is returned and the message
- *      is not decrypted.
- * @note To decrypt the entire message, pass 0 for @b decryption_offset and @b len-32 for @b decryption_len.
- * @note @b plaintext and @b ciphertext are aliasable as long as @b plaintext >= @b ciphertext.
- ***********************************************************************************************************************************/
-aes_error_t hashlib_AESAuthDecrypt(
-    const void* ciphertext,
-    size_t len,
-    void* plaintext,
-    aes_ctx* key,
-    const void* iv,
-    uint8_t ciphermode,
-    size_t decryption_offset,
-    size_t decryption_len);
+
     
     
 /**********************************************************************************************************************************
