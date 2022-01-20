@@ -286,6 +286,8 @@ Defines a macro to generate a pseudorandom AES key of a given length.
 \end{DoxyParams}
 \begin{DoxyNote}{Note}
 {\bfseries{key}} must be at least {\bfseries{keylen}} bytes large. 
+
+It is recommended to cycle your key after encrypting 2$^\wedge$64 blocks of data with the same key. 
 \end{DoxyNote}
 \mbox{\Hypertarget{hashlib_8h_ad4ea46d5db12669bb2687771d094638f}\label{hashlib_8h_ad4ea46d5db12669bb2687771d094638f}} 
 \index{hashlib.h@{hashlib.h}!hashlib\_MallocContext@{hashlib\_MallocContext}}
@@ -718,6 +720,9 @@ AES import key to key schedule context.
 \begin{DoxyReturn}{Returns}
 True if the key was successfully loaded. False otherwise. 
 \end{DoxyReturn}
+\begin{DoxyNote}{Note}
+It is recommended to cycle your key after encrypting 2$^\wedge$64 blocks of data with the same key. 
+\end{DoxyNote}
 \mbox{\Hypertarget{hashlib_8h_a1206cd9923279d06108d363a9881f79b}\label{hashlib_8h_a1206cd9923279d06108d363a9881f79b}} 
 \index{hashlib.h@{hashlib.h}!hashlib\_AESEncrypt@{hashlib\_AESEncrypt}}
 \index{hashlib\_AESEncrypt@{hashlib\_AESEncrypt}!hashlib.h@{hashlib.h}}

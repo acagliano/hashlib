@@ -362,22 +362,24 @@ enum aes_padding_schemes {
  ************************************************************************************************************************/
 #define hashlib_AESCiphertextIVSize(len)	(hashlib_AESCiphertextSize((len)) + AES_IVSIZE)
 
-/***************************************************************************************
+/*********************************************************************************************************************
  * @def hashlib_AESKeygen()
  * Defines a macro to generate a pseudorandom AES key of a given length.
  * @param key Pointer to a buffer to write the key into.
  * @param keylen The byte length of the key to generate.
  * @note @b key must be at least @b keylen bytes large.
- ***************************************************************************************/
+ * @note It is recommended to cycle your key after encrypting 2^64 blocks of data with the same key.
+ **********************************************************************************************************************/
 #define hashlib_AESKeygen(key, keylen)	hashlib_RandomBytes((key), (keylen))
 
-/*********************************************************************************
+/*********************************************************************************************************************
  * @brief AES import key to key schedule context
  * @param key Pointer to a buffer containing the AES key.
  * @param ks Pointer to an AES key schedule context.
  * @param keylen The size, in bytes, of the key to load.
  * @return True if the key was successfully loaded. False otherwise.
-************************************************************************************/
+ * @note It is recommended to cycle your key after encrypting 2^64 blocks of data with the same key.
+***********************************************************************************************************************/
 bool hashlib_AESLoadKey(const void* key, const aes_ctx* ks, size_t keylen);
 
 /***************************************************
@@ -485,7 +487,6 @@ aes_error_t hashlib_AESAuthEncrypt(
     uint8_t ciphermode,
     size_t encryption_offset,
     size_t encryption_len);
-    
  
 /**********************************************************************************************************************************
  * @brief Authenticated AES Decryption
@@ -632,6 +633,7 @@ bool hashlib_SSLVerifySignature(
     const void* cert,
     size_t certlen,
     uint8_t sig_alg);
+
 
 // Miscellaneous Functions
 

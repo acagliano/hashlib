@@ -501,7 +501,9 @@ If the SPRNG is run, anything you have stored here will be destroyed. </dd></dl>
   </table>
   </dd>
 </dl>
-<dl class="section note"><dt>Note</dt><dd><b>key</b> must be at least <b>keylen</b> bytes large. </dd></dl>
+<dl class="section note"><dt>Note</dt><dd><b>key</b> must be at least <b>keylen</b> bytes large. </dd>
+<dd>
+It is recommended to cycle your key after encrypting 2^64 blocks of data with the same key. </dd></dl>
 
 </div>
 </div>
@@ -1222,6 +1224,7 @@ If the SPRNG is run, anything you have stored here will be destroyed. </dd></dl>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>True if the key was successfully loaded. False otherwise. </dd></dl>
+<dl class="section note"><dt>Note</dt><dd>It is recommended to cycle your key after encrypting 2^64 blocks of data with the same key. </dd></dl>
 
 </div>
 </div>
