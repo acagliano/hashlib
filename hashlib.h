@@ -40,8 +40,9 @@
 #define hashlib_FastMemBufferUnsafe		((void*)0xE30800)
 
 
+//  ############################################################################################
 /**************************************************************************************************************************
-@parblock    Secure Psuedorandom Number Generator (SPRNG)
+@section sprng {Secure Psuedorandom Number Generator (SPRNG)}
 
 Many of the psuedorandom number generators (PRNGs) you find in computers and
 even the one within the C toolchain for the CE are insecure for cryptographic
@@ -79,7 +80,6 @@ The PRNG previded by HASHLIB solves both tests like so:
     <>  ^ This means that the prior state has no bearing on the next output of the PRNG.
     <>  The PRNG destroys its own state after the random number is generated so that
         the state used to generate it does not persist in memory.
-@endparblock
 ******************************************************************************************************************************/
 /****************************************************************************************************************************
  * @brief Initializes the SPRNG.
