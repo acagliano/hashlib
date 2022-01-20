@@ -28,7 +28,7 @@
  *		Pointer to a region of Fast Memory that is generally safe to use so long as you don't call Libload..
  * @warning Fast Memory gets clobbered by LibLoad. Don't keep long-term storage here if you plan to call LibLoad.
  ****************************************************************************************************************************************/
- #define hashlib_FastMemBufferSafe		((void*)0xE30A04)
+#define hashlib_FastMemBufferSafe		((void*)0xE30A04)
  
  /**************************************************************************************************************************************
   * @def hashlib_FastMemBufferUnsafe
