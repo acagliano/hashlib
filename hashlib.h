@@ -140,7 +140,7 @@ typedef struct _sha256_ctx {
   * @def SHA256_DIGEST_LEN
   * Binary length of the SHA-256 hash output.
   ******************************************************/
- #define SHA256_DIGEST_LEN		32
+#define SHA256_DIGEST_LEN		32
  
  /************************************************************
   * @def SHA256_HEXDIGEST_LEN
