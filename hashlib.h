@@ -350,7 +350,7 @@ enum aes_padding_schemes {
  *
  * @param len The length of the plaintext.
  *********************************************************************************************/
-  #define hashlib_AESCiphertextSize(len) \
+#define hashlib_AESCiphertextSize(len) \
 	((((len)%AES_BLOCKSIZE)==0) ? (len) + AES_BLOCKSIZE : (((len)>>4) + 1)<<4)
 	
 /************************************************************************************************************************
