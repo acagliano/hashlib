@@ -262,7 +262,7 @@ $(function() {
 <div class="line"><a name="l00354"></a><span class="lineno">  354</span>&#160;<span class="preprocessor">    ((((len)%AES_BLOCKSIZE)==0) ? (len) + AES_BLOCKSIZE : (((len)&gt;&gt;4) + 1)&lt;&lt;4)</span></div>
 <div class="line"><a name="l00355"></a><span class="lineno">  355</span>&#160;    </div>
 <div class="line"><a name="l00356"></a><span class="lineno">  356</span>&#160; </div>
-<div class="line"><a name="l00363"></a><span class="lineno"><a class="line" href="hashlib_8h.html#a1bfa78156f62c2e87f7af3a8533304b1">  363</a></span>&#160;<span class="preprocessor"> #define hashlib_AESCiphertextIVSize(len)   (hashlib_AESCiphertextSize((len)) + AES_IVSIZE)</span></div>
+<div class="line"><a name="l00363"></a><span class="lineno"><a class="line" href="hashlib_8h.html#a1bfa78156f62c2e87f7af3a8533304b1">  363</a></span>&#160;<span class="preprocessor">#define hashlib_AESCiphertextIVSize(len)    (hashlib_AESCiphertextSize((len)) + AES_IVSIZE)</span></div>
 <div class="line"><a name="l00364"></a><span class="lineno">  364</span>&#160; </div>
 <div class="line"><a name="l00365"></a><span class="lineno">  365</span>&#160; </div>
 <div class="line"><a name="l00372"></a><span class="lineno"><a class="line" href="hashlib_8h.html#a864d96afe89419821aed4293d979b2b9">  372</a></span>&#160;<span class="preprocessor">#define hashlib_AESKeygen(key, keylen)  hashlib_RandomBytes((key), (keylen))</span></div>

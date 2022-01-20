@@ -360,7 +360,7 @@ enum aes_padding_schemes {
  *
  * @param len The length of the plaintext.
  ************************************************************************************************************************/
- #define hashlib_AESCiphertextIVSize(len)	(hashlib_AESCiphertextSize((len)) + AES_IVSIZE)
+#define hashlib_AESCiphertextIVSize(len)	(hashlib_AESCiphertextSize((len)) + AES_IVSIZE)
 
 /***************************************************************************************
  * @def hashlib_AESKeygen()
