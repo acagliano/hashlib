@@ -50,6 +50,7 @@ macro save_interrupts?
 	push af
 	pop bc
 	ld (.__interrupt_state),bc
+    di
 end macro
 
 ;------------------------------------------
