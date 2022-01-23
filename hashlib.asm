@@ -7138,20 +7138,58 @@ hashlib_HMACSha256Update:
 hashlib_HMACSha256Final:
 	save_interrupts
 
-    ld	hl, -38
+    ld	hl, -280
 	call	ti._frameset
-	ld	hl, (ix + 6)
-	lea	bc, ix + -32
-	ld	(ix + -38), bc
-	ld	de, 128
-	add	hl, de
-	ld	(ix + -35), hl
+	ld	bc, (ix + 6)
+	ld	hl, 236
+	lea	de, ix + -38
+	ld	(ix + -3), bc
+	ld	bc, -280
+	lea	iy, ix + 0
+	add	iy, bc
+	ld	(iy + 0), de
+	push	ix
+	ld	bc, -274
+	add	ix, bc
+	lea	de, ix + 0
+	pop	ix
+	push	ix
+	ld	bc, -277
+	add	ix, bc
+	ld	(ix + 0), de
+	pop	ix
+	push	hl
+	ld	bc, (ix + -3)
 	push	bc
+	push	de
+	call	ti._memcpy
+	pop	hl
+	pop	hl
+	pop	hl
+	ld	de, 128
+	ld	bc, -277
+	lea	hl, ix + 0
+	add	hl, bc
+	ld	hl, (hl)
+	add	hl, de
+	push	ix
+	add	ix, bc
+	ld	(ix + 0), hl
+	pop	ix
+	push	ix
+	ld	bc, -280
+	add	ix, bc
+	ld	de, (ix + 0)
+	pop	ix
+	push	de
 	push	hl
 	call	hashlib_Sha256Final
 	pop	hl
 	pop	hl
-	ld	hl, (ix + -35)
+	ld	bc, -277
+	lea	hl, ix + 0
+	add	hl, bc
+	ld	hl, (hl)
 	push	hl
 	call	hashlib_Sha256Init
 	pop	hl
@@ -7162,7 +7200,10 @@ hashlib_HMACSha256Final:
 	push	hl
 	ld	iy, (ix + 6)
 	pea	iy + 64
-	ld	hl, (ix + -35)
+	ld	bc, -277
+	lea	hl, ix + 0
+	add	hl, bc
+	ld	hl, (hl)
 	push	hl
 	call	hashlib_Sha256Update
 	pop	hl
@@ -7174,9 +7215,15 @@ hashlib_HMACSha256Final:
 	push	hl
 	ld	hl, 32
 	push	hl
-	ld	hl, (ix + -38)
+	ld	bc, -280
+	lea	hl, ix + 0
+	add	hl, bc
+	ld	hl, (hl)
 	push	hl
-	ld	hl, (ix + -35)
+	ld	bc, -277
+	lea	hl, ix + 0
+	add	hl, bc
+	ld	hl, (hl)
 	push	hl
 	call	hashlib_Sha256Update
 	pop	hl
@@ -7185,7 +7232,10 @@ hashlib_HMACSha256Final:
 	pop	hl
 	ld	hl, (ix + 9)
 	push	hl
-	ld	hl, (ix + -35)
+	ld	bc, -277
+	lea	hl, ix + 0
+	add	hl, bc
+	ld	hl, (hl)
 	push	hl
 	call	hashlib_Sha256Final
 
