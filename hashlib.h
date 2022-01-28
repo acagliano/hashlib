@@ -247,10 +247,10 @@ void hashlib_HMACSha256Reset(hmac_ctx* ctx);
  * @param password Pointer to a string containing the password to derive a key from.
  * @param passlen The length of the password (in bytes).
  * @param key The buffer to write the key to. Must be at least @b keylen bytes large.
+ * @param keylen The length of the key to generate (in bytes).
  * @param salt A psuedo-random string to use when computing the key.
  * @param saltlen The length of the salt to use (in bytes).
  * @param rounds The number of times to iterate the SHA-256 function per 32-byte block of @b keylen.
- * @param keylen The length of the key to generate (in bytes).
  * @note Standards recommend a salt of at least 128 bits (16 bytes).
  * @note @b rounds is used to increase the cost (computational time) of generating a key. What makes password-
  * hashing algorithms secure is the time needed to generate a rainbow table attack against it. More rounds means
@@ -261,10 +261,10 @@ bool hashlib_PBKDF2(
     const char* password,
     size_t passlen,
     void* key,
+    size_t keylen,
     const void* salt,
     size_t saltlen,
-    size_t rounds,
-    size_t keylen);
+    size_t rounds);
 
 
 /*

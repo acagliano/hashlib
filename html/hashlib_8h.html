@@ -201,9 +201,9 @@ Functions</h2></td></tr>
 <tr class="memitem:a5e0e235ac96b3f4c4a8e6d037efc053f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#a5e0e235ac96b3f4c4a8e6d037efc053f">hashlib_HMACSha256Reset</a> (<a class="el" href="hashlib_8h.html#a8d813300476744f01319600478572f62">hmac_ctx</a> *ctx)</td></tr>
 <tr class="memdesc:a5e0e235ac96b3f4c4a8e6d037efc053f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Resets the SHA-256 HMAC context to its state after a call to <a class="el" href="hashlib_8h.html#a86e269917830fb7802cea159baadf079" title="Context Initializer for SHA-256 HMAC.">hashlib_HMACSha256Init()</a>  <a href="hashlib_8h.html#a5e0e235ac96b3f4c4a8e6d037efc053f">More...</a><br /></td></tr>
 <tr class="separator:a5e0e235ac96b3f4c4a8e6d037efc053f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa2b32359ef23fb02d2ff2c0bb629f80b"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#aa2b32359ef23fb02d2ff2c0bb629f80b">hashlib_PBKDF2</a> (const char *password, size_t passlen, void *key, const void *salt, size_t saltlen, size_t rounds, size_t keylen)</td></tr>
-<tr class="memdesc:aa2b32359ef23fb02d2ff2c0bb629f80b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Password-Based Key Derivation Function (via SHA-256 HMAC)  <a href="hashlib_8h.html#aa2b32359ef23fb02d2ff2c0bb629f80b">More...</a><br /></td></tr>
-<tr class="separator:aa2b32359ef23fb02d2ff2c0bb629f80b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a07d585294923ff7d8cd6985724a4b4df"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#a07d585294923ff7d8cd6985724a4b4df">hashlib_PBKDF2</a> (const char *password, size_t passlen, void *key, size_t keylen, const void *salt, size_t saltlen, size_t rounds)</td></tr>
+<tr class="memdesc:a07d585294923ff7d8cd6985724a4b4df"><td class="mdescLeft">&#160;</td><td class="mdescRight">Password-Based Key Derivation Function (via SHA-256 HMAC)  <a href="hashlib_8h.html#a07d585294923ff7d8cd6985724a4b4df">More...</a><br /></td></tr>
+<tr class="separator:a07d585294923ff7d8cd6985724a4b4df"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a72c38b8e422c65a946ed0bb433e2dc3c"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#a72c38b8e422c65a946ed0bb433e2dc3c">hashlib_AESLoadKey</a> (const void *key, const <a class="el" href="hashlib_8h.html#aa188bc2768a3b7aa6ad73cb2c77819e0">aes_ctx</a> *ks, size_t keylen)</td></tr>
 <tr class="memdesc:a72c38b8e422c65a946ed0bb433e2dc3c"><td class="mdescLeft">&#160;</td><td class="mdescRight">AES import key to key schedule context.  <a href="hashlib_8h.html#a72c38b8e422c65a946ed0bb433e2dc3c">More...</a><br /></td></tr>
 <tr class="separator:a72c38b8e422c65a946ed0bb433e2dc3c"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -1106,8 +1106,8 @@ It is recommended to cycle your key after encrypting 2^64 blocks of data with th
 
 </div>
 </div>
-<a id="aa2b32359ef23fb02d2ff2c0bb629f80b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa2b32359ef23fb02d2ff2c0bb629f80b">&#9670;&nbsp;</a></span>hashlib_PBKDF2()</h2>
+<a id="a07d585294923ff7d8cd6985724a4b4df"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a07d585294923ff7d8cd6985724a4b4df">&#9670;&nbsp;</a></span>hashlib_PBKDF2()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1133,6 +1133,12 @@ It is recommended to cycle your key after encrypting 2^64 blocks of data with th
         <tr>
           <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>keylen</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
           <td class="paramtype">const void *&#160;</td>
           <td class="paramname"><em>salt</em>, </td>
         </tr>
@@ -1146,13 +1152,7 @@ It is recommended to cycle your key after encrypting 2^64 blocks of data with th
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">size_t&#160;</td>
-          <td class="paramname"><em>rounds</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">size_t&#160;</td>
-          <td class="paramname"><em>keylen</em>&#160;</td>
+          <td class="paramname"><em>rounds</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -1169,10 +1169,10 @@ It is recommended to cycle your key after encrypting 2^64 blocks of data with th
     <tr><td class="paramname">password</td><td>Pointer to a string containing the password to derive a key from. </td></tr>
     <tr><td class="paramname">passlen</td><td>The length of the password (in bytes). </td></tr>
     <tr><td class="paramname">key</td><td>The buffer to write the key to. Must be at least <b>keylen</b> bytes large. </td></tr>
+    <tr><td class="paramname">keylen</td><td>The length of the key to generate (in bytes). </td></tr>
     <tr><td class="paramname">salt</td><td>A psuedo-random string to use when computing the key. </td></tr>
     <tr><td class="paramname">saltlen</td><td>The length of the salt to use (in bytes). </td></tr>
     <tr><td class="paramname">rounds</td><td>The number of times to iterate the SHA-256 function per 32-byte block of <b>keylen</b>. </td></tr>
-    <tr><td class="paramname">keylen</td><td>The length of the key to generate (in bytes). </td></tr>
   </table>
   </dd>
 </dl>

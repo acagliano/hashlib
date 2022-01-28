@@ -115,7 +115,7 @@ void \mbox{\hyperlink{hashlib_8h_a3daab1377ef405c96825e11d481fa27e}{hashlib\+\_\
 \begin{DoxyCompactList}\small\item\em Finalize Context and Render Digest for SHA-\/256 HMAC. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{hashlib_8h_a5e0e235ac96b3f4c4a8e6d037efc053f}{hashlib\+\_\+\+HMACSha256\+Reset}} (\mbox{\hyperlink{hashlib_8h_a8d813300476744f01319600478572f62}{hmac\+\_\+ctx}} $\ast$ctx)
 \begin{DoxyCompactList}\small\item\em Resets the SHA-\/256 HMAC context to its state after a call to \mbox{\hyperlink{hashlib_8h_a86e269917830fb7802cea159baadf079}{hashlib\+\_\+\+HMACSha256\+Init()}} \end{DoxyCompactList}\item 
-bool \mbox{\hyperlink{hashlib_8h_aa2b32359ef23fb02d2ff2c0bb629f80b}{hashlib\+\_\+\+PBKDF2}} (const char $\ast$password, size\+\_\+t passlen, void $\ast$key, const void $\ast$salt, size\+\_\+t saltlen, size\+\_\+t rounds, size\+\_\+t keylen)
+bool \mbox{\hyperlink{hashlib_8h_a07d585294923ff7d8cd6985724a4b4df}{hashlib\+\_\+\+PBKDF2}} (const char $\ast$password, size\+\_\+t passlen, void $\ast$key, size\+\_\+t keylen, const void $\ast$salt, size\+\_\+t saltlen, size\+\_\+t rounds)
 \begin{DoxyCompactList}\small\item\em Password-\/\+Based Key Derivation Function (via SHA-\/256 HMAC) \end{DoxyCompactList}\item 
 bool \mbox{\hyperlink{hashlib_8h_a72c38b8e422c65a946ed0bb433e2dc3c}{hashlib\+\_\+\+AESLoad\+Key}} (const void $\ast$key, const \mbox{\hyperlink{hashlib_8h_aa188bc2768a3b7aa6ad73cb2c77819e0}{aes\+\_\+ctx}} $\ast$ks, size\+\_\+t keylen)
 \begin{DoxyCompactList}\small\item\em AES import key to key schedule context. \end{DoxyCompactList}\item 
@@ -664,11 +664,11 @@ Resets the SHA-\/256 HMAC context to its state after a call to \mbox{\hyperlink{
 \begin{DoxyNote}{Note}
 Calls the SHA-\/256 Init function, then Updates() the context with the ipad. 
 \end{DoxyNote}
-\mbox{\Hypertarget{hashlib_8h_aa2b32359ef23fb02d2ff2c0bb629f80b}\label{hashlib_8h_aa2b32359ef23fb02d2ff2c0bb629f80b}} 
+\mbox{\Hypertarget{hashlib_8h_a07d585294923ff7d8cd6985724a4b4df}\label{hashlib_8h_a07d585294923ff7d8cd6985724a4b4df}} 
 \index{hashlib.h@{hashlib.h}!hashlib\_PBKDF2@{hashlib\_PBKDF2}}
 \index{hashlib\_PBKDF2@{hashlib\_PBKDF2}!hashlib.h@{hashlib.h}}
 \doxysubsubsection{\texorpdfstring{hashlib\_PBKDF2()}{hashlib\_PBKDF2()}}
-{\footnotesize\ttfamily bool hashlib\+\_\+\+PBKDF2 (\begin{DoxyParamCaption}\item[{const char $\ast$}]{password,  }\item[{size\+\_\+t}]{passlen,  }\item[{void $\ast$}]{key,  }\item[{const void $\ast$}]{salt,  }\item[{size\+\_\+t}]{saltlen,  }\item[{size\+\_\+t}]{rounds,  }\item[{size\+\_\+t}]{keylen }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily bool hashlib\+\_\+\+PBKDF2 (\begin{DoxyParamCaption}\item[{const char $\ast$}]{password,  }\item[{size\+\_\+t}]{passlen,  }\item[{void $\ast$}]{key,  }\item[{size\+\_\+t}]{keylen,  }\item[{const void $\ast$}]{salt,  }\item[{size\+\_\+t}]{saltlen,  }\item[{size\+\_\+t}]{rounds }\end{DoxyParamCaption})}
 
 
 
@@ -684,13 +684,13 @@ Computes a key derived from a password, a 16-\/byte salt, and a given number of 
 \hline
 {\em key} & The buffer to write the key to. Must be at least {\bfseries{keylen}} bytes large. \\
 \hline
+{\em keylen} & The length of the key to generate (in bytes). \\
+\hline
 {\em salt} & A psuedo-\/random string to use when computing the key. \\
 \hline
 {\em saltlen} & The length of the salt to use (in bytes). \\
 \hline
 {\em rounds} & The number of times to iterate the SHA-\/256 function per 32-\/byte block of {\bfseries{keylen}}. \\
-\hline
-{\em keylen} & The length of the key to generate (in bytes). \\
 \hline
 \end{DoxyParams}
 \begin{DoxyNote}{Note}

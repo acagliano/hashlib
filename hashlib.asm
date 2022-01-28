@@ -7275,7 +7275,7 @@ hashlib_HMACSha256Reset:
 hashlib_PBKDF2:
 	save_interrupts
 
-	ld	hl, -575
+    ld	hl, -575
 	call	ti._frameset
 	ld	hl, 236
 	ld	de, 0
@@ -7300,9 +7300,9 @@ hashlib_PBKDF2:
 	add	hl, bc
 	or	a, a
 	sbc	hl, bc
-	ld	b, 1
+	ld	c, 1
 	ld	e, 0
-	ld	a, b
+	ld	a, c
 	jq	z, .lbl_2
 	ld	a, e
 .lbl_2:
@@ -7311,37 +7311,39 @@ hashlib_PBKDF2:
 	add	hl, bc
 	or	a, a
 	sbc	hl, bc
-	ld	l, b
+	ld	l, c
 	jq	z, .lbl_4
 	ld	l, e
 .lbl_4:
 	or	a, l
-	ld	c, a
+	ld	b, a
 	lea	hl, iy + 0
 	add	hl, bc
 	or	a, a
 	sbc	hl, bc
-	ld	a, b
+	ld	a, c
 	jq	z, .lbl_6
 	ld	a, e
 .lbl_6:
-	or	a, c
-	ld	hl, (ix + 21)
-	add	hl, bc
-	or	a, a
-	sbc	hl, bc
-	ld	l, b
-	jq	z, .lbl_8
-	ld	l, e
-.lbl_8:
-	or	a, l
+	or	a, b
 	ld	hl, (ix + 24)
 	add	hl, bc
 	or	a, a
 	sbc	hl, bc
+	ld	l, c
+	jq	z, .lbl_8
+	ld	l, e
+.lbl_8:
+	or	a, l
+	ld	b, a
+	ld	hl, (ix + 15)
+	add	hl, bc
+	or	a, a
+	sbc	hl, bc
 	jq	z, .lbl_10
-	ld	b, e
+	ld	c, e
 .lbl_10:
+	ld	a, c
 	or	a, b
 	ld	bc, -556
 	lea	hl, ix + 0
@@ -7358,8 +7360,8 @@ hashlib_PBKDF2:
 	xor	a, l
 	ld	sp, ix
 	pop	ix
-
-	restore_interrupts hashlib_PBKDF2
+ 
+    restore_interrupts hashlib_PBKDF2
 	ret
 .lbl_11:
 	lea	hl, ix + -38
@@ -7425,11 +7427,11 @@ hashlib_PBKDF2:
 	xor	a, a
 .lbl_12:
 	lea	hl, iy + 0
-	ld	de, (ix + 24)
+	ld	de, (ix + 15)
 	or	a, a
 	sbc	hl, de
 	jq	nc, .lbl_22
-	ld	hl, (ix + 24)
+	ld	hl, (ix + 15)
 	lea	de, iy + 0
 	or	a, a
 	sbc	hl, de
@@ -7468,9 +7470,9 @@ hashlib_PBKDF2:
 	pop	ix
 	ld	a, e
 	ld	(ix + -71), a
-	ld	hl, (ix + 18)
+	ld	hl, (ix + 21)
 	push	hl
-	ld	hl, (ix + 15)
+	ld	hl, (ix + 18)
 	push	hl
 	ld	bc, -549
 	lea	hl, ix + 0
@@ -7538,7 +7540,7 @@ hashlib_PBKDF2:
 .lbl_14:
 	push	bc
 	pop	hl
-	ld	de, (ix + 21)
+	ld	de, (ix + 24)
 	or	a, a
 	sbc	hl, de
 	jq	z, .lbl_15
