@@ -3,3 +3,4 @@
 .local
 examples/*/obj
 examples/*/bin
+downloads
