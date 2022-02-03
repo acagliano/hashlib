@@ -3,6 +3,6 @@
 .local
 examples/*/obj
 examples/*/bin
-downloads
+packages
 .github
 
