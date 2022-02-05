@@ -452,76 +452,6 @@ aes_error_t hashlib_AESDecrypt(
     const void* iv,
     uint8_t ciphermode,
     uint8_t paddingmode);
-    
-/**********************************************************************************************************************************
- * @brief Authenticated AES Encryption
- *
- * Performs an authenticated encryption of the given message. Supports partial encryption via the
- * @b encryption_offset and @b encryption_len parameters.
- *
- * @param plaintext Pointer to the data to encrypt and authenticate.
- * @param len The size of the plaintext to encrypt and authenticate.
- * @param ciphertext The buffer to write the authenticated encryption to. Must be large enough to hold
- *                  the ciphertext (including any padding) as well as the SHA-256 hash.
- * @param ks Pointer to an AES key schedule context.
- * @param iv Pointer to an initialization vector (a nonce of length equal to the block size).
- * @param ciphermode The cipher mode to use. Can be either @e AES_MODE_CBC or @e AES_MODE_CTR.
- * @param encryption_offset The offset from the start of the plaintext to begin encryption. This is useful if
- *                          you have control bytes or metadata that should not be encrypted.
- * @param encryption_len The size of the data to be encrypted. This is useful if you have trailing bytes
- *                       that should not be encrypted.
- * @return aes_error_t
- * @note Uses SCHM_DEFAULT (PKCS7) as the padding scheme where needed.
- * @note While this function can encrypt part or all of the message, it hashes it in its entirely. This is because
- *      when sending a packet, only sensitive data need be encrypted but the entire packet should be
- *      authenticated.
- * @note To encrypt the entire message, pass 0 for @b encryption_offset and @b len for @b encryption_len.
- * @note @b plaintext and @b ciphertext are aliasable as long as @b plaintext >= @b ciphertext.
- ***********************************************************************************************************************************/
-aes_error_t hashlib_AESAuthEncrypt(
-    const void* plaintext,
-    size_t len,
-    void* ciphertext,
-    aes_ctx* key,
-    const void* iv,
-    uint8_t ciphermode,
-    size_t encryption_offset,
-    size_t encryption_len);
- 
-/**********************************************************************************************************************************
- * @brief Authenticated AES Decryption
- *
- * Performs an authenticated decryption of the given message. Supports partial decryption via the
- * @b decryption_offset and @b decryption_len parameters.
- *
- * @param ciphertext Pointer to the data to decrypt and authenticate.
- * @param len The size of the plaintext to decrypt and authenticate.
- * @param plaintext The buffer to write the authenticated decryption to. Must be at least @b len-32 bytes large.
- * @param ks Pointer to an AES key schedule context.
- * @param iv Pointer to an initialization vector (a nonce of length equal to the block size).
- * @param ciphermode The cipher mode to use. Can be either @e AES_MODE_CBC or @e AES_MODE_CTR.
- * @param decryption_offset The offset from the start of the plaintext to begin decryption. This is useful if
- *                          you have control bytes or metadata that should not be decrypted.
- * @param decryption_len The size of the data to be decrypted. This is useful if you have trailing bytes
- *                       that should not be decrypted.
- * @param return aes_error_t
- * @note Uses SCHM_DEFAULT (PKCS7) as the padding scheme where needed.
- * @note This function authenticates the message first by hashing from offset @b zero to @b len-32 of the ciphertext
- *      and comparing that hash to the last 32 bytes of the ciphertext. It assumes those 32 bytes are a hash appended
- *      by the remote host. If the hashes do not match, AES_INVALID_CIPHERTEXT is returned and the message
- *      is not decrypted.
- * @note To decrypt the entire message, pass 0 for @b decryption_offset and @b len-32 for @b decryption_len.
- * @note @b plaintext and @b ciphertext are aliasable as long as @b plaintext >= @b ciphertext.
- ***********************************************************************************************************************************/
-aes_error_t hashlib_AESAuthDecrypt(
-    const void* ciphertext,
-    size_t len,
-    void* plaintext,
-    aes_ctx* key,
-    const void* iv,
-    uint8_t ciphermode,
-    size_t decryption_offset,
-    size_t decryption_len);
 
 /*
  RSA Public Key Encryption
@@ -591,29 +521,6 @@ rsa_error_t hashlib_RSAEncrypt(
     void* ciphertext,
     const void* pubkey,
     size_t keylen);
- 
-/**********************************************************************************************************************************
- * @brief Authenticated RSA Encryption
- *
- * Performs an authenticated encryption of the given message. Does not support partial encryption.
- *
- * @param msg Pointer to the data to encrypt and authenticate.
- * @param msglen The size of the message to encrypt.
- * @param ct The buffer to write the authenticated encryption to. Must be at least @b keylen+32 bytes large.
- * @param pubkey Pointer to a bytearray containing the RSA public modulus to encrypt with.
- * @param keylen The length of the RSA public modulus.
- * @param return rsa_error_t
- * @note This function calls hashlib_RSAEncrypt(), which applies the OAEP 2.2 encoding scheme to the message
- *      and then encrypts the message using the public modulus supplied. It then hashes the resulting encryption
- *      and appends that hash to the end of the ciphertext.
- * @note @b msg and @b ciphertext are NOT aliasable.
- ***********************************************************************************************************************************/
-rsa_error_t hashlib_RSAAuthEncrypt(
-    const void* msg,
-    size_t msglen,
-    void *ciphertext,
-    const void* pubkey,
-    size_t keylen);
     
 /**********************************************************************************************
  * @brief SSL Certificate Signature Verification
@@ -674,17 +581,6 @@ void hashlib_EraseContext(void* ctx, size_t len);
  * @return True if the buffers were equal. False if not equal.
  **************************************************************************************************************/
 bool hashlib_CompareDigest(const void* digest1, const void* digest2, size_t len);
-
-/*************************************************************************************************************
- * @brief Reverses the endianness of a buffer
- *
- * @param in Pointer to buffer containing data to reverse.
- * @param out Pointer to buffer to write the reversed data.
- * @param len The number of bytes to reverse.
- * @note @b in and @b out are not aliasable.
- **************************************************************************************************************/
-bool hashlib_ReverseEndianness(const void* in, void* out, size_t len);
-
 
 /********************************************
  * ##### HELPER FUNCTIONS #####
