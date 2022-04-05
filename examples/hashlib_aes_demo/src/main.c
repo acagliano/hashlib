@@ -48,7 +48,7 @@ int main(void)
     
     
     // generate random key and IV
-    csrand_init();          // <<<----- DONT FORGET THIS
+    if(!csrand_init()) return 1;          // <<<----- DONT FORGET THIS
     csrand_fill(key, KEYSIZE);		// this aliases hashlib_RandomBytes()
     csrand_fill(iv, AES_IVSIZE);
     

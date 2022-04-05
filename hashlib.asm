@@ -201,10 +201,14 @@ csrand_init:
         ld a,c
         or a,b
         jq nz,.test_range_loop
-        push ix
-        pop hl
+        lea hl, ix+0
         ld (_sprng_read_addr), hl
+        add hl, de
+        xor a, a
+        sbc hl, de
     pop ix
+    ret z
+    inc a
     ret
 
 _test_byte:
