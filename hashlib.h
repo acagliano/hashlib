@@ -81,14 +81,14 @@ The PRNG previded by HASHLIB solves both tests like so:
         the state used to generate it does not persist in memory.
 */
 /****************************************************************************************************************************
- * @brief Initializes the SPRNG.
+ * @brief Initializes the crypto-safe random number generator.
  *
  * The SPRNG is initialized by polling the 512-bytes from address 0xD65800 to 0xD66000.
  * This region consists of unmapped memory that contains bus noise.
  * Each bit in that region is polled 1024 times and the address with the bit that is the least biased is selected.
  * That will be the byte the SPRNG uses to generate entropy.
  ***************************************************************************************************************************/
-void hashlib_SPRNGInit(void);
+bool csrand_init(void);
 
 /***************************************************************************************************************************
  * @brief Generates a random 32-bit number.
@@ -100,7 +100,7 @@ void hashlib_SPRNGInit(void);
  * - Returns the 4-byte (32-bit) composite as a random number..
  * @return A random unsigned 32-bit integer.
  ****************************************************************************************************************************/
-uint32_t hashlib_SPRNGRandom(void);
+uint32_t csrand_get(void);
 
 /****************************************************************************************
  * @brief Fills a buffer to size with random bytes.
@@ -109,7 +109,7 @@ uint32_t hashlib_SPRNGRandom(void);
  * @param size Number of bytes to write.
  * @note @b buffer must be at least @b size bytes large.
  ****************************************************************************************/
-bool hashlib_RandomBytes(void* buffer, size_t size);
+bool csrand_fill(void* buffer, size_t size);
  
  
 /*
@@ -153,7 +153,7 @@ typedef struct _sha256_ctx {
  *	Initializes the given context with the starting state for SHA-256.
  *	@param ctx Pointer to a SHA-256 context.
  **************************************************************************************************/
-void hashlib_Sha256Init(sha256_ctx* ctx);
+void hash_sha256_init(sha256_ctx* ctx);
 
 /******************************************************************************************************
  *	@brief Updates the SHA-256 context for the given data.
@@ -162,7 +162,7 @@ void hashlib_Sha256Init(sha256_ctx* ctx);
  *	@param len Number of bytes at @b data to hash.
  *	@warning You must call hashlib_Sha256Init() first or your hash state will be invalid.
  ******************************************************************************************************/
-void hashlib_Sha256Update(sha256_ctx* ctx, const void* data, size_t len);
+void hash_sha256_update(sha256_ctx* ctx, const void* data, size_t len);
 
 /**************************************************************************
  *	@brief Finalize Context and Render Digest for SHA-256
@@ -170,7 +170,7 @@ void hashlib_Sha256Update(sha256_ctx* ctx, const void* data, size_t len);
  *	@param digest Pointer to a buffer to write the hash to.
  *	@note @b digest must be at least 32 bytes large.
  ***************************************************************************/
-void hashlib_Sha256Final(sha256_ctx* ctx, void* digest);
+void hash_sha256_final(sha256_ctx* ctx, void* digest);
 
 /**********************************************************************************************************************
  *	@brief Arbitrary Length Hashing Function
@@ -183,7 +183,7 @@ void hashlib_Sha256Final(sha256_ctx* ctx, void* digest);
  *	@param outlen Number of bytes to write to @b outbuf.
  *	@note @b outbuf must be at least @b outlen bytes large.
  **********************************************************************************************************************/
-void hashlib_MGF1Hash(const void* data, size_t datalen, void* outbuf, size_t outlen);
+void hash_mgf1(const void* data, size_t datalen, void* outbuf, size_t outlen);
 
 
 /*
@@ -213,7 +213,7 @@ typedef struct _hmac_ctx {
  *	@param key Pointer to an authentication key used to initialize the base SHA-256 context.
  *	@param keylen Length of @b key, in bytes.
  **********************************************************************************************************************/
-void hashlib_HMACSha256Init(hmac_ctx* ctx, const void* key, size_t keylen);
+void hmac_sha256_init(hmac_ctx* ctx, const void* key, size_t keylen);
 
 /*************************************************************************************************************
  *	@brief Updates the SHA-256 HMAC context for the given data.
@@ -222,7 +222,7 @@ void hashlib_HMACSha256Init(hmac_ctx* ctx, const void* key, size_t keylen);
  *	@param len Number of bytes at @b data to hash.
  *	@warning You must call hashlib_HMACSha256Init() first or your hash state will be invalid.
  **************************************************************************************************************/
-void hashlib_HMACSha256Update(hmac_ctx* ctx, const void* data, size_t len);
+void hmac_sha256_update(hmac_ctx* ctx, const void* data, size_t len);
 
 /***********************************************************************************
  *	@brief Finalize Context and Render Digest for SHA-256 HMAC
@@ -230,14 +230,14 @@ void hashlib_HMACSha256Update(hmac_ctx* ctx, const void* data, size_t len);
  *	@param digest Pointer to a buffer to write the hash to.
  *	@note @b digest must be at least 32 bytes large.
  ***************************************************************************/
-void hashlib_HMACSha256Final(hmac_ctx* ctx, void* output);
+void hmac_sha256_final(hmac_ctx* ctx, void* output);
 
 /*************************************************************************************************************************
  *	@brief Resets the SHA-256 HMAC context to its state after a call to hashlib_HMACSha256Init()
  *	@param ctx Pointer to a SHA-256 HMAC context.
  *	@note Calls the SHA-256 Init function, then Updates() the context with the ipad.
  *************************************************************************************************************************/
-void hashlib_HMACSha256Reset(hmac_ctx* ctx);
+void hmac_sha256_reset(hmac_ctx* ctx);
 
 /*********************************************************************************************************************************
  * @brief Password-Based Key Derivation Function (via SHA-256 HMAC)
@@ -257,7 +257,7 @@ void hashlib_HMACSha256Reset(hmac_ctx* ctx);
  * a more secure key, but more time spent generating it. Current cryptography standards recommend in excess of 1000
  * rounds but that may not be feasible on the CE.
 */
-bool hashlib_PBKDF2(
+bool hmac_pbkdf2(
     const char* password,
     size_t passlen,
     void* key,
@@ -350,7 +350,7 @@ enum aes_padding_schemes {
  *
  * @param len The length of the plaintext.
  *********************************************************************************************/
-#define hashlib_AESCiphertextSize(len) \
+#define cipher_aes_outsize(len) \
 	((((len)%AES_BLOCKSIZE)==0) ? (len) + AES_BLOCKSIZE : (((len)>>4) + 1)<<4)
 	
 /************************************************************************************************************************
@@ -360,17 +360,8 @@ enum aes_padding_schemes {
  *
  * @param len The length of the plaintext.
  ************************************************************************************************************************/
-#define hashlib_AESCiphertextIVSize(len)	(hashlib_AESCiphertextSize((len)) + AES_IVSIZE)
-
-/*********************************************************************************************************************
- * @def hashlib_AESKeygen()
- * Defines a macro to generate a pseudorandom AES key of a given length.
- * @param key Pointer to a buffer to write the key into.
- * @param keylen The byte length of the key to generate.
- * @note @b key must be at least @b keylen bytes large.
- * @note It is recommended to cycle your key after encrypting 2^64 blocks of data with the same key.
- **********************************************************************************************************************/
-#define hashlib_AESKeygen(key, keylen)	hashlib_RandomBytes((key), (keylen))
+#define cipher_aes_extoutsize(len) \
+	(cipher_aes_outsize((len)) + AES_IVSIZE)
 
 /*********************************************************************************************************************
  * @brief AES import key to key schedule context
@@ -380,7 +371,7 @@ enum aes_padding_schemes {
  * @return True if the key was successfully loaded. False otherwise.
  * @note It is recommended to cycle your key after encrypting 2^64 blocks of data with the same key.
 ***********************************************************************************************************************/
-bool hashlib_AESLoadKey(const void* key, const aes_ctx* ks, size_t keylen);
+bool cipher_aes_loadkey(const void* key, const aes_ctx* ks, size_t keylen);
 
 /***************************************************
  * @enum aes_error_t
@@ -415,14 +406,14 @@ typedef enum {
  * 		Otherwise you will have to join the IV and the ciphertext into a single larger buffer before sending it through
  * 		whatever networking protocol you use.
  * 		@code
- * 		hashlib_AESEncrypt(plaintext, len, &ciphertext[AES_IV_SIZE], ks, iv, <cipher_mode>, <padding_mode>);
+ * 		cipher_aes_encrypt(plaintext, len, &ciphertext[AES_IV_SIZE], ks, iv, <cipher_mode>, <padding_mode>);
  * 		memcpy(ciphertext, iv, AES_IV_SIZE);
  * 		send_packet(ciphertext);
  * 		@endcode
  * 		This will require a buffer at least as large as the size returned by hashlib_AESCiphertextIVSize().
  * @return aes_error_t
  *************************************************************************************************************************************************************************/
-aes_error_t hashlib_AESEncrypt(
+aes_error_t cipher_aes_encrypt(
     const void* plaintext,
     size_t len,
     void* ciphertext,
@@ -444,7 +435,7 @@ aes_error_t hashlib_AESEncrypt(
  * @note @b IV should be the same as what is used for encryption.
  * @return aes_error_t
  **************************************************************************************************************************************************/
-aes_error_t hashlib_AESDecrypt(
+aes_error_t cipher_aes_decrypt(
     const void* ciphertext,
     size_t len,
     void* plaintext,
@@ -472,19 +463,7 @@ aes_error_t hashlib_AESDecrypt(
  take several seconds. For this reason, you usually do not use RSA for sustained encrypted
  communication. Use RSA to share a symmetric key, and then use AES for future messages.
  
- RSA is also involved in SSL signature verification for some certificates that still use
- that signing algorithm (RSA w/ Sha-256). Most sigs use ECDSA nowadays though, so if you
- want a certificate that is compatible with this library, specify RSA with SHA-256 as your
- signature algorithm when creating it.
  */
-/*************************************************************************************************
- * @enum ssl_sig_modes
- * SSL signature algorithms
-****************************************************************************************************/
-enum ssl_sig_modes {
-	SSLSIG_RSA_SHA256,		/**< RSA with SHA-256 signature algorithm */
-	SSLSIG_ECDSA			/**< ECDSA (unimplemented, likely a long way off) */
-};
 
 /***************************************************
  * @enum rsa_error_t
@@ -515,32 +494,13 @@ typedef enum {
  * @note msg and pubkey are both treated as byte arrays.
  * @return rsa_error_t
  **************************************************************************************************/
-rsa_error_t hashlib_RSAEncrypt(
+rsa_error_t cipher_rsa_encrypt(
     const void* msg,
     size_t msglen,
     void* ciphertext,
     const void* pubkey,
     size_t keylen);
     
-/**********************************************************************************************
- * @brief SSL Certificate Signature Verification
- *
- * Verifies the signature of a given SSL certificate using SSLSIG_RSA_SHA256
- *
- * @param ca_pubkey Pointer to buffer containing the public key of the certificate's certifying authority.
- * @param keysize Length of the public key at @b ca_pubkey.
- * @param cert Pointer to buffer containing the certificate to verify.
- * @param certlen The size of the certificate at @b cert.
- * @param sig_alg The algorithm to use for SSL verification (presently only RSA with SHA-256 supported).
- * @returns True if the SSL certificate signature is valid. False is invalid or user error.
- * *******************************************************************************************/
-bool hashlib_SSLVerifySignature(
-    const void *ca_pubkey,
-    size_t keysize,
-    const void* cert,
-    size_t certlen,
-    uint8_t sig_alg);
-
 
 // Miscellaneous Functions
 
@@ -550,25 +510,8 @@ bool hashlib_SSLVerifySignature(
  * @param len Number of bytes at @b digest to convert.
  * @param hexstr A buffer to write the output hex string to. Must be at least 2 * len + 1 bytes large.
  **************************************************************************************************************/
-bool hashlib_DigestToHexStr(const void* digest, size_t len, char* hexstr);
+bool digest_fromstring(const void* digest, size_t len, char* hexstr);
 
-/**************************************************************************************************************
- * @brief Secure erase context.
- * @param ctx Pointer to any context or buffer you want to erase.
- * @param len Number of bytes at @b ctx to erase.
- * @note It is advised to call this on every cryptographic context and encryption buffer used.
- **************************************************************************************************************/
-void hashlib_EraseContext(void* ctx, size_t len);
-
-/*************************************************************************************************
- * @def hashlib_MallocContext()
- *
- * Dynamically allocates a block of memory to be used for a context or buffer.
- *
- * @param size Size of the buffer to malloc.
- * @return Same as @b malloc.
- *************************************************************************************************/
-#define hashlib_MallocContext(size)		malloc((size))
 
 /*************************************************************************************************************
  * @brief Secure buffer comparison
@@ -580,190 +523,7 @@ void hashlib_EraseContext(void* ctx, size_t len);
  * @param len The number of bytes to compare.
  * @return True if the buffers were equal. False if not equal.
  **************************************************************************************************************/
-bool hashlib_CompareDigest(const void* digest1, const void* digest2, size_t len);
-
-/********************************************
- * ##### HELPER FUNCTIONS #####
- ********************************************/
-// You should not have to use these unless you know what you are doing and
-// are trying to design your own cipher constructs.
-
-/**********************************************************************************************************************************
- * @brief AES Single-Block Encryption (ECB mode)
- * @param block_in	Pointer to block of data to encrypt.
- * @param block_out Pointer to buffer to write encrypted block.
- * @param ks Pointer to an AES key schedule context.
- * @note @b block_in and @b block_out are aliasable.
- * @warning ECB-mode ciphers are insecure (see many-time pad vulnerability).
- *          Unless you know what you are doing, use hashlib_AESEncrypt() instead.
- * @warning The ECB mode single-block encryptors lack the buffer leak protections that hashlib_AESEncrypt()
- *          has. If you are writing your own cipher mode, you will need to implement that yourself.
- * @return True if encryption succeeded. False if failed.
- **********************************************************************************************************************************/
-bool hashlib_AESEncryptBlock(
-        const void* block_in,
-        void* block_out,
-        const aes_ctx* ks);
-    
-/********************************************************************************************************************************
- *	@brief AES Single-Block Decryption (ECB Mode)
- *	@param block_in Pointer to block of data to decrypt.
- *	@param block_out Pointer to buffer to write decrypted block.
- *	@param ks Pointer to an AES key schedule context.
- *	@note @b block_in and @b block_out are aliasable.
- * @warning ECB-mode ciphers are insecure (see many-time pad vulnerability).
- *          Unless you know what you are doing, use hashlib_AESDecrypt() instead.
- * @warning The ECB mode single-block encryptors lack the buffer leak protections that hashlib_AESDecrypt()
- *          has. If you are writing your own cipher mode, you will need to implement that yourself.
- *	@return True if encryption succeeded. False if an error occured.
- **********************************************************************************************************************************/
-bool hashlib_AESDecryptBlock(
-        const void* block_in,
-        void* block_out,
-        const aes_ctx* ks);
-
-/*****************************************************************************************
- * @brief Pads a plaintext according to the specified AES padding scheme.
- * @param plaintext Pointer to buffer containing the data to pad.
- * @param len Length of data at @b plaintext to pad.
- * @param outbuf Pointer to buffer to write padded data.
- * @param schm The AES padding scheme to use.
- * @note @b plaintext and @b outbuf are aliasable.
- * @note hashlib_AESEncrypt() calls this function automatically.
- *      There is no need to do so yourself.
- * @return The padded length of the message.
- ******************************************************************************************/
-size_t hashlib_AESPadMessage(
-    const void* plaintext,
-    size_t len,
-    void* outbuf,
-    uint8_t schm);
-
-/***************************************************************************************************************
- * @brief Strips the padding from a message according to the specified AES padding scheme.
- * @param plaintext Pointer to buffer containing the data to strip.
- * @param len Length of data at @b plaintext to strip.
- * @param outbuf Pointer to buffer to write stripped data.
- * @param schm The AES padding scheme to use.
- * @note @b plaintext and @b outbuf are aliasable.
- * @note hashlib_AESDecrypt() calls this function automatically.
- *      There is no need to do so yourself.
- * @return The length of the message with padding removed.
- ****************************************************************************************************************/
-size_t hashlib_AESStripPadding(
-    const void* plaintext,
-    size_t len,
-    void* outbuf,
-    uint8_t schm);
-
-/************************************************************************************************************************
- * @brief RSA-OAEP padding scheme
- *
- * Applies the RSA-OAEP padding scheme as indicated in PKCS#1 v2.2.
- * This is intended for use prior to RSA encryption.
- * @code
- * | <-------------------------------- modulus size ---------------------------------> |
- * |-- 0x00 --|-- salt --|-- auth hash --|-- 0x00...padding --|-- 0x01 --|-- message --|
- *	          |          |-------------------------------------------------------------|
- *                 |                                  |
- *                 | --------- MGF1-SHA256 --------> XOR
- *                 |                                  |
- *                XOR <-------- MGF1-SHA256 --------- |
- *                 |                                  |
- * |-- 0x00 --|-- msalt --|---------- masked message, padding, and auth hash ----------|
- * |<-------------------------------- modulus size ----------------------------------> |
- * @endcode
- *
- * @param plaintext Pointer to a buffer containing the data to OAEP-encode.
- * @param len Length of data at @b plaintext to encode.
- * @param outbuf Pointer to buffer large enough to hold the padded data.
- * @param modulus_len The byte length of the modulus to pad for.
- * @param auth Pointer to an authentication string (similar to a password) to include in the encoding.
- * @note @b outbuf must be at least @b modulus_len bytes large.
- * @note hashlib_RSAEncrypt() calls this function automatically. There is no need to do it yourself.
- * @note @b auth both sender and receiver must know this string. Pass NULL to omit.
- * @return The padded length of the plaintext.
- ***********************************************************************************************************************/
-size_t hashlib_RSAEncodeOAEP(
-    const void* plaintext,
-    size_t len,
-    void* outbuf,
-    size_t modulus_len,
-    const void *auth);
-    
-/************************************************************************************************************************
- * @brief RSA-OAEP padding scheme, reverse algorithm
- *
- * Reverses the RSA-OAEP padding scheme as indicated in PKCS#1 v2.2.
- *
- * @param plaintext Pointer to a buffer containing the data to OAEP-decode.
- * @param len Length of data at @b plaintext to decode.
- * @param outbuf Pointer to buffer large enough to hold the decoded data.
- * @param auth Pointer to an authentication string (similar to a password) to include in the encoding.
- * @note @b outbuf must be at least @b len-34 bytes large.
- * @note @b auth Both sender and reciever must know this string if one is provided. Pass NULL to omit.
- * @return The decoded length of the plaintext.
- ***********************************************************************************************************************/
-size_t hashlib_RSADecodeOAEP(
-    const void* plaintext,
-    size_t len,
-    void* outbuf,
-    const void *auth);
-
-/************************************************************************************************************************
- * @brief RSA-PSS padding scheme
- *
- * Applies the RSA-PSS padding scheme  as indicated in PKCS#1 v1.5.
- * @code
- * |- Message -|  ---------------------- SHA-256 ---------------------->|
- *                                                                      |
- * |-- 0x00 padding --|-- 0x01 --|-- salt --|  |-- 8 bytes 0x00 --|-- mHash --|-- salt --|
- * |----------------------------------------|  |-----------------------------------------|
- * *DB                  |                      *Mprime              |
- *                      |                                        SHA-256
- *                     XOR <------------ MGF1-SHA256 -------------- |
- *                      |                                           |
- *                      |                           < ------------- |
- *                      |                           |
- * |-------------- masked DB --------------|-- Mprime Hash --|-- 0xbc --|
- * |-------------------------- modulus size ----------------------------|
- * @endcode
- *
- * @param plaintext Pointer to buffer containing data to encode.
- * @param len Length of data at @b plaintext to encode.
- * @param outbuf Pointer to buffer to write encoded plaintext to.
- * @param modulus_len The length of the modulus to pad for.
- * @param salt A nonce equal in length to the SHA-256 digest length.
- * @note @b outbuf must be at least @b modulus_len bytes large.
- * @note @b salt can be NULL to generate a salt automatically. You can also generate it yourself
- * 		 using hashlib_RandomBytes() and pass a pointer to that buffer as @b salt.
- * @note If you are trying to validate a signature, use hashlib_SSLVerifySignature().
- * @return the padded length of the plaintext.
- ***********************************************************************************************************************/
-size_t hashlib_RSAEncodePSS(
-	const void* plaintext,
-	size_t len,
-	void *outbuf,
-	size_t modulus_len,
-	void* salt);
- 
- /**********************************************************************************************
-  * @brief RSA-PSS verification
-  *
-  * Reverses the PSS MGF1 masking on @b expected and retrieves the salt,
-  * then attempts to PSS pad the input given the retrieved salt.
-  *
-  * @param data Pointer to buffer containing data to verify PSS padding for.
-  * @param len Length of data at @b in.
-  * @param expected Pointer to buffer containing expected signature.
-  * @param modulus_len The size of the signature at @b expected.
-  * @return True if signature match, False if failed to verify.
-  * *******************************************************************************************/
- bool hashlib_RSAVerifyPSS(
-    const void* data,
-    size_t len,
-    const void* expected,
-    size_t modulus_len);
+bool digest_compare(const void* digest1, const void* digest2, size_t len);
 
 
 #endif

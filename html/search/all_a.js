@@ -6,8 +6,5 @@ var searchData=
   ['sha256_5fctx_3',['sha256_ctx',['../hashlib_8h.html#a53df9e7d871973d59c7b58a6c3963c5d',1,'hashlib.h']]],
   ['sha256_5fdigest_5flen_4',['SHA256_DIGEST_LEN',['../hashlib_8h.html#af5aa539ae202ddf9e0c9211309869fc8',1,'hashlib.h']]],
   ['sha256_5fhexdigest_5flen_5',['SHA256_HEXDIGEST_LEN',['../hashlib_8h.html#a7781b6f83e2f311020d3b926b70743ed',1,'hashlib.h']]],
-  ['ssl_5fsig_5fmodes_6',['ssl_sig_modes',['../hashlib_8h.html#a7508a7cdffede3d44a818dd4a154bf95',1,'hashlib.h']]],
-  ['sslsig_5fecdsa_7',['SSLSIG_ECDSA',['../hashlib_8h.html#a7508a7cdffede3d44a818dd4a154bf95a3b885e134e618304b93f54b88eff9b25',1,'hashlib.h']]],
-  ['sslsig_5frsa_5fsha256_8',['SSLSIG_RSA_SHA256',['../hashlib_8h.html#a7508a7cdffede3d44a818dd4a154bf95a096ad031cbdad23c8d4053d9b7a3db31',1,'hashlib.h']]],
-  ['state_9',['state',['../struct__sha256__ctx.html#a1e85694ce7e43ed85c5e0f8e11116d18',1,'_sha256_ctx']]]
+  ['state_6',['state',['../struct__sha256__ctx.html#a1e85694ce7e43ed85c5e0f8e11116d18',1,'_sha256_ctx']]]
 ];

@@ -8,39 +8,29 @@ library "HASHLIB", 8
 ;------------------------------------------
 
 ;v6 functions
-    export hashlib_SPRNGInit
-    export hashlib_SPRNGRandom
-    export hashlib_RandomBytes
+    export csrand_init
+    export csrand_get
+    export csrand_fill
     
-    export hashlib_Sha256Init
-	export hashlib_Sha256Update
-	export hashlib_Sha256Final
-	export hashlib_MGF1Hash
- 
-    export hashlib_AESLoadKey
-    export hashlib_AESEncryptBlock
-    export hashlib_AESDecryptBlock
-    export hashlib_AESEncrypt
-    export hashlib_AESDecrypt
-    export hashlib_AESPadMessage
-    export hashlib_AESStripPadding
+    export hash_sha256_init
+	export hash_sha256_update
+	export hash_sha256_final
+	export hash_mgf1
     
-	export hashlib_RSAEncodeOAEP
-	export hashlib_RSADecodeOAEP
-	export hashlib_RSAEncodePSS
-    export hashlib_RSAEncrypt
-    export hashlib_RSAVerifyPSS
-    export hashlib_SSLVerifySignature
-
-    export hashlib_EraseContext
-    export hashlib_CompareDigest
+    export hmac_sha256_init
+    export hmac_sha256_update
+    export hmac_sha256_final
+    export hmac_sha256_reset
+    export hmac_pbkdf2
     
-    export hashlib_PBKDF2
-    export hashlib_HMACSha256Init
-    export hashlib_HMACSha256Update
-    export hashlib_HMACSha256Final
-    export hashlib_HMACSha256Reset
-    export hashlib_DigestToHexStr
+    export cipher_aes_loadkey
+    export cipher_aes_encrypt
+    export cipher_aes_decrypt
+    export cipher_rsa_encrypt
+    
+    export digest_fromstring
+    export digest_compare
+    
     
 
 ;------------------------------------------
@@ -189,7 +179,7 @@ stack_clear:
 ;------------------------------------------
     
 
-hashlib_SPRNGInit:
+csrand_init:
 ; ix = selected byte
 ; de = current deviation
 ; hl = starting address
@@ -318,25 +308,10 @@ hashlib_SPRNGAddEntropy:
     ret
     
  
-hashlib_SPRNGRandom:
+csrand_get:
 
 	save_interrupts
 
-    ; if _sprng_read_addr == 0, initialize
-    ld hl, (_sprng_read_addr)
-	add hl,de
-	or a,a
-	sbc hl, de
-	call z, hashlib_SPRNGInit
-
-    ; hashlib_SPRNGInit returns the address selected in hl or 0
-    ; if _sprng_read_addr == 0, quit
-    add hl, de
-    or a, a
-    sbc hl, de
-    jr z, .return
-
-.have_addr:
 ; set rand to 0
 	ld hl, 0
 	ld a, l
@@ -346,19 +321,19 @@ hashlib_SPRNGRandom:
 ; hash entropy pool
 	ld hl, _sprng_sha_ctx
 	push hl
-	call hashlib_Sha256Init
+	call hash_sha256_init
 	pop bc
 	ld hl, 119
 	push hl
 	ld hl, _sprng_entropy_pool
 	push hl
 	push bc
-	call hashlib_Sha256Update
+	call hash_sha256_update
 	pop bc, hl, hl
 	ld hl, _sprng_sha_digest
 	push hl
 	push bc
-	call hashlib_Sha256Final
+	call hash_sha256_final
 	pop bc, hl
 	
 ; xor hash cyclically into _rand
@@ -389,14 +364,14 @@ hashlib_SPRNGRandom:
 	ld e, a
 
 .return:
-	restore_interrupts hashlib_SPRNGRandom
+	restore_interrupts csrand_get
 	ret
 	
  
  L_.str2:
 	db	"%lu",012o,000o
  
-hashlib_RandomBytes:
+csrand_fill:
 	save_interrupts
 
 	ld	hl, -10
@@ -410,7 +385,7 @@ hashlib_RandomBytes:
 	sbc	hl, de
 	jq	nc, .lbl2
 	ld	(ix + -10), iy
-	call	hashlib_SPRNGRandom
+	call	csrand_get
 	ld	(ix + -4), hl
 	ld	(ix + -1), e
 	ld	de, (ix + -10)
@@ -445,12 +420,12 @@ hashlib_RandomBytes:
 	ld	sp, ix
 	pop	ix
 
-	restore_interrupts hashlib_RandomBytes
+	restore_interrupts csrand_fill
 	ret
 	
 	
 ; void hashlib_Sha256Init(SHA256_CTX *ctx);
-hashlib_Sha256Init:
+hash_sha256_init:
     pop iy,de
     push de
     ld hl,$FF0000
@@ -463,7 +438,7 @@ hashlib_Sha256Init:
     
 
 ; void hashlib_Sha256Update(SHA256_CTX *ctx, const BYTE data[], size_t len);
-hashlib_Sha256Update:
+hash_sha256_update:
 	save_interrupts
 
 	call ti._frameset0
@@ -500,7 +475,7 @@ hashlib_Sha256Update:
 	ld (iy + offset_datalen), a		   ;save current datalen
 	pop ix
 
-	restore_interrupts hashlib_Sha256Update
+	restore_interrupts hash_sha256_update
 	ret
 
 _sha256_update_loop:
@@ -526,7 +501,7 @@ _sha256_update_apply_transform:
 	ret
 
 ; void hashlib_Sha256Final(SHA256_CTX *ctx, BYTE hash[]);
-hashlib_Sha256Final:
+hash_sha256_final:
 	save_interrupts
 
 	ld hl,-_sha256ctx_size
@@ -614,7 +589,7 @@ _sha256_final_pad_message_len_loop:
 	ld sp,ix
 	pop ix
 
-	restore_interrupts hashlib_Sha256Final
+	restore_interrupts hash_sha256_final
 	ret
 
 ; reverse b longs endianness from iy to hl
@@ -1087,25 +1062,6 @@ _sha256_transform:
 	ret
 
     
- 
- 
- ; hashlib_EraseContext(void* ptr, size_t len);
- ; throw this in at the end of cryptofunctions to wipe the context when you are done with them
- ; input hl = (void*) PTR
- ; input de = len to zero
- hashlib_EraseContext:
-    pop de,hl,bc
-    push bc,hl
-.eraseloop:
-    ld (hl),0
-    inc hl
-    dec bc
-    ld a,b
-    or a,c
-    jq nz,.eraseloop
-    ex hl,de
-    jp (hl)
-    
     
 _xor_buf:
 	ld	hl, -3
@@ -1304,7 +1260,7 @@ _aes_SubWord:
 	pop	ix
 	ret
 	
-hashlib_AESLoadKey:
+cipher_aes_loadkey:
 	save_interrupts
 
 	ld	hl, -25
@@ -1534,7 +1490,7 @@ hashlib_AESLoadKey:
 	ld	sp, ix
 	pop	ix
 	
-	restore_interrupts hashlib_AESLoadKey
+	restore_interrupts cipher_aes_loadkey
 	ret
 	
 _aes_AddRoundKey:
@@ -4463,7 +4419,7 @@ hashlib_AESDecryptBlock:
 	restore_interrupts hashlib_AESDecryptBlock
 	ret
 	
-hashlib_AESEncrypt:
+cipher_aes_encrypt:
 	save_interrupts
 
 	ld	hl, -95
@@ -4508,7 +4464,7 @@ hashlib_AESEncrypt:
 	ld	bc, 2
 .lbl_21:
 	push	bc
-	restore_interrupts_noret hashlib_AESEncrypt
+	restore_interrupts_noret cipher_aes_encrypt
 	pop	hl
 	jp stack_clear
 .lbl_6:
@@ -4747,7 +4703,7 @@ hashlib_AESEncrypt:
 	ld	bc, 0
 	jq	.lbl_21
 	
-hashlib_AESDecrypt:
+cipher_aes_decrypt:
 	save_interrupts
 
 	ld	hl, -66
@@ -4807,7 +4763,7 @@ hashlib_AESDecrypt:
 	push	hl
 	ld	hl, (ix + 6)
 	push	hl
-	call	hashlib_AESEncrypt
+	call	cipher_aes_encrypt
 	ld	hl, 21
 	add	hl, sp
 	ld	sp, hl
@@ -4928,7 +4884,7 @@ hashlib_AESDecrypt:
 	ld	de, 0
 .lbl_9:
 	ex	de, hl
-	restore_interrupts_noret hashlib_AESDecrypt
+	restore_interrupts_noret cipher_aes_decrypt
 	jp stack_clear
 	
 	
@@ -5133,7 +5089,7 @@ hashlib_RSAEncodeOAEP:
 	add	hl, bc
 	ld	(hl), iy
 	push	iy
-	call	hashlib_RandomBytes
+	call	csrand_fill
 	pop	hl
 	pop	hl
 	ld	bc, -353
@@ -5141,7 +5097,7 @@ hashlib_RSAEncodeOAEP:
 	add	hl, bc
 	ld	hl, (hl)
 	push	hl
-	call	hashlib_Sha256Init
+	call	hash_sha256_init
 	pop	hl
 	ld	hl, (ix + 18)
 	push	hl
@@ -5163,7 +5119,7 @@ hashlib_RSAEncodeOAEP:
 	add	hl, bc
 	ld	hl, (hl)
 	push	hl
-	call	hashlib_Sha256Update
+	call	hash_sha256_update
 	pop	hl
 	pop	hl
 	pop	hl
@@ -5183,7 +5139,7 @@ hashlib_RSAEncodeOAEP:
 	add	hl, bc
 	ld	hl, (hl)
 	push	hl
-	call	hashlib_Sha256Final
+	call	hash_sha256_final
 	pop	hl
 	pop	hl
 	ld	bc, -347
@@ -5238,7 +5194,7 @@ hashlib_RSAEncodeOAEP:
 	add	hl, bc
 	ld	hl, (hl)
 	push	hl
-	call	hashlib_MGF1Hash
+	call	hash_mgf1
 	pop	hl
 	pop	hl
 	pop	hl
@@ -5290,7 +5246,7 @@ hashlib_RSAEncodeOAEP:
 	add	hl, bc
 	ld	hl, (hl)
 	push	hl
-	call	hashlib_MGF1Hash
+	call	hash_mgf1
 	ld	bc, 0
 	pop	hl
 	pop	hl
@@ -5519,7 +5475,7 @@ hashlib_RSADecodeOAEP:
 	add	hl, bc
 	ld	iy, (hl)
 	pea	iy + 33
-	call	hashlib_MGF1Hash
+	call	hash_mgf1
 	pop	hl
 	pop	hl
 	pop	hl
@@ -5565,7 +5521,7 @@ hashlib_RSADecodeOAEP:
 	ld	hl, 32
 	push	hl
 	push	iy
-	call	hashlib_MGF1Hash
+	call	hash_mgf1
 	pop	hl
 	pop	hl
 	pop	hl
@@ -5614,7 +5570,7 @@ hashlib_RSADecodeOAEP:
 	add	hl, bc
 	ld	hl, (hl)
 	push	hl
-	call	hashlib_Sha256Init
+	call	hash_sha256_init
 	pop	hl
 	ld	hl, (ix + 15)
 	add	hl, bc
@@ -5634,7 +5590,7 @@ hashlib_RSADecodeOAEP:
 	add	hl, bc
 	ld	hl, (hl)
 	push	hl
-	call	hashlib_Sha256Update
+	call	hash_sha256_update
 	pop	hl
 	pop	hl
 	pop	hl
@@ -5650,7 +5606,7 @@ hashlib_RSADecodeOAEP:
 	add	hl, bc
 	ld	hl, (hl)
 	push	hl
-	call	hashlib_Sha256Final
+	call	hash_sha256_final
 	pop	hl
 	pop	hl
 	ld	hl, 32
@@ -5662,7 +5618,7 @@ hashlib_RSADecodeOAEP:
 	add	hl, bc
 	ld	hl, (hl)
 	push	hl
-	call	hashlib_CompareDigest
+	call	digest_compare
 	pop	hl
 	pop	hl
 	pop	hl
@@ -5866,7 +5822,7 @@ hashlib_RSAEncodePSS:
 	add	hl, bc
 	ld	hl, (hl)
 	push	hl
-	call	hashlib_Sha256Init
+	call	hash_sha256_init
 	pop	hl
 	or	a, a
 	sbc	hl, hl
@@ -5880,7 +5836,7 @@ hashlib_RSAEncodePSS:
 	add	hl, bc
 	ld	hl, (hl)
 	push	hl
-	call	hashlib_Sha256Update
+	call	hash_sha256_update
 	pop	hl
 	pop	hl
 	pop	hl
@@ -5895,7 +5851,7 @@ hashlib_RSAEncodePSS:
 	add	iy, bc
 	ld	hl, (iy + 0)
 	push	hl
-	call	hashlib_Sha256Final
+	call	hash_sha256_final
 	ld	bc, (ix + 18)
 	pop	hl
 	pop	hl
@@ -5913,7 +5869,7 @@ hashlib_RSAEncodePSS:
 	ld	hl, 32
 	push	hl
 	push	de
-	call	hashlib_RandomBytes
+	call	csrand_fill
 	jq	.lbl_11
 .lbl_10:
 	ld	hl, 32
@@ -5964,7 +5920,7 @@ hashlib_RSAEncodePSS:
 	add	hl, bc
 	ld	hl, (hl)
 	push	hl
-	call	hashlib_Sha256Init
+	call	hash_sha256_init
 	pop	hl
 	or	a, a
 	sbc	hl, hl
@@ -5981,7 +5937,7 @@ hashlib_RSAEncodePSS:
 	add	hl, bc
 	ld	hl, (hl)
 	push	hl
-	call	hashlib_Sha256Update
+	call	hash_sha256_update
 	pop	hl
 	pop	hl
 	pop	hl
@@ -5996,7 +5952,7 @@ hashlib_RSAEncodePSS:
 	add	hl, bc
 	ld	hl, (hl)
 	push	hl
-	call	hashlib_Sha256Final
+	call	hash_sha256_final
 	pop	hl
 	pop	hl
 	ld	hl, (ix + 12)
@@ -6035,7 +5991,7 @@ hashlib_RSAEncodePSS:
 	add	hl, bc
 	ld	hl, (hl)
 	push	hl
-	call	hashlib_MGF1Hash
+	call	hash_mgf1
 	pop	hl
 	pop	hl
 	pop	hl
@@ -6071,7 +6027,7 @@ hashlib_RSAEncodePSS:
 	jq	.lbl_16
     
 
- hashlib_CompareDigest:
+ digest_compare:
     pop	iy, de, hl, bc
 	push	bc, hl, de, iy
 	xor	a, a
@@ -6089,7 +6045,7 @@ hashlib_RSAEncodePSS:
 	ret
     
 	
-hashlib_MGF1Hash:
+hash_mgf1:
 	save_interrupts
 
 	ld	hl, -280
@@ -6114,7 +6070,7 @@ hashlib_MGF1Hash:
 	add	iy, bc
 	ld	(iy + 0), hl
 	push	de
-	call	hashlib_Sha256Init
+	call	hash_sha256_init
 	pop	hl
 	or	a, a
 	sbc	hl, hl
@@ -6128,7 +6084,7 @@ hashlib_MGF1Hash:
 	add	hl, bc
 	ld	hl, (hl)
 	push	hl
-	call	hashlib_Sha256Update
+	call	hash_sha256_update
 	ld	de, (ix + 15)
 	pop	hl
 	pop	hl
@@ -6240,7 +6196,7 @@ hashlib_MGF1Hash:
 	add	hl, bc
 	ld	hl, (hl)
 	push	hl
-	call	hashlib_Sha256Update
+	call	hash_sha256_update
 	pop	hl
 	pop	hl
 	pop	hl
@@ -6255,7 +6211,7 @@ hashlib_MGF1Hash:
 	add	hl, bc
 	ld	hl, (hl)
 	push	hl
-	call	hashlib_Sha256Final
+	call	hash_sha256_final
 	pop	hl
 	pop	hl
 	ld	bc, -273
@@ -6320,11 +6276,11 @@ hashlib_MGF1Hash:
 	ld	bc, (ix + -3)
 	jq	.lbl_1
 .lbl_2:
-	restore_interrupts_noret hashlib_MGF1Hash
+	restore_interrupts_noret hash_mgf1
 	jp stack_clear
  
 	
-hashlib_RSAEncrypt:
+cipher_rsa_encrypt:
 	save_interrupts
 
 	ld	hl, -6
@@ -6448,328 +6404,7 @@ hashlib_RSAEncrypt:
 	ld	de, 0
 .lbl_12:
 	ex	de, hl
-	restore_interrupts_noret hashlib_RSAEncrypt
-	jp stack_clear
- 
-hashlib_RSAVerifyPSS:
-	save_interrupts
-
-	ld	hl, -529
-	call	ti._frameset
-	ld	de, -517
-	lea	iy, ix + 0
-	add	iy, de
-	ld	bc, (ix + 15)
-	ld	de, -229
-	lea	hl, ix + 0
-	add	hl, de
-	push	ix
-	ld	de, -526
-	add	ix, de
-	ld	(ix + 0), hl
-	pop	ix
-	lea	de, iy + 32
-	ld	(ix + -3), bc
-	ld	bc, -520
-	lea	hl, ix + 0
-	add	hl, bc
-	ld	(hl), de
-	lea	hl, iy + 0
-	ld	bc, -523
-	lea	iy, ix + 0
-	add	iy, bc
-	ld	(iy + 0), hl
-	ld	bc, (ix + -3)
-	push	bc
-	pop	hl
-	push	bc
-	pop	iy
-	ld	bc, -33
-	add	hl, bc
-	push	ix
-	ld	bc, -529
-	add	ix, bc
-	ld	(ix + 0), hl
-	pop	ix
-	push	iy
-	ld	hl, (ix + 12)
-	push	hl
-	push	de
-	call	ti._memcpy
-	pop	hl
-	pop	hl
-	pop	hl
-	ld	bc, -520
-	lea	hl, ix + 0
-	add	hl, bc
-	ld	hl, (hl)
-	ld	bc, -529
-	lea	iy, ix + 0
-	add	iy, bc
-	ld	de, (iy + 0)
-	add	hl, de
-	push	de
-	push	ix
-	ld	bc, -526
-	add	ix, bc
-	ld	de, (ix + 0)
-	pop	ix
-	push	de
-	ld	de, 32
-	push	de
-	push	hl
-	call	hashlib_MGF1Hash
-	ld	de, -529
-	lea	hl, ix + 0
-	add	hl, de
-	ld	bc, (hl)
-	ld	de, 0
-	pop	hl
-	pop	hl
-	pop	hl
-	pop	hl
-.lbl_1:
-	push	bc
-	pop	hl
-	or	a, a
-	sbc	hl, de
-	jq	z, .lbl_2
-	ld	(ix + -3), bc
-	ld	bc, -526
-	lea	hl, ix + 0
-	add	hl, bc
-	ld	iy, (hl)
-	add	iy, de
-	push	ix
-	ld	bc, -520
-	add	ix, bc
-	ld	hl, (ix + 0)
-	pop	ix
-	add	hl, de
-	ld	a, (hl)
-	xor	a, (iy)
-	ld	(hl), a
-	inc	de
-	ld	bc, (ix + -3)
-	jq	.lbl_1
-.lbl_2:
-	ld	hl, (ix + 15)
-	ld	de, -65
-	add	hl, de
-	ex	de, hl
-	ld	bc, -520
-	lea	hl, ix + 0
-	add	hl, bc
-	ld	hl, (hl)
-	add	hl, de
-	ld	de, 32
-	push	de
-	push	hl
-	ld	bc, -523
-	lea	hl, ix + 0
-	add	hl, bc
-	ld	hl, (hl)
-	push	hl
-	call	ti._memcpy
-	pop	hl
-	pop	hl
-	pop	hl
-	ld	bc, -523
-	lea	hl, ix + 0
-	add	hl, bc
-	ld	hl, (hl)
-	push	hl
-	ld	hl, (ix + 15)
-	push	hl
-	ld	bc, -520
-	lea	hl, ix + 0
-	add	hl, bc
-	ld	hl, (hl)
-	push	hl
-	ld	hl, (ix + 9)
-	push	hl
-	ld	hl, (ix + 6)
-	push	hl
-	call	hashlib_RSAEncodePSS
-	pop	hl
-	pop	hl
-	pop	hl
-	pop	hl
-	pop	hl
-	ld	hl, (ix + 15)
-	push	hl
-	ld	hl, (ix + 12)
-	push	hl
-	ld	bc, -520
-	lea	hl, ix + 0
-	add	hl, bc
-	ld	hl, (hl)
-	push	hl
-	call	hashlib_CompareDigest
-
-	restore_interrupts_noret hashlib_RSAVerifyPSS
-	jp stack_clear
-	
-    
-hashlib_SSLVerifySignature:
-	save_interrupts
-
-	ld	hl, -414
-	call	ti._frameset
-	ld	hl, (ix + 6)
-	ld	e, 0
-	add	hl, bc
-	or	a, a
-	sbc	hl, bc
-	jq	z, .lbl_6
-	ld	hl, (ix + 12)
-	add	hl, bc
-	or	a, a
-	sbc	hl, bc
-	jq	z, .lbl_7
-	ld	hl, (ix + 9)
-	ld	bc, (ix + 15)
-	or	a, a
-	sbc	hl, bc
-	jq	nc, .lbl_8
-	ld	a, (ix + 18)
-	or	a, a
-	jq	nz, .lbl_5
-	ld	de, -402
-	lea	iy, ix + 0
-	add	iy, de
-	push	bc
-	pop	de
-	ld	(ix + -3), de
-	ld	de, -262
-	lea	hl, ix + 0
-	add	hl, de
-	push	hl
-	pop	bc
-	push	ix
-	ld	de, -411
-	add	ix, de
-	ld	(ix + 0), bc
-	pop	ix
-	lea	hl, iy + 108
-	push	ix
-	ld	de, -408
-	add	ix, de
-	ld	(ix + 0), hl
-	pop	ix
-	lea	hl, iy + 0
-	ld	de, -405
-	lea	iy, ix + 0
-	add	iy, de
-	ld	(iy + 0), hl
-	ld	de, (ix + -3)
-	ex	de, hl
-	ld	de, (ix + 9)
-	or	a, a
-	sbc	hl, de
-	push	de
-	pop	iy
-	push	ix
-	ld	de, -414
-	add	ix, de
-	ld	(ix + 0), hl
-	pop	ix
-	ex	de, hl
-	dec	de
-	ld	hl, (ix + 12)
-	add	hl, de
-	push	iy
-	push	hl
-	push	bc
-	call	ti._memcpy
-	pop	hl
-	pop	hl
-	pop	hl
-	ld	hl, (ix + 6)
-	push	hl
-	ld	hl, 65537
-	push	hl
-	ld	bc, -411
-	lea	hl, ix + 0
-	add	hl, bc
-	ld	hl, (hl)
-	push	hl
-	ld	hl, (ix + 9)
-	push	hl
-	call	_powmod
-	pop	hl
-	pop	hl
-	pop	hl
-	pop	hl
-	ld	bc, -405
-	lea	hl, ix + 0
-	add	hl, bc
-	ld	hl, (hl)
-	push	hl
-	call	hashlib_Sha256Init
-	pop	hl
-	or	a, a
-	sbc	hl, hl
-	push	hl
-	ld	bc, -414
-	lea	hl, ix + 0
-	add	hl, bc
-	ld	hl, (hl)
-	push	hl
-	ld	hl, (ix + 12)
-	push	hl
-	ld	bc, -405
-	lea	hl, ix + 0
-	add	hl, bc
-	ld	hl, (hl)
-	push	hl
-	call	hashlib_Sha256Update
-	pop	hl
-	pop	hl
-	pop	hl
-	pop	hl
-	ld	bc, -408
-	lea	hl, ix + 0
-	add	hl, bc
-	ld	hl, (hl)
-	push	hl
-	ld	bc, -405
-	lea	hl, ix + 0
-	add	hl, bc
-	ld	hl, (hl)
-	push	hl
-	call	hashlib_Sha256Final
-	pop	hl
-	pop	hl
-	ld	hl, (ix + 9)
-	push	hl
-	ld	bc, -411
-	lea	hl, ix + 0
-	add	hl, bc
-	ld	hl, (hl)
-	push	hl
-	ld	hl, 32
-	push	hl
-	ld	bc, -408
-	lea	hl, ix + 0
-	add	hl, bc
-	ld	hl, (hl)
-	push	hl
-	call	hashlib_RSAVerifyPSS
-	ld	e, a
-	pop	hl
-	pop	hl
-	pop	hl
-	pop	hl
-	jq	.lbl_5
-.lbl_6:
-	jq	.lbl_5
-.lbl_7:
-	jq	.lbl_5
-.lbl_8:
-.lbl_5:
-	restore_interrupts_noret hashlib_SSLVerifySignature
-	ld	a, e
+	restore_interrupts_noret cipher_rsa_encrypt
 	jp stack_clear
  
  
@@ -6993,7 +6628,7 @@ _powmod:
    ret
  
  
-hashlib_HMACSha256Init:
+hmac_sha256_init:
 	save_interrupts
 
 	ld	hl, -70
@@ -7019,7 +6654,7 @@ hashlib_HMACSha256Init:
 	add	hl, de
 	ld	(ix + -70), hl
 	push	hl
-	call	hashlib_Sha256Init
+	call	hash_sha256_init
 	pop	hl
 	or	a, a
 	sbc	hl, hl
@@ -7030,7 +6665,7 @@ hashlib_HMACSha256Init:
 	push	hl
 	ld	hl, (ix + -70)
 	push	hl
-	call	hashlib_Sha256Update
+	call	hash_sha256_update
 	pop	hl
 	pop	hl
 	pop	hl
@@ -7039,7 +6674,7 @@ hashlib_HMACSha256Init:
 	push	hl
 	ld	hl, (ix + -70)
 	push	hl
-	call	hashlib_Sha256Final
+	call	hash_sha256_final
 	jq	.lbl_3
 .lbl_2:
 	ld	hl, (ix + 12)
@@ -7100,7 +6735,7 @@ hashlib_HMACSha256Init:
 	add	hl, de
 	ld	(ix + -67), hl
 	push	hl
-	call	hashlib_Sha256Init
+	call	hash_sha256_init
 	pop	hl
 	or	a, a
 	sbc	hl, hl
@@ -7111,13 +6746,13 @@ hashlib_HMACSha256Init:
 	push	hl
 	ld	hl, (ix + -67)
 	push	hl
-	call	hashlib_Sha256Update
+	call	hash_sha256_update
 
-	restore_interrupts_noret hashlib_HMACSha256Init
+	restore_interrupts_noret hmac_sha256_init
 	jp stack_clear
     
  
-hashlib_HMACSha256Update:
+hmac_sha256_update:
 	call	ti._frameset0
 	ld	hl, (ix + 6)
 	ld	iy, (ix + 9)
@@ -7129,13 +6764,13 @@ hashlib_HMACSha256Update:
 	push	bc
 	push	iy
 	push	hl
-	call	hashlib_Sha256Update
+	call	hash_sha256_update
 	ld	sp, ix
 	pop	ix
 	ret
 	
     
-hashlib_HMACSha256Final:
+hmac_sha256_final:
 	save_interrupts
 
     ld	hl, -280
@@ -7183,7 +6818,7 @@ hashlib_HMACSha256Final:
 	pop	ix
 	push	de
 	push	hl
-	call	hashlib_Sha256Final
+	call	hash_sha256_final
 	pop	hl
 	pop	hl
 	ld	bc, -277
@@ -7191,7 +6826,7 @@ hashlib_HMACSha256Final:
 	add	hl, bc
 	ld	hl, (hl)
 	push	hl
-	call	hashlib_Sha256Init
+	call	hash_sha256_init
 	pop	hl
 	or	a, a
 	sbc	hl, hl
@@ -7205,7 +6840,7 @@ hashlib_HMACSha256Final:
 	add	hl, bc
 	ld	hl, (hl)
 	push	hl
-	call	hashlib_Sha256Update
+	call	hash_sha256_update
 	pop	hl
 	pop	hl
 	pop	hl
@@ -7225,7 +6860,7 @@ hashlib_HMACSha256Final:
 	add	hl, bc
 	ld	hl, (hl)
 	push	hl
-	call	hashlib_Sha256Update
+	call	hash_sha256_update
 	pop	hl
 	pop	hl
 	pop	hl
@@ -7237,13 +6872,13 @@ hashlib_HMACSha256Final:
 	add	hl, bc
 	ld	hl, (hl)
 	push	hl
-	call	hashlib_Sha256Final
+	call	hash_sha256_final
 
-	restore_interrupts_noret hashlib_HMACSha256Final
+	restore_interrupts_noret hmac_sha256_final
 	jp stack_clear
 	
     
-hashlib_HMACSha256Reset:
+hmac_sha256_reset:
 	save_interrupts
 
     ld	hl, -3
@@ -7253,7 +6888,7 @@ hashlib_HMACSha256Reset:
 	add	hl, de
 	ld	(ix + -3), hl
 	push	hl
-	call	hashlib_Sha256Init
+	call	hash_sha256_init
 	pop	hl
 	or	a, a
 	sbc	hl, hl
@@ -7264,15 +6899,15 @@ hashlib_HMACSha256Reset:
 	push	hl
 	ld	hl, (ix + -3)
 	push	hl
-	call	hashlib_Sha256Update
+	call	hash_sha256_update
 	ld	sp, ix
 	pop	ix
 
-	restore_interrupts hashlib_HMACSha256Reset
+	restore_interrupts hmac_sha256_reset
 	ret
     
     
-hashlib_PBKDF2:
+hmac_pbkdf2:
 	save_interrupts
 
     ld	hl, -575
@@ -7361,7 +6996,7 @@ hashlib_PBKDF2:
 	ld	sp, ix
 	pop	ix
  
-    restore_interrupts hashlib_PBKDF2
+    restore_interrupts hmac_pbkdf2
 	ret
 .lbl_11:
 	lea	hl, ix + -38
@@ -7392,7 +7027,7 @@ hashlib_PBKDF2:
 	add	hl, bc
 	ld	hl, (hl)
 	push	hl
-	call	hashlib_HMACSha256Init
+	call	hmac_sha256_init
 	pop	hl
 	pop	hl
 	pop	hl
@@ -7483,7 +7118,7 @@ hashlib_PBKDF2:
 	lea	hl, ix + 0
 	add	hl, bc
 	ld	(hl), iy
-	call	hashlib_HMACSha256Update
+	call	hmac_sha256_update
 	pop	hl
 	pop	hl
 	pop	hl
@@ -7498,7 +7133,7 @@ hashlib_PBKDF2:
 	add	hl, bc
 	ld	hl, (hl)
 	push	hl
-	call	hashlib_Sha256Update
+	call	hash_sha256_update
 	pop	hl
 	pop	hl
 	pop	hl
@@ -7513,7 +7148,7 @@ hashlib_PBKDF2:
 	add	hl, bc
 	ld	hl, (hl)
 	push	hl
-	call	hashlib_HMACSha256Final
+	call	hmac_sha256_final
 	pop	hl
 	pop	hl
 	ld	hl, 32
@@ -7579,7 +7214,7 @@ hashlib_PBKDF2:
 	add	hl, bc
 	ld	hl, (hl)
 	push	hl
-	call	hashlib_Sha256Update
+	call	hash_sha256_update
 	pop	hl
 	pop	hl
 	pop	hl
@@ -7594,7 +7229,7 @@ hashlib_PBKDF2:
 	add	hl, bc
 	ld	hl, (hl)
 	push	hl
-	call	hashlib_HMACSha256Final
+	call	hmac_sha256_final
 	ld	bc, -555
 	lea	hl, ix + 0
 	add	hl, bc
@@ -7703,7 +7338,7 @@ hashlib_PBKDF2:
 	jq	.lbl_12
  
 
-hashlib_DigestToHexStr:
+digest_fromstring:
 	save_interrupts
 
 	ld	hl, -9
@@ -7791,7 +7426,7 @@ hashlib_DigestToHexStr:
 	ld	sp, ix
 	pop	ix
 
-	restore_interrupts hashlib_DigestToHexStr
+	restore_interrupts digest_fromstring
 	ret
  
  _hexc:     db	"0123456789ABCDEF"
