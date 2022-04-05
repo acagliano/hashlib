@@ -119,7 +119,7 @@ bool \mbox{\hyperlink{hashlib_8h_aed1dd25115e80cf3b37de2e6c7f32584}{cipher\+\_\+
 \begin{DoxyCompactList}\small\item\em General-\/\+Purpose AES Decryption. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{hashlib_8h_a0486449f609d0e485bad091a671d9294}{rsa\+\_\+error\+\_\+t}} \mbox{\hyperlink{hashlib_8h_ada81c3ab7c41749cddb7493c43c8bd48}{cipher\+\_\+rsa\+\_\+encrypt}} (const void $\ast$msg, size\+\_\+t msglen, void $\ast$ciphertext, const void $\ast$pubkey, size\+\_\+t keylen)
 \begin{DoxyCompactList}\small\item\em RSA Encryption. \end{DoxyCompactList}\item 
-bool \mbox{\hyperlink{hashlib_8h_ac87c4b048460858ea689e6a610ea6055}{digest\+\_\+fromstring}} (const void $\ast$digest, size\+\_\+t len, char $\ast$hexstr)
+bool \mbox{\hyperlink{hashlib_8h_a9875035ce2ae4859b39cfbbff2d1f609}{digest\+\_\+tostring}} (const void $\ast$digest, size\+\_\+t len, char $\ast$hexstr)
 \begin{DoxyCompactList}\small\item\em Convert a digest to a valid hex string. \end{DoxyCompactList}\item 
 bool \mbox{\hyperlink{hashlib_8h_aade3753b2b7e59ebf301c1c0712f8376}{digest\+\_\+compare}} (const void $\ast$digest1, const void $\ast$digest2, size\+\_\+t len)
 \begin{DoxyCompactList}\small\item\em Secure buffer comparison. \end{DoxyCompactList}\end{DoxyCompactItemize}
@@ -727,11 +727,11 @@ msg and pubkey are both treated as byte arrays.
 \begin{DoxyReturn}{Returns}
 rsa\+\_\+error\+\_\+t 
 \end{DoxyReturn}
-\mbox{\Hypertarget{hashlib_8h_ac87c4b048460858ea689e6a610ea6055}\label{hashlib_8h_ac87c4b048460858ea689e6a610ea6055}} 
-\index{hashlib.h@{hashlib.h}!digest\_fromstring@{digest\_fromstring}}
-\index{digest\_fromstring@{digest\_fromstring}!hashlib.h@{hashlib.h}}
-\doxysubsubsection{\texorpdfstring{digest\_fromstring()}{digest\_fromstring()}}
-{\footnotesize\ttfamily bool digest\+\_\+fromstring (\begin{DoxyParamCaption}\item[{const void $\ast$}]{digest,  }\item[{size\+\_\+t}]{len,  }\item[{char $\ast$}]{hexstr }\end{DoxyParamCaption})}
+\mbox{\Hypertarget{hashlib_8h_a9875035ce2ae4859b39cfbbff2d1f609}\label{hashlib_8h_a9875035ce2ae4859b39cfbbff2d1f609}} 
+\index{hashlib.h@{hashlib.h}!digest\_tostring@{digest\_tostring}}
+\index{digest\_tostring@{digest\_tostring}!hashlib.h@{hashlib.h}}
+\doxysubsubsection{\texorpdfstring{digest\_tostring()}{digest\_tostring()}}
+{\footnotesize\ttfamily bool digest\+\_\+tostring (\begin{DoxyParamCaption}\item[{const void $\ast$}]{digest,  }\item[{size\+\_\+t}]{len,  }\item[{char $\ast$}]{hexstr }\end{DoxyParamCaption})}
 
 
 

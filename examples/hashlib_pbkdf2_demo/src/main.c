@@ -37,7 +37,7 @@ int main(void)
 	char outbuf[64];
     size_t str_len = strlen(passwd);
     
-    hashlib_PBKDF2(passwd, str_len, outbuf, 64, salt, RECD_MIN_SALT_LEN, 100);
+    hmac_pbkdf2(passwd, str_len, outbuf, 64, salt, RECD_MIN_SALT_LEN, 100);
     
     hexdump(outbuf, sizeof outbuf, "-PBKDF2 output-");
     strcpy(CEMU_CONSOLE, "\n");

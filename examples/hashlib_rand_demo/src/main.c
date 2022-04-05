@@ -24,13 +24,14 @@ int main(void)
     // reserve key schedule and key buffer, IV, and encrypt/decrypt buffers
     ti_var_t fp;
     uint8_t salt[SALT_LEN];
-    // hashlib_SPRNGInit() is called automatically by SPRNGRandom or RandomBytes
-    // no need to call it yourself
-    // generate a random uint32_t
-	sprintf(CEMU_CONSOLE, "The rand is %lu.\n", hashlib_SPRNGRandom());
+
+    // initialize the secure RNG. Do not forget this!!!
+    csrand_init();
+    
+	sprintf(CEMU_CONSOLE, "The rand is %lu.\n", csrand_get());
     
     // or fill a buffer to size with random
-    hashlib_RandomBytes(salt, SALT_LEN);
+    csrand_fill(salt, SALT_LEN);
     strcpy(CEMU_CONSOLE, "The buffer contents are: \n");
     for(uint8_t i=0; i<SALT_LEN; i++)
         sprintf(CEMU_CONSOLE, "%02X ", salt[i]);

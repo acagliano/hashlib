@@ -35,11 +35,11 @@ int main(void)
 	char outbuf[50];
     size_t str_len = strlen(str);
     
-    hashlib_MGF1Hash(str, str_len, outbuf, 50);
+    hash_mgf1(str, str_len, outbuf, 50);
 
 	hexdump(outbuf, sizeof outbuf, "-MGF1 output-");
 	
-	if(hashlib_CompareDigest(outbuf, mgf1_test, 50))
+	if(digest_compare(outbuf, mgf1_test, 50))
 		strcpy(CEMU_CONSOLE, "MGF1 correct");
     strcpy(CEMU_CONSOLE, "\n");
 }

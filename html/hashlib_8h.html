@@ -209,9 +209,9 @@ Functions</h2></td></tr>
 <tr class="memitem:ada81c3ab7c41749cddb7493c43c8bd48"><td class="memItemLeft" align="right" valign="top"><a class="el" href="hashlib_8h.html#a0486449f609d0e485bad091a671d9294">rsa_error_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#ada81c3ab7c41749cddb7493c43c8bd48">cipher_rsa_encrypt</a> (const void *msg, size_t msglen, void *ciphertext, const void *pubkey, size_t keylen)</td></tr>
 <tr class="memdesc:ada81c3ab7c41749cddb7493c43c8bd48"><td class="mdescLeft">&#160;</td><td class="mdescRight">RSA Encryption.  <a href="hashlib_8h.html#ada81c3ab7c41749cddb7493c43c8bd48">More...</a><br /></td></tr>
 <tr class="separator:ada81c3ab7c41749cddb7493c43c8bd48"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac87c4b048460858ea689e6a610ea6055"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#ac87c4b048460858ea689e6a610ea6055">digest_fromstring</a> (const void *digest, size_t len, char *hexstr)</td></tr>
-<tr class="memdesc:ac87c4b048460858ea689e6a610ea6055"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert a digest to a valid hex string.  <a href="hashlib_8h.html#ac87c4b048460858ea689e6a610ea6055">More...</a><br /></td></tr>
-<tr class="separator:ac87c4b048460858ea689e6a610ea6055"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9875035ce2ae4859b39cfbbff2d1f609"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#a9875035ce2ae4859b39cfbbff2d1f609">digest_tostring</a> (const void *digest, size_t len, char *hexstr)</td></tr>
+<tr class="memdesc:a9875035ce2ae4859b39cfbbff2d1f609"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert a digest to a valid hex string.  <a href="hashlib_8h.html#a9875035ce2ae4859b39cfbbff2d1f609">More...</a><br /></td></tr>
+<tr class="separator:a9875035ce2ae4859b39cfbbff2d1f609"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aade3753b2b7e59ebf301c1c0712f8376"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#aade3753b2b7e59ebf301c1c0712f8376">digest_compare</a> (const void *digest1, const void *digest2, size_t len)</td></tr>
 <tr class="memdesc:aade3753b2b7e59ebf301c1c0712f8376"><td class="mdescLeft">&#160;</td><td class="mdescRight">Secure buffer comparison.  <a href="hashlib_8h.html#aade3753b2b7e59ebf301c1c0712f8376">More...</a><br /></td></tr>
 <tr class="separator:aade3753b2b7e59ebf301c1c0712f8376"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -1267,14 +1267,14 @@ msg and pubkey are both treated as byte arrays. </dd></dl>
 
 </div>
 </div>
-<a id="ac87c4b048460858ea689e6a610ea6055" name="ac87c4b048460858ea689e6a610ea6055"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac87c4b048460858ea689e6a610ea6055">&#9670;&nbsp;</a></span>digest_fromstring()</h2>
+<a id="a9875035ce2ae4859b39cfbbff2d1f609" name="a9875035ce2ae4859b39cfbbff2d1f609"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9875035ce2ae4859b39cfbbff2d1f609">&#9670;&nbsp;</a></span>digest_tostring()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">bool digest_fromstring </td>
+          <td class="memname">bool digest_tostring </td>
           <td>(</td>
           <td class="paramtype">const void *&#160;</td>
           <td class="paramname"><em>digest</em>, </td>

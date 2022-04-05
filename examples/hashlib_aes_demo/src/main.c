@@ -38,9 +38,9 @@ int main(void)
     // compute size of the plaintext
     // return and allocate a few ciphertext-sized buffers
     size_t msg_len = strlen(str);
-    size_t padded_len = hashlib_AESCiphertextSize(msg_len);
-    uint8_t *buf = hashlib_MallocContext(padded_len);
-    uint8_t *stripped = hashlib_MallocContext(padded_len);
+    size_t padded_len = cipher_aes_outsize(msg_len);
+    uint8_t *buf = malloc(padded_len);
+    uint8_t *stripped = malloc(padded_len);
     
     sprintf(CEMU_CONSOLE, "\n---------------------------\nHASHLIB AES Demo\n");
     sprintf(CEMU_CONSOLE, "\n----- CBC Mode -----\n");
@@ -48,16 +48,17 @@ int main(void)
     
     
     // generate random key and IV
-    hashlib_AESKeygen(key, KEYSIZE);		// this aliases hashlib_RandomBytes()
-    hashlib_RandomBytes(iv, AES_IVSIZE);
+    csrand_init();          // <<<----- DONT FORGET THIS
+    csrand_fill(key, KEYSIZE);		// this aliases hashlib_RandomBytes()
+    csrand_fill(iv, AES_IVSIZE);
     
     // load the key into the key schedule
-    hashlib_AESLoadKey(key, &ctx, KEYSIZE); // requires size in bits, not bytes
+    cipher_aes_loadkey(key, &ctx, KEYSIZE); // requires size in bits, not bytes
     
-	sprintf(CEMU_CONSOLE, "CBC encrypt done, exit code %u\n", hashlib_AESEncrypt(str, msg_len, buf, &ctx, iv, AES_MODE_CBC, SCHM_DEFAULT));
+	sprintf(CEMU_CONSOLE, "CBC encrypt done, exit code %u\n", cipher_aes_encrypt(str, msg_len, buf, &ctx, iv, AES_MODE_CBC, SCHM_DEFAULT));
     hexdump(buf, padded_len, "-- Encrypted Message --");
     
-	sprintf(CEMU_CONSOLE, "CBC decrypt done, exit code %u\n", hashlib_AESDecrypt(buf, padded_len, stripped, &ctx, iv, AES_MODE_CBC, SCHM_DEFAULT));
+	sprintf(CEMU_CONSOLE, "CBC decrypt done, exit code %u\n", cipher_aes_decrypt(buf, padded_len, stripped, &ctx, iv, AES_MODE_CBC, SCHM_DEFAULT));
     hexdump(stripped, msg_len, "-- Decrypted Message --");
 
 
@@ -66,10 +67,10 @@ int main(void)
     free(buf);
     free(stripped);
     
-    sprintf(CEMU_CONSOLE, "CTR encrypt done, exit code %u\n", hashlib_AESEncrypt(str, msg_len, buf, &ctx, iv, AES_MODE_CTR, 0));
+    sprintf(CEMU_CONSOLE, "CTR encrypt done, exit code %u\n", cipher_aes_encrypt(str, msg_len, buf, &ctx, iv, AES_MODE_CTR, 0));
     hexdump(buf, padded_len, "-- Encrypted Message --");
 	
-	sprintf(CEMU_CONSOLE, "CTR decrypt done, exit code %u\n", hashlib_AESDecrypt(buf, msg_len, stripped, &ctx, iv, AES_MODE_CTR, 0));
+	sprintf(CEMU_CONSOLE, "CTR decrypt done, exit code %u\n", cipher_aes_decrypt(buf, msg_len, stripped, &ctx, iv, AES_MODE_CTR, 0));
     hexdump(stripped, msg_len, "-- Decrypted Message --");
 
 	

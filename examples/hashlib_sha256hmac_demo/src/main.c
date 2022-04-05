@@ -34,9 +34,9 @@ int main(void)
     hmac_ctx hmac;
     uint8_t sha256_digest[SHA256_DIGEST_LEN];
 
-    hashlib_HMACSha256Init(&hmac, hmac_keystr, strlen(hmac_keystr));
-    hashlib_HMACSha256Update(&hmac, str, strlen(str));
-    hashlib_HMACSha256Final(&hmac, sha256_digest);
+    hmac_sha256_init(&hmac, hmac_keystr, strlen(hmac_keystr));
+    hmac_sha256_update(&hmac, str, strlen(str));
+    hmac_sha256_final(&hmac, sha256_digest);
 
 	hexdump(sha256_digest, sizeof sha256_digest, "-SHA-256 HMAC Output-");
 }

@@ -36,12 +36,14 @@ int main(void)
     // this is for testing purposes, but this is not how you generate an RSA key.
     // such a key should be odd and prime.
     // may output encryption error
-    hashlib_RandomBytes(pubkey, MODSIZE);
+    
+    csrand_init();
+    csrand_fill(pubkey, MODSIZE);
     pubkey[MODSIZE-1] |= 1;
     
 	sprintf(CEMU_CONSOLE, "\n\n----------------------------------\nHashlib RSA Demo\n");
 	hexdump(str, strlen(str), "---Original String---");
-	if(hashlib_RSAEncrypt(str, strlen(str), ciphertext, pubkey, MODSIZE)==RSA_OK)
+	if(cipher_rsa_encrypt(str, strlen(str), ciphertext, pubkey, MODSIZE)==RSA_OK)
         hexdump(ciphertext, MODSIZE, "---RSA Encrypted---");
     else sprintf(CEMU_CONSOLE, "encryption error");
 }

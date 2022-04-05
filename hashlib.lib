@@ -15,5 +15,5 @@ library	"HASHLIB", 8
 	export	cipher_aes_encrypt ; 39
 	export	cipher_aes_decrypt ; 42
 	export	cipher_rsa_encrypt ; 45
-	export	digest_fromstring ; 48
+	export	digest_tostring ; 48
 	export	digest_compare ; 51

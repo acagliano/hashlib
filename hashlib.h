@@ -510,7 +510,7 @@ rsa_error_t cipher_rsa_encrypt(
  * @param len Number of bytes at @b digest to convert.
  * @param hexstr A buffer to write the output hex string to. Must be at least 2 * len + 1 bytes large.
  **************************************************************************************************************/
-bool digest_fromstring(const void* digest, size_t len, char* hexstr);
+bool digest_tostring(const void* digest, size_t len, char* hexstr);
 
 
 /*************************************************************************************************************

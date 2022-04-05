@@ -28,7 +28,7 @@ library "HASHLIB", 8
     export cipher_aes_decrypt
     export cipher_rsa_encrypt
     
-    export digest_fromstring
+    export digest_tostring
     export digest_compare
     
     
@@ -7338,7 +7338,7 @@ hmac_pbkdf2:
 	jq	.lbl_12
  
 
-digest_fromstring:
+digest_tostring:
 	save_interrupts
 
 	ld	hl, -9
@@ -7426,7 +7426,7 @@ digest_fromstring:
 	ld	sp, ix
 	pop	ix
 
-	restore_interrupts digest_fromstring
+	restore_interrupts digest_tostring
 	ret
  
  _hexc:     db	"0123456789ABCDEF"
