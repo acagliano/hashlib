@@ -92,10 +92,10 @@ Classes</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
 Macros</h2></td></tr>
-<tr class="memitem:a97c7527aa5efe0f229c45c54ebcc6b55"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#a97c7527aa5efe0f229c45c54ebcc6b55">hashlib_FastMemBufferSafe</a>&#160;&#160;&#160;((void*)0xE30A04)</td></tr>
-<tr class="separator:a97c7527aa5efe0f229c45c54ebcc6b55"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab981c88a4cd7407b2c4b4bfe86fc021b"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#ab981c88a4cd7407b2c4b4bfe86fc021b">hashlib_FastMemBufferUnsafe</a>&#160;&#160;&#160;((void*)0xE30800)</td></tr>
-<tr class="separator:ab981c88a4cd7407b2c4b4bfe86fc021b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2671e33428186577b97034319c059c40"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#a2671e33428186577b97034319c059c40">fastRam_Safe</a>&#160;&#160;&#160;((void*)0xE30A04)</td></tr>
+<tr class="separator:a2671e33428186577b97034319c059c40"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a28d611d50cc8cf20a1c9fa327e839a56"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#a28d611d50cc8cf20a1c9fa327e839a56">fastRam_Unsafe</a>&#160;&#160;&#160;((void*)0xE30800)</td></tr>
+<tr class="separator:a28d611d50cc8cf20a1c9fa327e839a56"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af5aa539ae202ddf9e0c9211309869fc8"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#af5aa539ae202ddf9e0c9211309869fc8">SHA256_DIGEST_LEN</a>&#160;&#160;&#160;32</td></tr>
 <tr class="separator:af5aa539ae202ddf9e0c9211309869fc8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7781b6f83e2f311020d3b926b70743ed"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#a7781b6f83e2f311020d3b926b70743ed">SHA256_HEXDIGEST_LEN</a>&#160;&#160;&#160;(<a class="el" href="hashlib_8h.html#af5aa539ae202ddf9e0c9211309869fc8">SHA256_DIGEST_LEN</a>&lt;&lt;1) + 1</td></tr>
@@ -110,11 +110,9 @@ Macros</h2></td></tr>
 <tr class="separator:a37ba5c621bf4af2ddcb851e179e21623"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7bab8a778d065da4cc561f4813994f03"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#a7bab8a778d065da4cc561f4813994f03">AES256_KEYLEN</a>&#160;&#160;&#160;32</td></tr>
 <tr class="separator:a7bab8a778d065da4cc561f4813994f03"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a45ad76689980a12e8a5453a413f670c8"><td class="memItemLeft" align="right" valign="top"><a id="a45ad76689980a12e8a5453a413f670c8" name="a45ad76689980a12e8a5453a413f670c8"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>cipher_aes_outsize</b>(len)&#160;&#160;&#160;	((((len)%<a class="el" href="hashlib_8h.html#afab0742642db9c0609c00bf8a54f386f">AES_BLOCKSIZE</a>)==0) ? (len) + <a class="el" href="hashlib_8h.html#afab0742642db9c0609c00bf8a54f386f">AES_BLOCKSIZE</a> : (((len)&gt;&gt;4) + 1)&lt;&lt;4)</td></tr>
+<tr class="memitem:a45ad76689980a12e8a5453a413f670c8"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#a45ad76689980a12e8a5453a413f670c8">cipher_aes_outsize</a>(len)&#160;&#160;&#160;	((((len)%<a class="el" href="hashlib_8h.html#afab0742642db9c0609c00bf8a54f386f">AES_BLOCKSIZE</a>)==0) ? (len) + <a class="el" href="hashlib_8h.html#afab0742642db9c0609c00bf8a54f386f">AES_BLOCKSIZE</a> : (((len)&gt;&gt;4) + 1)&lt;&lt;4)</td></tr>
 <tr class="separator:a45ad76689980a12e8a5453a413f670c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1da7be2f0eebec1e53e411fc0cc183fb"><td class="memItemLeft" align="right" valign="top"><a id="a1da7be2f0eebec1e53e411fc0cc183fb" name="a1da7be2f0eebec1e53e411fc0cc183fb"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>cipher_aes_extoutsize</b>(len)&#160;&#160;&#160;	(cipher_aes_outsize((len)) + <a class="el" href="hashlib_8h.html#a6c2d58d8dd281845fdc027b499dea89d">AES_IVSIZE</a>)</td></tr>
+<tr class="memitem:a1da7be2f0eebec1e53e411fc0cc183fb"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#a1da7be2f0eebec1e53e411fc0cc183fb">cipher_aes_extoutsize</a>(len)&#160;&#160;&#160;	(<a class="el" href="hashlib_8h.html#a45ad76689980a12e8a5453a413f670c8">cipher_aes_outsize</a>((len)) + <a class="el" href="hashlib_8h.html#a6c2d58d8dd281845fdc027b499dea89d">AES_IVSIZE</a>)</td></tr>
 <tr class="separator:a1da7be2f0eebec1e53e411fc0cc183fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="typedef-members" name="typedef-members"></a>
@@ -233,35 +231,35 @@ Adam <em>beck</em> Beckingham </dd>
 <dd>
 commandblockguy </dd></dl>
 </div><h2 class="groupheader">Macro Definition Documentation</h2>
-<a id="a97c7527aa5efe0f229c45c54ebcc6b55" name="a97c7527aa5efe0f229c45c54ebcc6b55"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a97c7527aa5efe0f229c45c54ebcc6b55">&#9670;&nbsp;</a></span>hashlib_FastMemBufferSafe</h2>
+<a id="a2671e33428186577b97034319c059c40" name="a2671e33428186577b97034319c059c40"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2671e33428186577b97034319c059c40">&#9670;&nbsp;</a></span>fastRam_Safe</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define hashlib_FastMemBufferSafe&#160;&#160;&#160;((void*)0xE30A04)</td>
+          <td class="memname">#define fastRam_Safe&#160;&#160;&#160;((void*)0xE30A04)</td>
         </tr>
       </table>
 </div><div class="memdoc">
-<p >Pointer to a region of Fast Memory that is generally safe to use so long as you don't call Libload.. </p><dl class="section warning"><dt>Warning</dt><dd>Fast Memory gets clobbered by LibLoad. Don't keep long-term storage here if you plan to call LibLoad. </dd></dl>
+<p >Pointer to a region of fast RAM that is generally safe to use so long as you don't call Libload. </p><dl class="section warning"><dt>Warning</dt><dd>Fast Memory gets clobbered by LibLoad. Don't keep long-term storage here if you plan to call LibLoad. </dd></dl>
 
 </div>
 </div>
-<a id="ab981c88a4cd7407b2c4b4bfe86fc021b" name="ab981c88a4cd7407b2c4b4bfe86fc021b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab981c88a4cd7407b2c4b4bfe86fc021b">&#9670;&nbsp;</a></span>hashlib_FastMemBufferUnsafe</h2>
+<a id="a28d611d50cc8cf20a1c9fa327e839a56" name="a28d611d50cc8cf20a1c9fa327e839a56"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a28d611d50cc8cf20a1c9fa327e839a56">&#9670;&nbsp;</a></span>fastRam_Unsafe</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define hashlib_FastMemBufferUnsafe&#160;&#160;&#160;((void*)0xE30800)</td>
+          <td class="memname">#define fastRam_Unsafe&#160;&#160;&#160;((void*)0xE30800)</td>
         </tr>
       </table>
 </div><div class="memdoc">
-<p >Pointer to the start of the region of Fast Memory, including the Safe region as well as an unsafe region used by the library's SPRNG. </p><dl class="section warning"><dt>Warning</dt><dd>Fast Memory gets clobbered by LibLoad. Don't keep long-term storage here if you plan to call LibLoad. </dd>
+<p >Pointer to the start of the region of fast RAM, including the safe region above as well as a region used by the library's csrng. </p><dl class="section warning"><dt>Warning</dt><dd>Fast Memory gets clobbered by LibLoad. Don't keep long-term storage here if you plan to call LibLoad. </dd>
 <dd>
-If the SPRNG is run, anything you have stored here will be destroyed. </dd></dl>
+If the CSRNG is run, anything you have stored here will be destroyed. </dd></dl>
 
 </div>
 </div>
@@ -367,6 +365,56 @@ If the SPRNG is run, anything you have stored here will be destroyed. </dd></dl>
       </table>
 </div><div class="memdoc">
 <p >Defines the byte-length of a 256-bit AES key </p>
+
+</div>
+</div>
+<a id="a45ad76689980a12e8a5453a413f670c8" name="a45ad76689980a12e8a5453a413f670c8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a45ad76689980a12e8a5453a413f670c8">&#9670;&nbsp;</a></span>cipher_aes_outsize</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define cipher_aes_outsize</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">len</td><td>)</td>
+          <td>&#160;&#160;&#160;	((((len)%<a class="el" href="hashlib_8h.html#afab0742642db9c0609c00bf8a54f386f">AES_BLOCKSIZE</a>)==0) ? (len) + <a class="el" href="hashlib_8h.html#afab0742642db9c0609c00bf8a54f386f">AES_BLOCKSIZE</a> : (((len)&gt;&gt;4) + 1)&lt;&lt;4)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p >Defines a macro to return the size of an AES ciphertext given a plaintext length. Does not include space for an IV-prepend. See hashlib_AESCiphertextIVLen() for that.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">len</td><td>The length of the plaintext. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a1da7be2f0eebec1e53e411fc0cc183fb" name="a1da7be2f0eebec1e53e411fc0cc183fb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1da7be2f0eebec1e53e411fc0cc183fb">&#9670;&nbsp;</a></span>cipher_aes_extoutsize</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define cipher_aes_extoutsize</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">len</td><td>)</td>
+          <td>&#160;&#160;&#160;	(<a class="el" href="hashlib_8h.html#a45ad76689980a12e8a5453a413f670c8">cipher_aes_outsize</a>((len)) + <a class="el" href="hashlib_8h.html#a6c2d58d8dd281845fdc027b499dea89d">AES_IVSIZE</a>)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p >Defines a macro to return the size of an AES ciphertext with with an extra block added for the IV.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">len</td><td>The length of the plaintext. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -535,7 +583,10 @@ If the SPRNG is run, anything you have stored here will be destroyed. </dd></dl>
 </div><div class="memdoc">
 
 <p>Initializes the crypto-safe random number generator. </p>
-<p >The SPRNG is initialized by polling the 512-bytes from address 0xD65800 to 0xD66000. This region consists of unmapped memory that contains bus noise. Each bit in that region is polled 1024 times and the address with the bit that is the least biased is selected. That will be the byte the SPRNG uses to generate entropy. </p>
+<p >The SRNG is initialized by polling the 512-bytes from address 0xD65800 to 0xD66000. This region consists of unmapped memory that contains bus noise. Each bit in that region is polled 1024 times and the address with the bit that is the least biased is selected. That will be the byte the SRNG uses to generate entropy. </p><dl class="section return"><dt>Returns</dt><dd>boolean: True if a sufficient entropy source was identified. False otherwise. </dd></dl>
+<dl class="section note"><dt>Note</dt><dd>Catch and respond to a <b>False</b> return from this function. Do not proceed with generating nonces and encryption keys without ensuring the initialization was successful. </dd>
+<dd>
+It may be a good idea to call this function in any program that uses hashlib functions for good measure. </dd></dl>
 
 </div>
 </div>
@@ -557,7 +608,6 @@ If the SPRNG is run, anything you have stored here will be destroyed. </dd></dl>
 
 <p>Generates a random 32-bit number. </p>
 <ul>
-<li>Calls hashlib_SPRNGInit() if it hasn't already been done.</li>
 <li>Populates a 119-byte entropy pool by xor'ing 7 distinct reads from the unmapped address together per byte.</li>
 <li>Hashes the entropy pool using SHA-256.</li>
 <li>Breaks the SHA-256 hash into 8-byte blocks, then xor's all 8 bytes each block together, leaving four (4) composite bytes.</li>
@@ -672,7 +722,7 @@ If the SPRNG is run, anything you have stored here will be destroyed. </dd></dl>
   </table>
   </dd>
 </dl>
-<dl class="section warning"><dt>Warning</dt><dd>You must call hashlib_Sha256Init() first or your hash state will be invalid. </dd></dl>
+<dl class="section warning"><dt>Warning</dt><dd>You must call <a class="el" href="hashlib_8h.html#a0a3fb7e28b514f3714a39526ba758296" title="Context initializer for SHA-256. Initializes the given context with the starting state for SHA-256.">hash_sha256_init()</a> first or your hash state will be invalid. </dd></dl>
 
 </div>
 </div>
@@ -853,7 +903,7 @@ If the SPRNG is run, anything you have stored here will be destroyed. </dd></dl>
   </table>
   </dd>
 </dl>
-<dl class="section warning"><dt>Warning</dt><dd>You must call hashlib_HMACSha256Init() first or your hash state will be invalid. </dd></dl>
+<dl class="section warning"><dt>Warning</dt><dd>You must call <a class="el" href="hashlib_8h.html#a4cef987a16315a82b1b4c7694d897b03" title="Context Initializer for SHA-256 HMAC.">hmac_sha256_init()</a> first or your hash state will be invalid. </dd></dl>
 
 </div>
 </div>
@@ -1121,7 +1171,7 @@ If the SPRNG is run, anything you have stored here will be destroyed. </dd></dl>
 <div class="line">memcpy(ciphertext, iv, AES_IV_SIZE);</div>
 <div class="line">send_packet(ciphertext);</div>
 <div class="ttc" id="ahashlib_8h_html_a28cae62bd0a114d015d006ef8cd90d4c"><div class="ttname"><a href="hashlib_8h.html#a28cae62bd0a114d015d006ef8cd90d4c">cipher_aes_encrypt</a></div><div class="ttdeci">aes_error_t cipher_aes_encrypt(const void *plaintext, size_t len, void *ciphertext, const aes_ctx *ks, const void *iv, uint8_t ciphermode, uint8_t paddingmode)</div><div class="ttdoc">General-Purpose AES Encryption.</div></div>
-</div><!-- fragment --> This will require a buffer at least as large as the size returned by hashlib_AESCiphertextIVSize(). </dd></dl>
+</div><!-- fragment --> This will require a buffer at least as large as the size returned by <a class="el" href="hashlib_8h.html#a1da7be2f0eebec1e53e411fc0cc183fb">cipher_aes_extoutsize()</a>. </dd></dl>
 <dl class="section return"><dt>Returns</dt><dd>aes_error_t </dd></dl>
 
 </div>

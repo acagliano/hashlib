@@ -24,24 +24,24 @@
 #include <stddef.h>
 
 /****************************************************************************************************************************************
- * @def hashlib_FastMemBufferSafe
- *		Pointer to a region of Fast Memory that is generally safe to use so long as you don't call Libload..
+ * @def fastRam_Safe
+ *		Pointer to a region of fast RAM that is generally safe to use so long as you don't call Libload.
  * @warning Fast Memory gets clobbered by LibLoad. Don't keep long-term storage here if you plan to call LibLoad.
  ****************************************************************************************************************************************/
-#define hashlib_FastMemBufferSafe		((void*)0xE30A04)
+#define fastRam_Safe		((void*)0xE30A04)
  
  /**************************************************************************************************************************************
-  * @def hashlib_FastMemBufferUnsafe
-  *		Pointer to the start of the region of Fast Memory, including the Safe region
-  *		as well as an unsafe region used by the library's SPRNG.
+  * @def fastRam_Unsafe
+  *		Pointer to the start of the region of fast RAM, including the safe region above as well as
+  *		a region used by the library's csrng.
   *	@warning Fast Memory gets clobbered by LibLoad. Don't keep long-term storage here if you plan to call LibLoad.
-  *	@warning If the SPRNG is run, anything you have stored here will be destroyed.
+  *	@warning If the CSRNG is run, anything you have stored here will be destroyed.
   **************************************************************************************************************************************/
-#define hashlib_FastMemBufferUnsafe		((void*)0xE30800)
+#define fastRam_Unsafe		((void*)0xE30800)
 
 
 /*
-Secure Psuedorandom Number Generator (SPRNG)
+Cryptographically-Secure Random Number Generator (CS-RNG)
 
 Many of the psuedorandom number generators (PRNGs) you find in computers and
 even the one within the C toolchain for the CE are insecure for cryptographic
@@ -60,9 +60,9 @@ In simpler terms, a secure PRNG must be unpredictable, or "entropic".
 The _state compromise test_ means that an adversary gaining knowledge of the initial state of
 the PRNG does not gain any information about its output.
 
-The PRNG previded by HASHLIB solves both tests like so:
+The SRNG previded by HASHLIB solves both tests like so:
 (next-bit)
-    <>  The PRNG's output is derived from a 119-byte entropy pool created by reading
+    <>  The SRNG's output is derived from a 119-byte entropy pool created by reading
         data from the most entropic byte located within floating memory on the device.
     <>  The "entropic byte" is a byte containing a bit that that, out of 1024 test reads,
         has the closest to a 50/50 split between 1's and 0's.
@@ -70,30 +70,36 @@ The PRNG previded by HASHLIB solves both tests like so:
         any hardware-based correlation between subsequent reads from the entropic byte.
     <>  The entropy pool is then run through a cryptographic hash to spread that entropy
         evenly through the returned random value.
-    <>  The PRNG produces 96.51 bits of entropy per 32 bit number returned.
+    <>  The SRNG produces 96.51 bits of entropy per 32 bit number returned.
     <>  Assertion: A source of randomness with sufficient entropy passed through a cryptographic hash
         will produce output that passes all statistical randomness tests as well as the next-bit test.
 (state compromise)
     <>  The entropy pool is discarded after it is used once, and a new pool is
         generated for the next random number.
     <>  ^ This means that the prior state has no bearing on the next output of the PRNG.
-    <>  The PRNG destroys its own state after the random number is generated so that
+    <>  The SRNG destroys its own state after the random number is generated so that
         the state used to generate it does not persist in memory.
+        
+*   Due to the derivation of entropy from subtle variations in the electrical state of
+    unmapped memory, this SRNG can also be considered a _hardware-based RNG_ (HWRNG).
 */
 /****************************************************************************************************************************
  * @brief Initializes the crypto-safe random number generator.
  *
- * The SPRNG is initialized by polling the 512-bytes from address 0xD65800 to 0xD66000.
+ * The SRNG is initialized by polling the 512-bytes from address 0xD65800 to 0xD66000.
  * This region consists of unmapped memory that contains bus noise.
  * Each bit in that region is polled 1024 times and the address with the bit that is the least biased is selected.
- * That will be the byte the SPRNG uses to generate entropy.
+ * That will be the byte the SRNG uses to generate entropy.
+ * @return boolean: True if a sufficient entropy source was identified. False otherwise.
+ * @note Catch and respond to a @b False return from this function. Do not proceed with generating nonces
+ *      and encryption keys without ensuring the initialization was successful.
+ * @note It may be a good idea to call this function in any program that uses hashlib functions for good measure.
  ***************************************************************************************************************************/
 bool csrand_init(void);
 
 /***************************************************************************************************************************
  * @brief Generates a random 32-bit number.
  *
- * - Calls hashlib_SPRNGInit() if it hasn't already been done.
  * - Populates a 119-byte entropy pool by xor'ing 7 distinct reads from the unmapped address together per byte.
  * - Hashes the entropy pool using SHA-256.
  * - Breaks the SHA-256 hash into 8-byte blocks, then xor's all 8 bytes each block together, leaving four (4) composite bytes.
@@ -160,7 +166,7 @@ void hash_sha256_init(sha256_ctx* ctx);
  *	@param ctx Pointer to a SHA-256 context.
  *	@param data Pointer to data to hash.
  *	@param len Number of bytes at @b data to hash.
- *	@warning You must call hashlib_Sha256Init() first or your hash state will be invalid.
+ *	@warning You must call hash_sha256_init() first or your hash state will be invalid.
  ******************************************************************************************************/
 void hash_sha256_update(sha256_ctx* ctx, const void* data, size_t len);
 
@@ -220,7 +226,7 @@ void hmac_sha256_init(hmac_ctx* ctx, const void* key, size_t keylen);
  *	@param ctx Pointer to a SHA-256 HMAC context.
  *	@param data Pointer to data to hash.
  *	@param len Number of bytes at @b data to hash.
- *	@warning You must call hashlib_HMACSha256Init() first or your hash state will be invalid.
+ *	@warning You must call hmac_sha256_init()  first or your hash state will be invalid.
  **************************************************************************************************************/
 void hmac_sha256_update(hmac_ctx* ctx, const void* data, size_t len);
 
@@ -343,7 +349,7 @@ enum aes_padding_schemes {
 #define AES256_KEYLEN	32
 
 /*********************************************************************************************
- * @def hashlib_AESCiphertextSize()
+ * @def cipher_aes_outsize()
  *
  * Defines a macro to return the size of an AES ciphertext given a plaintext length.
  * Does not include space for  an IV-prepend. See hashlib_AESCiphertextIVLen() for that.
@@ -354,7 +360,7 @@ enum aes_padding_schemes {
 	((((len)%AES_BLOCKSIZE)==0) ? (len) + AES_BLOCKSIZE : (((len)>>4) + 1)<<4)
 	
 /************************************************************************************************************************
- * @def hashlib_AESCiphertextIVSize()
+ * @def cipher_aes_extoutsize()
  *
  * Defines a macro to return the size of an AES ciphertext with with an extra block added for the IV.
  *
@@ -410,7 +416,7 @@ typedef enum {
  * 		memcpy(ciphertext, iv, AES_IV_SIZE);
  * 		send_packet(ciphertext);
  * 		@endcode
- * 		This will require a buffer at least as large as the size returned by hashlib_AESCiphertextIVSize().
+ * 		This will require a buffer at least as large as the size returned by cipher_aes_extoutsize().
  * @return aes_error_t
  *************************************************************************************************************************************************************************/
 aes_error_t cipher_aes_encrypt(

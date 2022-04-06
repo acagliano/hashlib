@@ -20,9 +20,9 @@ struct \mbox{\hyperlink{struct__aes__ctx}{\+\_\+aes\+\_\+ctx}}
 \doxysubsection*{Macros}
 \begin{DoxyCompactItemize}
 \item 
-\#define \mbox{\hyperlink{hashlib_8h_a97c7527aa5efe0f229c45c54ebcc6b55}{hashlib\+\_\+\+Fast\+Mem\+Buffer\+Safe}}~((void$\ast$)0x\+E30\+A04)
+\#define \mbox{\hyperlink{hashlib_8h_a2671e33428186577b97034319c059c40}{fast\+Ram\+\_\+\+Safe}}~((void$\ast$)0x\+E30\+A04)
 \item 
-\#define \mbox{\hyperlink{hashlib_8h_ab981c88a4cd7407b2c4b4bfe86fc021b}{hashlib\+\_\+\+Fast\+Mem\+Buffer\+Unsafe}}~((void$\ast$)0x\+E30800)
+\#define \mbox{\hyperlink{hashlib_8h_a28d611d50cc8cf20a1c9fa327e839a56}{fast\+Ram\+\_\+\+Unsafe}}~((void$\ast$)0x\+E30800)
 \item 
 \#define \mbox{\hyperlink{hashlib_8h_af5aa539ae202ddf9e0c9211309869fc8}{SHA256\+\_\+\+DIGEST\+\_\+\+LEN}}~32
 \item 
@@ -38,11 +38,9 @@ struct \mbox{\hyperlink{struct__aes__ctx}{\+\_\+aes\+\_\+ctx}}
 \item 
 \#define \mbox{\hyperlink{hashlib_8h_a7bab8a778d065da4cc561f4813994f03}{AES256\+\_\+\+KEYLEN}}~32
 \item 
-\mbox{\Hypertarget{hashlib_8h_a45ad76689980a12e8a5453a413f670c8}\label{hashlib_8h_a45ad76689980a12e8a5453a413f670c8}} 
-\#define {\bfseries cipher\+\_\+aes\+\_\+outsize}(len)~ ((((len)\%\mbox{\hyperlink{hashlib_8h_afab0742642db9c0609c00bf8a54f386f}{AES\+\_\+\+BLOCKSIZE}})==0) ? (len) + \mbox{\hyperlink{hashlib_8h_afab0742642db9c0609c00bf8a54f386f}{AES\+\_\+\+BLOCKSIZE}} \+: (((len)$>$$>$4) + 1)$<$$<$4)
+\#define \mbox{\hyperlink{hashlib_8h_a45ad76689980a12e8a5453a413f670c8}{cipher\+\_\+aes\+\_\+outsize}}(len)~ ((((len)\%\mbox{\hyperlink{hashlib_8h_afab0742642db9c0609c00bf8a54f386f}{AES\+\_\+\+BLOCKSIZE}})==0) ? (len) + \mbox{\hyperlink{hashlib_8h_afab0742642db9c0609c00bf8a54f386f}{AES\+\_\+\+BLOCKSIZE}} \+: (((len)$>$$>$4) + 1)$<$$<$4)
 \item 
-\mbox{\Hypertarget{hashlib_8h_a1da7be2f0eebec1e53e411fc0cc183fb}\label{hashlib_8h_a1da7be2f0eebec1e53e411fc0cc183fb}} 
-\#define {\bfseries cipher\+\_\+aes\+\_\+extoutsize}(len)~ (cipher\+\_\+aes\+\_\+outsize((len)) + \mbox{\hyperlink{hashlib_8h_a6c2d58d8dd281845fdc027b499dea89d}{AES\+\_\+\+IVSIZE}})
+\#define \mbox{\hyperlink{hashlib_8h_a1da7be2f0eebec1e53e411fc0cc183fb}{cipher\+\_\+aes\+\_\+extoutsize}}(len)~ (\mbox{\hyperlink{hashlib_8h_a45ad76689980a12e8a5453a413f670c8}{cipher\+\_\+aes\+\_\+outsize}}((len)) + \mbox{\hyperlink{hashlib_8h_a6c2d58d8dd281845fdc027b499dea89d}{AES\+\_\+\+IVSIZE}})
 \end{DoxyCompactItemize}
 \doxysubsection*{Typedefs}
 \begin{DoxyCompactItemize}
@@ -149,25 +147,25 @@ commandblockguy
 
 
 \doxysubsection{Macro Definition Documentation}
-\mbox{\Hypertarget{hashlib_8h_a97c7527aa5efe0f229c45c54ebcc6b55}\label{hashlib_8h_a97c7527aa5efe0f229c45c54ebcc6b55}} 
-\index{hashlib.h@{hashlib.h}!hashlib\_FastMemBufferSafe@{hashlib\_FastMemBufferSafe}}
-\index{hashlib\_FastMemBufferSafe@{hashlib\_FastMemBufferSafe}!hashlib.h@{hashlib.h}}
-\doxysubsubsection{\texorpdfstring{hashlib\_FastMemBufferSafe}{hashlib\_FastMemBufferSafe}}
-{\footnotesize\ttfamily \#define hashlib\+\_\+\+Fast\+Mem\+Buffer\+Safe~((void$\ast$)0x\+E30\+A04)}
+\mbox{\Hypertarget{hashlib_8h_a2671e33428186577b97034319c059c40}\label{hashlib_8h_a2671e33428186577b97034319c059c40}} 
+\index{hashlib.h@{hashlib.h}!fastRam\_Safe@{fastRam\_Safe}}
+\index{fastRam\_Safe@{fastRam\_Safe}!hashlib.h@{hashlib.h}}
+\doxysubsubsection{\texorpdfstring{fastRam\_Safe}{fastRam\_Safe}}
+{\footnotesize\ttfamily \#define fast\+Ram\+\_\+\+Safe~((void$\ast$)0x\+E30\+A04)}
 
-Pointer to a region of Fast Memory that is generally safe to use so long as you don\textquotesingle{}t call Libload.. \begin{DoxyWarning}{Warning}
+Pointer to a region of fast RAM that is generally safe to use so long as you don\textquotesingle{}t call Libload. \begin{DoxyWarning}{Warning}
 Fast Memory gets clobbered by Lib\+Load. Don\textquotesingle{}t keep long-\/term storage here if you plan to call Lib\+Load. 
 \end{DoxyWarning}
-\mbox{\Hypertarget{hashlib_8h_ab981c88a4cd7407b2c4b4bfe86fc021b}\label{hashlib_8h_ab981c88a4cd7407b2c4b4bfe86fc021b}} 
-\index{hashlib.h@{hashlib.h}!hashlib\_FastMemBufferUnsafe@{hashlib\_FastMemBufferUnsafe}}
-\index{hashlib\_FastMemBufferUnsafe@{hashlib\_FastMemBufferUnsafe}!hashlib.h@{hashlib.h}}
-\doxysubsubsection{\texorpdfstring{hashlib\_FastMemBufferUnsafe}{hashlib\_FastMemBufferUnsafe}}
-{\footnotesize\ttfamily \#define hashlib\+\_\+\+Fast\+Mem\+Buffer\+Unsafe~((void$\ast$)0x\+E30800)}
+\mbox{\Hypertarget{hashlib_8h_a28d611d50cc8cf20a1c9fa327e839a56}\label{hashlib_8h_a28d611d50cc8cf20a1c9fa327e839a56}} 
+\index{hashlib.h@{hashlib.h}!fastRam\_Unsafe@{fastRam\_Unsafe}}
+\index{fastRam\_Unsafe@{fastRam\_Unsafe}!hashlib.h@{hashlib.h}}
+\doxysubsubsection{\texorpdfstring{fastRam\_Unsafe}{fastRam\_Unsafe}}
+{\footnotesize\ttfamily \#define fast\+Ram\+\_\+\+Unsafe~((void$\ast$)0x\+E30800)}
 
-Pointer to the start of the region of Fast Memory, including the Safe region as well as an unsafe region used by the library\textquotesingle{}s SPRNG. \begin{DoxyWarning}{Warning}
+Pointer to the start of the region of fast RAM, including the safe region above as well as a region used by the library\textquotesingle{}s csrng. \begin{DoxyWarning}{Warning}
 Fast Memory gets clobbered by Lib\+Load. Don\textquotesingle{}t keep long-\/term storage here if you plan to call Lib\+Load. 
 
-If the SPRNG is run, anything you have stored here will be destroyed. 
+If the CSRNG is run, anything you have stored here will be destroyed. 
 \end{DoxyWarning}
 \mbox{\Hypertarget{hashlib_8h_af5aa539ae202ddf9e0c9211309869fc8}\label{hashlib_8h_af5aa539ae202ddf9e0c9211309869fc8}} 
 \index{hashlib.h@{hashlib.h}!SHA256\_DIGEST\_LEN@{SHA256\_DIGEST\_LEN}}
@@ -211,7 +209,33 @@ Defines the byte-\/length of a 192-\/bit AES key \mbox{\Hypertarget{hashlib_8h_a
 \doxysubsubsection{\texorpdfstring{AES256\_KEYLEN}{AES256\_KEYLEN}}
 {\footnotesize\ttfamily \#define AES256\+\_\+\+KEYLEN~32}
 
-Defines the byte-\/length of a 256-\/bit AES key 
+Defines the byte-\/length of a 256-\/bit AES key \mbox{\Hypertarget{hashlib_8h_a45ad76689980a12e8a5453a413f670c8}\label{hashlib_8h_a45ad76689980a12e8a5453a413f670c8}} 
+\index{hashlib.h@{hashlib.h}!cipher\_aes\_outsize@{cipher\_aes\_outsize}}
+\index{cipher\_aes\_outsize@{cipher\_aes\_outsize}!hashlib.h@{hashlib.h}}
+\doxysubsubsection{\texorpdfstring{cipher\_aes\_outsize}{cipher\_aes\_outsize}}
+{\footnotesize\ttfamily \#define cipher\+\_\+aes\+\_\+outsize(\begin{DoxyParamCaption}\item[{}]{len }\end{DoxyParamCaption})~ ((((len)\%\mbox{\hyperlink{hashlib_8h_afab0742642db9c0609c00bf8a54f386f}{AES\+\_\+\+BLOCKSIZE}})==0) ? (len) + \mbox{\hyperlink{hashlib_8h_afab0742642db9c0609c00bf8a54f386f}{AES\+\_\+\+BLOCKSIZE}} \+: (((len)$>$$>$4) + 1)$<$$<$4)}
+
+Defines a macro to return the size of an AES ciphertext given a plaintext length. Does not include space for an IV-\/prepend. See hashlib\+\_\+\+AESCiphertext\+IVLen() for that.
+
+
+\begin{DoxyParams}{Parameters}
+{\em len} & The length of the plaintext. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{hashlib_8h_a1da7be2f0eebec1e53e411fc0cc183fb}\label{hashlib_8h_a1da7be2f0eebec1e53e411fc0cc183fb}} 
+\index{hashlib.h@{hashlib.h}!cipher\_aes\_extoutsize@{cipher\_aes\_extoutsize}}
+\index{cipher\_aes\_extoutsize@{cipher\_aes\_extoutsize}!hashlib.h@{hashlib.h}}
+\doxysubsubsection{\texorpdfstring{cipher\_aes\_extoutsize}{cipher\_aes\_extoutsize}}
+{\footnotesize\ttfamily \#define cipher\+\_\+aes\+\_\+extoutsize(\begin{DoxyParamCaption}\item[{}]{len }\end{DoxyParamCaption})~ (\mbox{\hyperlink{hashlib_8h_a45ad76689980a12e8a5453a413f670c8}{cipher\+\_\+aes\+\_\+outsize}}((len)) + \mbox{\hyperlink{hashlib_8h_a6c2d58d8dd281845fdc027b499dea89d}{AES\+\_\+\+IVSIZE}})}
+
+Defines a macro to return the size of an AES ciphertext with with an extra block added for the IV.
+
+
+\begin{DoxyParams}{Parameters}
+{\em len} & The length of the plaintext. \\
+\hline
+\end{DoxyParams}
+
 
 \doxysubsection{Typedef Documentation}
 \mbox{\Hypertarget{hashlib_8h_a53df9e7d871973d59c7b58a6c3963c5d}\label{hashlib_8h_a53df9e7d871973d59c7b58a6c3963c5d}} 
@@ -350,7 +374,15 @@ RSA\+\_\+\+ENCODING\+\_\+\+ERROR&RSA encryption failed, OAEP encoding error \\
 
 Initializes the crypto-\/safe random number generator. 
 
-The SPRNG is initialized by polling the 512-\/bytes from address 0x\+D65800 to 0x\+D66000. This region consists of unmapped memory that contains bus noise. Each bit in that region is polled 1024 times and the address with the bit that is the least biased is selected. That will be the byte the SPRNG uses to generate entropy. \mbox{\Hypertarget{hashlib_8h_a3cdabe638655bf5d3760c4ab700a43fd}\label{hashlib_8h_a3cdabe638655bf5d3760c4ab700a43fd}} 
+The SRNG is initialized by polling the 512-\/bytes from address 0x\+D65800 to 0x\+D66000. This region consists of unmapped memory that contains bus noise. Each bit in that region is polled 1024 times and the address with the bit that is the least biased is selected. That will be the byte the SRNG uses to generate entropy. \begin{DoxyReturn}{Returns}
+boolean\+: True if a sufficient entropy source was identified. False otherwise. 
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Catch and respond to a {\bfseries{False}} return from this function. Do not proceed with generating nonces and encryption keys without ensuring the initialization was successful. 
+
+It may be a good idea to call this function in any program that uses hashlib functions for good measure. 
+\end{DoxyNote}
+\mbox{\Hypertarget{hashlib_8h_a3cdabe638655bf5d3760c4ab700a43fd}\label{hashlib_8h_a3cdabe638655bf5d3760c4ab700a43fd}} 
 \index{hashlib.h@{hashlib.h}!csrand\_get@{csrand\_get}}
 \index{csrand\_get@{csrand\_get}!hashlib.h@{hashlib.h}}
 \doxysubsubsection{\texorpdfstring{csrand\_get()}{csrand\_get()}}
@@ -362,7 +394,6 @@ Generates a random 32-\/bit number.
 
 
 \begin{DoxyItemize}
-\item Calls hashlib\+\_\+\+SPRNGInit() if it hasn\textquotesingle{}t already been done.
 \item Populates a 119-\/byte entropy pool by xor\textquotesingle{}ing 7 distinct reads from the unmapped address together per byte.
 \item Hashes the entropy pool using SHA-\/256.
 \item Breaks the SHA-\/256 hash into 8-\/byte blocks, then xor\textquotesingle{}s all 8 bytes each block together, leaving four (4) composite bytes.
@@ -425,7 +456,7 @@ Updates the SHA-\/256 context for the given data.
 \hline
 \end{DoxyParams}
 \begin{DoxyWarning}{Warning}
-You must call hashlib\+\_\+\+Sha256\+Init() first or your hash state will be invalid. 
+You must call \mbox{\hyperlink{hashlib_8h_a0a3fb7e28b514f3714a39526ba758296}{hash\+\_\+sha256\+\_\+init()}} first or your hash state will be invalid. 
 \end{DoxyWarning}
 \mbox{\Hypertarget{hashlib_8h_a2e32fb51c9621df4538a7ce7fb6969ba}\label{hashlib_8h_a2e32fb51c9621df4538a7ce7fb6969ba}} 
 \index{hashlib.h@{hashlib.h}!hash\_sha256\_final@{hash\_sha256\_final}}
@@ -514,7 +545,7 @@ Updates the SHA-\/256 HMAC context for the given data.
 \hline
 \end{DoxyParams}
 \begin{DoxyWarning}{Warning}
-You must call hashlib\+\_\+\+HMACSha256\+Init() first or your hash state will be invalid. 
+You must call \mbox{\hyperlink{hashlib_8h_a4cef987a16315a82b1b4c7694d897b03}{hmac\+\_\+sha256\+\_\+init()}} first or your hash state will be invalid. 
 \end{DoxyWarning}
 \mbox{\Hypertarget{hashlib_8h_a9b76f238236e4b45fa9be13fa53626c1}\label{hashlib_8h_a9b76f238236e4b45fa9be13fa53626c1}} 
 \index{hashlib.h@{hashlib.h}!hmac\_sha256\_final@{hmac\_sha256\_final}}
@@ -652,7 +683,7 @@ General-\/\+Purpose AES Encryption.
 \DoxyCodeLine{send\_packet(ciphertext);}
 
 \end{DoxyCode}
- This will require a buffer at least as large as the size returned by hashlib\+\_\+\+AESCiphertext\+IVSize(). 
+ This will require a buffer at least as large as the size returned by \mbox{\hyperlink{hashlib_8h_a1da7be2f0eebec1e53e411fc0cc183fb}{cipher\+\_\+aes\+\_\+extoutsize()}}. 
 \end{DoxyNote}
 \begin{DoxyReturn}{Returns}
 aes\+\_\+error\+\_\+t 

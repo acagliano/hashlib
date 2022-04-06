@@ -3,7 +3,7 @@ include '../include/library.inc'
 ;include_library 'bigintce.asm'
 
 ;------------------------------------------
-library "HASHLIB", 8
+library "HASHLIB", 9
 
 ;------------------------------------------
 
