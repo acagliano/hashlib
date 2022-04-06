@@ -3,12 +3,12 @@
  *	@brief	Cryptography Library for the TI-84+ CE
  *
  *	Industry-Standard Cryptography for the TI-84+ CE
- *	<> Secure Random Number Generator (SRNG)
- *	<> hash_sha256, hash_mgf1
- *  <> hmac_sha256, hmac_pbkdf2
- *	<> cipher_aes
- *	<> cipher_rsa
- *  <> secure buffer comparison
+ *	- Secure Random Number Generator (SRNG)
+ *	- hash_sha256, hash_mgf1
+ *  - hmac_sha256, hmac_pbkdf2
+ *	- cipher_aes
+ *	- cipher_rsa
+ *  - secure buffer comparison  
  *
  *	@author Anthony @e ACagliano Cagliano
  *	@author Adam @e beck Beckingham
