@@ -2,14 +2,13 @@
  *	@file hashlib.h
  *	@brief	Cryptography Library for the TI-84+ CE
  *
- *	Provides several cryptographic implementations for the TI-84+ CE graphing calculator.
- *	- secure random number generator
- *	- SHA-256, SHA-256 (HMAC)
- *  - PBKDF2_HMAC
- *	- AES: CBC and CTR cipher modes
- *	- AES Padding: PKCS#7, ISO-9797 M2
- *	- RSA public key encryption, 1024 bits <= modulus <= 2048 bits
- *	- RSA Padding: RSA-OAEP via PKCS#7 v2.2, RSA-PSS via PKCS#7 v1.5
+ *	Industry-Standard Cryptography for the TI-84+ CE
+ *	<> Secure Random Number Generator (SRNG)
+ *	<> hash_sha256, hash_mgf1
+ *  <> hmac_sha256, hmac_pbkdf2
+ *	<> cipher_aes
+ *	<> cipher_rsa
+ *  <> secure buffer comparison
  *
  *	@author Anthony @e ACagliano Cagliano
  *	@author Adam @e beck Beckingham
