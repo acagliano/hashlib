@@ -484,7 +484,7 @@ hash_final:
 ; void hash_sha256_init(SHA256_CTX *ctx);
 hash_sha256_init:
     pop iy,de
-    push de,iy
+    push de
     ld hl,$FF0000
     ld bc,offset_state
     ldir
@@ -492,7 +492,7 @@ hash_sha256_init:
     ld hl,_sha256_state_init
     ldir
     ld a, 1
-    ret
+    jp (iy)
     
 
 ; void hashlib_Sha256Update(SHA256_CTX *ctx, const BYTE data[], size_t len);

@@ -158,16 +158,16 @@ $(function() {
 <div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span>    uint24_t fn_init;</div>
 <div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span>    uint24_t fn_update;</div>
 <div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span>    uint24_t fn_final;</div>
-<div class="line"><a id="l00148" name="l00148"></a><span class="lineno"><a class="line" href="union__hash.html">  148</a></span>    <span class="keyword">union </span><a class="code hl_union" href="union__hash.html">_hash</a> {</div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno"><a class="line" href="union__hash__ctx_1_1__hash.html">  148</a></span>    <span class="keyword">union </span><a class="code hl_union" href="union__hash__ctx_1_1__hash.html">_hash</a> {</div>
 <div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span>        <a class="code hl_struct" href="struct__sha256__ctx.html">sha256_ctx</a> sha256;</div>
-<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span>    }</div>
-<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span>}</div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span>    };</div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span>} <a class="code hl_struct" href="struct__hash__ctx.html">hash_ctx</a>;</div>
 <div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span> </div>
 <div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span> </div>
-<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span><span class="preprocessor">#define SHA256_DIGEST_LEN       32</span></div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno"><a class="line" href="hashlib_8h.html#af5aa539ae202ddf9e0c9211309869fc8">  157</a></span><span class="preprocessor">#define SHA256_DIGEST_LEN       32</span></div>
 <div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span> </div>
 <div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span> </div>
-<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span><span class="preprocessor">#define SHA256_HEXDIGEST_LEN        (SHA256_DIGEST_LEN&lt;&lt;1) + 1</span></div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno"><a class="line" href="hashlib_8h.html#a7781b6f83e2f311020d3b926b70743ed">  163</a></span><span class="preprocessor">#define SHA256_HEXDIGEST_LEN        (SHA256_DIGEST_LEN&lt;&lt;1) + 1</span></div>
 <div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span> </div>
 <div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span><span class="keyword">enum</span> hash_algorithms {</div>
 <div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span>    SHA256</div>
@@ -197,7 +197,7 @@ $(function() {
 <div class="line"><a id="l00219" name="l00219"></a><span class="lineno"><a class="line" href="struct__hmac__ctx.html">  219</a></span><span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code hl_struct" href="struct__hmac__ctx.html">_hmac_ctx</a> {</div>
 <div class="line"><a id="l00220" name="l00220"></a><span class="lineno"><a class="line" href="struct__hmac__ctx.html#a010b68ec772d854d51d66a8a8e321571">  220</a></span>    uint8_t <a class="code hl_variable" href="struct__hmac__ctx.html#a010b68ec772d854d51d66a8a8e321571">ipad</a>[64];       </div>
 <div class="line"><a id="l00221" name="l00221"></a><span class="lineno"><a class="line" href="struct__hmac__ctx.html#a3ee88b93200effd0e21446bd3016a5c2">  221</a></span>    uint8_t <a class="code hl_variable" href="struct__hmac__ctx.html#a3ee88b93200effd0e21446bd3016a5c2">opad</a>[64];       </div>
-<div class="line"><a id="l00222" name="l00222"></a><span class="lineno"><a class="line" href="struct__hmac__ctx.html#a533d9a8a79af889cf667cfa5f2536caf">  222</a></span>    <a class="code hl_struct" href="struct__sha256__ctx.html">sha256_ctx</a> <a class="code hl_variable" href="struct__hmac__ctx.html#a533d9a8a79af889cf667cfa5f2536caf">ctx</a>;         </div>
+<div class="line"><a id="l00222" name="l00222"></a><span class="lineno"><a class="line" href="struct__hmac__ctx.html#a00ff87f0f4be07252bc693692bcf789e">  222</a></span>    <a class="code hl_struct" href="struct__hash__ctx.html">hash_ctx</a> <a class="code hl_variable" href="struct__hmac__ctx.html#a00ff87f0f4be07252bc693692bcf789e">ctx</a>;         </div>
 <div class="line"><a id="l00223" name="l00223"></a><span class="lineno"><a class="line" href="hashlib_8h.html#a8d813300476744f01319600478572f62">  223</a></span>} <a class="code hl_typedef" href="hashlib_8h.html#a8d813300476744f01319600478572f62">hmac_ctx</a>;</div>
 <div class="line"><a id="l00224" name="l00224"></a><span class="lineno">  224</span> </div>
 <div class="line"><a id="l00225" name="l00225"></a><span class="lineno">  225</span> </div>
@@ -409,15 +409,15 @@ $(function() {
 <div class="ttc" id="astruct__aes__ctx_html_adb6943e9b2c5dd39e5390f26ae470ffe"><div class="ttname"><a href="struct__aes__ctx.html#adb6943e9b2c5dd39e5390f26ae470ffe">_aes_ctx::round_keys</a></div><div class="ttdeci">uint32_t round_keys[60]</div><div class="ttdef"><b>Definition:</b> hashlib.h:308</div></div>
 <div class="ttc" id="astruct__hash__ctx_html"><div class="ttname"><a href="struct__hash__ctx.html">_hash_ctx</a></div><div class="ttdef"><b>Definition:</b> hashlib.h:144</div></div>
 <div class="ttc" id="astruct__hmac__ctx_html"><div class="ttname"><a href="struct__hmac__ctx.html">_hmac_ctx</a></div><div class="ttdef"><b>Definition:</b> hashlib.h:219</div></div>
+<div class="ttc" id="astruct__hmac__ctx_html_a00ff87f0f4be07252bc693692bcf789e"><div class="ttname"><a href="struct__hmac__ctx.html#a00ff87f0f4be07252bc693692bcf789e">_hmac_ctx::ctx</a></div><div class="ttdeci">hash_ctx ctx</div><div class="ttdef"><b>Definition:</b> hashlib.h:222</div></div>
 <div class="ttc" id="astruct__hmac__ctx_html_a010b68ec772d854d51d66a8a8e321571"><div class="ttname"><a href="struct__hmac__ctx.html#a010b68ec772d854d51d66a8a8e321571">_hmac_ctx::ipad</a></div><div class="ttdeci">uint8_t ipad[64]</div><div class="ttdef"><b>Definition:</b> hashlib.h:220</div></div>
 <div class="ttc" id="astruct__hmac__ctx_html_a3ee88b93200effd0e21446bd3016a5c2"><div class="ttname"><a href="struct__hmac__ctx.html#a3ee88b93200effd0e21446bd3016a5c2">_hmac_ctx::opad</a></div><div class="ttdeci">uint8_t opad[64]</div><div class="ttdef"><b>Definition:</b> hashlib.h:221</div></div>
-<div class="ttc" id="astruct__hmac__ctx_html_a533d9a8a79af889cf667cfa5f2536caf"><div class="ttname"><a href="struct__hmac__ctx.html#a533d9a8a79af889cf667cfa5f2536caf">_hmac_ctx::ctx</a></div><div class="ttdeci">sha256_ctx ctx</div><div class="ttdef"><b>Definition:</b> hashlib.h:222</div></div>
 <div class="ttc" id="astruct__sha256__ctx_html"><div class="ttname"><a href="struct__sha256__ctx.html">_sha256_ctx</a></div><div class="ttdef"><b>Definition:</b> hashlib.h:137</div></div>
 <div class="ttc" id="astruct__sha256__ctx_html_a1e85694ce7e43ed85c5e0f8e11116d18"><div class="ttname"><a href="struct__sha256__ctx.html#a1e85694ce7e43ed85c5e0f8e11116d18">_sha256_ctx::state</a></div><div class="ttdeci">uint32_t state[8]</div><div class="ttdef"><b>Definition:</b> hashlib.h:141</div></div>
 <div class="ttc" id="astruct__sha256__ctx_html_a8a53e5a4c3961ca51a4381f6488d1089"><div class="ttname"><a href="struct__sha256__ctx.html#a8a53e5a4c3961ca51a4381f6488d1089">_sha256_ctx::data</a></div><div class="ttdeci">uint8_t data[64]</div><div class="ttdef"><b>Definition:</b> hashlib.h:138</div></div>
 <div class="ttc" id="astruct__sha256__ctx_html_aecfb5410e142575871d537dc00b9d63a"><div class="ttname"><a href="struct__sha256__ctx.html#aecfb5410e142575871d537dc00b9d63a">_sha256_ctx::datalen</a></div><div class="ttdeci">uint8_t datalen</div><div class="ttdef"><b>Definition:</b> hashlib.h:139</div></div>
 <div class="ttc" id="astruct__sha256__ctx_html_afc9083f7e21cf81eec33df4a5f812b95"><div class="ttname"><a href="struct__sha256__ctx.html#afc9083f7e21cf81eec33df4a5f812b95">_sha256_ctx::bitlen</a></div><div class="ttdeci">uint8_t bitlen[8]</div><div class="ttdef"><b>Definition:</b> hashlib.h:140</div></div>
-<div class="ttc" id="aunion__hash_html"><div class="ttname"><a href="union__hash.html">_hash</a></div><div class="ttdef"><b>Definition:</b> hashlib.h:148</div></div>
+<div class="ttc" id="aunion__hash__ctx_1_1__hash_html"><div class="ttname"><a href="union__hash__ctx_1_1__hash.html">_hash_ctx::_hash</a></div><div class="ttdef"><b>Definition:</b> hashlib.h:148</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

@@ -147,8 +147,8 @@ typedef struct _hash_ctx {
     uint24_t fn_final;
     union _hash {
         sha256_ctx sha256;
-    }
-}
+    };
+} hash_ctx;
  
  /******************************************************
   * @def SHA256_DIGEST_LEN
@@ -219,7 +219,7 @@ verified by anyone, only the parties with the key can validate using a HMAC hash
 typedef struct _hmac_ctx {
     uint8_t ipad[64];       /**< holds the key xored with a magic value to be hashed with the inner digest */
     uint8_t opad[64];       /**< holds the key xored with a magic value to be hashed with the outer digest */
-    sha256_ctx ctx;         /**< holds the SHA-256 context used by the HMAC function */
+    hash_ctx ctx;         /**< holds the SHA-256 context used by the HMAC function */
 } hmac_ctx;
 
 /**********************************************************************************************************************

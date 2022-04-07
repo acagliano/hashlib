@@ -17,8 +17,6 @@ struct \mbox{\hyperlink{struct__hash__ctx}{\+\_\+hash\+\_\+ctx}}
 \item 
 union \mbox{\hyperlink{union__hash__ctx_1_1__hash}{\+\_\+hash\+\_\+ctx\+::\+\_\+hash}}
 \item 
-union \mbox{\hyperlink{union__hash}{\+\_\+hash}}
-\item 
 struct \mbox{\hyperlink{struct__hmac__ctx}{\+\_\+hmac\+\_\+ctx}}
 \item 
 struct \mbox{\hyperlink{struct__aes__ctx}{\+\_\+aes\+\_\+ctx}}
@@ -30,10 +28,9 @@ struct \mbox{\hyperlink{struct__aes__ctx}{\+\_\+aes\+\_\+ctx}}
 \item 
 \#define \mbox{\hyperlink{hashlib_8h_a28d611d50cc8cf20a1c9fa327e839a56}{fast\+Ram\+\_\+\+Unsafe}}~((void$\ast$)0x\+E30800)
 \item 
-\mbox{\Hypertarget{hashlib_8h_af5aa539ae202ddf9e0c9211309869fc8}\label{hashlib_8h_af5aa539ae202ddf9e0c9211309869fc8}} 
-\#define {\bfseries SHA256\+\_\+\+DIGEST\+\_\+\+LEN}~32
+\#define \mbox{\hyperlink{hashlib_8h_af5aa539ae202ddf9e0c9211309869fc8}{SHA256\+\_\+\+DIGEST\+\_\+\+LEN}}~32
 \item 
-\#define \mbox{\hyperlink{hashlib_8h_a7781b6f83e2f311020d3b926b70743ed}{SHA256\+\_\+\+HEXDIGEST\+\_\+\+LEN}}~(SHA256\+\_\+\+DIGEST\+\_\+\+LEN$<$$<$1) + 1
+\#define \mbox{\hyperlink{hashlib_8h_a7781b6f83e2f311020d3b926b70743ed}{SHA256\+\_\+\+HEXDIGEST\+\_\+\+LEN}}~(\mbox{\hyperlink{hashlib_8h_af5aa539ae202ddf9e0c9211309869fc8}{SHA256\+\_\+\+DIGEST\+\_\+\+LEN}}$<$$<$1) + 1
 \item 
 \#define \mbox{\hyperlink{hashlib_8h_afab0742642db9c0609c00bf8a54f386f}{AES\+\_\+\+BLOCKSIZE}}~16
 \item 
@@ -54,12 +51,19 @@ struct \mbox{\hyperlink{struct__aes__ctx}{\+\_\+aes\+\_\+ctx}}
 \item 
 typedef struct \mbox{\hyperlink{struct__sha256__ctx}{\+\_\+sha256\+\_\+ctx}} \mbox{\hyperlink{hashlib_8h_a53df9e7d871973d59c7b58a6c3963c5d}{sha256\+\_\+ctx}}
 \item 
+\mbox{\Hypertarget{hashlib_8h_a6a1fef0e2a880c0eeff308e447fce214}\label{hashlib_8h_a6a1fef0e2a880c0eeff308e447fce214}} 
+typedef struct \mbox{\hyperlink{struct__hash__ctx}{\+\_\+hash\+\_\+ctx}} {\bfseries hash\+\_\+ctx}
+\item 
 typedef struct \mbox{\hyperlink{struct__hmac__ctx}{\+\_\+hmac\+\_\+ctx}} \mbox{\hyperlink{hashlib_8h_a8d813300476744f01319600478572f62}{hmac\+\_\+ctx}}
 \item 
 typedef struct \mbox{\hyperlink{struct__aes__ctx}{\+\_\+aes\+\_\+ctx}} \mbox{\hyperlink{hashlib_8h_aa188bc2768a3b7aa6ad73cb2c77819e0}{aes\+\_\+ctx}}
 \end{DoxyCompactItemize}
 \doxysubsection*{Enumerations}
 \begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{hashlib_8h_af36e91f131f610a6612b78700d483bd7}\label{hashlib_8h_af36e91f131f610a6612b78700d483bd7}} 
+enum {\bfseries hash\+\_\+algorithms} \{ {\bfseries SHA256}
+ \}
 \item 
 enum \mbox{\hyperlink{hashlib_8h_a194ef6b5934dff6dceed4dd819e76340}{aes\+\_\+cipher\+\_\+modes}} \{ \mbox{\hyperlink{hashlib_8h_a194ef6b5934dff6dceed4dd819e76340ad21a3698b98b7368b14ec3d48314a132}{AES\+\_\+\+MODE\+\_\+\+CBC}}
 , \mbox{\hyperlink{hashlib_8h_a194ef6b5934dff6dceed4dd819e76340a5ecd63cd0bd97d46f273461b6550cb8e}{AES\+\_\+\+MODE\+\_\+\+CTR}}
@@ -128,21 +132,6 @@ bool \mbox{\hyperlink{hashlib_8h_a9875035ce2ae4859b39cfbbff2d1f609}{digest\+\_\+
 \begin{DoxyCompactList}\small\item\em Convert a digest to a valid hex string. \end{DoxyCompactList}\item 
 bool \mbox{\hyperlink{hashlib_8h_aade3753b2b7e59ebf301c1c0712f8376}{digest\+\_\+compare}} (const void $\ast$digest1, const void $\ast$digest2, size\+\_\+t len)
 \begin{DoxyCompactList}\small\item\em Secure buffer comparison. \end{DoxyCompactList}\end{DoxyCompactItemize}
-\doxysubsection*{Variables}
-\begin{DoxyCompactItemize}
-\item 
-\mbox{\Hypertarget{hashlib_8h_a273d17dd76c0be702f27dc919ab8b7e4}\label{hashlib_8h_a273d17dd76c0be702f27dc919ab8b7e4}} 
-uint24\+\_\+t {\bfseries fn\+\_\+init}
-\item 
-\mbox{\Hypertarget{hashlib_8h_a0e468cada11f8f552e1e61827657756a}\label{hashlib_8h_a0e468cada11f8f552e1e61827657756a}} 
-uint24\+\_\+t {\bfseries fn\+\_\+update}
-\item 
-\mbox{\Hypertarget{hashlib_8h_abf903be1e11d6ccbfe377c398c066b53}\label{hashlib_8h_abf903be1e11d6ccbfe377c398c066b53}} 
-uint24\+\_\+t {\bfseries fn\+\_\+final}
-\item 
-\mbox{\Hypertarget{hashlib_8h_a2d3a2dd910f3a4fd1fe8cff51d8cf4ee}\label{hashlib_8h_a2d3a2dd910f3a4fd1fe8cff51d8cf4ee}} 
-{\bfseries SHA256}
-\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
@@ -188,11 +177,17 @@ Fast Memory gets clobbered by Lib\+Load. Don\textquotesingle{}t keep long-\/term
 
 If the CSRNG is run, anything you have stored here will be destroyed. 
 \end{DoxyWarning}
-\mbox{\Hypertarget{hashlib_8h_a7781b6f83e2f311020d3b926b70743ed}\label{hashlib_8h_a7781b6f83e2f311020d3b926b70743ed}} 
+\mbox{\Hypertarget{hashlib_8h_af5aa539ae202ddf9e0c9211309869fc8}\label{hashlib_8h_af5aa539ae202ddf9e0c9211309869fc8}} 
+\index{hashlib.h@{hashlib.h}!SHA256\_DIGEST\_LEN@{SHA256\_DIGEST\_LEN}}
+\index{SHA256\_DIGEST\_LEN@{SHA256\_DIGEST\_LEN}!hashlib.h@{hashlib.h}}
+\doxysubsubsection{\texorpdfstring{SHA256\_DIGEST\_LEN}{SHA256\_DIGEST\_LEN}}
+{\footnotesize\ttfamily \#define SHA256\+\_\+\+DIGEST\+\_\+\+LEN~32}
+
+Binary length of the SHA-\/256 hash output. \mbox{\Hypertarget{hashlib_8h_a7781b6f83e2f311020d3b926b70743ed}\label{hashlib_8h_a7781b6f83e2f311020d3b926b70743ed}} 
 \index{hashlib.h@{hashlib.h}!SHA256\_HEXDIGEST\_LEN@{SHA256\_HEXDIGEST\_LEN}}
 \index{SHA256\_HEXDIGEST\_LEN@{SHA256\_HEXDIGEST\_LEN}!hashlib.h@{hashlib.h}}
 \doxysubsubsection{\texorpdfstring{SHA256\_HEXDIGEST\_LEN}{SHA256\_HEXDIGEST\_LEN}}
-{\footnotesize\ttfamily \#define SHA256\+\_\+\+HEXDIGEST\+\_\+\+LEN~(SHA256\+\_\+\+DIGEST\+\_\+\+LEN$<$$<$1) + 1}
+{\footnotesize\ttfamily \#define SHA256\+\_\+\+HEXDIGEST\+\_\+\+LEN~(\mbox{\hyperlink{hashlib_8h_af5aa539ae202ddf9e0c9211309869fc8}{SHA256\+\_\+\+DIGEST\+\_\+\+LEN}}$<$$<$1) + 1}
 
 Length of a string containing the SHA-\/256 hash. \mbox{\Hypertarget{hashlib_8h_afab0742642db9c0609c00bf8a54f386f}\label{hashlib_8h_afab0742642db9c0609c00bf8a54f386f}} 
 \index{hashlib.h@{hashlib.h}!AES\_BLOCKSIZE@{AES\_BLOCKSIZE}}

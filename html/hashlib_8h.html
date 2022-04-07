@@ -68,8 +68,7 @@ $(function() {
 <a href="#define-members">Macros</a> &#124;
 <a href="#typedef-members">Typedefs</a> &#124;
 <a href="#enum-members">Enumerations</a> &#124;
-<a href="#func-members">Functions</a> &#124;
-<a href="#var-members">Variables</a>  </div>
+<a href="#func-members">Functions</a>  </div>
   <div class="headertitle"><div class="title">hashlib.h File Reference</div></div>
 </div><!--header-->
 <div class="contents">
@@ -90,8 +89,6 @@ Classes</h2></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">union &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="union__hash__ctx_1_1__hash.html">_hash_ctx::_hash</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">union &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="union__hash.html">_hash</a></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct__hmac__ctx.html">_hmac_ctx</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct__aes__ctx.html">_aes_ctx</a></td></tr>
@@ -103,10 +100,9 @@ Macros</h2></td></tr>
 <tr class="separator:a2671e33428186577b97034319c059c40"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a28d611d50cc8cf20a1c9fa327e839a56"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#a28d611d50cc8cf20a1c9fa327e839a56">fastRam_Unsafe</a>&#160;&#160;&#160;((void*)0xE30800)</td></tr>
 <tr class="separator:a28d611d50cc8cf20a1c9fa327e839a56"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af5aa539ae202ddf9e0c9211309869fc8"><td class="memItemLeft" align="right" valign="top"><a id="af5aa539ae202ddf9e0c9211309869fc8" name="af5aa539ae202ddf9e0c9211309869fc8"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>SHA256_DIGEST_LEN</b>&#160;&#160;&#160;32</td></tr>
+<tr class="memitem:af5aa539ae202ddf9e0c9211309869fc8"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#af5aa539ae202ddf9e0c9211309869fc8">SHA256_DIGEST_LEN</a>&#160;&#160;&#160;32</td></tr>
 <tr class="separator:af5aa539ae202ddf9e0c9211309869fc8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7781b6f83e2f311020d3b926b70743ed"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#a7781b6f83e2f311020d3b926b70743ed">SHA256_HEXDIGEST_LEN</a>&#160;&#160;&#160;(SHA256_DIGEST_LEN&lt;&lt;1) + 1</td></tr>
+<tr class="memitem:a7781b6f83e2f311020d3b926b70743ed"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#a7781b6f83e2f311020d3b926b70743ed">SHA256_HEXDIGEST_LEN</a>&#160;&#160;&#160;(<a class="el" href="hashlib_8h.html#af5aa539ae202ddf9e0c9211309869fc8">SHA256_DIGEST_LEN</a>&lt;&lt;1) + 1</td></tr>
 <tr class="separator:a7781b6f83e2f311020d3b926b70743ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afab0742642db9c0609c00bf8a54f386f"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#afab0742642db9c0609c00bf8a54f386f">AES_BLOCKSIZE</a>&#160;&#160;&#160;16</td></tr>
 <tr class="separator:afab0742642db9c0609c00bf8a54f386f"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -127,6 +123,9 @@ Macros</h2></td></tr>
 Typedefs</h2></td></tr>
 <tr class="memitem:a53df9e7d871973d59c7b58a6c3963c5d"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="struct__sha256__ctx.html">_sha256_ctx</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#a53df9e7d871973d59c7b58a6c3963c5d">sha256_ctx</a></td></tr>
 <tr class="separator:a53df9e7d871973d59c7b58a6c3963c5d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6a1fef0e2a880c0eeff308e447fce214"><td class="memItemLeft" align="right" valign="top"><a id="a6a1fef0e2a880c0eeff308e447fce214" name="a6a1fef0e2a880c0eeff308e447fce214"></a>
+typedef struct <a class="el" href="struct__hash__ctx.html">_hash_ctx</a>&#160;</td><td class="memItemRight" valign="bottom"><b>hash_ctx</b></td></tr>
+<tr class="separator:a6a1fef0e2a880c0eeff308e447fce214"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8d813300476744f01319600478572f62"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="struct__hmac__ctx.html">_hmac_ctx</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#a8d813300476744f01319600478572f62">hmac_ctx</a></td></tr>
 <tr class="separator:a8d813300476744f01319600478572f62"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa188bc2768a3b7aa6ad73cb2c77819e0"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="struct__aes__ctx.html">_aes_ctx</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#aa188bc2768a3b7aa6ad73cb2c77819e0">aes_ctx</a></td></tr>
@@ -134,6 +133,9 @@ Typedefs</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="enum-members" name="enum-members"></a>
 Enumerations</h2></td></tr>
+<tr class="memitem:af36e91f131f610a6612b78700d483bd7"><td class="memItemLeft" align="right" valign="top"><a id="af36e91f131f610a6612b78700d483bd7" name="af36e91f131f610a6612b78700d483bd7"></a>enum &#160;</td><td class="memItemRight" valign="bottom"><b>hash_algorithms</b> { <b>SHA256</b>
+ }</td></tr>
+<tr class="separator:af36e91f131f610a6612b78700d483bd7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a194ef6b5934dff6dceed4dd819e76340"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#a194ef6b5934dff6dceed4dd819e76340">aes_cipher_modes</a> { <a class="el" href="hashlib_8h.html#a194ef6b5934dff6dceed4dd819e76340ad21a3698b98b7368b14ec3d48314a132">AES_MODE_CBC</a>
 , <a class="el" href="hashlib_8h.html#a194ef6b5934dff6dceed4dd819e76340a5ecd63cd0bd97d46f273461b6550cb8e">AES_MODE_CTR</a>
  }</td></tr>
@@ -221,21 +223,6 @@ Functions</h2></td></tr>
 <tr class="memitem:aade3753b2b7e59ebf301c1c0712f8376"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#aade3753b2b7e59ebf301c1c0712f8376">digest_compare</a> (const void *digest1, const void *digest2, size_t len)</td></tr>
 <tr class="memdesc:aade3753b2b7e59ebf301c1c0712f8376"><td class="mdescLeft">&#160;</td><td class="mdescRight">Secure buffer comparison.  <a href="hashlib_8h.html#aade3753b2b7e59ebf301c1c0712f8376">More...</a><br /></td></tr>
 <tr class="separator:aade3753b2b7e59ebf301c1c0712f8376"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
-Variables</h2></td></tr>
-<tr class="memitem:a273d17dd76c0be702f27dc919ab8b7e4"><td class="memItemLeft" align="right" valign="top"><a id="a273d17dd76c0be702f27dc919ab8b7e4" name="a273d17dd76c0be702f27dc919ab8b7e4"></a>
-uint24_t&#160;</td><td class="memItemRight" valign="bottom"><b>fn_init</b></td></tr>
-<tr class="separator:a273d17dd76c0be702f27dc919ab8b7e4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0e468cada11f8f552e1e61827657756a"><td class="memItemLeft" align="right" valign="top"><a id="a0e468cada11f8f552e1e61827657756a" name="a0e468cada11f8f552e1e61827657756a"></a>
-uint24_t&#160;</td><td class="memItemRight" valign="bottom"><b>fn_update</b></td></tr>
-<tr class="separator:a0e468cada11f8f552e1e61827657756a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abf903be1e11d6ccbfe377c398c066b53"><td class="memItemLeft" align="right" valign="top"><a id="abf903be1e11d6ccbfe377c398c066b53" name="abf903be1e11d6ccbfe377c398c066b53"></a>
-uint24_t&#160;</td><td class="memItemRight" valign="bottom"><b>fn_final</b></td></tr>
-<tr class="separator:abf903be1e11d6ccbfe377c398c066b53"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2d3a2dd910f3a4fd1fe8cff51d8cf4ee"><td class="memItemLeft" align="right" valign="top"><a id="a2d3a2dd910f3a4fd1fe8cff51d8cf4ee" name="a2d3a2dd910f3a4fd1fe8cff51d8cf4ee"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>SHA256</b></td></tr>
-<tr class="separator:a2d3a2dd910f3a4fd1fe8cff51d8cf4ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p >Cryptography Library for the TI-84+ CE. </p>
@@ -285,6 +272,21 @@ If the CSRNG is run, anything you have stored here will be destroyed. </dd></dl>
 
 </div>
 </div>
+<a id="af5aa539ae202ddf9e0c9211309869fc8" name="af5aa539ae202ddf9e0c9211309869fc8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af5aa539ae202ddf9e0c9211309869fc8">&#9670;&nbsp;</a></span>SHA256_DIGEST_LEN</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define SHA256_DIGEST_LEN&#160;&#160;&#160;32</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p >Binary length of the SHA-256 hash output. </p>
+
+</div>
+</div>
 <a id="a7781b6f83e2f311020d3b926b70743ed" name="a7781b6f83e2f311020d3b926b70743ed"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a7781b6f83e2f311020d3b926b70743ed">&#9670;&nbsp;</a></span>SHA256_HEXDIGEST_LEN</h2>
 
@@ -292,7 +294,7 @@ If the CSRNG is run, anything you have stored here will be destroyed. </dd></dl>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define SHA256_HEXDIGEST_LEN&#160;&#160;&#160;(SHA256_DIGEST_LEN&lt;&lt;1) + 1</td>
+          <td class="memname">#define SHA256_HEXDIGEST_LEN&#160;&#160;&#160;(<a class="el" href="hashlib_8h.html#af5aa539ae202ddf9e0c9211309869fc8">SHA256_DIGEST_LEN</a>&lt;&lt;1) + 1</td>
         </tr>
       </table>
 </div><div class="memdoc">

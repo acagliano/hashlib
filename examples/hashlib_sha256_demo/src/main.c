@@ -29,14 +29,14 @@ void hexdump(uint8_t *addr, size_t len, uint8_t *label){
 
 int main(void)
 {
-    sha256_ctx sha256;
+    hash_ctx ctx;
     uint8_t sha256_digest[SHA256_DIGEST_LEN];
     uint8_t sha256_hex[SHA256_HEXDIGEST_LEN];
     size_t str_len = strlen(str);
     
-    hash_init(&sha256, SHA256);
-    hash_update(&sha256, str, str_len);
-    hash_final(&sha256, sha256_digest);
+    hash_init(&ctx, SHA256);
+    hash_update(&ctx, str, str_len);
+    hash_final(&ctx, sha256_digest);
    
     digest_tostring(sha256_digest, sizeof sha256_digest, sha256_hex);
     strcpy(CEMU_CONSOLE, sha256_hex);

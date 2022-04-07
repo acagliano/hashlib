@@ -93,10 +93,10 @@
 \DoxyCodeLine{145     uint24\_t fn\_init;}
 \DoxyCodeLine{146     uint24\_t fn\_update;}
 \DoxyCodeLine{147     uint24\_t fn\_final;}
-\DoxyCodeLine{148     \textcolor{keyword}{union }\mbox{\hyperlink{union__hash}{\_hash}} \{}
+\DoxyCodeLine{148     \textcolor{keyword}{union }\mbox{\hyperlink{union__hash__ctx_1_1__hash}{\_hash}} \{}
 \DoxyCodeLine{149         \mbox{\hyperlink{struct__sha256__ctx}{sha256\_ctx}} sha256;}
-\DoxyCodeLine{150     \}}
-\DoxyCodeLine{151 \}}
+\DoxyCodeLine{150     \};}
+\DoxyCodeLine{151 \} \mbox{\hyperlink{struct__hash__ctx}{hash\_ctx}};}
 \DoxyCodeLine{152  }
 \DoxyCodeLine{153 }
 \DoxyCodeLine{157 \textcolor{preprocessor}{\#define SHA256\_DIGEST\_LEN       32}}
@@ -132,7 +132,7 @@
 \DoxyCodeLine{219 \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\mbox{\hyperlink{struct__hmac__ctx}{\_hmac\_ctx}} \{}
 \DoxyCodeLine{220     uint8\_t \mbox{\hyperlink{struct__hmac__ctx_a010b68ec772d854d51d66a8a8e321571}{ipad}}[64];       }
 \DoxyCodeLine{221     uint8\_t \mbox{\hyperlink{struct__hmac__ctx_a3ee88b93200effd0e21446bd3016a5c2}{opad}}[64];       }
-\DoxyCodeLine{222     \mbox{\hyperlink{struct__sha256__ctx}{sha256\_ctx}} \mbox{\hyperlink{struct__hmac__ctx_a533d9a8a79af889cf667cfa5f2536caf}{ctx}};         }
+\DoxyCodeLine{222     \mbox{\hyperlink{struct__hash__ctx}{hash\_ctx}} \mbox{\hyperlink{struct__hmac__ctx_a00ff87f0f4be07252bc693692bcf789e}{ctx}};         }
 \DoxyCodeLine{223 \} \mbox{\hyperlink{hashlib_8h_a8d813300476744f01319600478572f62}{hmac\_ctx}};}
 \DoxyCodeLine{224 }
 \DoxyCodeLine{225 }
