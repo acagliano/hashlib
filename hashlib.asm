@@ -12,9 +12,9 @@ library "HASHLIB", 9
     export csrand_get
     export csrand_fill
     
-    export hash_sha256_init
-	export hash_sha256_update
-	export hash_sha256_final
+    export hash_init
+	export hash_update
+	export hash_final
 	export hash_mgf1
     
     export hmac_sha256_init
@@ -23,13 +23,16 @@ library "HASHLIB", 9
     export hmac_sha256_reset
     export hmac_pbkdf2
     
-    export cipher_aes_loadkey
-    export cipher_aes_encrypt
-    export cipher_aes_decrypt
-    export cipher_rsa_encrypt
+    export aes_loadkey
+    export aes_encrypt
+    export aes_decrypt
+    export rsa_encrypt
     
     export digest_tostring
     export digest_compare
+    
+    export aes_ecb_unsafe_encrypt
+    export aes_ecb_unsafe_decrypt
     
     
 
@@ -113,6 +116,9 @@ _max_deviation := _num_tests/4
 ;------------------------------------------
 ; structures
 virtual at 0
+    offset_init_func    rl 1
+    offset_update_func  rl 1
+    offset_final_func   rl 1
 	offset_data     rb 64
 	offset_bitlen   rb 8
 	offset_datalen  rb 1
@@ -120,6 +126,14 @@ virtual at 0
 	_sha256ctx_size:
 end virtual
 _sha256_m_buffer_length := 64*4
+
+;-------------------------------------------
+; hash func table
+hash_func_lookup:
+    dl hash_sha256_init
+    dl hash_sha256_update
+    dl hash_sha256_final
+
 
 ; probably better to just add the one u64 function used by hashlib rather than screw with dependencies
 u64_addi:
@@ -427,18 +441,56 @@ csrand_fill:
 	restore_interrupts csrand_fill
 	ret
 	
-	
-; void hashlib_Sha256Init(SHA256_CTX *ctx);
+ 
+hash_algs_impl  =   1
+ 
+; hash_init(context, alg);
+hash_init:
+    pop bc,de,hl
+    push hl,de,bc
+    ld a,l
+    cp a, hash_algs_impl
+    sbc a,a
+    ret z
+    ld h, 9
+    mlt hl
+    ld bc, hash_func_lookup
+    add hl, bc
+    ld iy, (hl)
+    ld bc, 9
+    ldir
+    jp (iy)
+    
+    
+    
+; hash_update(context, data, len);
+hash_update:
+    pop bc,iy
+    push iy,bc
+    ld hl, (iy+3)
+    jp (hl)
+    
+; hash_final(context, outbuf);
+hash_final:
+    pop bc,iy
+    push iy,bc
+    ld hl, (iy+6)
+    jp (hl)
+    
+    
+ 
+; void hash_sha256_init(SHA256_CTX *ctx);
 hash_sha256_init:
     pop iy,de
-    push de
+    push de,iy
     ld hl,$FF0000
     ld bc,offset_state
     ldir
     ld c,8*4
     ld hl,_sha256_state_init
     ldir
-    jp (iy)
+    ld a, 1
+    ret
     
 
 ; void hashlib_Sha256Update(SHA256_CTX *ctx, const BYTE data[], size_t len);
@@ -1264,7 +1316,7 @@ _aes_SubWord:
 	pop	ix
 	ret
 	
-cipher_aes_loadkey:
+aes_loadkey:
 	save_interrupts
 
 	ld	hl, -25
@@ -1494,7 +1546,7 @@ cipher_aes_loadkey:
 	ld	sp, ix
 	pop	ix
 	
-	restore_interrupts cipher_aes_loadkey
+	restore_interrupts aes_loadkey
 	ret
 	
 _aes_AddRoundKey:
@@ -3072,7 +3124,7 @@ _increment_iv:
 	ret
 	
 	
-hashlib_AESEncryptBlock:
+aes_ecb_unsafe_encrypt:
 	save_interrupts
 
 	ld	hl, -22
@@ -3736,10 +3788,10 @@ hashlib_AESEncryptBlock:
 	ld	sp, ix
 	pop	ix
 
-	restore_interrupts hashlib_AESEncryptBlock
+	restore_interrupts aes_ecb_unsafe_encrypt
 	ret
 	
-hashlib_AESDecryptBlock:
+aes_ecb_unsafe_decrypt:
 	save_interrupts
 
 	ld	hl, -19
@@ -4420,10 +4472,10 @@ hashlib_AESDecryptBlock:
 	ld	sp, ix
 	pop	ix
 	
-	restore_interrupts hashlib_AESDecryptBlock
+	restore_interrupts aes_ecb_unsafe_decrypt
 	ret
 	
-cipher_aes_encrypt:
+aes_encrypt:
 	save_interrupts
 
 	ld	hl, -95
@@ -4468,7 +4520,7 @@ cipher_aes_encrypt:
 	ld	bc, 2
 .lbl_21:
 	push	bc
-	restore_interrupts_noret cipher_aes_encrypt
+	restore_interrupts_noret aes_encrypt
 	pop	hl
 	jp stack_clear
 .lbl_6:
@@ -4542,7 +4594,7 @@ cipher_aes_encrypt:
 	push	hl
 	ld	(ix + -89), iy
 	ld	(ix + -92), bc
-	call	hashlib_AESEncryptBlock
+	call	aes_ecb_unsafe_encrypt
 	pop	hl
 	pop	hl
 	pop	hl
@@ -4640,7 +4692,7 @@ cipher_aes_encrypt:
 	push	hl
 	ld	hl, (ix + -83)
 	push	hl
-	call	hashlib_AESEncryptBlock
+	call	aes_ecb_unsafe_encrypt
 	pop	hl
 	pop	hl
 	pop	hl
@@ -4684,7 +4736,7 @@ cipher_aes_encrypt:
 	push	hl
 	ld	hl, (ix + -86)
 	push	hl
-	call	hashlib_AESEncryptBlock
+	call	aes_ecb_unsafe_encrypt
 	pop	hl
 	pop	hl
 	pop	hl
@@ -4707,7 +4759,7 @@ cipher_aes_encrypt:
 	ld	bc, 0
 	jq	.lbl_21
 	
-cipher_aes_decrypt:
+aes_decrypt:
 	save_interrupts
 
 	ld	hl, -66
@@ -4767,7 +4819,7 @@ cipher_aes_decrypt:
 	push	hl
 	ld	hl, (ix + 6)
 	push	hl
-	call	cipher_aes_encrypt
+	call	aes_encrypt
 	ld	hl, 21
 	add	hl, sp
 	ld	sp, hl
@@ -4825,7 +4877,7 @@ cipher_aes_decrypt:
 	push	hl
 	ld	hl, (ix + -51)
 	push	hl
-	call	hashlib_AESDecryptBlock
+	call	aes_ecb_unsafe_decrypt
 	pop	hl
 	pop	hl
 	pop	hl
@@ -4888,7 +4940,7 @@ cipher_aes_decrypt:
 	ld	de, 0
 .lbl_9:
 	ex	de, hl
-	restore_interrupts_noret cipher_aes_decrypt
+	restore_interrupts_noret aes_decrypt
 	jp stack_clear
 	
 	
@@ -6284,7 +6336,7 @@ hash_mgf1:
 	jp stack_clear
  
 	
-cipher_rsa_encrypt:
+rsa_encrypt:
 	save_interrupts
 
 	ld	hl, -6
@@ -6408,7 +6460,7 @@ cipher_rsa_encrypt:
 	ld	de, 0
 .lbl_12:
 	ex	de, hl
-	restore_interrupts_noret cipher_rsa_encrypt
+	restore_interrupts_noret rsa_encrypt
 	jp stack_clear
  
  

@@ -1,19 +1,21 @@
-library	"HASHLIB", 8
+library	"HASHLIB", 9
 	export	csrand_init ; 0
 	export	csrand_get ; 3
 	export	csrand_fill ; 6
-	export	hash_sha256_init ; 9
-	export	hash_sha256_update ; 12
-	export	hash_sha256_final ; 15
+	export	hash_init ; 9
+	export	hash_update ; 12
+	export	hash_final ; 15
 	export	hash_mgf1 ; 18
 	export	hmac_sha256_init ; 21
 	export	hmac_sha256_update ; 24
 	export	hmac_sha256_final ; 27
 	export	hmac_sha256_reset ; 30
 	export	hmac_pbkdf2 ; 33
-	export	cipher_aes_loadkey ; 36
-	export	cipher_aes_encrypt ; 39
-	export	cipher_aes_decrypt ; 42
-	export	cipher_rsa_encrypt ; 45
+	export	aes_loadkey ; 36
+	export	aes_encrypt ; 39
+	export	aes_decrypt ; 42
+	export	rsa_encrypt ; 45
 	export	digest_tostring ; 48
 	export	digest_compare ; 51
+	export	aes_ecb_unsafe_encrypt ; 54
+	export	aes_ecb_unsafe_decrypt ; 57

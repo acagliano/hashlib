@@ -54,6 +54,10 @@ typedef struct \mbox{\hyperlink{struct__aes__ctx}{\+\_\+aes\+\_\+ctx}} \mbox{\hy
 \doxysubsection*{Enumerations}
 \begin{DoxyCompactItemize}
 \item 
+\mbox{\Hypertarget{hashlib_8h_af36e91f131f610a6612b78700d483bd7}\label{hashlib_8h_af36e91f131f610a6612b78700d483bd7}} 
+enum {\bfseries hash\+\_\+algorithms} \{ {\bfseries SHA256}
+ \}
+\item 
 enum \mbox{\hyperlink{hashlib_8h_a194ef6b5934dff6dceed4dd819e76340}{aes\+\_\+cipher\+\_\+modes}} \{ \mbox{\hyperlink{hashlib_8h_a194ef6b5934dff6dceed4dd819e76340ad21a3698b98b7368b14ec3d48314a132}{AES\+\_\+\+MODE\+\_\+\+CBC}}
 , \mbox{\hyperlink{hashlib_8h_a194ef6b5934dff6dceed4dd819e76340a5ecd63cd0bd97d46f273461b6550cb8e}{AES\+\_\+\+MODE\+\_\+\+CTR}}
  \}
@@ -91,11 +95,11 @@ uint32\+\_\+t \mbox{\hyperlink{hashlib_8h_a3cdabe638655bf5d3760c4ab700a43fd}{csr
 \begin{DoxyCompactList}\small\item\em Generates a random 32-\/bit number. \end{DoxyCompactList}\item 
 bool \mbox{\hyperlink{hashlib_8h_aa3641d44a877ff6eec0eb5cfbfaa5c61}{csrand\+\_\+fill}} (void $\ast$buffer, size\+\_\+t size)
 \begin{DoxyCompactList}\small\item\em Fills a buffer to size with random bytes. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{hashlib_8h_a0a3fb7e28b514f3714a39526ba758296}{hash\+\_\+sha256\+\_\+init}} (\mbox{\hyperlink{hashlib_8h_a53df9e7d871973d59c7b58a6c3963c5d}{sha256\+\_\+ctx}} $\ast$ctx)
+void \mbox{\hyperlink{hashlib_8h_a53935bcb47b60dcd7121c737054e26a3}{hash\+\_\+init}} (void $\ast$ctx, uint8\+\_\+t hash\+\_\+alg)
 \begin{DoxyCompactList}\small\item\em Context initializer for SHA-\/256. Initializes the given context with the starting state for SHA-\/256. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{hashlib_8h_a9b59f57918ddb34809137e2e45a5daa3}{hash\+\_\+sha256\+\_\+update}} (\mbox{\hyperlink{hashlib_8h_a53df9e7d871973d59c7b58a6c3963c5d}{sha256\+\_\+ctx}} $\ast$ctx, const void $\ast$data, size\+\_\+t len)
+void \mbox{\hyperlink{hashlib_8h_a92e4589aa70687f142e178954196ef92}{hash\+\_\+update}} (void $\ast$ctx, const void $\ast$data, size\+\_\+t len)
 \begin{DoxyCompactList}\small\item\em Updates the SHA-\/256 context for the given data. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{hashlib_8h_a2e32fb51c9621df4538a7ce7fb6969ba}{hash\+\_\+sha256\+\_\+final}} (\mbox{\hyperlink{hashlib_8h_a53df9e7d871973d59c7b58a6c3963c5d}{sha256\+\_\+ctx}} $\ast$ctx, void $\ast$digest)
+void \mbox{\hyperlink{hashlib_8h_a4e0d444bba8dceb9052cd7db9c1efe15}{hash\+\_\+final}} (void $\ast$ctx, void $\ast$digest)
 \begin{DoxyCompactList}\small\item\em Finalize Context and Render Digest for SHA-\/256. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{hashlib_8h_a10ed0a0ba1c3b12e564ffdd2cc1ace31}{hash\+\_\+mgf1}} (const void $\ast$data, size\+\_\+t datalen, void $\ast$outbuf, size\+\_\+t outlen)
 \begin{DoxyCompactList}\small\item\em Arbitrary Length Hashing Function. \end{DoxyCompactList}\item 
@@ -133,8 +137,7 @@ Industry-\/\+Standard Cryptography for the TI-\/84+ CE
 \item hmac\+\_\+sha256, hmac\+\_\+pbkdf2
 \item cipher\+\_\+aes
 \item cipher\+\_\+rsa
-\item secure buffer comparison ~\newline
-
+\item secure buffer comparison
 \end{DoxyItemize}
 
 \begin{DoxyAuthor}{Author}
@@ -421,11 +424,11 @@ Fills a buffer to size with random bytes.
 \begin{DoxyNote}{Note}
 {\bfseries{buffer}} must be at least {\bfseries{size}} bytes large. 
 \end{DoxyNote}
-\mbox{\Hypertarget{hashlib_8h_a0a3fb7e28b514f3714a39526ba758296}\label{hashlib_8h_a0a3fb7e28b514f3714a39526ba758296}} 
-\index{hashlib.h@{hashlib.h}!hash\_sha256\_init@{hash\_sha256\_init}}
-\index{hash\_sha256\_init@{hash\_sha256\_init}!hashlib.h@{hashlib.h}}
-\doxysubsubsection{\texorpdfstring{hash\_sha256\_init()}{hash\_sha256\_init()}}
-{\footnotesize\ttfamily void hash\+\_\+sha256\+\_\+init (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{hashlib_8h_a53df9e7d871973d59c7b58a6c3963c5d}{sha256\+\_\+ctx}} $\ast$}]{ctx }\end{DoxyParamCaption})}
+\mbox{\Hypertarget{hashlib_8h_a53935bcb47b60dcd7121c737054e26a3}\label{hashlib_8h_a53935bcb47b60dcd7121c737054e26a3}} 
+\index{hashlib.h@{hashlib.h}!hash\_init@{hash\_init}}
+\index{hash\_init@{hash\_init}!hashlib.h@{hashlib.h}}
+\doxysubsubsection{\texorpdfstring{hash\_init()}{hash\_init()}}
+{\footnotesize\ttfamily void hash\+\_\+init (\begin{DoxyParamCaption}\item[{void $\ast$}]{ctx,  }\item[{uint8\+\_\+t}]{hash\+\_\+alg }\end{DoxyParamCaption})}
 
 
 
@@ -436,11 +439,11 @@ Context initializer for SHA-\/256. Initializes the given context with the starti
 {\em ctx} & Pointer to a SHA-\/256 context. \\
 \hline
 \end{DoxyParams}
-\mbox{\Hypertarget{hashlib_8h_a9b59f57918ddb34809137e2e45a5daa3}\label{hashlib_8h_a9b59f57918ddb34809137e2e45a5daa3}} 
-\index{hashlib.h@{hashlib.h}!hash\_sha256\_update@{hash\_sha256\_update}}
-\index{hash\_sha256\_update@{hash\_sha256\_update}!hashlib.h@{hashlib.h}}
-\doxysubsubsection{\texorpdfstring{hash\_sha256\_update()}{hash\_sha256\_update()}}
-{\footnotesize\ttfamily void hash\+\_\+sha256\+\_\+update (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{hashlib_8h_a53df9e7d871973d59c7b58a6c3963c5d}{sha256\+\_\+ctx}} $\ast$}]{ctx,  }\item[{const void $\ast$}]{data,  }\item[{size\+\_\+t}]{len }\end{DoxyParamCaption})}
+\mbox{\Hypertarget{hashlib_8h_a92e4589aa70687f142e178954196ef92}\label{hashlib_8h_a92e4589aa70687f142e178954196ef92}} 
+\index{hashlib.h@{hashlib.h}!hash\_update@{hash\_update}}
+\index{hash\_update@{hash\_update}!hashlib.h@{hashlib.h}}
+\doxysubsubsection{\texorpdfstring{hash\_update()}{hash\_update()}}
+{\footnotesize\ttfamily void hash\+\_\+update (\begin{DoxyParamCaption}\item[{void $\ast$}]{ctx,  }\item[{const void $\ast$}]{data,  }\item[{size\+\_\+t}]{len }\end{DoxyParamCaption})}
 
 
 
@@ -456,13 +459,13 @@ Updates the SHA-\/256 context for the given data.
 \hline
 \end{DoxyParams}
 \begin{DoxyWarning}{Warning}
-You must call \mbox{\hyperlink{hashlib_8h_a0a3fb7e28b514f3714a39526ba758296}{hash\+\_\+sha256\+\_\+init()}} first or your hash state will be invalid. 
+You must call hash\+\_\+sha256\+\_\+init() first or your hash state will be invalid. 
 \end{DoxyWarning}
-\mbox{\Hypertarget{hashlib_8h_a2e32fb51c9621df4538a7ce7fb6969ba}\label{hashlib_8h_a2e32fb51c9621df4538a7ce7fb6969ba}} 
-\index{hashlib.h@{hashlib.h}!hash\_sha256\_final@{hash\_sha256\_final}}
-\index{hash\_sha256\_final@{hash\_sha256\_final}!hashlib.h@{hashlib.h}}
-\doxysubsubsection{\texorpdfstring{hash\_sha256\_final()}{hash\_sha256\_final()}}
-{\footnotesize\ttfamily void hash\+\_\+sha256\+\_\+final (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{hashlib_8h_a53df9e7d871973d59c7b58a6c3963c5d}{sha256\+\_\+ctx}} $\ast$}]{ctx,  }\item[{void $\ast$}]{digest }\end{DoxyParamCaption})}
+\mbox{\Hypertarget{hashlib_8h_a4e0d444bba8dceb9052cd7db9c1efe15}\label{hashlib_8h_a4e0d444bba8dceb9052cd7db9c1efe15}} 
+\index{hashlib.h@{hashlib.h}!hash\_final@{hash\_final}}
+\index{hash\_final@{hash\_final}!hashlib.h@{hashlib.h}}
+\doxysubsubsection{\texorpdfstring{hash\_final()}{hash\_final()}}
+{\footnotesize\ttfamily void hash\+\_\+final (\begin{DoxyParamCaption}\item[{void $\ast$}]{ctx,  }\item[{void $\ast$}]{digest }\end{DoxyParamCaption})}
 
 
 

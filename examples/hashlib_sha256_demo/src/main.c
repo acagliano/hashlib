@@ -34,10 +34,11 @@ int main(void)
     uint8_t sha256_hex[SHA256_HEXDIGEST_LEN];
     size_t str_len = strlen(str);
     
-    hash_sha256_init(&sha256);
-    hash_sha256_update(&sha256, str, str_len);
-    hash_sha256_final(&sha256, sha256_digest);
+    hash_init(&sha256, SHA256);
+    hash_update(&sha256, str, str_len);
+    hash_final(&sha256, sha256_digest);
    
     digest_tostring(sha256_digest, sizeof sha256_digest, sha256_hex);
     strcpy(CEMU_CONSOLE, sha256_hex);
+    strcpy(CEMU_CONSOLE, "\n");
 }

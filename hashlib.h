@@ -8,7 +8,7 @@
  *  - hmac_sha256, hmac_pbkdf2
  *	- cipher_aes
  *	- cipher_rsa
- *  - secure buffer comparison  
+ *  - secure buffer comparison
  *
  *	@author Anthony @e ACagliano Cagliano
  *	@author Adam @e beck Beckingham
@@ -135,6 +135,9 @@ or has been tampered with.
  * @note If you are hashing multiple data streams concurrently, allocate a seperate context for each.
  ********************************************************************************************************************/
 typedef struct _sha256_ctx {
+    uint24_t init;
+    uint24_t update;
+    uint24_t digest;
 	uint8_t data[64];		/**< holds sha-256 block for transformation */
 	uint8_t datalen;		/**< holds the current length of data in data[64] */
 	uint8_t bitlen[8];		/**< holds the current length of transformed data */
@@ -153,12 +156,16 @@ typedef struct _sha256_ctx {
   **********************************************************/
 #define SHA256_HEXDIGEST_LEN		(SHA256_DIGEST_LEN<<1) + 1
 
+enum hash_algorithms {
+    SHA256
+};
+
 /**************************************************************************************************
  *	@brief Context initializer for SHA-256.
  *	Initializes the given context with the starting state for SHA-256.
  *	@param ctx Pointer to a SHA-256 context.
  **************************************************************************************************/
-void hash_sha256_init(sha256_ctx* ctx);
+void hash_init(void* ctx, uint8_t hash_alg);
 
 /******************************************************************************************************
  *	@brief Updates the SHA-256 context for the given data.
@@ -167,7 +174,7 @@ void hash_sha256_init(sha256_ctx* ctx);
  *	@param len Number of bytes at @b data to hash.
  *	@warning You must call hash_sha256_init() first or your hash state will be invalid.
  ******************************************************************************************************/
-void hash_sha256_update(sha256_ctx* ctx, const void* data, size_t len);
+void hash_update(void* ctx, const void* data, size_t len);
 
 /**************************************************************************
  *	@brief Finalize Context and Render Digest for SHA-256
@@ -175,7 +182,7 @@ void hash_sha256_update(sha256_ctx* ctx, const void* data, size_t len);
  *	@param digest Pointer to a buffer to write the hash to.
  *	@note @b digest must be at least 32 bytes large.
  ***************************************************************************/
-void hash_sha256_final(sha256_ctx* ctx, void* digest);
+void hash_final(void* ctx, void* digest);
 
 /**********************************************************************************************************************
  *	@brief Arbitrary Length Hashing Function
