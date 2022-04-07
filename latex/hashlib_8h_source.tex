@@ -83,214 +83,220 @@
 \DoxyCodeLine{131 \textcolor{comment}{*/}}
 \DoxyCodeLine{132 }
 \DoxyCodeLine{137 \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\mbox{\hyperlink{struct__sha256__ctx}{\_sha256\_ctx}} \{}
-\DoxyCodeLine{138     uint24\_t init;}
-\DoxyCodeLine{139     uint24\_t update;}
-\DoxyCodeLine{140     uint24\_t digest;}
-\DoxyCodeLine{141     uint8\_t \mbox{\hyperlink{struct__sha256__ctx_a8a53e5a4c3961ca51a4381f6488d1089}{data}}[64];       }
-\DoxyCodeLine{142     uint8\_t \mbox{\hyperlink{struct__sha256__ctx_aecfb5410e142575871d537dc00b9d63a}{datalen}};     }
-\DoxyCodeLine{143     uint8\_t \mbox{\hyperlink{struct__sha256__ctx_afc9083f7e21cf81eec33df4a5f812b95}{bitlen}}[8];        }
-\DoxyCodeLine{144     uint32\_t \mbox{\hyperlink{struct__sha256__ctx_a1e85694ce7e43ed85c5e0f8e11116d18}{state}}[8];     }
-\DoxyCodeLine{145 \} \mbox{\hyperlink{hashlib_8h_a53df9e7d871973d59c7b58a6c3963c5d}{sha256\_ctx}};}
-\DoxyCodeLine{146  }
-\DoxyCodeLine{147 }
-\DoxyCodeLine{151 \textcolor{preprocessor}{\#define SHA256\_DIGEST\_LEN       32}}
+\DoxyCodeLine{138     uint8\_t \mbox{\hyperlink{struct__sha256__ctx_a8a53e5a4c3961ca51a4381f6488d1089}{data}}[64];       }
+\DoxyCodeLine{139     uint8\_t \mbox{\hyperlink{struct__sha256__ctx_aecfb5410e142575871d537dc00b9d63a}{datalen}};     }
+\DoxyCodeLine{140     uint8\_t \mbox{\hyperlink{struct__sha256__ctx_afc9083f7e21cf81eec33df4a5f812b95}{bitlen}}[8];        }
+\DoxyCodeLine{141     uint32\_t \mbox{\hyperlink{struct__sha256__ctx_a1e85694ce7e43ed85c5e0f8e11116d18}{state}}[8];     }
+\DoxyCodeLine{142 \} \mbox{\hyperlink{hashlib_8h_a53df9e7d871973d59c7b58a6c3963c5d}{sha256\_ctx}};}
+\DoxyCodeLine{143 }
+\DoxyCodeLine{144 \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\mbox{\hyperlink{struct__hash__ctx}{\_hash\_ctx}} \{}
+\DoxyCodeLine{145     uint24\_t fn\_init;}
+\DoxyCodeLine{146     uint24\_t fn\_update;}
+\DoxyCodeLine{147     uint24\_t fn\_final;}
+\DoxyCodeLine{148     \textcolor{keyword}{union }\mbox{\hyperlink{union__hash}{\_hash}} \{}
+\DoxyCodeLine{149         \mbox{\hyperlink{struct__sha256__ctx}{sha256\_ctx}} sha256;}
+\DoxyCodeLine{150     \}}
+\DoxyCodeLine{151 \}}
 \DoxyCodeLine{152  }
 \DoxyCodeLine{153 }
-\DoxyCodeLine{157 \textcolor{preprocessor}{\#define SHA256\_HEXDIGEST\_LEN        (SHA256\_DIGEST\_LEN<<1) + 1}}
-\DoxyCodeLine{158 }
-\DoxyCodeLine{159 \textcolor{keyword}{enum} hash\_algorithms \{}
-\DoxyCodeLine{160     SHA256}
-\DoxyCodeLine{161 \};}
-\DoxyCodeLine{162 }
-\DoxyCodeLine{163 }
-\DoxyCodeLine{168 \textcolor{keywordtype}{void} \mbox{\hyperlink{hashlib_8h_a53935bcb47b60dcd7121c737054e26a3}{hash\_init}}(\textcolor{keywordtype}{void}* ctx, uint8\_t hash\_alg);}
+\DoxyCodeLine{157 \textcolor{preprocessor}{\#define SHA256\_DIGEST\_LEN       32}}
+\DoxyCodeLine{158  }
+\DoxyCodeLine{159 }
+\DoxyCodeLine{163 \textcolor{preprocessor}{\#define SHA256\_HEXDIGEST\_LEN        (SHA256\_DIGEST\_LEN<<1) + 1}}
+\DoxyCodeLine{164 }
+\DoxyCodeLine{165 \textcolor{keyword}{enum} hash\_algorithms \{}
+\DoxyCodeLine{166     SHA256}
+\DoxyCodeLine{167 \};}
+\DoxyCodeLine{168 }
 \DoxyCodeLine{169 }
-\DoxyCodeLine{170 }
-\DoxyCodeLine{177 \textcolor{keywordtype}{void} \mbox{\hyperlink{hashlib_8h_a92e4589aa70687f142e178954196ef92}{hash\_update}}(\textcolor{keywordtype}{void}* ctx, \textcolor{keyword}{const} \textcolor{keywordtype}{void}* data, \textcolor{keywordtype}{size\_t} len);}
-\DoxyCodeLine{178 }
-\DoxyCodeLine{179 }
-\DoxyCodeLine{185 \textcolor{keywordtype}{void} \mbox{\hyperlink{hashlib_8h_a4e0d444bba8dceb9052cd7db9c1efe15}{hash\_final}}(\textcolor{keywordtype}{void}* ctx, \textcolor{keywordtype}{void}* digest);}
-\DoxyCodeLine{186 }
-\DoxyCodeLine{187 }
-\DoxyCodeLine{198 \textcolor{keywordtype}{void} \mbox{\hyperlink{hashlib_8h_a10ed0a0ba1c3b12e564ffdd2cc1ace31}{hash\_mgf1}}(\textcolor{keyword}{const} \textcolor{keywordtype}{void}* data, \textcolor{keywordtype}{size\_t} datalen, \textcolor{keywordtype}{void}* outbuf, \textcolor{keywordtype}{size\_t} outlen);}
-\DoxyCodeLine{199 }
-\DoxyCodeLine{200 }
-\DoxyCodeLine{201 \textcolor{comment}{/*}}
-\DoxyCodeLine{202 \textcolor{comment}{SHA-\/256 HMAC Cryptographic Hash (Hash-\/Based Message Authentication Code)}}
-\DoxyCodeLine{203 \textcolor{comment}{}}
-\DoxyCodeLine{204 \textcolor{comment}{HMAC generates a more secure hash by using a key known only to authorized}}
-\DoxyCodeLine{205 \textcolor{comment}{parties as part of the hash initialization. Thus, while normal SHA-\/256 can be}}
-\DoxyCodeLine{206 \textcolor{comment}{verified by anyone, only the parties with the key can validate using a HMAC hash.}}
-\DoxyCodeLine{207 \textcolor{comment}{*/}}
-\DoxyCodeLine{208 }
-\DoxyCodeLine{213 \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\mbox{\hyperlink{struct__hmac__ctx}{\_hmac\_ctx}} \{}
-\DoxyCodeLine{214     uint8\_t \mbox{\hyperlink{struct__hmac__ctx_a010b68ec772d854d51d66a8a8e321571}{ipad}}[64];       }
-\DoxyCodeLine{215     uint8\_t \mbox{\hyperlink{struct__hmac__ctx_a3ee88b93200effd0e21446bd3016a5c2}{opad}}[64];       }
-\DoxyCodeLine{216     \mbox{\hyperlink{struct__sha256__ctx}{sha256\_ctx}} \mbox{\hyperlink{struct__hmac__ctx_a533d9a8a79af889cf667cfa5f2536caf}{ctx}};         }
-\DoxyCodeLine{217 \} \mbox{\hyperlink{hashlib_8h_a8d813300476744f01319600478572f62}{hmac\_ctx}};}
-\DoxyCodeLine{218 }
-\DoxyCodeLine{219 }
-\DoxyCodeLine{228 \textcolor{keywordtype}{void} \mbox{\hyperlink{hashlib_8h_a4cef987a16315a82b1b4c7694d897b03}{hmac\_sha256\_init}}(\mbox{\hyperlink{struct__hmac__ctx}{hmac\_ctx}}* ctx, \textcolor{keyword}{const} \textcolor{keywordtype}{void}* key, \textcolor{keywordtype}{size\_t} keylen);}
-\DoxyCodeLine{229 }
-\DoxyCodeLine{230 }
-\DoxyCodeLine{237 \textcolor{keywordtype}{void} \mbox{\hyperlink{hashlib_8h_add323a3b3b9cbdcc487e3474a97f05fd}{hmac\_sha256\_update}}(\mbox{\hyperlink{struct__hmac__ctx}{hmac\_ctx}}* ctx, \textcolor{keyword}{const} \textcolor{keywordtype}{void}* data, \textcolor{keywordtype}{size\_t} len);}
-\DoxyCodeLine{238 }
-\DoxyCodeLine{239 }
-\DoxyCodeLine{245 \textcolor{keywordtype}{void} \mbox{\hyperlink{hashlib_8h_a9b76f238236e4b45fa9be13fa53626c1}{hmac\_sha256\_final}}(\mbox{\hyperlink{struct__hmac__ctx}{hmac\_ctx}}* ctx, \textcolor{keywordtype}{void}* output);}
-\DoxyCodeLine{246 }
-\DoxyCodeLine{247 }
-\DoxyCodeLine{252 \textcolor{keywordtype}{void} \mbox{\hyperlink{hashlib_8h_aa21280fa3208d9f7c3d64e38e8d20c1a}{hmac\_sha256\_reset}}(\mbox{\hyperlink{struct__hmac__ctx}{hmac\_ctx}}* ctx);}
+\DoxyCodeLine{174 \textcolor{keywordtype}{void} \mbox{\hyperlink{hashlib_8h_a53935bcb47b60dcd7121c737054e26a3}{hash\_init}}(\textcolor{keywordtype}{void}* ctx, uint8\_t hash\_alg);}
+\DoxyCodeLine{175 }
+\DoxyCodeLine{176 }
+\DoxyCodeLine{183 \textcolor{keywordtype}{void} \mbox{\hyperlink{hashlib_8h_a92e4589aa70687f142e178954196ef92}{hash\_update}}(\textcolor{keywordtype}{void}* ctx, \textcolor{keyword}{const} \textcolor{keywordtype}{void}* data, \textcolor{keywordtype}{size\_t} len);}
+\DoxyCodeLine{184 }
+\DoxyCodeLine{185 }
+\DoxyCodeLine{191 \textcolor{keywordtype}{void} \mbox{\hyperlink{hashlib_8h_a4e0d444bba8dceb9052cd7db9c1efe15}{hash\_final}}(\textcolor{keywordtype}{void}* ctx, \textcolor{keywordtype}{void}* digest);}
+\DoxyCodeLine{192 }
+\DoxyCodeLine{193 }
+\DoxyCodeLine{204 \textcolor{keywordtype}{void} \mbox{\hyperlink{hashlib_8h_a10ed0a0ba1c3b12e564ffdd2cc1ace31}{hash\_mgf1}}(\textcolor{keyword}{const} \textcolor{keywordtype}{void}* data, \textcolor{keywordtype}{size\_t} datalen, \textcolor{keywordtype}{void}* outbuf, \textcolor{keywordtype}{size\_t} outlen);}
+\DoxyCodeLine{205 }
+\DoxyCodeLine{206 }
+\DoxyCodeLine{207 \textcolor{comment}{/*}}
+\DoxyCodeLine{208 \textcolor{comment}{SHA-\/256 HMAC Cryptographic Hash (Hash-\/Based Message Authentication Code)}}
+\DoxyCodeLine{209 \textcolor{comment}{}}
+\DoxyCodeLine{210 \textcolor{comment}{HMAC generates a more secure hash by using a key known only to authorized}}
+\DoxyCodeLine{211 \textcolor{comment}{parties as part of the hash initialization. Thus, while normal SHA-\/256 can be}}
+\DoxyCodeLine{212 \textcolor{comment}{verified by anyone, only the parties with the key can validate using a HMAC hash.}}
+\DoxyCodeLine{213 \textcolor{comment}{*/}}
+\DoxyCodeLine{214 }
+\DoxyCodeLine{219 \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\mbox{\hyperlink{struct__hmac__ctx}{\_hmac\_ctx}} \{}
+\DoxyCodeLine{220     uint8\_t \mbox{\hyperlink{struct__hmac__ctx_a010b68ec772d854d51d66a8a8e321571}{ipad}}[64];       }
+\DoxyCodeLine{221     uint8\_t \mbox{\hyperlink{struct__hmac__ctx_a3ee88b93200effd0e21446bd3016a5c2}{opad}}[64];       }
+\DoxyCodeLine{222     \mbox{\hyperlink{struct__sha256__ctx}{sha256\_ctx}} \mbox{\hyperlink{struct__hmac__ctx_a533d9a8a79af889cf667cfa5f2536caf}{ctx}};         }
+\DoxyCodeLine{223 \} \mbox{\hyperlink{hashlib_8h_a8d813300476744f01319600478572f62}{hmac\_ctx}};}
+\DoxyCodeLine{224 }
+\DoxyCodeLine{225 }
+\DoxyCodeLine{234 \textcolor{keywordtype}{void} \mbox{\hyperlink{hashlib_8h_a4cef987a16315a82b1b4c7694d897b03}{hmac\_sha256\_init}}(\mbox{\hyperlink{struct__hmac__ctx}{hmac\_ctx}}* ctx, \textcolor{keyword}{const} \textcolor{keywordtype}{void}* key, \textcolor{keywordtype}{size\_t} keylen);}
+\DoxyCodeLine{235 }
+\DoxyCodeLine{236 }
+\DoxyCodeLine{243 \textcolor{keywordtype}{void} \mbox{\hyperlink{hashlib_8h_add323a3b3b9cbdcc487e3474a97f05fd}{hmac\_sha256\_update}}(\mbox{\hyperlink{struct__hmac__ctx}{hmac\_ctx}}* ctx, \textcolor{keyword}{const} \textcolor{keywordtype}{void}* data, \textcolor{keywordtype}{size\_t} len);}
+\DoxyCodeLine{244 }
+\DoxyCodeLine{245 }
+\DoxyCodeLine{251 \textcolor{keywordtype}{void} \mbox{\hyperlink{hashlib_8h_a9b76f238236e4b45fa9be13fa53626c1}{hmac\_sha256\_final}}(\mbox{\hyperlink{struct__hmac__ctx}{hmac\_ctx}}* ctx, \textcolor{keywordtype}{void}* output);}
+\DoxyCodeLine{252 }
 \DoxyCodeLine{253 }
-\DoxyCodeLine{254 }
-\DoxyCodeLine{272 \textcolor{keywordtype}{bool} \mbox{\hyperlink{hashlib_8h_a415fd61aa3da75a48885f14d61d65d8f}{hmac\_pbkdf2}}(}
-\DoxyCodeLine{273     \textcolor{keyword}{const} \textcolor{keywordtype}{char}* password,}
-\DoxyCodeLine{274     \textcolor{keywordtype}{size\_t} passlen,}
-\DoxyCodeLine{275     \textcolor{keywordtype}{void}* key,}
-\DoxyCodeLine{276     \textcolor{keywordtype}{size\_t} keylen,}
-\DoxyCodeLine{277     \textcolor{keyword}{const} \textcolor{keywordtype}{void}* salt,}
-\DoxyCodeLine{278     \textcolor{keywordtype}{size\_t} saltlen,}
-\DoxyCodeLine{279     \textcolor{keywordtype}{size\_t} rounds);}
-\DoxyCodeLine{280 }
-\DoxyCodeLine{281 }
-\DoxyCodeLine{282 \textcolor{comment}{/*}}
-\DoxyCodeLine{283 \textcolor{comment}{Advanced Encryption Standard (AES)}}
-\DoxyCodeLine{284 \textcolor{comment}{ }}
-\DoxyCodeLine{285 \textcolor{comment}{AES is a form of symmetric encryption, and also is a form of block cipher.}}
-\DoxyCodeLine{286 \textcolor{comment}{Symmetric encryption means that the same key works in both directions.}}
-\DoxyCodeLine{287 \textcolor{comment}{A block cipher is an encryption algorithm that operates on data in segments (for AES, 16 bytes),}}
-\DoxyCodeLine{288 \textcolor{comment}{moving through it one segment at a time.}}
-\DoxyCodeLine{289 \textcolor{comment}{ }}
-\DoxyCodeLine{290 \textcolor{comment}{Symmetric encryption is usually fast, and is generally more secure for smaller key sizes.}}
-\DoxyCodeLine{291 \textcolor{comment}{AES is one of the most secure encryption systems in use today.}}
-\DoxyCodeLine{292 \textcolor{comment}{The most secure version of the algorithm is AES-\/256 (uses a 256-\/bit key).}}
-\DoxyCodeLine{293 \textcolor{comment}{AES is one of the open-\/source encryption schemes believed secure enough to withstand even}}
-\DoxyCodeLine{294 \textcolor{comment}{the advent of quantum computing.}}
-\DoxyCodeLine{295 \textcolor{comment}{*/}}
-\DoxyCodeLine{296 }
-\DoxyCodeLine{300 \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\mbox{\hyperlink{struct__aes__ctx}{\_aes\_ctx}} \{}
-\DoxyCodeLine{301     uint24\_t \mbox{\hyperlink{struct__aes__ctx_a3c7170b46d94b5b8395f74eb0baa14c8}{keysize}};                }
-\DoxyCodeLine{302     uint32\_t \mbox{\hyperlink{struct__aes__ctx_adb6943e9b2c5dd39e5390f26ae470ffe}{round\_keys}}[60];      }
-\DoxyCodeLine{303 \} \mbox{\hyperlink{hashlib_8h_aa188bc2768a3b7aa6ad73cb2c77819e0}{aes\_ctx}};}
-\DoxyCodeLine{304 }
-\DoxyCodeLine{305 }
-\DoxyCodeLine{309 \textcolor{keyword}{enum} \mbox{\hyperlink{hashlib_8h_a194ef6b5934dff6dceed4dd819e76340}{aes\_cipher\_modes}} \{}
-\DoxyCodeLine{310     \mbox{\hyperlink{hashlib_8h_a194ef6b5934dff6dceed4dd819e76340ad21a3698b98b7368b14ec3d48314a132}{AES\_MODE\_CBC}},       }
-\DoxyCodeLine{311     \mbox{\hyperlink{hashlib_8h_a194ef6b5934dff6dceed4dd819e76340a5ecd63cd0bd97d46f273461b6550cb8e}{AES\_MODE\_CTR}}        }
-\DoxyCodeLine{312 \};}
-\DoxyCodeLine{313 }
-\DoxyCodeLine{314 }
-\DoxyCodeLine{318 \textcolor{keyword}{enum} \mbox{\hyperlink{hashlib_8h_a9933dec76c43b37331782bdd16ebc4a3}{aes\_padding\_schemes}} \{}
-\DoxyCodeLine{319     \mbox{\hyperlink{hashlib_8h_a9933dec76c43b37331782bdd16ebc4a3a7b7b54293004c0ab7a4a1f6a899e53f2}{SCHM\_PKCS7}},               }
-\DoxyCodeLine{320     \mbox{\hyperlink{hashlib_8h_a9933dec76c43b37331782bdd16ebc4a3a1446879dbb5f2f777c955fcf6723ee4a}{SCHM\_DEFAULT}} = \mbox{\hyperlink{hashlib_8h_a9933dec76c43b37331782bdd16ebc4a3a7b7b54293004c0ab7a4a1f6a899e53f2}{SCHM\_PKCS7}},    }
-\DoxyCodeLine{323     \mbox{\hyperlink{hashlib_8h_a9933dec76c43b37331782bdd16ebc4a3a030a31bd034c7d20a80341ede899a6b7}{SCHM\_ISO2}},             }
-\DoxyCodeLine{324 \};}
-\DoxyCodeLine{325 }
-\DoxyCodeLine{326 }
-\DoxyCodeLine{327 }
-\DoxyCodeLine{331 \textcolor{preprocessor}{\#define AES\_BLOCKSIZE   16}}
+\DoxyCodeLine{258 \textcolor{keywordtype}{void} \mbox{\hyperlink{hashlib_8h_aa21280fa3208d9f7c3d64e38e8d20c1a}{hmac\_sha256\_reset}}(\mbox{\hyperlink{struct__hmac__ctx}{hmac\_ctx}}* ctx);}
+\DoxyCodeLine{259 }
+\DoxyCodeLine{260 }
+\DoxyCodeLine{278 \textcolor{keywordtype}{bool} \mbox{\hyperlink{hashlib_8h_a415fd61aa3da75a48885f14d61d65d8f}{hmac\_pbkdf2}}(}
+\DoxyCodeLine{279     \textcolor{keyword}{const} \textcolor{keywordtype}{char}* password,}
+\DoxyCodeLine{280     \textcolor{keywordtype}{size\_t} passlen,}
+\DoxyCodeLine{281     \textcolor{keywordtype}{void}* key,}
+\DoxyCodeLine{282     \textcolor{keywordtype}{size\_t} keylen,}
+\DoxyCodeLine{283     \textcolor{keyword}{const} \textcolor{keywordtype}{void}* salt,}
+\DoxyCodeLine{284     \textcolor{keywordtype}{size\_t} saltlen,}
+\DoxyCodeLine{285     \textcolor{keywordtype}{size\_t} rounds);}
+\DoxyCodeLine{286 }
+\DoxyCodeLine{287 }
+\DoxyCodeLine{288 \textcolor{comment}{/*}}
+\DoxyCodeLine{289 \textcolor{comment}{Advanced Encryption Standard (AES)}}
+\DoxyCodeLine{290 \textcolor{comment}{ }}
+\DoxyCodeLine{291 \textcolor{comment}{AES is a form of symmetric encryption, and also is a form of block cipher.}}
+\DoxyCodeLine{292 \textcolor{comment}{Symmetric encryption means that the same key works in both directions.}}
+\DoxyCodeLine{293 \textcolor{comment}{A block cipher is an encryption algorithm that operates on data in segments (for AES, 16 bytes),}}
+\DoxyCodeLine{294 \textcolor{comment}{moving through it one segment at a time.}}
+\DoxyCodeLine{295 \textcolor{comment}{ }}
+\DoxyCodeLine{296 \textcolor{comment}{Symmetric encryption is usually fast, and is generally more secure for smaller key sizes.}}
+\DoxyCodeLine{297 \textcolor{comment}{AES is one of the most secure encryption systems in use today.}}
+\DoxyCodeLine{298 \textcolor{comment}{The most secure version of the algorithm is AES-\/256 (uses a 256-\/bit key).}}
+\DoxyCodeLine{299 \textcolor{comment}{AES is one of the open-\/source encryption schemes believed secure enough to withstand even}}
+\DoxyCodeLine{300 \textcolor{comment}{the advent of quantum computing.}}
+\DoxyCodeLine{301 \textcolor{comment}{*/}}
+\DoxyCodeLine{302 }
+\DoxyCodeLine{306 \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\mbox{\hyperlink{struct__aes__ctx}{\_aes\_ctx}} \{}
+\DoxyCodeLine{307     uint24\_t \mbox{\hyperlink{struct__aes__ctx_a3c7170b46d94b5b8395f74eb0baa14c8}{keysize}};                }
+\DoxyCodeLine{308     uint32\_t \mbox{\hyperlink{struct__aes__ctx_adb6943e9b2c5dd39e5390f26ae470ffe}{round\_keys}}[60];      }
+\DoxyCodeLine{309 \} \mbox{\hyperlink{hashlib_8h_aa188bc2768a3b7aa6ad73cb2c77819e0}{aes\_ctx}};}
+\DoxyCodeLine{310 }
+\DoxyCodeLine{311 }
+\DoxyCodeLine{315 \textcolor{keyword}{enum} \mbox{\hyperlink{hashlib_8h_a194ef6b5934dff6dceed4dd819e76340}{aes\_cipher\_modes}} \{}
+\DoxyCodeLine{316     \mbox{\hyperlink{hashlib_8h_a194ef6b5934dff6dceed4dd819e76340ad21a3698b98b7368b14ec3d48314a132}{AES\_MODE\_CBC}},       }
+\DoxyCodeLine{317     \mbox{\hyperlink{hashlib_8h_a194ef6b5934dff6dceed4dd819e76340a5ecd63cd0bd97d46f273461b6550cb8e}{AES\_MODE\_CTR}}        }
+\DoxyCodeLine{318 \};}
+\DoxyCodeLine{319 }
+\DoxyCodeLine{320 }
+\DoxyCodeLine{324 \textcolor{keyword}{enum} \mbox{\hyperlink{hashlib_8h_a9933dec76c43b37331782bdd16ebc4a3}{aes\_padding\_schemes}} \{}
+\DoxyCodeLine{325     \mbox{\hyperlink{hashlib_8h_a9933dec76c43b37331782bdd16ebc4a3a7b7b54293004c0ab7a4a1f6a899e53f2}{SCHM\_PKCS7}},               }
+\DoxyCodeLine{326     \mbox{\hyperlink{hashlib_8h_a9933dec76c43b37331782bdd16ebc4a3a1446879dbb5f2f777c955fcf6723ee4a}{SCHM\_DEFAULT}} = \mbox{\hyperlink{hashlib_8h_a9933dec76c43b37331782bdd16ebc4a3a7b7b54293004c0ab7a4a1f6a899e53f2}{SCHM\_PKCS7}},    }
+\DoxyCodeLine{329     \mbox{\hyperlink{hashlib_8h_a9933dec76c43b37331782bdd16ebc4a3a030a31bd034c7d20a80341ede899a6b7}{SCHM\_ISO2}},             }
+\DoxyCodeLine{330 \};}
+\DoxyCodeLine{331 }
 \DoxyCodeLine{332 }
 \DoxyCodeLine{333 }
-\DoxyCodeLine{337 \textcolor{preprocessor}{\#define AES\_IVSIZE      AES\_BLOCKSIZE}}
+\DoxyCodeLine{337 \textcolor{preprocessor}{\#define AES\_BLOCKSIZE   16}}
 \DoxyCodeLine{338 }
 \DoxyCodeLine{339 }
-\DoxyCodeLine{343 \textcolor{preprocessor}{\#define AES128\_KEYLEN   16}}
+\DoxyCodeLine{343 \textcolor{preprocessor}{\#define AES\_IVSIZE      AES\_BLOCKSIZE}}
 \DoxyCodeLine{344 }
 \DoxyCodeLine{345 }
-\DoxyCodeLine{349 \textcolor{preprocessor}{ \#define AES192\_KEYLEN  24}}
-\DoxyCodeLine{350  }
+\DoxyCodeLine{349 \textcolor{preprocessor}{\#define AES128\_KEYLEN   16}}
+\DoxyCodeLine{350 }
 \DoxyCodeLine{351 }
-\DoxyCodeLine{355 \textcolor{preprocessor}{\#define AES256\_KEYLEN   32}}
-\DoxyCodeLine{356 }
+\DoxyCodeLine{355 \textcolor{preprocessor}{ \#define AES192\_KEYLEN  24}}
+\DoxyCodeLine{356  }
 \DoxyCodeLine{357 }
-\DoxyCodeLine{365 \textcolor{preprocessor}{\#define cipher\_aes\_outsize(len) \(\backslash\)}}
-\DoxyCodeLine{366 \textcolor{preprocessor}{    ((((len)\%AES\_BLOCKSIZE)==0) ? (len) + AES\_BLOCKSIZE : (((len)>>4) + 1)<<4)}}
-\DoxyCodeLine{367     }
-\DoxyCodeLine{368 }
-\DoxyCodeLine{375 \textcolor{preprocessor}{\#define cipher\_aes\_extoutsize(len) \(\backslash\)}}
-\DoxyCodeLine{376 \textcolor{preprocessor}{    (cipher\_aes\_outsize((len)) + AES\_IVSIZE)}}
-\DoxyCodeLine{377 }
-\DoxyCodeLine{378 }
-\DoxyCodeLine{386 \textcolor{keywordtype}{bool} \mbox{\hyperlink{hashlib_8h_aed1dd25115e80cf3b37de2e6c7f32584}{cipher\_aes\_loadkey}}(\textcolor{keyword}{const} \textcolor{keywordtype}{void}* key, \textcolor{keyword}{const} \mbox{\hyperlink{struct__aes__ctx}{aes\_ctx}}* ks, \textcolor{keywordtype}{size\_t} keylen);}
-\DoxyCodeLine{387 }
-\DoxyCodeLine{388 }
-\DoxyCodeLine{393 \textcolor{keyword}{typedef} \textcolor{keyword}{enum} \{}
-\DoxyCodeLine{394     \mbox{\hyperlink{hashlib_8h_aeb2e64abcc4317e3143fb820f21c3bfdaacf07636102724d2a7913911b0cf74b2}{AES\_OK}},                             }
-\DoxyCodeLine{395     \mbox{\hyperlink{hashlib_8h_aeb2e64abcc4317e3143fb820f21c3bfda6d39b280aea9d8d62d126eef05d271db}{AES\_INVALID\_ARG}},                    }
-\DoxyCodeLine{396     \mbox{\hyperlink{hashlib_8h_aeb2e64abcc4317e3143fb820f21c3bfdaae5e9a591aeda666b0e425d9a05834e3}{AES\_INVALID\_MSG}},                    }
-\DoxyCodeLine{397     \mbox{\hyperlink{hashlib_8h_aeb2e64abcc4317e3143fb820f21c3bfdad2b49ffeabf14aaf47db3d1bad18f84e}{AES\_INVALID\_CIPHERMODE}},             }
-\DoxyCodeLine{398     \mbox{\hyperlink{hashlib_8h_aeb2e64abcc4317e3143fb820f21c3bfda47bbd593fc3bdb7758a790bab86b41d9}{AES\_INVALID\_PADDINGMODE}},            }
-\DoxyCodeLine{399     \mbox{\hyperlink{hashlib_8h_aeb2e64abcc4317e3143fb820f21c3bfdaba928751c773ffa0287e47e1f86eae8b}{AES\_INVALID\_CIPHERTEXT}}              }
-\DoxyCodeLine{400 \} \mbox{\hyperlink{hashlib_8h_aeb2e64abcc4317e3143fb820f21c3bfd}{aes\_error\_t}};}
-\DoxyCodeLine{401 }
-\DoxyCodeLine{402 }
-\DoxyCodeLine{428 \mbox{\hyperlink{hashlib_8h_aeb2e64abcc4317e3143fb820f21c3bfd}{aes\_error\_t}} \mbox{\hyperlink{hashlib_8h_a28cae62bd0a114d015d006ef8cd90d4c}{cipher\_aes\_encrypt}}(}
-\DoxyCodeLine{429     \textcolor{keyword}{const} \textcolor{keywordtype}{void}* plaintext,}
-\DoxyCodeLine{430     \textcolor{keywordtype}{size\_t} len,}
-\DoxyCodeLine{431     \textcolor{keywordtype}{void}* ciphertext,}
-\DoxyCodeLine{432     \textcolor{keyword}{const} \mbox{\hyperlink{struct__aes__ctx}{aes\_ctx}}* ks,}
-\DoxyCodeLine{433     \textcolor{keyword}{const} \textcolor{keywordtype}{void}* iv,}
-\DoxyCodeLine{434     uint8\_t ciphermode,}
-\DoxyCodeLine{435     uint8\_t paddingmode);}
-\DoxyCodeLine{436 }
-\DoxyCodeLine{437 }
-\DoxyCodeLine{450 \mbox{\hyperlink{hashlib_8h_aeb2e64abcc4317e3143fb820f21c3bfd}{aes\_error\_t}} \mbox{\hyperlink{hashlib_8h_ac26627caf3523cfd714f610b2e89c711}{cipher\_aes\_decrypt}}(}
-\DoxyCodeLine{451     \textcolor{keyword}{const} \textcolor{keywordtype}{void}* ciphertext,}
-\DoxyCodeLine{452     \textcolor{keywordtype}{size\_t} len,}
-\DoxyCodeLine{453     \textcolor{keywordtype}{void}* plaintext,}
-\DoxyCodeLine{454     \textcolor{keyword}{const} \mbox{\hyperlink{struct__aes__ctx}{aes\_ctx}}* ks,}
-\DoxyCodeLine{455     \textcolor{keyword}{const} \textcolor{keywordtype}{void}* iv,}
-\DoxyCodeLine{456     uint8\_t ciphermode,}
-\DoxyCodeLine{457     uint8\_t paddingmode);}
-\DoxyCodeLine{458 }
-\DoxyCodeLine{459 \textcolor{comment}{/*}}
-\DoxyCodeLine{460 \textcolor{comment}{ RSA Public Key Encryption}}
-\DoxyCodeLine{461 \textcolor{comment}{ }}
-\DoxyCodeLine{462 \textcolor{comment}{ Public key encryption is a form of asymmetric encryption.}}
-\DoxyCodeLine{463 \textcolor{comment}{ This means that a key only works in one direction, and both parties need a public key}}
-\DoxyCodeLine{464 \textcolor{comment}{ and a private key. The private key is used to decrypt a message and the public key is}}
-\DoxyCodeLine{465 \textcolor{comment}{ used to encrypt.}}
-\DoxyCodeLine{466 \textcolor{comment}{ In RSA, the public and private keys are modular inverses of each other, such that:}}
-\DoxyCodeLine{467 \textcolor{comment}{ encrypted = message ** public exponent \% public key, and}}
-\DoxyCodeLine{468 \textcolor{comment}{ message = encrypted ** private exponent \% private modulus}}
-\DoxyCodeLine{469 \textcolor{comment}{ ** means power, \% means modulus}}
-\DoxyCodeLine{470 \textcolor{comment}{ }}
-\DoxyCodeLine{471 \textcolor{comment}{ 65537 (and a few other Fermat primes) are commonly used as public exponents.}}
-\DoxyCodeLine{472 \textcolor{comment}{ The public key (modulus) is sent in the clear and is known to to everyone.}}
-\DoxyCodeLine{473 \textcolor{comment}{ The cryptographic strength of RSA comes from the difficulty of factoring the modulus.}}
-\DoxyCodeLine{474 \textcolor{comment}{ Asymmetric encryption is generally VERY slow. Using even RSA-\/1024 on the TI-\/84+ CE will}}
-\DoxyCodeLine{475 \textcolor{comment}{ take several seconds. For this reason, you usually do not use RSA for sustained encrypted}}
-\DoxyCodeLine{476 \textcolor{comment}{ communication. Use RSA to share a symmetric key, and then use AES for future messages.}}
-\DoxyCodeLine{477 \textcolor{comment}{ }}
-\DoxyCodeLine{478 \textcolor{comment}{ */}}
-\DoxyCodeLine{479 }
-\DoxyCodeLine{480 }
-\DoxyCodeLine{484 \textcolor{keyword}{typedef} \textcolor{keyword}{enum} \{}
-\DoxyCodeLine{485     \mbox{\hyperlink{hashlib_8h_a0486449f609d0e485bad091a671d9294a2cafdb683e1870a33bcb821420626cae}{RSA\_OK}},                         }
-\DoxyCodeLine{486     \mbox{\hyperlink{hashlib_8h_a0486449f609d0e485bad091a671d9294aab9ab38286c4180a1aa9f6e8df42e5db}{RSA\_INVALID\_ARG}},                }
-\DoxyCodeLine{487     \mbox{\hyperlink{hashlib_8h_a0486449f609d0e485bad091a671d9294aedeb18a96b96e292369abed5b2f0a271}{RSA\_INVALID\_MSG}},                }
-\DoxyCodeLine{488     \mbox{\hyperlink{hashlib_8h_a0486449f609d0e485bad091a671d9294a843ec210de66176ef63e2d2b8ebdeb65}{RSA\_INVALID\_MODULUS}},            }
-\DoxyCodeLine{489     \mbox{\hyperlink{hashlib_8h_a0486449f609d0e485bad091a671d9294a43eadc89540121b902e02afabc7a7eb9}{RSA\_ENCODING\_ERROR}}              }
-\DoxyCodeLine{490 \} \mbox{\hyperlink{hashlib_8h_a0486449f609d0e485bad091a671d9294}{rsa\_error\_t}};}
-\DoxyCodeLine{491  }
-\DoxyCodeLine{492 }
-\DoxyCodeLine{509 \mbox{\hyperlink{hashlib_8h_a0486449f609d0e485bad091a671d9294}{rsa\_error\_t}} \mbox{\hyperlink{hashlib_8h_ada81c3ab7c41749cddb7493c43c8bd48}{cipher\_rsa\_encrypt}}(}
-\DoxyCodeLine{510     \textcolor{keyword}{const} \textcolor{keywordtype}{void}* msg,}
-\DoxyCodeLine{511     \textcolor{keywordtype}{size\_t} msglen,}
-\DoxyCodeLine{512     \textcolor{keywordtype}{void}* ciphertext,}
-\DoxyCodeLine{513     \textcolor{keyword}{const} \textcolor{keywordtype}{void}* pubkey,}
-\DoxyCodeLine{514     \textcolor{keywordtype}{size\_t} keylen);}
-\DoxyCodeLine{515     }
-\DoxyCodeLine{516 }
-\DoxyCodeLine{517 \textcolor{comment}{// Miscellaneous Functions}}
-\DoxyCodeLine{518 }
-\DoxyCodeLine{519 }
-\DoxyCodeLine{525 \textcolor{keywordtype}{bool} \mbox{\hyperlink{hashlib_8h_a9875035ce2ae4859b39cfbbff2d1f609}{digest\_tostring}}(\textcolor{keyword}{const} \textcolor{keywordtype}{void}* digest, \textcolor{keywordtype}{size\_t} len, \textcolor{keywordtype}{char}* hexstr);}
-\DoxyCodeLine{526 }
-\DoxyCodeLine{527 }
-\DoxyCodeLine{528 }
-\DoxyCodeLine{538 \textcolor{keywordtype}{bool} \mbox{\hyperlink{hashlib_8h_aade3753b2b7e59ebf301c1c0712f8376}{digest\_compare}}(\textcolor{keyword}{const} \textcolor{keywordtype}{void}* digest1, \textcolor{keyword}{const} \textcolor{keywordtype}{void}* digest2, \textcolor{keywordtype}{size\_t} len);}
-\DoxyCodeLine{539 }
-\DoxyCodeLine{540 }
-\DoxyCodeLine{541 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{361 \textcolor{preprocessor}{\#define AES256\_KEYLEN   32}}
+\DoxyCodeLine{362 }
+\DoxyCodeLine{363 }
+\DoxyCodeLine{371 \textcolor{preprocessor}{\#define cipher\_aes\_outsize(len) \(\backslash\)}}
+\DoxyCodeLine{372 \textcolor{preprocessor}{    ((((len)\%AES\_BLOCKSIZE)==0) ? (len) + AES\_BLOCKSIZE : (((len)>>4) + 1)<<4)}}
+\DoxyCodeLine{373     }
+\DoxyCodeLine{374 }
+\DoxyCodeLine{381 \textcolor{preprocessor}{\#define cipher\_aes\_extoutsize(len) \(\backslash\)}}
+\DoxyCodeLine{382 \textcolor{preprocessor}{    (cipher\_aes\_outsize((len)) + AES\_IVSIZE)}}
+\DoxyCodeLine{383 }
+\DoxyCodeLine{384 }
+\DoxyCodeLine{392 \textcolor{keywordtype}{bool} \mbox{\hyperlink{hashlib_8h_aed1dd25115e80cf3b37de2e6c7f32584}{cipher\_aes\_loadkey}}(\textcolor{keyword}{const} \textcolor{keywordtype}{void}* key, \textcolor{keyword}{const} \mbox{\hyperlink{struct__aes__ctx}{aes\_ctx}}* ks, \textcolor{keywordtype}{size\_t} keylen);}
+\DoxyCodeLine{393 }
+\DoxyCodeLine{394 }
+\DoxyCodeLine{399 \textcolor{keyword}{typedef} \textcolor{keyword}{enum} \{}
+\DoxyCodeLine{400     \mbox{\hyperlink{hashlib_8h_aeb2e64abcc4317e3143fb820f21c3bfdaacf07636102724d2a7913911b0cf74b2}{AES\_OK}},                             }
+\DoxyCodeLine{401     \mbox{\hyperlink{hashlib_8h_aeb2e64abcc4317e3143fb820f21c3bfda6d39b280aea9d8d62d126eef05d271db}{AES\_INVALID\_ARG}},                    }
+\DoxyCodeLine{402     \mbox{\hyperlink{hashlib_8h_aeb2e64abcc4317e3143fb820f21c3bfdaae5e9a591aeda666b0e425d9a05834e3}{AES\_INVALID\_MSG}},                    }
+\DoxyCodeLine{403     \mbox{\hyperlink{hashlib_8h_aeb2e64abcc4317e3143fb820f21c3bfdad2b49ffeabf14aaf47db3d1bad18f84e}{AES\_INVALID\_CIPHERMODE}},             }
+\DoxyCodeLine{404     \mbox{\hyperlink{hashlib_8h_aeb2e64abcc4317e3143fb820f21c3bfda47bbd593fc3bdb7758a790bab86b41d9}{AES\_INVALID\_PADDINGMODE}},            }
+\DoxyCodeLine{405     \mbox{\hyperlink{hashlib_8h_aeb2e64abcc4317e3143fb820f21c3bfdaba928751c773ffa0287e47e1f86eae8b}{AES\_INVALID\_CIPHERTEXT}}              }
+\DoxyCodeLine{406 \} \mbox{\hyperlink{hashlib_8h_aeb2e64abcc4317e3143fb820f21c3bfd}{aes\_error\_t}};}
+\DoxyCodeLine{407 }
+\DoxyCodeLine{408 }
+\DoxyCodeLine{434 \mbox{\hyperlink{hashlib_8h_aeb2e64abcc4317e3143fb820f21c3bfd}{aes\_error\_t}} \mbox{\hyperlink{hashlib_8h_a28cae62bd0a114d015d006ef8cd90d4c}{cipher\_aes\_encrypt}}(}
+\DoxyCodeLine{435     \textcolor{keyword}{const} \textcolor{keywordtype}{void}* plaintext,}
+\DoxyCodeLine{436     \textcolor{keywordtype}{size\_t} len,}
+\DoxyCodeLine{437     \textcolor{keywordtype}{void}* ciphertext,}
+\DoxyCodeLine{438     \textcolor{keyword}{const} \mbox{\hyperlink{struct__aes__ctx}{aes\_ctx}}* ks,}
+\DoxyCodeLine{439     \textcolor{keyword}{const} \textcolor{keywordtype}{void}* iv,}
+\DoxyCodeLine{440     uint8\_t ciphermode,}
+\DoxyCodeLine{441     uint8\_t paddingmode);}
+\DoxyCodeLine{442 }
+\DoxyCodeLine{443 }
+\DoxyCodeLine{456 \mbox{\hyperlink{hashlib_8h_aeb2e64abcc4317e3143fb820f21c3bfd}{aes\_error\_t}} \mbox{\hyperlink{hashlib_8h_ac26627caf3523cfd714f610b2e89c711}{cipher\_aes\_decrypt}}(}
+\DoxyCodeLine{457     \textcolor{keyword}{const} \textcolor{keywordtype}{void}* ciphertext,}
+\DoxyCodeLine{458     \textcolor{keywordtype}{size\_t} len,}
+\DoxyCodeLine{459     \textcolor{keywordtype}{void}* plaintext,}
+\DoxyCodeLine{460     \textcolor{keyword}{const} \mbox{\hyperlink{struct__aes__ctx}{aes\_ctx}}* ks,}
+\DoxyCodeLine{461     \textcolor{keyword}{const} \textcolor{keywordtype}{void}* iv,}
+\DoxyCodeLine{462     uint8\_t ciphermode,}
+\DoxyCodeLine{463     uint8\_t paddingmode);}
+\DoxyCodeLine{464 }
+\DoxyCodeLine{465 \textcolor{comment}{/*}}
+\DoxyCodeLine{466 \textcolor{comment}{ RSA Public Key Encryption}}
+\DoxyCodeLine{467 \textcolor{comment}{ }}
+\DoxyCodeLine{468 \textcolor{comment}{ Public key encryption is a form of asymmetric encryption.}}
+\DoxyCodeLine{469 \textcolor{comment}{ This means that a key only works in one direction, and both parties need a public key}}
+\DoxyCodeLine{470 \textcolor{comment}{ and a private key. The private key is used to decrypt a message and the public key is}}
+\DoxyCodeLine{471 \textcolor{comment}{ used to encrypt.}}
+\DoxyCodeLine{472 \textcolor{comment}{ In RSA, the public and private keys are modular inverses of each other, such that:}}
+\DoxyCodeLine{473 \textcolor{comment}{ encrypted = message ** public exponent \% public key, and}}
+\DoxyCodeLine{474 \textcolor{comment}{ message = encrypted ** private exponent \% private modulus}}
+\DoxyCodeLine{475 \textcolor{comment}{ ** means power, \% means modulus}}
+\DoxyCodeLine{476 \textcolor{comment}{ }}
+\DoxyCodeLine{477 \textcolor{comment}{ 65537 (and a few other Fermat primes) are commonly used as public exponents.}}
+\DoxyCodeLine{478 \textcolor{comment}{ The public key (modulus) is sent in the clear and is known to to everyone.}}
+\DoxyCodeLine{479 \textcolor{comment}{ The cryptographic strength of RSA comes from the difficulty of factoring the modulus.}}
+\DoxyCodeLine{480 \textcolor{comment}{ Asymmetric encryption is generally VERY slow. Using even RSA-\/1024 on the TI-\/84+ CE will}}
+\DoxyCodeLine{481 \textcolor{comment}{ take several seconds. For this reason, you usually do not use RSA for sustained encrypted}}
+\DoxyCodeLine{482 \textcolor{comment}{ communication. Use RSA to share a symmetric key, and then use AES for future messages.}}
+\DoxyCodeLine{483 \textcolor{comment}{ }}
+\DoxyCodeLine{484 \textcolor{comment}{ */}}
+\DoxyCodeLine{485 }
+\DoxyCodeLine{486 }
+\DoxyCodeLine{490 \textcolor{keyword}{typedef} \textcolor{keyword}{enum} \{}
+\DoxyCodeLine{491     \mbox{\hyperlink{hashlib_8h_a0486449f609d0e485bad091a671d9294a2cafdb683e1870a33bcb821420626cae}{RSA\_OK}},                         }
+\DoxyCodeLine{492     \mbox{\hyperlink{hashlib_8h_a0486449f609d0e485bad091a671d9294aab9ab38286c4180a1aa9f6e8df42e5db}{RSA\_INVALID\_ARG}},                }
+\DoxyCodeLine{493     \mbox{\hyperlink{hashlib_8h_a0486449f609d0e485bad091a671d9294aedeb18a96b96e292369abed5b2f0a271}{RSA\_INVALID\_MSG}},                }
+\DoxyCodeLine{494     \mbox{\hyperlink{hashlib_8h_a0486449f609d0e485bad091a671d9294a843ec210de66176ef63e2d2b8ebdeb65}{RSA\_INVALID\_MODULUS}},            }
+\DoxyCodeLine{495     \mbox{\hyperlink{hashlib_8h_a0486449f609d0e485bad091a671d9294a43eadc89540121b902e02afabc7a7eb9}{RSA\_ENCODING\_ERROR}}              }
+\DoxyCodeLine{496 \} \mbox{\hyperlink{hashlib_8h_a0486449f609d0e485bad091a671d9294}{rsa\_error\_t}};}
+\DoxyCodeLine{497  }
+\DoxyCodeLine{498 }
+\DoxyCodeLine{515 \mbox{\hyperlink{hashlib_8h_a0486449f609d0e485bad091a671d9294}{rsa\_error\_t}} \mbox{\hyperlink{hashlib_8h_ada81c3ab7c41749cddb7493c43c8bd48}{cipher\_rsa\_encrypt}}(}
+\DoxyCodeLine{516     \textcolor{keyword}{const} \textcolor{keywordtype}{void}* msg,}
+\DoxyCodeLine{517     \textcolor{keywordtype}{size\_t} msglen,}
+\DoxyCodeLine{518     \textcolor{keywordtype}{void}* ciphertext,}
+\DoxyCodeLine{519     \textcolor{keyword}{const} \textcolor{keywordtype}{void}* pubkey,}
+\DoxyCodeLine{520     \textcolor{keywordtype}{size\_t} keylen);}
+\DoxyCodeLine{521     }
+\DoxyCodeLine{522 }
+\DoxyCodeLine{523 \textcolor{comment}{// Miscellaneous Functions}}
+\DoxyCodeLine{524 }
+\DoxyCodeLine{525 }
+\DoxyCodeLine{531 \textcolor{keywordtype}{bool} \mbox{\hyperlink{hashlib_8h_a9875035ce2ae4859b39cfbbff2d1f609}{digest\_tostring}}(\textcolor{keyword}{const} \textcolor{keywordtype}{void}* digest, \textcolor{keywordtype}{size\_t} len, \textcolor{keywordtype}{char}* hexstr);}
+\DoxyCodeLine{532 }
+\DoxyCodeLine{533 }
+\DoxyCodeLine{534 }
+\DoxyCodeLine{544 \textcolor{keywordtype}{bool} \mbox{\hyperlink{hashlib_8h_aade3753b2b7e59ebf301c1c0712f8376}{digest\_compare}}(\textcolor{keyword}{const} \textcolor{keywordtype}{void}* digest1, \textcolor{keyword}{const} \textcolor{keywordtype}{void}* digest2, \textcolor{keywordtype}{size\_t} len);}
+\DoxyCodeLine{545 }
+\DoxyCodeLine{546 }
+\DoxyCodeLine{547 \textcolor{preprocessor}{\#endif}}
 
 \end{DoxyCode}

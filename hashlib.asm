@@ -116,9 +116,6 @@ _max_deviation := _num_tests/4
 ;------------------------------------------
 ; structures
 virtual at 0
-    offset_init_func    rl 1
-    offset_update_func  rl 1
-    offset_final_func   rl 1
 	offset_data     rb 64
 	offset_bitlen   rb 8
 	offset_datalen  rb 1
@@ -446,8 +443,11 @@ hash_algs_impl  =   1
  
 ; hash_init(context, alg);
 hash_init:
-    pop bc,de,hl
-    push hl,de,bc
+    pop bc,iy,hl
+    push hl
+    pea iy+9
+    push bc
+    lea de, iy+0
     ld a,l
     cp a, hash_algs_impl
     sbc a,a
@@ -466,14 +466,16 @@ hash_init:
 ; hash_update(context, data, len);
 hash_update:
     pop bc,iy
-    push iy,bc
+    pea iy+9
+    push bc
     ld hl, (iy+3)
     jp (hl)
     
 ; hash_final(context, outbuf);
 hash_final:
     pop bc,iy
-    push iy,bc
+    pea iy+9
+    push bc
     ld hl, (iy+6)
     jp (hl)
     

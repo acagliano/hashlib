@@ -135,14 +135,20 @@ or has been tampered with.
  * @note If you are hashing multiple data streams concurrently, allocate a seperate context for each.
  ********************************************************************************************************************/
 typedef struct _sha256_ctx {
-    uint24_t init;
-    uint24_t update;
-    uint24_t digest;
 	uint8_t data[64];		/**< holds sha-256 block for transformation */
 	uint8_t datalen;		/**< holds the current length of data in data[64] */
 	uint8_t bitlen[8];		/**< holds the current length of transformed data */
 	uint32_t state[8];		/**< holds hash state for transformed data */
 } sha256_ctx;
+
+typedef struct _hash_ctx {
+    uint24_t fn_init;
+    uint24_t fn_update;
+    uint24_t fn_final;
+    union _hash {
+        sha256_ctx sha256;
+    }
+}
  
  /******************************************************
   * @def SHA256_DIGEST_LEN
