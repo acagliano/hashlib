@@ -27,11 +27,12 @@ void hexdump(uint8_t *addr, size_t len, uint8_t *label){
     sprintf(CEMU_CONSOLE, "\n");
 }
 
+hash_ctx ctx;
+uint8_t sha256_digest[SHA256_DIGEST_LEN];
+uint8_t sha256_hex[SHA256_HEXDIGEST_LEN];
+
 int main(void)
 {
-    hash_ctx ctx;
-    uint8_t sha256_digest[SHA256_DIGEST_LEN];
-    uint8_t sha256_hex[SHA256_HEXDIGEST_LEN];
     size_t str_len = strlen(str);
     
     hash_init(&ctx, SHA256);
