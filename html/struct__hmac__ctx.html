@@ -64,64 +64,73 @@ $(function() {
 </div><!-- top -->
 <div class="header">
   <div class="summary">
+<a href="#nested-classes">Classes</a> &#124;
 <a href="#pub-attribs">Public Attributes</a> &#124;
 <a href="struct__hmac__ctx-members.html">List of all members</a>  </div>
   <div class="headertitle"><div class="title">_hmac_ctx Struct Reference</div></div>
 </div><!--header-->
 <div class="contents">
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
+Classes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">union &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="union__hmac__ctx_1_1__hmac.html">_hmac</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:a010b68ec772d854d51d66a8a8e321571"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct__hmac__ctx.html#a010b68ec772d854d51d66a8a8e321571">ipad</a> [64]</td></tr>
-<tr class="separator:a010b68ec772d854d51d66a8a8e321571"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3ee88b93200effd0e21446bd3016a5c2"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct__hmac__ctx.html#a3ee88b93200effd0e21446bd3016a5c2">opad</a> [64]</td></tr>
-<tr class="separator:a3ee88b93200effd0e21446bd3016a5c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a00ff87f0f4be07252bc693692bcf789e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct__hash__ctx.html">hash_ctx</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct__hmac__ctx.html#a00ff87f0f4be07252bc693692bcf789e">ctx</a></td></tr>
-<tr class="separator:a00ff87f0f4be07252bc693692bcf789e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af801912fa2fb1c34eda73c55681289dc"><td class="memItemLeft" align="right" valign="top">uint24_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct__hmac__ctx.html#af801912fa2fb1c34eda73c55681289dc">fn_init</a></td></tr>
+<tr class="separator:af801912fa2fb1c34eda73c55681289dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7202d69901429812f50ff5b9aae864fc"><td class="memItemLeft" align="right" valign="top">uint24_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct__hmac__ctx.html#a7202d69901429812f50ff5b9aae864fc">fn_update</a></td></tr>
+<tr class="separator:a7202d69901429812f50ff5b9aae864fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a346ec38d6fea78f10c988fab487cf3e5"><td class="memItemLeft" align="right" valign="top">uint24_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct__hmac__ctx.html#a346ec38d6fea78f10c988fab487cf3e5">fn_final</a></td></tr>
+<tr class="separator:a346ec38d6fea78f10c988fab487cf3e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afebc00a7bbf696205a1fcd028388fc27"><td class="memItemLeft" align="right" valign="top"><a id="afebc00a7bbf696205a1fcd028388fc27" name="afebc00a7bbf696205a1fcd028388fc27"></a>
+union <a class="el" href="union__hmac__ctx_1_1__hmac.html">_hmac_ctx::_hmac</a>&#160;</td><td class="memItemRight" valign="bottom"><b>Hmac</b></td></tr>
+<tr class="separator:afebc00a7bbf696205a1fcd028388fc27"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Member Data Documentation</h2>
-<a id="a010b68ec772d854d51d66a8a8e321571" name="a010b68ec772d854d51d66a8a8e321571"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a010b68ec772d854d51d66a8a8e321571">&#9670;&nbsp;</a></span>ipad</h2>
+<a id="af801912fa2fb1c34eda73c55681289dc" name="af801912fa2fb1c34eda73c55681289dc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af801912fa2fb1c34eda73c55681289dc">&#9670;&nbsp;</a></span>fn_init</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">uint8_t _hmac_ctx::ipad[64]</td>
+          <td class="memname">uint24_t _hmac_ctx::fn_init</td>
         </tr>
       </table>
 </div><div class="memdoc">
-<p >holds the key xored with a magic value to be hashed with the inner digest </p>
+<p >pointer to an initialization method for the given hash algorithm </p>
 
 </div>
 </div>
-<a id="a3ee88b93200effd0e21446bd3016a5c2" name="a3ee88b93200effd0e21446bd3016a5c2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3ee88b93200effd0e21446bd3016a5c2">&#9670;&nbsp;</a></span>opad</h2>
+<a id="a7202d69901429812f50ff5b9aae864fc" name="a7202d69901429812f50ff5b9aae864fc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7202d69901429812f50ff5b9aae864fc">&#9670;&nbsp;</a></span>fn_update</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">uint8_t _hmac_ctx::opad[64]</td>
+          <td class="memname">uint24_t _hmac_ctx::fn_update</td>
         </tr>
       </table>
 </div><div class="memdoc">
-<p >holds the key xored with a magic value to be hashed with the outer digest </p>
+<p >pointer to the update method for the given hash algorithm </p>
 
 </div>
 </div>
-<a id="a00ff87f0f4be07252bc693692bcf789e" name="a00ff87f0f4be07252bc693692bcf789e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a00ff87f0f4be07252bc693692bcf789e">&#9670;&nbsp;</a></span>ctx</h2>
+<a id="a346ec38d6fea78f10c988fab487cf3e5" name="a346ec38d6fea78f10c988fab487cf3e5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a346ec38d6fea78f10c988fab487cf3e5">&#9670;&nbsp;</a></span>fn_final</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="struct__hash__ctx.html">hash_ctx</a> _hmac_ctx::ctx</td>
+          <td class="memname">uint24_t _hmac_ctx::fn_final</td>
         </tr>
       </table>
 </div><div class="memdoc">
-<p >holds the SHA-256 context used by the HMAC function </p>
+<p >pointer to the digest output method for the given hash algorithm </p>
 
 </div>
 </div>

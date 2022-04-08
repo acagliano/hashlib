@@ -1,0 +1,61 @@
+\hypertarget{struct__sha256hmac__ctx}{}\doxysection{\+\_\+sha256hmac\+\_\+ctx Struct Reference}
+\label{struct__sha256hmac__ctx}\index{\_sha256hmac\_ctx@{\_sha256hmac\_ctx}}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{struct__sha256hmac__ctx_ab5acc050668c737d90c0190e75e4b352}{ipad}} \mbox{[}64\mbox{]}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{struct__sha256hmac__ctx_aa053a464b6af9c46df33453265de483a}{opad}} \mbox{[}64\mbox{]}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{struct__sha256hmac__ctx_af9cbeb1f5ab59ca10aa43df46a1b59e8}{data}} \mbox{[}64\mbox{]}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{struct__sha256hmac__ctx_a5ac8daad74cbf5588d512cf49892d2bd}{datalen}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{struct__sha256hmac__ctx_af4fd1738729663cfa87e8a35dbfa7afa}{bitlen}} \mbox{[}8\mbox{]}
+\item 
+uint32\+\_\+t \mbox{\hyperlink{struct__sha256hmac__ctx_a27f566f7a597a1c683c3d30805b2f916}{state}} \mbox{[}8\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{struct__sha256hmac__ctx_ab5acc050668c737d90c0190e75e4b352}\label{struct__sha256hmac__ctx_ab5acc050668c737d90c0190e75e4b352}} 
+\index{\_sha256hmac\_ctx@{\_sha256hmac\_ctx}!ipad@{ipad}}
+\index{ipad@{ipad}!\_sha256hmac\_ctx@{\_sha256hmac\_ctx}}
+\doxysubsubsection{\texorpdfstring{ipad}{ipad}}
+{\footnotesize\ttfamily uint8\+\_\+t \+\_\+sha256hmac\+\_\+ctx\+::ipad\mbox{[}64\mbox{]}}
+
+holds the key xored with a magic value to be hashed with the inner digest \mbox{\Hypertarget{struct__sha256hmac__ctx_aa053a464b6af9c46df33453265de483a}\label{struct__sha256hmac__ctx_aa053a464b6af9c46df33453265de483a}} 
+\index{\_sha256hmac\_ctx@{\_sha256hmac\_ctx}!opad@{opad}}
+\index{opad@{opad}!\_sha256hmac\_ctx@{\_sha256hmac\_ctx}}
+\doxysubsubsection{\texorpdfstring{opad}{opad}}
+{\footnotesize\ttfamily uint8\+\_\+t \+\_\+sha256hmac\+\_\+ctx\+::opad\mbox{[}64\mbox{]}}
+
+holds the key xored with a magic value to be hashed with the outer digest \mbox{\Hypertarget{struct__sha256hmac__ctx_af9cbeb1f5ab59ca10aa43df46a1b59e8}\label{struct__sha256hmac__ctx_af9cbeb1f5ab59ca10aa43df46a1b59e8}} 
+\index{\_sha256hmac\_ctx@{\_sha256hmac\_ctx}!data@{data}}
+\index{data@{data}!\_sha256hmac\_ctx@{\_sha256hmac\_ctx}}
+\doxysubsubsection{\texorpdfstring{data}{data}}
+{\footnotesize\ttfamily uint8\+\_\+t \+\_\+sha256hmac\+\_\+ctx\+::data\mbox{[}64\mbox{]}}
+
+holds sha-\/256 block for transformation \mbox{\Hypertarget{struct__sha256hmac__ctx_a5ac8daad74cbf5588d512cf49892d2bd}\label{struct__sha256hmac__ctx_a5ac8daad74cbf5588d512cf49892d2bd}} 
+\index{\_sha256hmac\_ctx@{\_sha256hmac\_ctx}!datalen@{datalen}}
+\index{datalen@{datalen}!\_sha256hmac\_ctx@{\_sha256hmac\_ctx}}
+\doxysubsubsection{\texorpdfstring{datalen}{datalen}}
+{\footnotesize\ttfamily uint8\+\_\+t \+\_\+sha256hmac\+\_\+ctx\+::datalen}
+
+holds the current length of data in data\mbox{[}64\mbox{]} \mbox{\Hypertarget{struct__sha256hmac__ctx_af4fd1738729663cfa87e8a35dbfa7afa}\label{struct__sha256hmac__ctx_af4fd1738729663cfa87e8a35dbfa7afa}} 
+\index{\_sha256hmac\_ctx@{\_sha256hmac\_ctx}!bitlen@{bitlen}}
+\index{bitlen@{bitlen}!\_sha256hmac\_ctx@{\_sha256hmac\_ctx}}
+\doxysubsubsection{\texorpdfstring{bitlen}{bitlen}}
+{\footnotesize\ttfamily uint8\+\_\+t \+\_\+sha256hmac\+\_\+ctx\+::bitlen\mbox{[}8\mbox{]}}
+
+holds the current length of transformed data \mbox{\Hypertarget{struct__sha256hmac__ctx_a27f566f7a597a1c683c3d30805b2f916}\label{struct__sha256hmac__ctx_a27f566f7a597a1c683c3d30805b2f916}} 
+\index{\_sha256hmac\_ctx@{\_sha256hmac\_ctx}!state@{state}}
+\index{state@{state}!\_sha256hmac\_ctx@{\_sha256hmac\_ctx}}
+\doxysubsubsection{\texorpdfstring{state}{state}}
+{\footnotesize\ttfamily uint32\+\_\+t \+\_\+sha256hmac\+\_\+ctx\+::state\mbox{[}8\mbox{]}}
+
+holds hash state for transformed data 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{hashlib_8h}{hashlib.\+h}}\end{DoxyCompactItemize}

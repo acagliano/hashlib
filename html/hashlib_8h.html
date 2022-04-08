@@ -89,7 +89,11 @@ Classes</h2></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">union &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="union__hash__ctx_1_1__hash.html">_hash_ctx::_hash</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct__sha256hmac__ctx.html">_sha256hmac_ctx</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct__hmac__ctx.html">_hmac_ctx</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">union &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="union__hmac__ctx_1_1__hmac.html">_hmac_ctx::_hmac</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct__aes__ctx.html">_aes_ctx</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -102,8 +106,6 @@ Macros</h2></td></tr>
 <tr class="separator:a28d611d50cc8cf20a1c9fa327e839a56"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af5aa539ae202ddf9e0c9211309869fc8"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#af5aa539ae202ddf9e0c9211309869fc8">SHA256_DIGEST_LEN</a>&#160;&#160;&#160;32</td></tr>
 <tr class="separator:af5aa539ae202ddf9e0c9211309869fc8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7781b6f83e2f311020d3b926b70743ed"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#a7781b6f83e2f311020d3b926b70743ed">SHA256_HEXDIGEST_LEN</a>&#160;&#160;&#160;(<a class="el" href="hashlib_8h.html#af5aa539ae202ddf9e0c9211309869fc8">SHA256_DIGEST_LEN</a>&lt;&lt;1) + 1</td></tr>
-<tr class="separator:a7781b6f83e2f311020d3b926b70743ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afab0742642db9c0609c00bf8a54f386f"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#afab0742642db9c0609c00bf8a54f386f">AES_BLOCKSIZE</a>&#160;&#160;&#160;16</td></tr>
 <tr class="separator:afab0742642db9c0609c00bf8a54f386f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6c2d58d8dd281845fdc027b499dea89d"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#a6c2d58d8dd281845fdc027b499dea89d">AES_IVSIZE</a>&#160;&#160;&#160;<a class="el" href="hashlib_8h.html#afab0742642db9c0609c00bf8a54f386f">AES_BLOCKSIZE</a></td></tr>
@@ -114,18 +116,22 @@ Macros</h2></td></tr>
 <tr class="separator:a37ba5c621bf4af2ddcb851e179e21623"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7bab8a778d065da4cc561f4813994f03"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#a7bab8a778d065da4cc561f4813994f03">AES256_KEYLEN</a>&#160;&#160;&#160;32</td></tr>
 <tr class="separator:a7bab8a778d065da4cc561f4813994f03"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a45ad76689980a12e8a5453a413f670c8"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#a45ad76689980a12e8a5453a413f670c8">cipher_aes_outsize</a>(len)&#160;&#160;&#160;	((((len)%<a class="el" href="hashlib_8h.html#afab0742642db9c0609c00bf8a54f386f">AES_BLOCKSIZE</a>)==0) ? (len) + <a class="el" href="hashlib_8h.html#afab0742642db9c0609c00bf8a54f386f">AES_BLOCKSIZE</a> : (((len)&gt;&gt;4) + 1)&lt;&lt;4)</td></tr>
-<tr class="separator:a45ad76689980a12e8a5453a413f670c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1da7be2f0eebec1e53e411fc0cc183fb"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#a1da7be2f0eebec1e53e411fc0cc183fb">cipher_aes_extoutsize</a>(len)&#160;&#160;&#160;	(<a class="el" href="hashlib_8h.html#a45ad76689980a12e8a5453a413f670c8">cipher_aes_outsize</a>((len)) + <a class="el" href="hashlib_8h.html#a6c2d58d8dd281845fdc027b499dea89d">AES_IVSIZE</a>)</td></tr>
-<tr class="separator:a1da7be2f0eebec1e53e411fc0cc183fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab723a524d8d2149cb44285a8b8228f1f"><td class="memItemLeft" align="right" valign="top"><a id="ab723a524d8d2149cb44285a8b8228f1f" name="ab723a524d8d2149cb44285a8b8228f1f"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>aes_outsize</b>(len)&#160;&#160;&#160;	((((len)%<a class="el" href="hashlib_8h.html#afab0742642db9c0609c00bf8a54f386f">AES_BLOCKSIZE</a>)==0) ? (len) + <a class="el" href="hashlib_8h.html#afab0742642db9c0609c00bf8a54f386f">AES_BLOCKSIZE</a> : (((len)&gt;&gt;4) + 1)&lt;&lt;4)</td></tr>
+<tr class="separator:ab723a524d8d2149cb44285a8b8228f1f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5441aa332bfebb52cb4480d5a0783334"><td class="memItemLeft" align="right" valign="top"><a id="a5441aa332bfebb52cb4480d5a0783334" name="a5441aa332bfebb52cb4480d5a0783334"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>aes_extoutsize</b>(len)&#160;&#160;&#160;	(aes_outsize((len)) + <a class="el" href="hashlib_8h.html#a6c2d58d8dd281845fdc027b499dea89d">AES_IVSIZE</a>)</td></tr>
+<tr class="separator:a5441aa332bfebb52cb4480d5a0783334"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="typedef-members" name="typedef-members"></a>
 Typedefs</h2></td></tr>
 <tr class="memitem:a53df9e7d871973d59c7b58a6c3963c5d"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="struct__sha256__ctx.html">_sha256_ctx</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#a53df9e7d871973d59c7b58a6c3963c5d">sha256_ctx</a></td></tr>
 <tr class="separator:a53df9e7d871973d59c7b58a6c3963c5d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6a1fef0e2a880c0eeff308e447fce214"><td class="memItemLeft" align="right" valign="top"><a id="a6a1fef0e2a880c0eeff308e447fce214" name="a6a1fef0e2a880c0eeff308e447fce214"></a>
-typedef struct <a class="el" href="struct__hash__ctx.html">_hash_ctx</a>&#160;</td><td class="memItemRight" valign="bottom"><b>hash_ctx</b></td></tr>
-<tr class="separator:a6a1fef0e2a880c0eeff308e447fce214"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa55779911de10df960d64966c6825da7"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="struct__hash__ctx.html">_hash_ctx</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#aa55779911de10df960d64966c6825da7">hash_ctx</a></td></tr>
+<tr class="separator:aa55779911de10df960d64966c6825da7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a506ce2c70011cd08b55ba24768cec79a"><td class="memItemLeft" align="right" valign="top"><a id="a506ce2c70011cd08b55ba24768cec79a" name="a506ce2c70011cd08b55ba24768cec79a"></a>
+typedef struct <a class="el" href="struct__sha256hmac__ctx.html">_sha256hmac_ctx</a>&#160;</td><td class="memItemRight" valign="bottom"><b>sha256hmac_ctx</b></td></tr>
+<tr class="separator:a506ce2c70011cd08b55ba24768cec79a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8d813300476744f01319600478572f62"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="struct__hmac__ctx.html">_hmac_ctx</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#a8d813300476744f01319600478572f62">hmac_ctx</a></td></tr>
 <tr class="separator:a8d813300476744f01319600478572f62"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa188bc2768a3b7aa6ad73cb2c77819e0"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="struct__aes__ctx.html">_aes_ctx</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#aa188bc2768a3b7aa6ad73cb2c77819e0">aes_ctx</a></td></tr>
@@ -133,7 +139,7 @@ typedef struct <a class="el" href="struct__hash__ctx.html">_hash_ctx</a>&#160;</
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="enum-members" name="enum-members"></a>
 Enumerations</h2></td></tr>
-<tr class="memitem:af36e91f131f610a6612b78700d483bd7"><td class="memItemLeft" align="right" valign="top"><a id="af36e91f131f610a6612b78700d483bd7" name="af36e91f131f610a6612b78700d483bd7"></a>enum &#160;</td><td class="memItemRight" valign="bottom"><b>hash_algorithms</b> { <b>SHA256</b>
+<tr class="memitem:af36e91f131f610a6612b78700d483bd7"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#af36e91f131f610a6612b78700d483bd7">hash_algorithms</a> { <a class="el" href="hashlib_8h.html#af36e91f131f610a6612b78700d483bd7ac7716785728694693ec29eccd5ffa0e1">SHA256</a>
  }</td></tr>
 <tr class="separator:af36e91f131f610a6612b78700d483bd7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a194ef6b5934dff6dceed4dd819e76340"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#a194ef6b5934dff6dceed4dd819e76340">aes_cipher_modes</a> { <a class="el" href="hashlib_8h.html#a194ef6b5934dff6dceed4dd819e76340ad21a3698b98b7368b14ec3d48314a132">AES_MODE_CBC</a>
@@ -178,45 +184,42 @@ Functions</h2></td></tr>
 <tr class="memitem:aa3641d44a877ff6eec0eb5cfbfaa5c61"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#aa3641d44a877ff6eec0eb5cfbfaa5c61">csrand_fill</a> (void *buffer, size_t size)</td></tr>
 <tr class="memdesc:aa3641d44a877ff6eec0eb5cfbfaa5c61"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fills a buffer to size with random bytes.  <a href="hashlib_8h.html#aa3641d44a877ff6eec0eb5cfbfaa5c61">More...</a><br /></td></tr>
 <tr class="separator:aa3641d44a877ff6eec0eb5cfbfaa5c61"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a53935bcb47b60dcd7121c737054e26a3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#a53935bcb47b60dcd7121c737054e26a3">hash_init</a> (void *ctx, uint8_t hash_alg)</td></tr>
-<tr class="memdesc:a53935bcb47b60dcd7121c737054e26a3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Context initializer for SHA-256. Initializes the given context with the starting state for SHA-256.  <a href="hashlib_8h.html#a53935bcb47b60dcd7121c737054e26a3">More...</a><br /></td></tr>
-<tr class="separator:a53935bcb47b60dcd7121c737054e26a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a92e4589aa70687f142e178954196ef92"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#a92e4589aa70687f142e178954196ef92">hash_update</a> (void *ctx, const void *data, size_t len)</td></tr>
-<tr class="memdesc:a92e4589aa70687f142e178954196ef92"><td class="mdescLeft">&#160;</td><td class="mdescRight">Updates the SHA-256 context for the given data.  <a href="hashlib_8h.html#a92e4589aa70687f142e178954196ef92">More...</a><br /></td></tr>
-<tr class="separator:a92e4589aa70687f142e178954196ef92"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4e0d444bba8dceb9052cd7db9c1efe15"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#a4e0d444bba8dceb9052cd7db9c1efe15">hash_final</a> (void *ctx, void *digest)</td></tr>
-<tr class="memdesc:a4e0d444bba8dceb9052cd7db9c1efe15"><td class="mdescLeft">&#160;</td><td class="mdescRight">Finalize Context and Render Digest for SHA-256.  <a href="hashlib_8h.html#a4e0d444bba8dceb9052cd7db9c1efe15">More...</a><br /></td></tr>
-<tr class="separator:a4e0d444bba8dceb9052cd7db9c1efe15"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac97f2b17187bed64cb75d98ebb9184f8"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#ac97f2b17187bed64cb75d98ebb9184f8">hash_init</a> (<a class="el" href="hashlib_8h.html#aa55779911de10df960d64966c6825da7">hash_ctx</a> *ctx, uint8_t hash_alg)</td></tr>
+<tr class="memdesc:ac97f2b17187bed64cb75d98ebb9184f8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generic hash initializer. Initializes the given context with the starting state for the given hash algorithm and populates pointers to the methods for update and final for the given hash..  <a href="hashlib_8h.html#ac97f2b17187bed64cb75d98ebb9184f8">More...</a><br /></td></tr>
+<tr class="separator:ac97f2b17187bed64cb75d98ebb9184f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaf0fab49f90f31ca034e68c83858d14e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#aaf0fab49f90f31ca034e68c83858d14e">hash_update</a> (<a class="el" href="hashlib_8h.html#aa55779911de10df960d64966c6825da7">hash_ctx</a> *ctx, const void *data, size_t len)</td></tr>
+<tr class="memdesc:aaf0fab49f90f31ca034e68c83858d14e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Updates the hash context for the given data.  <a href="hashlib_8h.html#aaf0fab49f90f31ca034e68c83858d14e">More...</a><br /></td></tr>
+<tr class="separator:aaf0fab49f90f31ca034e68c83858d14e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6de2a3ef1df7da45fbe84b38f72baa71"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#a6de2a3ef1df7da45fbe84b38f72baa71">hash_final</a> (<a class="el" href="hashlib_8h.html#aa55779911de10df960d64966c6825da7">hash_ctx</a> *ctx, void *digest)</td></tr>
+<tr class="memdesc:a6de2a3ef1df7da45fbe84b38f72baa71"><td class="mdescLeft">&#160;</td><td class="mdescRight">Finalize context and render digest for hash.  <a href="hashlib_8h.html#a6de2a3ef1df7da45fbe84b38f72baa71">More...</a><br /></td></tr>
+<tr class="separator:a6de2a3ef1df7da45fbe84b38f72baa71"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a10ed0a0ba1c3b12e564ffdd2cc1ace31"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#a10ed0a0ba1c3b12e564ffdd2cc1ace31">hash_mgf1</a> (const void *data, size_t datalen, void *outbuf, size_t outlen)</td></tr>
 <tr class="memdesc:a10ed0a0ba1c3b12e564ffdd2cc1ace31"><td class="mdescLeft">&#160;</td><td class="mdescRight">Arbitrary Length Hashing Function.  <a href="hashlib_8h.html#a10ed0a0ba1c3b12e564ffdd2cc1ace31">More...</a><br /></td></tr>
 <tr class="separator:a10ed0a0ba1c3b12e564ffdd2cc1ace31"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4cef987a16315a82b1b4c7694d897b03"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#a4cef987a16315a82b1b4c7694d897b03">hmac_sha256_init</a> (<a class="el" href="hashlib_8h.html#a8d813300476744f01319600478572f62">hmac_ctx</a> *ctx, const void *key, size_t keylen)</td></tr>
-<tr class="memdesc:a4cef987a16315a82b1b4c7694d897b03"><td class="mdescLeft">&#160;</td><td class="mdescRight">Context Initializer for SHA-256 HMAC.  <a href="hashlib_8h.html#a4cef987a16315a82b1b4c7694d897b03">More...</a><br /></td></tr>
-<tr class="separator:a4cef987a16315a82b1b4c7694d897b03"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:add323a3b3b9cbdcc487e3474a97f05fd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#add323a3b3b9cbdcc487e3474a97f05fd">hmac_sha256_update</a> (<a class="el" href="hashlib_8h.html#a8d813300476744f01319600478572f62">hmac_ctx</a> *ctx, const void *data, size_t len)</td></tr>
-<tr class="memdesc:add323a3b3b9cbdcc487e3474a97f05fd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Updates the SHA-256 HMAC context for the given data.  <a href="hashlib_8h.html#add323a3b3b9cbdcc487e3474a97f05fd">More...</a><br /></td></tr>
-<tr class="separator:add323a3b3b9cbdcc487e3474a97f05fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9b76f238236e4b45fa9be13fa53626c1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#a9b76f238236e4b45fa9be13fa53626c1">hmac_sha256_final</a> (<a class="el" href="hashlib_8h.html#a8d813300476744f01319600478572f62">hmac_ctx</a> *ctx, void *output)</td></tr>
-<tr class="memdesc:a9b76f238236e4b45fa9be13fa53626c1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Finalize Context and Render Digest for SHA-256 HMAC.  <a href="hashlib_8h.html#a9b76f238236e4b45fa9be13fa53626c1">More...</a><br /></td></tr>
-<tr class="separator:a9b76f238236e4b45fa9be13fa53626c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa21280fa3208d9f7c3d64e38e8d20c1a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#aa21280fa3208d9f7c3d64e38e8d20c1a">hmac_sha256_reset</a> (<a class="el" href="hashlib_8h.html#a8d813300476744f01319600478572f62">hmac_ctx</a> *ctx)</td></tr>
-<tr class="memdesc:aa21280fa3208d9f7c3d64e38e8d20c1a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Resets the SHA-256 HMAC context to its state after a call to hashlib_HMACSha256Init()  <a href="hashlib_8h.html#aa21280fa3208d9f7c3d64e38e8d20c1a">More...</a><br /></td></tr>
-<tr class="separator:aa21280fa3208d9f7c3d64e38e8d20c1a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a415fd61aa3da75a48885f14d61d65d8f"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#a415fd61aa3da75a48885f14d61d65d8f">hmac_pbkdf2</a> (const char *password, size_t passlen, void *key, size_t keylen, const void *salt, size_t saltlen, size_t rounds)</td></tr>
-<tr class="memdesc:a415fd61aa3da75a48885f14d61d65d8f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Password-Based Key Derivation Function (via SHA-256 HMAC)  <a href="hashlib_8h.html#a415fd61aa3da75a48885f14d61d65d8f">More...</a><br /></td></tr>
-<tr class="separator:a415fd61aa3da75a48885f14d61d65d8f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aed1dd25115e80cf3b37de2e6c7f32584"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#aed1dd25115e80cf3b37de2e6c7f32584">cipher_aes_loadkey</a> (const void *key, const <a class="el" href="hashlib_8h.html#aa188bc2768a3b7aa6ad73cb2c77819e0">aes_ctx</a> *ks, size_t keylen)</td></tr>
-<tr class="memdesc:aed1dd25115e80cf3b37de2e6c7f32584"><td class="mdescLeft">&#160;</td><td class="mdescRight">AES import key to key schedule context.  <a href="hashlib_8h.html#aed1dd25115e80cf3b37de2e6c7f32584">More...</a><br /></td></tr>
-<tr class="separator:aed1dd25115e80cf3b37de2e6c7f32584"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a28cae62bd0a114d015d006ef8cd90d4c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="hashlib_8h.html#aeb2e64abcc4317e3143fb820f21c3bfd">aes_error_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#a28cae62bd0a114d015d006ef8cd90d4c">cipher_aes_encrypt</a> (const void *plaintext, size_t len, void *ciphertext, const <a class="el" href="hashlib_8h.html#aa188bc2768a3b7aa6ad73cb2c77819e0">aes_ctx</a> *ks, const void *iv, uint8_t ciphermode, uint8_t paddingmode)</td></tr>
-<tr class="memdesc:a28cae62bd0a114d015d006ef8cd90d4c"><td class="mdescLeft">&#160;</td><td class="mdescRight">General-Purpose AES Encryption.  <a href="hashlib_8h.html#a28cae62bd0a114d015d006ef8cd90d4c">More...</a><br /></td></tr>
-<tr class="separator:a28cae62bd0a114d015d006ef8cd90d4c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac26627caf3523cfd714f610b2e89c711"><td class="memItemLeft" align="right" valign="top"><a class="el" href="hashlib_8h.html#aeb2e64abcc4317e3143fb820f21c3bfd">aes_error_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#ac26627caf3523cfd714f610b2e89c711">cipher_aes_decrypt</a> (const void *ciphertext, size_t len, void *plaintext, const <a class="el" href="hashlib_8h.html#aa188bc2768a3b7aa6ad73cb2c77819e0">aes_ctx</a> *ks, const void *iv, uint8_t ciphermode, uint8_t paddingmode)</td></tr>
-<tr class="memdesc:ac26627caf3523cfd714f610b2e89c711"><td class="mdescLeft">&#160;</td><td class="mdescRight">General-Purpose AES Decryption.  <a href="hashlib_8h.html#ac26627caf3523cfd714f610b2e89c711">More...</a><br /></td></tr>
-<tr class="separator:ac26627caf3523cfd714f610b2e89c711"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ada81c3ab7c41749cddb7493c43c8bd48"><td class="memItemLeft" align="right" valign="top"><a class="el" href="hashlib_8h.html#a0486449f609d0e485bad091a671d9294">rsa_error_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#ada81c3ab7c41749cddb7493c43c8bd48">cipher_rsa_encrypt</a> (const void *msg, size_t msglen, void *ciphertext, const void *pubkey, size_t keylen)</td></tr>
-<tr class="memdesc:ada81c3ab7c41749cddb7493c43c8bd48"><td class="mdescLeft">&#160;</td><td class="mdescRight">RSA Encryption.  <a href="hashlib_8h.html#ada81c3ab7c41749cddb7493c43c8bd48">More...</a><br /></td></tr>
-<tr class="separator:ada81c3ab7c41749cddb7493c43c8bd48"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a23f1805ae0c933e5565dfcc9c8e46d02"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#a23f1805ae0c933e5565dfcc9c8e46d02">hmac_init</a> (<a class="el" href="hashlib_8h.html#a8d813300476744f01319600478572f62">hmac_ctx</a> *ctx, const void *key, size_t keylen, uint8_t alg)</td></tr>
+<tr class="memdesc:a23f1805ae0c933e5565dfcc9c8e46d02"><td class="mdescLeft">&#160;</td><td class="mdescRight">Context Initializer for SHA-256 HMAC.  <a href="hashlib_8h.html#a23f1805ae0c933e5565dfcc9c8e46d02">More...</a><br /></td></tr>
+<tr class="separator:a23f1805ae0c933e5565dfcc9c8e46d02"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6c5035021e844e83e062c198db85c20e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#a6c5035021e844e83e062c198db85c20e">hmac_update</a> (<a class="el" href="hashlib_8h.html#a8d813300476744f01319600478572f62">hmac_ctx</a> *ctx, const void *data, size_t len)</td></tr>
+<tr class="memdesc:a6c5035021e844e83e062c198db85c20e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Updates the SHA-256 HMAC context for the given data.  <a href="hashlib_8h.html#a6c5035021e844e83e062c198db85c20e">More...</a><br /></td></tr>
+<tr class="separator:a6c5035021e844e83e062c198db85c20e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aab1ccbb4d4cc9b02116d2ed07a5c9ed3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#aab1ccbb4d4cc9b02116d2ed07a5c9ed3">hmac_final</a> (<a class="el" href="hashlib_8h.html#a8d813300476744f01319600478572f62">hmac_ctx</a> *ctx, void *output)</td></tr>
+<tr class="memdesc:aab1ccbb4d4cc9b02116d2ed07a5c9ed3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Finalize Context and Render Digest for SHA-256 HMAC.  <a href="hashlib_8h.html#aab1ccbb4d4cc9b02116d2ed07a5c9ed3">More...</a><br /></td></tr>
+<tr class="separator:aab1ccbb4d4cc9b02116d2ed07a5c9ed3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a279fed67d31372b689f7b8b69035f9ca"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#a279fed67d31372b689f7b8b69035f9ca">hmac_pbkdf2</a> (const char *password, size_t passlen, void *key, size_t keylen, const void *salt, size_t saltlen, size_t rounds, uint8_t alg)</td></tr>
+<tr class="memdesc:a279fed67d31372b689f7b8b69035f9ca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Password-Based Key Derivation Function.  <a href="hashlib_8h.html#a279fed67d31372b689f7b8b69035f9ca">More...</a><br /></td></tr>
+<tr class="separator:a279fed67d31372b689f7b8b69035f9ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1e8fde09a695433599687e56310cb68a"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#a1e8fde09a695433599687e56310cb68a">aes_loadkey</a> (const void *key, const <a class="el" href="hashlib_8h.html#aa188bc2768a3b7aa6ad73cb2c77819e0">aes_ctx</a> *ks, size_t keylen)</td></tr>
+<tr class="memdesc:a1e8fde09a695433599687e56310cb68a"><td class="mdescLeft">&#160;</td><td class="mdescRight">AES import key to key schedule context.  <a href="hashlib_8h.html#a1e8fde09a695433599687e56310cb68a">More...</a><br /></td></tr>
+<tr class="separator:a1e8fde09a695433599687e56310cb68a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aae223cd681fbba1e0d748b64cfd3e6d3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="hashlib_8h.html#aeb2e64abcc4317e3143fb820f21c3bfd">aes_error_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#aae223cd681fbba1e0d748b64cfd3e6d3">aes_encrypt</a> (const void *plaintext, size_t len, void *ciphertext, const <a class="el" href="hashlib_8h.html#aa188bc2768a3b7aa6ad73cb2c77819e0">aes_ctx</a> *ks, const void *iv, uint8_t ciphermode, uint8_t paddingmode)</td></tr>
+<tr class="memdesc:aae223cd681fbba1e0d748b64cfd3e6d3"><td class="mdescLeft">&#160;</td><td class="mdescRight">General-Purpose AES Encryption.  <a href="hashlib_8h.html#aae223cd681fbba1e0d748b64cfd3e6d3">More...</a><br /></td></tr>
+<tr class="separator:aae223cd681fbba1e0d748b64cfd3e6d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9167498ff02e1c99d730481e94106fd6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="hashlib_8h.html#aeb2e64abcc4317e3143fb820f21c3bfd">aes_error_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#a9167498ff02e1c99d730481e94106fd6">aes_decrypt</a> (const void *ciphertext, size_t len, void *plaintext, const <a class="el" href="hashlib_8h.html#aa188bc2768a3b7aa6ad73cb2c77819e0">aes_ctx</a> *ks, const void *iv, uint8_t ciphermode, uint8_t paddingmode)</td></tr>
+<tr class="memdesc:a9167498ff02e1c99d730481e94106fd6"><td class="mdescLeft">&#160;</td><td class="mdescRight">General-Purpose AES Decryption.  <a href="hashlib_8h.html#a9167498ff02e1c99d730481e94106fd6">More...</a><br /></td></tr>
+<tr class="separator:a9167498ff02e1c99d730481e94106fd6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a692de56123f350f0bf78ece7c4b67ac9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="hashlib_8h.html#a0486449f609d0e485bad091a671d9294">rsa_error_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#a692de56123f350f0bf78ece7c4b67ac9">rsa_encrypt</a> (const void *msg, size_t msglen, void *ciphertext, const void *pubkey, size_t keylen)</td></tr>
+<tr class="memdesc:a692de56123f350f0bf78ece7c4b67ac9"><td class="mdescLeft">&#160;</td><td class="mdescRight">RSA Encryption.  <a href="hashlib_8h.html#a692de56123f350f0bf78ece7c4b67ac9">More...</a><br /></td></tr>
+<tr class="separator:a692de56123f350f0bf78ece7c4b67ac9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9875035ce2ae4859b39cfbbff2d1f609"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#a9875035ce2ae4859b39cfbbff2d1f609">digest_tostring</a> (const void *digest, size_t len, char *hexstr)</td></tr>
 <tr class="memdesc:a9875035ce2ae4859b39cfbbff2d1f609"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert a digest to a valid hex string.  <a href="hashlib_8h.html#a9875035ce2ae4859b39cfbbff2d1f609">More...</a><br /></td></tr>
 <tr class="separator:a9875035ce2ae4859b39cfbbff2d1f609"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -284,21 +287,6 @@ If the CSRNG is run, anything you have stored here will be destroyed. </dd></dl>
       </table>
 </div><div class="memdoc">
 <p >Binary length of the SHA-256 hash output. </p>
-
-</div>
-</div>
-<a id="a7781b6f83e2f311020d3b926b70743ed" name="a7781b6f83e2f311020d3b926b70743ed"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7781b6f83e2f311020d3b926b70743ed">&#9670;&nbsp;</a></span>SHA256_HEXDIGEST_LEN</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define SHA256_HEXDIGEST_LEN&#160;&#160;&#160;(<a class="el" href="hashlib_8h.html#af5aa539ae202ddf9e0c9211309869fc8">SHA256_DIGEST_LEN</a>&lt;&lt;1) + 1</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p >Length of a string containing the SHA-256 hash. </p>
 
 </div>
 </div>
@@ -377,56 +365,6 @@ If the CSRNG is run, anything you have stored here will be destroyed. </dd></dl>
 
 </div>
 </div>
-<a id="a45ad76689980a12e8a5453a413f670c8" name="a45ad76689980a12e8a5453a413f670c8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a45ad76689980a12e8a5453a413f670c8">&#9670;&nbsp;</a></span>cipher_aes_outsize</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define cipher_aes_outsize</td>
-          <td>(</td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname">len</td><td>)</td>
-          <td>&#160;&#160;&#160;	((((len)%<a class="el" href="hashlib_8h.html#afab0742642db9c0609c00bf8a54f386f">AES_BLOCKSIZE</a>)==0) ? (len) + <a class="el" href="hashlib_8h.html#afab0742642db9c0609c00bf8a54f386f">AES_BLOCKSIZE</a> : (((len)&gt;&gt;4) + 1)&lt;&lt;4)</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p >Defines a macro to return the size of an AES ciphertext given a plaintext length. Does not include space for an IV-prepend. See hashlib_AESCiphertextIVLen() for that.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">len</td><td>The length of the plaintext. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a id="a1da7be2f0eebec1e53e411fc0cc183fb" name="a1da7be2f0eebec1e53e411fc0cc183fb"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1da7be2f0eebec1e53e411fc0cc183fb">&#9670;&nbsp;</a></span>cipher_aes_extoutsize</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define cipher_aes_extoutsize</td>
-          <td>(</td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname">len</td><td>)</td>
-          <td>&#160;&#160;&#160;	(<a class="el" href="hashlib_8h.html#a45ad76689980a12e8a5453a413f670c8">cipher_aes_outsize</a>((len)) + <a class="el" href="hashlib_8h.html#a6c2d58d8dd281845fdc027b499dea89d">AES_IVSIZE</a>)</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p >Defines a macro to return the size of an AES ciphertext with with an extra block added for the IV.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">len</td><td>The length of the plaintext. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
 <h2 class="groupheader">Typedef Documentation</h2>
 <a id="a53df9e7d871973d59c7b58a6c3963c5d" name="a53df9e7d871973d59c7b58a6c3963c5d"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a53df9e7d871973d59c7b58a6c3963c5d">&#9670;&nbsp;</a></span>sha256_ctx</h2>
@@ -439,7 +377,22 @@ If the CSRNG is run, anything you have stored here will be destroyed. </dd></dl>
         </tr>
       </table>
 </div><div class="memdoc">
-<p >Defines hash-state data for an instance of SHA-256. </p><dl class="section note"><dt>Note</dt><dd>If you are hashing multiple data streams concurrently, allocate a seperate context for each. </dd></dl>
+<p >Defines hash-state data for an instance of SHA-256. </p><dl class="section note"><dt>Note</dt><dd>This is internal to the struct hash_ctx. You should never need to use this. </dd></dl>
+
+</div>
+</div>
+<a id="aa55779911de10df960d64966c6825da7" name="aa55779911de10df960d64966c6825da7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa55779911de10df960d64966c6825da7">&#9670;&nbsp;</a></span>hash_ctx</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="hashlib_8h.html#aa55779911de10df960d64966c6825da7">hash_ctx</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p >Defines universal hash-state data, including pointer to algorithm-specific handling methods and a union of computational states for various hashes. </p><dl class="section note"><dt>Note</dt><dd>Allocate a seperate context for each seperate data stream you are hashing. </dd></dl>
 
 </div>
 </div>
@@ -474,6 +427,25 @@ If the CSRNG is run, anything you have stored here will be destroyed. </dd></dl>
 </div>
 </div>
 <h2 class="groupheader">Enumeration Type Documentation</h2>
+<a id="af36e91f131f610a6612b78700d483bd7" name="af36e91f131f610a6612b78700d483bd7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af36e91f131f610a6612b78700d483bd7">&#9670;&nbsp;</a></span>hash_algorithms</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="hashlib_8h.html#af36e91f131f610a6612b78700d483bd7">hash_algorithms</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p >Idenitifiers for selecting hash types. see <a class="el" href="hashlib_8h.html#ac97f2b17187bed64cb75d98ebb9184f8" title="Generic hash initializer. Initializes the given context with the starting state for the given hash al...">hash_init()</a> </p>
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="af36e91f131f610a6612b78700d483bd7ac7716785728694693ec29eccd5ffa0e1" name="af36e91f131f610a6612b78700d483bd7ac7716785728694693ec29eccd5ffa0e1"></a>SHA256&#160;</td><td class="fielddoc"><p >algorithm type identifier for SHA-256 </p>
+</td></tr>
+</table>
+
+</div>
+</div>
 <a id="a194ef6b5934dff6dceed4dd819e76340" name="a194ef6b5934dff6dceed4dd819e76340"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a194ef6b5934dff6dceed4dd819e76340">&#9670;&nbsp;</a></span>aes_cipher_modes</h2>
 
@@ -664,16 +636,16 @@ It may be a good idea to call this function in any program that uses hashlib fun
 
 </div>
 </div>
-<a id="a53935bcb47b60dcd7121c737054e26a3" name="a53935bcb47b60dcd7121c737054e26a3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a53935bcb47b60dcd7121c737054e26a3">&#9670;&nbsp;</a></span>hash_init()</h2>
+<a id="ac97f2b17187bed64cb75d98ebb9184f8" name="ac97f2b17187bed64cb75d98ebb9184f8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac97f2b17187bed64cb75d98ebb9184f8">&#9670;&nbsp;</a></span>hash_init()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void hash_init </td>
+          <td class="memname">bool hash_init </td>
           <td>(</td>
-          <td class="paramtype">void *&#160;</td>
+          <td class="paramtype"><a class="el" href="hashlib_8h.html#aa55779911de10df960d64966c6825da7">hash_ctx</a> *&#160;</td>
           <td class="paramname"><em>ctx</em>, </td>
         </tr>
         <tr>
@@ -690,18 +662,18 @@ It may be a good idea to call this function in any program that uses hashlib fun
       </table>
 </div><div class="memdoc">
 
-<p>Context initializer for SHA-256. Initializes the given context with the starting state for SHA-256. </p>
+<p>Generic hash initializer. Initializes the given context with the starting state for the given hash algorithm and populates pointers to the methods for update and final for the given hash.. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">ctx</td><td>Pointer to a SHA-256 context. </td></tr>
+    <tr><td class="paramname">ctx</td><td>Pointer to a hash context (hash_ctx). </td></tr>
   </table>
   </dd>
 </dl>
 
 </div>
 </div>
-<a id="a92e4589aa70687f142e178954196ef92" name="a92e4589aa70687f142e178954196ef92"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a92e4589aa70687f142e178954196ef92">&#9670;&nbsp;</a></span>hash_update()</h2>
+<a id="aaf0fab49f90f31ca034e68c83858d14e" name="aaf0fab49f90f31ca034e68c83858d14e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaf0fab49f90f31ca034e68c83858d14e">&#9670;&nbsp;</a></span>hash_update()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -709,7 +681,7 @@ It may be a good idea to call this function in any program that uses hashlib fun
         <tr>
           <td class="memname">void hash_update </td>
           <td>(</td>
-          <td class="paramtype">void *&#160;</td>
+          <td class="paramtype"><a class="el" href="hashlib_8h.html#aa55779911de10df960d64966c6825da7">hash_ctx</a> *&#160;</td>
           <td class="paramname"><em>ctx</em>, </td>
         </tr>
         <tr>
@@ -732,21 +704,21 @@ It may be a good idea to call this function in any program that uses hashlib fun
       </table>
 </div><div class="memdoc">
 
-<p>Updates the SHA-256 context for the given data. </p>
+<p>Updates the hash context for the given data. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">ctx</td><td>Pointer to a SHA-256 context. </td></tr>
+    <tr><td class="paramname">ctx</td><td>Pointer to a hash context. </td></tr>
     <tr><td class="paramname">data</td><td>Pointer to data to hash. </td></tr>
     <tr><td class="paramname">len</td><td>Number of bytes at <b>data</b> to hash. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section warning"><dt>Warning</dt><dd>You must call hash_sha256_init() first or your hash state will be invalid. </dd></dl>
+<dl class="section warning"><dt>Warning</dt><dd>You must call <a class="el" href="hashlib_8h.html#ac97f2b17187bed64cb75d98ebb9184f8" title="Generic hash initializer. Initializes the given context with the starting state for the given hash al...">hash_init()</a> first or your hash state will be invalid. </dd></dl>
 
 </div>
 </div>
-<a id="a4e0d444bba8dceb9052cd7db9c1efe15" name="a4e0d444bba8dceb9052cd7db9c1efe15"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4e0d444bba8dceb9052cd7db9c1efe15">&#9670;&nbsp;</a></span>hash_final()</h2>
+<a id="a6de2a3ef1df7da45fbe84b38f72baa71" name="a6de2a3ef1df7da45fbe84b38f72baa71"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6de2a3ef1df7da45fbe84b38f72baa71">&#9670;&nbsp;</a></span>hash_final()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -754,7 +726,7 @@ It may be a good idea to call this function in any program that uses hashlib fun
         <tr>
           <td class="memname">void hash_final </td>
           <td>(</td>
-          <td class="paramtype">void *&#160;</td>
+          <td class="paramtype"><a class="el" href="hashlib_8h.html#aa55779911de10df960d64966c6825da7">hash_ctx</a> *&#160;</td>
           <td class="paramname"><em>ctx</em>, </td>
         </tr>
         <tr>
@@ -771,15 +743,15 @@ It may be a good idea to call this function in any program that uses hashlib fun
       </table>
 </div><div class="memdoc">
 
-<p>Finalize Context and Render Digest for SHA-256. </p>
+<p>Finalize context and render digest for hash. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">ctx</td><td>Pointer to a SHA-256 context. </td></tr>
+    <tr><td class="paramname">ctx</td><td>Pointer to a hash context. </td></tr>
     <tr><td class="paramname">digest</td><td>Pointer to a buffer to write the hash to. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section note"><dt>Note</dt><dd><b>digest</b> must be at least 32 bytes large. </dd></dl>
+<dl class="section note"><dt>Note</dt><dd><b>digest</b> must be at large enough to hold the hash digest. </dd></dl>
 
 </div>
 </div>
@@ -836,14 +808,14 @@ It may be a good idea to call this function in any program that uses hashlib fun
 
 </div>
 </div>
-<a id="a4cef987a16315a82b1b4c7694d897b03" name="a4cef987a16315a82b1b4c7694d897b03"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4cef987a16315a82b1b4c7694d897b03">&#9670;&nbsp;</a></span>hmac_sha256_init()</h2>
+<a id="a23f1805ae0c933e5565dfcc9c8e46d02" name="a23f1805ae0c933e5565dfcc9c8e46d02"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a23f1805ae0c933e5565dfcc9c8e46d02">&#9670;&nbsp;</a></span>hmac_init()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void hmac_sha256_init </td>
+          <td class="memname">bool hmac_init </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="hashlib_8h.html#a8d813300476744f01319600478572f62">hmac_ctx</a> *&#160;</td>
           <td class="paramname"><em>ctx</em>, </td>
@@ -858,7 +830,13 @@ It may be a good idea to call this function in any program that uses hashlib fun
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">size_t&#160;</td>
-          <td class="paramname"><em>keylen</em>&#160;</td>
+          <td class="paramname"><em>keylen</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>alg</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -875,20 +853,21 @@ It may be a good idea to call this function in any program that uses hashlib fun
     <tr><td class="paramname">ctx</td><td>Pointer to a SHA-256 HMAC context. </td></tr>
     <tr><td class="paramname">key</td><td>Pointer to an authentication key used to initialize the base SHA-256 context. </td></tr>
     <tr><td class="paramname">keylen</td><td>Length of <b>key</b>, in bytes. </td></tr>
+    <tr><td class="paramname">alg</td><td>The hmac algorithm to use. See <b>hash_algorithms</b>. </td></tr>
   </table>
   </dd>
 </dl>
 
 </div>
 </div>
-<a id="add323a3b3b9cbdcc487e3474a97f05fd" name="add323a3b3b9cbdcc487e3474a97f05fd"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#add323a3b3b9cbdcc487e3474a97f05fd">&#9670;&nbsp;</a></span>hmac_sha256_update()</h2>
+<a id="a6c5035021e844e83e062c198db85c20e" name="a6c5035021e844e83e062c198db85c20e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6c5035021e844e83e062c198db85c20e">&#9670;&nbsp;</a></span>hmac_update()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void hmac_sha256_update </td>
+          <td class="memname">void hmac_update </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="hashlib_8h.html#a8d813300476744f01319600478572f62">hmac_ctx</a> *&#160;</td>
           <td class="paramname"><em>ctx</em>, </td>
@@ -922,18 +901,18 @@ It may be a good idea to call this function in any program that uses hashlib fun
   </table>
   </dd>
 </dl>
-<dl class="section warning"><dt>Warning</dt><dd>You must call <a class="el" href="hashlib_8h.html#a4cef987a16315a82b1b4c7694d897b03" title="Context Initializer for SHA-256 HMAC.">hmac_sha256_init()</a> first or your hash state will be invalid. </dd></dl>
+<dl class="section warning"><dt>Warning</dt><dd>You must call hmac_sha256_init() first or your hash state will be invalid. </dd></dl>
 
 </div>
 </div>
-<a id="a9b76f238236e4b45fa9be13fa53626c1" name="a9b76f238236e4b45fa9be13fa53626c1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9b76f238236e4b45fa9be13fa53626c1">&#9670;&nbsp;</a></span>hmac_sha256_final()</h2>
+<a id="aab1ccbb4d4cc9b02116d2ed07a5c9ed3" name="aab1ccbb4d4cc9b02116d2ed07a5c9ed3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aab1ccbb4d4cc9b02116d2ed07a5c9ed3">&#9670;&nbsp;</a></span>hmac_final()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void hmac_sha256_final </td>
+          <td class="memname">void hmac_final </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="hashlib_8h.html#a8d813300476744f01319600478572f62">hmac_ctx</a> *&#160;</td>
           <td class="paramname"><em>ctx</em>, </td>
@@ -964,35 +943,8 @@ It may be a good idea to call this function in any program that uses hashlib fun
 
 </div>
 </div>
-<a id="aa21280fa3208d9f7c3d64e38e8d20c1a" name="aa21280fa3208d9f7c3d64e38e8d20c1a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa21280fa3208d9f7c3d64e38e8d20c1a">&#9670;&nbsp;</a></span>hmac_sha256_reset()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void hmac_sha256_reset </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="hashlib_8h.html#a8d813300476744f01319600478572f62">hmac_ctx</a> *&#160;</td>
-          <td class="paramname"><em>ctx</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Resets the SHA-256 HMAC context to its state after a call to hashlib_HMACSha256Init() </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">ctx</td><td>Pointer to a SHA-256 HMAC context. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section note"><dt>Note</dt><dd>Calls the SHA-256 Init function, then Updates() the context with the ipad. </dd></dl>
-
-</div>
-</div>
-<a id="a415fd61aa3da75a48885f14d61d65d8f" name="a415fd61aa3da75a48885f14d61d65d8f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a415fd61aa3da75a48885f14d61d65d8f">&#9670;&nbsp;</a></span>hmac_pbkdf2()</h2>
+<a id="a279fed67d31372b689f7b8b69035f9ca" name="a279fed67d31372b689f7b8b69035f9ca"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a279fed67d31372b689f7b8b69035f9ca">&#9670;&nbsp;</a></span>hmac_pbkdf2()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1037,7 +989,13 @@ It may be a good idea to call this function in any program that uses hashlib fun
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">size_t&#160;</td>
-          <td class="paramname"><em>rounds</em>&#160;</td>
+          <td class="paramname"><em>rounds</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>alg</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -1047,7 +1005,7 @@ It may be a good idea to call this function in any program that uses hashlib fun
       </table>
 </div><div class="memdoc">
 
-<p>Password-Based Key Derivation Function (via SHA-256 HMAC) </p>
+<p>Password-Based Key Derivation Function. </p>
 <p >Computes a key derived from a password, a 16-byte salt, and a given number of rounds.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -1057,7 +1015,8 @@ It may be a good idea to call this function in any program that uses hashlib fun
     <tr><td class="paramname">keylen</td><td>The length of the key to generate (in bytes). </td></tr>
     <tr><td class="paramname">salt</td><td>A psuedo-random string to use when computing the key. </td></tr>
     <tr><td class="paramname">saltlen</td><td>The length of the salt to use (in bytes). </td></tr>
-    <tr><td class="paramname">rounds</td><td>The number of times to iterate the SHA-256 function per 32-byte block of <b>keylen</b>. </td></tr>
+    <tr><td class="paramname">rounds</td><td>The number of times to iterate the hash function per block of <b>keylen</b>. </td></tr>
+    <tr><td class="paramname">alg</td><td>The hmac algorithm to use for key generation. </td></tr>
   </table>
   </dd>
 </dl>
@@ -1067,14 +1026,14 @@ It may be a good idea to call this function in any program that uses hashlib fun
 
 </div>
 </div>
-<a id="aed1dd25115e80cf3b37de2e6c7f32584" name="aed1dd25115e80cf3b37de2e6c7f32584"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aed1dd25115e80cf3b37de2e6c7f32584">&#9670;&nbsp;</a></span>cipher_aes_loadkey()</h2>
+<a id="a1e8fde09a695433599687e56310cb68a" name="a1e8fde09a695433599687e56310cb68a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1e8fde09a695433599687e56310cb68a">&#9670;&nbsp;</a></span>aes_loadkey()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">bool cipher_aes_loadkey </td>
+          <td class="memname">bool aes_loadkey </td>
           <td>(</td>
           <td class="paramtype">const void *&#160;</td>
           <td class="paramname"><em>key</em>, </td>
@@ -1113,14 +1072,14 @@ It may be a good idea to call this function in any program that uses hashlib fun
 
 </div>
 </div>
-<a id="a28cae62bd0a114d015d006ef8cd90d4c" name="a28cae62bd0a114d015d006ef8cd90d4c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a28cae62bd0a114d015d006ef8cd90d4c">&#9670;&nbsp;</a></span>cipher_aes_encrypt()</h2>
+<a id="aae223cd681fbba1e0d748b64cfd3e6d3" name="aae223cd681fbba1e0d748b64cfd3e6d3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aae223cd681fbba1e0d748b64cfd3e6d3">&#9670;&nbsp;</a></span>aes_encrypt()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="hashlib_8h.html#aeb2e64abcc4317e3143fb820f21c3bfd">aes_error_t</a> cipher_aes_encrypt </td>
+          <td class="memname"><a class="el" href="hashlib_8h.html#aeb2e64abcc4317e3143fb820f21c3bfd">aes_error_t</a> aes_encrypt </td>
           <td>(</td>
           <td class="paramtype">const void *&#160;</td>
           <td class="paramname"><em>plaintext</em>, </td>
@@ -1186,23 +1145,22 @@ It may be a good idea to call this function in any program that uses hashlib fun
 <dd>
 <b>plaintext</b> and <b>ciphertext</b> are aliasable. </dd>
 <dd>
-<b>IV</b> is not written to the ciphertext buffer by this function, only the encrypted message. However, if your ciphertext buffer is large enough, you can do the following to get the IV prepended to the ciphertext. Otherwise you will have to join the IV and the ciphertext into a single larger buffer before sending it through whatever networking protocol you use. <div class="fragment"><div class="line"><a class="code hl_function" href="hashlib_8h.html#a28cae62bd0a114d015d006ef8cd90d4c">cipher_aes_encrypt</a>(plaintext, len, &amp;ciphertext[AES_IV_SIZE], ks, iv, &lt;cipher_mode&gt;, &lt;padding_mode&gt;);</div>
+<b>IV</b> is not written to the ciphertext buffer by this function, only the encrypted message. However, if your ciphertext buffer is large enough, you can do the following to get the IV prepended to the ciphertext. Otherwise you will have to join the IV and the ciphertext into a single larger buffer before sending it through whatever networking protocol you use. <div class="fragment"><div class="line">cipher_aes_encrypt(plaintext, len, &amp;ciphertext[AES_IV_SIZE], ks, iv, &lt;cipher_mode&gt;, &lt;padding_mode&gt;);</div>
 <div class="line">memcpy(ciphertext, iv, AES_IV_SIZE);</div>
 <div class="line">send_packet(ciphertext);</div>
-<div class="ttc" id="ahashlib_8h_html_a28cae62bd0a114d015d006ef8cd90d4c"><div class="ttname"><a href="hashlib_8h.html#a28cae62bd0a114d015d006ef8cd90d4c">cipher_aes_encrypt</a></div><div class="ttdeci">aes_error_t cipher_aes_encrypt(const void *plaintext, size_t len, void *ciphertext, const aes_ctx *ks, const void *iv, uint8_t ciphermode, uint8_t paddingmode)</div><div class="ttdoc">General-Purpose AES Encryption.</div></div>
-</div><!-- fragment --> This will require a buffer at least as large as the size returned by <a class="el" href="hashlib_8h.html#a1da7be2f0eebec1e53e411fc0cc183fb">cipher_aes_extoutsize()</a>. </dd></dl>
+</div><!-- fragment --> This will require a buffer at least as large as the size returned by cipher_aes_extoutsize(). </dd></dl>
 <dl class="section return"><dt>Returns</dt><dd>aes_error_t </dd></dl>
 
 </div>
 </div>
-<a id="ac26627caf3523cfd714f610b2e89c711" name="ac26627caf3523cfd714f610b2e89c711"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac26627caf3523cfd714f610b2e89c711">&#9670;&nbsp;</a></span>cipher_aes_decrypt()</h2>
+<a id="a9167498ff02e1c99d730481e94106fd6" name="a9167498ff02e1c99d730481e94106fd6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9167498ff02e1c99d730481e94106fd6">&#9670;&nbsp;</a></span>aes_decrypt()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="hashlib_8h.html#aeb2e64abcc4317e3143fb820f21c3bfd">aes_error_t</a> cipher_aes_decrypt </td>
+          <td class="memname"><a class="el" href="hashlib_8h.html#aeb2e64abcc4317e3143fb820f21c3bfd">aes_error_t</a> aes_decrypt </td>
           <td>(</td>
           <td class="paramtype">const void *&#160;</td>
           <td class="paramname"><em>ciphertext</em>, </td>
@@ -1271,14 +1229,14 @@ It may be a good idea to call this function in any program that uses hashlib fun
 
 </div>
 </div>
-<a id="ada81c3ab7c41749cddb7493c43c8bd48" name="ada81c3ab7c41749cddb7493c43c8bd48"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ada81c3ab7c41749cddb7493c43c8bd48">&#9670;&nbsp;</a></span>cipher_rsa_encrypt()</h2>
+<a id="a692de56123f350f0bf78ece7c4b67ac9" name="a692de56123f350f0bf78ece7c4b67ac9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a692de56123f350f0bf78ece7c4b67ac9">&#9670;&nbsp;</a></span>rsa_encrypt()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="hashlib_8h.html#a0486449f609d0e485bad091a671d9294">rsa_error_t</a> cipher_rsa_encrypt </td>
+          <td class="memname"><a class="el" href="hashlib_8h.html#a0486449f609d0e485bad091a671d9294">rsa_error_t</a> rsa_encrypt </td>
           <td>(</td>
           <td class="paramtype">const void *&#160;</td>
           <td class="paramname"><em>msg</em>, </td>

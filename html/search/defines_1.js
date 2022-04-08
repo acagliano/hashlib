@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['cipher_5faes_5fextoutsize_0',['cipher_aes_extoutsize',['../hashlib_8h.html#a1da7be2f0eebec1e53e411fc0cc183fb',1,'hashlib.h']]],
-  ['cipher_5faes_5foutsize_1',['cipher_aes_outsize',['../hashlib_8h.html#a45ad76689980a12e8a5453a413f670c8',1,'hashlib.h']]]
+  ['fastram_5fsafe_0',['fastRam_Safe',['../hashlib_8h.html#a2671e33428186577b97034319c059c40',1,'hashlib.h']]],
+  ['fastram_5funsafe_1',['fastRam_Unsafe',['../hashlib_8h.html#a28d611d50cc8cf20a1c9fa327e839a56',1,'hashlib.h']]]
 ];

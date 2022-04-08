@@ -1,36 +1,44 @@
 \hypertarget{struct__hmac__ctx}{}\doxysection{\+\_\+hmac\+\_\+ctx Struct Reference}
 \label{struct__hmac__ctx}\index{\_hmac\_ctx@{\_hmac\_ctx}}
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+union \mbox{\hyperlink{union__hmac__ctx_1_1__hmac}{\+\_\+hmac}}
+\end{DoxyCompactItemize}
 \doxysubsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
-uint8\+\_\+t \mbox{\hyperlink{struct__hmac__ctx_a010b68ec772d854d51d66a8a8e321571}{ipad}} \mbox{[}64\mbox{]}
+uint24\+\_\+t \mbox{\hyperlink{struct__hmac__ctx_af801912fa2fb1c34eda73c55681289dc}{fn\+\_\+init}}
 \item 
-uint8\+\_\+t \mbox{\hyperlink{struct__hmac__ctx_a3ee88b93200effd0e21446bd3016a5c2}{opad}} \mbox{[}64\mbox{]}
+uint24\+\_\+t \mbox{\hyperlink{struct__hmac__ctx_a7202d69901429812f50ff5b9aae864fc}{fn\+\_\+update}}
 \item 
-\mbox{\hyperlink{struct__hash__ctx}{hash\+\_\+ctx}} \mbox{\hyperlink{struct__hmac__ctx_a00ff87f0f4be07252bc693692bcf789e}{ctx}}
+uint24\+\_\+t \mbox{\hyperlink{struct__hmac__ctx_a346ec38d6fea78f10c988fab487cf3e5}{fn\+\_\+final}}
+\item 
+\mbox{\Hypertarget{struct__hmac__ctx_afebc00a7bbf696205a1fcd028388fc27}\label{struct__hmac__ctx_afebc00a7bbf696205a1fcd028388fc27}} 
+union \mbox{\hyperlink{union__hmac__ctx_1_1__hmac}{\+\_\+hmac\+\_\+ctx\+::\+\_\+hmac}} {\bfseries Hmac}
 \end{DoxyCompactItemize}
 
 
 \doxysubsection{Member Data Documentation}
-\mbox{\Hypertarget{struct__hmac__ctx_a010b68ec772d854d51d66a8a8e321571}\label{struct__hmac__ctx_a010b68ec772d854d51d66a8a8e321571}} 
-\index{\_hmac\_ctx@{\_hmac\_ctx}!ipad@{ipad}}
-\index{ipad@{ipad}!\_hmac\_ctx@{\_hmac\_ctx}}
-\doxysubsubsection{\texorpdfstring{ipad}{ipad}}
-{\footnotesize\ttfamily uint8\+\_\+t \+\_\+hmac\+\_\+ctx\+::ipad\mbox{[}64\mbox{]}}
+\mbox{\Hypertarget{struct__hmac__ctx_af801912fa2fb1c34eda73c55681289dc}\label{struct__hmac__ctx_af801912fa2fb1c34eda73c55681289dc}} 
+\index{\_hmac\_ctx@{\_hmac\_ctx}!fn\_init@{fn\_init}}
+\index{fn\_init@{fn\_init}!\_hmac\_ctx@{\_hmac\_ctx}}
+\doxysubsubsection{\texorpdfstring{fn\_init}{fn\_init}}
+{\footnotesize\ttfamily uint24\+\_\+t \+\_\+hmac\+\_\+ctx\+::fn\+\_\+init}
 
-holds the key xored with a magic value to be hashed with the inner digest \mbox{\Hypertarget{struct__hmac__ctx_a3ee88b93200effd0e21446bd3016a5c2}\label{struct__hmac__ctx_a3ee88b93200effd0e21446bd3016a5c2}} 
-\index{\_hmac\_ctx@{\_hmac\_ctx}!opad@{opad}}
-\index{opad@{opad}!\_hmac\_ctx@{\_hmac\_ctx}}
-\doxysubsubsection{\texorpdfstring{opad}{opad}}
-{\footnotesize\ttfamily uint8\+\_\+t \+\_\+hmac\+\_\+ctx\+::opad\mbox{[}64\mbox{]}}
+pointer to an initialization method for the given hash algorithm \mbox{\Hypertarget{struct__hmac__ctx_a7202d69901429812f50ff5b9aae864fc}\label{struct__hmac__ctx_a7202d69901429812f50ff5b9aae864fc}} 
+\index{\_hmac\_ctx@{\_hmac\_ctx}!fn\_update@{fn\_update}}
+\index{fn\_update@{fn\_update}!\_hmac\_ctx@{\_hmac\_ctx}}
+\doxysubsubsection{\texorpdfstring{fn\_update}{fn\_update}}
+{\footnotesize\ttfamily uint24\+\_\+t \+\_\+hmac\+\_\+ctx\+::fn\+\_\+update}
 
-holds the key xored with a magic value to be hashed with the outer digest \mbox{\Hypertarget{struct__hmac__ctx_a00ff87f0f4be07252bc693692bcf789e}\label{struct__hmac__ctx_a00ff87f0f4be07252bc693692bcf789e}} 
-\index{\_hmac\_ctx@{\_hmac\_ctx}!ctx@{ctx}}
-\index{ctx@{ctx}!\_hmac\_ctx@{\_hmac\_ctx}}
-\doxysubsubsection{\texorpdfstring{ctx}{ctx}}
-{\footnotesize\ttfamily \mbox{\hyperlink{struct__hash__ctx}{hash\+\_\+ctx}} \+\_\+hmac\+\_\+ctx\+::ctx}
+pointer to the update method for the given hash algorithm \mbox{\Hypertarget{struct__hmac__ctx_a346ec38d6fea78f10c988fab487cf3e5}\label{struct__hmac__ctx_a346ec38d6fea78f10c988fab487cf3e5}} 
+\index{\_hmac\_ctx@{\_hmac\_ctx}!fn\_final@{fn\_final}}
+\index{fn\_final@{fn\_final}!\_hmac\_ctx@{\_hmac\_ctx}}
+\doxysubsubsection{\texorpdfstring{fn\_final}{fn\_final}}
+{\footnotesize\ttfamily uint24\+\_\+t \+\_\+hmac\+\_\+ctx\+::fn\+\_\+final}
 
-holds the SHA-\/256 context used by the HMAC function 
+pointer to the digest output method for the given hash algorithm 
 
 The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 

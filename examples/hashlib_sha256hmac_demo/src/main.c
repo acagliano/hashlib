@@ -33,10 +33,10 @@ int main(void)
 {
     hmac_ctx hmac;
     uint8_t sha256_digest[SHA256_DIGEST_LEN];
-
-    hmac_sha256_init(&hmac, hmac_keystr, strlen(hmac_keystr));
-    hmac_sha256_update(&hmac, str, strlen(str));
-    hmac_sha256_final(&hmac, sha256_digest);
+    *(char*)-1=2;
+    if(!hmac_init(&hmac, hmac_keystr, strlen(hmac_keystr), SHA256)) return 1;
+    hmac_update(&hmac, str, strlen(str));
+    hmac_final(&hmac, sha256_digest);
 
 	hexdump(sha256_digest, sizeof sha256_digest, "-SHA-256 HMAC Output-");
 }

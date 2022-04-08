@@ -6,16 +6,15 @@ library	"HASHLIB", 9
 	export	hash_update ; 12
 	export	hash_final ; 15
 	export	hash_mgf1 ; 18
-	export	hmac_sha256_init ; 21
-	export	hmac_sha256_update ; 24
-	export	hmac_sha256_final ; 27
-	export	hmac_sha256_reset ; 30
-	export	hmac_pbkdf2 ; 33
-	export	aes_loadkey ; 36
-	export	aes_encrypt ; 39
-	export	aes_decrypt ; 42
-	export	rsa_encrypt ; 45
-	export	digest_tostring ; 48
-	export	digest_compare ; 51
-	export	aes_ecb_unsafe_encrypt ; 54
-	export	aes_ecb_unsafe_decrypt ; 57
+	export	hmac_init ; 21
+	export	hmac_update ; 24
+	export	hmac_final ; 27
+	export	hmac_pbkdf2 ; 30
+	export	aes_loadkey ; 33
+	export	aes_encrypt ; 36
+	export	aes_decrypt ; 39
+	export	rsa_encrypt ; 42
+	export	digest_tostring ; 45
+	export	digest_compare ; 48
+	export	aes_ecb_unsafe_encrypt ; 51
+	export	aes_ecb_unsafe_decrypt ; 54

@@ -118,7 +118,7 @@ bool csrand_fill(void* buffer, size_t size);
  
  
 /*
-SHA-256 Cryptographic Hash
+Cryptographic Hashes
  
 A cryptographic hash is used to validate that data is unchanged between two endpoints.
 It is similar to a checksum, but checksums can be easily fooled; cryptographic hashes
@@ -132,7 +132,7 @@ or has been tampered with.
 /*******************************************************************************************************************
  * @typedef sha256_ctx
  * Defines hash-state data for an instance of SHA-256.
- * @note If you are hashing multiple data streams concurrently, allocate a seperate context for each.
+ * @note This is internal to the struct hash_ctx. You should never need to use this.
  ********************************************************************************************************************/
 typedef struct _sha256_ctx {
 	uint8_t data[64];		/**< holds sha-256 block for transformation */
@@ -141,54 +141,60 @@ typedef struct _sha256_ctx {
 	uint32_t state[8];		/**< holds hash state for transformed data */
 } sha256_ctx;
 
+/****************************************************************************************************************
+ * @typedef hash_ctx
+ * Defines universal hash-state data, including pointer to algorithm-specific handling methods and
+ * a union of computational states for various hashes.
+ * @note Allocate a seperate context for each seperate data stream you are hashing.
+ *****************************************************************************************************************/
 typedef struct _hash_ctx {
-    uint24_t fn_init;
-    uint24_t fn_update;
-    uint24_t fn_final;
-    union _hash {
+    uint24_t fn_init;       /**< pointer to an initialization method for the given hash algorithm */
+    uint24_t fn_update;     /**< pointer to the update method for the given hash algorithm */
+    uint24_t fn_final;      /**< pointer to the digest output method for the given hash algorithm */
+    union _hash {           /**< a union of computational states for various hashes */
         sha256_ctx sha256;
-    };
+    } Hash;
 } hash_ctx;
  
- /******************************************************
-  * @def SHA256_DIGEST_LEN
-  * Binary length of the SHA-256 hash output.
-  ******************************************************/
-#define SHA256_DIGEST_LEN		32
- 
- /************************************************************
-  * @def SHA256_HEXDIGEST_LEN
-  * Length of a string containing the SHA-256 hash.
-  **********************************************************/
-#define SHA256_HEXDIGEST_LEN		(SHA256_DIGEST_LEN<<1) + 1
-
+ /***************************************************
+  * @enum hash_algorithms
+  * Idenitifiers for selecting hash types.
+  * see hash_init()
+  ***************************************************/
 enum hash_algorithms {
-    SHA256
+    SHA256,             /**< algorithm type identifier for SHA-256 */
 };
 
+/******************************************************
+ * @def SHA256_DIGEST_LEN
+ * Binary length of the SHA-256 hash output.
+ * ****************************************************/
+#define SHA256_DIGEST_LEN   32
+
 /**************************************************************************************************
- *	@brief Context initializer for SHA-256.
- *	Initializes the given context with the starting state for SHA-256.
- *	@param ctx Pointer to a SHA-256 context.
+ *	@brief Generic hash initializer.
+ *	Initializes the given context with the starting state for the given hash algorithm and
+ *  populates pointers to the methods for update and final for the given hash..
+ *	@param ctx Pointer to a hash context (hash_ctx).
  **************************************************************************************************/
-void hash_init(void* ctx, uint8_t hash_alg);
+bool hash_init(hash_ctx* ctx, uint8_t hash_alg);
 
 /******************************************************************************************************
- *	@brief Updates the SHA-256 context for the given data.
- *	@param ctx Pointer to a SHA-256 context.
+ *	@brief Updates the hash context for the given data.
+ *	@param ctx Pointer to a hash context.
  *	@param data Pointer to data to hash.
  *	@param len Number of bytes at @b data to hash.
- *	@warning You must call hash_sha256_init() first or your hash state will be invalid.
+ *	@warning You must call hash_init() first or your hash state will be invalid.
  ******************************************************************************************************/
-void hash_update(void* ctx, const void* data, size_t len);
+void hash_update(hash_ctx* ctx, const void* data, size_t len);
 
-/**************************************************************************
- *	@brief Finalize Context and Render Digest for SHA-256
- *	@param ctx Pointer to a SHA-256 context.
+/***********************************************************************************
+ *	@brief Finalize context and render digest for hash
+ *	@param ctx Pointer to a hash context.
  *	@param digest Pointer to a buffer to write the hash to.
- *	@note @b digest must be at least 32 bytes large.
- ***************************************************************************/
-void hash_final(void* ctx, void* digest);
+ *	@note @b digest must be at large enough to hold the hash digest.
+ ***********************************************************************************/
+void hash_final(hash_ctx* ctx, void* digest);
 
 /**********************************************************************************************************************
  *	@brief Arbitrary Length Hashing Function
@@ -211,15 +217,28 @@ HMAC generates a more secure hash by using a key known only to authorized
 parties as part of the hash initialization. Thus, while normal SHA-256 can be
 verified by anyone, only the parties with the key can validate using a HMAC hash.
 */
+
+typedef struct _sha256hmac_ctx {
+    uint8_t ipad[64];       /**< holds the key xored with a magic value to be hashed with the inner digest */
+    uint8_t opad[64];       /**< holds the key xored with a magic value to be hashed with the outer digest */
+    uint8_t data[64];		/**< holds sha-256 block for transformation */
+	uint8_t datalen;		/**< holds the current length of data in data[64] */
+	uint8_t bitlen[8];		/**< holds the current length of transformed data */
+	uint32_t state[8];		/**< holds hash state for transformed data */
+} sha256hmac_ctx;
+
 /*******************************************************************************************************************
  * @typedef hmac_ctx
  * Defines hash-state data for an instance of SHA-256-HMAC.
  * @note If you are hashing multiple data streams concurrently, allocate a seperate context for each.
  ********************************************************************************************************************/
 typedef struct _hmac_ctx {
-    uint8_t ipad[64];       /**< holds the key xored with a magic value to be hashed with the inner digest */
-    uint8_t opad[64];       /**< holds the key xored with a magic value to be hashed with the outer digest */
-    hash_ctx ctx;         /**< holds the SHA-256 context used by the HMAC function */
+    uint24_t fn_init;       /**< pointer to an initialization method for the given hash algorithm */
+    uint24_t fn_update;     /**< pointer to the update method for the given hash algorithm */
+    uint24_t fn_final;      /**< pointer to the digest output method for the given hash algorithm */
+    union _hmac {           /**< a union of computational states for various hashes */
+        sha256hmac_ctx sha256hmac;
+    } Hmac;
 } hmac_ctx;
 
 /**********************************************************************************************************************
@@ -230,8 +249,9 @@ typedef struct _hmac_ctx {
  *	@param ctx Pointer to a SHA-256 HMAC context.
  *	@param key Pointer to an authentication key used to initialize the base SHA-256 context.
  *	@param keylen Length of @b key, in bytes.
+ *  @param alg The hmac algorithm to use. See @b hash_algorithms.
  **********************************************************************************************************************/
-void hmac_sha256_init(hmac_ctx* ctx, const void* key, size_t keylen);
+bool hmac_init(hmac_ctx* ctx, const void* key, size_t keylen, uint8_t alg);
 
 /*************************************************************************************************************
  *	@brief Updates the SHA-256 HMAC context for the given data.
@@ -240,7 +260,7 @@ void hmac_sha256_init(hmac_ctx* ctx, const void* key, size_t keylen);
  *	@param len Number of bytes at @b data to hash.
  *	@warning You must call hmac_sha256_init()  first or your hash state will be invalid.
  **************************************************************************************************************/
-void hmac_sha256_update(hmac_ctx* ctx, const void* data, size_t len);
+void hmac_update(hmac_ctx* ctx, const void* data, size_t len);
 
 /***********************************************************************************
  *	@brief Finalize Context and Render Digest for SHA-256 HMAC
@@ -248,17 +268,10 @@ void hmac_sha256_update(hmac_ctx* ctx, const void* data, size_t len);
  *	@param digest Pointer to a buffer to write the hash to.
  *	@note @b digest must be at least 32 bytes large.
  ***************************************************************************/
-void hmac_sha256_final(hmac_ctx* ctx, void* output);
-
-/*************************************************************************************************************************
- *	@brief Resets the SHA-256 HMAC context to its state after a call to hashlib_HMACSha256Init()
- *	@param ctx Pointer to a SHA-256 HMAC context.
- *	@note Calls the SHA-256 Init function, then Updates() the context with the ipad.
- *************************************************************************************************************************/
-void hmac_sha256_reset(hmac_ctx* ctx);
+void hmac_final(hmac_ctx* ctx, void* output);
 
 /*********************************************************************************************************************************
- * @brief Password-Based Key Derivation Function (via SHA-256 HMAC)
+ * @brief Password-Based Key Derivation Function
  *
  * Computes a key derived from a password, a 16-byte salt, and a given number of rounds.
  *
@@ -268,7 +281,8 @@ void hmac_sha256_reset(hmac_ctx* ctx);
  * @param keylen The length of the key to generate (in bytes).
  * @param salt A psuedo-random string to use when computing the key.
  * @param saltlen The length of the salt to use (in bytes).
- * @param rounds The number of times to iterate the SHA-256 function per 32-byte block of @b keylen.
+ * @param rounds The number of times to iterate the hash function per block of @b keylen.
+ * @param alg The hmac algorithm to use for key generation.
  * @note Standards recommend a salt of at least 128 bits (16 bytes).
  * @note @b rounds is used to increase the cost (computational time) of generating a key. What makes password-
  * hashing algorithms secure is the time needed to generate a rainbow table attack against it. More rounds means
@@ -282,7 +296,8 @@ bool hmac_pbkdf2(
     size_t keylen,
     const void* salt,
     size_t saltlen,
-    size_t rounds);
+    size_t rounds,
+    uint8_t alg);
 
 
 /*
@@ -368,7 +383,7 @@ enum aes_padding_schemes {
  *
  * @param len The length of the plaintext.
  *********************************************************************************************/
-#define cipher_aes_outsize(len) \
+#define aes_outsize(len) \
 	((((len)%AES_BLOCKSIZE)==0) ? (len) + AES_BLOCKSIZE : (((len)>>4) + 1)<<4)
 	
 /************************************************************************************************************************
@@ -378,8 +393,8 @@ enum aes_padding_schemes {
  *
  * @param len The length of the plaintext.
  ************************************************************************************************************************/
-#define cipher_aes_extoutsize(len) \
-	(cipher_aes_outsize((len)) + AES_IVSIZE)
+#define aes_extoutsize(len) \
+	(aes_outsize((len)) + AES_IVSIZE)
 
 /*********************************************************************************************************************
  * @brief AES import key to key schedule context
@@ -389,7 +404,7 @@ enum aes_padding_schemes {
  * @return True if the key was successfully loaded. False otherwise.
  * @note It is recommended to cycle your key after encrypting 2^64 blocks of data with the same key.
 ***********************************************************************************************************************/
-bool cipher_aes_loadkey(const void* key, const aes_ctx* ks, size_t keylen);
+bool aes_loadkey(const void* key, const aes_ctx* ks, size_t keylen);
 
 /***************************************************
  * @enum aes_error_t
@@ -431,7 +446,7 @@ typedef enum {
  * 		This will require a buffer at least as large as the size returned by cipher_aes_extoutsize().
  * @return aes_error_t
  *************************************************************************************************************************************************************************/
-aes_error_t cipher_aes_encrypt(
+aes_error_t aes_encrypt(
     const void* plaintext,
     size_t len,
     void* ciphertext,
@@ -453,7 +468,7 @@ aes_error_t cipher_aes_encrypt(
  * @note @b IV should be the same as what is used for encryption.
  * @return aes_error_t
  **************************************************************************************************************************************************/
-aes_error_t cipher_aes_decrypt(
+aes_error_t aes_decrypt(
     const void* ciphertext,
     size_t len,
     void* plaintext,
@@ -512,7 +527,7 @@ typedef enum {
  * @note msg and pubkey are both treated as byte arrays.
  * @return rsa_error_t
  **************************************************************************************************/
-rsa_error_t cipher_rsa_encrypt(
+rsa_error_t rsa_encrypt(
     const void* msg,
     size_t msglen,
     void* ciphertext,

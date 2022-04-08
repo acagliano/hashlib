@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['digest_5fcompare_0',['digest_compare',['../hashlib_8h.html#aade3753b2b7e59ebf301c1c0712f8376',1,'hashlib.h']]],
-  ['digest_5ftostring_1',['digest_tostring',['../hashlib_8h.html#a9875035ce2ae4859b39cfbbff2d1f609',1,'hashlib.h']]]
+  ['csrand_5ffill_0',['csrand_fill',['../hashlib_8h.html#aa3641d44a877ff6eec0eb5cfbfaa5c61',1,'hashlib.h']]],
+  ['csrand_5fget_1',['csrand_get',['../hashlib_8h.html#a3cdabe638655bf5d3760c4ab700a43fd',1,'hashlib.h']]],
+  ['csrand_5finit_2',['csrand_init',['../hashlib_8h.html#a008b7da7adce38b117a17c8165c08df9',1,'hashlib.h']]]
 ];

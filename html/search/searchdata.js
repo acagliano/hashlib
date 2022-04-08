@@ -3,12 +3,12 @@ var indexSectionsWithContent =
   0: "_abcdfhikors",
   1: "_",
   2: "h",
-  3: "cdh",
-  4: "bcdikors",
+  3: "acdhr",
+  4: "bdfikors",
   5: "ahs",
-  6: "ar",
+  6: "ahr",
   7: "ars",
-  8: "acfs",
+  8: "afs",
   9: "c"
 };
 

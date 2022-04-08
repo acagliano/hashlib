@@ -17,10 +17,9 @@ library "HASHLIB", 9
 	export hash_final
 	export hash_mgf1
     
-    export hmac_sha256_init
-    export hmac_sha256_update
-    export hmac_sha256_final
-    export hmac_sha256_reset
+    export hmac_init
+    export hmac_update
+    export hmac_final
     export hmac_pbkdf2
     
     export aes_loadkey
@@ -130,6 +129,12 @@ hash_func_lookup:
     dl hash_sha256_init
     dl hash_sha256_update
     dl hash_sha256_final
+    
+hmac_func_lookup:
+    dl hmac_sha256_init
+    dl hmac_sha256_update
+    dl hmac_sha256_final
+    
 
 
 ; probably better to just add the one u64 function used by hashlib rather than screw with dependencies
@@ -473,6 +478,45 @@ hash_update:
     
 ; hash_final(context, outbuf);
 hash_final:
+    pop bc,iy
+    pea iy+9
+    push bc
+    ld hl, (iy+6)
+    jp (hl)
+    
+; hmac_init(context, key, keylen, alg);
+hmac_init:
+    ld iy,0
+    add iy,sp
+    ld de, (iy+3)       ; de = &context
+    ld a, (iy+12)        ; hl = alg
+    ld hl, 0
+    ld l, a
+    cp a, hash_algs_impl
+    sbc a,a             ; if alg >= hash_algs_impl
+    ret z               ; quit, ret 0
+    ld h, 9
+    mlt hl              ; alg * 9
+    ld bc, hmac_func_lookup     ; (9*alg + hmac_func_lookup)
+    add hl, bc
+    ld iy, (hl)                 ; put *(hmac_func_lookup + (9*alg)) into iy
+    ld bc, 9
+    ldir                        ; copy 9 bytes to de (&context)
+    ld (iy+3), de               ; overwrite &context with &context + 9
+    jp (iy)                     ; jump to iy (should be ptr to hmac_init for the hash)
+    
+    
+    
+; hmac_update(context, data, len);
+hmac_update:
+    pop bc,iy
+    pea iy+9
+    push bc
+    ld hl, (iy+3)
+    jp (hl)
+    
+; hash_final(context, outbuf);
+hmac_final:
     pop bc,iy
     pea iy+9
     push bc
@@ -6963,390 +7007,427 @@ hmac_sha256_reset:
 
 	restore_interrupts hmac_sha256_reset
 	ret
-    
-    
+
 hmac_pbkdf2:
 	save_interrupts
 
-    ld	hl, -575
+   	ld	hl, -654
 	call	ti._frameset
-	ld	hl, 236
-	ld	de, 0
-	ld	(ix + -3), de
-	ld	de, -310
-	lea	iy, ix + 0
-	add	iy, de
-	lea	bc, iy + 0
+	ld	hl, _hash_out_lens
+	ld	iy, 0
+	xor	a, a
+	push	ix
+	ld	de, -623
+	add	ix, de
+	ld	(ix + 0), a
+	pop	ix
+	push	ix
+	ld	de, -380
+	add	ix, de
+	lea	bc, ix + 0
+	pop	ix
+	lea	de, iy + 0
+	ld	a, (ix + 27)
+	ld	e, a
+	add	hl, de
+	ld	a, (hl)
+	ld	de, -629
+	lea	hl, ix + 0
+	add	hl, de
+	ld	(hl), a
+	ld	hl, 242
 	push	hl
-	ld	de, (ix + -3)
-	push	de
-	ld	de, -549
+	push	iy
+	ld	de, -626
 	lea	hl, ix + 0
 	add	hl, de
 	ld	(hl), bc
 	push	bc
 	call	ti._memset
-	pop	hl
-	pop	hl
-	pop	hl
-	ld	hl, (ix + 6)
+	pop	de
+	pop	de
+	pop	de
+	ld	hl, (ix + 15)
 	add	hl, bc
 	or	a, a
 	sbc	hl, bc
-	ld	c, 1
-	ld	e, 0
-	ld	a, c
-	jq	z, .lbl_2
-	ld	a, e
+	jq	nz, .lbl_1
+	jq	.lbl_17
+.lbl_1:
+	ld	a, (ix + 27)
+	or	a, a
+	sbc	hl, hl
+	ld	bc, -632
+	lea	iy, ix + 0
+	add	iy, bc
+	ld	(iy + 0), hl
+	ld	de, (ix + 9)
+	push	de
+	pop	hl
+	add	hl, bc
+	or	a, a
+	sbc	hl, bc
+	jq	nz, .lbl_2
+	jq	.lbl_17
 .lbl_2:
-	ld	iy, (ix + 9)
+	ld	bc, (ix + 6)
+	push	bc
+	pop	hl
+	add	hl, bc
+	or	a, a
+	sbc	hl, bc
+	jq	nz, .lbl_3
+	jq	.lbl_17
+.lbl_3:
 	ld	hl, (ix + 12)
 	add	hl, bc
 	or	a, a
 	sbc	hl, bc
-	ld	l, c
-	jq	z, .lbl_4
-	ld	l, e
+	jq	nz, .lbl_4
+	jq	.lbl_17
 .lbl_4:
-	or	a, l
-	ld	b, a
-	lea	hl, iy + 0
-	add	hl, bc
-	or	a, a
-	sbc	hl, bc
-	ld	a, c
-	jq	z, .lbl_6
-	ld	a, e
-.lbl_6:
-	or	a, b
 	ld	hl, (ix + 24)
 	add	hl, bc
 	or	a, a
 	sbc	hl, bc
-	ld	l, c
-	jq	z, .lbl_8
-	ld	l, e
-.lbl_8:
-	or	a, l
-	ld	b, a
-	ld	hl, (ix + 15)
+	jq	nz, .lbl_5
+	jq	.lbl_17
+.lbl_5:
+	ld	l, a
+	push	hl
+	push	de
+	push	bc
+	ld	bc, -626
+	lea	hl, ix + 0
 	add	hl, bc
-	or	a, a
-	sbc	hl, bc
-	jq	z, .lbl_10
-	ld	c, e
-.lbl_10:
-	ld	a, c
-	or	a, b
-	ld	bc, -556
+	ld	hl, (hl)
+	push	hl
+	call	hmac_init
+	pop	hl
+	pop	hl
+	pop	hl
+	pop	hl
+	ld	l, 1
+	xor	a, l
+	bit	0, a
+	jq	nz, .lbl_17
+	ld	bc, -138
+	lea	hl, ix + 0
+	add	hl, bc
+	ld	bc, -638
+	lea	iy, ix + 0
+	add	iy, bc
+	ld	(iy + 0), hl
+	ld	a, 1
+	ld	bc, -623
 	lea	hl, ix + 0
 	add	hl, bc
 	ld	(hl), a
-	bit	0, a
-	jq	z, .lbl_11
-.lbl_22:
-	ld	bc, -556
-	lea	hl, ix + 0
-	add	hl, bc
-	ld	a, (hl)
-	ld	l, 1
-	xor	a, l
-	ld	sp, ix
-	pop	ix
- 
-    restore_interrupts hmac_pbkdf2
-	ret
-.lbl_11:
-	lea	hl, ix + -38
-	push	ix
-	ld	bc, -552
-	add	ix, bc
-	ld	(ix + 0), hl
-	pop	ix
 	lea	hl, ix + -70
 	push	ix
-	ld	bc, -559
+	ld	bc, -635
 	add	ix, bc
 	ld	(ix + 0), hl
 	pop	ix
-	ld	bc, -546
+	ld	bc, -134
 	lea	hl, ix + 0
 	add	hl, bc
 	push	ix
-	ld	bc, -562
+	ld	bc, -641
 	add	ix, bc
 	ld	(ix + 0), hl
 	pop	ix
-	push	iy
-	ld	hl, (ix + 6)
+	ld	bc, -622
+	lea	hl, ix + 0
+	add	hl, bc
 	push	hl
-	ld	bc, -549
+	pop	de
+	push	ix
+	ld	bc, -632
+	add	ix, bc
+	ld	hl, (ix + 0)
+	pop	ix
+	push	ix
+	ld	bc, -629
+	add	ix, bc
+	ld	a, (ix + 0)
+	pop	ix
+	ld	l, a
+	push	ix
+	ld	bc, -632
+	add	ix, bc
+	ld	(ix + 0), hl
+	pop	ix
+	ld	hl, 242
+	push	hl
+	ld	bc, -626
 	lea	hl, ix + 0
 	add	hl, bc
 	ld	hl, (hl)
 	push	hl
-	call	hmac_sha256_init
-	pop	hl
-	pop	hl
-	pop	hl
-	ld	hl, 236
-	push	hl
-	ld	bc, -549
+	ld	bc, -644
 	lea	hl, ix + 0
 	add	hl, bc
-	ld	hl, (hl)
-	push	hl
-	ld	bc, -562
-	lea	hl, ix + 0
-	add	hl, bc
-	ld	hl, (hl)
-	push	hl
+	ld	(hl), de
+	push	de
 	call	ti._memcpy
 	pop	hl
 	pop	hl
 	pop	hl
-	ld	de, 128
-	ld	bc, -549
-	lea	hl, ix + 0
-	add	hl, bc
-	ld	hl, (hl)
-	add	hl, de
-	ld	de, -565
-	lea	iy, ix + 0
-	add	iy, de
-	ld	(iy + 0), hl
-	ld	iy, 0
 	ld	bc, 1
 	xor	a, a
-.lbl_12:
-	lea	hl, iy + 0
 	ld	de, (ix + 15)
+	ld	iy, 0
+.lbl_7:
+	lea	hl, iy + 0
 	or	a, a
 	sbc	hl, de
-	jq	nc, .lbl_22
-	ld	hl, (ix + 15)
+	jq	nc, .lbl_23
+	ex	de, hl
 	lea	de, iy + 0
+	ld	(ix + -3), bc
+	ld	bc, -629
+	lea	iy, ix + 0
+	add	iy, bc
+	ld	(iy + 0), de
 	or	a, a
 	sbc	hl, de
 	push	ix
-	ld	de, -572
+	ld	de, -651
 	add	ix, de
 	ld	(ix + 0), hl
 	pop	ix
+	ld	bc, (ix + -3)
 	push	bc
 	pop	de
 	ld	h, a
 	ld	l, 24
 	call	ti._lshru
 	ld	a, c
-	ld	(ix + -74), a
+	push	ix
+	ld	bc, -638
+	add	ix, bc
+	ld	iy, (ix + 0)
+	pop	ix
+	ld	(iy + 0), a
 	push	de
 	pop	bc
 	ld	(ix + -3), de
-	push	ix
-	ld	de, -569
-	add	ix, de
-	ld	(ix + 0), h
-	pop	ix
+	ld	de, -648
+	lea	iy, ix + 0
+	add	iy, de
+	ld	(iy + 0), h
 	ld	a, h
 	ld	l, 16
 	call	ti._lshru
 	ld	a, c
-	ld	(ix + -73), a
+	push	ix
+	ld	bc, -638
+	add	ix, bc
+	ld	iy, (ix + 0)
+	pop	ix
+	ld	(iy + 1), a
 	ld	de, (ix + -3)
 	ld	a, d
-	ld	(ix + -72), a
+	ld	(iy + 2), a
 	push	ix
-	ld	bc, -568
+	ld	bc, -647
 	add	ix, bc
 	ld	(ix + 0), de
 	pop	ix
 	ld	a, e
-	ld	(ix + -71), a
+	ld	(iy + 3), a
 	ld	hl, (ix + 21)
 	push	hl
 	ld	hl, (ix + 18)
 	push	hl
-	ld	bc, -549
+	ld	bc, -626
 	lea	hl, ix + 0
 	add	hl, bc
 	ld	hl, (hl)
 	push	hl
-	ld	bc, -555
+	call	hmac_update
+	pop	hl
+	pop	hl
+	pop	hl
+	ld	hl, 4
+	push	hl
+	ld	bc, -638
+	lea	hl, ix + 0
+	add	hl, bc
+	ld	hl, (hl)
+	push	hl
+	ld	bc, -626
+	lea	hl, ix + 0
+	add	hl, bc
+	ld	hl, (hl)
+	push	hl
+	call	hmac_update
+	pop	hl
+	pop	hl
+	pop	hl
+	ld	bc, -635
+	lea	hl, ix + 0
+	add	hl, bc
+	ld	hl, (hl)
+	push	hl
+	ld	bc, -626
+	lea	hl, ix + 0
+	add	hl, bc
+	ld	hl, (hl)
+	push	hl
+	call	hmac_final
+	pop	hl
+	pop	hl
+	ld	bc, -632
+	lea	hl, ix + 0
+	add	hl, bc
+	ld	hl, (hl)
+	push	hl
+	ld	bc, -635
+	lea	hl, ix + 0
+	add	hl, bc
+	ld	hl, (hl)
+	push	hl
+	ld	bc, -641
+	lea	hl, ix + 0
+	add	hl, bc
+	ld	hl, (hl)
+	push	hl
+	call	ti._memcpy
+	pop	hl
+	pop	hl
+	pop	hl
+	ld	iy, 1
+	ld	de, 242
+.lbl_9:
+	lea	hl, iy + 0
+	ld	bc, (ix + 24)
+	or	a, a
+	sbc	hl, bc
+	jq	z, .lbl_10
+	ld	bc, -654
 	lea	hl, ix + 0
 	add	hl, bc
 	ld	(hl), iy
-	call	hmac_sha256_update
-	pop	hl
-	pop	hl
-	pop	hl
-	or	a, a
-	sbc	hl, hl
-	push	hl
-	ld	hl, 4
-	push	hl
-	pea	ix + -74
-	ld	bc, -565
-	lea	hl, ix + 0
-	add	hl, bc
-	ld	hl, (hl)
-	push	hl
-	call	hash_sha256_update
-	pop	hl
-	pop	hl
-	pop	hl
-	pop	hl
-	ld	bc, -552
-	lea	hl, ix + 0
-	add	hl, bc
-	ld	hl, (hl)
-	push	hl
-	ld	bc, -549
-	lea	hl, ix + 0
-	add	hl, bc
-	ld	hl, (hl)
-	push	hl
-	call	hmac_sha256_final
-	pop	hl
-	pop	hl
-	ld	hl, 32
-	push	hl
-	ld	bc, -552
-	lea	hl, ix + 0
-	add	hl, bc
-	ld	hl, (hl)
-	push	hl
-	ld	bc, -559
-	lea	hl, ix + 0
-	add	hl, bc
-	ld	hl, (hl)
-	push	hl
-	call	ti._memcpy
-	ld	de, -555
-	lea	hl, ix + 0
-	add	hl, de
-	ld	iy, (hl)
-	pop	hl
-	pop	hl
-	pop	hl
-	ld	bc, 1
-.lbl_14:
-	push	bc
-	pop	hl
-	ld	de, (ix + 24)
-	or	a, a
-	sbc	hl, de
-	jq	z, .lbl_15
-	ld	de, -575
-	lea	hl, ix + 0
-	add	hl, de
-	ld	(hl), bc
-	ld	hl, 236
-	push	hl
-	ld	bc, -562
-	lea	hl, ix + 0
-	add	hl, bc
-	ld	hl, (hl)
-	push	hl
-	ld	bc, -549
-	lea	hl, ix + 0
-	add	hl, bc
-	ld	hl, (hl)
-	push	hl
-	call	ti._memcpy
-	pop	hl
-	pop	hl
-	pop	hl
-	or	a, a
-	sbc	hl, hl
-	push	hl
-	ld	hl, 32
-	push	hl
-	ld	bc, -552
-	lea	hl, ix + 0
-	add	hl, bc
-	ld	hl, (hl)
-	push	hl
-	ld	bc, -565
-	lea	hl, ix + 0
-	add	hl, bc
-	ld	hl, (hl)
-	push	hl
-	call	hash_sha256_update
-	pop	hl
-	pop	hl
-	pop	hl
-	pop	hl
-	ld	bc, -552
-	lea	hl, ix + 0
-	add	hl, bc
-	ld	hl, (hl)
-	push	hl
-	ld	bc, -549
-	lea	hl, ix + 0
-	add	hl, bc
-	ld	hl, (hl)
-	push	hl
-	call	hmac_sha256_final
-	ld	bc, -555
-	lea	hl, ix + 0
-	add	hl, bc
-	ld	iy, (hl)
-	pop	hl
-	pop	hl
-	ld	de, 0
-.lbl_19:
 	push	de
-	pop	hl
-	ld	bc, 32
-	or	a, a
-	sbc	hl, bc
-	jq	z, .lbl_20
-	ld	bc, -552
-	lea	hl, ix + 0
-	add	hl, bc
-	ld	iy, (hl)
-	add	iy, de
-	push	ix
-	ld	bc, -559
-	add	ix, bc
-	ld	hl, (ix + 0)
-	pop	ix
-	add	hl, de
-	ld	a, (hl)
-	xor	a, (iy)
-	ld	bc, -555
+	ld	bc, -644
 	lea	iy, ix + 0
 	add	iy, bc
-	ld	iy, (iy + 0)
-	ld	(hl), a
-	inc	de
-	jq	.lbl_19
-.lbl_20:
-	ld	de, -575
+	ld	hl, (iy + 0)
+	push	hl
+	ld	bc, -626
+	lea	hl, ix + 0
+	add	hl, bc
+	ld	hl, (hl)
+	push	hl
+	call	ti._memcpy
+	pop	hl
+	pop	hl
+	pop	hl
+	ld	bc, -632
+	lea	hl, ix + 0
+	add	hl, bc
+	ld	hl, (hl)
+	push	hl
+	ld	bc, -635
+	lea	hl, ix + 0
+	add	hl, bc
+	ld	hl, (hl)
+	push	hl
+	ld	bc, -626
+	lea	hl, ix + 0
+	add	hl, bc
+	ld	hl, (hl)
+	push	hl
+	call	hmac_update
+	pop	hl
+	pop	hl
+	pop	hl
+	ld	bc, -635
+	lea	hl, ix + 0
+	add	hl, bc
+	ld	hl, (hl)
+	push	hl
+	ld	bc, -626
+	lea	hl, ix + 0
+	add	hl, bc
+	ld	hl, (hl)
+	push	hl
+	call	hmac_final
+	pop	hl
+	pop	hl
+	ld	de, -635
 	lea	hl, ix + 0
 	add	hl, de
-	ld	bc, (hl)
-	inc	bc
+	ld	iy, (hl)
+	push	ix
+	ld	de, -641
+	add	ix, de
+	ld	bc, (ix + 0)
+	pop	ix
+	ld	(ix + -3), bc
+	push	ix
+	ld	bc, -632
+	add	ix, bc
+	ld	de, (ix + 0)
+	pop	ix
+	ld	bc, (ix + -3)
+.lbl_14:
+	push	de
+	pop	hl
+	add	hl, bc
+	or	a, a
+	sbc	hl, bc
+	jq	z, .lbl_15
+	push	bc
+	pop	hl
+	ld	a, (hl)
+	xor	a, (iy)
+	ld	(hl), a
+	dec	de
+	inc	hl
+	push	hl
+	pop	bc
+	inc	iy
 	jq	.lbl_14
 .lbl_15:
-	ld	de, -572
+	ld	bc, -654
+	lea	hl, ix + 0
+	add	hl, bc
+	ld	iy, (hl)
+	inc	iy
+	ld	de, 242
+	jq	.lbl_9
+.lbl_10:
+	ld	de, -651
 	lea	hl, ix + 0
 	add	hl, de
 	ld	bc, (hl)
 	push	bc
 	pop	hl
-	ld	de, 32
+	ld	(ix + -3), bc
+	ld	bc, -632
+	lea	iy, ix + 0
+	add	iy, bc
+	ld	de, (iy + 0)
 	or	a, a
 	sbc	hl, de
-	jq	c, .lbl_17
-	ld	bc, 32
-.lbl_17:
-	lea	de, iy + 0
+	ld	bc, (ix + -3)
+	jq	c, .lbl_12
+	push	de
+	pop	bc
+.lbl_12:
+	ld	(ix + -3), bc
+	ld	bc, -629
+	lea	hl, ix + 0
+	add	hl, bc
+	ld	de, (hl)
 	ld	hl, (ix + 12)
 	add	hl, de
+	ld	bc, (ix + -3)
 	push	bc
-	ld	bc, -559
+	ld	bc, -641
 	lea	iy, ix + 0
 	add	iy, bc
 	ld	de, (iy + 0)
@@ -7356,32 +7437,36 @@ hmac_pbkdf2:
 	pop	hl
 	pop	hl
 	pop	hl
-	ld	hl, 236
+	ld	hl, 242
 	push	hl
-	ld	bc, -562
+	ld	bc, -644
 	lea	hl, ix + 0
 	add	hl, bc
 	ld	hl, (hl)
 	push	hl
-	ld	bc, -549
+	ld	bc, -626
 	lea	hl, ix + 0
 	add	hl, bc
 	ld	hl, (hl)
 	push	hl
 	call	ti._memcpy
-	ld	bc, -555
+	ld	bc, -629
 	lea	hl, ix + 0
 	add	hl, bc
 	ld	iy, (hl)
 	pop	hl
 	pop	hl
 	pop	hl
-	ld	de, 32
-	add	iy, de
-	ld	bc, -568
+	ld	bc, -632
 	lea	hl, ix + 0
 	add	hl, bc
-	ld	hl, (hl)
+	ld	de, (hl)
+	add	iy, de
+	push	ix
+	ld	bc, -647
+	add	ix, bc
+	ld	hl, (ix + 0)
+	pop	ix
 	push	ix
 	dec	bc
 	add	ix, bc
@@ -7393,7 +7478,18 @@ hmac_pbkdf2:
 	push	hl
 	pop	bc
 	ld	a, e
-	jq	.lbl_12
+	ld	de, (ix + 15)
+	jq	.lbl_7
+.lbl_23:
+.lbl_17:
+	ld	bc, -623
+	lea	hl, ix + 0
+	add	hl, bc
+	ld	a, (hl)
+	ld	sp, ix
+	pop	ix
+    restore_interrupts hmac_pbkdf2
+	ret
  
 
 digest_tostring:
@@ -7488,6 +7584,7 @@ digest_tostring:
 	ret
  
  _hexc:     db	"0123456789ABCDEF"
+ _hash_out_lens:    db 32
 
 _sprng_read_addr:        rb 3
 _sprng_entropy_pool.size = 119
