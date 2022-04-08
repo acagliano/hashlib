@@ -33,8 +33,8 @@ int main(void)
 {
     hmac_ctx hmac;
     uint8_t sha256_digest[SHA256_DIGEST_LEN];
-    *(char*)-1=2;
     if(!hmac_init(&hmac, hmac_keystr, strlen(hmac_keystr), SHA256)) return 1;
+    *(char*)-1=2;
     hmac_update(&hmac, str, strlen(str));
     hmac_final(&hmac, sha256_digest);
 

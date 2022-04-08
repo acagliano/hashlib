@@ -78,25 +78,25 @@ Classes</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:af801912fa2fb1c34eda73c55681289dc"><td class="memItemLeft" align="right" valign="top">uint24_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct__hmac__ctx.html#af801912fa2fb1c34eda73c55681289dc">fn_init</a></td></tr>
-<tr class="separator:af801912fa2fb1c34eda73c55681289dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7202d69901429812f50ff5b9aae864fc"><td class="memItemLeft" align="right" valign="top">uint24_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct__hmac__ctx.html#a7202d69901429812f50ff5b9aae864fc">fn_update</a></td></tr>
-<tr class="separator:a7202d69901429812f50ff5b9aae864fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a346ec38d6fea78f10c988fab487cf3e5"><td class="memItemLeft" align="right" valign="top">uint24_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct__hmac__ctx.html#a346ec38d6fea78f10c988fab487cf3e5">fn_final</a></td></tr>
-<tr class="separator:a346ec38d6fea78f10c988fab487cf3e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5592808d47dd58dc8844e41d0062075d"><td class="memItemLeft" align="right" valign="top">bool(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct__hmac__ctx.html#a5592808d47dd58dc8844e41d0062075d">fn_init</a> )(void *ctx, const void *key, size_t keylen)</td></tr>
+<tr class="separator:a5592808d47dd58dc8844e41d0062075d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae32d4143aef63d76e96ad9f88af14f94"><td class="memItemLeft" align="right" valign="top">void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct__hmac__ctx.html#ae32d4143aef63d76e96ad9f88af14f94">fn_update</a> )(void *ctx, const void *data, size_t len)</td></tr>
+<tr class="separator:ae32d4143aef63d76e96ad9f88af14f94"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a489e319d3ffa62e6c77f950c2c6ecc43"><td class="memItemLeft" align="right" valign="top">void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct__hmac__ctx.html#a489e319d3ffa62e6c77f950c2c6ecc43">fn_final</a> )(void *ctx, void *output)</td></tr>
+<tr class="separator:a489e319d3ffa62e6c77f950c2c6ecc43"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afebc00a7bbf696205a1fcd028388fc27"><td class="memItemLeft" align="right" valign="top"><a id="afebc00a7bbf696205a1fcd028388fc27" name="afebc00a7bbf696205a1fcd028388fc27"></a>
 union <a class="el" href="union__hmac__ctx_1_1__hmac.html">_hmac_ctx::_hmac</a>&#160;</td><td class="memItemRight" valign="bottom"><b>Hmac</b></td></tr>
 <tr class="separator:afebc00a7bbf696205a1fcd028388fc27"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Member Data Documentation</h2>
-<a id="af801912fa2fb1c34eda73c55681289dc" name="af801912fa2fb1c34eda73c55681289dc"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af801912fa2fb1c34eda73c55681289dc">&#9670;&nbsp;</a></span>fn_init</h2>
+<a id="a5592808d47dd58dc8844e41d0062075d" name="a5592808d47dd58dc8844e41d0062075d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5592808d47dd58dc8844e41d0062075d">&#9670;&nbsp;</a></span>fn_init</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">uint24_t _hmac_ctx::fn_init</td>
+          <td class="memname">bool(* _hmac_ctx::fn_init) (void *ctx, const void *key, size_t keylen)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -104,14 +104,14 @@ union <a class="el" href="union__hmac__ctx_1_1__hmac.html">_hmac_ctx::_hmac</a>&
 
 </div>
 </div>
-<a id="a7202d69901429812f50ff5b9aae864fc" name="a7202d69901429812f50ff5b9aae864fc"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7202d69901429812f50ff5b9aae864fc">&#9670;&nbsp;</a></span>fn_update</h2>
+<a id="ae32d4143aef63d76e96ad9f88af14f94" name="ae32d4143aef63d76e96ad9f88af14f94"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae32d4143aef63d76e96ad9f88af14f94">&#9670;&nbsp;</a></span>fn_update</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">uint24_t _hmac_ctx::fn_update</td>
+          <td class="memname">void(* _hmac_ctx::fn_update) (void *ctx, const void *data, size_t len)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -119,14 +119,14 @@ union <a class="el" href="union__hmac__ctx_1_1__hmac.html">_hmac_ctx::_hmac</a>&
 
 </div>
 </div>
-<a id="a346ec38d6fea78f10c988fab487cf3e5" name="a346ec38d6fea78f10c988fab487cf3e5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a346ec38d6fea78f10c988fab487cf3e5">&#9670;&nbsp;</a></span>fn_final</h2>
+<a id="a489e319d3ffa62e6c77f950c2c6ecc43" name="a489e319d3ffa62e6c77f950c2c6ecc43"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a489e319d3ffa62e6c77f950c2c6ecc43">&#9670;&nbsp;</a></span>fn_final</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">uint24_t _hmac_ctx::fn_final</td>
+          <td class="memname">void(* _hmac_ctx::fn_final) (void *ctx, void *output)</td>
         </tr>
       </table>
 </div><div class="memdoc">

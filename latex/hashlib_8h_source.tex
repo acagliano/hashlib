@@ -139,9 +139,9 @@
 \DoxyCodeLine{229 }
 \DoxyCodeLine{230 }
 \DoxyCodeLine{235 \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\mbox{\hyperlink{struct__hmac__ctx}{\_hmac\_ctx}} \{}
-\DoxyCodeLine{236     uint24\_t \mbox{\hyperlink{struct__hmac__ctx_af801912fa2fb1c34eda73c55681289dc}{fn\_init}};       }
-\DoxyCodeLine{237     uint24\_t \mbox{\hyperlink{struct__hmac__ctx_a7202d69901429812f50ff5b9aae864fc}{fn\_update}};     }
-\DoxyCodeLine{238     uint24\_t \mbox{\hyperlink{struct__hmac__ctx_a346ec38d6fea78f10c988fab487cf3e5}{fn\_final}};      }
+\DoxyCodeLine{236     bool (*\mbox{\hyperlink{struct__hmac__ctx_a5592808d47dd58dc8844e41d0062075d}{fn\_init}})(\textcolor{keywordtype}{void}* ctx, \textcolor{keyword}{const} \textcolor{keywordtype}{void}* key, \textcolor{keywordtype}{size\_t} keylen);     }
+\DoxyCodeLine{237     void (*\mbox{\hyperlink{struct__hmac__ctx_ae32d4143aef63d76e96ad9f88af14f94}{fn\_update}})(\textcolor{keywordtype}{void}* ctx, \textcolor{keyword}{const} \textcolor{keywordtype}{void}* data, \textcolor{keywordtype}{size\_t} len);     }
+\DoxyCodeLine{238     void (*\mbox{\hyperlink{struct__hmac__ctx_a489e319d3ffa62e6c77f950c2c6ecc43}{fn\_final}})(\textcolor{keywordtype}{void}* ctx, \textcolor{keywordtype}{void}* output);                      }
 \DoxyCodeLine{239     \textcolor{keyword}{union }\mbox{\hyperlink{union__hmac__ctx_1_1__hmac}{\_hmac}} \{           }
 \DoxyCodeLine{240         \mbox{\hyperlink{struct__sha256hmac__ctx}{sha256hmac\_ctx}} \mbox{\hyperlink{union__hmac__ctx_1_1__hmac_a79f9ff1e4e50e87d2b7b2fafea176789}{sha256hmac}};}
 \DoxyCodeLine{241     \} Hmac;}

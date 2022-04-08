@@ -233,9 +233,9 @@ typedef struct _sha256hmac_ctx {
  * @note If you are hashing multiple data streams concurrently, allocate a seperate context for each.
  ********************************************************************************************************************/
 typedef struct _hmac_ctx {
-    uint24_t fn_init;       /**< pointer to an initialization method for the given hash algorithm */
-    uint24_t fn_update;     /**< pointer to the update method for the given hash algorithm */
-    uint24_t fn_final;      /**< pointer to the digest output method for the given hash algorithm */
+    bool (*fn_init)(void* ctx, const void* key, size_t keylen);     /**< pointer to an initialization method for the given hash algorithm */
+    void (*fn_update)(void* ctx, const void* data, size_t len);     /**< pointer to the update method for the given hash algorithm */
+    void (*fn_final)(void* ctx, void* output);                      /**< pointer to the digest output method for the given hash algorithm */
     union _hmac {           /**< a union of computational states for various hashes */
         sha256hmac_ctx sha256hmac;
     } Hmac;

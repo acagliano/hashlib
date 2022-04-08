@@ -34,6 +34,7 @@ library "HASHLIB", 9
     export aes_ecb_unsafe_decrypt
     
     
+    
 
 ;------------------------------------------
 ; helper macro for saving the interrupt state, then disabling interrupts
@@ -448,80 +449,172 @@ hash_algs_impl  =   1
  
 ; hash_init(context, alg);
 hash_init:
-    pop bc,iy,hl
-    push hl
-    pea iy+9
-    push bc
-    lea de, iy+0
-    ld a,l
+  	call	ti._frameset0
+    ; (ix+0) return vector
+    ; (ix+3) old ix
+    ; (ix+6) context
+    ; (ix+9) alg
+    
+    ; check if value of alg < hash_algs_impl, return 0 if not
+    ld a, (ix + 9)
+    ld l, a
     cp a, hash_algs_impl
     sbc a,a
     ret z
+    
+    ; multiply alg by 9 to get correct set of pointers
+    ; copy 9 bytes from hmac_func_lookup+offset to context
     ld h, 9
     mlt hl
     ld bc, hash_func_lookup
     add hl, bc
-    ld iy, (hl)
+    ld de, (ix + 6)
     ld bc, 9
     ldir
-    jp (iy)
+    
+    ; push arguments onto stack for internal hash caller
+    ld hl, (ix + 12)
+    push hl
+    ld hl, (ix + 9)
+    push hl
+    ld iy, (ix+6)
+    pea iy + 9
+    ld hl, (ix + 6)
+    ld hl, (hl)
+    call _indcallhl
+    
+    ; pop arguments from stack
+    pop hl,hl,hl
+    ld a, 1     ; return true
+    ld sp, ix
+    pop ix
+    ret
     
     
     
 ; hash_update(context, data, len);
 hash_update:
-    pop bc,iy
-    pea iy+9
-    push bc
-    ld hl, (iy+3)
-    jp (hl)
+    call	ti._frameset0
+    ; (ix+0) return vector
+    ; (ix+3) old ix
+    ; (ix+6) context
+    ; (ix+9) data
+    ; (ix+12) len
+    
+    ld hl, (ix + 12)
+    push hl
+    ld hl, (ix + 9)
+    push hl
+    ld iy, (ix + 6)
+    pea iy + 9
+    ld hl, (iy + 3)
+    call _indcallhl
+    ld sp, ix
+    pop ix
+    ret
     
 ; hash_final(context, outbuf);
 hash_final:
-    pop bc,iy
-    pea iy+9
-    push bc
-    ld hl, (iy+6)
-    jp (hl)
+     call	ti._frameset0
+    ; (ix+0) return vector
+    ; (ix+3) old ix
+    ; (ix+6) context
+    ; (ix+9) outbuf
+    
+    ld hl, (ix + 9)
+    push hl
+    ld iy, (ix + 6)
+    pea iy + 9
+    ld hl, (iy + 6)
+    call _indcallhl
+    ld sp, ix
+    pop ix
+    ret
+    
     
 ; hmac_init(context, key, keylen, alg);
 hmac_init:
-    ld iy,0
-    add iy,sp
-    ld de, (iy+3)       ; de = &context
-    ld a, (iy+12)        ; hl = alg
-    ld hl, 0
+ 	call	ti._frameset0
+    ; (ix+0) return vector
+    ; (ix+3) old ix
+    ; (ix+6) context
+    ; (ix+9) key
+    ; (ix+12) keylen
+    ; (ix+15) alg
+    
+    ; check if value of alg < hash_algs_impl, return 0 if not
+    ld a, (ix + 15)
     ld l, a
     cp a, hash_algs_impl
-    sbc a,a             ; if alg >= hash_algs_impl
-    ret z               ; quit, ret 0
-    ld h, 9
-    mlt hl              ; alg * 9
-    ld bc, hmac_func_lookup     ; (9*alg + hmac_func_lookup)
-    add hl, bc
-    ld iy, (hl)                 ; put *(hmac_func_lookup + (9*alg)) into iy
-    ld bc, 9
-    ldir                        ; copy 9 bytes to de (&context)
-    ld (iy+3), de               ; overwrite &context with &context + 9
-    jp (iy)                     ; jump to iy (should be ptr to hmac_init for the hash)
+    sbc a,a
+    ret z
     
+    ; multiply alg by 9 to get correct set of pointers
+    ; copy 9 bytes from hmac_func_lookup+offset to context
+    ld h, 9
+    mlt hl
+    ld bc, hmac_func_lookup
+    add hl, bc
+    ld de, (ix + 6)
+    ld bc, 9
+    ldir
+    
+    ; push arguments onto stack for internal hash caller
+    ld hl, (ix + 12)
+    push hl
+    ld hl, (ix + 9)
+    push hl
+    ld iy, (ix+6)
+    pea iy + 9
+    ld hl, (iy)
+    call _indcallhl
+    
+    ; pop arguments from stack
+    pop hl,hl,hl
+    ld a, 1     ; return true
+    ld sp, ix
+    pop ix
+    ret
     
     
 ; hmac_update(context, data, len);
 hmac_update:
-    pop bc,iy
-    pea iy+9
-    push bc
-    ld hl, (iy+3)
-    jp (hl)
+    call	ti._frameset0
+    ; (ix+0) return vector
+    ; (ix+3) old ix
+    ; (ix+6) context
+    ; (ix+9) data
+    ; (ix+12) len
+    
+    ld hl, (ix + 12)
+    push hl
+    ld hl, (ix + 9)
+    push hl
+    ld iy, (ix + 6)
+    pea iy + 9
+    ld hl, (iy + 3)
+    call _indcallhl
+    ld sp, ix
+    pop ix
+    ret
     
 ; hash_final(context, outbuf);
 hmac_final:
-    pop bc,iy
-    pea iy+9
-    push bc
-    ld hl, (iy+6)
-    jp (hl)
+     call	ti._frameset0
+    ; (ix+0) return vector
+    ; (ix+3) old ix
+    ; (ix+6) context
+    ; (ix+9) outbuf
+    
+    ld hl, (ix + 9)
+    push hl
+    ld iy, (ix + 6)
+    pea iy + 9
+    ld hl, (iy + 6)
+    call _indcallhl
+    ld sp, ix
+    pop ix
+    ret
     
     
  
@@ -7011,38 +7104,45 @@ hmac_sha256_reset:
 hmac_pbkdf2:
 	save_interrupts
 
-   	ld	hl, -654
+ 	ld	hl, -654
 	call	ti._frameset
+	ld	a, (ix + 27)
 	ld	hl, _hash_out_lens
 	ld	iy, 0
-	xor	a, a
+	ld	e, 0
 	push	ix
-	ld	de, -623
-	add	ix, de
-	ld	(ix + 0), a
+	ld	bc, -623
+	add	ix, bc
+	ld	(ix + 0), e
 	pop	ix
 	push	ix
-	ld	de, -380
-	add	ix, de
-	lea	bc, ix + 0
+	ld	bc, -380
+	add	ix, bc
+	lea	de, ix + 0
 	pop	ix
-	lea	de, iy + 0
-	ld	a, (ix + 27)
-	ld	e, a
-	add	hl, de
+	lea	bc, iy + 0
+	ld	c, a
+	ld	(ix + -3), de
+	push	ix
+	ld	de, -626
+	add	ix, de
+	ld	(ix + 0), bc
+	pop	ix
+	add	hl, bc
 	ld	a, (hl)
-	ld	de, -629
+	ld	bc, -632
 	lea	hl, ix + 0
-	add	hl, de
+	add	hl, bc
 	ld	(hl), a
 	ld	hl, 242
 	push	hl
 	push	iy
-	ld	de, -626
+	ld	de, (ix + -3)
+	ld	bc, -629
 	lea	hl, ix + 0
-	add	hl, de
-	ld	(hl), bc
-	push	bc
+	add	hl, bc
+	ld	(hl), de
+	push	de
 	call	ti._memset
 	pop	de
 	pop	de
@@ -7054,12 +7154,15 @@ hmac_pbkdf2:
 	jq	nz, .lbl_1
 	jq	.lbl_17
 .lbl_1:
-	ld	a, (ix + 27)
+	ld	de, -626
+	lea	hl, ix + 0
+	add	hl, de
+	ld	bc, (hl)
 	or	a, a
 	sbc	hl, hl
-	ld	bc, -632
+	ld	de, -635
 	lea	iy, ix + 0
-	add	iy, bc
+	add	iy, de
 	ld	(iy + 0), hl
 	ld	de, (ix + 9)
 	push	de
@@ -7070,9 +7173,8 @@ hmac_pbkdf2:
 	jq	nz, .lbl_2
 	jq	.lbl_17
 .lbl_2:
-	ld	bc, (ix + 6)
-	push	bc
-	pop	hl
+	ld	iy, (ix + 6)
+	lea	hl, iy + 0
 	add	hl, bc
 	or	a, a
 	sbc	hl, bc
@@ -7093,24 +7195,23 @@ hmac_pbkdf2:
 	jq	nz, .lbl_5
 	jq	.lbl_17
 .lbl_5:
-	ld	l, a
-	push	hl
-	push	de
 	push	bc
-	ld	bc, -626
+	push	de
+	push	iy
+	ld	bc, -629
 	lea	hl, ix + 0
 	add	hl, bc
 	ld	hl, (hl)
 	push	hl
 	call	hmac_init
-	pop	hl
-	pop	hl
-	pop	hl
-	pop	hl
-	ld	l, 1
-	xor	a, l
-	bit	0, a
-	jq	nz, .lbl_17
+	pop	de
+	pop	de
+	pop	de
+	pop	de
+	add	hl, bc
+	or	a, a
+	sbc	hl, bc
+	jq	z, .lbl_17
 	ld	bc, -138
 	lea	hl, ix + 0
 	add	hl, bc
@@ -7125,7 +7226,7 @@ hmac_pbkdf2:
 	ld	(hl), a
 	lea	hl, ix + -70
 	push	ix
-	ld	bc, -635
+	ld	bc, -626
 	add	ix, bc
 	ld	(ix + 0), hl
 	pop	ix
@@ -7143,24 +7244,24 @@ hmac_pbkdf2:
 	push	hl
 	pop	de
 	push	ix
-	ld	bc, -632
+	ld	bc, -635
 	add	ix, bc
 	ld	hl, (ix + 0)
 	pop	ix
 	push	ix
-	ld	bc, -629
+	ld	bc, -632
 	add	ix, bc
 	ld	a, (ix + 0)
 	pop	ix
 	ld	l, a
 	push	ix
-	ld	bc, -632
+	ld	bc, -635
 	add	ix, bc
 	ld	(ix + 0), hl
 	pop	ix
 	ld	hl, 242
 	push	hl
-	ld	bc, -626
+	ld	bc, -629
 	lea	hl, ix + 0
 	add	hl, bc
 	ld	hl, (hl)
@@ -7186,7 +7287,7 @@ hmac_pbkdf2:
 	ex	de, hl
 	lea	de, iy + 0
 	ld	(ix + -3), bc
-	ld	bc, -629
+	ld	bc, -632
 	lea	iy, ix + 0
 	add	iy, bc
 	ld	(iy + 0), de
@@ -7241,7 +7342,7 @@ hmac_pbkdf2:
 	push	hl
 	ld	hl, (ix + 18)
 	push	hl
-	ld	bc, -626
+	ld	bc, -629
 	lea	hl, ix + 0
 	add	hl, bc
 	ld	hl, (hl)
@@ -7257,7 +7358,7 @@ hmac_pbkdf2:
 	add	hl, bc
 	ld	hl, (hl)
 	push	hl
-	ld	bc, -626
+	ld	bc, -629
 	lea	hl, ix + 0
 	add	hl, bc
 	ld	hl, (hl)
@@ -7266,12 +7367,12 @@ hmac_pbkdf2:
 	pop	hl
 	pop	hl
 	pop	hl
-	ld	bc, -635
+	ld	bc, -626
 	lea	hl, ix + 0
 	add	hl, bc
 	ld	hl, (hl)
 	push	hl
-	ld	bc, -626
+	ld	bc, -629
 	lea	hl, ix + 0
 	add	hl, bc
 	ld	hl, (hl)
@@ -7279,12 +7380,12 @@ hmac_pbkdf2:
 	call	hmac_final
 	pop	hl
 	pop	hl
-	ld	bc, -632
+	ld	bc, -635
 	lea	hl, ix + 0
 	add	hl, bc
 	ld	hl, (hl)
 	push	hl
-	ld	bc, -635
+	ld	bc, -626
 	lea	hl, ix + 0
 	add	hl, bc
 	ld	hl, (hl)
@@ -7316,7 +7417,7 @@ hmac_pbkdf2:
 	add	iy, bc
 	ld	hl, (iy + 0)
 	push	hl
-	ld	bc, -626
+	ld	bc, -629
 	lea	hl, ix + 0
 	add	hl, bc
 	ld	hl, (hl)
@@ -7325,17 +7426,17 @@ hmac_pbkdf2:
 	pop	hl
 	pop	hl
 	pop	hl
-	ld	bc, -632
-	lea	hl, ix + 0
-	add	hl, bc
-	ld	hl, (hl)
-	push	hl
 	ld	bc, -635
 	lea	hl, ix + 0
 	add	hl, bc
 	ld	hl, (hl)
 	push	hl
 	ld	bc, -626
+	lea	hl, ix + 0
+	add	hl, bc
+	ld	hl, (hl)
+	push	hl
+	ld	bc, -629
 	lea	hl, ix + 0
 	add	hl, bc
 	ld	hl, (hl)
@@ -7344,12 +7445,12 @@ hmac_pbkdf2:
 	pop	hl
 	pop	hl
 	pop	hl
-	ld	bc, -635
+	ld	bc, -626
 	lea	hl, ix + 0
 	add	hl, bc
 	ld	hl, (hl)
 	push	hl
-	ld	bc, -626
+	ld	bc, -629
 	lea	hl, ix + 0
 	add	hl, bc
 	ld	hl, (hl)
@@ -7357,7 +7458,7 @@ hmac_pbkdf2:
 	call	hmac_final
 	pop	hl
 	pop	hl
-	ld	de, -635
+	ld	de, -626
 	lea	hl, ix + 0
 	add	hl, de
 	ld	iy, (hl)
@@ -7368,7 +7469,7 @@ hmac_pbkdf2:
 	pop	ix
 	ld	(ix + -3), bc
 	push	ix
-	ld	bc, -632
+	ld	bc, -635
 	add	ix, bc
 	ld	de, (ix + 0)
 	pop	ix
@@ -7407,7 +7508,7 @@ hmac_pbkdf2:
 	push	bc
 	pop	hl
 	ld	(ix + -3), bc
-	ld	bc, -632
+	ld	bc, -635
 	lea	iy, ix + 0
 	add	iy, bc
 	ld	de, (iy + 0)
@@ -7419,7 +7520,7 @@ hmac_pbkdf2:
 	pop	bc
 .lbl_12:
 	ld	(ix + -3), bc
-	ld	bc, -629
+	ld	bc, -632
 	lea	hl, ix + 0
 	add	hl, bc
 	ld	de, (hl)
@@ -7444,20 +7545,20 @@ hmac_pbkdf2:
 	add	hl, bc
 	ld	hl, (hl)
 	push	hl
-	ld	bc, -626
+	ld	bc, -629
 	lea	hl, ix + 0
 	add	hl, bc
 	ld	hl, (hl)
 	push	hl
 	call	ti._memcpy
-	ld	bc, -629
+	ld	bc, -632
 	lea	hl, ix + 0
 	add	hl, bc
 	ld	iy, (hl)
 	pop	hl
 	pop	hl
 	pop	hl
-	ld	bc, -632
+	ld	bc, -635
 	lea	hl, ix + 0
 	add	hl, bc
 	ld	de, (hl)
