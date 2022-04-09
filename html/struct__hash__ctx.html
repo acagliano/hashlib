@@ -78,25 +78,25 @@ Classes</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:ab360ed4e4ec0a0324f4c215c8651000a"><td class="memItemLeft" align="right" valign="top">uint24_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct__hash__ctx.html#ab360ed4e4ec0a0324f4c215c8651000a">fn_init</a></td></tr>
-<tr class="separator:ab360ed4e4ec0a0324f4c215c8651000a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae3a4e431891278b37d5e5f9634053870"><td class="memItemLeft" align="right" valign="top">uint24_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct__hash__ctx.html#ae3a4e431891278b37d5e5f9634053870">fn_update</a></td></tr>
-<tr class="separator:ae3a4e431891278b37d5e5f9634053870"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aae108c427aa6cde0e8725248da66e5ef"><td class="memItemLeft" align="right" valign="top">uint24_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct__hash__ctx.html#aae108c427aa6cde0e8725248da66e5ef">fn_final</a></td></tr>
-<tr class="separator:aae108c427aa6cde0e8725248da66e5ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae2a5b349e1492dd574ad15829efac848"><td class="memItemLeft" align="right" valign="top">bool(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct__hash__ctx.html#ae2a5b349e1492dd574ad15829efac848">fn_init</a> )(void *ctx)</td></tr>
+<tr class="separator:ae2a5b349e1492dd574ad15829efac848"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab66487a1d47ec5582fe00d8fa14c744e"><td class="memItemLeft" align="right" valign="top">void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct__hash__ctx.html#ab66487a1d47ec5582fe00d8fa14c744e">fn_update</a> )(void *ctx, const void *data, size_t len)</td></tr>
+<tr class="separator:ab66487a1d47ec5582fe00d8fa14c744e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab61f7c829cebf472eec0a80f31e5d66a"><td class="memItemLeft" align="right" valign="top">void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct__hash__ctx.html#ab61f7c829cebf472eec0a80f31e5d66a">fn_final</a> )(void *ctx, void *output)</td></tr>
+<tr class="separator:ab61f7c829cebf472eec0a80f31e5d66a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a138d890c04ec5adb8d3b38bd1dcc2338"><td class="memItemLeft" align="right" valign="top"><a id="a138d890c04ec5adb8d3b38bd1dcc2338" name="a138d890c04ec5adb8d3b38bd1dcc2338"></a>
 union <a class="el" href="union__hash__ctx_1_1__hash.html">_hash_ctx::_hash</a>&#160;</td><td class="memItemRight" valign="bottom"><b>Hash</b></td></tr>
 <tr class="separator:a138d890c04ec5adb8d3b38bd1dcc2338"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Member Data Documentation</h2>
-<a id="ab360ed4e4ec0a0324f4c215c8651000a" name="ab360ed4e4ec0a0324f4c215c8651000a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab360ed4e4ec0a0324f4c215c8651000a">&#9670;&nbsp;</a></span>fn_init</h2>
+<a id="ae2a5b349e1492dd574ad15829efac848" name="ae2a5b349e1492dd574ad15829efac848"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae2a5b349e1492dd574ad15829efac848">&#9670;&nbsp;</a></span>fn_init</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">uint24_t _hash_ctx::fn_init</td>
+          <td class="memname">bool(* _hash_ctx::fn_init) (void *ctx)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -104,14 +104,14 @@ union <a class="el" href="union__hash__ctx_1_1__hash.html">_hash_ctx::_hash</a>&
 
 </div>
 </div>
-<a id="ae3a4e431891278b37d5e5f9634053870" name="ae3a4e431891278b37d5e5f9634053870"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae3a4e431891278b37d5e5f9634053870">&#9670;&nbsp;</a></span>fn_update</h2>
+<a id="ab66487a1d47ec5582fe00d8fa14c744e" name="ab66487a1d47ec5582fe00d8fa14c744e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab66487a1d47ec5582fe00d8fa14c744e">&#9670;&nbsp;</a></span>fn_update</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">uint24_t _hash_ctx::fn_update</td>
+          <td class="memname">void(* _hash_ctx::fn_update) (void *ctx, const void *data, size_t len)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -119,14 +119,14 @@ union <a class="el" href="union__hash__ctx_1_1__hash.html">_hash_ctx::_hash</a>&
 
 </div>
 </div>
-<a id="aae108c427aa6cde0e8725248da66e5ef" name="aae108c427aa6cde0e8725248da66e5ef"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aae108c427aa6cde0e8725248da66e5ef">&#9670;&nbsp;</a></span>fn_final</h2>
+<a id="ab61f7c829cebf472eec0a80f31e5d66a" name="ab61f7c829cebf472eec0a80f31e5d66a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab61f7c829cebf472eec0a80f31e5d66a">&#9670;&nbsp;</a></span>fn_final</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">uint24_t _hash_ctx::fn_final</td>
+          <td class="memname">void(* _hash_ctx::fn_final) (void *ctx, void *output)</td>
         </tr>
       </table>
 </div><div class="memdoc">

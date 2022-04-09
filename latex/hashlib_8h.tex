@@ -38,11 +38,9 @@ struct \mbox{\hyperlink{struct__aes__ctx}{\+\_\+aes\+\_\+ctx}}
 \item 
 \#define \mbox{\hyperlink{hashlib_8h_a6c2d58d8dd281845fdc027b499dea89d}{AES\+\_\+\+IVSIZE}}~\mbox{\hyperlink{hashlib_8h_afab0742642db9c0609c00bf8a54f386f}{AES\+\_\+\+BLOCKSIZE}}
 \item 
-\mbox{\Hypertarget{hashlib_8h_ab723a524d8d2149cb44285a8b8228f1f}\label{hashlib_8h_ab723a524d8d2149cb44285a8b8228f1f}} 
-\#define {\bfseries aes\+\_\+outsize}(len)~ ((((len)\%\mbox{\hyperlink{hashlib_8h_afab0742642db9c0609c00bf8a54f386f}{AES\+\_\+\+BLOCKSIZE}})==0) ? (len) + \mbox{\hyperlink{hashlib_8h_afab0742642db9c0609c00bf8a54f386f}{AES\+\_\+\+BLOCKSIZE}} \+: (((len)$>$$>$4) + 1)$<$$<$4)
+\#define \mbox{\hyperlink{hashlib_8h_ab723a524d8d2149cb44285a8b8228f1f}{aes\+\_\+outsize}}(len)~ ((((len)\%\mbox{\hyperlink{hashlib_8h_afab0742642db9c0609c00bf8a54f386f}{AES\+\_\+\+BLOCKSIZE}})==0) ? (len) + \mbox{\hyperlink{hashlib_8h_afab0742642db9c0609c00bf8a54f386f}{AES\+\_\+\+BLOCKSIZE}} \+: (((len)$>$$>$4) + 1)$<$$<$4)
 \item 
-\mbox{\Hypertarget{hashlib_8h_a5441aa332bfebb52cb4480d5a0783334}\label{hashlib_8h_a5441aa332bfebb52cb4480d5a0783334}} 
-\#define {\bfseries aes\+\_\+extoutsize}(len)~ (aes\+\_\+outsize((len)) + \mbox{\hyperlink{hashlib_8h_a6c2d58d8dd281845fdc027b499dea89d}{AES\+\_\+\+IVSIZE}})
+\#define \mbox{\hyperlink{hashlib_8h_a5441aa332bfebb52cb4480d5a0783334}{aes\+\_\+extoutsize}}(len)~ (\mbox{\hyperlink{hashlib_8h_ab723a524d8d2149cb44285a8b8228f1f}{aes\+\_\+outsize}}((len)) + \mbox{\hyperlink{hashlib_8h_a6c2d58d8dd281845fdc027b499dea89d}{AES\+\_\+\+IVSIZE}})
 \end{DoxyCompactItemize}
 \doxysubsection*{Typedefs}
 \begin{DoxyCompactItemize}
@@ -51,8 +49,7 @@ typedef struct \mbox{\hyperlink{struct__sha256__ctx}{\+\_\+sha256\+\_\+ctx}} \mb
 \item 
 typedef struct \mbox{\hyperlink{struct__hash__ctx}{\+\_\+hash\+\_\+ctx}} \mbox{\hyperlink{hashlib_8h_aa55779911de10df960d64966c6825da7}{hash\+\_\+ctx}}
 \item 
-\mbox{\Hypertarget{hashlib_8h_a506ce2c70011cd08b55ba24768cec79a}\label{hashlib_8h_a506ce2c70011cd08b55ba24768cec79a}} 
-typedef struct \mbox{\hyperlink{struct__sha256hmac__ctx}{\+\_\+sha256hmac\+\_\+ctx}} {\bfseries sha256hmac\+\_\+ctx}
+typedef struct \mbox{\hyperlink{struct__sha256hmac__ctx}{\+\_\+sha256hmac\+\_\+ctx}} \mbox{\hyperlink{hashlib_8h_ab81b988d5afe79799b52a0baa55c3146}{sha256hmac\+\_\+ctx}}
 \item 
 typedef struct \mbox{\hyperlink{struct__hmac__ctx}{\+\_\+hmac\+\_\+ctx}} \mbox{\hyperlink{hashlib_8h_a8d813300476744f01319600478572f62}{hmac\+\_\+ctx}}
 \item 
@@ -193,7 +190,33 @@ Defines the blocksize of the AES cipher. \mbox{\Hypertarget{hashlib_8h_a6c2d58d8
 \doxysubsubsection{\texorpdfstring{AES\_IVSIZE}{AES\_IVSIZE}}
 {\footnotesize\ttfamily \#define AES\+\_\+\+IVSIZE~\mbox{\hyperlink{hashlib_8h_afab0742642db9c0609c00bf8a54f386f}{AES\+\_\+\+BLOCKSIZE}}}
 
-Defines the length of the AES initalization vector (IV). 
+Defines the length of the AES initalization vector (IV). \mbox{\Hypertarget{hashlib_8h_ab723a524d8d2149cb44285a8b8228f1f}\label{hashlib_8h_ab723a524d8d2149cb44285a8b8228f1f}} 
+\index{hashlib.h@{hashlib.h}!aes\_outsize@{aes\_outsize}}
+\index{aes\_outsize@{aes\_outsize}!hashlib.h@{hashlib.h}}
+\doxysubsubsection{\texorpdfstring{aes\_outsize}{aes\_outsize}}
+{\footnotesize\ttfamily \#define aes\+\_\+outsize(\begin{DoxyParamCaption}\item[{}]{len }\end{DoxyParamCaption})~ ((((len)\%\mbox{\hyperlink{hashlib_8h_afab0742642db9c0609c00bf8a54f386f}{AES\+\_\+\+BLOCKSIZE}})==0) ? (len) + \mbox{\hyperlink{hashlib_8h_afab0742642db9c0609c00bf8a54f386f}{AES\+\_\+\+BLOCKSIZE}} \+: (((len)$>$$>$4) + 1)$<$$<$4)}
+
+Defines a macro to return the size of an AES ciphertext given a plaintext length. Does not include space for an IV-\/prepend. See hashlib\+\_\+\+AESCiphertext\+IVLen() for that.
+
+
+\begin{DoxyParams}{Parameters}
+{\em len} & The length of the plaintext. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{hashlib_8h_a5441aa332bfebb52cb4480d5a0783334}\label{hashlib_8h_a5441aa332bfebb52cb4480d5a0783334}} 
+\index{hashlib.h@{hashlib.h}!aes\_extoutsize@{aes\_extoutsize}}
+\index{aes\_extoutsize@{aes\_extoutsize}!hashlib.h@{hashlib.h}}
+\doxysubsubsection{\texorpdfstring{aes\_extoutsize}{aes\_extoutsize}}
+{\footnotesize\ttfamily \#define aes\+\_\+extoutsize(\begin{DoxyParamCaption}\item[{}]{len }\end{DoxyParamCaption})~ (\mbox{\hyperlink{hashlib_8h_ab723a524d8d2149cb44285a8b8228f1f}{aes\+\_\+outsize}}((len)) + \mbox{\hyperlink{hashlib_8h_a6c2d58d8dd281845fdc027b499dea89d}{AES\+\_\+\+IVSIZE}})}
+
+Defines a macro to return the size of an AES ciphertext with with an extra block added for the IV.
+
+
+\begin{DoxyParams}{Parameters}
+{\em len} & The length of the plaintext. \\
+\hline
+\end{DoxyParams}
+
 
 \doxysubsection{Typedef Documentation}
 \mbox{\Hypertarget{hashlib_8h_a53df9e7d871973d59c7b58a6c3963c5d}\label{hashlib_8h_a53df9e7d871973d59c7b58a6c3963c5d}} 
@@ -213,6 +236,15 @@ This is internal to the struct hash\+\_\+ctx. You should never need to use this.
 
 Defines universal hash-\/state data, including pointer to algorithm-\/specific handling methods and a union of computational states for various hashes. \begin{DoxyNote}{Note}
 Allocate a seperate context for each seperate data stream you are hashing. 
+\end{DoxyNote}
+\mbox{\Hypertarget{hashlib_8h_ab81b988d5afe79799b52a0baa55c3146}\label{hashlib_8h_ab81b988d5afe79799b52a0baa55c3146}} 
+\index{hashlib.h@{hashlib.h}!sha256hmac\_ctx@{sha256hmac\_ctx}}
+\index{sha256hmac\_ctx@{sha256hmac\_ctx}!hashlib.h@{hashlib.h}}
+\doxysubsubsection{\texorpdfstring{sha256hmac\_ctx}{sha256hmac\_ctx}}
+{\footnotesize\ttfamily \mbox{\hyperlink{hashlib_8h_ab81b988d5afe79799b52a0baa55c3146}{sha256hmac\+\_\+ctx}}}
+
+Defines hash-\/state data for an instance of SHA-\/256. \begin{DoxyNote}{Note}
+This is internal to the struct hmac\+\_\+ctx. You should never need to use this. 
 \end{DoxyNote}
 \mbox{\Hypertarget{hashlib_8h_a8d813300476744f01319600478572f62}\label{hashlib_8h_a8d813300476744f01319600478572f62}} 
 \index{hashlib.h@{hashlib.h}!hmac\_ctx@{hmac\_ctx}}

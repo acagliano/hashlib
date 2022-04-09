@@ -148,9 +148,9 @@ typedef struct _sha256_ctx {
  * @note Allocate a seperate context for each seperate data stream you are hashing.
  *****************************************************************************************************************/
 typedef struct _hash_ctx {
-    uint24_t fn_init;       /**< pointer to an initialization method for the given hash algorithm */
-    uint24_t fn_update;     /**< pointer to the update method for the given hash algorithm */
-    uint24_t fn_final;      /**< pointer to the digest output method for the given hash algorithm */
+    bool (*fn_init)(void* ctx);                                     /**< pointer to an initialization method for the given hash algorithm */
+    void (*fn_update)(void* ctx, const void* data, size_t len);     /**< pointer to the update method for the given hash algorithm */
+    void (*fn_final)(void* ctx, void* output);                      /**< pointer to the digest output method for the given hash algorithm */
     union _hash {           /**< a union of computational states for various hashes */
         sha256_ctx sha256;
     } Hash;
@@ -222,6 +222,11 @@ parties as part of the hash initialization. Thus, while normal SHA-256 can be
 verified by anyone, only the parties with the key can validate using a HMAC hash.
 */
 
+/*******************************************************************************************************************
+ * @typedef sha256hmac_ctx
+ * Defines hash-state data for an instance of SHA-256.
+ * @note This is internal to the struct hmac_ctx. You should never need to use this.
+ ********************************************************************************************************************/
 typedef struct _sha256hmac_ctx {
     uint8_t ipad[64];       /**< holds the key xored with a magic value to be hashed with the inner digest */
     uint8_t opad[64];       /**< holds the key xored with a magic value to be hashed with the outer digest */
@@ -363,7 +368,7 @@ enum aes_padding_schemes {
 #define AES_IVSIZE		AES_BLOCKSIZE
 
 /*********************************************************************************************
- * @def cipher_aes_outsize()
+ * @def aes_outsize()
  *
  * Defines a macro to return the size of an AES ciphertext given a plaintext length.
  * Does not include space for  an IV-prepend. See hashlib_AESCiphertextIVLen() for that.
@@ -374,7 +379,7 @@ enum aes_padding_schemes {
 	((((len)%AES_BLOCKSIZE)==0) ? (len) + AES_BLOCKSIZE : (((len)>>4) + 1)<<4)
 	
 /************************************************************************************************************************
- * @def cipher_aes_extoutsize()
+ * @def aes_extoutsize()
  *
  * Defines a macro to return the size of an AES ciphertext with with an extra block added for the IV.
  *
@@ -547,5 +552,117 @@ bool digest_tostring(const void* digest, size_t len, char* hexstr);
  * @return True if the buffers were equal. False if not equal.
  **************************************************************************************************************/
 bool digest_compare(const void* digest1, const void* digest2, size_t len);
+
+
+#ifdef HASHLIB_ENABLE_ADVANCED_MODE
+
+/*
+    #### INTERNAL FUNCTIONS ####
+    For advanced users only!!!
+    
+    To enable advanced mode place the directive:
+        #define HASHLIB_ENABLE_ADVANCED_MODE
+    above any inclusion of this header file.
+    
+    If you know what you are doing and want to implement your own cipher modes,
+    or signature algorithms, a few internal functions are exposed here.
+ */
+ 
+ /******************************************************************************************************************
+  * @brief AES single-block ECB mode encryption function
+  * @param block_in Block of data to encrypt.
+  * @param block_out Buffer to write encrypted block of data.
+  * @param ks AES key schedule context to use for encryption.
+  * @note @b block_in and @b block_out are aliasable.
+  * @warning ECB mode encryption is insecure (see many-time pad vulnerability).
+  *     Use ECB-mode block encryptors as a constructor for custom cipher modes only.
+  *****************************************************************************************************************/
+ void aes_ecb_unsafe_encrypt(const void *block_in, void *block_out, aes_ctx *ks);
+ 
+ /******************************************************************************************************************
+  * @brief AES single-block ECB mode decryption function
+  * @param block_in Block of data to encrypt.
+  * @param block_out Buffer to write encrypted block of data.
+  * @param ks AES key schedule context to use for encryption.
+  * @note @b block_in and @b block_out are aliasable.
+  * @warning ECB mode encryption is insecure (see many-time pad vulnerability).
+  *     Use ECB-mode block encryptors as a constructor for custom cipher modes only.
+  *****************************************************************************************************************/
+ void aes_ecb_unsafe_decrypt(const void *block_in, void *block_out, aes_ctx *ks);
+ 
+ /******************************************************************************************************************
+  * @brief Optimal Asymmetric Encryption Padding (OAEP) encoder for RSA
+  * @param plaintext Pointer to the plaintext message to encode.
+  * @param len Lengfh of the message to encode.
+  * @param encoded Pointer to buffer to write encoded message to.
+  * @param modulus_len Length of the RSA modulus to encode for.
+  * @param auth An authentication string to include in the encoding. Can be NULL to omit.
+  * @param hash_alg The numeric ID of the hashing algorithm to use. See @b hash_algorithms.
+  * @return Boolean | True if encoding succeeded, False if encoding failed.
+  * @note @b plaintext and @b encoded are aliasable.
+  *****************************************************************************************************************/
+ bool oaep_encode(
+        const void *plaintext,
+        size_t len,
+        void *encoded,
+        size_t modulus_len,
+        const uint8_t *auth,
+        uint8_t hash_alg);
+
+/******************************************************************************************************************
+ * @brief OAEP decoder for RSA
+ * @param encoded Pointer to the plaintext message to decode.
+ * @param len Lengfh of the message to decode.
+ * @param plaintext Pointer to buffer to write decoded message to.
+ * @param auth An authentication string to include in the encoding. Can be NULL to omit.
+ * @param hash_alg The numeric ID of the hashing algorithm to use. See @b hash_algorithms.
+ * @return Boolean | True if encoding succeeded, False if encoding failed.
+ * @note @b plaintext and @b encoded are aliasable.
+ * *****************************************************************************************************************/
+ bool oaep_decode(
+        const void *encoded,
+        size_t len,
+        void *plaintext,
+        const uint8_t *auth,
+        uint8_t hash_alg);
+        
+/*************************************************************************************************************************
+ * @brief Probabilistic Sisgnature Scheme (PSS) encoder for RSA
+ * @param plaintext Pointer to the plaintext message to encode.
+ * @param len Lengfh of the message to encode.
+ * @param encoded Pointer to buffer to write encoded message to.
+ * @param modulus_len Length of the RSA modulus to encode for.
+ * @param salt A nonce that can be passed to the encryption scheme. Pass NULL to generate internally.
+ * @param hash_alg The numeric ID of the hashing algorithm to use. See @b hash_algorithms.
+ * @return Boolean | True if encoding succeeded, False if encoding failed.
+ * @note Generally, to encode a message, pass NULL as salt.
+ *      To verify a message, pass a pointer to the salt field in the message you are looking to verify.
+  *************************************************************************************************************************/
+ bool pss_encode(
+        const void *plaintext,
+        size_t len,
+        void *encoded,
+        size_t modulus_len,
+        void *salt,
+        uint8_t hash_alg);
+  
+/*********************************************************************************************************
+ * @brief Modular Exponentiation function for RSA (and other implementations)
+ * @param size The length, in bytes, of the @b base and @b modulus.
+ * @param base Pointer to buffer containing the base, in bytearray (big endian) format.
+ * @param exp A 24-bit exponent.
+ * @param mod Pointer to buffer containing the modulus, in bytearray (big endian) format.
+ * @note For the @b size field, the bounds are [0, 255] with 0 actually meaning 256.
+ * @note @b size must not be 1.
+ * @note @b exp must be non-zero.
+ * @note @b modulus must be odd.
+***********************************************************************************************************/
+void powmod(
+        uint8_t size,
+        uint8_t *restrict base,
+        uint24_t exp,
+        const uint8_t *restrict mod);
+
+#endif
 
 #endif

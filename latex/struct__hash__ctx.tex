@@ -8,11 +8,11 @@ union \mbox{\hyperlink{union__hash__ctx_1_1__hash}{\+\_\+hash}}
 \doxysubsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
-uint24\+\_\+t \mbox{\hyperlink{struct__hash__ctx_ab360ed4e4ec0a0324f4c215c8651000a}{fn\+\_\+init}}
+bool($\ast$ \mbox{\hyperlink{struct__hash__ctx_ae2a5b349e1492dd574ad15829efac848}{fn\+\_\+init}} )(void $\ast$ctx)
 \item 
-uint24\+\_\+t \mbox{\hyperlink{struct__hash__ctx_ae3a4e431891278b37d5e5f9634053870}{fn\+\_\+update}}
+void($\ast$ \mbox{\hyperlink{struct__hash__ctx_ab66487a1d47ec5582fe00d8fa14c744e}{fn\+\_\+update}} )(void $\ast$ctx, const void $\ast$data, size\+\_\+t len)
 \item 
-uint24\+\_\+t \mbox{\hyperlink{struct__hash__ctx_aae108c427aa6cde0e8725248da66e5ef}{fn\+\_\+final}}
+void($\ast$ \mbox{\hyperlink{struct__hash__ctx_ab61f7c829cebf472eec0a80f31e5d66a}{fn\+\_\+final}} )(void $\ast$ctx, void $\ast$output)
 \item 
 \mbox{\Hypertarget{struct__hash__ctx_a138d890c04ec5adb8d3b38bd1dcc2338}\label{struct__hash__ctx_a138d890c04ec5adb8d3b38bd1dcc2338}} 
 union \mbox{\hyperlink{union__hash__ctx_1_1__hash}{\+\_\+hash\+\_\+ctx\+::\+\_\+hash}} {\bfseries Hash}
@@ -20,23 +20,23 @@ union \mbox{\hyperlink{union__hash__ctx_1_1__hash}{\+\_\+hash\+\_\+ctx\+::\+\_\+
 
 
 \doxysubsection{Member Data Documentation}
-\mbox{\Hypertarget{struct__hash__ctx_ab360ed4e4ec0a0324f4c215c8651000a}\label{struct__hash__ctx_ab360ed4e4ec0a0324f4c215c8651000a}} 
+\mbox{\Hypertarget{struct__hash__ctx_ae2a5b349e1492dd574ad15829efac848}\label{struct__hash__ctx_ae2a5b349e1492dd574ad15829efac848}} 
 \index{\_hash\_ctx@{\_hash\_ctx}!fn\_init@{fn\_init}}
 \index{fn\_init@{fn\_init}!\_hash\_ctx@{\_hash\_ctx}}
 \doxysubsubsection{\texorpdfstring{fn\_init}{fn\_init}}
-{\footnotesize\ttfamily uint24\+\_\+t \+\_\+hash\+\_\+ctx\+::fn\+\_\+init}
+{\footnotesize\ttfamily bool($\ast$ \+\_\+hash\+\_\+ctx\+::fn\+\_\+init) (void $\ast$ctx)}
 
-pointer to an initialization method for the given hash algorithm \mbox{\Hypertarget{struct__hash__ctx_ae3a4e431891278b37d5e5f9634053870}\label{struct__hash__ctx_ae3a4e431891278b37d5e5f9634053870}} 
+pointer to an initialization method for the given hash algorithm \mbox{\Hypertarget{struct__hash__ctx_ab66487a1d47ec5582fe00d8fa14c744e}\label{struct__hash__ctx_ab66487a1d47ec5582fe00d8fa14c744e}} 
 \index{\_hash\_ctx@{\_hash\_ctx}!fn\_update@{fn\_update}}
 \index{fn\_update@{fn\_update}!\_hash\_ctx@{\_hash\_ctx}}
 \doxysubsubsection{\texorpdfstring{fn\_update}{fn\_update}}
-{\footnotesize\ttfamily uint24\+\_\+t \+\_\+hash\+\_\+ctx\+::fn\+\_\+update}
+{\footnotesize\ttfamily void($\ast$ \+\_\+hash\+\_\+ctx\+::fn\+\_\+update) (void $\ast$ctx, const void $\ast$data, size\+\_\+t len)}
 
-pointer to the update method for the given hash algorithm \mbox{\Hypertarget{struct__hash__ctx_aae108c427aa6cde0e8725248da66e5ef}\label{struct__hash__ctx_aae108c427aa6cde0e8725248da66e5ef}} 
+pointer to the update method for the given hash algorithm \mbox{\Hypertarget{struct__hash__ctx_ab61f7c829cebf472eec0a80f31e5d66a}\label{struct__hash__ctx_ab61f7c829cebf472eec0a80f31e5d66a}} 
 \index{\_hash\_ctx@{\_hash\_ctx}!fn\_final@{fn\_final}}
 \index{fn\_final@{fn\_final}!\_hash\_ctx@{\_hash\_ctx}}
 \doxysubsubsection{\texorpdfstring{fn\_final}{fn\_final}}
-{\footnotesize\ttfamily uint24\+\_\+t \+\_\+hash\+\_\+ctx\+::fn\+\_\+final}
+{\footnotesize\ttfamily void($\ast$ \+\_\+hash\+\_\+ctx\+::fn\+\_\+final) (void $\ast$ctx, void $\ast$output)}
 
 pointer to the digest output method for the given hash algorithm 
 
