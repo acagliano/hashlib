@@ -821,7 +821,7 @@ It may be a good idea to call this function in any program that uses hashlib fun
   </table>
   </dd>
 </dl>
-<dl class="section warning"><dt>Warning</dt><dd>You must call hmac_sha256_init() first or your hash state will be invalid. </dd></dl>
+<dl class="section warning"><dt>Warning</dt><dd>You must have an initialized hash context or a crash will ensue. </dd></dl>
 
 </div>
 </div>
@@ -860,6 +860,7 @@ It may be a good idea to call this function in any program that uses hashlib fun
   </dd>
 </dl>
 <dl class="section note"><dt>Note</dt><dd><b>digest</b> must be at least 32 bytes large. </dd></dl>
+<dl class="section warning"><dt>Warning</dt><dd>You must have an initialized hash context or a crash will ensue. </dd></dl>
 
 </div>
 </div>

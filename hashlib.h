@@ -262,16 +262,17 @@ bool hmac_init(hmac_ctx* ctx, const void* key, size_t keylen, uint8_t hash_alg);
  *	@param ctx Pointer to a SHA-256 HMAC context.
  *	@param data Pointer to data to hash.
  *	@param len Number of bytes at @b data to hash.
- *	@warning You must call hmac_sha256_init()  first or your hash state will be invalid.
+ *	@warning You must have an initialized hash context or a crash will ensue.
  **************************************************************************************************************/
 void hmac_update(hmac_ctx* ctx, const void* data, size_t len);
 
-/***********************************************************************************
+/*********************************************************************************************
  *	@brief Finalize Context and Render Digest for SHA-256 HMAC
  *	@param ctx Pointer to a SHA-256 HMAC context.
  *	@param digest Pointer to a buffer to write the hash to.
  *	@note @b digest must be at least 32 bytes large.
- ***************************************************************************/
+ *  @warning You must have an initialized hash context or a crash will ensue.
+ *********************************************************************************************/
 void hmac_final(hmac_ctx* ctx, void* output);
 
 /*********************************************************************************************************************************

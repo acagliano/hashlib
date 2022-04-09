@@ -513,7 +513,7 @@ Updates the SHA-\/256 HMAC context for the given data.
 \hline
 \end{DoxyParams}
 \begin{DoxyWarning}{Warning}
-You must call hmac\+\_\+sha256\+\_\+init() first or your hash state will be invalid. 
+You must have an initialized hash context or a crash will ensue. 
 \end{DoxyWarning}
 \mbox{\Hypertarget{hashlib_8h_aab1ccbb4d4cc9b02116d2ed07a5c9ed3}\label{hashlib_8h_aab1ccbb4d4cc9b02116d2ed07a5c9ed3}} 
 \index{hashlib.h@{hashlib.h}!hmac\_final@{hmac\_final}}
@@ -535,6 +535,9 @@ Finalize Context and Render Digest for SHA-\/256 HMAC.
 \begin{DoxyNote}{Note}
 {\bfseries{digest}} must be at least 32 bytes large. 
 \end{DoxyNote}
+\begin{DoxyWarning}{Warning}
+You must have an initialized hash context or a crash will ensue. 
+\end{DoxyWarning}
 \mbox{\Hypertarget{hashlib_8h_a1db040f9b150deacb5fca66d4684fa91}\label{hashlib_8h_a1db040f9b150deacb5fca66d4684fa91}} 
 \index{hashlib.h@{hashlib.h}!hmac\_pbkdf2@{hmac\_pbkdf2}}
 \index{hmac\_pbkdf2@{hmac\_pbkdf2}!hashlib.h@{hashlib.h}}
