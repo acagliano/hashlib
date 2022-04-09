@@ -20,6 +20,7 @@ LIB_SRC := hashlib.asm
 LIB_LIB := hashlib.lib
 LIB_8XV := hashlib.8xv
 LIB_H   := hashlib.h
+LIBD_H	:= hashlib-extra.h
 
 all: $(LIB_8XV)
 
@@ -35,6 +36,7 @@ install: all
 	$(Q)$(call COPY,$(LIB_LIB),$(INSTALL_LIB))
 	$(Q)$(call MKDIR,$(INSTALL_H))
 	$(Q)$(call COPY,$(LIB_H),$(INSTALL_H))
+	$(Q)$(call COPY,$(LIBD_H),$(INSTALL_H))
 	
 package: all
 	mkdir -p packages
