@@ -181,8 +181,8 @@ Functions</h2></td></tr>
 <tr class="memitem:aaf0fab49f90f31ca034e68c83858d14e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#aaf0fab49f90f31ca034e68c83858d14e">hash_update</a> (<a class="el" href="hashlib_8h.html#aa55779911de10df960d64966c6825da7">hash_ctx</a> *ctx, const void *data, size_t len)</td></tr>
 <tr class="memdesc:aaf0fab49f90f31ca034e68c83858d14e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Updates the hash context for the given data.  <a href="hashlib_8h.html#aaf0fab49f90f31ca034e68c83858d14e">More...</a><br /></td></tr>
 <tr class="separator:aaf0fab49f90f31ca034e68c83858d14e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6de2a3ef1df7da45fbe84b38f72baa71"><td class="memItemLeft" align="right" valign="top"><a id="a6de2a3ef1df7da45fbe84b38f72baa71" name="a6de2a3ef1df7da45fbe84b38f72baa71"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>hash_final</b> (<a class="el" href="hashlib_8h.html#aa55779911de10df960d64966c6825da7">hash_ctx</a> *ctx, void *digest)</td></tr>
+<tr class="memitem:a6de2a3ef1df7da45fbe84b38f72baa71"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#a6de2a3ef1df7da45fbe84b38f72baa71">hash_final</a> (<a class="el" href="hashlib_8h.html#aa55779911de10df960d64966c6825da7">hash_ctx</a> *ctx, void *digest)</td></tr>
+<tr class="memdesc:a6de2a3ef1df7da45fbe84b38f72baa71"><td class="mdescLeft">&#160;</td><td class="mdescRight">Finalize context and render digest for hash.  <a href="hashlib_8h.html#a6de2a3ef1df7da45fbe84b38f72baa71">More...</a><br /></td></tr>
 <tr class="separator:a6de2a3ef1df7da45fbe84b38f72baa71"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aef7b1868edb022ce92f850e6269a2db9"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#aef7b1868edb022ce92f850e6269a2db9">hash_mgf1</a> (const void *data, size_t datalen, void *outbuf, size_t outlen, uint8_t hash_alg)</td></tr>
 <tr class="memdesc:aef7b1868edb022ce92f850e6269a2db9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Arbitrary Length Hashing Function.  <a href="hashlib_8h.html#aef7b1868edb022ce92f850e6269a2db9">More...</a><br /></td></tr>
@@ -726,6 +726,45 @@ It may be a good idea to call this function in any program that uses hashlib fun
   </table>
   </dd>
 </dl>
+<dl class="section warning"><dt>Warning</dt><dd>You must have an initialized hash context or a crash will ensue. </dd></dl>
+
+</div>
+</div>
+<a id="a6de2a3ef1df7da45fbe84b38f72baa71" name="a6de2a3ef1df7da45fbe84b38f72baa71"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6de2a3ef1df7da45fbe84b38f72baa71">&#9670;&nbsp;</a></span>hash_final()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void hash_final </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="hashlib_8h.html#aa55779911de10df960d64966c6825da7">hash_ctx</a> *&#160;</td>
+          <td class="paramname"><em>ctx</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>digest</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Finalize context and render digest for hash. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ctx</td><td>Pointer to a hash context. </td></tr>
+    <tr><td class="paramname">digest</td><td>Pointer to a buffer to write the hash to. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>Note</dt><dd><b>digest</b> must be at large enough to hold the hash digest. </dd></dl>
 <dl class="section warning"><dt>Warning</dt><dd>You must have an initialized hash context or a crash will ensue. </dd></dl>
 
 </div>

@@ -190,7 +190,7 @@ bool hash_init(hash_ctx* ctx, uint8_t hash_alg);
  ******************************************************************************************************/
 void hash_update(hash_ctx* ctx, const void* data, size_t len);
 
-/************************************************************&&&&***********************
+/**********************************************************************************************
  *	@brief Finalize context and render digest for hash
  *	@param ctx Pointer to a hash context.
  *	@param digest Pointer to a buffer to write the hash to.

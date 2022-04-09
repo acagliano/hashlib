@@ -102,9 +102,8 @@ bool \mbox{\hyperlink{hashlib_8h_ac97f2b17187bed64cb75d98ebb9184f8}{hash\+\_\+in
 \begin{DoxyCompactList}\small\item\em Generic hash initializer. Initializes the given context with the starting state for the given hash algorithm and populates pointers to the methods for update and final for the given hash.. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{hashlib_8h_aaf0fab49f90f31ca034e68c83858d14e}{hash\+\_\+update}} (\mbox{\hyperlink{hashlib_8h_aa55779911de10df960d64966c6825da7}{hash\+\_\+ctx}} $\ast$ctx, const void $\ast$data, size\+\_\+t len)
 \begin{DoxyCompactList}\small\item\em Updates the hash context for the given data. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{hashlib_8h_a6de2a3ef1df7da45fbe84b38f72baa71}\label{hashlib_8h_a6de2a3ef1df7da45fbe84b38f72baa71}} 
-void {\bfseries hash\+\_\+final} (\mbox{\hyperlink{hashlib_8h_aa55779911de10df960d64966c6825da7}{hash\+\_\+ctx}} $\ast$ctx, void $\ast$digest)
-\item 
+void \mbox{\hyperlink{hashlib_8h_a6de2a3ef1df7da45fbe84b38f72baa71}{hash\+\_\+final}} (\mbox{\hyperlink{hashlib_8h_aa55779911de10df960d64966c6825da7}{hash\+\_\+ctx}} $\ast$ctx, void $\ast$digest)
+\begin{DoxyCompactList}\small\item\em Finalize context and render digest for hash. \end{DoxyCompactList}\item 
 bool \mbox{\hyperlink{hashlib_8h_aef7b1868edb022ce92f850e6269a2db9}{hash\+\_\+mgf1}} (const void $\ast$data, size\+\_\+t datalen, void $\ast$outbuf, size\+\_\+t outlen, uint8\+\_\+t hash\+\_\+alg)
 \begin{DoxyCompactList}\small\item\em Arbitrary Length Hashing Function. \end{DoxyCompactList}\item 
 bool \mbox{\hyperlink{hashlib_8h_a898e128b3311035c6769837208f34a7d}{hmac\+\_\+init}} (\mbox{\hyperlink{hashlib_8h_a8d813300476744f01319600478572f62}{hmac\+\_\+ctx}} $\ast$ctx, const void $\ast$key, size\+\_\+t keylen, uint8\+\_\+t hash\+\_\+alg)
@@ -471,6 +470,29 @@ Updates the hash context for the given data.
 {\em len} & Number of bytes at {\bfseries{data}} to hash. \\
 \hline
 \end{DoxyParams}
+\begin{DoxyWarning}{Warning}
+You must have an initialized hash context or a crash will ensue. 
+\end{DoxyWarning}
+\mbox{\Hypertarget{hashlib_8h_a6de2a3ef1df7da45fbe84b38f72baa71}\label{hashlib_8h_a6de2a3ef1df7da45fbe84b38f72baa71}} 
+\index{hashlib.h@{hashlib.h}!hash\_final@{hash\_final}}
+\index{hash\_final@{hash\_final}!hashlib.h@{hashlib.h}}
+\doxysubsubsection{\texorpdfstring{hash\_final()}{hash\_final()}}
+{\footnotesize\ttfamily void hash\+\_\+final (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{hashlib_8h_aa55779911de10df960d64966c6825da7}{hash\+\_\+ctx}} $\ast$}]{ctx,  }\item[{void $\ast$}]{digest }\end{DoxyParamCaption})}
+
+
+
+Finalize context and render digest for hash. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ctx} & Pointer to a hash context. \\
+\hline
+{\em digest} & Pointer to a buffer to write the hash to. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+{\bfseries{digest}} must be at large enough to hold the hash digest. 
+\end{DoxyNote}
 \begin{DoxyWarning}{Warning}
 You must have an initialized hash context or a crash will ensue. 
 \end{DoxyWarning}
