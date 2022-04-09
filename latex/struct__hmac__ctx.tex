@@ -8,11 +8,11 @@ union \mbox{\hyperlink{union__hmac__ctx_1_1__hmac}{\+\_\+hmac}}
 \doxysubsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
-bool($\ast$ \mbox{\hyperlink{struct__hmac__ctx_a5592808d47dd58dc8844e41d0062075d}{fn\+\_\+init}} )(void $\ast$ctx, const void $\ast$key, size\+\_\+t keylen)
+bool($\ast$ \mbox{\hyperlink{struct__hmac__ctx_ac4d1127ea0dca63e0a6e134a0f6d082e}{init}} )(void $\ast$ctx, const void $\ast$key, size\+\_\+t keylen)
 \item 
-void($\ast$ \mbox{\hyperlink{struct__hmac__ctx_ae32d4143aef63d76e96ad9f88af14f94}{fn\+\_\+update}} )(void $\ast$ctx, const void $\ast$data, size\+\_\+t len)
+void($\ast$ \mbox{\hyperlink{struct__hmac__ctx_a6bf90c4e65a5b1178d92f8a0b1a1ad5b}{update}} )(void $\ast$ctx, const void $\ast$data, size\+\_\+t len)
 \item 
-void($\ast$ \mbox{\hyperlink{struct__hmac__ctx_a489e319d3ffa62e6c77f950c2c6ecc43}{fn\+\_\+final}} )(void $\ast$ctx, void $\ast$output)
+void($\ast$ \mbox{\hyperlink{struct__hmac__ctx_ac7f58ce4f70fde87bb3c75be203aa1c2}{final}} )(void $\ast$ctx, void $\ast$output)
 \item 
 \mbox{\Hypertarget{struct__hmac__ctx_afebc00a7bbf696205a1fcd028388fc27}\label{struct__hmac__ctx_afebc00a7bbf696205a1fcd028388fc27}} 
 union \mbox{\hyperlink{union__hmac__ctx_1_1__hmac}{\+\_\+hmac\+\_\+ctx\+::\+\_\+hmac}} {\bfseries Hmac}
@@ -20,23 +20,23 @@ union \mbox{\hyperlink{union__hmac__ctx_1_1__hmac}{\+\_\+hmac\+\_\+ctx\+::\+\_\+
 
 
 \doxysubsection{Member Data Documentation}
-\mbox{\Hypertarget{struct__hmac__ctx_a5592808d47dd58dc8844e41d0062075d}\label{struct__hmac__ctx_a5592808d47dd58dc8844e41d0062075d}} 
-\index{\_hmac\_ctx@{\_hmac\_ctx}!fn\_init@{fn\_init}}
-\index{fn\_init@{fn\_init}!\_hmac\_ctx@{\_hmac\_ctx}}
-\doxysubsubsection{\texorpdfstring{fn\_init}{fn\_init}}
-{\footnotesize\ttfamily bool($\ast$ \+\_\+hmac\+\_\+ctx\+::fn\+\_\+init) (void $\ast$ctx, const void $\ast$key, size\+\_\+t keylen)}
+\mbox{\Hypertarget{struct__hmac__ctx_ac4d1127ea0dca63e0a6e134a0f6d082e}\label{struct__hmac__ctx_ac4d1127ea0dca63e0a6e134a0f6d082e}} 
+\index{\_hmac\_ctx@{\_hmac\_ctx}!init@{init}}
+\index{init@{init}!\_hmac\_ctx@{\_hmac\_ctx}}
+\doxysubsubsection{\texorpdfstring{init}{init}}
+{\footnotesize\ttfamily bool($\ast$ \+\_\+hmac\+\_\+ctx\+::init) (void $\ast$ctx, const void $\ast$key, size\+\_\+t keylen)}
 
-pointer to an initialization method for the given hash algorithm \mbox{\Hypertarget{struct__hmac__ctx_ae32d4143aef63d76e96ad9f88af14f94}\label{struct__hmac__ctx_ae32d4143aef63d76e96ad9f88af14f94}} 
-\index{\_hmac\_ctx@{\_hmac\_ctx}!fn\_update@{fn\_update}}
-\index{fn\_update@{fn\_update}!\_hmac\_ctx@{\_hmac\_ctx}}
-\doxysubsubsection{\texorpdfstring{fn\_update}{fn\_update}}
-{\footnotesize\ttfamily void($\ast$ \+\_\+hmac\+\_\+ctx\+::fn\+\_\+update) (void $\ast$ctx, const void $\ast$data, size\+\_\+t len)}
+pointer to an initialization method for the given hash algorithm \mbox{\Hypertarget{struct__hmac__ctx_a6bf90c4e65a5b1178d92f8a0b1a1ad5b}\label{struct__hmac__ctx_a6bf90c4e65a5b1178d92f8a0b1a1ad5b}} 
+\index{\_hmac\_ctx@{\_hmac\_ctx}!update@{update}}
+\index{update@{update}!\_hmac\_ctx@{\_hmac\_ctx}}
+\doxysubsubsection{\texorpdfstring{update}{update}}
+{\footnotesize\ttfamily void($\ast$ \+\_\+hmac\+\_\+ctx\+::update) (void $\ast$ctx, const void $\ast$data, size\+\_\+t len)}
 
-pointer to the update method for the given hash algorithm \mbox{\Hypertarget{struct__hmac__ctx_a489e319d3ffa62e6c77f950c2c6ecc43}\label{struct__hmac__ctx_a489e319d3ffa62e6c77f950c2c6ecc43}} 
-\index{\_hmac\_ctx@{\_hmac\_ctx}!fn\_final@{fn\_final}}
-\index{fn\_final@{fn\_final}!\_hmac\_ctx@{\_hmac\_ctx}}
-\doxysubsubsection{\texorpdfstring{fn\_final}{fn\_final}}
-{\footnotesize\ttfamily void($\ast$ \+\_\+hmac\+\_\+ctx\+::fn\+\_\+final) (void $\ast$ctx, void $\ast$output)}
+pointer to the update method for the given hash algorithm \mbox{\Hypertarget{struct__hmac__ctx_ac7f58ce4f70fde87bb3c75be203aa1c2}\label{struct__hmac__ctx_ac7f58ce4f70fde87bb3c75be203aa1c2}} 
+\index{\_hmac\_ctx@{\_hmac\_ctx}!final@{final}}
+\index{final@{final}!\_hmac\_ctx@{\_hmac\_ctx}}
+\doxysubsubsection{\texorpdfstring{final}{final}}
+{\footnotesize\ttfamily void($\ast$ \+\_\+hmac\+\_\+ctx\+::final) (void $\ast$ctx, void $\ast$output)}
 
 pointer to the digest output method for the given hash algorithm 
 

@@ -148,9 +148,9 @@ typedef struct _sha256_ctx {
  * @note Allocate a seperate context for each seperate data stream you are hashing.
  *****************************************************************************************************************/
 typedef struct _hash_ctx {
-    bool (*fn_init)(void* ctx);                                     /**< pointer to an initialization method for the given hash algorithm */
-    void (*fn_update)(void* ctx, const void* data, size_t len);     /**< pointer to the update method for the given hash algorithm */
-    void (*fn_final)(void* ctx, void* output);                      /**< pointer to the digest output method for the given hash algorithm */
+    bool (*init)(void* ctx);                                     /**< pointer to an initialization method for the given hash algorithm */
+    void (*update)(void* ctx, const void* data, size_t len);     /**< pointer to the update method for the given hash algorithm */
+    void (*final)(void* ctx, void* output);                      /**< pointer to the digest output method for the given hash algorithm */
     union _hash {           /**< a union of computational states for various hashes */
         sha256_ctx sha256;
     } Hash;
@@ -246,9 +246,9 @@ typedef struct _sha256hmac_ctx {
  * @note If you are hashing multiple data streams concurrently, allocate a seperate context for each.
  ********************************************************************************************************************/
 typedef struct _hmac_ctx {
-    bool (*fn_init)(void* ctx, const void* key, size_t keylen);     /**< pointer to an initialization method for the given hash algorithm */
-    void (*fn_update)(void* ctx, const void* data, size_t len);     /**< pointer to the update method for the given hash algorithm */
-    void (*fn_final)(void* ctx, void* output);                      /**< pointer to the digest output method for the given hash algorithm */
+    bool (*init)(void* ctx, const void* key, size_t keylen);     /**< pointer to an initialization method for the given hash algorithm */
+    void (*update)(void* ctx, const void* data, size_t len);     /**< pointer to the update method for the given hash algorithm */
+    void (*final)(void* ctx, void* output);                      /**< pointer to the digest output method for the given hash algorithm */
     union _hmac {           /**< a union of computational states for various hashes */
         sha256hmac_ctx sha256hmac;
     } Hmac;
