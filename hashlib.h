@@ -186,6 +186,8 @@ bool hash_init(hash_ctx* ctx, uint8_t hash_alg);
  *	@param ctx Pointer to a hash context.
  *	@param data Pointer to data to hash.
  *	@param len Number of bytes at @b data to hash.
+ *  @note You can use @b ctx.update() as an alternative to this function.
+ *      If doing so, you must pass @b &ctx.Hash instead of @b &ctx.
  *	@warning You must have an initialized hash context or a crash will ensue.
  ******************************************************************************************************/
 void hash_update(hash_ctx* ctx, const void* data, size_t len);
@@ -195,6 +197,8 @@ void hash_update(hash_ctx* ctx, const void* data, size_t len);
  *	@param ctx Pointer to a hash context.
  *	@param digest Pointer to a buffer to write the hash to.
  *	@note @b digest must be at large enough to hold the hash digest.
+ *  @note You can use @b ctx.final() as an alternative to this function.
+ *      If doing so, you must pass @b &ctx.Hash instead of @b &ctx.
  *  @warning You must have an initialized hash context or a crash will ensue.
  *********************************************************************************************/
 void hash_final(hash_ctx* ctx, void* digest);
@@ -258,7 +262,8 @@ typedef struct _hmac_ctx {
  *	@param ctx Pointer to a SHA-256 HMAC context.
  *	@param key Pointer to an authentication key used to initialize the base SHA-256 context.
  *	@param keylen Length of @b key, in bytes.
- *  @param alg The numeric ID of the hashing algorithm to use. See @b hash_algorithms.
+ *  @param hash_alg The numeric ID of the hashing algorithm to use. See @b hash_algorithms.
+ *  @return Boolean. True if hash initialization succeeded. False if hash ID invalid.
  **********************************************************************************************************************/
 bool hmac_init(hmac_ctx* ctx, const void* key, size_t keylen, uint8_t hash_alg);
 
@@ -267,6 +272,8 @@ bool hmac_init(hmac_ctx* ctx, const void* key, size_t keylen, uint8_t hash_alg);
  *	@param ctx Pointer to a SHA-256 HMAC context.
  *	@param data Pointer to data to hash.
  *	@param len Number of bytes at @b data to hash.
+ *  @note You may use @b ctx.update() as an alternative to this function.
+ *      If doing so, you must pass @b &ctx.Hmac instead of @b &ctx.
  *	@warning You must have an initialized hash context or a crash will ensue.
  **************************************************************************************************************/
 void hmac_update(hmac_ctx* ctx, const void* data, size_t len);
@@ -275,7 +282,9 @@ void hmac_update(hmac_ctx* ctx, const void* data, size_t len);
  *	@brief Finalize Context and Render Digest for SHA-256 HMAC
  *	@param ctx Pointer to a SHA-256 HMAC context.
  *	@param digest Pointer to a buffer to write the hash to.
- *	@note @b digest must be at least 32 bytes large.
+ *	@note @b digest must be large enough to hold the hash digest.
+ *  @note You may use @b ctx.final() as an alternative to this function.
+ *      If doing so, you must pass @b &ctx.Hmac instead of @b &ctx.
  *  @warning You must have an initialized hash context or a crash will ensue.
  *********************************************************************************************/
 void hmac_final(hmac_ctx* ctx, void* output);

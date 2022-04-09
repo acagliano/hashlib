@@ -470,6 +470,9 @@ Updates the hash context for the given data.
 {\em len} & Number of bytes at {\bfseries{data}} to hash. \\
 \hline
 \end{DoxyParams}
+\begin{DoxyNote}{Note}
+You can use {\bfseries{ctx.\+update()}} as an alternative to this function. If doing so, you must pass {\bfseries{\&ctx.\+Hash}} instead of {\bfseries{\&ctx}}. 
+\end{DoxyNote}
 \begin{DoxyWarning}{Warning}
 You must have an initialized hash context or a crash will ensue. 
 \end{DoxyWarning}
@@ -492,6 +495,8 @@ Finalize context and render digest for hash.
 \end{DoxyParams}
 \begin{DoxyNote}{Note}
 {\bfseries{digest}} must be at large enough to hold the hash digest. 
+
+You can use {\bfseries{ctx.\+final()}} as an alternative to this function. If doing so, you must pass {\bfseries{\&ctx.\+Hash}} instead of {\bfseries{\&ctx}}. 
 \end{DoxyNote}
 \begin{DoxyWarning}{Warning}
 You must have an initialized hash context or a crash will ensue. 
@@ -544,9 +549,12 @@ Initializes the given context with the starting state for SHA-\/256 HMAC.
 \hline
 {\em keylen} & Length of {\bfseries{key}}, in bytes. \\
 \hline
-{\em alg} & The numeric ID of the hashing algorithm to use. See {\bfseries{hash\+\_\+algorithms}}. \\
+{\em hash\+\_\+alg} & The numeric ID of the hashing algorithm to use. See {\bfseries{hash\+\_\+algorithms}}. \\
 \hline
 \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Boolean. True if hash initialization succeeded. False if hash ID invalid. 
+\end{DoxyReturn}
 \mbox{\Hypertarget{hashlib_8h_a6c5035021e844e83e062c198db85c20e}\label{hashlib_8h_a6c5035021e844e83e062c198db85c20e}} 
 \index{hashlib.h@{hashlib.h}!hmac\_update@{hmac\_update}}
 \index{hmac\_update@{hmac\_update}!hashlib.h@{hashlib.h}}
@@ -566,6 +574,9 @@ Updates the SHA-\/256 HMAC context for the given data.
 {\em len} & Number of bytes at {\bfseries{data}} to hash. \\
 \hline
 \end{DoxyParams}
+\begin{DoxyNote}{Note}
+You may use {\bfseries{ctx.\+update()}} as an alternative to this function. If doing so, you must pass {\bfseries{\&ctx.\+Hmac}} instead of {\bfseries{\&ctx}}. 
+\end{DoxyNote}
 \begin{DoxyWarning}{Warning}
 You must have an initialized hash context or a crash will ensue. 
 \end{DoxyWarning}
@@ -587,7 +598,9 @@ Finalize Context and Render Digest for SHA-\/256 HMAC.
 \hline
 \end{DoxyParams}
 \begin{DoxyNote}{Note}
-{\bfseries{digest}} must be at least 32 bytes large. 
+{\bfseries{digest}} must be large enough to hold the hash digest. 
+
+You may use {\bfseries{ctx.\+final()}} as an alternative to this function. If doing so, you must pass {\bfseries{\&ctx.\+Hmac}} instead of {\bfseries{\&ctx}}. 
 \end{DoxyNote}
 \begin{DoxyWarning}{Warning}
 You must have an initialized hash context or a crash will ensue. 

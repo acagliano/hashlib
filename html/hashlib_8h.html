@@ -726,6 +726,7 @@ It may be a good idea to call this function in any program that uses hashlib fun
   </table>
   </dd>
 </dl>
+<dl class="section note"><dt>Note</dt><dd>You can use <b>ctx.update()</b> as an alternative to this function. If doing so, you must pass <b>&amp;ctx.Hash</b> instead of <b>&amp;ctx</b>. </dd></dl>
 <dl class="section warning"><dt>Warning</dt><dd>You must have an initialized hash context or a crash will ensue. </dd></dl>
 
 </div>
@@ -764,7 +765,9 @@ It may be a good idea to call this function in any program that uses hashlib fun
   </table>
   </dd>
 </dl>
-<dl class="section note"><dt>Note</dt><dd><b>digest</b> must be at large enough to hold the hash digest. </dd></dl>
+<dl class="section note"><dt>Note</dt><dd><b>digest</b> must be at large enough to hold the hash digest. </dd>
+<dd>
+You can use <b>ctx.final()</b> as an alternative to this function. If doing so, you must pass <b>&amp;ctx.Hash</b> instead of <b>&amp;ctx</b>. </dd></dl>
 <dl class="section warning"><dt>Warning</dt><dd>You must have an initialized hash context or a crash will ensue. </dd></dl>
 
 </div>
@@ -874,10 +877,11 @@ It may be a good idea to call this function in any program that uses hashlib fun
     <tr><td class="paramname">ctx</td><td>Pointer to a SHA-256 HMAC context. </td></tr>
     <tr><td class="paramname">key</td><td>Pointer to an authentication key used to initialize the base SHA-256 context. </td></tr>
     <tr><td class="paramname">keylen</td><td>Length of <b>key</b>, in bytes. </td></tr>
-    <tr><td class="paramname">alg</td><td>The numeric ID of the hashing algorithm to use. See <b>hash_algorithms</b>. </td></tr>
+    <tr><td class="paramname">hash_alg</td><td>The numeric ID of the hashing algorithm to use. See <b>hash_algorithms</b>. </td></tr>
   </table>
   </dd>
 </dl>
+<dl class="section return"><dt>Returns</dt><dd>Boolean. True if hash initialization succeeded. False if hash ID invalid. </dd></dl>
 
 </div>
 </div>
@@ -922,6 +926,7 @@ It may be a good idea to call this function in any program that uses hashlib fun
   </table>
   </dd>
 </dl>
+<dl class="section note"><dt>Note</dt><dd>You may use <b>ctx.update()</b> as an alternative to this function. If doing so, you must pass <b>&amp;ctx.Hmac</b> instead of <b>&amp;ctx</b>. </dd></dl>
 <dl class="section warning"><dt>Warning</dt><dd>You must have an initialized hash context or a crash will ensue. </dd></dl>
 
 </div>
@@ -960,7 +965,9 @@ It may be a good idea to call this function in any program that uses hashlib fun
   </table>
   </dd>
 </dl>
-<dl class="section note"><dt>Note</dt><dd><b>digest</b> must be at least 32 bytes large. </dd></dl>
+<dl class="section note"><dt>Note</dt><dd><b>digest</b> must be large enough to hold the hash digest. </dd>
+<dd>
+You may use <b>ctx.final()</b> as an alternative to this function. If doing so, you must pass <b>&amp;ctx.Hmac</b> instead of <b>&amp;ctx</b>. </dd></dl>
 <dl class="section warning"><dt>Warning</dt><dd>You must have an initialized hash context or a crash will ensue. </dd></dl>
 
 </div>
