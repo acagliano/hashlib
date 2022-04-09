@@ -171,12 +171,14 @@ enum hash_algorithms {
  * ****************************************************/
 #define SHA256_DIGEST_LEN   32
 
-/**************************************************************************************************
+/*********************************************************************************************************************
  *	@brief Generic hash initializer.
  *	Initializes the given context with the starting state for the given hash algorithm and
  *  populates pointers to the methods for update and final for the given hash..
  *	@param ctx Pointer to a hash context (hash_ctx).
- **************************************************************************************************/
+ *  @param hash_alg The numeric ID of the hashing algorithm to use. See @b hash_algorithms.
+ *  @return Boolean. True if hash initialization succeeded. False if hash ID invalid.
+ *********************************************************************************************************************/
 bool hash_init(hash_ctx* ctx, uint8_t hash_alg);
 
 /******************************************************************************************************
@@ -184,16 +186,17 @@ bool hash_init(hash_ctx* ctx, uint8_t hash_alg);
  *	@param ctx Pointer to a hash context.
  *	@param data Pointer to data to hash.
  *	@param len Number of bytes at @b data to hash.
- *	@warning You must call hash_init() first or your hash state will be invalid.
+ *	@warning You must have an initialized hash context or a crash will ensue.
  ******************************************************************************************************/
 void hash_update(hash_ctx* ctx, const void* data, size_t len);
 
-/***********************************************************************************
+/************************************************************&&&&***********************
  *	@brief Finalize context and render digest for hash
  *	@param ctx Pointer to a hash context.
  *	@param digest Pointer to a buffer to write the hash to.
  *	@note @b digest must be at large enough to hold the hash digest.
- ***********************************************************************************/
+ *  @warning You must have an initialized hash context or a crash will ensue.
+ *********************************************************************************************/
 void hash_final(hash_ctx* ctx, void* digest);
 
 /**********************************************************************************************************************
@@ -205,9 +208,10 @@ void hash_final(hash_ctx* ctx, void* digest);
  *	@param datalen Number of bytes at @b data to hash.
  *	@param outbuf Pointer to buffer to write hash output to.
  *	@param outlen Number of bytes to write to @b outbuf.
+ *  @param hash_alg The numeric ID of the hashing algorithm to use. See @b hash_algorithms.
  *	@note @b outbuf must be at least @b outlen bytes large.
  **********************************************************************************************************************/
-void hash_mgf1(const void* data, size_t datalen, void* outbuf, size_t outlen);
+bool hash_mgf1(const void* data, size_t datalen, void* outbuf, size_t outlen, uint8_t hash_alg);
 
 
 /*
@@ -249,9 +253,9 @@ typedef struct _hmac_ctx {
  *	@param ctx Pointer to a SHA-256 HMAC context.
  *	@param key Pointer to an authentication key used to initialize the base SHA-256 context.
  *	@param keylen Length of @b key, in bytes.
- *  @param alg The hmac algorithm to use. See @b hash_algorithms.
+ *  @param alg The numeric ID of the hashing algorithm to use. See @b hash_algorithms.
  **********************************************************************************************************************/
-bool hmac_init(hmac_ctx* ctx, const void* key, size_t keylen, uint8_t alg);
+bool hmac_init(hmac_ctx* ctx, const void* key, size_t keylen, uint8_t hash_alg);
 
 /*************************************************************************************************************
  *	@brief Updates the SHA-256 HMAC context for the given data.
@@ -282,7 +286,7 @@ void hmac_final(hmac_ctx* ctx, void* output);
  * @param salt A psuedo-random string to use when computing the key.
  * @param saltlen The length of the salt to use (in bytes).
  * @param rounds The number of times to iterate the hash function per block of @b keylen.
- * @param alg The hmac algorithm to use for key generation.
+ * @param hash_alg The numeric ID of the hashing algorithm to use. See @b hash_algorithms.
  * @note Standards recommend a salt of at least 128 bits (16 bytes).
  * @note @b rounds is used to increase the cost (computational time) of generating a key. What makes password-
  * hashing algorithms secure is the time needed to generate a rainbow table attack against it. More rounds means
@@ -297,7 +301,7 @@ bool hmac_pbkdf2(
     const void* salt,
     size_t saltlen,
     size_t rounds,
-    uint8_t alg);
+    uint8_t hash_alg);
 
 
 /*
@@ -357,24 +361,6 @@ enum aes_padding_schemes {
  *****************************************************************/
 #define AES_IVSIZE		AES_BLOCKSIZE
 
-/******************************************************
- * @def AES128_KEYLEN
- * Defines the byte-length of a 128-bit AES key
- ******************************************************/
-#define AES128_KEYLEN	16
-
-/******************************************************
- * @def AES192_KEYLEN
- * Defines the byte-length of a 192-bit AES key
- ******************************************************/
- #define AES192_KEYLEN	24
- 
-/*****************************************************
- * @def AES256_KEYLEN
- * Defines the byte-length of a 256-bit AES key
- *****************************************************/
-#define AES256_KEYLEN	32
-
 /*********************************************************************************************
  * @def cipher_aes_outsize()
  *
@@ -404,7 +390,7 @@ enum aes_padding_schemes {
  * @return True if the key was successfully loaded. False otherwise.
  * @note It is recommended to cycle your key after encrypting 2^64 blocks of data with the same key.
 ***********************************************************************************************************************/
-bool aes_loadkey(const void* key, const aes_ctx* ks, size_t keylen);
+bool aes_init(const void* key, const aes_ctx* ks, size_t keylen);
 
 /***************************************************
  * @enum aes_error_t
@@ -439,7 +425,7 @@ typedef enum {
  * 		Otherwise you will have to join the IV and the ciphertext into a single larger buffer before sending it through
  * 		whatever networking protocol you use.
  * 		@code
- * 		cipher_aes_encrypt(plaintext, len, &ciphertext[AES_IV_SIZE], ks, iv, <cipher_mode>, <padding_mode>);
+ * 		aes_encrypt(plaintext, len, &ciphertext[AES_IV_SIZE], ks, iv, <cipher_mode>, <padding_mode>);
  * 		memcpy(ciphertext, iv, AES_IV_SIZE);
  * 		send_packet(ciphertext);
  * 		@endcode
@@ -522,6 +508,8 @@ typedef enum {
  * @param ciphertext Pointer a buffer to write the ciphertext to.
  * @param pubkey Pointer to a public key to use for encryption.
  * @param keylen The length of the public key (modulus) to encrypt with.
+ * @param oaep_hash_alg The numeric ID of the hashing algorithm to use within OAEP encoding.
+ *      See @b hash_algorithms.
  * @note The size of @b ciphertext and @b keylen must be equal.
  * @note The @b msg will be encoded using OAEP before encryption.
  * @note msg and pubkey are both treated as byte arrays.
@@ -532,7 +520,8 @@ rsa_error_t rsa_encrypt(
     size_t msglen,
     void* ciphertext,
     const void* pubkey,
-    size_t keylen);
+    size_t keylen,
+    uint8_t oaep_hash_alg);
     
 
 // Miscellaneous Functions
@@ -557,6 +546,5 @@ bool digest_tostring(const void* digest, size_t len, char* hexstr);
  * @return True if the buffers were equal. False if not equal.
  **************************************************************************************************************/
 bool digest_compare(const void* digest1, const void* digest2, size_t len);
-
 
 #endif

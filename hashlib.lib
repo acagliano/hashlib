@@ -10,7 +10,7 @@ library	"HASHLIB", 9
 	export	hmac_update ; 24
 	export	hmac_final ; 27
 	export	hmac_pbkdf2 ; 30
-	export	aes_loadkey ; 33
+	export	aes_init ; 33
 	export	aes_encrypt ; 36
 	export	aes_decrypt ; 39
 	export	rsa_encrypt ; 42
@@ -18,3 +18,7 @@ library	"HASHLIB", 9
 	export	digest_compare ; 48
 	export	aes_ecb_unsafe_encrypt ; 51
 	export	aes_ecb_unsafe_decrypt ; 54
+	export	oaep_encode ; 57
+	export	oaep_decode ; 60
+	export	pss_encode ; 63
+	export	powmod ; 66

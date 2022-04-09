@@ -38,13 +38,7 @@ int main(void)
     uint8_t sha256_digest[SHA256_DIGEST_LEN];
     uint8_t sha256_hex[(SHA256_DIGEST_LEN<<1)+1];
     
-    sprintf(CEMU_CONSOLE, "&ctx: %u\n", &ctx);
-    sprintf(CEMU_CONSOLE, "sizeof ctx: %u\n", sizeof ctx);
-    sprintf(CEMU_CONSOLE, "sizeof sha256: %u\n", sizeof (sha256_ctx));
-    sprintf(CEMU_CONSOLE, "sizeof _hash: %u\n", sizeof (union _hash));
-    *(char*)-1=2;
-    
-    if(!hash_init(&ctx, SHA256));
+    if(!hash_init(&ctx, SHA256)) return 1;
     hash_update(&ctx, str, str_len);
     hash_final(&ctx, sha256_digest);
    

@@ -38,12 +38,6 @@ struct \mbox{\hyperlink{struct__aes__ctx}{\+\_\+aes\+\_\+ctx}}
 \item 
 \#define \mbox{\hyperlink{hashlib_8h_a6c2d58d8dd281845fdc027b499dea89d}{AES\+\_\+\+IVSIZE}}~\mbox{\hyperlink{hashlib_8h_afab0742642db9c0609c00bf8a54f386f}{AES\+\_\+\+BLOCKSIZE}}
 \item 
-\#define \mbox{\hyperlink{hashlib_8h_a2841462d8933d0982e3ea13dc5284d7c}{AES128\+\_\+\+KEYLEN}}~16
-\item 
-\#define \mbox{\hyperlink{hashlib_8h_a37ba5c621bf4af2ddcb851e179e21623}{AES192\+\_\+\+KEYLEN}}~24
-\item 
-\#define \mbox{\hyperlink{hashlib_8h_a7bab8a778d065da4cc561f4813994f03}{AES256\+\_\+\+KEYLEN}}~32
-\item 
 \mbox{\Hypertarget{hashlib_8h_ab723a524d8d2149cb44285a8b8228f1f}\label{hashlib_8h_ab723a524d8d2149cb44285a8b8228f1f}} 
 \#define {\bfseries aes\+\_\+outsize}(len)~ ((((len)\%\mbox{\hyperlink{hashlib_8h_afab0742642db9c0609c00bf8a54f386f}{AES\+\_\+\+BLOCKSIZE}})==0) ? (len) + \mbox{\hyperlink{hashlib_8h_afab0742642db9c0609c00bf8a54f386f}{AES\+\_\+\+BLOCKSIZE}} \+: (((len)$>$$>$4) + 1)$<$$<$4)
 \item 
@@ -111,25 +105,26 @@ bool \mbox{\hyperlink{hashlib_8h_ac97f2b17187bed64cb75d98ebb9184f8}{hash\+\_\+in
 \begin{DoxyCompactList}\small\item\em Generic hash initializer. Initializes the given context with the starting state for the given hash algorithm and populates pointers to the methods for update and final for the given hash.. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{hashlib_8h_aaf0fab49f90f31ca034e68c83858d14e}{hash\+\_\+update}} (\mbox{\hyperlink{hashlib_8h_aa55779911de10df960d64966c6825da7}{hash\+\_\+ctx}} $\ast$ctx, const void $\ast$data, size\+\_\+t len)
 \begin{DoxyCompactList}\small\item\em Updates the hash context for the given data. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{hashlib_8h_a6de2a3ef1df7da45fbe84b38f72baa71}{hash\+\_\+final}} (\mbox{\hyperlink{hashlib_8h_aa55779911de10df960d64966c6825da7}{hash\+\_\+ctx}} $\ast$ctx, void $\ast$digest)
-\begin{DoxyCompactList}\small\item\em Finalize context and render digest for hash. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{hashlib_8h_a10ed0a0ba1c3b12e564ffdd2cc1ace31}{hash\+\_\+mgf1}} (const void $\ast$data, size\+\_\+t datalen, void $\ast$outbuf, size\+\_\+t outlen)
+\mbox{\Hypertarget{hashlib_8h_a6de2a3ef1df7da45fbe84b38f72baa71}\label{hashlib_8h_a6de2a3ef1df7da45fbe84b38f72baa71}} 
+void {\bfseries hash\+\_\+final} (\mbox{\hyperlink{hashlib_8h_aa55779911de10df960d64966c6825da7}{hash\+\_\+ctx}} $\ast$ctx, void $\ast$digest)
+\item 
+bool \mbox{\hyperlink{hashlib_8h_aef7b1868edb022ce92f850e6269a2db9}{hash\+\_\+mgf1}} (const void $\ast$data, size\+\_\+t datalen, void $\ast$outbuf, size\+\_\+t outlen, uint8\+\_\+t hash\+\_\+alg)
 \begin{DoxyCompactList}\small\item\em Arbitrary Length Hashing Function. \end{DoxyCompactList}\item 
-bool \mbox{\hyperlink{hashlib_8h_a23f1805ae0c933e5565dfcc9c8e46d02}{hmac\+\_\+init}} (\mbox{\hyperlink{hashlib_8h_a8d813300476744f01319600478572f62}{hmac\+\_\+ctx}} $\ast$ctx, const void $\ast$key, size\+\_\+t keylen, uint8\+\_\+t alg)
+bool \mbox{\hyperlink{hashlib_8h_a898e128b3311035c6769837208f34a7d}{hmac\+\_\+init}} (\mbox{\hyperlink{hashlib_8h_a8d813300476744f01319600478572f62}{hmac\+\_\+ctx}} $\ast$ctx, const void $\ast$key, size\+\_\+t keylen, uint8\+\_\+t hash\+\_\+alg)
 \begin{DoxyCompactList}\small\item\em Context Initializer for SHA-\/256 HMAC. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{hashlib_8h_a6c5035021e844e83e062c198db85c20e}{hmac\+\_\+update}} (\mbox{\hyperlink{hashlib_8h_a8d813300476744f01319600478572f62}{hmac\+\_\+ctx}} $\ast$ctx, const void $\ast$data, size\+\_\+t len)
 \begin{DoxyCompactList}\small\item\em Updates the SHA-\/256 HMAC context for the given data. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{hashlib_8h_aab1ccbb4d4cc9b02116d2ed07a5c9ed3}{hmac\+\_\+final}} (\mbox{\hyperlink{hashlib_8h_a8d813300476744f01319600478572f62}{hmac\+\_\+ctx}} $\ast$ctx, void $\ast$output)
 \begin{DoxyCompactList}\small\item\em Finalize Context and Render Digest for SHA-\/256 HMAC. \end{DoxyCompactList}\item 
-bool \mbox{\hyperlink{hashlib_8h_a279fed67d31372b689f7b8b69035f9ca}{hmac\+\_\+pbkdf2}} (const char $\ast$password, size\+\_\+t passlen, void $\ast$key, size\+\_\+t keylen, const void $\ast$salt, size\+\_\+t saltlen, size\+\_\+t rounds, uint8\+\_\+t alg)
+bool \mbox{\hyperlink{hashlib_8h_a1db040f9b150deacb5fca66d4684fa91}{hmac\+\_\+pbkdf2}} (const char $\ast$password, size\+\_\+t passlen, void $\ast$key, size\+\_\+t keylen, const void $\ast$salt, size\+\_\+t saltlen, size\+\_\+t rounds, uint8\+\_\+t hash\+\_\+alg)
 \begin{DoxyCompactList}\small\item\em Password-\/\+Based Key Derivation Function. \end{DoxyCompactList}\item 
-bool \mbox{\hyperlink{hashlib_8h_a1e8fde09a695433599687e56310cb68a}{aes\+\_\+loadkey}} (const void $\ast$key, const \mbox{\hyperlink{hashlib_8h_aa188bc2768a3b7aa6ad73cb2c77819e0}{aes\+\_\+ctx}} $\ast$ks, size\+\_\+t keylen)
+bool \mbox{\hyperlink{hashlib_8h_a3e30c60856defd404e80441ee159aa8b}{aes\+\_\+init}} (const void $\ast$key, const \mbox{\hyperlink{hashlib_8h_aa188bc2768a3b7aa6ad73cb2c77819e0}{aes\+\_\+ctx}} $\ast$ks, size\+\_\+t keylen)
 \begin{DoxyCompactList}\small\item\em AES import key to key schedule context. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{hashlib_8h_aeb2e64abcc4317e3143fb820f21c3bfd}{aes\+\_\+error\+\_\+t}} \mbox{\hyperlink{hashlib_8h_aae223cd681fbba1e0d748b64cfd3e6d3}{aes\+\_\+encrypt}} (const void $\ast$plaintext, size\+\_\+t len, void $\ast$ciphertext, const \mbox{\hyperlink{hashlib_8h_aa188bc2768a3b7aa6ad73cb2c77819e0}{aes\+\_\+ctx}} $\ast$ks, const void $\ast$iv, uint8\+\_\+t ciphermode, uint8\+\_\+t paddingmode)
 \begin{DoxyCompactList}\small\item\em General-\/\+Purpose AES Encryption. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{hashlib_8h_aeb2e64abcc4317e3143fb820f21c3bfd}{aes\+\_\+error\+\_\+t}} \mbox{\hyperlink{hashlib_8h_a9167498ff02e1c99d730481e94106fd6}{aes\+\_\+decrypt}} (const void $\ast$ciphertext, size\+\_\+t len, void $\ast$plaintext, const \mbox{\hyperlink{hashlib_8h_aa188bc2768a3b7aa6ad73cb2c77819e0}{aes\+\_\+ctx}} $\ast$ks, const void $\ast$iv, uint8\+\_\+t ciphermode, uint8\+\_\+t paddingmode)
 \begin{DoxyCompactList}\small\item\em General-\/\+Purpose AES Decryption. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{hashlib_8h_a0486449f609d0e485bad091a671d9294}{rsa\+\_\+error\+\_\+t}} \mbox{\hyperlink{hashlib_8h_a692de56123f350f0bf78ece7c4b67ac9}{rsa\+\_\+encrypt}} (const void $\ast$msg, size\+\_\+t msglen, void $\ast$ciphertext, const void $\ast$pubkey, size\+\_\+t keylen)
+\mbox{\hyperlink{hashlib_8h_a0486449f609d0e485bad091a671d9294}{rsa\+\_\+error\+\_\+t}} \mbox{\hyperlink{hashlib_8h_a993f15527e86e09be9954a7377909e14}{rsa\+\_\+encrypt}} (const void $\ast$msg, size\+\_\+t msglen, void $\ast$ciphertext, const void $\ast$pubkey, size\+\_\+t keylen, uint8\+\_\+t oaep\+\_\+hash\+\_\+alg)
 \begin{DoxyCompactList}\small\item\em RSA Encryption. \end{DoxyCompactList}\item 
 bool \mbox{\hyperlink{hashlib_8h_a9875035ce2ae4859b39cfbbff2d1f609}{digest\+\_\+tostring}} (const void $\ast$digest, size\+\_\+t len, char $\ast$hexstr)
 \begin{DoxyCompactList}\small\item\em Convert a digest to a valid hex string. \end{DoxyCompactList}\item 
@@ -198,25 +193,7 @@ Defines the blocksize of the AES cipher. \mbox{\Hypertarget{hashlib_8h_a6c2d58d8
 \doxysubsubsection{\texorpdfstring{AES\_IVSIZE}{AES\_IVSIZE}}
 {\footnotesize\ttfamily \#define AES\+\_\+\+IVSIZE~\mbox{\hyperlink{hashlib_8h_afab0742642db9c0609c00bf8a54f386f}{AES\+\_\+\+BLOCKSIZE}}}
 
-Defines the length of the AES initalization vector (IV). \mbox{\Hypertarget{hashlib_8h_a2841462d8933d0982e3ea13dc5284d7c}\label{hashlib_8h_a2841462d8933d0982e3ea13dc5284d7c}} 
-\index{hashlib.h@{hashlib.h}!AES128\_KEYLEN@{AES128\_KEYLEN}}
-\index{AES128\_KEYLEN@{AES128\_KEYLEN}!hashlib.h@{hashlib.h}}
-\doxysubsubsection{\texorpdfstring{AES128\_KEYLEN}{AES128\_KEYLEN}}
-{\footnotesize\ttfamily \#define AES128\+\_\+\+KEYLEN~16}
-
-Defines the byte-\/length of a 128-\/bit AES key \mbox{\Hypertarget{hashlib_8h_a37ba5c621bf4af2ddcb851e179e21623}\label{hashlib_8h_a37ba5c621bf4af2ddcb851e179e21623}} 
-\index{hashlib.h@{hashlib.h}!AES192\_KEYLEN@{AES192\_KEYLEN}}
-\index{AES192\_KEYLEN@{AES192\_KEYLEN}!hashlib.h@{hashlib.h}}
-\doxysubsubsection{\texorpdfstring{AES192\_KEYLEN}{AES192\_KEYLEN}}
-{\footnotesize\ttfamily \#define AES192\+\_\+\+KEYLEN~24}
-
-Defines the byte-\/length of a 192-\/bit AES key \mbox{\Hypertarget{hashlib_8h_a7bab8a778d065da4cc561f4813994f03}\label{hashlib_8h_a7bab8a778d065da4cc561f4813994f03}} 
-\index{hashlib.h@{hashlib.h}!AES256\_KEYLEN@{AES256\_KEYLEN}}
-\index{AES256\_KEYLEN@{AES256\_KEYLEN}!hashlib.h@{hashlib.h}}
-\doxysubsubsection{\texorpdfstring{AES256\_KEYLEN}{AES256\_KEYLEN}}
-{\footnotesize\ttfamily \#define AES256\+\_\+\+KEYLEN~32}
-
-Defines the byte-\/length of a 256-\/bit AES key 
+Defines the length of the AES initalization vector (IV). 
 
 \doxysubsection{Typedef Documentation}
 \mbox{\Hypertarget{hashlib_8h_a53df9e7d871973d59c7b58a6c3963c5d}\label{hashlib_8h_a53df9e7d871973d59c7b58a6c3963c5d}} 
@@ -437,7 +414,12 @@ Generic hash initializer. Initializes the given context with the starting state 
 \begin{DoxyParams}{Parameters}
 {\em ctx} & Pointer to a hash context (hash\+\_\+ctx). \\
 \hline
+{\em hash\+\_\+alg} & The numeric ID of the hashing algorithm to use. See {\bfseries{hash\+\_\+algorithms}}. \\
+\hline
 \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Boolean. True if hash initialization succeeded. False if hash ID invalid. 
+\end{DoxyReturn}
 \mbox{\Hypertarget{hashlib_8h_aaf0fab49f90f31ca034e68c83858d14e}\label{hashlib_8h_aaf0fab49f90f31ca034e68c83858d14e}} 
 \index{hashlib.h@{hashlib.h}!hash\_update@{hash\_update}}
 \index{hash\_update@{hash\_update}!hashlib.h@{hashlib.h}}
@@ -458,33 +440,13 @@ Updates the hash context for the given data.
 \hline
 \end{DoxyParams}
 \begin{DoxyWarning}{Warning}
-You must call \mbox{\hyperlink{hashlib_8h_ac97f2b17187bed64cb75d98ebb9184f8}{hash\+\_\+init()}} first or your hash state will be invalid. 
+You must have an initialized hash context or a crash will ensue. 
 \end{DoxyWarning}
-\mbox{\Hypertarget{hashlib_8h_a6de2a3ef1df7da45fbe84b38f72baa71}\label{hashlib_8h_a6de2a3ef1df7da45fbe84b38f72baa71}} 
-\index{hashlib.h@{hashlib.h}!hash\_final@{hash\_final}}
-\index{hash\_final@{hash\_final}!hashlib.h@{hashlib.h}}
-\doxysubsubsection{\texorpdfstring{hash\_final()}{hash\_final()}}
-{\footnotesize\ttfamily void hash\+\_\+final (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{hashlib_8h_aa55779911de10df960d64966c6825da7}{hash\+\_\+ctx}} $\ast$}]{ctx,  }\item[{void $\ast$}]{digest }\end{DoxyParamCaption})}
-
-
-
-Finalize context and render digest for hash. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em ctx} & Pointer to a hash context. \\
-\hline
-{\em digest} & Pointer to a buffer to write the hash to. \\
-\hline
-\end{DoxyParams}
-\begin{DoxyNote}{Note}
-{\bfseries{digest}} must be at large enough to hold the hash digest. 
-\end{DoxyNote}
-\mbox{\Hypertarget{hashlib_8h_a10ed0a0ba1c3b12e564ffdd2cc1ace31}\label{hashlib_8h_a10ed0a0ba1c3b12e564ffdd2cc1ace31}} 
+\mbox{\Hypertarget{hashlib_8h_aef7b1868edb022ce92f850e6269a2db9}\label{hashlib_8h_aef7b1868edb022ce92f850e6269a2db9}} 
 \index{hashlib.h@{hashlib.h}!hash\_mgf1@{hash\_mgf1}}
 \index{hash\_mgf1@{hash\_mgf1}!hashlib.h@{hashlib.h}}
 \doxysubsubsection{\texorpdfstring{hash\_mgf1()}{hash\_mgf1()}}
-{\footnotesize\ttfamily void hash\+\_\+mgf1 (\begin{DoxyParamCaption}\item[{const void $\ast$}]{data,  }\item[{size\+\_\+t}]{datalen,  }\item[{void $\ast$}]{outbuf,  }\item[{size\+\_\+t}]{outlen }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily bool hash\+\_\+mgf1 (\begin{DoxyParamCaption}\item[{const void $\ast$}]{data,  }\item[{size\+\_\+t}]{datalen,  }\item[{void $\ast$}]{outbuf,  }\item[{size\+\_\+t}]{outlen,  }\item[{uint8\+\_\+t}]{hash\+\_\+alg }\end{DoxyParamCaption})}
 
 
 
@@ -502,15 +464,17 @@ Computes SHA-\/256 of the data with a counter appended to generate a hash of arb
 \hline
 {\em outlen} & Number of bytes to write to {\bfseries{outbuf}}. \\
 \hline
+{\em hash\+\_\+alg} & The numeric ID of the hashing algorithm to use. See {\bfseries{hash\+\_\+algorithms}}. \\
+\hline
 \end{DoxyParams}
 \begin{DoxyNote}{Note}
 {\bfseries{outbuf}} must be at least {\bfseries{outlen}} bytes large. 
 \end{DoxyNote}
-\mbox{\Hypertarget{hashlib_8h_a23f1805ae0c933e5565dfcc9c8e46d02}\label{hashlib_8h_a23f1805ae0c933e5565dfcc9c8e46d02}} 
+\mbox{\Hypertarget{hashlib_8h_a898e128b3311035c6769837208f34a7d}\label{hashlib_8h_a898e128b3311035c6769837208f34a7d}} 
 \index{hashlib.h@{hashlib.h}!hmac\_init@{hmac\_init}}
 \index{hmac\_init@{hmac\_init}!hashlib.h@{hashlib.h}}
 \doxysubsubsection{\texorpdfstring{hmac\_init()}{hmac\_init()}}
-{\footnotesize\ttfamily bool hmac\+\_\+init (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{hashlib_8h_a8d813300476744f01319600478572f62}{hmac\+\_\+ctx}} $\ast$}]{ctx,  }\item[{const void $\ast$}]{key,  }\item[{size\+\_\+t}]{keylen,  }\item[{uint8\+\_\+t}]{alg }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily bool hmac\+\_\+init (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{hashlib_8h_a8d813300476744f01319600478572f62}{hmac\+\_\+ctx}} $\ast$}]{ctx,  }\item[{const void $\ast$}]{key,  }\item[{size\+\_\+t}]{keylen,  }\item[{uint8\+\_\+t}]{hash\+\_\+alg }\end{DoxyParamCaption})}
 
 
 
@@ -526,7 +490,7 @@ Initializes the given context with the starting state for SHA-\/256 HMAC.
 \hline
 {\em keylen} & Length of {\bfseries{key}}, in bytes. \\
 \hline
-{\em alg} & The hmac algorithm to use. See {\bfseries{hash\+\_\+algorithms}}. \\
+{\em alg} & The numeric ID of the hashing algorithm to use. See {\bfseries{hash\+\_\+algorithms}}. \\
 \hline
 \end{DoxyParams}
 \mbox{\Hypertarget{hashlib_8h_a6c5035021e844e83e062c198db85c20e}\label{hashlib_8h_a6c5035021e844e83e062c198db85c20e}} 
@@ -571,11 +535,11 @@ Finalize Context and Render Digest for SHA-\/256 HMAC.
 \begin{DoxyNote}{Note}
 {\bfseries{digest}} must be at least 32 bytes large. 
 \end{DoxyNote}
-\mbox{\Hypertarget{hashlib_8h_a279fed67d31372b689f7b8b69035f9ca}\label{hashlib_8h_a279fed67d31372b689f7b8b69035f9ca}} 
+\mbox{\Hypertarget{hashlib_8h_a1db040f9b150deacb5fca66d4684fa91}\label{hashlib_8h_a1db040f9b150deacb5fca66d4684fa91}} 
 \index{hashlib.h@{hashlib.h}!hmac\_pbkdf2@{hmac\_pbkdf2}}
 \index{hmac\_pbkdf2@{hmac\_pbkdf2}!hashlib.h@{hashlib.h}}
 \doxysubsubsection{\texorpdfstring{hmac\_pbkdf2()}{hmac\_pbkdf2()}}
-{\footnotesize\ttfamily bool hmac\+\_\+pbkdf2 (\begin{DoxyParamCaption}\item[{const char $\ast$}]{password,  }\item[{size\+\_\+t}]{passlen,  }\item[{void $\ast$}]{key,  }\item[{size\+\_\+t}]{keylen,  }\item[{const void $\ast$}]{salt,  }\item[{size\+\_\+t}]{saltlen,  }\item[{size\+\_\+t}]{rounds,  }\item[{uint8\+\_\+t}]{alg }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily bool hmac\+\_\+pbkdf2 (\begin{DoxyParamCaption}\item[{const char $\ast$}]{password,  }\item[{size\+\_\+t}]{passlen,  }\item[{void $\ast$}]{key,  }\item[{size\+\_\+t}]{keylen,  }\item[{const void $\ast$}]{salt,  }\item[{size\+\_\+t}]{saltlen,  }\item[{size\+\_\+t}]{rounds,  }\item[{uint8\+\_\+t}]{hash\+\_\+alg }\end{DoxyParamCaption})}
 
 
 
@@ -599,7 +563,7 @@ Computes a key derived from a password, a 16-\/byte salt, and a given number of 
 \hline
 {\em rounds} & The number of times to iterate the hash function per block of {\bfseries{keylen}}. \\
 \hline
-{\em alg} & The hmac algorithm to use for key generation. \\
+{\em hash\+\_\+alg} & The numeric ID of the hashing algorithm to use. See {\bfseries{hash\+\_\+algorithms}}. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyNote}{Note}
@@ -607,11 +571,11 @@ Standards recommend a salt of at least 128 bits (16 bytes).
 
 {\bfseries{rounds}} is used to increase the cost (computational time) of generating a key. What makes password-\/ hashing algorithms secure is the time needed to generate a rainbow table attack against it. More rounds means a more secure key, but more time spent generating it. Current cryptography standards recommend in excess of 1000 rounds but that may not be feasible on the CE. 
 \end{DoxyNote}
-\mbox{\Hypertarget{hashlib_8h_a1e8fde09a695433599687e56310cb68a}\label{hashlib_8h_a1e8fde09a695433599687e56310cb68a}} 
-\index{hashlib.h@{hashlib.h}!aes\_loadkey@{aes\_loadkey}}
-\index{aes\_loadkey@{aes\_loadkey}!hashlib.h@{hashlib.h}}
-\doxysubsubsection{\texorpdfstring{aes\_loadkey()}{aes\_loadkey()}}
-{\footnotesize\ttfamily bool aes\+\_\+loadkey (\begin{DoxyParamCaption}\item[{const void $\ast$}]{key,  }\item[{const \mbox{\hyperlink{hashlib_8h_aa188bc2768a3b7aa6ad73cb2c77819e0}{aes\+\_\+ctx}} $\ast$}]{ks,  }\item[{size\+\_\+t}]{keylen }\end{DoxyParamCaption})}
+\mbox{\Hypertarget{hashlib_8h_a3e30c60856defd404e80441ee159aa8b}\label{hashlib_8h_a3e30c60856defd404e80441ee159aa8b}} 
+\index{hashlib.h@{hashlib.h}!aes\_init@{aes\_init}}
+\index{aes\_init@{aes\_init}!hashlib.h@{hashlib.h}}
+\doxysubsubsection{\texorpdfstring{aes\_init()}{aes\_init()}}
+{\footnotesize\ttfamily bool aes\+\_\+init (\begin{DoxyParamCaption}\item[{const void $\ast$}]{key,  }\item[{const \mbox{\hyperlink{hashlib_8h_aa188bc2768a3b7aa6ad73cb2c77819e0}{aes\+\_\+ctx}} $\ast$}]{ks,  }\item[{size\+\_\+t}]{keylen }\end{DoxyParamCaption})}
 
 
 
@@ -666,7 +630,7 @@ General-\/\+Purpose AES Encryption.
 
 {\bfseries{IV}} is not written to the ciphertext buffer by this function, only the encrypted message. However, if your ciphertext buffer is large enough, you can do the following to get the IV prepended to the ciphertext. Otherwise you will have to join the IV and the ciphertext into a single larger buffer before sending it through whatever networking protocol you use. 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{cipher\_aes\_encrypt(plaintext, len, \&ciphertext[AES\_IV\_SIZE], ks, iv, <cipher\_mode>, <padding\_mode>);}
+\DoxyCodeLine{\mbox{\hyperlink{hashlib_8h_aae223cd681fbba1e0d748b64cfd3e6d3}{aes\_encrypt}}(plaintext, len, \&ciphertext[AES\_IV\_SIZE], ks, iv, <cipher\_mode>, <padding\_mode>);}
 \DoxyCodeLine{memcpy(ciphertext, iv, AES\_IV\_SIZE);}
 \DoxyCodeLine{send\_packet(ciphertext);}
 
@@ -711,11 +675,11 @@ General-\/\+Purpose AES Decryption.
 \begin{DoxyReturn}{Returns}
 aes\+\_\+error\+\_\+t 
 \end{DoxyReturn}
-\mbox{\Hypertarget{hashlib_8h_a692de56123f350f0bf78ece7c4b67ac9}\label{hashlib_8h_a692de56123f350f0bf78ece7c4b67ac9}} 
+\mbox{\Hypertarget{hashlib_8h_a993f15527e86e09be9954a7377909e14}\label{hashlib_8h_a993f15527e86e09be9954a7377909e14}} 
 \index{hashlib.h@{hashlib.h}!rsa\_encrypt@{rsa\_encrypt}}
 \index{rsa\_encrypt@{rsa\_encrypt}!hashlib.h@{hashlib.h}}
 \doxysubsubsection{\texorpdfstring{rsa\_encrypt()}{rsa\_encrypt()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{hashlib_8h_a0486449f609d0e485bad091a671d9294}{rsa\+\_\+error\+\_\+t}} rsa\+\_\+encrypt (\begin{DoxyParamCaption}\item[{const void $\ast$}]{msg,  }\item[{size\+\_\+t}]{msglen,  }\item[{void $\ast$}]{ciphertext,  }\item[{const void $\ast$}]{pubkey,  }\item[{size\+\_\+t}]{keylen }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \mbox{\hyperlink{hashlib_8h_a0486449f609d0e485bad091a671d9294}{rsa\+\_\+error\+\_\+t}} rsa\+\_\+encrypt (\begin{DoxyParamCaption}\item[{const void $\ast$}]{msg,  }\item[{size\+\_\+t}]{msglen,  }\item[{void $\ast$}]{ciphertext,  }\item[{const void $\ast$}]{pubkey,  }\item[{size\+\_\+t}]{keylen,  }\item[{uint8\+\_\+t}]{oaep\+\_\+hash\+\_\+alg }\end{DoxyParamCaption})}
 
 
 
@@ -734,6 +698,8 @@ Performs an in-\/place RSA encryption of a message over a public modulus {\bfser
 {\em pubkey} & Pointer to a public key to use for encryption. \\
 \hline
 {\em keylen} & The length of the public key (modulus) to encrypt with. \\
+\hline
+{\em oaep\+\_\+hash\+\_\+alg} & The numeric ID of the hashing algorithm to use within OAEP encoding. See {\bfseries{hash\+\_\+algorithms}}. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyNote}{Note}

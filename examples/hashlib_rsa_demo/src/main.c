@@ -43,7 +43,7 @@ int main(void)
     
 	sprintf(CEMU_CONSOLE, "\n\n----------------------------------\nHashlib RSA Demo\n");
 	hexdump(str, strlen(str), "---Original String---");
-	if(cipher_rsa_encrypt(str, strlen(str), ciphertext, pubkey, MODSIZE)==RSA_OK)
+	if(rsa_encrypt(str, strlen(str), ciphertext, pubkey, MODSIZE, SHA256)==RSA_OK)
         hexdump(ciphertext, MODSIZE, "---RSA Encrypted---");
     else sprintf(CEMU_CONSOLE, "encryption error");
 }

@@ -35,7 +35,7 @@ int main(void)
 	char outbuf[50];
     size_t str_len = strlen(str);
     
-    hash_mgf1(str, str_len, outbuf, 50);
+    hash_mgf1(str, str_len, outbuf, 50, SHA256);
 
 	hexdump(outbuf, sizeof outbuf, "-MGF1 output-");
 	
