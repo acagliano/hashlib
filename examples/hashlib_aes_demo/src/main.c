@@ -38,7 +38,7 @@ int main(void)
     // compute size of the plaintext
     // return and allocate a few ciphertext-sized buffers
     size_t msg_len = strlen(str);
-    size_t padded_len = cipher_aes_outsize(msg_len);
+    size_t padded_len = aes_outsize(msg_len);
     uint8_t *buf = malloc(padded_len);
     uint8_t *stripped = malloc(padded_len);
     
@@ -53,27 +53,26 @@ int main(void)
     csrand_fill(iv, AES_IVSIZE);
     
     // load the key into the key schedule
-    cipher_aes_loadkey(key, &ctx, KEYSIZE); // requires size in bits, not bytes
+    aes_loadkey(key, &ctx, KEYSIZE); // requires size in bits, not bytes
     
-	sprintf(CEMU_CONSOLE, "CBC encrypt done, exit code %u\n", cipher_aes_encrypt(str, msg_len, buf, &ctx, iv, AES_MODE_CBC, SCHM_DEFAULT));
+	sprintf(CEMU_CONSOLE, "CBC encrypt done, exit code %u\n", aes_encrypt(str, msg_len, buf, &ctx, iv, AES_MODE_CBC, SCHM_DEFAULT));
     hexdump(buf, padded_len, "-- Encrypted Message --");
     
-	sprintf(CEMU_CONSOLE, "CBC decrypt done, exit code %u\n", cipher_aes_decrypt(buf, padded_len, stripped, &ctx, iv, AES_MODE_CBC, SCHM_DEFAULT));
+	sprintf(CEMU_CONSOLE, "CBC decrypt done, exit code %u\n", aes_decrypt(buf, padded_len, stripped, &ctx, iv, AES_MODE_CBC, SCHM_DEFAULT));
     hexdump(stripped, msg_len, "-- Decrypted Message --");
 
 
 	// free *buf and *stripped.
 	// CTR mode doesn't need them.
-    free(buf);
-    free(stripped);
     
-    sprintf(CEMU_CONSOLE, "CTR encrypt done, exit code %u\n", cipher_aes_encrypt(str, msg_len, buf, &ctx, iv, AES_MODE_CTR, 0));
+    sprintf(CEMU_CONSOLE, "CTR encrypt done, exit code %u\n", aes_encrypt(str, msg_len, buf, &ctx, iv, AES_MODE_CTR, 0));
     hexdump(buf, padded_len, "-- Encrypted Message --");
 	
-	sprintf(CEMU_CONSOLE, "CTR decrypt done, exit code %u\n", cipher_aes_decrypt(buf, msg_len, stripped, &ctx, iv, AES_MODE_CTR, 0));
+	sprintf(CEMU_CONSOLE, "CTR decrypt done, exit code %u\n", aes_decrypt(buf, msg_len, stripped, &ctx, iv, AES_MODE_CTR, 0));
     hexdump(stripped, msg_len, "-- Decrypted Message --");
 
-	
+	free(buf);
+    free(stripped);
     
     return 0;
     

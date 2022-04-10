@@ -37,7 +37,7 @@ int main(void)
     // such a key should be odd and prime.
     // may output encryption error
     
-    csrand_init();
+    if(!csrand_init()) return 1;
     csrand_fill(pubkey, MODSIZE);
     pubkey[MODSIZE-1] |= 1;
     
@@ -46,4 +46,5 @@ int main(void)
 	if(rsa_encrypt(str, strlen(str), ciphertext, pubkey, MODSIZE, SHA256)==RSA_OK)
         hexdump(ciphertext, MODSIZE, "---RSA Encrypted---");
     else sprintf(CEMU_CONSOLE, "encryption error");
+    return 0;
 }
