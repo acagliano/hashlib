@@ -107,11 +107,11 @@ void \mbox{\hyperlink{hashlib_8h_a6de2a3ef1df7da45fbe84b38f72baa71}{hash\+\_\+fi
 bool \mbox{\hyperlink{hashlib_8h_aef7b1868edb022ce92f850e6269a2db9}{hash\+\_\+mgf1}} (const void $\ast$data, size\+\_\+t datalen, void $\ast$outbuf, size\+\_\+t outlen, uint8\+\_\+t hash\+\_\+alg)
 \begin{DoxyCompactList}\small\item\em Arbitrary Length Hashing Function. \end{DoxyCompactList}\item 
 bool \mbox{\hyperlink{hashlib_8h_a898e128b3311035c6769837208f34a7d}{hmac\+\_\+init}} (\mbox{\hyperlink{hashlib_8h_a8d813300476744f01319600478572f62}{hmac\+\_\+ctx}} $\ast$ctx, const void $\ast$key, size\+\_\+t keylen, uint8\+\_\+t hash\+\_\+alg)
-\begin{DoxyCompactList}\small\item\em Context Initializer for SHA-\/256 HMAC. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Context Initializer for HMAC. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{hashlib_8h_a6c5035021e844e83e062c198db85c20e}{hmac\+\_\+update}} (\mbox{\hyperlink{hashlib_8h_a8d813300476744f01319600478572f62}{hmac\+\_\+ctx}} $\ast$ctx, const void $\ast$data, size\+\_\+t len)
-\begin{DoxyCompactList}\small\item\em Updates the SHA-\/256 HMAC context for the given data. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Updates the hmac context for the given data. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{hashlib_8h_aab1ccbb4d4cc9b02116d2ed07a5c9ed3}{hmac\+\_\+final}} (\mbox{\hyperlink{hashlib_8h_a8d813300476744f01319600478572f62}{hmac\+\_\+ctx}} $\ast$ctx, void $\ast$output)
-\begin{DoxyCompactList}\small\item\em Finalize Context and Render Digest for SHA-\/256 HMAC. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Finalize Context and Render Digest for HMAC. \end{DoxyCompactList}\item 
 bool \mbox{\hyperlink{hashlib_8h_a1db040f9b150deacb5fca66d4684fa91}{hmac\+\_\+pbkdf2}} (const char $\ast$password, size\+\_\+t passlen, void $\ast$key, size\+\_\+t keylen, const void $\ast$salt, size\+\_\+t saltlen, size\+\_\+t rounds, uint8\+\_\+t hash\+\_\+alg)
 \begin{DoxyCompactList}\small\item\em Password-\/\+Based Key Derivation Function. \end{DoxyCompactList}\item 
 bool \mbox{\hyperlink{hashlib_8h_a3e30c60856defd404e80441ee159aa8b}{aes\+\_\+init}} (const void $\ast$key, const \mbox{\hyperlink{hashlib_8h_aa188bc2768a3b7aa6ad73cb2c77819e0}{aes\+\_\+ctx}} $\ast$ks, size\+\_\+t keylen)
@@ -511,7 +511,7 @@ You must have an initialized hash context or a crash will ensue.
 
 Arbitrary Length Hashing Function. 
 
-Computes SHA-\/256 of the data with a counter appended to generate a hash of arbitrary length.
+Computes an arbitrary length hash from the given data using the given hashing algorithm.
 
 
 \begin{DoxyParams}{Parameters}
@@ -537,15 +537,15 @@ Computes SHA-\/256 of the data with a counter appended to generate a hash of arb
 
 
 
-Context Initializer for SHA-\/256 HMAC. 
+Context Initializer for HMAC. 
 
-Initializes the given context with the starting state for SHA-\/256 HMAC.
+Initializes the given context with the starting state for the given HMAC algorithm.
 
 
 \begin{DoxyParams}{Parameters}
-{\em ctx} & Pointer to a SHA-\/256 HMAC context. \\
+{\em ctx} & Pointer to a hmac context. \\
 \hline
-{\em key} & Pointer to an authentication key used to initialize the base SHA-\/256 context. \\
+{\em key} & Pointer to an authentication key used to initialize the base hmac context. \\
 \hline
 {\em keylen} & Length of {\bfseries{key}}, in bytes. \\
 \hline
@@ -563,11 +563,11 @@ Boolean. True if hash initialization succeeded. False if hash ID invalid.
 
 
 
-Updates the SHA-\/256 HMAC context for the given data. 
+Updates the hmac context for the given data. 
 
 
 \begin{DoxyParams}{Parameters}
-{\em ctx} & Pointer to a SHA-\/256 HMAC context. \\
+{\em ctx} & Pointer to an HMAC context. \\
 \hline
 {\em data} & Pointer to data to hash. \\
 \hline
@@ -588,11 +588,11 @@ You must have an initialized hash context or a crash will ensue.
 
 
 
-Finalize Context and Render Digest for SHA-\/256 HMAC. 
+Finalize Context and Render Digest for HMAC. 
 
 
 \begin{DoxyParams}{Parameters}
-{\em ctx} & Pointer to a SHA-\/256 HMAC context. \\
+{\em ctx} & Pointer to an HMAC context. \\
 \hline
 {\em digest} & Pointer to a buffer to write the hash to. \\
 \hline

@@ -206,7 +206,7 @@ void hash_final(hash_ctx* ctx, void* digest);
 /**********************************************************************************************************************
  *	@brief Arbitrary Length Hashing Function
  *
- *	Computes SHA-256 of the data with a counter appended to generate a hash of arbitrary length.
+ *	Computes an arbitrary length hash from the given data using the given hashing algorithm.
  *
  *	@param data Pointer to data to hash.
  *	@param datalen Number of bytes at @b data to hash.
@@ -219,10 +219,10 @@ bool hash_mgf1(const void* data, size_t datalen, void* outbuf, size_t outlen, ui
 
 
 /*
-SHA-256 HMAC Cryptographic Hash (Hash-Based Message Authentication Code)
+Hash-Based Message Authentication Code (HMAC)
 
 HMAC generates a more secure hash by using a key known only to authorized
-parties as part of the hash initialization. Thus, while normal SHA-256 can be
+parties as part of the hash initialization. Thus, while normal hashes can be
 verified by anyone, only the parties with the key can validate using a HMAC hash.
 */
 
@@ -255,12 +255,12 @@ typedef struct _hmac_ctx {
 } hmac_ctx;
 
 /**********************************************************************************************************************
- *	@brief Context Initializer for SHA-256 HMAC
+ *	@brief Context Initializer for HMAC
  *
- *	Initializes the given context with the starting state for SHA-256 HMAC.
+ *	Initializes the given context with the starting state for the given HMAC algorithm.
  *
- *	@param ctx Pointer to a SHA-256 HMAC context.
- *	@param key Pointer to an authentication key used to initialize the base SHA-256 context.
+ *	@param ctx Pointer to a hmac context.
+ *	@param key Pointer to an authentication key used to initialize the base hmac context.
  *	@param keylen Length of @b key, in bytes.
  *  @param hash_alg The numeric ID of the hashing algorithm to use. See @b hash_algorithms.
  *  @return Boolean. True if hash initialization succeeded. False if hash ID invalid.
@@ -268,8 +268,8 @@ typedef struct _hmac_ctx {
 bool hmac_init(hmac_ctx* ctx, const void* key, size_t keylen, uint8_t hash_alg);
 
 /*************************************************************************************************************
- *	@brief Updates the SHA-256 HMAC context for the given data.
- *	@param ctx Pointer to a SHA-256 HMAC context.
+ *	@brief Updates the hmac context for the given data.
+ *	@param ctx Pointer to an HMAC context.
  *	@param data Pointer to data to hash.
  *	@param len Number of bytes at @b data to hash.
  *  @note You may use @b ctx.update() as an alternative to this function.
@@ -279,8 +279,8 @@ bool hmac_init(hmac_ctx* ctx, const void* key, size_t keylen, uint8_t hash_alg);
 void hmac_update(hmac_ctx* ctx, const void* data, size_t len);
 
 /*********************************************************************************************
- *	@brief Finalize Context and Render Digest for SHA-256 HMAC
- *	@param ctx Pointer to a SHA-256 HMAC context.
+ *	@brief Finalize Context and Render Digest for HMAC
+ *	@param ctx Pointer to an HMAC context.
  *	@param digest Pointer to a buffer to write the hash to.
  *	@note @b digest must be large enough to hold the hash digest.
  *  @note You may use @b ctx.final() as an alternative to this function.

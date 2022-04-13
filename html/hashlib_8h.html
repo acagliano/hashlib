@@ -188,13 +188,13 @@ Functions</h2></td></tr>
 <tr class="memdesc:aef7b1868edb022ce92f850e6269a2db9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Arbitrary Length Hashing Function.  <a href="hashlib_8h.html#aef7b1868edb022ce92f850e6269a2db9">More...</a><br /></td></tr>
 <tr class="separator:aef7b1868edb022ce92f850e6269a2db9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a898e128b3311035c6769837208f34a7d"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#a898e128b3311035c6769837208f34a7d">hmac_init</a> (<a class="el" href="hashlib_8h.html#a8d813300476744f01319600478572f62">hmac_ctx</a> *ctx, const void *key, size_t keylen, uint8_t hash_alg)</td></tr>
-<tr class="memdesc:a898e128b3311035c6769837208f34a7d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Context Initializer for SHA-256 HMAC.  <a href="hashlib_8h.html#a898e128b3311035c6769837208f34a7d">More...</a><br /></td></tr>
+<tr class="memdesc:a898e128b3311035c6769837208f34a7d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Context Initializer for HMAC.  <a href="hashlib_8h.html#a898e128b3311035c6769837208f34a7d">More...</a><br /></td></tr>
 <tr class="separator:a898e128b3311035c6769837208f34a7d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6c5035021e844e83e062c198db85c20e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#a6c5035021e844e83e062c198db85c20e">hmac_update</a> (<a class="el" href="hashlib_8h.html#a8d813300476744f01319600478572f62">hmac_ctx</a> *ctx, const void *data, size_t len)</td></tr>
-<tr class="memdesc:a6c5035021e844e83e062c198db85c20e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Updates the SHA-256 HMAC context for the given data.  <a href="hashlib_8h.html#a6c5035021e844e83e062c198db85c20e">More...</a><br /></td></tr>
+<tr class="memdesc:a6c5035021e844e83e062c198db85c20e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Updates the hmac context for the given data.  <a href="hashlib_8h.html#a6c5035021e844e83e062c198db85c20e">More...</a><br /></td></tr>
 <tr class="separator:a6c5035021e844e83e062c198db85c20e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aab1ccbb4d4cc9b02116d2ed07a5c9ed3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#aab1ccbb4d4cc9b02116d2ed07a5c9ed3">hmac_final</a> (<a class="el" href="hashlib_8h.html#a8d813300476744f01319600478572f62">hmac_ctx</a> *ctx, void *output)</td></tr>
-<tr class="memdesc:aab1ccbb4d4cc9b02116d2ed07a5c9ed3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Finalize Context and Render Digest for SHA-256 HMAC.  <a href="hashlib_8h.html#aab1ccbb4d4cc9b02116d2ed07a5c9ed3">More...</a><br /></td></tr>
+<tr class="memdesc:aab1ccbb4d4cc9b02116d2ed07a5c9ed3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Finalize Context and Render Digest for HMAC.  <a href="hashlib_8h.html#aab1ccbb4d4cc9b02116d2ed07a5c9ed3">More...</a><br /></td></tr>
 <tr class="separator:aab1ccbb4d4cc9b02116d2ed07a5c9ed3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1db040f9b150deacb5fca66d4684fa91"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashlib_8h.html#a1db040f9b150deacb5fca66d4684fa91">hmac_pbkdf2</a> (const char *password, size_t passlen, void *key, size_t keylen, const void *salt, size_t saltlen, size_t rounds, uint8_t hash_alg)</td></tr>
 <tr class="memdesc:a1db040f9b150deacb5fca66d4684fa91"><td class="mdescLeft">&#160;</td><td class="mdescRight">Password-Based Key Derivation Function.  <a href="hashlib_8h.html#a1db040f9b150deacb5fca66d4684fa91">More...</a><br /></td></tr>
@@ -817,7 +817,7 @@ You can use <b>ctx.final()</b> as an alternative to this function. If doing so, 
 </div><div class="memdoc">
 
 <p>Arbitrary Length Hashing Function. </p>
-<p >Computes SHA-256 of the data with a counter appended to generate a hash of arbitrary length.</p>
+<p >Computes an arbitrary length hash from the given data using the given hashing algorithm.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">data</td><td>Pointer to data to hash. </td></tr>
@@ -870,12 +870,12 @@ You can use <b>ctx.final()</b> as an alternative to this function. If doing so, 
       </table>
 </div><div class="memdoc">
 
-<p>Context Initializer for SHA-256 HMAC. </p>
-<p >Initializes the given context with the starting state for SHA-256 HMAC.</p>
+<p>Context Initializer for HMAC. </p>
+<p >Initializes the given context with the starting state for the given HMAC algorithm.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">ctx</td><td>Pointer to a SHA-256 HMAC context. </td></tr>
-    <tr><td class="paramname">key</td><td>Pointer to an authentication key used to initialize the base SHA-256 context. </td></tr>
+    <tr><td class="paramname">ctx</td><td>Pointer to a hmac context. </td></tr>
+    <tr><td class="paramname">key</td><td>Pointer to an authentication key used to initialize the base hmac context. </td></tr>
     <tr><td class="paramname">keylen</td><td>Length of <b>key</b>, in bytes. </td></tr>
     <tr><td class="paramname">hash_alg</td><td>The numeric ID of the hashing algorithm to use. See <b>hash_algorithms</b>. </td></tr>
   </table>
@@ -917,10 +917,10 @@ You can use <b>ctx.final()</b> as an alternative to this function. If doing so, 
       </table>
 </div><div class="memdoc">
 
-<p>Updates the SHA-256 HMAC context for the given data. </p>
+<p>Updates the hmac context for the given data. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">ctx</td><td>Pointer to a SHA-256 HMAC context. </td></tr>
+    <tr><td class="paramname">ctx</td><td>Pointer to an HMAC context. </td></tr>
     <tr><td class="paramname">data</td><td>Pointer to data to hash. </td></tr>
     <tr><td class="paramname">len</td><td>Number of bytes at <b>data</b> to hash. </td></tr>
   </table>
@@ -957,10 +957,10 @@ You can use <b>ctx.final()</b> as an alternative to this function. If doing so, 
       </table>
 </div><div class="memdoc">
 
-<p>Finalize Context and Render Digest for SHA-256 HMAC. </p>
+<p>Finalize Context and Render Digest for HMAC. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">ctx</td><td>Pointer to a SHA-256 HMAC context. </td></tr>
+    <tr><td class="paramname">ctx</td><td>Pointer to an HMAC context. </td></tr>
     <tr><td class="paramname">digest</td><td>Pointer to a buffer to write the hash to. </td></tr>
   </table>
   </dd>
